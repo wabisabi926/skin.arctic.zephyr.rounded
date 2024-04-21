@@ -207,7 +207,7 @@
                 <fadetime>PosterFanartFadetime</fadetime>
                 <aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
                 <texture diffuse="diffuse/sideposter_square.png" background="true">$VAR[Image_Square_50_List]</texture>
-                <visible>$EXP[IsYoutube]</visible>
+                <visible>$EXP[IsYoutube] + !$EXP[IsYoutube_Comments]</visible>
                 <visible>!ListItem.IsParentFolder</visible>
             </control>
 
@@ -766,7 +766,7 @@
 
             <!-- <animation effect="slide" start="0" end="-75" time="0" condition="ListItem.IsParentFolder">Conditional</animation> -->
             <!-- <animation effect="slide" start="0" end="-100" time="0" condition="!Container.Content(movies) | String.IsEmpty(ListItem.DBType)">Conditional</animation> -->
-            <animation effect="slide" start="0" end="-100" time="0" condition="!Container.Content(movies) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType)]">Conditional</animation>
+            <animation effect="slide" start="0" end="-100" time="0" condition="!Container.Content(movies)">Conditional</animation>
             <visible>!ListItem.HasVideoVersions + !ListItem.IsParentFolder</visible>
         </control>
 
@@ -917,7 +917,7 @@
 
             <!-- <animation effect="slide" start="0" end="-100" time="0" condition="!Container.Content(movies) | String.IsEmpty(ListItem.DBType)">Conditional</animation> -->
 
-            <animation effect="slide" start="0" end="-100" time="0" condition="!Container.Content(movies) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType)]">Conditional</animation>
+            <animation effect="slide" start="0" end="-100" time="0" condition="!Container.Content(movies)">Conditional</animation>
             <visible>!ListItem.HasVideoVersions + !ListItem.IsParentFolder</visible>
         </control>
 
@@ -1056,7 +1056,7 @@
             <label>$INFO[ListItem.Label]</label>
             <textcolor>Dark1</textcolor>
             <selectedcolor>Dark1</selectedcolor>
-            <animation effect="slide" start="0" end="-90" time="0" condition="!Container.Content(movies) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType)]">Conditional</animation>
+            <animation effect="slide" start="0" end="-90" time="0" condition="!Container.Content(movies)">Conditional</animation>
             <!-- <animation effect="slide" start="0" end="-90" time="0" condition="ListItem.IsParentFolder">Conditional</animation> -->
             <visible>!ListItem.HasVideoVersions + !Container.Content(episodes) + !Container.Content(tvshows) + !ListItem.IsParentFolder</visible>
         </control>
@@ -1234,7 +1234,7 @@
             <selectedcolor>Selected</selectedcolor>
             <label>$INFO[ListItem.Label]</label>
             <!-- <animation effect="slide" start="0" end="-90" time="0" condition="!Container.Content(movies) | String.IsEmpty(ListItem.DBType)">Conditional</animation> -->
-            <animation effect="slide" start="0" end="-90" time="0" condition="!Container.Content(movies) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType)]">Conditional</animation>
+            <animation effect="slide" start="0" end="-90" time="0" condition="!Container.Content(movies)">Conditional</animation>
             <!-- <animation effect="slide" start="0" end="-90" time="0" condition="ListItem.IsParentFolder">Conditional</animation> -->
             <visible>!ListItem.HasVideoVersions + !Container.Content(episodes) + !Container.Content(tvshows) + !ListItem.IsParentFolder</visible>
         </control>
@@ -1396,6 +1396,7 @@
             <bottom>32</bottom>
             <texture colordiffuse="Fallback" border="12" background="true">common/box.png</texture>
         </control>
+
         <control type="image">
             <left>14</left>
             <top>10</top>
@@ -1403,7 +1404,18 @@
             <bottom>32</bottom>
             <aspectratio scalediffuse="false">scale</aspectratio>
             <texture diffuse="diffuse/widgetfanart_new.png" background="true">$VAR[Image_Thumb]</texture>
+            <visible>!String.StartsWith(ListItem.Icon,Default)</visible>
         </control>
+        <control type="image">
+            <left>14</left>
+            <top>10</top>
+            <right>25</right>
+            <bottom>32</bottom>
+            <aspectratio scalediffuse="false">scale</aspectratio>
+            <texture diffuse="diffuse/widgetfanart_new.png" colordiffuse="Dark1" background="true">$VAR[Image_Thumb]</texture>
+            <visible>String.StartsWith(ListItem.Icon,Default)</visible>
+        </control>
+
         <control type="image">
             <left>14</left>
             <right>25</right>
@@ -1433,6 +1445,7 @@
                 <bottom>32</bottom>
                 <texture colordiffuse="Fallback" border="12" background="true">common/box.png</texture>
             </control>
+
             <control type="image">
                 <left>14</left>
                 <top>10</top>
@@ -1440,7 +1453,18 @@
                 <bottom>32</bottom>
                 <aspectratio scalediffuse="false">scale</aspectratio>
                 <texture diffuse="diffuse/widgetsquare_new.png" background="true">$VAR[Image_Thumb]</texture>
+                <visible>!String.StartsWith(ListItem.Icon,Default)</visible>
             </control>
+            <control type="image">
+                <left>14</left>
+                <top>10</top>
+                <right>25</right>
+                <bottom>32</bottom>
+                <aspectratio scalediffuse="false">scale</aspectratio>
+                <texture diffuse="diffuse/widgetfanart_new.png" colordiffuse="Dark1" background="true">$VAR[Image_Thumb]</texture>
+                <visible>String.StartsWith(ListItem.Icon,Default)</visible>
+            </control>
+
             <control type="image">
                 <left>14</left>
                 <right>25</right>
