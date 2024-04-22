@@ -795,6 +795,7 @@
             <animation effect="slide" start="0" end="60" time="0" condition="Container.Content(Seasons) | Skin.HasSetting(hide.markers)">Conditional</animation>
             <animation effect="slide" start="0" end="66" time="0" condition="!Container.Content(Seasons) + Skin.HasSetting(hide.ratings)">Conditional</animation>
             <animation effect="slide" start="0" end="66" time="0" condition="$EXP[IsAnPlugin] + !$EXP[IsTMDbHelper] + !Skin.HasSetting(hide.ratings)">Conditional</animation>
+            <visible>!String.IsEmpty(ListItem.DBType) + !Container.Content()</visible>
         </control>
 
         <!-- Watched status -->
@@ -937,6 +938,7 @@
             <animation effect="slide" start="0" end="60" time="0" condition="Container.Content(Seasons) | Skin.HasSetting(hide.markers)">Conditional</animation>
             <animation effect="slide" start="0" end="66" time="0" condition="!Container.Content(Seasons) + Skin.HasSetting(hide.ratings)">Conditional</animation>
             <animation effect="slide" start="0" end="66" time="0" condition="$EXP[IsAnPlugin] + !$EXP[IsTMDbHelper] + !Skin.HasSetting(hide.ratings)">Conditional</animation>
+            <visible>!String.IsEmpty(ListItem.DBType) + !Container.Content()</visible>
         </control>
 
         <!-- Watched status -->
@@ -1076,6 +1078,9 @@
 
         <!-- Duration -->
         <control type="label">
+            <animation effect="slide" start="0" end="60" time="0" condition="Container.Content(Seasons) | Skin.HasSetting(hide.markers)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="!Container.Content(Seasons) + Skin.HasSetting(hide.ratings)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="$EXP[IsAnPlugin] + !$EXP[IsTMDbHelper] + !Skin.HasSetting(hide.ratings)">Conditional</animation>
             <top>-5</top>
             <right>154</right>
             <width>500</width>
@@ -1086,13 +1091,14 @@
             <textcolor>Dark1</textcolor>
             <selectedcolor>Dark1</selectedcolor>
             <label>$VAR[50ListNormalRight]</label>
-            <animation effect="slide" start="0" end="60" time="0" condition="Container.Content(Seasons) | Skin.HasSetting(hide.markers)">Conditional</animation>
-            <animation effect="slide" start="0" end="66" time="0" condition="!Container.Content(Seasons) + Skin.HasSetting(hide.ratings)">Conditional</animation>
-            <animation effect="slide" start="0" end="66" time="0" condition="$EXP[IsAnPlugin] + !$EXP[IsTMDbHelper] + !Skin.HasSetting(hide.ratings)">Conditional</animation>
+            <visible>!String.IsEmpty(ListItem.DBType) + !Container.Content()</visible>
         </control>
 
         <!-- Watched status -->
         <control type="label">
+            <animation effect="slide" start="0" end="60" time="0" condition="Container.Content(Seasons) | Skin.HasSetting(hide.markers)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="!Container.Content(Seasons) + Skin.HasSetting(hide.ratings)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="$EXP[IsAnPlugin] + !$EXP[IsTMDbHelper] + !Skin.HasSetting(hide.ratings)">Conditional</animation>
             <top>-5</top>
             <align>right</align>
             <aligny>center</aligny>
@@ -1103,9 +1109,6 @@
             <label>$VAR[WatchedLabelList]</label>
             <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums) | Container.Content(videos)</visible>
             <visible>!ListItem.IsParentFolder + !String.IsEmpty(ListItem.DBType)</visible>
-            <animation effect="slide" start="0" end="60" time="0" condition="Container.Content(Seasons) | Skin.HasSetting(hide.markers)">Conditional</animation>
-            <animation effect="slide" start="0" end="66" time="0" condition="!Container.Content(Seasons) + Skin.HasSetting(hide.ratings)">Conditional</animation>
-            <animation effect="slide" start="0" end="66" time="0" condition="$EXP[IsAnPlugin] + !$EXP[IsTMDbHelper] + !Skin.HasSetting(hide.ratings)">Conditional</animation>
         </control>
 
         <!-- Rating -->
@@ -1264,6 +1267,7 @@
             <textcolor>Selected</textcolor>
             <selectedcolor>Selected</selectedcolor>
             <label>$VAR[50ListNormalRight]</label>
+            <visible>!String.IsEmpty(ListItem.DBType) + !Container.Content()</visible>
         </control>
 
         <!-- Watched status -->
