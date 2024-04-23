@@ -923,35 +923,12 @@
             <posy>115</posy>
             <width>450</width>
             <height>690</height>
-            <onleft>5</onleft>
             <onright>1723</onright>
             <pagecontrol>1723</pagecontrol>
             <onup>6</onup>
             <ondown>6</ondown>
-
-            <!-- DIALOG SELECT STANDARD -->
-
             <itemlayout height="70">
-                <!-- <control type="image"> -->
-                    <!-- <posx>32</posx> -->
-                    <!-- <posy>12</posy> -->
-                    <!-- <width>111</width> -->
-                    <!-- <height>111</height> -->
-                    <!-- <aspectratio scalediffuse="false">keep</aspectratio> -->
-                    <!-- <texture fallback="DefaultAddonNone.png">$VAR[Image_Dialog_Select_List]</texture> -->
-                    <!-- <visible>[!String.StartsWith(ListItem.Icon,Default) | !String.IsEmpty(ListItem.Art(poster))]</visible> -->
-                <!-- </control> -->
-               <!-- <control type="image"> -->
-                    <!-- <posx>32</posx> -->
-                    <!-- <posy>12</posy> -->
-                    <!-- <width>111</width> -->
-                    <!-- <height>111</height> -->
-                    <!-- <aspectratio scalediffuse="false">keep</aspectratio> -->
-                    <!-- <texture fallback="DefaultAddonNone.png" colordiffuse="Dark1">$INFO[ListItem.Icon]</texture> -->
-                    <!-- <visible>[String.StartsWith(ListItem.Icon,Default) | String.IsEmpty(ListItem.Icon)] + String.IsEmpty(ListItem.Art(poster))</visible> -->
-                <!-- </control> -->
                 <control type="label">
-                    <posy>-18</posy>
                     <posx>30</posx>
                     <width>450</width>
                     <height>70</height>
@@ -959,17 +936,6 @@
                     <textcolor>Dark1</textcolor>
                     <selectedcolor>Dark1</selectedcolor>
                     <label>$INFO[ListItem.Label]</label>
-                    <animation effect="slide" end="0,18" condition="String.IsEmpty(ListItem.Label2)">Conditional</animation>
-                </control>
-                <control type="label">
-                    <posx>30</posx>
-                    <posy>18</posy>
-                    <width>450</width>
-                    <height>70</height>
-                    <font>Mini</font>
-                    <textcolor>Black70</textcolor>
-                    <selectedcolor>Black70</selectedcolor>
-                    <label>$INFO[ListItem.Label2]</label>
                 </control>
                 <control type="image">
                     <right>30</right>
@@ -977,115 +943,31 @@
                     <width>24</width>
                     <height>24</height>
                     <texture colordiffuse="Black70">osd/minicheck_big.png</texture>
-                    <visible>ListItem.IsSelected</visible>
+                    <visible>String.IsEqual(Container.ViewMode,ListItem.Label)</visible>
                 </control>
             </itemlayout>
             <focusedlayout height="70">
-                <control type="group">
-                    <visible>!Control.HasFocus(6)</visible>
-                    <!-- <control type="image"> -->
-                        <!-- <posx>32</posx> -->
-                        <!-- <posy>12</posy> -->
-                        <!-- <width>111</width> -->
-                        <!-- <height>111</height> -->
-                        <!-- <aspectratio scalediffuse="false">keep</aspectratio> -->
-                        <!-- <texture fallback="DefaultAddonNone.png">$VAR[Image_Dialog_Select_List]</texture> -->
-                        <!-- <visible>!String.StartsWith(ListItem.Icon,Default) + !String.IsEmpty(ListItem.Icon)</visible> -->
-                    <!-- </control> -->
-                    <!-- <control type="image"> -->
-                        <!-- <posx>32</posx> -->
-                        <!-- <posy>12</posy> -->
-                        <!-- <width>111</width> -->
-                        <!-- <height>111</height> -->
-                        <!-- <aspectratio scalediffuse="false">keep</aspectratio> -->
-                        <!-- <texture fallback="DefaultAddonNone.png" colordiffuse="Black70">$VAR[Image_Dialog_Select_List]</texture> -->
-                    <!-- <visible>String.StartsWith(ListItem.Icon,Default) | String.IsEmpty(ListItem.Icon)</visible> -->
-                    <!-- </control> -->
-                    <control type="label">
-                        <posy>-18</posy>
-                        <posx>30</posx>
-                        <width>450</width>
-                        <height>70</height>
-                        <font>InfoNetflix</font>
-                        <textcolor>Dark1</textcolor>
-                        <selectedcolor>Dark1</selectedcolor>
-                        <info>ListItem.Label</info>
-                        <animation effect="slide" end="0,18" condition="String.IsEmpty(ListItem.Label2)">Conditional</animation>
-                    </control>
-                    <control type="label">
-                        <posx>30</posx>
-                        <posy>18</posy>
-                        <width>450</width>
-                        <height>70</height>
-                        <font>Mini</font>
-                        <textcolor>Black70</textcolor>
-                        <selectedcolor>Black70</selectedcolor>
-                        <label>$INFO[ListItem.Label2]</label>
-                    </control>
-                    <control type="image">
-                        <right>30</right>
-                        <centertop>50%</centertop>
-                        <width>24</width>
-                        <height>24</height>
-                        <texture colordiffuse="Black70">osd/minicheck_big.png</texture>
-                        <visible>ListItem.IsSelected</visible>
-                    </control>
+                <control type="image">
+                    <width>450</width>
+                    <height>70</height>
+                    <texture>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texture>
                 </control>
-
-                <control type="group">
-                    <visible>Control.HasFocus(6)</visible>
-                    <control type="image">
-                        <width>450</width>
-                        <height>70</height>
-                        <texture>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texture>
-                    </control>
-                    <!-- <control type="image"> -->
-                        <!-- <posx>32</posx> -->
-                        <!-- <posy>12</posy> -->
-                        <!-- <width>111</width> -->
-                        <!-- <height>111</height> -->
-                        <!-- <aspectratio scalediffuse="false">keep</aspectratio> -->
-                        <!-- <texture fallback="DefaultAddonNone.png">$VAR[Image_Dialog_Select_List]</texture> -->
-                        <!-- <visible>!String.StartsWith(ListItem.Icon,Default) + !String.IsEmpty(ListItem.Icon)</visible> -->
-                    <!-- </control> -->
-                    <!-- <control type="image"> -->
-                        <!-- <posx>32</posx> -->
-                        <!-- <posy>12</posy> -->
-                        <!-- <width>111</width> -->
-                        <!-- <height>111</height> -->
-                        <!-- <aspectratio scalediffuse="false">keep</aspectratio> -->
-                        <!-- <texture fallback="DefaultAddonNone.png" colordiffuse="Selected">$VAR[Image_Dialog_Select_List]</texture> -->
-                        <!-- <visible>[String.StartsWith(ListItem.Icon,Default) | String.IsEmpty(ListItem.Icon)]</visible> -->
-                    <!-- </control> -->
-                    <control type="label">
-                        <posy>-18</posy>
-                        <posx>30</posx>
-                        <width>450</width>
-                        <height>70</height>
-                        <font>InfoNetflix</font>
-                        <textcolor>Selected</textcolor>
-                        <selectedcolor>Selected</selectedcolor>
-                        <label>$INFO[ListItem.Label]</label>
-                        <animation effect="slide" end="0,18" condition="String.IsEmpty(ListItem.Label2)">Conditional</animation>
-                    </control>
-                    <control type="label">
-                        <posx>170</posx>
-                        <posy>18</posy>
-                        <width>30</width>
-                        <height>70</height>
-                        <font>Mini</font>
-                        <textcolor>Selected</textcolor>
-                        <selectedcolor>Selected</selectedcolor>
-                        <label>$INFO[ListItem.Label2]</label>
-                    </control>
-                    <control type="image">
-                        <right>30</right>
-                        <centertop>50%</centertop>
-                        <width>24</width>
-                        <height>24</height>
-                        <texture colordiffuse="Selected">osd/minicheck_big.png</texture>
-                        <visible>ListItem.IsSelected</visible>
-                    </control>
+                <control type="label">
+                    <posx>30</posx>
+                    <width>450</width>
+                    <height>70</height>
+                    <font>InfoNetflix</font>
+                    <textcolor>Selected</textcolor>
+                    <selectedcolor>Selected</selectedcolor>
+                    <label>$INFO[ListItem.Label]</label>
+                </control>
+                <control type="image">
+                    <right>30</right>
+                    <centertop>50%</centertop>
+                    <width>24</width>
+                    <height>24</height>
+                    <texture colordiffuse="Selected">osd/minicheck_big.png</texture>
+                    <visible>String.IsEqual(Container.ViewMode,ListItem.Label)</visible>
                 </control>
             </focusedlayout>
         </control>
@@ -1275,15 +1157,18 @@
             <visible>![Window.IsVisible(DialogNumeric.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(DialogKeyboard.xml)]</visible>
             <include>Animation_FadeIn</include>
             <include>Animation_FadeOut</include>
+
             <control type="image">
                 <include>Def_Dimensions_Fullscreen</include>
                 <texture border="2">common/black-back.png</texture>
             </control>
+
             <control type="group">
                 <top>204</top>
                 <left>732</left>
-                <width>468</width>
+                <width>568</width>
                 <height>364</height>
+
                 <control type="image">
                     <visible>!Integer.IsGreater(Container(9400).NumItems,3)</visible>
                     <left>0</left>
@@ -1347,6 +1232,7 @@
                     <colordiffuse>White100</colordiffuse>
                     <texture border="12">common/box.png</texture>
                 </control>
+
                 <control type="group">
                     <left>18</left>
                     <top>0</top>
@@ -1369,13 +1255,14 @@
                     <control type="image">
                         <top>70</top>
                         <left>17</left>
-                        <width>385</width>
+                        <width>474</width>
                         <height>1</height>
                         <bottom>10</bottom>
                         <colordiffuse>Black12</colordiffuse>
                         <texture>common/white.png</texture>
                     </control>
                 </control>
+
                 <control type="group">
                     <height>350</height>
                     <left>-22</left>
@@ -1399,6 +1286,7 @@
                         <animation effect="slide" end="0,70" time="0" condition="Integer.IsGreater(Container(9400).NumItems,6)">Conditional</animation>
                     </control>
                 </control>
+
                 <control type="grouplist" id="9400">
                     <top>90</top>
                     <onback>9000</onback>
@@ -1691,20 +1579,6 @@
         <texturefocus colordiffuse="$VAR[Color_Highlight]">common/white.png</texturefocus>
     </include>
 
-    <include name="Def_Button_Gradient_Context">
-        <radioposx>393</radioposx>
-        <textwidth>340</textwidth>
-        <width>450</width>
-        <height>70</height>
-        <font>Tiny</font>
-        <textcolor>Black70</textcolor>
-        <textureradiofocus colordiffuse="Black70">buttons/radio-on.png</textureradiofocus>
-        <textureradionofocus colordiffuse="Black30">buttons/radio-off.png</textureradionofocus>
-        <focusedcolor>Selected</focusedcolor>
-        <alttexturefocus>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</alttexturefocus>
-        <texturefocus>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texturefocus>
-    </include>
-
     <include name="Def_Button_Gradient_Select">
         <radioposx>643</radioposx>
         <left>0</left>
@@ -1816,19 +1690,6 @@
         <focusedcolor>Selected</focusedcolor>
         <alttexturefocus>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</alttexturefocus>
         <texturefocus>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texturefocus>
-    </include>
-
-    <include name="Def_Context_Menu_Label">
-        <enable>false</enable>
-        <textoffsetx>30</textoffsetx>
-        <font>Button</font>
-        <textcolor>$VAR[Color_Highlight]</textcolor>
-        <align>left</align>
-        <width>1310</width>
-        <disabledcolor>$VAR[Color_Highlight]</disabledcolor>
-        <height>70</height>
-        <texturefocus colordiffuse="$VAR[Color_Highlight]">common/white.png</texturefocus>
-        <alttexturefocus colordiffuse="$VAR[Color_Highlight]">common/white.png</alttexturefocus>
     </include>
 
     <include name="Def_Settings_Button_Label_Info">

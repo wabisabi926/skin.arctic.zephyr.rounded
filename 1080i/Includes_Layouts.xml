@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 
+    <!-- VIEW TYPE ID -->
+
     <variable name="Items_ViewMode_Switch">
         <!-- <value condition="String.IsEqual(Container.Content,genres) + Window.IsVisible(MyMusicNav.xml)">genres-music</value> -->
         <!-- <value condition="String.IsEqual(Container.Content,years) + Window.IsVisible(MyMusicNav.xml)">years-music</value> -->
@@ -13,7 +15,6 @@
         <value condition="Window.IsVisible(MyFavourites.xml)">favourites</value>
         <value condition="Window.IsVisible(AddonBrowser.xml)">addons</value>
         <value condition="Window.IsVisible(MyPics.xml)">pics</value>
-
         <value condition="!String.IsEmpty(Container.Content)">$INFO[Container.Content]</value>
         <!-- <value condition="Window.IsVisible(MyPVRRecordings.xml)">pvr-recordings</value> -->
         <!-- <value condition="Window.IsVisible(MyPVRTimers.xml)">pvr-timers</value> -->
@@ -21,20 +22,73 @@
         <value>none</value>
     </variable>
 
-    <!-- VIEWS - CONTEXTE MENU LAYOUT -->
+    <!-- VIEWS LAYOUT - CONTEXTE MENU -->
+
+
+    <include name="Def_Context_Menu_Label">
+        <enable>false</enable>
+        <textoffsetx>30</textoffsetx>
+        <font>Button</font>
+        <textcolor>$VAR[Color_Highlight]</textcolor>
+        <align>left</align>
+        <width>1310</width>
+        <disabledcolor>$VAR[Color_Highlight]</disabledcolor>
+        <height>70</height>
+        <texturefocus colordiffuse="$VAR[Color_Highlight]">common/white.png</texturefocus>
+        <alttexturefocus colordiffuse="$VAR[Color_Highlight]">common/white.png</alttexturefocus>
+    </include>
+
+    <include name="Def_Button_Gradient_Context">
+        <radioposx>490</radioposx>
+        <textwidth>440</textwidth>
+        <width>550</width>
+        <height>70</height>
+        <font>Tiny</font>
+        <textcolor>Black70</textcolor>
+        <textureradiofocus colordiffuse="Black70">buttons/radio-on.png</textureradiofocus>
+        <textureradionofocus colordiffuse="Black30">buttons/radio-off.png</textureradionofocus>
+        <focusedcolor>Selected</focusedcolor>
+        <alttexturefocus>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</alttexturefocus>
+        <texturefocus>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texturefocus>
+    </include>
 
     <include name="Def_View_ContextMenu_GroupList">
         <param name="height" default="350"/>
         <definition>
-        <visible allowhiddenfocus="true">ControlGroup(9000).HasFocus()</visible>
-        <onleft>50</onleft>
-        <onright>50</onright>
-        <onback>50</onback>
-        <posx>8</posx>
-        <posy>16</posy>
-        <width>510</width>
-        <height>$PARAM[height]</height>
-        <itemgap>0</itemgap>
+            <visible allowhiddenfocus="true">ControlGroup(9000).HasFocus()</visible>
+            <onleft>50</onleft>
+            <onright>50</onright>
+            <onback>50</onback>
+            <posx>0</posx>
+            <posy>16</posy>
+            <width>550</width>
+            <height>$PARAM[height]</height>
+            <itemgap>0</itemgap>
+        </definition>
+    </include>
+
+    <include name="Def_View_ContextMenu_Background">
+        <param name="height" default="366"/>
+        <definition>
+            <visible allowhiddenfocus="true">ControlGroup(9000).HasFocus()</visible>
+            <include>Animation_ZoomIn</include>
+            <include>Animation_FadeOut</include>
+            <top>184</top>
+            <!-- <centertop>50%</centertop> -->
+            <centerleft>50%</centerleft>
+            <height>$PARAM[height]</height>
+            <width>550</width>
+            <control type="image">
+                <left>-9</left>
+                <top>-9</top>
+                <right>-9</right>
+                <bottom>-9</bottom>
+                <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
+                <visible>!Skin.HasSetting(global.hide.shadows)</visible>
+            </control>
+            <control type="image">
+                <texture colordiffuse="White100" border="12">common/box.png</texture>
+            </control>
         </definition>
     </include>
 
@@ -67,29 +121,6 @@
                    <include>arrowdimensions</include>
                    <texture colordiffuse="White70" flipy="false">common/arrow-small.png</texture>
                 </control>
-            </control>
-        </definition>
-    </include>
-
-    <include name="Def_View_ContextMenu_Background">
-        <param name="height" default="366"/>
-        <definition>
-            <visible allowhiddenfocus="true">ControlGroup(9000).HasFocus()</visible>
-            <include>Animation_ZoomIn</include>
-            <include>Animation_FadeOut</include>
-            <top>184</top>
-            <!-- <centertop>50%</centertop> -->
-            <centerleft>50%</centerleft>
-            <height>$PARAM[height]</height>
-            <width>466</width>
-            <control type="image">
-                <left>-16</left>
-                <right>-16</right>
-                <top>-16</top>
-                <bottom>-24</bottom>
-                <bordertexture border="40">common/$VAR[shadow40]</bordertexture>
-                <bordersize>24</bordersize>
-                <texture colordiffuse="White100" border="12">common/box.png</texture>
             </control>
         </definition>
     </include>

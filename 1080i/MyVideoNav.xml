@@ -25,7 +25,6 @@
         <include>Background_Global</include>
 
         <include condition="$EXP[Exp_View_550_Include]">View_550_List_Square</include>
-
         <include condition="$EXP[Exp_View_50_Include] + !Skin.HasSetting(50list.low)">View_50_List</include>
         <include condition="$EXP[Exp_View_50_Include] + Skin.HasSetting(50list.low)">View_50_LowList</include>
         <include condition="$EXP[Exp_View_550_Include]">View_550_List_Square_Video</include>
@@ -43,25 +42,20 @@
         <include condition="$EXP[Exp_View_57_Include] + Skin.HasSetting(57list.low)">View_57_ExtraInfo_LowList</include>
         <include condition="$EXP[Exp_View_500_Include]">View_500_Thumbnails</include>
         <include condition="$EXP[Exp_View_547_Include]">View_547_ThumbnailsSmall</include>
-
         <include condition="$EXP[Exp_View_501_Include]">View_501_Fanart</include>
         <include condition="$EXP[Exp_View_507_Include]">View_507_Fanart2</include>
         <include condition="$EXP[Exp_View_512_Include]">View_512_Double_Banner</include>
         <include condition="$EXP[Exp_View_511_Include]">View_511_Double</include>
-
         <include condition="$EXP[Exp_View_509_Include]">View_509_Shift</include>
         <include condition="$EXP[Exp_View_519_Include]">View_519_Shift_Horizontal</include>
         <include condition="$EXP[Exp_View_521_Include]">View_521_Minimal_V2</include>
         <include condition="$EXP[Exp_View_58_Include]">View_58_Cards</include>
         <include condition="$EXP[Exp_View_515_Include]">View_515_SideCards</include>
         <include condition="$EXP[Exp_View_53_Include]">View_53_Poster</include>
-
         <include condition="$EXP[Exp_View_516_Include]">View_516_SeasonsInfo</include>
         <include condition="$EXP[Exp_View_526_Include]">View_526_SeasonsInfo_V2</include>
         <include condition="$EXP[Exp_View_524_Include]">View_524_Minimal_V2_Seasons</include>
-
         <include condition="$EXP[Exp_View_522_Include]">View_522_Minimal_V2_Episodes</include>
-
         <include condition="$EXP[Exp_View_513_Include]">View_513_Shifted</include>
         <include condition="$EXP[Exp_View_527_Include]">View_527_List_V2</include>
 
@@ -92,14 +86,17 @@
 
         <control type="group">
             <animation effect="slide" start="0" end="-655" time="200" condition="Window.IsVisible(1154)">Conditional</animation>
+
             <height>682</height>
+
             <include>Def_View_ContextMenu_Background</include>
-            <include>Def_View_ContextMenu_Arrows</include>
+            <!-- <include>Def_View_ContextMenu_Arrows</include> -->
 
             <control type="label">
                 <include>Def_Dialog_Header_Title</include>
                 <label>14018</label>
             </control>
+
             <include>Def_Dialog_Header_Logo</include>
             <include>Def_Dialog_Header_Line</include>
 
@@ -109,7 +106,11 @@
             <control type="grouplist" id="9000">
                 <top>102</top>
                 <usecontrolcoords>true</usecontrolcoords>
-                <include content="Def_View_ContextMenu_GroupList"><param name="height" value="560" /></include>
+
+                <include content="Def_View_ContextMenu_GroupList">
+                    <param name="height" value="560" />
+                </include>
+
                 <scrolltime>0</scrolltime>
 
                 <!-- FILTER -->
@@ -828,7 +829,7 @@
                     <top>20</top>
                     <left>20</left>
                     <!-- <right>10</right> -->
-                    <width>410</width>
+                    <width>510</width>
                     <include>Object_OSD_Progress_Bar_Info</include>
                     <visible>Player.HasMedia | Player.Playing</visible>
                 </control>
