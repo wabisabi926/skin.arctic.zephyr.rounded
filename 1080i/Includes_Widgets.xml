@@ -34,8 +34,9 @@
                 <aspectratio scalediffuse="false">scale</aspectratio>
                 <texture diffuse="diffuse/widgetposter_new.png" background="true" fallback="DefaultMovies.png">$VAR[Image_Poster]</texture>
                 <visible>!Control.IsVisible(53) + !Control.IsVisible(517)</visible>
-                <visible>!ListItem.IsParentFolder</visible>
-                <visible>!String.StartsWith(ListItem.Icon,Default) | [String.StartsWith(ListItem.Icon,Default) + !String.IsEqual(ListItem.DBType,season) + !String.IsEqual(ListItem.DBType,tvshow) + [String.IsEqual(ListItem.DBType,movie) | [Container.Content(movies) + !String.IsEmpty(ListItem.DBType)]]]</visible>
+                <visible>Window.IsActive(Home) | Container.Content(addons) | Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(favourites) | $EXP[IsAnPlugin] | Container.Content(countries) | Container.Content(genres) | Container.Content(years) | Container.Content(tags) | Container.Content(studios) | Container.Content(directors) | Container.Content(actors) | Container.Content(files) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Window.IsVisible(FileBrowser.xml)</visible>
+
+                <visible>!String.StartsWith(ListItem.Icon,Default) | [String.StartsWith(ListItem.Icon,Default) + [[Container.Content(movies) + !String.IsEmpty(Listem.DBType)] | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | [Container.Content(countries) + !String.IsEmpty(Skin.String(country.logos.path))] | [Container.Content(genres) + !String.IsEmpty(Skin.String(genre.icons.path))] | [Container.Content(studios) + !String.IsEmpty(Skin.String(studio.logos.path))]]]</visible>
             </control>
             <control type="image">
                 <left>10</left>
@@ -45,8 +46,8 @@
                 <aspectratio scalediffuse="false">keep</aspectratio>
                 <texture colordiffuse="Dark1">$VAR[Image_Poster]</texture>
                 <visible>!Control.IsVisible(53) + !Control.IsVisible(517)</visible>
-                <visible>ListItem.IsParentFolder | String.StartsWith(ListItem.Icon,Default)</visible>
-                <visible>[!String.IsEqual(ListItem.DBType,movie) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType)]] +  !String.IsEqual(ListItem.DBType,season) + !String.IsEqual(ListItem.DBType,tvshow)</visible>
+                <visible>String.StartsWith(ListItem.Icon,Default)</visible>
+                <visible>[$EXP[InGameMode] | Container.Content(musicvideos) | Container.Content(files) | [Container.Content(studios) + String.IsEmpty(Skin.String(studio.logos.path))] | [Container.Content(countries) + String.IsEmpty(Skin.String(country.logos.path))] | [Container.Content(genres) + String.IsEmpty(Skin.String(genre.icons.path))] | Container.Content(directors) | Container.Content(actors) | Container.Content(tags) | Container.Content(years) | Container.Content(favourites) | Container.Content(videoversions) | Container.Content(addons) | $EXP[IsAnLibrary] | $EXP[IsAnSource] | String.StartsWith(Container.FolderPath,musicdb://sources) | String.StartsWith(Container.FolderPath,special://musicplaylists) | String.StartsWith(Container.FolderPath,musicdb://years) | String.StartsWith(Container.FolderPath,musicdb://genres) | [Container.Content(files) + $EXP[IsPluginShortlist]] | ListItem.IsParentFolder | Container.Content(playlists) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType)]]</visible>
             </control>
 
             <!-- VIEW 53 -->
