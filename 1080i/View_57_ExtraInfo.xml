@@ -462,8 +462,6 @@
                 <width>645</width>
                 <top>$PARAM[top]</top>
                 <height>660</height>
-                <visible>!Window.IsVisible(DialogBusy.xml)</visible>
-                <!-- <visible>Control.IsVisible(55) | Control.IsVisible(56) | Control.IsVisible(57) | Control.IsVisible(505) | Control.IsVisible(516) | Control.IsVisible(526)</visible> -->
                 <visible>$EXP[Exp_View_57] | $EXP[Exp_View_56] | $EXP[Exp_View_505] | $EXP[Exp_View_516] | $EXP[Exp_View_526]</visible>
                 <control type="group">
                     <height>370</height>
@@ -498,7 +496,6 @@
                             <fadetime>PosterFanartFadetime</fadetime>
                             <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
                             <texture diffuse="diffuse/fanart_645x370_v57.png" background="true">$VAR[Image_Fanart]</texture>
-                            <!-- <visible>!String.StartsWith(ListItem.Icon,Default) | !String.IsEmpty(ListItem.DBType</visible> -->
                             <visible>!ListItem.IsParentFolder + !$EXP[IsAnLibrary] + !$EXP[IsAnSource] + !Container.Content(files)</visible>
                         </control>
 
@@ -510,7 +507,6 @@
                             <fadetime>PosterFanartFadetime</fadetime>
                             <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
                             <texture diffuse="diffuse/fanart_645x370_v57.png" background="true" colordiffuse="Dark1">$VAR[Image_Fanart]</texture>
-                            <!-- <visible>String.StartsWith(ListItem.Icon,Default) + String.IsEmpty(ListItem.DBType)</visible> -->
                             <visible>ListItem.IsParentFolder | $EXP[IsAnLibrary] | $EXP[IsAnSource] | Container.Content(files)</visible>
                         </control>
 
