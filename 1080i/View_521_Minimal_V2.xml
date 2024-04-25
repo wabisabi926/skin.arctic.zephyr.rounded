@@ -180,7 +180,7 @@
                     <height min="36" max="176">auto</height>
                     <textcolor>Dark2</textcolor>
                     <selectedcolor>Dark2</selectedcolor>
-                    <label>$VAR[LabelPlotBox]</label>
+                    <label>$VAR[Label_Plot_Box]</label>
                     <visible>container.content(movies)</visible>
                 </control>
 
@@ -191,7 +191,7 @@
                     <height min="36" max="150">auto</height>
                     <textcolor>Dark2</textcolor>
                     <selectedcolor>Dark2</selectedcolor>
-                    <label>$VAR[LabelPlotBox]</label>
+                    <label>$VAR[Label_Plot_Box]</label>
                     <visible>!container.content(movies)</visible>
                 </control>
             </control>
@@ -212,17 +212,6 @@
                     <font>LargeNew</font>
                     <label fallback="19055">$INFO[ListItem.Label]</label>
                     <include condition="Skin.HasSetting(labels.autoscroll)">LabelScroll</include>
-                </control>
-
-                <!-- SUB TITLE - ALBUMS -->
-
-                <control type="label">
-                    <aligny>center</aligny>
-                    <font>InfoNetflix</font>
-                    <textcolor>PanelWhite70</textcolor>
-                    <selectedcolor>PanelWhite70</selectedcolor>
-                    <label>$VAR[LabelSub_1_GenreAlbum]</label>
-                    <visible>!container.content(files) + !container.content(movies) + !container.content(sets) + !container.content(videos) + !Container.Content(actors) + !$EXP[IsYoutube] + !container.content(artists)</visible>
                 </control>
 
                 <!-- SUB TITLE - ARTISTS -->
@@ -255,7 +244,7 @@
                     <textcolor>PanelWhite70</textcolor>
                     <selectedcolor>PanelWhite70</selectedcolor>
                     <label>$VAR[Label_View_Main_SubTitle]</label>
-                    <visible>!container.content(files) + !container.content(artists)</visible>
+                    <visible>!container.content(files) + !container.content(artists) + ![Container.Content(movies) + String.IsEmpty(ListItem.DBType) + !$EXP[IsAnPlugin]]</visible>
                 </control>
 
                 <!-- PLOT -->
@@ -265,7 +254,7 @@
                     <height min="36" max="140">auto</height>
                     <textcolor>Dark2</textcolor>
                     <selectedcolor>Dark2</selectedcolor>
-                    <label>$VAR[LabelPlotBox]</label>
+                    <label>$VAR[Label_Plot_Box]</label>
                 </control>
             </control>
 
@@ -315,7 +304,7 @@
                     <height min="36" max="140">auto</height>
                     <textcolor>Dark2</textcolor>
                     <selectedcolor>Dark2</selectedcolor>
-                    <label>$VAR[LabelPlotBox]</label>
+                    <label>$VAR[Label_Plot_Box]</label>
                 </control>
             </control>
         </control>

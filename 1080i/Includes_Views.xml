@@ -144,7 +144,7 @@
         <value>special://skin/extras/icons/artist.png</value>
     </variable>
     <variable name="Label_Header_Main">
-        <value condition="Window.IsVisible(script-skin_helper_service-ColorPicker.xml)">$LOCALIZE[31210] $VAR[ColorPickerHeaderLabel,$LOCALIZE[31463] ,]</value>
+        <value condition="Window.IsVisible(script-skin_helper_service-ColorPicker.xml)">$LOCALIZE[31210] $VAR[Label_Header_ColorPicker,$LOCALIZE[31463] ,]</value>
         <value condition="Window.IsVisible(script-globalsearch.xml)">$LOCALIZE[31287] $INFO[Window.Property(GlobalSearch.SearchString),","]</value>
         <value condition="Window.IsVisible(service-CoreELEC-Settings-mainWindow.xml)">$LOCALIZE[31420]</value>
         <value condition="Window.IsVisible(service-LibreELEC-Settings-mainWindow.xml)">$LOCALIZE[31532]</value>
@@ -809,7 +809,7 @@
         <control type="group">
             <include>Animation_FurnitureVisible_footer</include>
             <visible>Skin.HasSetting(show.furniture.footer) | Control.IsVisible(5048) | Control.IsVisible(5218)</visible>
-            <visible>[!Skin.HasSetting(55wall.showinfo) + Control.IsVisible(55)] | Control.IsVisible(52) | Control.IsVisible(500) | Control.IsVisible(511) | Control.IsVisible(512) | Control.IsVisible(517) | Control.IsVisible(547) | Control.IsVisible(557) | Control.IsVisible(5048) | Control.IsVisible(5218) | [Control.IsVisible(5228) + String.IsEqual(Skin.String(522.landscape.size),2)] | Control.IsVisible(500) | Control.IsVisible(503) | Control.IsVisible(507) | Control.IsVisible(547) | Control.IsVisible(5238) | Window.IsVisible(FileManager.xml) | Window.IsVisible(script-globalsearch.xml)</visible>
+            <visible>[!Skin.HasSetting(55wall.showinfo) + Control.IsVisible(55)] | Control.IsVisible(52) | Control.IsVisible(500) | Control.IsVisible(511) | Control.IsVisible(512) | Control.IsVisible(517) | Control.IsVisible(547) | Control.IsVisible(557) | Control.IsVisible(5048) | Control.IsVisible(5218) | [Control.IsVisible(5228) + String.IsEqual(Skin.String(522.landscape.size),2)] | Control.IsVisible(500) | Control.IsVisible(503) | Control.IsVisible(508) | Control.IsVisible(547) | Control.IsVisible(5238) | Window.IsVisible(FileManager.xml) | Window.IsVisible(script-globalsearch.xml)</visible>
             <left>SidePad</left>
             <centerbottom>100</centerbottom>
             <orientation>horizontal</orientation>
@@ -923,6 +923,7 @@
                 <selectedcolor>Dark1</selectedcolor>
                 <label>$INFO[ListItem.Label]</label>
                 <visible>!$EXP[IsYoutube_Comments] + $EXP[IsYoutubeItem] + !ListItem.IsParentFolder</visible>
+                <visible>![Control.IsVisible(500) | Control.IsVisible(503) | Control.IsVisible(51) | Control.IsVisible(50)]</visible>
             </control>
 
             <!-- ADDONS -->
@@ -937,6 +938,7 @@
                 <selectedcolor>Dark1</selectedcolor>
                 <label>$INFO[ListItem.Label]</label>
                 <visible>Container.Content(addons) + !ListItem.IsParentFolder</visible>
+                <visible>![Control.IsVisible(500) | Control.IsVisible(503) | Control.IsVisible(51) | Control.IsVisible(50)]</visible>
             </control>
 
             <!-- FILES -->
@@ -968,7 +970,7 @@
                 <label>$INFO[ListItem.Artist]</label>
                 <visible>!String.IsEmpty(ListItem.Artist)</visible>
                 <visible>Container.Content(songs) | Container.Content(albums) | Container.Content(artists)</visible>
-                <visible>Control.IsVisible(50) | Control.IsVisible(52) | Control.IsVisible(503) | Control.IsVisible(507) | Control.IsVisible(547) | Control.IsVisible(557) | [Control.IsVisible(5238) + String.IsEqual(Skin.String(523.square.size),2)] | Control.IsVisible(5238)</visible>
+                <visible>Control.IsVisible(50) | Control.IsVisible(52) | Control.IsVisible(503) | Control.IsVisible(508) | Control.IsVisible(547) | Control.IsVisible(557) | [Control.IsVisible(5238) + String.IsEqual(Skin.String(523.square.size),2)] | Control.IsVisible(5238)</visible>
             </control>
 
             <!-- FILES MANAGER -->

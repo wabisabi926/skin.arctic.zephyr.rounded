@@ -50,15 +50,23 @@
                 <fadetime>PosterFanartFadetime</fadetime>
                 <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
                 <texture diffuse="diffuse/listposter2.png" background="true">$VAR[Image_Poster]</texture>
-                <visible>!$EXP[IsYoutubeItem] + !ListItem.IsParentFolder</visible>
+                <visible>Container.Content(addons) | Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | $EXP[IsAnPlugin] | Container.Content(countries) | Container.Content(genres) | Container.Content(years) | Container.Content(tags) | Container.Content(studios) | Container.Content(directors) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(files)</visible>
+
+                <visible>!String.StartsWith(ListItem.Icon,Default) | [String.StartsWith(ListItem.Icon,Default) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(countries) + !String.IsEmpty(Skin.String(country.logos.path))] | [Container.Content(genres) + !String.IsEmpty(Skin.String(genre.icons.path))] | [Container.Content(studios) + !String.IsEmpty(Skin.String(studio.logos.path))]]]</visible>
+                <visible>!$EXP[IsYoutube]</visible>
+                <visible>!ListItem.IsParentFolder</visible>
             </control>
+
+            <!-- icon black -->
+
             <control type="image">
                 <width>PosterW</width>
                 <height>PosterH</height>
                 <fadetime>PosterFanartFadetime</fadetime>
                 <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
                 <texture diffuse="diffuse/listposter2.png" background="true" colordiffuse="Dark1">$VAR[Image_Poster]</texture>
-                <visible>[!$EXP[IsYoutubeItem] + String.StartsWith(ListItem.Icon,Default) + !String.IsEqual(ListItem.DBType,movie) +  !String.IsEqual(ListItem.DBType,season) + !String.IsEqual(ListItem.DBType,tvshow) + !Window.IsVisible(DialogVideoInfo.xml) + !Container.Content(sets) + !String.IsEqual(ListItem.DBType,country) + !String.IsEqual(ListItem.DBType,genre)] | ListItem.IsParentFolder</visible>
+                <visible>String.StartsWith(ListItem.Icon,Default)</visible>
+                <visible>$EXP[InGameMode] | Container.Content(musicvideos) | Container.Content(files) | [Container.Content(studios) + String.IsEmpty(Skin.String(studio.logos.path))] | [Container.Content(countries) + String.IsEmpty(Skin.String(country.logos.path))] | [Container.Content(genres) + String.IsEmpty(Skin.String(genre.icons.path))] | Container.Content(directors) | Container.Content(tags) | Container.Content(years) | Container.Content(favourites) | Container.Content(videoversions) | Container.Content(addons) | [Container.Content() + String.StartsWith(Container.FolderPath,addons://)] | $EXP[IsAnLibrary] | $EXP[IsAnSource] | String.StartsWith(Container.FolderPath,musicdb://sources) | String.StartsWith(Container.FolderPath,special://musicplaylists) | String.StartsWith(Container.FolderPath,musicdb://years) | String.StartsWith(Container.FolderPath,musicdb://genres) | [Container.Content(files) + $EXP[IsPluginShortlist]] | ListItem.IsParentFolder | Container.Content(playlists) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content()]</visible>
             </control>
 
             <!-- Genres -->
@@ -179,6 +187,8 @@
                 <visible>!$EXP[IsYoutube]</visible>
                 <visible>!ListItem.IsParentFolder</visible>
             </control>
+
+            <!-- icon black -->
 
             <control type="image">
                 <width>PosterH</width>
@@ -818,7 +828,7 @@
             <centerright>130</centerright>
             <height>68</height>
             <font>SymbolList</font>
-            <label>$VAR[WatchedLabelList]</label>
+            <label>$VAR[Label_List_Watched]</label>
             <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums) | Container.Content(videos)</visible>
             <visible>!ListItem.IsParentFolder + !String.IsEmpty(ListItem.DBType)</visible>
             <animation effect="slide" start="0" end="60" time="0" condition="Container.Content(Seasons) | Skin.HasSetting(hide.markers)">Conditional</animation>
@@ -970,7 +980,7 @@
             <centerright>130</centerright>
             <height>68</height>
             <font>SymbolList</font>
-            <label>$VAR[WatchedLabelListFocus]</label>
+            <label>$VAR[Label_List_Watched_Focus]</label>
             <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums) | Container.Content(videos)</visible>
             <visible>!ListItem.IsParentFolder + !String.IsEmpty(ListItem.DBType)</visible>
             <animation effect="slide" start="0" end="60" time="0" condition="Container.Content(Seasons) | Skin.HasSetting(hide.markers)">Conditional</animation>
@@ -1028,7 +1038,6 @@
         </control>
 
         <!-- Icon black -->
-
         <control type="image">
             <left>6</left>
             <centertop>45.7</centertop>
@@ -1038,7 +1047,6 @@
             <visible>String.StartsWith(ListItem.Icon,Default)</visible>
             <visible>[$EXP[InGameMode] | Container.Content(musicvideos) | Container.Content(files) | [Container.Content(studios) + String.IsEmpty(Skin.String(studio.logos.path))] | [Container.Content(countries) + String.IsEmpty(Skin.String(country.logos.path))] | [Container.Content(genres) + String.IsEmpty(Skin.String(genre.icons.path))] | Container.Content(directors) | Container.Content(actors) | Container.Content(tags) | Container.Content(years) | Container.Content(favourites) | Container.Content(videoversions) | Container.Content(addons) | $EXP[IsAnLibrary] | $EXP[IsAnSource] | String.StartsWith(Container.FolderPath,musicdb://sources) | String.StartsWith(Container.FolderPath,special://musicplaylists) | String.StartsWith(Container.FolderPath,musicdb://years) | String.StartsWith(Container.FolderPath,musicdb://genres) | [Container.Content(files) + $EXP[IsPluginShortlist]] | ListItem.IsParentFolder | Container.Content(playlists) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType)]]</visible>
         </control>
-
         <control type="image">
             <left>6</left>
             <centertop>45.7</centertop>
@@ -1138,7 +1146,7 @@
             <centerright>130</centerright>
             <height>68</height>
             <font>SymbolList</font>
-            <label>$VAR[WatchedLabelList]</label>
+            <label>$VAR[Label_List_Watched]</label>
             <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums) | Container.Content(videos)</visible>
             <visible>!ListItem.IsParentFolder + !String.IsEmpty(ListItem.DBType)</visible>
         </control>
@@ -1203,17 +1211,6 @@
         </control>
 
         <!-- Icon -->
-
-        <control type="image">
-            <left>6</left>
-            <centertop>45.7</centertop>
-            <width>79.4</width>
-            <height>79.4</height>
-            <texture border="12" colordiffuse="Dark4">common/box.png</texture>
-            <visible>String.StartsWith(ListItem.Icon,Default)</visible>
-            <visible>[$EXP[InGameMode] | Container.Content(musicvideos) | Container.Content(files) | [Container.Content(studios) + String.IsEmpty(Skin.String(studio.logos.path))] | [Container.Content(countries) + String.IsEmpty(Skin.String(country.logos.path))] | [Container.Content(genres) + String.IsEmpty(Skin.String(genre.icons.path))] | Container.Content(directors) | Container.Content(actors) | Container.Content(tags) | Container.Content(years) | Container.Content(favourites) | Container.Content(videoversions) | Container.Content(addons) | $EXP[IsAnLibrary] | $EXP[IsAnSource] | String.StartsWith(Container.FolderPath,musicdb://sources) | String.StartsWith(Container.FolderPath,special://musicplaylists) | String.StartsWith(Container.FolderPath,musicdb://years) | String.StartsWith(Container.FolderPath,musicdb://genres) | [Container.Content(files) + $EXP[IsPluginShortlist]] | ListItem.IsParentFolder | Container.Content(playlists) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType)]]</visible>
-        </control>
-
         <control type="image">
             <left>6</left>
             <centertop>45.7</centertop>
@@ -1229,9 +1226,18 @@
         <!-- Icon black -->
         <control type="image">
             <left>6</left>
-            <centertop>45</centertop>
-            <width>80</width>
-            <height>80</height>
+            <centertop>45.7</centertop>
+            <width>79.4</width>
+            <height>79.4</height>
+            <texture border="12" colordiffuse="Dark4">common/box.png</texture>
+            <visible>String.StartsWith(ListItem.Icon,Default)</visible>
+            <visible>[$EXP[InGameMode] | Container.Content(musicvideos) | Container.Content(files) | [Container.Content(studios) + String.IsEmpty(Skin.String(studio.logos.path))] | [Container.Content(countries) + String.IsEmpty(Skin.String(country.logos.path))] | [Container.Content(genres) + String.IsEmpty(Skin.String(genre.icons.path))] | Container.Content(directors) | Container.Content(actors) | Container.Content(tags) | Container.Content(years) | Container.Content(favourites) | Container.Content(videoversions) | Container.Content(addons) | $EXP[IsAnLibrary] | $EXP[IsAnSource] | String.StartsWith(Container.FolderPath,musicdb://sources) | String.StartsWith(Container.FolderPath,special://musicplaylists) | String.StartsWith(Container.FolderPath,musicdb://years) | String.StartsWith(Container.FolderPath,musicdb://genres) | [Container.Content(files) + $EXP[IsPluginShortlist]] | ListItem.IsParentFolder | Container.Content(playlists) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType)]]</visible>
+        </control>
+        <control type="image">
+            <left>6</left>
+            <centertop>45.7</centertop>
+            <width>79.4</width>
+            <height>79.4</height>
             <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
             <texture colordiffuse="Selected">$VAR[Image_Poster]</texture>
             <visible>String.StartsWith(ListItem.Icon,Default)</visible>
@@ -1322,7 +1328,7 @@
             <centerright>130</centerright>
             <height>68</height>
             <font>SymbolList</font>
-            <label>$VAR[WatchedLabelListFocus]</label>
+            <label>$VAR[Label_List_Watched_Focus]</label>
             <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums) | Container.Content(videos)</visible>
             <visible>!ListItem.IsParentFolder + !String.IsEmpty(ListItem.DBType)</visible>
             <animation effect="slide" start="0" end="60" time="0" condition="Container.Content(Seasons) | Skin.HasSetting(hide.markers)">Conditional</animation>
@@ -1550,7 +1556,7 @@
 
         <!-- Icon -->
         <control type="image">
-            <left>8</left>
+            <left>6</left>
             <centertop>32</centertop>
             <width>54</width>
             <height>54</height>
@@ -1562,7 +1568,15 @@
 
         <!-- Icon black -->
         <control type="image">
-            <left>8</left>
+            <left>6</left>
+            <centertop>32</centertop>
+            <width>54</width>
+            <height>54</height>
+            <texture border="12" colordiffuse="Dark4">common/box.png</texture>
+            <visible>$EXP[IsAnLibrary] | $EXP[IsAnSource] | String.StartsWith(Container.FolderPath,musicdb://sources) | String.StartsWith(Container.FolderPath,special://musicplaylists) | String.StartsWith(Container.FolderPath,musicdb://years) | String.StartsWith(Container.FolderPath,musicdb://genres) | ListItem.IsParentFolder | Container.Content(playlists) | String.StartsWith(ListItem.Icon,Default)</visible>
+        </control>
+        <control type="image">
+            <left>6</left>
             <centertop>32</centertop>
             <width>54</width>
             <height>54</height>
@@ -1664,7 +1678,7 @@
             <height>64</height>
             <align>right</align>
             <font>SymbolList</font>
-            <label>$VAR[WatchedLabelList]</label>
+            <label>$VAR[Label_List_Watched]</label>
             <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums)</visible>
             <visible>!ListItem.IsParentFolder + !String.IsEmpty(ListItem.DBType)</visible>
             <visible>!Skin.HasSetting(hide.markers)</visible>
@@ -1706,7 +1720,7 @@
 
         <!-- Icon -->
         <control type="image">
-            <left>8</left>
+            <left>6</left>
             <centertop>32</centertop>
             <width>54</width>
             <height>54</height>
@@ -1718,14 +1732,21 @@
 
         <!-- Icon black -->
         <control type="image">
-            <left>8</left>
+            <left>6</left>
+            <centertop>32</centertop>
+            <width>54</width>
+            <height>54</height>
+            <texture border="12" colordiffuse="Dark4">common/box.png</texture>
+            <visible>$EXP[IsAnLibrary] | $EXP[IsAnSource] | String.StartsWith(Container.FolderPath,musicdb://sources) | String.StartsWith(Container.FolderPath,special://musicplaylists) | String.StartsWith(Container.FolderPath,musicdb://years) | String.StartsWith(Container.FolderPath,musicdb://genres) | ListItem.IsParentFolder | Container.Content(playlists) | String.StartsWith(ListItem.Icon,Default)</visible>
+        </control>
+        <control type="image">
+            <left>6</left>
             <centertop>32</centertop>
             <width>54</width>
             <height>54</height>
             <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
             <texture colordiffuse="Selected">$INFO[ListItem.Icon]</texture>
             <visible>$EXP[IsAnLibrary] | $EXP[IsAnSource] | String.StartsWith(Container.FolderPath,musicdb://sources) | String.StartsWith(Container.FolderPath,special://musicplaylists) | String.StartsWith(Container.FolderPath,musicdb://years) | String.StartsWith(Container.FolderPath,musicdb://genres) | ListItem.IsParentFolder | Container.Content(playlists) | String.StartsWith(ListItem.Icon,Default)</visible>
-            <!-- <visible>String.StartsWith(ListItem.Icon,Default) | ListItem.IsParentFolder</visible> -->
         </control>
 
         <!-- Label -->
@@ -1845,7 +1866,7 @@
             <height>64</height>
             <align>right</align>
             <font>SymbolList</font>
-            <label>$VAR[WatchedLabelListFocus]</label>
+            <label>$VAR[Label_List_Watched_Focus]</label>
             <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums)</visible>
             <visible>!ListItem.IsParentFolder + !String.IsEmpty(ListItem.DBType)</visible>
             <visible>!Skin.HasSetting(hide.markers)</visible>
@@ -1868,6 +1889,14 @@
         </control>
 
         <!-- Icon black -->
+        <control type="image">
+            <left>6</left>
+            <centertop>45.7</centertop>
+            <width>79.4</width>
+            <height>79.4</height>
+            <texture border="12" colordiffuse="Dark4">common/box.png</texture>
+            <visible>$EXP[IsAnLibrary] | $EXP[IsAnSource] | String.StartsWith(Container.FolderPath,musicdb://sources) | String.StartsWith(Container.FolderPath,special://musicplaylists) | String.StartsWith(Container.FolderPath,musicdb://years) | String.StartsWith(Container.FolderPath,musicdb://genres) | ListItem.IsParentFolder | Container.Content(playlists) | String.StartsWith(ListItem.Icon,Default)</visible>
+        </control>
         <control type="image">
             <left>6</left>
             <centertop>45.7</centertop>
@@ -1970,7 +1999,7 @@
             <height>64</height>
             <align>right</align>
             <font>SymbolList</font>
-            <label>$VAR[WatchedLabelList]</label>
+            <label>$VAR[Label_List_Watched]</label>
             <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums)</visible>
             <visible>!ListItem.IsParentFolder + !String.IsEmpty(ListItem.DBType)</visible>
             <visible>!Skin.HasSetting(hide.markers)</visible>
@@ -2038,6 +2067,15 @@
         </control>
 
         <!-- Icon black -->
+        <control type="image">
+            <left>6</left>
+            <centertop>45.7</centertop>
+            <width>79.4</width>
+            <height>79.4</height>
+            <texture border="12" colordiffuse="Dark4">common/box.png</texture>
+            <texture colordiffuse="Selected">$INFO[ListItem.Icon]</texture>
+            <visible>$EXP[IsAnLibrary] | $EXP[IsAnSource] | String.StartsWith(Container.FolderPath,musicdb://sources) | String.StartsWith(Container.FolderPath,special://musicplaylists) | String.StartsWith(Container.FolderPath,musicdb://years) | String.StartsWith(Container.FolderPath,musicdb://genres) | ListItem.IsParentFolder | Container.Content(playlists) | String.StartsWith(ListItem.Icon,Default)</visible>
+        </control>
         <control type="image">
             <left>6</left>
             <centertop>45.7</centertop>
@@ -2141,7 +2179,7 @@
             <height>64</height>
             <align>right</align>
             <font>SymbolList</font>
-            <label>$VAR[WatchedLabelListFocus]</label>
+            <label>$VAR[Label_List_Watched_Focus]</label>
             <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums)</visible>
             <visible>!ListItem.IsParentFolder + !String.IsEmpty(ListItem.DBType)</visible>
             <visible>!Skin.HasSetting(hide.markers)</visible>
@@ -2384,6 +2422,8 @@
     </include>
 
     <include name="50_item_layout_addon_info">
+
+        <!-- Icon -->
         <control type="image">
             <left>6</left>
             <centertop>45.7</centertop>
@@ -2394,16 +2434,15 @@
             <visible>!Container.Content() + !String.IsEqual(ListItem.FolderPath,addons://all/) + !String.StartsWith(ListItem.Icon,DefaultFolder)</visible>
         </control>
 
+        <!-- Icon black -->
         <control type="image">
             <left>8</left>
             <centertop>45</centertop>
             <width>80</width>
             <height>80</height>
-            <aspectratio aligny="center">keep</aspectratio>
             <texture border="12" colordiffuse="Dark4">common/box.png</texture>
             <visible>Container.Content() | String.IsEqual(ListItem.FolderPath,addons://all/) | String.StartsWith(ListItem.Icon,DefaultFolder)</visible>
         </control>
-
         <control type="image">
             <left>8</left>
             <centertop>45</centertop>
@@ -2718,7 +2757,7 @@
             <centerright>130</centerright>
             <height>68</height>
             <font>SymbolList</font>
-            <label>$VAR[WatchedLabelList]</label>
+            <label>$VAR[Label_List_Watched]</label>
             <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums)</visible>
             <visible>!ListItem.IsParentFolder + !String.IsEmpty(ListItem.DBType)</visible>
             <visible>!Skin.HasSetting(hide.markers)</visible>
@@ -2821,7 +2860,7 @@
             <centerright>130</centerright>
             <height>68</height>
             <font>SymbolList</font>
-            <label>$VAR[WatchedLabelListFocus]</label>
+            <label>$VAR[Label_List_Watched_Focus]</label>
             <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums)</visible>
             <visible>!ListItem.IsParentFolder + !String.IsEmpty(ListItem.DBType)</visible>
             <visible>!Skin.HasSetting(hide.markers)</visible>
@@ -2920,7 +2959,7 @@
             <centerright>130</centerright>
             <height>68</height>
             <font>SymbolList</font>
-            <label>$VAR[WatchedLabelList]</label>
+            <label>$VAR[Label_List_Watched]</label>
             <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums)</visible>
             <visible>!ListItem.IsParentFolder + !String.IsEmpty(ListItem.DBType)</visible>
             <visible>!Skin.HasSetting(hide.markers)</visible>
@@ -3040,7 +3079,7 @@
             <centerright>130</centerright>
             <height>68</height>
             <font>SymbolList</font>
-            <label>$VAR[WatchedLabelListFocus]</label>
+            <label>$VAR[Label_List_Watched_Focus]</label>
             <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums)</visible>
             <visible>!ListItem.IsParentFolder + !String.IsEmpty(ListItem.DBType)</visible>
             <visible>!Skin.HasSetting(hide.markers)</visible>

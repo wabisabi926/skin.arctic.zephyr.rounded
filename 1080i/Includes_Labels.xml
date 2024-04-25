@@ -607,7 +607,7 @@
         <value condition="String.IsEqual(Container(9500).ListItem.Overlay,OverlayUnwatched.png)">&#61833;</value>
     </variable>
 
-    <variable name="WatchedLabelList">
+    <variable name="Label_List_Watched">
         <value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[553]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561])"></value>
         <value condition="Skin.HasSetting(hide.markers)"></value>
         <value condition="String.IsEqual(ListItem.DBType,set) | ListItem.IsCollection">[COLOR=$VAR[ColorIndicatorSet]]&#61465;[/COLOR]</value>
@@ -622,7 +622,7 @@
         <value condition="Integer.IsEqual(ListItem.Playcount,0) + !Skin.HasSetting(hide.markers.unwatched)">[COLOR=$VAR[Color_Indicator_Background_UnWatched]]&#61833;[/COLOR]</value>
     </variable>
 
-    <variable name="WatchedLabelListFocus">
+    <variable name="Label_List_Watched_Focus">
         <value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[553]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561])"></value>
         <value condition="Skin.HasSetting(hide.markers)"></value>
         <value condition="String.IsEqual(ListItem.DBType,set) | ListItem.IsCollection">[COLOR=Selected]&#61465;[/COLOR]</value>
@@ -676,16 +676,6 @@
         <value>$LOCALIZE[31437]</value>
     </variable>
 
-    <variable name="WatchedLabelPoster301">
-        <value condition="Skin.HasSetting(hide.markers)"></value>
-        <value condition="Container(301).ListItem.IsPlaying + !Skin.HasSetting(hide.markers.isplaying)">[COLOR=$VAR[Color_Indicator_Background_Is_Playing]]&#62811;[/COLOR]</value>
-        <value condition="[Container(301).ListItem.IsResumable | $EXP[IsTVShowInProgress301]] + Skin.HasSetting(hide.markers.inprogress)"></value>
-        <value condition="Container(301).ListItem.IsResumable | $EXP[IsTVShowInProgress301]">[COLOR=$VAR[Color_Indicator_Background_In_Progress]]&#62596;[/COLOR]</value>
-        <value condition="String.IsEqual(Container(301).ListItem.Overlay,OverlayWatched.png) + Skin.HasSetting(hide.markers.watched)"></value>
-        <value condition="String.IsEqual(Container(301).ListItem.Overlay,OverlayWatched.png)">[COLOR=$VAR[Color_Indicator_Background_Watched]]&#10003;[/COLOR]</value>
-        <value condition="String.IsEqual(Container(301).ListItem.Overlay,OverlayUnwatched.png) + [$EXP[IsNewMovie301] | $EXP[IsNewTVShow301] | $EXP[IsNewEpisode301]] + !Skin.HasSetting(hide.markers.newcontent)">[COLOR=$VAR[Color_Indicator_Background_New]]&#62079;[/COLOR]</value>
-    </variable>
-
     <variable name="IndicatorFlagLabel301">
         <value condition="Skin.HasSetting(hide.markers) | [Container(301).ListItem.IsPlaying + !Skin.HasSetting(hide.markers.isplaying)]"></value>
         <value condition="[Container(301).ListItem.IsResumable | $EXP[IsTVShowInProgress301]] + Skin.HasSetting(hide.markers.inprogress)"></value>
@@ -706,13 +696,6 @@
         <value condition="Skin.HasSetting(markers.inprogress.percentage) + !String.IsEmpty(Container(301).ListItem.Property(WatchedEpisodePercent)">$INFO[Container(301).ListItem.Property(WatchedEpisodePercent),,%]</value>
         <value>$INFO[Container(301).ListItem.Property(WatchedEpisodes)]/$INFO[Container(301).ListItem.Property(TotalEpisodes)]</value>
     </variable>
-
-    <variable name="LabelTitle">
-        <value condition="Container.Content(episodes) + !String.IsEmpty(ListItem.Title)">$INFO[ListItem.Title]</value>
-        <value condition="$EXP[InGameMode]">$VAR[GameTitle]</value>
-        <value>$INFO[ListItem.Label]</value>
-    </variable>
-
 
     <variable name="Label_Main_Title_Fanart_56_57">
         <value condition="!String.IsEmpty(ListItem.Artist) + Container.Content(songs)">$INFO[ListItem.Artist]</value>
@@ -844,11 +827,6 @@
         <value condition="String.IsEmpty(ListItem.Episode)">$NUMBER[0]$NUMBER[0]</value>
     </variable>
 
-    <variable name="LabelSeason">
-        <value condition="!String.IsEmpty(ListItem.Season)">$INFO[ListItem.Season]</value>
-        <value condition="String.IsEmpty(ListItem.Season)">$NUMBER[0]</value>
-    </variable>
-
     <variable name="LabelSub_1_GenreAlbum">
         <value condition="Container.Content(albums) + !String.IsEmpty(ListItem.Album)">$INFO[ListItem.Album]</value>
         <value condition="[Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)] + !String.IsEmpty(ListItem.Genre)">$INFO[ListItem.Genre]</value>
@@ -885,7 +863,7 @@
 
     <!-- LABEL - DIALOG INFO - MUSIC / VIDEO - PLOT -->
 
-    <variable name="LabelPlotBox">
+    <variable name="Label_Plot_Box">
         <value condition="!String.IsEmpty(Window(Home).Property(Set.Movies.ExtendedPlot)) + [Container.Content(Sets) | String.Contains(ListItem.Path,videodb://movies/sets)]">$INFO[Window(Home).Property(Set.Movies.ExtendedPlot)]</value>
         <value condition="!String.IsEmpty(ListItem.Property(Artist_Description))">$INFO[ListItem.Property(Artist_Description)]</value>
         <value condition="!String.IsEmpty(ListItem.Property(Album_Description))">$INFO[ListItem.Property(Album_Description)]</value>
@@ -895,7 +873,9 @@
         <value condition="$EXP[InGameMode]">$VAR[GamePlot]</value>
         <value condition="Control.HasFocus(5161)">$INFO[Container(5161).ListItem.Plot]</value>
         <value condition="Control.HasFocus(5261)">$INFO[Container(5261).ListItem.Plot]</value>
-        <value>$INFO[ListItem.Plot]</value>
+        <value condition="!String.IsEmpty(ListItem.Plot)">$INFO[ListItem.Plot]</value>
+
+        <value condition="Control.IsVisible(44025) + !Container(44025).IsUpdating">$INFO[Container(44025).ListItemAbsolute(0).Label]$INFO[Container(44025).ListItemAbsolute(1).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(2).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(3).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(4).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(5).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(6).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(7).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(8).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(9).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(10).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(11).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(12).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(13).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(14).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(15).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(16).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(17).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(18).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(19).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(20).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(21).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(22).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(23).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(24).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(25).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(26).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(27).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(28).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(29).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(30).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(31).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(32).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(33).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(34).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(35).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(36).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(37).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(38).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(39).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(40).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(41).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(42).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(43).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(44).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(45).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(46).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(47).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(48).Label,$COMMA ,]$INFO[Container(44025).ListItemAbsolute(49).Label,$COMMA ,]</value>
     </variable>
 
     <!-- LABEL - DIALOG CONTEXT MENU - PLOT -->
@@ -1289,6 +1269,7 @@
         <value condition="!ListItem.IsParentFolder + !String.IsEmpty(ListItem.Year)">$INFO[ListItem.Year]</value>
         <value condition="!String.IsEmpty(Container.PluginName) + !ListItem.IsParentFolder + !Container.Content(songs)">$INFO[ListItem.FolderPath]</value>
         <value condition="!String.IsEmpty(Container.PluginName) + !ListItem.IsParentFolder + Container.Content(songs)">$INFO[ListItem.Label]$INFO[ListItem.Genre,  •  ,]</value>
+        <value>$INFO[ListItem.Label]</value>
     </variable>
 
     <variable name="label_music_list">
@@ -1636,23 +1617,14 @@
         <value>$INFO[ListItem.Label2,$LOCALIZE[20347] ,]</value>
     </variable>
 
-
-    <variable name="LabelArtistAlbum">
-        <value condition="ListItem.IsCollection">$INFO[Container(99950).ListItem.Property(Set.Years)]</value>
-        <value condition="Container.Content(artists)">$INFO[ListItem.Genre]$INFO[ListItem.Property(Artist_YearsActive),  •  ,]</value>
-        <value condition="Container.Content(albums)">$INFO[ListItem.Artist]$INFO[ListItem.Year,  •  ,]$INFO[ListItem.Genre,  •  ,]</value>
-        <value condition="Container.Content(movies)">$VAR[513_Row_1]</value>
-        <value condition="Container.Content(tvshows)">$INFO[ListItem.Episode,, $LOCALIZE[20360]]$INFO[ListItem.Property(UnWatchedEpisodes),  •  , $LOCALIZE[16101]]$INFO[ListItem.Duration(mins),  •  , $LOCALIZE[31084]]$VAR[RatingLabel,  •  ]</value>
-    </variable>
-
-    <variable name="LabelArtistAlbumDescription">
+    <variable name="Label_Artist_Album_DescriptionDescription">
         <value condition="!String.IsEmpty(ListItem.Property(Artist_Description)) + Container.Content(artists)">$INFO[ListItem.Property(Artist_Description)]</value>
         <value condition="!String.IsEmpty(ListItem.Property(Album_Description)) + Container.Content(albums)">$INFO[ListItem.Property(Album_Description)]</value>
         <value condition="Container.Content(movies) | Container.Content(tvshows) | Container.Content(sets) | Container.Content(episodes)">$INFO[ListItem.Plot]</value>
     </variable>
 
     <variable name="Label_Overlay_Info_Music_Plot">
-        <value condition="Window.IsVisible(DialogMusicInfo.xml) + Container.Content(albums)">$VAR[Label_Dialog_Info_Header_Tagline_Music,[B],[/B][CR][CR]]$VAR[LabelPlotBox]</value>
+        <value condition="Window.IsVisible(DialogMusicInfo.xml) + Container.Content(albums)">$VAR[Label_Dialog_Info_Header_Tagline_Music,[B],[/B][CR][CR]]$VAR[Label_Plot_Box]</value>
         <value condition="Window.IsVisible(DialogMusicInfo.xml) + !Container.Content(albums)">$VAR[Label_Dialog_Info_Header_Tagline_Music,[B],[/B][CR][CR]]$INFO[ListItem.Property(Artist_Description)]</value>
     </variable>
 
@@ -1991,11 +1963,11 @@
         <value condition="!String.IsEmpty(Container(99950).ListItem.Country)">$INFO[Container(99950).ListItem.Country]</value>
     </variable>
 
-    <variable name="Label_AddonLastUpdate">
+    <variable name="Label_Addon_Last_Update">
         <value condition="!String.IsEmpty(ListItem.AddonLastUpdated)">$INFO[ListItem.AddonLastUpdated]$INFO[ListItem.AddonOrigin,  •  ,]</value>
     </variable>
 
-    <variable name="ColorPickerHeaderLabel">
+    <variable name="Label_Header_ColorPicker">
         <value condition="String.IsEqual(Window(Home).Property(colorpickerheader),ColorHighlight.name)">$LOCALIZE[31111]</value>
         <value condition="String.IsEqual(Window(Home).Property(colorpickerheader),ColorFocus.name)">$LOCALIZE[31110]</value>
         <value condition="String.IsEqual(Window(Home).Property(colorpickerheader),ColorFocusGradient.name)">$LOCALIZE[31110] - $LOCALIZE[31352]</value>
