@@ -2,11 +2,16 @@
 <window id="2901">
     <include condition="!Player.PauseEnabled">Def_OSD_FocusStop</include>
     <include condition="Player.PauseEnabled">Def_OSD_FocusPause</include>
-    <onunload>ClearProperty(osdshowinfo,Home)</onunload>
+
+    <!-- <onload>RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;window_prop=Encoded.VideoPlayer.TvShowTitle&amp;&amp;$INFO[VideoPlayer.TvShowTitle]")</onload> -->
+    <!-- <onload>RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;window_prop=Encoded.VideoPlayer.Title&amp;&amp;$INFO[VideoPlayer.Title]")</onload> -->
+
     <onload>ClearProperty(dontautoclose,Home)</onload>
     <onload>ClearProperty(dialogvideoinfo,Home)</onload>
     <onload>ClearProperty(wikipedia,Home)</onload>
+
     <onunload>ClearProperty(dontautoclose,Home)</onunload>
+    <onunload>ClearProperty(osdshowinfo,Home)</onunload>
 
     <onload condition="Skin.HasSetting(osd.open.auto.pause) + Player.HasMedia + Player.HasVideo + !Player.Paused">PlayerControl(Play)</onload>
     <onunload condition="Skin.HasSetting(osd.open.auto.pause) + Player.HasMedia + Player.HasVideo + Player.Paused + !Integer.IsEqual(Window(Home).Property(dialogvideoinfo),1) + !Integer.IsEqual(Window(Home).Property(wikipedia),1)">PlayerControl(Play)</onunload>

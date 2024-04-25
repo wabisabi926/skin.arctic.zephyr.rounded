@@ -47,27 +47,54 @@
 		<value condition="Window.IsVisible(1190) + String.IsEqual(ListItem.DBType,episode) + !String.IsEmpty(ListItem.Property(tvshow.tmdb_id))">$INFO[ListItem.Property(tvshow.tmdb_id)]</value>
     </variable>
 
-    <!-- INFO DIALOG - SEARCH - CURRRENTLY PLAYING ITEM -->
+    <!-- INFO DIALOG - SEARCH - CURRRENTLY PLAYING ITEM - NOW PLAYING -->
 
-    <variable name="Def_Dialog_Info_Currently_Playing_Item">
-
-        <!-- search song -->
-        <!-- <value condition="Player.HasAudio + !String.IsEmpty(MusicPlayer.DBID)">musicdb://songs/?songid=$INFO[MusicPlayer.DBID]</value> -->
+    <variable name="Def_Dialog_Info_Currently_Playing_Item_Nowplaing">
 
         <!-- search album -->
-        <value condition="Player.HasAudio + !String.IsEmpty(MusicPlayer.DBID)">musicdb://albums/?xsp={"rules":{"and":[{"field":"album","operator":"contains","value":["$INFO[MusicPlayer.Album]"]}]},"type":"albums"}</value>
+        <value condition="Player.HasAudio + !String.IsEmpty(MusicPlayer.DBID)">musicdb://albums/?xsp={"rules":{"and":[{"field":"album","operator":"contains","value":["$INFO[Window(Home).Property(Encoded.MusicPlayer.Album)]"]}]},"type":"albums"}</value>
         <!-- <value condition="Player.HasAudio + !String.IsEmpty(ListItem.DBID)">musicdb://albums/?xsp={"rules":{"and":[{"field":"album","operator":"contains","value":["$INFO[ListItem.Album]"]}]},"type":"albums"}</value> -->
 
         <!-- search artist -->
         <!-- <value condition="Player.HasAudio + !String.IsEmpty(MusicPlayer.DBID)">musicdb://artists/?xsp={"rules":{"and":[{"field":"artist","operator":"contains","value":["$INFO[MusicPlayer.Artist]"]}]},"type":"artists"}</value> -->
         <!-- <value condition="Player.HasAudio + !String.IsEmpty(ListItem.DBID)">musicdb://artists/?xsp={"rules":{"and":[{"field":"artist","operator":"contains","value":["$INFO[ListItem.Artist]"]}]},"type":"artists"}</value> -->
 
+        <!-- search song -->
+        <!-- <value condition="Player.HasAudio + !String.IsEmpty(MusicPlayer.DBID)">musicdb://songs/?songid=$INFO[MusicPlayer.DBID]</value> -->
+
         <!-- search movie -->
-        <value condition="Player.HasVideo + VideoPlayer.Content(movies)">videodb://movies/titles/?xsp=%7B%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22$INFO[Player.Title]%22%5D%7D%2C%7B%22field%22%3A%22filename%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22$INFO[Player.Filename]%22%5D%7D%5D%7D%2C%22type%22%3A%22movies%22%7D</value>
+        <value condition="Player.HasVideo + VideoPlayer.Content(movies)">videodb://movies/titles/?xsp=%7B%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22$INFO[Window(Home).Property(Encoded.Player.Title)]%22%5D%7D%2C%7B%22field%22%3A%22filename%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22$INFO[Window(Home).Property(Encoded.Player.Filename)]%22%5D%7D%5D%7D%2C%22type%22%3A%22movies%22%7D</value>
 
         <!-- search tvshow -->
-        <value condition="Player.HasVideo + VideoPlayer.Content(episodes)">videodb://tvshows/titles/-1/-1/?xsp=%7B%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22$INFO[Player.Title]%22%5D%7D%2C%7B%22field%22%3A%22filename%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22$INFO[Player.Filename]%22%5D%7D%5D%7D%2C%22type%22%3A%22episodes%22%7D
+        <value condition="Player.HasVideo + VideoPlayer.Content(episodes)">videodb://tvshows/titles/-1/-1/?xsp=%7B%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22$$INFO[Window(Home).Property(Encoded.Player.Title)]%22%5D%7D%2C%7B%22field%22%3A%22filename%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22$INFO[Window(Home).Property(Encoded.Player.Filename)]%22%5D%7D%5D%7D%2C%22type%22%3A%22episodes%22%7D
         </value>
+    </variable>
+
+    <!-- INFO DIALOG - SEARCH - CURRRENTLY PLAYING ITEM - MUSIC OSD -->
+
+    <variable name="Def_Dialog_Info_Currently_Playing_Item_MusicOSD">
+        <!-- search album -->
+        <value condition="Player.HasAudio + !String.IsEmpty(MusicPlayer.DBID)">musicdb://albums/?xsp={"rules":{"and":[{"field":"album","operator":"contains","value":["$INFO[Window(Home).Property(Encoded.MusicPlayer.Album)]"]}]},"type":"albums"}</value>
+
+        <!-- search song -->
+        <!-- <value condition="Player.HasAudio + !String.IsEmpty(MusicPlayer.DBID)">musicdb://songs/?songid=$INFO[MusicPlayer.DBID]</value> -->
+    </variable>
+
+    <!-- INFO DIALOG - SEARCH - CURRRENTLY PLAYING ITEM - VIDEO OSD -->
+
+    <variable name="Def_Dialog_Info_Currently_Playing_Item_VideoOSD">
+        <!-- search tvshow -->
+        <value condition="!String.IsEmpty(VideoPlayer.TvShowTitle)">RunScript(plugin.video.themoviedb.helper,add_path='"$INFO[VideoPlayer.TvShowTitle,videodb://tvshows/titles/?xsp=%7B%22order%22%3A%7B%22direction%22%3A%22ascending%22%2C%22ignorefolders%22%3A0%2C%22method%22%3A%22sorttitle%22%7D%2C%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22,%22%5D%7D%5D%7D%2C%22type%22%3A%22tvshows%22%7D]"',call_auto=1190)</value>
+
+        <!-- search movie -->
+        <value condition="String.IsEmpty(VideoPlayer.TvShowTitle)">RunScript(plugin.video.themoviedb.helper,add_path='"$INFO[VideoPlayer.Title,videodb://movies/titles/?xsp=%7B%22order%22%3A%7B%22direction%22%3A%22ascending%22%2C%22ignorefolders%22%3A0%2C%22method%22%3A%22sorttitle%22%7D%2C%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22,%22%5D%7D%5D%7D%2C%22type%22%3A%22movies%22%7D]"',call_auto=1190)</value>
+
+        <!-- search tvshow -->
+        <!-- <value condition="!String.IsEmpty(VideoPlayer.TvShowTitle)">RunScript(plugin.video.themoviedb.helper,add_path='"$INFO[Window(Home).Property(Encoded.VideoPlayer.TvShowTitle),videodb://tvshows/titles/?xsp=%7B%22order%22%3A%7B%22direction%22%3A%22ascending%22%2C%22ignorefolders%22%3A0%2C%22method%22%3A%22sorttitle%22%7D%2C%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22,%22%5D%7D%5D%7D%2C%22type%22%3A%22tvshows%22%7D]"',call_auto=1190)</value> -->
+
+        <!-- search movie -->
+        <!-- <value condition="String.IsEmpty(VideoPlayer.TvShowTitle)">RunScript(plugin.video.themoviedb.helper,add_path='"$INFO[Window(Home).Property(Encoded.VideoPlayer.Title),videodb://movies/titles/?xsp=%7B%22order%22%3A%7B%22direction%22%3A%22ascending%22%2C%22ignorefolders%22%3A0%2C%22method%22%3A%22sorttitle%22%7D%2C%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22,%22%5D%7D%5D%7D%2C%22type%22%3A%22movies%22%7D]"',call_auto=1190)</value> -->
+
     </variable>
 
     <!-- MUSIC INFO DIALOG - SEARCH - ARTIST -->

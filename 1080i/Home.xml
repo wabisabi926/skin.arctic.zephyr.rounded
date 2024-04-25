@@ -5,11 +5,14 @@
     <include>Action_Blur_Onload</include>
 
     <onload>RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=300&amp;group=mainmenu|x1111|x1112|x1113|x1114|x1115|x1116|x1117|x1118|x1119|powermenu&amp;levels=6)</onload>
+    <onload>RunScript(script.skinvariables,action=buildviews)</onload>
     <onload condition="!String.IsEqual(Window(Home).Property(ClearArtAnimation),Container(300).ListItem.Label)">SetProperty(ClearArtAnimation,$INFO[Container(300).ListItem.Label],Home)</onload>
+
+    <onload condition="Player.HasVideo">RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;window_id=Home&amp;window_prop=Encoded.Player.Filename&amp;&amp;$INFO[Player.Filename]")</onload>
+    <onload condition="Player.HasVideo">RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;window_id=Home&amp;window_prop=Encoded.Player.Title&amp;&amp;$INFO[Player.Title]")</onload>
 
     <onload condition="!String.IsEmpty(Window(Home).Property(SetBackMenu300AfterSubMenu302))">SetFocus(300)</onload>
     <onload condition="!String.IsEmpty(Window(Home).Property(SetBackMenu300AfterSubMenu302))">ClearProperty(SetBackMenu300AfterSubMenu302,Home)</onload>
-
     <onload condition="!System.AddonIsEnabled(plugin.video.themoviedb.helper)">Skin.SetBool(filter.video.only.local)</onload>
 
     <onunload>ClearProperty(ClearArtAnimation,Home)</onunload>
