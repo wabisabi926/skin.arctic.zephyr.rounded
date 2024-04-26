@@ -1006,7 +1006,7 @@
         <control type="group">
             <include>Animation_FurnitureVisible_footer</include>
             <visible>Skin.HasSetting(show.furniture.footer) | Control.IsVisible(5048) | Control.IsVisible(5218)</visible>
-            <visible>[!Skin.HasSetting(55wall.showinfo) + Control.IsVisible(55)] | Control.IsVisible(550) | Control.IsVisible(50) | Control.IsVisible(56) | Control.IsVisible(57) | Control.IsVisible(500) | Control.IsVisible(511) | Control.IsVisible(52) | Control.IsVisible(512) | Control.IsVisible(517) | Control.IsVisible(547) | Control.IsVisible(555) | Control.IsVisible(557) | Control.IsVisible(5048) | Control.IsVisible(5218) | [Control.IsVisible(5228) + String.IsEqual(Skin.String(522.landscape.size),2)] | Control.IsVisible(500) | Control.IsVisible(503) | Control.IsVisible(507) | Control.IsVisible(508) | Control.IsVisible(547) | [Control.IsVisible(5238) + String.IsEqual(Skin.String(523.square.size),2)] | Window.IsVisible(script-globalsearch.xml)</visible>
+            <visible>[!Skin.HasSetting(55wall.showinfo) + Control.IsVisible(55)] | Control.IsVisible(550) | Control.IsVisible(50) | Control.IsVisible(56) | Control.IsVisible(57) | Control.IsVisible(500) | Control.IsVisible(511) | Control.IsVisible(52) | Control.IsVisible(512) | Control.IsVisible(517) | Control.IsVisible(547) | Control.IsVisible(555) | Control.IsVisible(557) | Control.IsVisible(5048) | Control.IsVisible(5218) | [Control.IsVisible(5228) + String.IsEqual(Skin.String(522.landscape.size),2)] | [Control.IsVisible(5228) + Container.Content(artists)] | Control.IsVisible(500) | Control.IsVisible(503) | Control.IsVisible(507) | Control.IsVisible(508) | Control.IsVisible(547) | [Control.IsVisible(5238) + String.IsEqual(Skin.String(523.square.size),2)] | [Control.IsVisible(5238) + Container.Content(artists)] | Window.IsVisible(script-globalsearch.xml)</visible>
             <centerbottom>100</centerbottom>
             <orientation>horizontal</orientation>
             <align>right</align>
@@ -1192,7 +1192,7 @@
                 <textcolor>Dark2</textcolor>
                 <label>$VAR[Label_Music_Sub_Title]</label>
                 <visible>Container.Content(songs) | Container.Content(albums) | Container.Content(artists)</visible>
-                <visible>Control.IsVisible(52) | Control.IsVisible(503) | Control.IsVisible(508) | Control.IsVisible(547) | Control.IsVisible(557) | Control.IsVisible(5228) | Window.IsVisible(script-globalsearch.xml)</visible>
+                <visible>Control.IsVisible(52) | Control.IsVisible(503) | [Control.IsVisible(500) + Container.Content(artists)] | Control.IsVisible(508) | Control.IsVisible(547) | Control.IsVisible(557) | Control.IsVisible(5228) | Control.IsVisible(5238) | Window.IsVisible(script-globalsearch.xml)</visible>
                 <visible>!Window.IsVisible(MyPrograms.xml) + !$EXP[IsPluginRadio_DeItem] + !ListItem.IsParentFolder</visible>
             </control>
         </control>
