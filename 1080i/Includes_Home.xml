@@ -12,12 +12,10 @@
             <include>Animation_FadeIn_Slide</include>
             <include>Animation_FadeOut</include>
             <visible>!Control.HasFocus(301)</visible>
-            <visible>Skin.HasSetting(show.home.header.info.left) | !Window.IsVisible(DialogNotification.xml)</visible>
-            <visible>Skin.HasSetting(show.home.header.info.left) | !Window.IsVisible(DialogExtendedProgress.xml)</visible>
-            <visible>Skin.HasSetting(show.home.header.info.left) | !Window.IsVisible(DialogVolumeBar.xml)</visible>
-            <!-- <animation effect="slide" end="0,100" time="150" condition="!Skin.HasSetting(show.home.header.info.left) + Player.HasMedia + !Skin.HasSetting(home.hide.nowplaying) + ![Skin.HasSetting(enable.furniture.home.nowplaying.extended) + [$EXP[Home_Is_Horizontal] | $EXP[Home_Is_Vertical]]]">Conditional</animation> -->
-            <animation effect="slide" end="0,100" time="150" condition="!Skin.HasSetting(show.home.header.info.left) + Player.HasMedia + Window.IsVisible(DialogExtendedProgressBar.xml)">Conditional</animation>
-            <animation effect="slide" start="0" end="0,190" time="150" condition="Skin.HasSetting(show.home.header.info.left)">Conditional</animation>
+            <visible>!Window.IsVisible(DialogNotification.xml)</visible>
+            <visible>!Window.IsVisible(DialogExtendedProgress.xml)</visible>
+            <visible>!Window.IsVisible(DialogVolumeBar.xml)</visible>
+            <animation effect="slide" end="0,100" time="150" condition="Player.HasMedia + Window.IsVisible(DialogExtendedProgressBar.xml)">Conditional</animation>
             <visible>Pvr.IsRecording | Pvr.HasTimer</visible>
             <visible>!Skin.HasSetting(hide.recording.info)</visible>
             <control type="image">
@@ -958,7 +956,6 @@
                 <include>Animation_ScrolltimeWidgetsContainer</include>
                 <usecontrolcoords>true</usecontrolcoords>
                 <itemgap>0</itemgap>
-                <animation effect="slide" start="0" end="0,30" time="0" condition="Skin.HasSetting(show.home.header.info.left) + Skin.HasSetting(home.vertical)">Conditional</animation>
 
                 <!-- WIDGETS -->
 
@@ -993,7 +990,7 @@
         </control>
     </include>
 
-    <!-- HORIZONTAL - ITEM COUNT -->
+    <!-- HORIZONTAL CLEAN - ITEM COUNT -->
 
     <include name="Home_Widgets_Items_Count">
         <control type="group">
@@ -1927,7 +1924,6 @@
                 <visible>$PARAM[visible] + !String.IsEqual(Container($PARAM[id]).ListItem.DBType,album)</visible>
                 <visible>[Skin.HasSetting(show.home.netflix.title.clearlogo) + !$EXP[Exp_Title_Clearlogo_Available]] | !Skin.HasSetting(show.home.netflix.title.clearlogo)</visible>
             </control>
-
 
             <!-- LABEL - HEADER ARTIST -->
 

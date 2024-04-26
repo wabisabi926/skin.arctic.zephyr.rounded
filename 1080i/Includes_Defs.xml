@@ -1,146 +1,284 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 
-    <!-- DEF MISC -->
+    <!-- FULL SCREEN PLOT OVERLAY -->
 
-    <variable name="View_Home_Selected">
-        <value condition="Skin.HasSetting(homemenu.horizontal.clean)">$LOCALIZE[31472]</value>
-        <value condition="Skin.HasSetting(home.horizontal) + !Skin.HasSetting(homemenu.netflix)">$LOCALIZE[31254]</value>
-        <value condition="Skin.HasSetting(home.horizontal) + Skin.HasSetting(homemenu.netflix)">$LOCALIZE[31254] $LOCALIZE[31007]</value>
-        <value condition="Skin.HasSetting(home.vertical) + !Skin.HasSetting(homemenu.netflix)">$LOCALIZE[31218]</value>
-        <value>$LOCALIZE[31218] $LOCALIZE[31007]</value>
-    </variable>
-
-    <variable name="Indicators_Colors_Selected">
-        <value condition="String.IsEqual(Skin.String(colorpresent),1">$LOCALIZE[31554]</value>
-        <value condition="String.IsEqual(Skin.String(colorpresent),2">$LOCALIZE[31556] ($LOCALIZE[571])</value>
-        <value condition="String.IsEqual(Skin.String(colorpresent),3">$LOCALIZE[31557]</value>
-        <value condition="String.IsEqual(Skin.String(colorpresent),4">$LOCALIZE[31558]</value>
-        <value condition="String.IsEqual(Skin.String(colorpresent),5">$LOCALIZE[31559]</value>
-        <value condition="String.IsEqual(Skin.String(colorpresent),6">$LOCALIZE[31555]</value>
-        <value condition="String.IsEqual(Skin.String(colorpresent),7">$LOCALIZE[31592]</value>
-        <value condition="String.IsEqual(Skin.String(colorpresent),8">$INFO[Skin.String(color.preset.name.own)] - $LOCALIZE[31551]</value>
-    </variable>
-
-    <variable name="Def_Wiki_Language">
-        <value condition="!String.IsEmpty(Skin.String(Value_Wiki_Language))">$INFO[Skin.String(Value_Wiki_Language)]</value>
-        <value>en</value>
-    </variable>
-
-    <variable name="Def_Open_Sub_Menu">
-        <value>SetFocus(302,0)</value>
-    </variable>
-
-    <variable name="Image_Blur_Setting_Preview">
-        <value condition="!String.IsEmpty(Window(Home).Property(Fanart))">$INFO[Window(Home).Property(Fanart)]</value>
-        <value>special://skin/extras/views/cars.jpg</value>
-    </variable>
-
-    <variable name="Image_Background_Flix_Art_Quick">
-        <value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
-        <value condition="!String.IsEmpty(ListItem.Art(tvshow.fanart))">$INFO[ListItem.Art(tvshow.fanart)]</value>
-        <value condition="!String.IsEmpty(ListItem.Art(artist.fanart))">$INFO[ListItem.Art(artist.fanart)]</value>
-        <value condition="!String.IsEmpty(Container(99950).ListItem.Property(base_fanart))">$INFO[Container(99950).ListItem.Property(base_fanart)]</value>
-        <value condition="!String.IsEmpty(Container(99950).ListItem.Art(fanart))">$INFO[Container(99950).ListItem.Art(fanart)]</value>
-    </variable>
-
-    <variable name="Image_Background_Flix_Art">
-        <!-- <value condition="![$EXP[Exp_HasBackgroundFanart]]">common/null.png</value> -->
-        <!-- <value condition="!String.IsEmpty(Container(99950).ListItem.Art(blurimage))">$INFO[Container(99950).ListItem.Art(blurimage.original)]</value> -->
-        <value condition="!String.IsEmpty(Container(99950).ListItem.Art(blurimage))">$INFO[Container(99950).ListItem.Art(blurimage)]</value>
-        <value>$VAR[Image_Background_Flix_Art_Quick]</value>
-    </variable>
-
-    <variable name="Image_SimpleBackground">
-        <!-- <value condition="!String.IsEmpty(Skin.String(Background.Image))">$INFO[Skin.String(Background.Image)]</value> -->
-        <!-- <value>$VAR[Global_Fanart_Background]</value> -->
-        <value>background/blur2.png</value>
-    </variable>
-
-    <include name="_Action_Blur_Onload">
-        <param name="sourceimage">Art(fanart)</param>
+    <include name="Def_Dialog_Info_Overlay">
+        <param name="ondirection" value="$PARAM[ondirection]" default="9000"/>
+        <param name="ondirection2" value="$PARAM[ondirection2]" default="9012"/>
+        <param name="visible" value="$PARAM[visible]" default="Control.HasFocus(9601)"/>
         <definition>
-            <onload>SetProperty(TMDbHelper.Blur.SourceImage,$PARAM[sourceimage],Home)</onload>
-            <onload>SetProperty(TMDbHelper.Blur.Fallback,$VAR[Image_SimpleBackground],Home)</onload>
+            <control type="scrollbar" id="9601">
+                <width>1</width>
+                <height>1</height>
+                <visible allowhiddenfocus="true">false</visible>
+
+                <onback condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !Window.IsVisible(VideoFullScreen.xml)">$PARAM[ondirection2]</onback>
+                <onback condition="![String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] | Window.IsVisible(VideoFullScreen.xml)">$PARAM[ondirection]</onback>
+
+                <onleft condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !Window.IsVisible(VideoFullScreen.xml)">$PARAM[ondirection2]</onleft>
+                <onleft condition="![String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] | Window.IsVisible(VideoFullScreen.xml)">$PARAM[ondirection]</onleft>
+
+                <onright condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !Window.IsVisible(VideoFullScreen.xml)">$PARAM[ondirection2]</onright>
+                <onright condition="![String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] | Window.IsVisible(VideoFullScreen.xml)">$PARAM[ondirection]</onright>
+
+                <onback>ClearProperty(dontautoclose,Home)</onback>
+                <onleft>ClearProperty(dontautoclose,Home)</onleft>
+                <onright>ClearProperty(dontautoclose,Home)</onright>
+            </control>
+
+            <control type="group">
+                <visible>$PARAM[visible]</visible>
+                <include>Background_Global</include>
+                <include>Furniture_Header_NowPlaying</include>
+                <include>Animation_FadeIn</include>
+                <include>Animation_FadeOut</include>
+                <control type="image" description="Background">
+                    <include>Def_Dimensions_Fullscreen</include>
+                    <texture colordiffuse="ffF0F0F0">$VAR[Image_Background_Player_Plot_Overlay]</texture>
+                    <animation effect="fade" start="100" end="15" condition="true">Conditional</animation>
+                    <visible>Player.HasMedia + !Window.IsVisible(DialogMusicInfo.xml) + !Window.IsVisible(DialogVideoInfo.xml)</visible>
+                </control>
+                <control type="image" description="Background">
+                    <include>Def_Dimensions_Fullscreen</include>
+                    <texture colordiffuse="Background">background/bg.jpg</texture>
+                    <animation effect="fade" start="100" end="85" condition="true">Conditional</animation>
+                    <visible>!Player.HasMedia + !Window.IsVisible(DialogMusicInfo.xml) + !Window.IsVisible(DialogVideoInfo.xml)</visible>
+                </control>
+            </control>
+
+            <control type="group">
+                <left>SidePad</left>
+                <right>SidePad</right>
+                <top>PosterPad</top>
+                <height>630</height>
+                <visible>$PARAM[visible]</visible>
+                <include>Animation_FadeIn_Slide</include>
+                <include>Animation_FadeOut</include>
+                <control type="image" description="clearlogo">
+                    <visible>[[Skin.HasSetting(show.header.clearlogo) | Skin.HasSetting(show.dialog.info.clearlogo.video)] + Window.IsVisible(DialogVideoInfo.xml)] | [[Skin.HasSetting(show.header.clearlogo) | Skin.HasSetting(show.dialog.info.clearlogo.music)] + Window.IsVisible(DialogMusicInfo.xml)]</visible>
+                    <visible>!String.IsEmpty(Container(99950).ListItem.Art(cropimage)) | !String.IsEmpty(Container(99950).ListItem.Property(base_clearlogo))</visible>
+                    <centertop>60</centertop>
+                    <left>60</left>
+                    <height>ClearLogoTitleMaxHeight</height>
+                    <width>ClearLogoTitleMaxWidth</width>
+                    <aspectratio scalediffuse="true" align="left">keep</aspectratio>
+                    <texture background="true">$VAR[Image_Crop_ClearLogo]</texture>
+                    <animation effect="fade" start="0" end="100" time="200" delay="0" reversible="true">Visible</animation>
+                    <animation effect="fade" start="100" end="0" delay="400" time="200" reversible="true">Hidden</animation>
+                </control>
+                <control type="image" description="clearlogo">
+                    <visible>[Skin.HasSetting(show.header.clearlogo) | Skin.HasSetting(show.dialog.info.clearlogo.video)] + !Window.IsVisible(DialogMusicInfo.xml) + !Window.IsVisible(DialogVideoInfo.xml)</visible>
+                    <visible>!String.IsEmpty(Window(Home).Property(TMDBHelper.Player.CropImage))</visible>
+                    <centertop>60</centertop>
+                    <left>60</left>
+                    <height>ClearLogoTitleMaxHeight</height>
+                    <width>ClearLogoTitleMaxWidth</width>
+                    <aspectratio scalediffuse="true" align="left">keep</aspectratio>
+                    <texture background="true">$VAR[Image_Crop_ClearLogo_Player]</texture>
+                </control>
+                <control type="label">
+                    <description>header label</description>
+                    <left>60</left>
+                    <right>60</right>
+                    <posy>60</posy>
+                    <font>LargeNetflix</font>
+                    <textcolor>Dark1</textcolor>
+                    <height>45</height>
+                    <label>$PARAM[headerinfo]</label>
+                    <visible>[[!Skin.HasSetting(show.header.clearlogo) + !Skin.HasSetting(show.dialog.info.clearlogo.music) + Window.IsVisible(DialogMusicInfo.xml)] | [!Skin.HasSetting(show.header.clearlogo) + !Skin.HasSetting(show.dialog.info.clearlogo.video) + Window.IsVisible(DialogVideoInfo.xml)] | [[Skin.HasSetting(show.header.clearlogo) | [Skin.HasSetting(show.dialog.info.clearlogo.video) + Window.IsVisible(DialogVideoInfo.xml)] | [Skin.HasSetting(show.dialog.info.clearlogo.music) + Window.IsVisible(DialogMusicInfo.xml)]] + String.IsEmpty(Container(99950).ListItem.Art(cropimage)) + String.IsEmpty(Container(99950).ListItem.Property(base_clearlogo)) + String.IsEmpty(Window(Home).Property(TMDBHelper.Player.CropImage))]] | [String.IsEmpty(Window(Home).Property(TMDBHelper.Player.CropImage)) + !Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml)]</visible>
+                </control>
+                <control type="textbox" id="9600">
+                    <description>textarea</description>
+                    <left>60</left>
+                    <right>60</right>
+                    <top>150</top>
+                    <bottom>0</bottom>
+                    <align>justify</align>
+                    <font>Medium</font>
+                    <textcolor>Dark1</textcolor>
+                    <pagecontrol>9601</pagecontrol>
+                    <autoscroll>false</autoscroll>
+                    <label fallback="19055">$PARAM[plotinfo]</label>
+                </control>
+            </control>
+            <control type="group">
+                <visible>$PARAM[visible] + Container(9600).HasNext</visible>
+                <include>Animation_FadeIn</include>
+                <include>Animation_FadeOut</include>
+                <left>952</left>
+                <top>970</top>
+                <control type="image">
+                    <top>0</top>
+                    <include>arrowdimensions</include>
+                    <texture colordiffuse="Dark2" flipy="false">common/arrow-small.png</texture>
+                </control>
+                <control type="image">
+                    <top>12</top>
+                    <include>arrowdimensions</include>
+                    <texture colordiffuse="Dark2" flipy="false">common/arrow-small.png</texture>
+                </control>
+            </control>
+            <control type="group">
+                <visible>$PARAM[visible] + Container(9600).HasPrevious</visible>
+                <include>Animation_FadeIn</include>
+                <include>Animation_FadeOut</include>
+                <left>952</left>
+                <top>30</top>
+                <control type="image">
+                    <top>0</top>
+                    <include>arrowdimensions</include>
+                    <texture colordiffuse="Dark2" flipy="true">common/arrow-small.png</texture>
+                </control>
+                <control type="image">
+                    <top>12</top>
+                    <include>arrowdimensions</include>
+                    <texture colordiffuse="Dark2" flipy="true">common/arrow-small.png</texture>
+                </control>
+            </control>
         </definition>
     </include>
 
-    <include name="Action_Blur_Onload">
-        <!-- <include content="_Action_Blur_Onload" condition="Skin.HasSetting(PVR.DisableEPGEventIconFanart)"> -->
-            <!-- <param name="sourceimage">Art(fanart)|Property(fanart)</param> -->
-        <!-- </include> -->
-        <include content="_Action_Blur_Onload">
-            <param name="sourceimage">Art(fanart)|Property(fanart)|Property(Background)||EPGEventIcon</param>
-        </include>
+    <!-- FULL SCREEN WIKIPEDIA OVERLAY -->
+
+    <include name="Def_Dialog_Info_Overlay_Wiki">
+        <control type="group">
+            <visible>Window.IsVisible(script-wikipedia.xml) + !Window.IsVisible(DialogMusicInfo.xml) + !Window.IsVisible(DialogVideoInfo.xml)</visible>
+            <include>Animation_FadeIn</include>
+            <include>Animation_FadeOut</include>
+            <control type="image" description="Background">
+               <include>Def_Dimensions_Fullscreen</include>
+               <texture colordiffuse="Background">background/bg.jpg</texture>
+               <animation effect="fade" start="100" end="95" condition="true">Conditional</animation>
+            </control>
+        </control>
     </include>
 
-    <include name="Object_TextureFocus">
-        <texturefocus colordiffuse="$PARAM[colordiffuse]" border="$PARAM[border]">$PARAM[texture]</texturefocus>
+    <!-- SET POSTER / ICON / TITLE / INFOTAG IF NOT FILLED -->
+
+    <include name="Set_Image_Icon_Not_Filled">
+        <control type="button">
+            <visible>false</visible>
+            <onfocus>ClearProperty(set.listitem.poster,Home)</onfocus>
+
+            <onfocus condition="!Player.HasMedia + !Player.HasAudio + [!$EXP[IsItunesItem] | !String.Contains(ListItem.Path,favourites://)] + !String.IsEmpty(Window(Home).Property(set.player.icon))">ClearProperty(set.player.icon,Home)</onfocus>
+
+            <onfocus condition="!Player.HasMedia + !Player.HasAudio + !$EXP[IsItunesItem] + !String.IsEmpty(Window(Home).Property(set.player.title))">ClearProperty(set.player.title,Home)</onfocus>
+
+            <onfocus condition="!Player.HasMedia + !Player.HasAudio + !$EXP[IsItunesItem] + !String.IsEmpty(Window(Home).Property(set.player.tagline))">ClearProperty(set.player.tagline,Home)</onfocus>
+
+            <!-- PLUGIN.VIDEO.ITUNES -->
+
+            <onfocus condition="!String.IsEmpty(ListItem.Icon) + $EXP[IsItunesItem] + !Player.HasMedia + !Player.HasAudio">SetProperty(set.player.icon,$INFO[ListItem.Icon],Home)</onfocus>
+            <onfocus condition="!String.IsEmpty(ListItem.Title) + $EXP[IsItunesItem] + !Player.HasMedia + !Player.HasAudio">SetProperty(set.player.title,$ESCINFO[ListItem.Title],Home)</onfocus>
+            <onfocus condition="!String.IsEmpty(ListItem.Tagline) + $EXP[IsItunesItem] + !Player.HasMedia + !Player.HasAudio">SetProperty(set.player.tagline,$ESCINFO[ListItem.Tagline],Home)</onfocus>
+
+            <onfocus condition="!String.IsEmpty(ListItem.Label) + $EXP[IsItunesItem] + !Player.HasMedia + !Player.HasAudio">SetProperty(set.player.title,$ESCINFO[ListItem.Label],Home)</onfocus>
+
+            <!-- FAVOURITES -->
+
+            <onfocus condition="!String.IsEmpty(ListItem.Icon) + String.Contains(ListItem.Path,favourites://)">SetProperty(set.listitem.poster,$INFO[ListItem.Icon],Home)</onfocus>
+        </control>
     </include>
 
-    <include name="Texture_Shadow_20">
-        <param name="colordiffuse" default="80000000" />
-        <definition>
-            <include content="Def_Padding"><param name="pad" value="-20" /></include>
-            <bordersize>20</bordersize>
-            <bordertexture border="32" colordiffuse="$PARAM[colordiffuse]">common/shadow20.png</bordertexture>
-        </definition>
+    <!-- VIDEO TRAILER FULLSCREEN -->
+
+    <include name="Dialog_Info_Video_Fullscreen">
+        <control type="group">
+            <visible>Control.HasFocus(7011)</visible>
+            <visible>Player.HasVideo</visible>
+            <visible>!String.IsEmpty(Window(Home).Property(VideoYoutubeIsPlaying)) | !String.IsEmpty(Window(Home).Property(TrailerWindowedIsPlaying))</visible>
+
+            <include>Animation_FadeIn_DialogInfo</include>
+            <include>Animation_FadeOut_DialogInfo</include>
+
+            <control type="image">
+                <texture colordiffuse="black">common/white.png</texture>
+            </control>
+
+            <!-- VIDEO WINDOW -->
+
+            <control type="videowindow" />
+
+            <!-- PAUSED -->
+
+            <include content="Object_PauseSpinner">
+                <param name="centerleft" value="50%" />
+                <param name="centertop" value="50%" />
+            </include>
+
+            <!-- LABEL INFO -->
+
+            <include>Object_OSD_Label_Info</include>
+
+            <!-- MINI PLAYER -->
+
+            <control type="group">
+                <left>20</left>
+                <right>20</right>
+                <bottom>20</bottom>
+                <visible>Player.Seeking  | Player.DisplayAfterSeek | Player.Paused | Player.Forwarding | Player.Rewinding</visible>
+                <include>Animation_FadeIn</include>
+                <include>Animation_FadeOut</include>
+                <include>Object_OSD_Seekbar_Bar</include>
+            </control>
+
+            <!-- BUTTON TRAILER -->
+
+            <control type="button" id="7011">
+                <include>Def_Hidden_Button</include>
+                <texturenofocus />
+                <texturefocus />
+
+                <oninfo>9000</oninfo>
+                <oninfo>ClearProperty(VideoYoutubeIsPlaying,Home)</oninfo>
+                <oninfo condition="Player.HasVideo">Stop</oninfo>
+
+                <onback>9000</onback>
+                <onback>ClearProperty(VideoYoutubeIsPlaying,Home)</onback>
+                <onback condition="Player.HasVideo">Stop</onback>
+
+                <onclick condition="!Player.HasVideo">SetFocus(9000)</onclick>
+                <onclick condition="!Player.HasVideo">ClearProperty(VideoYoutubeIsPlaying,Home)</onclick>
+                <onclick condition="Player.HasVideo">PlayerControl(Play)</onclick>
+
+                <onfocus condition="!Player.HasVideo">SetFocus(9000)</onfocus>
+
+                <onunfocus>SetFocus(9000)</onunfocus>
+                <onunfocus>ClearProperty(VideoYoutubeIsPlaying,Home)</onunfocus>
+                <onunfocus condition="Player.HasVideo">Stop</onunfocus>
+
+                <onleft condition="!Player.HasVideo">SetFocus(9000)</onleft>
+                <onleft condition="!Player.HasVideo">ClearProperty(VideoYoutubeIsPlaying,Home)</onleft>
+                <onleft condition="Player.HasVideo">StepBack</onleft>
+
+                <onright condition="!Player.HasVideo">SetFocus(9000)</onright>
+                <onright condition="!Player.HasVideo">ClearProperty(VideoYoutubeIsPlaying,Home)</onright>
+                <onright condition="Player.HasVideo">StepForward</onright>
+
+                <onup>SetFocus(9000)</onup>
+                <onup>ClearProperty(VideoYoutubeIsPlaying,Home)</onup>
+                <onup condition="Player.HasVideo">Stop</onup>
+
+                <ondown>SetFocus(9000)</ondown>
+                <ondown>ClearProperty(VideoYoutubeIsPlaying,Home)</ondown>
+                <ondown condition="Player.HasVideo">Stop</ondown>
+           </control>
+        </control>
     </include>
 
-    <include name="Def_Dialog_Info_On_Back_Video">
-        <onback>SetFocus(50,0,absolute)</onback>
-        <onback>SetFocus(9502,0,absolute)</onback>
-        <onback>SetFocus(9503,0,absolute)</onback>
-        <onback>SetFocus(9505,0,absolute)</onback>
-        <onback>SetFocus(9506,0,absolute)</onback>
-        <onback>SetFocus(9514,0,absolute)</onback>
-        <onback>SetFocus(9515,0,absolute)</onback>
-        <onback>SetFocus(9550,0,absolute)</onback>
-        <onback>SetFocus(9552,0,absolute)</onback>
-        <onback>SetFocus(9553,0,absolute)</onback>
-        <onback>SetFocus(9554,0,absolute)</onback>
-        <onback>SetFocus(9556,0,absolute)</onback>
-        <onback>SetFocus(9557,0,absolute)</onback>
-        <onback>SetFocus(9558,0,absolute)</onback>
-        <onback>SetFocus(9559,0,absolute)</onback>
-        <onback>SetFocus(9579,0,absolute)</onback>
-        <onback>SetFocus(9517,0,absolute)</onback>
-    </include>
+    <!-- DEF ACTION ON INFO -->
 
-    <include name="Def_Dialog_Info_On_Back_Music">
-        <onback>SetFocus(9501,0,absolute)</onback>
-        <onback>SetFocus(9502,3,absolute)</onback>
-        <onback>SetFocus(9504,3,absolute)</onback>
-        <onback>SetFocus(9508,0,absolute)</onback>
+    <include name="Def_On_Info">
+        <oninfo condition="Container.Content(actors)">SetProperty(isoninfo,1,Home)</oninfo>
+        <oninfo condition="Container.Content(actors)">RunScript(plugin.video.themoviedb.helper,add_query=$INFO[ListItem.Label],type=person,call_auto=1190)</oninfo>
+        <!-- <oninfo condition="Container.Content(movies)">Action(Info)</oninfo> -->
+        <!-- <oninfo condition="Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(movies)">RunScript(plugin.video.themoviedb.helper,add_path=$INFO[ListItem.FolderPath],call_auto=1190)</oninfo> -->
+        <!-- <oninfo condition="String.IsEqual(ListItem.DBType,set)">SetFocus(44023)</oninfo> -->
+        <!-- <oninfo condition="String.IsEqual(ListItem.DBType,set)">Action(info)</oninfo> -->
 
-        <ondown>SetFocus(9501,0,absolute)</ondown>
-        <ondown>SetFocus(9502,3,absolute)</ondown>
-        <ondown>SetFocus(9504,3,absolute)</ondown>
-        <ondown>SetFocus(9508,0,absolute)</ondown>
-    </include>
-
-    <include name="Texture_Button_confirm">
-        <texturenofocus colordiffuse="Black12" border="12">common/box.png</texturenofocus>
-        <include content="Object_TextureFocus" condition="String.IsEmpty(Window(Home).Property(ReloadDone))">
-            <param name="border">12</param>
-            <param name="texture">buttonsdialogs/box_v.png</param>
-        </include>
-        <include content="Object_TextureFocus" condition="!String.IsEmpty(Window(Home).Property(ReloadDone))">
-            <param name="border">12</param>
-            <param name="texture">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</param>
-        </include>
-    </include>
-
-    <include name="Action_BuildTextures_Onclick_Reload_1202">
-        <onclick>runscript(script.texturemaker,bg=$VAR[Color_Focus],fg=$VAR[Color_FocusGradient],alpha=1.0,folder=ArcticZephirRounded,selectbox=special://skin/extras/textures/selectbox.png,selectbox_thin=special://skin/extras/textures/selectbox_thin.png,scrollv=special://skin/extras/textures/scrollv.png,scrollh=special://skin/extras/textures/scrollh.png,underline=special://skin/extras/textures/underline.png,box=special://skin/extras/textures/box.png,circle=special://skin/extras/textures/circle.png,menu=special://skin/extras/textures/menu.png,menumain+overlay+slicing{240|80}=special://skin/extras/textures/menumain.png,buttonmain+slicing{240|80}=special://skin/extras/textures/menumain.png,main=special://skin/extras/textures/main.png,circlebutton+overlay=special://skin/extras/textures/circlebutton.png,circlebuttondialog=special://skin/extras/textures/circlebutton.png,squarebutton+overlay=special://skin/extras/textures/squarebutton.png,glow=special://skin/extras/textures/glow.png,reload=1202)</onclick>
-    </include>
-
-    <include name="Action_BuildTextures_Onload">
-        <onload>RunScript(script.texturemaker,bg=$VAR[Color_Focus],fg=$VAR[Color_FocusGradient],alpha=1.0,folder=ArcticZephirRounded,selectbox=special://skin/extras/textures/selectbox.png,selectbox_thin=special://skin/extras/textures/selectbox_thin.png,scrollv=special://skin/extras/textures/scrollv.png,scrollh=special://skin/extras/textures/scrollh.png,underline=special://skin/extras/textures/underline.png,box=special://skin/extras/textures/box.png,circle=special://skin/extras/textures/circle.png,menu=special://skin/extras/textures/menu.png,menumain+overlay+slicing{240|80}=special://skin/extras/textures/menumain.png,buttonmain+slicing{240|80}=special://skin/extras/textures/menumain.png,main=special://skin/extras/textures/main.png,circlebutton+overlay=special://skin/extras/textures/circlebutton.png,circlebuttondialog=special://skin/extras/textures/circlebutton.png,squarebutton+overlay=special://skin/extras/textures/squarebutton.png,glow=special://skin/extras/textures/glow.png,no_reload)</onload>
-    </include>
-
-    <include name="Action_BuildTextures_Onclick">
-        <onclick>runscript(script.texturemaker,bg=$VAR[Color_Focus],fg=$VAR[Color_FocusGradient],alpha=1.0,folder=ArcticZephirRounded,selectbox=special://skin/extras/textures/selectbox.png,selectbox_thin=special://skin/extras/textures/selectbox_thin.png,scrollv=special://skin/extras/textures/scrollv.png,scrollh=special://skin/extras/textures/scrollh.png,underline=special://skin/extras/textures/underline.png,box=special://skin/extras/textures/box.png,circle=special://skin/extras/textures/circle.png,menu=special://skin/extras/textures/menu.png,menumain+overlay+slicing{240|80}=special://skin/extras/textures/menumain.png,buttonmain+slicing{240|80}=special://skin/extras/textures/menumain.png,main=special://skin/extras/textures/main.png,circlebutton+overlay=special://skin/extras/textures/circlebutton.png,circlebuttondialog=special://skin/extras/textures/circlebutton.png,squarebutton+overlay=special://skin/extras/textures/squarebutton.png,glow=special://skin/extras/textures/glow.png,reload)</onclick>
+        <!-- <oninfo condition="Container.Content(movies)">RunScript(plugin.video.themoviedb.helper,add_query=$INFO[ListItem.Label],type=movie,call_auto=1190)</oninfo> -->
+        <!-- <oninfo condition="Container.Content(tvshows)">RunScript(plugin.video.themoviedb.helper,add_query=$INFO[ListItem.Label],type=tv,call_auto=1190)</oninfo> -->
     </include>
 
     <!-- DEF COLOR -->
@@ -371,160 +509,6 @@
         <value condition="!String.IsEmpty(Skin.String(IndicatorColorBackgroundIsPlayingicon.name.own))">$INFO[Skin.String(IndicatorColorBackgroundIsPlayingicon.name.own)]</value>
         <value>FFFFFFFF</value>
     </variable>
-
-    <!-- FULL SCREEN PLOT OVERLAY -->
-
-    <include name="Def_Dialog_Info_Overlay">
-        <param name="ondirection" value="$PARAM[ondirection]" default="9000"/>
-        <param name="ondirection2" value="$PARAM[ondirection2]" default="9012"/>
-        <param name="visible" value="$PARAM[visible]" default="Control.HasFocus(9601)"/>
-        <definition>
-            <control type="scrollbar" id="9601">
-                <width>1</width>
-                <height>1</height>
-                <visible allowhiddenfocus="true">false</visible>
-
-                <onback condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !Window.IsVisible(VideoFullScreen.xml)">$PARAM[ondirection2]</onback>
-                <onback condition="![String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] | Window.IsVisible(VideoFullScreen.xml)">$PARAM[ondirection]</onback>
-
-                <onleft condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !Window.IsVisible(VideoFullScreen.xml)">$PARAM[ondirection2]</onleft>
-                <onleft condition="![String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] | Window.IsVisible(VideoFullScreen.xml)">$PARAM[ondirection]</onleft>
-
-                <onright condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !Window.IsVisible(VideoFullScreen.xml)">$PARAM[ondirection2]</onright>
-                <onright condition="![String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] | Window.IsVisible(VideoFullScreen.xml)">$PARAM[ondirection]</onright>
-
-                <onback>ClearProperty(dontautoclose,Home)</onback>
-                <onleft>ClearProperty(dontautoclose,Home)</onleft>
-                <onright>ClearProperty(dontautoclose,Home)</onright>
-            </control>
-
-            <control type="group">
-                <visible>$PARAM[visible]</visible>
-                <include>Background_Global</include>
-                <include>Furniture_Header_NowPlaying</include>
-                <include>Animation_FadeIn</include>
-                <include>Animation_FadeOut</include>
-                <control type="image" description="Background">
-                    <include>Def_Dimensions_Fullscreen</include>
-                    <texture colordiffuse="ffF0F0F0">$VAR[Image_Background_Player_Plot_Overlay]</texture>
-                    <animation effect="fade" start="100" end="15" condition="true">Conditional</animation>
-                    <visible>Player.HasMedia + !Window.IsVisible(DialogMusicInfo.xml) + !Window.IsVisible(DialogVideoInfo.xml)</visible>
-                </control>
-                <control type="image" description="Background">
-                    <include>Def_Dimensions_Fullscreen</include>
-                    <texture colordiffuse="Background">background/bg.jpg</texture>
-                    <animation effect="fade" start="100" end="85" condition="true">Conditional</animation>
-                    <visible>!Player.HasMedia + !Window.IsVisible(DialogMusicInfo.xml) + !Window.IsVisible(DialogVideoInfo.xml)</visible>
-                </control>
-            </control>
-
-            <control type="group">
-                <left>SidePad</left>
-                <right>SidePad</right>
-                <top>PosterPad</top>
-                <height>630</height>
-                <visible>$PARAM[visible]</visible>
-                <include>Animation_FadeIn_Slide</include>
-                <include>Animation_FadeOut</include>
-                <control type="image" description="clearlogo">
-                    <visible>[[Skin.HasSetting(show.header.clearlogo) | Skin.HasSetting(show.dialog.info.clearlogo.video)] + Window.IsVisible(DialogVideoInfo.xml)] | [[Skin.HasSetting(show.header.clearlogo) | Skin.HasSetting(show.dialog.info.clearlogo.music)] + Window.IsVisible(DialogMusicInfo.xml)]</visible>
-                    <visible>!String.IsEmpty(Container(99950).ListItem.Art(cropimage)) | !String.IsEmpty(Container(99950).ListItem.Property(base_clearlogo))</visible>
-                    <centertop>60</centertop>
-                    <left>60</left>
-                    <height>ClearLogoTitleMaxHeight</height>
-                    <width>ClearLogoTitleMaxWidth</width>
-                    <aspectratio scalediffuse="true" align="left">keep</aspectratio>
-                    <texture background="true">$VAR[Image_Crop_ClearLogo]</texture>
-                    <animation effect="fade" start="0" end="100" time="200" delay="0" reversible="true">Visible</animation>
-                    <animation effect="fade" start="100" end="0" delay="400" time="200" reversible="true">Hidden</animation>
-                </control>
-                <control type="image" description="clearlogo">
-                    <visible>[Skin.HasSetting(show.header.clearlogo) | Skin.HasSetting(show.dialog.info.clearlogo.video)] + !Window.IsVisible(DialogMusicInfo.xml) + !Window.IsVisible(DialogVideoInfo.xml)</visible>
-                    <visible>!String.IsEmpty(Window(Home).Property(TMDBHelper.Player.CropImage))</visible>
-                    <centertop>60</centertop>
-                    <left>60</left>
-                    <height>ClearLogoTitleMaxHeight</height>
-                    <width>ClearLogoTitleMaxWidth</width>
-                    <aspectratio scalediffuse="true" align="left">keep</aspectratio>
-                    <texture background="true">$VAR[Image_Crop_ClearLogo_Player]</texture>
-                </control>
-                <control type="label">
-                    <description>header label</description>
-                    <left>60</left>
-                    <right>60</right>
-                    <posy>60</posy>
-                    <font>LargeNetflix</font>
-                    <textcolor>Dark1</textcolor>
-                    <height>45</height>
-                    <label>$PARAM[headerinfo]</label>
-                    <visible>[[!Skin.HasSetting(show.header.clearlogo) + !Skin.HasSetting(show.dialog.info.clearlogo.music) + Window.IsVisible(DialogMusicInfo.xml)] | [!Skin.HasSetting(show.header.clearlogo) + !Skin.HasSetting(show.dialog.info.clearlogo.video) + Window.IsVisible(DialogVideoInfo.xml)] | [[Skin.HasSetting(show.header.clearlogo) | [Skin.HasSetting(show.dialog.info.clearlogo.video) + Window.IsVisible(DialogVideoInfo.xml)] | [Skin.HasSetting(show.dialog.info.clearlogo.music) + Window.IsVisible(DialogMusicInfo.xml)]] + String.IsEmpty(Container(99950).ListItem.Art(cropimage)) + String.IsEmpty(Container(99950).ListItem.Property(base_clearlogo)) + String.IsEmpty(Window(Home).Property(TMDBHelper.Player.CropImage))]] | [String.IsEmpty(Window(Home).Property(TMDBHelper.Player.CropImage)) + !Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml)]</visible>
-                </control>
-                <control type="textbox" id="9600">
-                    <description>textarea</description>
-                    <left>60</left>
-                    <right>60</right>
-                    <top>150</top>
-                    <bottom>0</bottom>
-                    <align>justify</align>
-                    <font>Medium</font>
-                    <textcolor>Dark1</textcolor>
-                    <pagecontrol>9601</pagecontrol>
-                    <autoscroll>false</autoscroll>
-                    <label fallback="19055">$PARAM[plotinfo]</label>
-                </control>
-            </control>
-            <control type="group">
-                <visible>$PARAM[visible] + Container(9600).HasNext</visible>
-                <include>Animation_FadeIn</include>
-                <include>Animation_FadeOut</include>
-                <left>952</left>
-                <top>970</top>
-                <control type="image">
-                    <top>0</top>
-                    <include>arrowdimensions</include>
-                    <texture colordiffuse="Dark2" flipy="false">common/arrow-small.png</texture>
-                </control>
-                <control type="image">
-                    <top>12</top>
-                    <include>arrowdimensions</include>
-                    <texture colordiffuse="Dark2" flipy="false">common/arrow-small.png</texture>
-                </control>
-            </control>
-            <control type="group">
-                <visible>$PARAM[visible] + Container(9600).HasPrevious</visible>
-                <include>Animation_FadeIn</include>
-                <include>Animation_FadeOut</include>
-                <left>952</left>
-                <top>30</top>
-                <control type="image">
-                    <top>0</top>
-                    <include>arrowdimensions</include>
-                    <texture colordiffuse="Dark2" flipy="true">common/arrow-small.png</texture>
-                </control>
-                <control type="image">
-                    <top>12</top>
-                    <include>arrowdimensions</include>
-                    <texture colordiffuse="Dark2" flipy="true">common/arrow-small.png</texture>
-                </control>
-            </control>
-        </definition>
-    </include>
-
-    <!-- FULL SCREEN WIKIPEDIA OVERLAY -->
-
-    <include name="Def_Dialog_Info_Overlay_Wiki">
-        <control type="group">
-            <visible>Window.IsVisible(script-wikipedia.xml) + !Window.IsVisible(DialogMusicInfo.xml) + !Window.IsVisible(DialogVideoInfo.xml)</visible>
-            <include>Animation_FadeIn</include>
-            <include>Animation_FadeOut</include>
-            <control type="image" description="Background">
-               <include>Def_Dimensions_Fullscreen</include>
-               <texture colordiffuse="Background">background/bg.jpg</texture>
-               <animation effect="fade" start="100" end="95" condition="true">Conditional</animation>
-            </control>
-        </control>
-    </include>
-
 
     <!-- FLAGS INDICATORS -->
 
@@ -1219,6 +1203,147 @@
         </control>
     </include>
 
+    <!-- DEF MISC -->
+
+    <variable name="View_Home_Selected">
+        <value condition="Skin.HasSetting(homemenu.horizontal.clean)">$LOCALIZE[31472]</value>
+        <value condition="Skin.HasSetting(home.horizontal) + !Skin.HasSetting(homemenu.netflix)">$LOCALIZE[31254]</value>
+        <value condition="Skin.HasSetting(home.horizontal) + Skin.HasSetting(homemenu.netflix)">$LOCALIZE[31254] $LOCALIZE[31007]</value>
+        <value condition="Skin.HasSetting(home.vertical) + !Skin.HasSetting(homemenu.netflix)">$LOCALIZE[31218]</value>
+        <value>$LOCALIZE[31218] $LOCALIZE[31007]</value>
+    </variable>
+
+    <variable name="Indicators_Colors_Selected">
+        <value condition="String.IsEqual(Skin.String(colorpresent),1">$LOCALIZE[31554]</value>
+        <value condition="String.IsEqual(Skin.String(colorpresent),2">$LOCALIZE[31556] ($LOCALIZE[571])</value>
+        <value condition="String.IsEqual(Skin.String(colorpresent),3">$LOCALIZE[31557]</value>
+        <value condition="String.IsEqual(Skin.String(colorpresent),4">$LOCALIZE[31558]</value>
+        <value condition="String.IsEqual(Skin.String(colorpresent),5">$LOCALIZE[31559]</value>
+        <value condition="String.IsEqual(Skin.String(colorpresent),6">$LOCALIZE[31555]</value>
+        <value condition="String.IsEqual(Skin.String(colorpresent),7">$LOCALIZE[31592]</value>
+        <value condition="String.IsEqual(Skin.String(colorpresent),8">$INFO[Skin.String(color.preset.name.own)] - $LOCALIZE[31551]</value>
+    </variable>
+
+    <variable name="Def_Wiki_Language">
+        <value condition="!String.IsEmpty(Skin.String(Value_Wiki_Language))">$INFO[Skin.String(Value_Wiki_Language)]</value>
+        <value>en</value>
+    </variable>
+
+    <variable name="Def_Open_Sub_Menu">
+        <value>SetFocus(302,0)</value>
+    </variable>
+
+    <variable name="Image_Blur_Setting_Preview">
+        <value condition="!String.IsEmpty(Window(Home).Property(Fanart))">$INFO[Window(Home).Property(Fanart)]</value>
+        <value>special://skin/extras/views/cars.jpg</value>
+    </variable>
+
+    <variable name="Image_Background_Flix_Art_Quick">
+        <value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
+        <value condition="!String.IsEmpty(ListItem.Art(tvshow.fanart))">$INFO[ListItem.Art(tvshow.fanart)]</value>
+        <value condition="!String.IsEmpty(ListItem.Art(artist.fanart))">$INFO[ListItem.Art(artist.fanart)]</value>
+        <value condition="!String.IsEmpty(Container(99950).ListItem.Property(base_fanart))">$INFO[Container(99950).ListItem.Property(base_fanart)]</value>
+        <value condition="!String.IsEmpty(Container(99950).ListItem.Art(fanart))">$INFO[Container(99950).ListItem.Art(fanart)]</value>
+    </variable>
+
+    <variable name="Image_Background_Flix_Art">
+        <!-- <value condition="![$EXP[Exp_HasBackgroundFanart]]">common/null.png</value> -->
+        <!-- <value condition="!String.IsEmpty(Container(99950).ListItem.Art(blurimage))">$INFO[Container(99950).ListItem.Art(blurimage.original)]</value> -->
+        <value condition="!String.IsEmpty(Container(99950).ListItem.Art(blurimage))">$INFO[Container(99950).ListItem.Art(blurimage)]</value>
+        <value>$VAR[Image_Background_Flix_Art_Quick]</value>
+    </variable>
+
+    <variable name="Image_SimpleBackground">
+        <!-- <value condition="!String.IsEmpty(Skin.String(Background.Image))">$INFO[Skin.String(Background.Image)]</value> -->
+        <!-- <value>$VAR[Global_Fanart_Background]</value> -->
+        <value>background/blur2.png</value>
+    </variable>
+
+    <include name="_Action_Blur_Onload">
+        <param name="sourceimage">Art(fanart)</param>
+        <definition>
+            <onload>SetProperty(TMDbHelper.Blur.SourceImage,$PARAM[sourceimage],Home)</onload>
+            <onload>SetProperty(TMDbHelper.Blur.Fallback,$VAR[Image_SimpleBackground],Home)</onload>
+        </definition>
+    </include>
+
+    <include name="Action_Blur_Onload">
+        <!-- <include content="_Action_Blur_Onload" condition="Skin.HasSetting(PVR.DisableEPGEventIconFanart)"> -->
+            <!-- <param name="sourceimage">Art(fanart)|Property(fanart)</param> -->
+        <!-- </include> -->
+        <include content="_Action_Blur_Onload">
+            <param name="sourceimage">Art(fanart)|Property(fanart)|Property(Background)||EPGEventIcon</param>
+        </include>
+    </include>
+
+    <include name="Object_TextureFocus">
+        <texturefocus colordiffuse="$PARAM[colordiffuse]" border="$PARAM[border]">$PARAM[texture]</texturefocus>
+    </include>
+
+    <include name="Texture_Shadow_20">
+        <param name="colordiffuse" default="80000000" />
+        <definition>
+            <include content="Def_Padding"><param name="pad" value="-20" /></include>
+            <bordersize>20</bordersize>
+            <bordertexture border="32" colordiffuse="$PARAM[colordiffuse]">common/shadow20.png</bordertexture>
+        </definition>
+    </include>
+
+    <include name="Def_Dialog_Info_On_Back_Video">
+        <onback>SetFocus(50,0,absolute)</onback>
+        <onback>SetFocus(9502,0,absolute)</onback>
+        <onback>SetFocus(9503,0,absolute)</onback>
+        <onback>SetFocus(9505,0,absolute)</onback>
+        <onback>SetFocus(9506,0,absolute)</onback>
+        <onback>SetFocus(9514,0,absolute)</onback>
+        <onback>SetFocus(9515,0,absolute)</onback>
+        <onback>SetFocus(9550,0,absolute)</onback>
+        <onback>SetFocus(9552,0,absolute)</onback>
+        <onback>SetFocus(9553,0,absolute)</onback>
+        <onback>SetFocus(9554,0,absolute)</onback>
+        <onback>SetFocus(9556,0,absolute)</onback>
+        <onback>SetFocus(9557,0,absolute)</onback>
+        <onback>SetFocus(9558,0,absolute)</onback>
+        <onback>SetFocus(9559,0,absolute)</onback>
+        <onback>SetFocus(9579,0,absolute)</onback>
+        <onback>SetFocus(9517,0,absolute)</onback>
+    </include>
+
+    <include name="Def_Dialog_Info_On_Back_Music">
+        <onback>SetFocus(9501,0,absolute)</onback>
+        <onback>SetFocus(9502,3,absolute)</onback>
+        <onback>SetFocus(9504,3,absolute)</onback>
+        <onback>SetFocus(9508,0,absolute)</onback>
+
+        <ondown>SetFocus(9501,0,absolute)</ondown>
+        <ondown>SetFocus(9502,3,absolute)</ondown>
+        <ondown>SetFocus(9504,3,absolute)</ondown>
+        <ondown>SetFocus(9508,0,absolute)</ondown>
+    </include>
+
+    <include name="Texture_Button_confirm">
+        <texturenofocus colordiffuse="Black12" border="12">common/box.png</texturenofocus>
+        <include content="Object_TextureFocus" condition="String.IsEmpty(Window(Home).Property(ReloadDone))">
+            <param name="border">12</param>
+            <param name="texture">buttonsdialogs/box_v.png</param>
+        </include>
+        <include content="Object_TextureFocus" condition="!String.IsEmpty(Window(Home).Property(ReloadDone))">
+            <param name="border">12</param>
+            <param name="texture">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</param>
+        </include>
+    </include>
+
+    <include name="Action_BuildTextures_Onclick_Reload_1202">
+        <onclick>runscript(script.texturemaker,bg=$VAR[Color_Focus],fg=$VAR[Color_FocusGradient],alpha=1.0,folder=ArcticZephirRounded,selectbox=special://skin/extras/textures/selectbox.png,selectbox_thin=special://skin/extras/textures/selectbox_thin.png,scrollv=special://skin/extras/textures/scrollv.png,scrollh=special://skin/extras/textures/scrollh.png,underline=special://skin/extras/textures/underline.png,box=special://skin/extras/textures/box.png,circle=special://skin/extras/textures/circle.png,menu=special://skin/extras/textures/menu.png,menumain+overlay+slicing{240|80}=special://skin/extras/textures/menumain.png,buttonmain+slicing{240|80}=special://skin/extras/textures/menumain.png,main=special://skin/extras/textures/main.png,circlebutton+overlay=special://skin/extras/textures/circlebutton.png,circlebuttondialog=special://skin/extras/textures/circlebutton.png,squarebutton+overlay=special://skin/extras/textures/squarebutton.png,glow=special://skin/extras/textures/glow.png,reload=1202)</onclick>
+    </include>
+
+    <include name="Action_BuildTextures_Onload">
+        <onload>RunScript(script.texturemaker,bg=$VAR[Color_Focus],fg=$VAR[Color_FocusGradient],alpha=1.0,folder=ArcticZephirRounded,selectbox=special://skin/extras/textures/selectbox.png,selectbox_thin=special://skin/extras/textures/selectbox_thin.png,scrollv=special://skin/extras/textures/scrollv.png,scrollh=special://skin/extras/textures/scrollh.png,underline=special://skin/extras/textures/underline.png,box=special://skin/extras/textures/box.png,circle=special://skin/extras/textures/circle.png,menu=special://skin/extras/textures/menu.png,menumain+overlay+slicing{240|80}=special://skin/extras/textures/menumain.png,buttonmain+slicing{240|80}=special://skin/extras/textures/menumain.png,main=special://skin/extras/textures/main.png,circlebutton+overlay=special://skin/extras/textures/circlebutton.png,circlebuttondialog=special://skin/extras/textures/circlebutton.png,squarebutton+overlay=special://skin/extras/textures/squarebutton.png,glow=special://skin/extras/textures/glow.png,no_reload)</onload>
+    </include>
+
+    <include name="Action_BuildTextures_Onclick">
+        <onclick>runscript(script.texturemaker,bg=$VAR[Color_Focus],fg=$VAR[Color_FocusGradient],alpha=1.0,folder=ArcticZephirRounded,selectbox=special://skin/extras/textures/selectbox.png,selectbox_thin=special://skin/extras/textures/selectbox_thin.png,scrollv=special://skin/extras/textures/scrollv.png,scrollh=special://skin/extras/textures/scrollh.png,underline=special://skin/extras/textures/underline.png,box=special://skin/extras/textures/box.png,circle=special://skin/extras/textures/circle.png,menu=special://skin/extras/textures/menu.png,menumain+overlay+slicing{240|80}=special://skin/extras/textures/menumain.png,buttonmain+slicing{240|80}=special://skin/extras/textures/menumain.png,main=special://skin/extras/textures/main.png,circlebutton+overlay=special://skin/extras/textures/circlebutton.png,circlebuttondialog=special://skin/extras/textures/circlebutton.png,squarebutton+overlay=special://skin/extras/textures/squarebutton.png,glow=special://skin/extras/textures/glow.png,reload)</onclick>
+    </include>
 
     <!-- A TRIER -->
 
@@ -1748,133 +1873,5 @@
         <value condition="Window.IsActive(selectvideoversion)">$INFO[ListItem.VideoVersionName]</value>
         <value>$INFO[ListItem.Label]</value>
     </variable>
-
-    <!-- SET POSTER / ICON / TITLE / INFOTAG IF NOT FILLED -->
-
-    <include name="Set_Image_Icon_Not_Filled">
-        <control type="button">
-            <visible>false</visible>
-            <onfocus>ClearProperty(set.listitem.poster,Home)</onfocus>
-
-            <onfocus condition="!Player.HasMedia + !Player.HasAudio + [!$EXP[IsItunesItem] | !String.Contains(ListItem.Path,favourites://)] + !String.IsEmpty(Window(Home).Property(set.player.icon))">ClearProperty(set.player.icon,Home)</onfocus>
-
-            <onfocus condition="!Player.HasMedia + !Player.HasAudio + !$EXP[IsItunesItem] + !String.IsEmpty(Window(Home).Property(set.player.title))">ClearProperty(set.player.title,Home)</onfocus>
-
-            <onfocus condition="!Player.HasMedia + !Player.HasAudio + !$EXP[IsItunesItem] + !String.IsEmpty(Window(Home).Property(set.player.tagline))">ClearProperty(set.player.tagline,Home)</onfocus>
-
-            <!-- PLUGIN.VIDEO.ITUNES -->
-
-            <onfocus condition="!String.IsEmpty(ListItem.Icon) + $EXP[IsItunesItem] + !Player.HasMedia + !Player.HasAudio">SetProperty(set.player.icon,$INFO[ListItem.Icon],Home)</onfocus>
-            <onfocus condition="!String.IsEmpty(ListItem.Title) + $EXP[IsItunesItem] + !Player.HasMedia + !Player.HasAudio">SetProperty(set.player.title,$ESCINFO[ListItem.Title],Home)</onfocus>
-            <onfocus condition="!String.IsEmpty(ListItem.Tagline) + $EXP[IsItunesItem] + !Player.HasMedia + !Player.HasAudio">SetProperty(set.player.tagline,$ESCINFO[ListItem.Tagline],Home)</onfocus>
-
-            <onfocus condition="!String.IsEmpty(ListItem.Label) + $EXP[IsItunesItem] + !Player.HasMedia + !Player.HasAudio">SetProperty(set.player.title,$ESCINFO[ListItem.Label],Home)</onfocus>
-
-            <!-- FAVOURITES -->
-
-            <onfocus condition="!String.IsEmpty(ListItem.Icon) + String.Contains(ListItem.Path,favourites://)">SetProperty(set.listitem.poster,$INFO[ListItem.Icon],Home)</onfocus>
-        </control>
-    </include>
-
-    <!-- VIDEO TRAILER FULLSCREEN -->
-
-    <include name="Dialog_Info_Video_Fullscreen">
-        <control type="group">
-            <visible>Control.HasFocus(7011)</visible>
-            <visible>Player.HasVideo</visible>
-            <visible>!String.IsEmpty(Window(Home).Property(VideoYoutubeIsPlaying)) | !String.IsEmpty(Window(Home).Property(TrailerWindowedIsPlaying))</visible>
-
-            <include>Animation_FadeIn_DialogInfo</include>
-            <include>Animation_FadeOut_DialogInfo</include>
-
-            <control type="image">
-                <texture colordiffuse="black">common/white.png</texture>
-            </control>
-
-            <!-- VIDEO WINDOW -->
-
-            <control type="videowindow" />
-
-            <!-- PAUSED -->
-
-            <include content="Object_PauseSpinner">
-                <param name="centerleft" value="50%" />
-                <param name="centertop" value="50%" />
-            </include>
-
-            <!-- LABEL INFO -->
-
-            <include>Object_OSD_Label_Info</include>
-
-            <!-- MINI PLAYER -->
-
-            <control type="group">
-                <left>20</left>
-                <right>20</right>
-                <bottom>20</bottom>
-                <visible>Player.Seeking  | Player.DisplayAfterSeek | Player.Paused | Player.Forwarding | Player.Rewinding</visible>
-                <include>Animation_FadeIn</include>
-                <include>Animation_FadeOut</include>
-                <include>Object_OSD_Seekbar_Bar</include>
-            </control>
-
-            <!-- BUTTON TRAILER -->
-
-            <control type="button" id="7011">
-                <include>Def_Hidden_Button</include>
-                <texturenofocus />
-                <texturefocus />
-
-                <oninfo>9000</oninfo>
-                <oninfo>ClearProperty(VideoYoutubeIsPlaying,Home)</oninfo>
-                <oninfo condition="Player.HasVideo">Stop</oninfo>
-
-                <onback>9000</onback>
-                <onback>ClearProperty(VideoYoutubeIsPlaying,Home)</onback>
-                <onback condition="Player.HasVideo">Stop</onback>
-
-                <onclick condition="!Player.HasVideo">SetFocus(9000)</onclick>
-                <onclick condition="!Player.HasVideo">ClearProperty(VideoYoutubeIsPlaying,Home)</onclick>
-                <onclick condition="Player.HasVideo">PlayerControl(Play)</onclick>
-
-                <onfocus condition="!Player.HasVideo">SetFocus(9000)</onfocus>
-
-                <onunfocus>SetFocus(9000)</onunfocus>
-                <onunfocus>ClearProperty(VideoYoutubeIsPlaying,Home)</onunfocus>
-                <onunfocus condition="Player.HasVideo">Stop</onunfocus>
-
-                <onleft condition="!Player.HasVideo">SetFocus(9000)</onleft>
-                <onleft condition="!Player.HasVideo">ClearProperty(VideoYoutubeIsPlaying,Home)</onleft>
-                <onleft condition="Player.HasVideo">StepBack</onleft>
-
-                <onright condition="!Player.HasVideo">SetFocus(9000)</onright>
-                <onright condition="!Player.HasVideo">ClearProperty(VideoYoutubeIsPlaying,Home)</onright>
-                <onright condition="Player.HasVideo">StepForward</onright>
-
-                <onup>SetFocus(9000)</onup>
-                <onup>ClearProperty(VideoYoutubeIsPlaying,Home)</onup>
-                <onup condition="Player.HasVideo">Stop</onup>
-
-                <ondown>SetFocus(9000)</ondown>
-                <ondown>ClearProperty(VideoYoutubeIsPlaying,Home)</ondown>
-                <ondown condition="Player.HasVideo">Stop</ondown>
-           </control>
-        </control>
-
-    </include>
-
-    <!-- DEF ACTION ON INFO -->
-
-    <include name="Def_On_Info">
-        <oninfo condition="Container.Content(actors)">SetProperty(isoninfo,1,Home)</oninfo>
-        <oninfo condition="Container.Content(actors)">RunScript(plugin.video.themoviedb.helper,add_query=$INFO[ListItem.Label],type=person,call_auto=1190)</oninfo>
-        <!-- <oninfo condition="Container.Content(movies)">Action(Info)</oninfo> -->
-        <!-- <oninfo condition="Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(movies)">RunScript(plugin.video.themoviedb.helper,add_path=$INFO[ListItem.FolderPath],call_auto=1190)</oninfo> -->
-        <!-- <oninfo condition="String.IsEqual(ListItem.DBType,set)">SetFocus(44023)</oninfo> -->
-        <!-- <oninfo condition="String.IsEqual(ListItem.DBType,set)">Action(info)</oninfo> -->
-
-        <!-- <oninfo condition="Container.Content(movies)">RunScript(plugin.video.themoviedb.helper,add_query=$INFO[ListItem.Label],type=movie,call_auto=1190)</oninfo> -->
-        <!-- <oninfo condition="Container.Content(tvshows)">RunScript(plugin.video.themoviedb.helper,add_query=$INFO[ListItem.Label],type=tv,call_auto=1190)</oninfo> -->
-    </include>
 
 </includes>
