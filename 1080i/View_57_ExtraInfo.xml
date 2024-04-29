@@ -488,6 +488,8 @@
                             <texture colordiffuse="Fallback" border="12" background="true">common/diffuse_box.png</texture>
                         </control>
 
+                        <!-- FANART  -->
+
                         <control type="image">
                             <left>10</left>
                             <top>10</top>
@@ -496,9 +498,14 @@
                             <fadetime>PosterFanartFadetime</fadetime>
                             <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
                             <texture diffuse="diffuse/fanart_645x370_v57.png" background="true">$VAR[Image_Fanart]</texture>
-                            <visible>!ListItem.IsParentFolder + !$EXP[IsAnLibrary] + !$EXP[IsAnSource] + !Container.Content(files)</visible>
-                            <visible>!String.StartsWith(ListItem.Icon,Default)</visible>
+                            <visible>Container.Content(addons) | Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | $EXP[IsAnPlugin] | Container.Content(countries) | Container.Content(genres) | Container.Content(years) | Container.Content(tags) | Container.Content(studios) | Container.Content(directors) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(files) | Container.Content(favourites) | String.IsEqual(ListItem.Property(item.type),person)</visible>
+
+                            <visible>!String.StartsWith(ListItem.Icon,Default) | [String.StartsWith(ListItem.Icon,Default) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(countries) + !String.IsEmpty(Skin.String(country.logos.path))] | [Container.Content(genres) + !String.IsEmpty(Skin.String(genre.icons.path))] | [Container.Content(studios) + !String.IsEmpty(Skin.String(studio.logos.path))]]]</visible>
+                            <visible>!$EXP[IsYoutube]</visible>
+                            <visible>!ListItem.IsParentFolder</visible>
                         </control>
+
+                        <!-- ICON BLACK -->
 
                         <control type="image">
                             <left>10</left>
@@ -508,8 +515,11 @@
                             <fadetime>PosterFanartFadetime</fadetime>
                             <aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
                             <texture diffuse="diffuse/fanart_645x370_v57.png" background="true" colordiffuse="Dark1">$VAR[Image_Fanart]</texture>
-                            <visible>ListItem.IsParentFolder | $EXP[IsAnLibrary] | $EXP[IsAnSource] | Container.Content(files) | String.StartsWith(ListItem.Icon,Default)</visible>
+                            <visible>String.StartsWith(ListItem.Icon,Default)</visible>
+                            <visible>$EXP[InGameMode] | Container.Content(musicvideos) | Container.Content(files) | [Container.Content(studios) + String.IsEmpty(Skin.String(studio.logos.path))] | [Container.Content(countries) + String.IsEmpty(Skin.String(country.logos.path))] | [Container.Content(genres) + String.IsEmpty(Skin.String(genre.icons.path))] | Container.Content(directors) | Container.Content(tags) | Container.Content(years) | Container.Content(favourites) | Container.Content(videoversions) | Container.Content(addons) | [Container.Content() + String.StartsWith(Container.FolderPath,addons://)] | $EXP[IsAnLibrary] | $EXP[IsAnSource] | String.StartsWith(Container.FolderPath,musicdb://sources) | String.StartsWith(Container.FolderPath,special://musicplaylists) | String.StartsWith(Container.FolderPath,musicdb://years) | String.StartsWith(Container.FolderPath,musicdb://genres) | [Container.Content(files) + $EXP[IsPluginShortlist]] | ListItem.IsParentFolder | Container.Content(playlists) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content()]</visible>
                         </control>
+
+                        <!-- CLEARLOGO -->
 
                         <control type="image">
                             <height>100</height>
