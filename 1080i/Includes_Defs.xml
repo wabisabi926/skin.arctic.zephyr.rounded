@@ -1191,6 +1191,7 @@
         <onclick>$PARAM[onclick1]</onclick>
         <onclick>$PARAM[onclick2]</onclick>
         <onclick>$PARAM[onclick3]</onclick>
+        <onclick>$PARAM[onclick4]</onclick>
     </include>
 
     <include name="OnClickInclude2">
@@ -1822,23 +1823,25 @@
                 <texturenofocus />
                 <texturefocus />
 
-                <oninfo>9000</oninfo>
-                <oninfo>ClearProperty(VideoYoutubeIsPlaying,Home)</oninfo>
-                <oninfo condition="Player.HasVideo">Stop</oninfo>
+                <!-- <oninfo>9000</oninfo> -->
+                <!-- <oninfo>ClearProperty(VideoYoutubeIsPlaying,Home)</oninfo> -->
+                <!-- <oninfo condition="Player.HasVideo">Stop</oninfo> -->
+
+
+
+                <!-- <onclick condition="!Player.HasVideo">SetFocus(9000)</onclick> -->
+                <!-- <onclick condition="!Player.HasVideo">ClearProperty(VideoYoutubeIsPlaying,Home)</onclick> -->
+
+                <onclick condition="Player.HasVideo">PlayerControl(Play)</onclick>
+                <!-- <onfocus condition="!Player.HasVideo">SetFocus(9000)</onfocus> -->
+
+                <!-- <onunfocus>SetFocus(9000)</onunfocus> -->
+                <!-- <onunfocus>ClearProperty(VideoYoutubeIsPlaying,Home)</onunfocus> -->
+                <!-- <onunfocus condition="Player.HasVideo">Stop</onunfocus> -->
 
                 <onback>9000</onback>
                 <onback>ClearProperty(VideoYoutubeIsPlaying,Home)</onback>
                 <onback condition="Player.HasVideo">Stop</onback>
-
-                <onclick condition="!Player.HasVideo">SetFocus(9000)</onclick>
-                <onclick condition="!Player.HasVideo">ClearProperty(VideoYoutubeIsPlaying,Home)</onclick>
-                <onclick condition="Player.HasVideo">PlayerControl(Play)</onclick>
-
-                <onfocus condition="!Player.HasVideo">SetFocus(9000)</onfocus>
-
-                <onunfocus>SetFocus(9000)</onunfocus>
-                <onunfocus>ClearProperty(VideoYoutubeIsPlaying,Home)</onunfocus>
-                <onunfocus condition="Player.HasVideo">Stop</onunfocus>
 
                 <onleft condition="!Player.HasVideo">SetFocus(9000)</onleft>
                 <onleft condition="!Player.HasVideo">ClearProperty(VideoYoutubeIsPlaying,Home)</onleft>
@@ -1855,6 +1858,7 @@
                 <ondown>SetFocus(9000)</ondown>
                 <ondown>ClearProperty(VideoYoutubeIsPlaying,Home)</ondown>
                 <ondown condition="Player.HasVideo">Stop</ondown>
+
            </control>
         </control>
     </include>
