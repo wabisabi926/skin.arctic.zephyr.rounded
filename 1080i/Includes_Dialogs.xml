@@ -1457,17 +1457,20 @@
     <include name="Def_OSD_Dialog_InfoPanel">
         <include>Animation_FadeIn_Slide</include>
         <include>Animation_FadeOut</include>
-        <centertop>50%</centertop>
+        <!-- <centertop>50%</centertop> -->
         <centerleft>50%</centerleft>
         <control type="image">
             <left>-9</left>
+            <top>-9</top>
             <right>-9</right>
-            <top>-24</top>
-            <bottom>-24</bottom>
-            <bordertexture border="40">common/$VAR[shadow40]</bordertexture>
-            <bordersize>24</bordersize>
+            <bottom>-9</bottom>
+            <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
+            <visible>!Skin.HasSetting(global.hide.shadows)</visible>
+        </control>
+        <control type="image">
+            <width>100%</width>
+            <height>100%</height>
             <texture colordiffuse="$VAR[Color_OSD_Panel]" border="12">common/box.png</texture>
-            <animation effect="fade" start="100" end="90" condition="true">Conditional</animation>
         </control>
     </include>
 
