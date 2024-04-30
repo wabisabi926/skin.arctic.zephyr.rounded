@@ -181,14 +181,14 @@
                     <visible>!Window.IsVisible(script-wikipedia.xml)</visible>
                     <top>70</top>
                     <left>570</left>
-                    <include content="Def_Width" condition="Player.HasMedia">
-                        <param name="width" value="550" />
-                    </include>
-                    <include content="Def_Width" condition="!Skin.HasSetting(show.header.clearlogo)">
+                    <!-- <include content="Def_Width" condition="Player.HasMedia"> -->
+                        <!-- <param name="width" value="550" /> -->
+                    <!-- </include> -->
+                    <include content="Def_Width" condition="!Skin.HasSetting(show.dialog.info.clearlogo.video)">
                         <param name="width" value="1250" />
                     </include>
-                    <include content="Def_Width" condition="Skin.HasSetting(show.header.clearlogo)">
-                        <param name="width" value="850" />
+                    <include content="Def_Width" condition="Skin.HasSetting(show.dialog.info.clearlogo.video)">
+                        <param name="width" value="920" />
                     </include>
 
                     <!-- icon -->
@@ -213,6 +213,16 @@
                         <description>Header Label</description>
                         <textcolor>Dark1</textcolor>
                         <label>$VAR[Label_Dialog_Info_Header_Video]</label>
+                        <visible>!Player.HasMedia</visible>
+                    </control>
+                    <control type="label">
+                        <left>104</left>
+                        <width>500</width>
+                        <font>LargeNew</font>
+                        <description>Header Label</description>
+                        <textcolor>Dark1</textcolor>
+                        <label>$VAR[Label_Dialog_Info_Header_Video]</label>
+                        <visible>Player.HasMedia</visible>
                     </control>
 
                     <!-- Sub header Title -->
