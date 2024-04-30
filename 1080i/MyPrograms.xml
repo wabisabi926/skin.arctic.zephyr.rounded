@@ -35,7 +35,7 @@
         <control type="group">
             <height>682</height>
             <include>Def_View_ContextMenu_Background</include>
-            <include content="Def_View_ContextMenu_Arrows"><param name="arrow_bottom" value="340" /></include>
+            <include>Def_View_ContextMenu_Arrows</include>
 
             <control type="label">
                 <include>Def_Dialog_Header_Title</include>
@@ -45,10 +45,14 @@
             <include>Def_Dialog_Header_Line</include>
 
             <control type="grouplist" id="9000">
-                <height>560</height>
-                <scrolltime>0</scrolltime>
-                <include>Def_View_ContextMenu_GroupList</include>
                 <top>102</top>
+                <usecontrolcoords>true</usecontrolcoords>
+
+                <include content="Def_View_ContextMenu_GroupList">
+                    <param name="height" value="560" />
+                </include>
+
+                <scrolltime>0</scrolltime>
 
                 <!-- ALL VIEWS -->
 
@@ -153,14 +157,9 @@
 
                 <!-- MINI PLAYER -->
 
-                <control type="group" id="7878">
-                    <top>0</top>
-                    <width>450</width>
-                    <height>7</height>
-                    <visible>Player.HasMedia | Player.Playing</visible>
-                </control>
-                <include>Def_View_Menu_Control_Buttons</include>
+                <include>Def_View_ContextMenu_Player</include>
+
             </control>
         </control>
     </controls>
-</window>
+</window

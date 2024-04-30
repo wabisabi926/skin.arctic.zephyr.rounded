@@ -138,25 +138,15 @@
         </control>
     </include>
 
-    <!-- OSD - CONTEXTE MENU LAYOUT -->
+    <!-- OSD - CONTEXTE MENU PLAYER -->
 
     <include name="Def_View_Menu_Control_Buttons">
-        <!-- <control type="group" id="7878"> -->
-            <!-- <top>20</top> -->
-            <!-- <width>400</width> -->
-            <!-- <left>25</left> -->
-            <!-- <height>8</height> -->
-            <!-- <include>Object_OSD_Progress_Bar_Info</include> -->
-            <!-- <visible>Player.HasMedia | Player.Playing</visible> -->
-        <!-- </control> -->
         <control type="grouplist" id="6150">
             <visible>Player.HasMedia | Player.Playing</visible>
             <usecontrolcoords>true</usecontrolcoords>
             <top>16</top>
-            <!-- <top>1080</top> -->
             <height>54</height>
             <left>-6</left>
-            <!-- <width>450</width> -->
             <align>center</align>
             <itemgap>28</itemgap>
             <include>Animation_ScrolltimeViewsList</include>
@@ -278,6 +268,30 @@
             </include>
         </control>
     </include>
+
+    <include name="Def_View_ContextMenu_Player">
+        <control type="label" id="7979">
+            <left>20</left>
+            <right>20</right>
+            <height>60</height>
+            <font>InfoNetflix</font>
+            <align>left</align>
+            <textcolor>Dark1</textcolor>
+            <scroll>true</scroll>
+            <label fallback="19055">$VAR[Label_Layout_Context_Menu_OSD_Player]</label>
+            <visible>Player.HasMedia | Player.Playing</visible>
+        </control>
+        <control type="group" id="7878">
+            <left>20</left>
+            <right>20</right>
+            <height>10</height>
+            <include>Object_OSD_Progress_Bar_Info</include>
+            <visible>Player.HasMedia | Player.Playing</visible>
+        </control>
+        <include>Def_View_Menu_Control_Buttons</include>
+    </include>
+
+    <!-- OSD - CONTEXTE MENU LAYOUT -->
 
     <include name="Def_Gradient_Settings_Image_Animation_Container">
         <animation effect="slide" end="0,$PARAM[slide]" time="0" condition="Integer.IsGreater(Container($PARAM[controlid]).Position,0)">Conditional</animation>
