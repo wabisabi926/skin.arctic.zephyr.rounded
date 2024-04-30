@@ -221,30 +221,23 @@
         </control>
     </include>
 
-
     <include name="Def_Dialog_Info_List_Updating">
-        <param name="alignleft" value="$PARAM[alignleft]" default="750"/>
-        <param name="alignbottom" value="$PARAM[alignbottom]" default="260"/>
+        <param name="centerleft" value="$PARAM[centerleft]" default="350"/>
+        <param name="centertop" value="$PARAM[centertop]" default="470"/>
         <param name="visi" value="$PARAM[visi]" default="false"/>
-        <param name="visi2" value="$PARAM[visi2]" default="false"/>
         <definition>
             <control type="group">
                 <visible>$PARAM[visi]</visible>
                 <include>Animation_FadeOut</include>
                 <include>Animation_FadeIn</include>
-                <centerleft>$PARAM[alignleft]</centerleft>
-                <centerbottom>$PARAM[alignbottom]</centerbottom>
                 <control type="group">
-                    <top>45</top>
-                    <left>210</left>
-                    <width>1000</width>
-                    <visible>Container($PARAM[controlid]).IsUpdating</visible>
-                    <!-- <visible>Container($PARAM[controlid]).IsUpdating | $EXP[Exp_TMDbHelper_IsUpdating]</visible> -->
-
+                    <visible>Container($PARAM[controlid]).IsUpdating | $EXP[Exp_TMDbHelper_IsUpdating]</visible>
                     <include>Animation_Delay_FadeIn</include>
                     <include>Animation_FadeOut</include>
                     <include content="Object_Spinner_Busy">
                         <param name="haslabel" value="true" />
+                        <param name="centerleft" value="$PARAM[centerleft]" />
+                        <param name="centertop" value="$PARAM[centertop]" />
                     </include>
                 </control>
             </control>
@@ -274,34 +267,14 @@
         <param name="condition.castfadeout" value="$PARAM[condition.castfadeout]" default="false"/>
         <definition>
 
-            <!-- INFOCONTENT -->
-            <!-- <control type="label"> -->
-                <!-- <visible>$PARAM[visi]</visible> -->
-                <!-- <visible>Control.HasFocus($PARAM[controlid]) + String.IsEmpty(Window.Property(down)) + !Window.IsVisible(DialogSelect.xml)</visible> -->
-                <!-- <width>1020</width> -->
-                <!-- <bottom>$PARAM[headerbottom]</bottom> -->
-                <!-- <left>$PARAM[headerleft]</left> -->
-                <!-- <description>Header Label</description> -->
-                <!-- <textcolor>Dark1</textcolor> -->
-                <!-- <include>Def_Dialog_InfoHeader</include> -->
-                <!-- <label>$VAR[Label_Dialog_Info_Header_Video_Extended] ($INFO[Container($PARAM[controlid]).NumItems])</label> -->
-                <!-- <include>Animation_Delay_FadeIn</include> -->
-            <!-- </control> -->
+            <!-- BUSY SPINNER -->
 
-            <!-- <control type="group"> -->
-                <!-- <visible>$PARAM[visi]</visible> -->
-                <!-- <visible>!String.IsEmpty(Window.Property(down))</visible> -->
-                <!-- <bottom>$PARAM[headerbottom]</bottom> -->
-                <!-- <left>$PARAM[headerleft]</left> -->
-                <!-- <width>450</width> -->
-                <!-- <height>100</height> -->
-                <!-- <include>Animation_Delay_FadeIn</include> -->
-                <!-- <control type="group"> -->
-                    <!-- <top>20</top> -->
-                    <!-- <left>-20</left> -->
-                    <!-- <include>Object_Spinner_Busy</include> -->
-                <!-- </control> -->
-            <!-- </control> -->
+            <include content="Def_Dialog_Info_List_Updating">
+                <param name="visi" value="Control.HasFocus($PARAM[controlid])"/>
+                <!-- <param name="alignleft" value="640"/> -->
+            </include>
+
+            <!-- ARROWS -->
 
             <control type="group">
                 <visible>$PARAM[visi] + !Window.IsVisible(DialogSelect.xml)</visible>
@@ -324,7 +297,8 @@
                 </control>
             </control>
 
-            <!-- Background List -->
+            <!-- BACKGROUND LIST -->
+
             <control type="grouplist">
                 <top>361</top>
                 <left>$PARAM[leftbackgroundlist]</left>
@@ -366,7 +340,8 @@
                 </include>
             </control>
 
-            <!-- Focused List -->
+            <!-- FOCUSED LIST -->
+
             <control type="fixedlist" id="$PARAM[controlid]">
                 <visible allowhiddenfocus="true">!Container($PARAM[controlid]).IsUpdating</visible>
                 <visible>$PARAM[visi]</visible>
@@ -480,18 +455,6 @@
         <definition>
 
             <!-- INFOCONTENT -->
-            <!-- <control type="label"> -->
-                <!-- <visible>$PARAM[visi]</visible> -->
-                <!-- <visible>Control.HasFocus($PARAM[controlid]) + String.IsEmpty(Window.Property(down)) + !Window.IsVisible(DialogSelect.xml)</visible> -->
-                <!-- <width>1020</width> -->
-                <!-- <bottom>$PARAM[headerbottom]</bottom> -->
-                <!-- <left>$PARAM[headerleft]</left> -->
-                <!-- <description>Header Label</description> -->
-                <!-- <textcolor>Dark1</textcolor> -->
-                <!-- <include>Def_Dialog_InfoHeader</include> -->
-                <!-- <label>$VAR[Label_Dialog_Info_Header_Video_Extended] ($INFO[Container($PARAM[controlid]).NumItems])</label> -->
-                <!-- <include>Animation_Delay_FadeIn</include> -->
-            <!-- </control> -->
 
             <!-- <control type="group"> -->
                 <!-- <visible>$PARAM[visi]</visible> -->
@@ -508,7 +471,8 @@
                 <!-- </control> -->
             <!-- </control> -->
 
-            <!-- Background List -->
+            <!-- BACKGROUND LIST -->
+
             <control type="grouplist">
                 <top>361</top>
                 <left>$PARAM[leftbackgroundlist]</left>
@@ -537,7 +501,8 @@
                 </include>
             </control>
 
-            <!-- Focused List -->
+            <!-- FOCUSED LIST -->
+
             <control type="fixedlist" id="$PARAM[controlid]">
                 <visible allowhiddenfocus="true">!Container($PARAM[controlid]).IsUpdating</visible>
                 <visible>$PARAM[visi]</visible>
@@ -674,22 +639,17 @@
         <param name="condition.castfadeout" value="$PARAM[condition.castfadeout]" default="false"/>
         <definition>
 
-            <!-- <control type="group"> -->
-                <!-- <visible>$PARAM[visi]</visible> -->
-                <!-- <visible>!String.IsEmpty(Window.Property(down))</visible> -->
-                <!-- <bottom>$PARAM[headerbottom]</bottom> -->
-                <!-- <left>$PARAM[headerleft]</left> -->
-                <!-- <width>450</width> -->
-                <!-- <height>100</height> -->
-                <!-- <include>Animation_Delay_FadeIn</include> -->
-                <!-- <control type="group"> -->
-                    <!-- <top>20</top> -->
-                    <!-- <left>-20</left> -->
-                    <!-- <include>Object_Spinner_Busy</include> -->
-                <!-- </control> -->
-            <!-- </control> -->
 
-            <!-- Background List -->
+            <!-- BUSY SPINNER -->
+
+            <!-- <include content="Def_Dialog_Info_List_Updating"> -->
+                <!-- <param name="haslabel" value="true" /> -->
+                <!-- <param name="centerleft" value="172" /> -->
+                <!-- <param name="centertop" value="340" /> -->
+                <!-- <param name="visi" value="Control.HasFocus($PARAM[controlid])"/> -->
+            <!-- </include> -->
+
+            <!-- BACKGROUND LIST -->
             <control type="grouplist">
                 <top>361</top>
                 <left>$PARAM[leftbackgroundlist]</left>
@@ -729,7 +689,7 @@
                 </include>
             </control>
 
-            <!-- Focused List -->
+            <!-- FOCUSED LIST -->
             <control type="panel" id="$PARAM[controlid]">
                 <visible allowhiddenfocus="true">!Container($PARAM[controlid]).IsUpdating</visible>
                 <visible>$PARAM[visi]</visible>
@@ -872,19 +832,16 @@
         <param name="alignleft" value="$PARAM[alignleft]" default="500"/>
         <definition>
 
-            <!-- INFOCONTENT -->
-            <!-- <control type="label"> -->
-                <!-- <visible>Control.HasFocus($PARAM[controlid])</visible> -->
-                <!-- <visible>$PARAM[visi]</visible> -->
-                <!-- <width>1020</width> -->
-                <!-- <bottom>$PARAM[headerbottom]</bottom> -->
-                <!-- <left>$PARAM[headerleft]</left> -->
-                <!-- <description>Header Label</description> -->
-                <!-- <textcolor>Dark1</textcolor> -->
-                <!-- <include>Def_Dialog_InfoHeader</include> -->
-                <!-- <label>$VAR[Label_Dialog_Info_Header_Video_Extended] ($INFO[Container($PARAM[controlid]).NumItems])</label> -->
-                <!-- <include>Animation_Delay_FadeIn</include> -->
-            <!-- </control> -->
+            <!-- BUSY SPINNER -->
+
+            <include content="Def_Dialog_Info_List_Updating">
+                <param name="haslabel" value="true" />
+                <param name="centerleft" value="172" />
+                <param name="centertop" value="340" />
+                <param name="visi" value="Control.HasFocus($PARAM[controlid])"/>
+            </include>
+
+            <!-- ARROWS -->
 
             <include content="Def_List_Info_Arrows">
                 <param name="controlid" value="$PARAM[controlid]"/>
@@ -894,7 +851,8 @@
                 <param name="visi" value="$PARAM[visi]"/>
             </include>
 
-            <!-- Background List -->
+            <!-- BACKGROUND LIST -->
+
             <control type="grouplist">
                 <top>$PARAM[topbackgroundlist]</top>
                 <left>$PARAM[leftbackgroundlist]</left>
@@ -929,7 +887,8 @@
 
             </control>
 
-            <!-- Focused List -->
+            <!-- FOCUSED LIST -->
+
             <control type="$PARAM[listtype]" id="$PARAM[controlid]">
                 <visible allowhiddenfocus="true">!Container($PARAM[controlid]).IsUpdating + !Control.HasFocus(7011)</visible>
                 <visible>$PARAM[visi]</visible>
@@ -1000,7 +959,6 @@
             </control>
         </definition>
     </include>
-
 
     <include name="Def_View_Unfocus_List_Poster">
         <param name="fallbackpicture" value="$PARAM[fallbackpicture]" default="DefaultPicture.png"/>
@@ -1816,7 +1774,7 @@
                 <!-- <param name="visi" value="false"/> -->
             <!-- </include> -->
 
-            <!-- Background List -->
+            <!-- BACKGROUND LIST -->
             <control type="grouplist">
                 <top>$PARAM[topbackgroundlist]</top>
                 <left>$PARAM[leftbackgroundlist]</left>
@@ -1845,7 +1803,7 @@
 
             </control>
 
-            <!-- Focused List -->
+            <!-- FOCUSED LIST -->
             <control type="fixedlist" id="$PARAM[controlid]">
                 <visible allowhiddenfocus="true">!Container($PARAM[controlid]).IsUpdating</visible>
                 <visible>$PARAM[visi]</visible>
