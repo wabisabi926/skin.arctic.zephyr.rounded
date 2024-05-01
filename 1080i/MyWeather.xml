@@ -3,6 +3,7 @@
     <defaultcontrol always="true">9100</defaultcontrol>
     <menucontrol>9000</menucontrol>
     <include>Action_Blur_Onload</include>
+
     <controls>
         <include condition="!Skin.HasSetting(global.showvideo)">Hidden_Video_Window</include>
         <include>Background_Global</include>
@@ -1708,26 +1709,27 @@
         <!-- CONTEXT MENU -->
 
         <control type="group">
-            <height>612</height>
-            <include>Def_View_ContextMenu_Background</include>
+            <include content="Def_View_ContextMenu_Background"><param name="height" value="619" /></include>
+            <include content="Def_View_ContextMenu_Arrows"><param name="arrow_bottom" value="629" /></include>
 
             <control type="label">
                 <include>Def_Dialog_Header_Title</include>
                 <label>14018</label>
             </control>
+
             <include>Def_Dialog_Header_Logo</include>
             <include>Def_Dialog_Header_Line</include>
 
-            <include content="Def_View_ContextMenu_Arrows"><param name="arrow_bottom" value="620" /></include>
+
             <control type="grouplist" id="9000">
+                <top>112</top>
+                <usecontrolcoords>true</usecontrolcoords>
+                <include content="Def_View_ContextMenu_GroupList"><param name="height" value="490" /></include>
+                <scrolltime>0</scrolltime>
+
                 <onright>9100</onright>
                 <onleft>9100</onleft>
                 <onback>9100</onback>
-                <scrolltime>0</scrolltime>
-                <usecontrolcoords>true</usecontrolcoords>
-                <height>550</height>
-                <top>102</top>
-                <include>Def_View_ContextMenu_GroupList</include>
 
                 <!-- Weather Options -->
                 <control type="button" id="9008" description="Weather Location">
