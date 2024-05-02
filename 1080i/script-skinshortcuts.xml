@@ -8,10 +8,10 @@
         <include>Background_Overlay</include>
 
         <control type="group">
-            <width>1600</width>
-            <height>690</height>
+            <!-- <width>1600</width> -->
+            <!-- <height>690</height> -->
 
-            <include>Def_Dialog_InfoPanel</include>
+            <include content="Def_Dialog_InfoPanel"><param name="height" value="882" /><param name="width" value="1722" /></include>
 
             <control type="label" id="500">
                 <include>Def_Dialog_Header_Title</include>
@@ -25,15 +25,15 @@
             <control type="list" id="211">
                 <description>Rules List Control</description>
                 <left>31</left>
-                <bottom>22</bottom>
-                <width>609</width>
-                <height>552</height>
+                <top>112</top>
+                <width>731</width>
+                <height>690</height>
                 <onup>211</onup>
                 <onleft>211</onleft>
                 <onright>9100</onright>
                 <ondown>211</ondown>
                 <scrolltime>0</scrolltime>
-                <itemlayout width="609" height="69">
+                <itemlayout width="731" height="69">
                     <control type="image">
                         <posx>0</posx>
                         <posy>0</posy>
@@ -43,7 +43,7 @@
                     </control>
                     <control type="label">
                         <left>30</left>
-                        <right>30</right>
+                        <right>90</right>
                         <info>ListItem.Label</info>
                         <animation effect="fade" start="100" end="50" time="0" condition="String.IsEqual(Container(211).ListItem.Property(skinshortcuts-disabled),True)">Conditional</animation>
                     </control>
@@ -57,7 +57,7 @@
                         <animation effect="fade" start="0" end="100" time="1" delay="1" reversible="false">Visible</animation>
                     </control>
                 </itemlayout>
-                <focusedlayout width="609" height="69">
+                <focusedlayout width="731" height="69">
                     <control type="image">
                         <width>100%</width>
                         <height>66</height>
@@ -65,7 +65,9 @@
                     </control>
                     <control type="label">
                         <left>30</left>
-                        <right>30</right>
+                        <width>390</width>
+                        <scroll>true</scroll>
+                        <scrollspeed>60</scrollspeed>
                         <info>ListItem.Label</info>
                         <textcolor>Selected</textcolor>
                         <animation effect="fade" start="100" end="50" time="0" condition="String.IsEqual(Container(211).ListItem.Property(skinshortcuts-disabled),True)">Conditional</animation>
@@ -104,10 +106,12 @@
                 <onclick>Sendclick(311)</onclick>
             </control>
 
+            <!-- BUTTON DELETE / ADD / UP / DOWN -->
+
             <control type="grouplist" id="9200">
                 <left>25</left>
-                <top>117</top>
-                <width>600</width>
+                <top>112</top>
+                <width>712</width>
                 <align>right</align>
                 <itemgap>-20</itemgap>
                 <onright>4000</onright>
@@ -165,15 +169,15 @@
             <!-- LIST MENU RIGHT -->
 
             <control type="grouplist" id="9100">
+                <top>112</top>
                 <scrolltime>0</scrolltime>
                 <onleft>4000</onleft>
                 <onright>303</onright>
                 <onup>9100</onup>
                 <ondown>9100</ondown>
                 <right>31</right>
-                <bottom>25</bottom>
                 <width>914</width>
-                <height>549</height>
+                <height>690</height>
                 <orientation>vertical</orientation>
                 <visible>String.IsEmpty(Window(Home).Property(custommenu))</visible>
                 <itemgap>3</itemgap>
@@ -372,6 +376,7 @@
             <!-- WIDGET 1 -->
 
             <control type="grouplist" id="9300">
+                <top>112</top>
                 <onleft>ClearProperty(skinshortcuts-Widget,Home)</onleft>
                 <onleft>SetFocus(7011)</onleft>
                 <onright>ClearProperty(skinshortcuts-Widget,Home)</onright>
@@ -380,7 +385,6 @@
                 <onup>9300</onup>
                 <ondown>9300</ondown>
                 <right>40</right>
-                <bottom>25</bottom>
                 <width>905</width>
                 <height>549</height>
                 <orientation>vertical</orientation>
@@ -524,9 +528,10 @@
                 </control>
             </control>
 
-            <!-- Widget 2 -->
+            <!-- WIDGET 2 -->
 
             <control type="grouplist" id="9400">
+                <top>112</top>
                 <onleft>ClearProperty(skinshortcuts-Widget,Home)</onleft>
                 <onleft>SetFocus(7012)</onleft>
                 <onright>ClearProperty(skinshortcuts-Widget,Home)</onright>
@@ -535,7 +540,6 @@
                 <onup>9400</onup>
                 <ondown>9400</ondown>
                 <right>40</right>
-                <bottom>25</bottom>
                 <width>905</width>
                 <height>549</height>
                 <orientation>vertical</orientation>
@@ -697,8 +701,10 @@
                 </control>
             </control>
 
-            <!-- Widget 3 -->
+            <!-- WIDGET 3 -->
+
             <control type="grouplist" id="9500">
+                <top>112</top>
                 <onleft>ClearProperty(skinshortcuts-Widget,Home)</onleft>
                 <onleft>SetFocus(7013)</onleft>
                 <onright>ClearProperty(skinshortcuts-Widget,Home)</onright>
@@ -707,7 +713,6 @@
                 <onup>9500</onup>
                 <ondown>9500</ondown>
                 <right>40</right>
-                <bottom>25</bottom>
                 <width>905</width>
                 <height>549</height>
                 <orientation>vertical</orientation>
@@ -870,8 +875,10 @@
                 </control>
             </control>
 
-            <!-- Widget 4 -->
+            <!-- WIDGET 4 -->
+
             <control type="grouplist" id="9600">
+                <top>112</top>
                 <onleft>ClearProperty(skinshortcuts-Widget,Home)</onleft>
                 <onleft>SetFocus(7014)</onleft>
                 <onright>ClearProperty(skinshortcuts-Widget,Home)</onright>
@@ -880,7 +887,6 @@
                 <onup>9600</onup>
                 <ondown>9600</ondown>
                 <right>40</right>
-                <bottom>25</bottom>
                 <width>905</width>
                 <height>549</height>
                 <orientation>vertical</orientation>
@@ -1044,8 +1050,10 @@
                 </control>
             </control>
 
-            <!-- Widget 5 -->
+            <!-- WIDGET 5 -->
+
             <control type="grouplist" id="9700">
+                <top>112</top>
                 <onleft>ClearProperty(skinshortcuts-Widget,Home)</onleft>
                 <onleft>SetFocus(7015)</onleft>
                 <onright>ClearProperty(skinshortcuts-Widget,Home)</onright>
@@ -1054,7 +1062,6 @@
                 <onup>9700</onup>
                 <ondown>9700</ondown>
                 <right>40</right>
-                <bottom>25</bottom>
                 <width>905</width>
                 <height>549</height>
                 <orientation>vertical</orientation>
@@ -1218,8 +1225,10 @@
                 </control>
             </control>
 
-            <!-- Widget 6 -->
+            <!-- WIDGET 6 -->
+
             <control type="grouplist" id="11000">
+                <top>112</top>
                 <onleft>ClearProperty(skinshortcuts-Widget,Home)</onleft>
                 <onleft>SetFocus(7016)</onleft>
                 <onright>ClearProperty(skinshortcuts-Widget,Home)</onright>
@@ -1228,7 +1237,6 @@
                 <onup>11000</onup>
                 <ondown>11000</ondown>
                 <right>40</right>
-                <bottom>25</bottom>
                 <width>905</width>
                 <height>549</height>
                 <orientation>vertical</orientation>
@@ -1394,14 +1402,17 @@
                 </control>
             </control>
 
+            <!-- NUM ITEMS -->
+
+            <include>Def_Dialog_Select_label_Num_Item</include>
         </control>
 
-        <include content="SkinShortcutsBackButton"><param name="controlid" value="7011" /><param name="setfocus" value="9101" /></include>
-        <include content="SkinShortcutsBackButton"><param name="controlid" value="7012" /><param name="setfocus" value="9102" /></include>
-        <include content="SkinShortcutsBackButton"><param name="controlid" value="7013" /><param name="setfocus" value="9103" /></include>
-        <include content="SkinShortcutsBackButton"><param name="controlid" value="7014" /><param name="setfocus" value="9104" /></include>
-        <include content="SkinShortcutsBackButton"><param name="controlid" value="7015" /><param name="setfocus" value="9105" /></include>
-        <include content="SkinShortcutsBackButton"><param name="controlid" value="7016" /><param name="setfocus" value="9106" /></include>
+        <include content="Skin_Shortcuts_Back_Button"><param name="controlid" value="7011" /><param name="setfocus" value="9101" /></include>
+        <include content="Skin_Shortcuts_Back_Button"><param name="controlid" value="7012" /><param name="setfocus" value="9102" /></include>
+        <include content="Skin_Shortcuts_Back_Button"><param name="controlid" value="7013" /><param name="setfocus" value="9103" /></include>
+        <include content="Skin_Shortcuts_Back_Button"><param name="controlid" value="7014" /><param name="setfocus" value="9104" /></include>
+        <include content="Skin_Shortcuts_Back_Button"><param name="controlid" value="7015" /><param name="setfocus" value="9105" /></include>
+        <include content="Skin_Shortcuts_Back_Button"><param name="controlid" value="7016" /><param name="setfocus" value="9106" /></include>
 
         <control type="button" id="404">
             <visible allowhiddenfocus="true">false</visible>
