@@ -15,13 +15,15 @@
                 <height>640</height>
 
                 <control type="image">
-                    <texture border="12" colordiffuse="Panel">common/box.png</texture>
+                    <left>-9</left>
+                    <top>-9</top>
+                    <right>-9</right>
+                    <bottom>-9</bottom>
+                    <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
+                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
                 </control>
-
                 <control type="image">
-                    <aspectratio scalediffuse="false">scale</aspectratio>
-                    <animation effect="fade" start="100" end="33" time="0" condition="true">Conditional</animation>
-                    <texture colordiffuse="Panel" diffuse="diffuse/wall-fanart-pics.png">$VAR[Image_Fanart]</texture>
+                    <texture border="12" colordiffuse="Panel">common/box.png</texture>
                 </control>
 
                 <control type="wraplist" id="506">
@@ -43,64 +45,31 @@
 
                     <viewtype label="Slider">list</viewtype>
                     <include>Animation_ScrolltimeViewsList</include>
-
-                    <itemlayout height="640" width="1452">
+                    <itemlayout height="640" width="1760">
                         <control type="image">
-                            <top>0</top>
-                            <right>-330</right>
-                            <height>648</height>
+                            <align>center</align>
                             <aspectratio scalediffuse="true">keep</aspectratio>
                             <texture background="true" diffuse="diffuse/lovefilmthumb-pics.png">$VAR[Image_Fanart]</texture>
                         </control>
                     </itemlayout>
-                    <focusedlayout height="640" width="1452">
+                    <focusedlayout height="640" width="1760">
+                        <!-- <control type="image"> -->
+                            <!-- <aspectratio scalediffuse="false">scale</aspectratio> -->
+                            <!-- <animation effect="fade" start="100" end="10" time="0" condition="true">Conditional</animation> -->
+                            <!-- <texture colordiffuse="Panel" diffuse="diffuse/wall-fanart-pics.png">$VAR[Image_Fanart]</texture> -->
+                        <!-- </control> -->
                         <control type="image">
-                            <top>0</top>
-                            <right>-330</right>
-                            <height>648</height>
+                            <texture border="12" colordiffuse="Panel">common/box.png</texture>
+                        </control>
+                        <control type="image">
+                            <align>center</align>
                             <aspectratio scalediffuse="true">keep</aspectratio>
                             <texture background="true" diffuse="diffuse/lovefilmthumb-pics.png">$VAR[Image_Fanart]</texture>
                         </control>
                     </focusedlayout>
                 </control>
-
-                <control type="image">
-                    <left>0</left>
-                    <right>0</right>
-                    <bottom>0</bottom>
-                    <height>70</height>
-                    <texture colordiffuse="$VAR[Color_Background]">common/white.png</texture>
-                </control>
-
-                <control type="group">
-                    <left>30</left>
-                    <right>100</right>
-                    <top>560</top>
-                    <bottom>30</bottom>
-                    <orientation>horizontal</orientation>
-                    <control type="label">
-                        <top>10</top>
-                        <aligny>center</aligny>
-                        <height>64</height>
-                        <font>Tiny</font>
-                        <scroll>true</scroll>
-                        <textcolor>PanelWhite70</textcolor>
-                        <selectedcolor>PanelWhite70</selectedcolor>
-                        <label>$INFO[ListItem.Label]</label>
-                    </control>
-                    <control type="label">
-                        <top>10</top>
-                        <align>right</align>
-                        <height>64</height>
-                        <font>Tiny</font>
-                        <scroll>true</scroll>
-                        <textcolor>PanelWhite70</textcolor>
-                        <selectedcolor>PanelWhite70</selectedcolor>
-                        <label>$INFO[ListItem.Size]</label>
-                        <right>-60</right>
-                    </control>
-                </control>
             </control>
+
             <control type="scrollbar" id="1641">
                 <include content="Object_Scrollbar_Horizontal">
                     <param name="scrollid" value="1641"/>
