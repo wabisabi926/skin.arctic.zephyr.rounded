@@ -26,11 +26,10 @@
             <!--      LEFT LIST - MAIN MENU        -->
             <!--------------------------------------->
 
-
             <!-- LEFT LIST - CURRENT MAIN MENU -->
 
             <control type="list" id="211">
-                <visible>!ControlGroup(212).HasFocus() + String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible>
+                <visible>!Control.HasFocus(212) + String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible>
                 <description>Rules List Control</description>
                 <left>31</left>
                 <top>112</top>
@@ -117,7 +116,7 @@
             <!-- LEFT LIST - BUTTON DELETE / ADD / UP / DOWN -->
 
             <control type="grouplist" id="9200">
-                <visible>!ControlGroup(212).HasFocus() + String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible>
+                <visible>!Control.HasFocus(212) + String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible>
                 <left>25</left>
                 <top>112</top>
                 <width>712</width>
@@ -179,8 +178,8 @@
             <!--      LEFT LIST - WIDGETS          -->
             <!--------------------------------------->
 
-            <control type="grouplist" id="212">
-                <visible allowhiddenfocus="true">ControlGroup(212).HasFocus() | !String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible>
+            <control type="list" id="212">
+                <visible allowhiddenfocus="true">Control.HasFocus(212) | !String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible>
                 <left>31</left>
                 <top>112</top>
                 <width>731</width>
@@ -188,117 +187,105 @@
 
                 <onup>212</onup>
                 <ondown>212</ondown>
-                <!-- <onleft>212</onleft> -->
-
+                <onleft>212</onleft>
+                <onright>9300</onright>
                 <onback>ClearProperty(skinshortcuts-Widget,Home)</onback>
-
-                <onleft>ClearProperty(skinshortcuts-Widget,Home)</onleft>
-                <onleft>SetFocus(3050)</onleft>
-
 
                 <scrolltime>0</scrolltime>
                 <itemgap>3</itemgap>
 
-                <!-- WIDGET 1 -->
-
-                <control type="button" id="9101" description="Custom">
-                    <width>100%</width>
-                    <height>66</height>
-                    <label>$LOCALIZE[31367]$VAR[LabelWidget1]</label>
-                    <label2>$VAR[LabelWidgetShortcutsName]</label2>
-                    <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
-                    <align>left</align>
-                    <include>Def_Dialog_Buttons_Gradient</include>
-                    <onfocus>SetProperty(skinshortcuts-Widget,1,Home)</onfocus>
-                    <onright>SetFocus(9451)</onright>
-                    <!-- <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible> -->
-                    <!-- <visible>String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible> -->
-                </control>
-
-                <!-- WIDGET 2 -->
-
-                <control type="button" id="9102" description="Custom">
-                    <width>100%</width>
-                    <height>66</height>
-                    <label>$LOCALIZE[31368]$VAR[LabelWidget2]</label>
-                    <label2>$VAR[LabelWidgetShortcutsName2]</label2>
-                    <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
-                    <align>left</align>
-                    <include>Def_Dialog_Buttons_Gradient</include>
-                    <onfocus>SetProperty(skinshortcuts-Widget,2,Home)</onfocus>
-                    <onright>SetFocus(4197)</onright>
-                    <animation effect="fade" start="100" end="50" time="0" condition="!String.IsEqual(Container(211).ListItem.Property(widgetEnable.2),yes)">Conditional</animation>
-                    <!-- <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible> -->
-                    <!-- <visible>String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible> -->
-                </control>
-
-                <!-- WIDGET 3 -->
-
-                <control type="button" id="9103" description="Custom">
-                    <width>100%</width>
-                    <height>66</height>
-                    <label>$LOCALIZE[31369]$VAR[LabelWidget3]</label>
-                    <label2>$VAR[LabelWidgetShortcutsName3]</label2>
-                    <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
-                    <align>left</align>
-                    <include>Def_Dialog_Buttons_Gradient</include>
-                    <onfocus>SetProperty(skinshortcuts-Widget,3,Home)</onfocus>
-                    <onright>SetFocus(4198)</onright>
-                    <animation effect="fade" start="100" end="50" time="0" condition="!String.IsEqual(Container(211).ListItem.Property(widgetEnable.3),yes)">Conditional</animation>
-                    <!-- <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible> -->
-                    <!-- <visible>String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible> -->
-                </control>
-
-                <!-- WIDGET 4 -->
-
-                <control type="button" id="9104" description="Custom">
-                    <width>100%</width>
-                    <height>66</height>
-                    <label>$LOCALIZE[31370]$VAR[LabelWidget4]</label>
-                    <label2>$VAR[LabelWidgetShortcutsName4]</label2>
-                    <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
-                    <align>left</align>
-                    <include>Def_Dialog_Buttons_Gradient</include>
-                    <onfocus>SetProperty(skinshortcuts-Widget,4,Home)</onfocus>
-                    <onright>SetFocus(4199)</onright>
-                    <animation effect="fade" start="100" end="50" time="0" condition="!String.IsEqual(Container(211).ListItem.Property(widgetEnable.4),yes)">Conditional</animation>
-                    <!-- <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible> -->
-                    <!-- <visible>String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible> -->
-                </control>
-
-                <!-- WIDGET 5 -->
-
-                <control type="button" id="9105" description="Custom">
-                    <width>100%</width>
-                    <height>66</height>
-                    <label>$LOCALIZE[31371]$VAR[LabelWidget5]</label>
-                    <label2>$VAR[LabelWidgetShortcutsName5]</label2>
-                    <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
-                    <align>left</align>
-                    <include>Def_Dialog_Buttons_Gradient</include>
-                    <onfocus>SetProperty(skinshortcuts-Widget,5,Home)</onfocus>
-                    <onright>SetFocus(4590)</onright>
-                    <animation effect="fade" start="100" end="50" time="0" condition="!String.IsEqual(Container(211).ListItem.Property(widgetEnable.5),yes)">Conditional</animation>
-                    <!-- <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible> -->
-                    <!-- <visible>String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible> -->
-                </control>
-
-                <!-- WIDGET 6 -->
-
-                <control type="button" id="9106" description="Custom">
-                    <width>100%</width>
-                    <height>66</height>
-                    <label>$LOCALIZE[31425]$VAR[LabelWidget6]</label>
-                    <label2>$VAR[LabelWidgetShortcutsName6]</label2>
-                    <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
-                    <align>left</align>
-                    <include>Def_Dialog_Buttons_Gradient</include>
-                    <onfocus>SetProperty(skinshortcuts-Widget,6,Home)</onfocus>
-                    <onright>SetFocus(11001)</onright>
-                    <animation effect="fade" start="100" end="50" time="0" condition="!String.IsEqual(Container(211).ListItem.Property(widgetEnable.6),yes)">Conditional</animation>
-                    <!-- <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible> -->
-                    <!-- <visible>String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible> -->
-                </control>
+                <itemlayout width="731" height="69">
+                    <control type="group">
+                        <animation effect="fade" start="100" end="50" time="0" condition="!String.IsEqual(ListItem.Property(WidgetEnable),yes)">Conditional</animation>
+                        <control type="image">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <width>100%</width>
+                            <height>66</height>
+                            <texture colordiffuse="Black12">common/white.png</texture>
+                        </control>
+                        <control type="label">
+                            <left>30</left>
+                            <right>90</right>
+                            <align>left</align>
+                            <info>ListItem.Label</info>
+                            <animation effect="fade" start="100" end="50" time="0" condition="String.IsEqual(Container(211).ListItem.Property(skinshortcuts-disabled),True)">Conditional</animation>
+                        </control>
+                        <control type="label">
+                            <align>right</align>
+                            <left>30</left>
+                            <right>30</right>
+                            <info>ListItem.Label2</info>
+                            <animation effect="fade" start="100" end="50" time="0" condition="String.IsEqual(Container(211).ListItem.Property(skinshortcuts-disabled),True)">Conditional</animation>
+                        </control>
+                    </control>
+                </itemlayout>
+                <focusedlayout width="731" height="69">
+                    <control type="group">
+                        <animation effect="fade" start="100" end="50" time="0" condition="!String.IsEqual(ListItem.Property(WidgetEnable),yes)">Conditional</animation>
+                        <control type="image">
+                            <width>100%</width>
+                            <height>66</height>
+                            <texture>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texture>
+                        </control>
+                        <control type="label">
+                            <align>left</align>
+                            <left>30</left>
+                            <width>390</width>
+                            <scroll>true</scroll>
+                            <scrollspeed>60</scrollspeed>
+                            <info>ListItem.Label</info>
+                            <textcolor>Selected</textcolor>
+                            <animation effect="fade" start="100" end="50" time="0" condition="String.IsEqual(Container(211).ListItem.Property(skinshortcuts-disabled),True)">Conditional</animation>
+                        </control>
+                        <control type="label">
+                            <align>right</align>
+                            <right>30</right>
+                            <width>390</width>
+                            <scroll>true</scroll>
+                            <scrollspeed>60</scrollspeed>
+                            <info>ListItem.Label2</info>
+                            <textcolor>Selected</textcolor>
+                            <animation effect="fade" start="100" end="50" time="0" condition="String.IsEqual(Container(211).ListItem.Property(skinshortcuts-disabled),True)">Conditional</animation>
+                        </control>
+                        <control type="button">
+                            <visible allowhiddenfocus="true">false</visible>
+                            <onfocus>SetProperty(skinshortcuts-Widget,$INFO[ListItem.CurrentItem],Home)</onfocus>
+                        </control>
+                    </control>
+                </focusedlayout>
+                <content>
+                    <item id="1">
+                        <label>$LOCALIZE[31367]$VAR[Label_Widget_1]</label>
+                        <label2>$VAR[Label_Widget_Shortcuts_Name_1]</label2>
+                        <property name="WidgetEnable">yes</property>
+                    </item>
+                    <item id="2">
+						<label>$LOCALIZE[31368]$VAR[Label_Widget_2]</label>
+						<label2>$VAR[Label_Widget_Shortcuts_Name_2]</label2>
+                        <property name="WidgetEnable">$INFO[Container(211).ListItem.Property(widgetEnable.2)]</property>
+                    </item>
+                    <item id="3">
+						<label>$LOCALIZE[31369]$VAR[Label_Widget_3]</label>
+						<label2>$VAR[Label_Widget_Shortcuts_Name_3]</label2>
+                        <property name="WidgetEnable">$INFO[Container(211).ListItem.Property(widgetEnable.3)]</property>
+                    </item>
+                    <item id="4">
+						<label>$LOCALIZE[31370]$VAR[Label_Widget_4]</label>
+						<label2>$VAR[Label_Widget_Shortcuts_Name_4]</label2>
+                        <property name="WidgetEnable">$INFO[Container(211).ListItem.Property(widgetEnable.4)]</property>
+                    </item>
+                    <item id="5">
+						<label>$LOCALIZE[31371]$VAR[Label_Widget_5]</label>
+						<label2>$VAR[Label_Widget_Shortcuts_Name_5]</label2>
+                        <property name="WidgetEnable">$INFO[Container(211).ListItem.Property(widgetEnable.5)]</property>
+                    </item>
+                    <item id="6">
+						<label>$LOCALIZE[31425]$VAR[Label_Widget_6]</label>
+						<label2>$VAR[Label_Widget_Shortcuts_Name_6]</label2>
+                        <property name="WidgetEnable">$INFO[Container(211).ListItem.Property(widgetEnable.6)]</property>
+                    </item>
+                </content>
             </control>
 
             <!------------------------------------------------->
@@ -396,14 +383,14 @@
                 <!--BUTTON - DISPLAY - LIST WIDGETS - ON RIGHT -->
 
                 <control type="button" id="3050" description="Set Label">
-                    <visible allowhiddenfocus="true">String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible>
+                    <visible allowhiddenfocus="true">String.IsEqual(Window.Property(groupname),mainmenu) + String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible>
                     <width>100%</width>
                     <height>66</height>
                     <label>31121</label>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
-                    <onclick>SetFocus(9101)</onclick>
+                    <onclick>SetFocus(212,0,absolute)</onclick>
                 </control>
 
                 <!-- LABEL - "OPTIONS" -->
@@ -578,35 +565,35 @@
             <!--      RIGHT LIST - WIDGETS - SETTINGS      -->
             <!------------------------------------------------->
 
-            <!-- WIDGET 1 - SETTINGS -->
-
             <control type="grouplist" id="9300">
                 <top>112</top>
-
-                <onleft>SetFocus(9101)</onleft>
-                <onright>SetFocus(9101)</onright>
-
-                <onup>9300</onup>
-                <ondown>9300</ondown>
                 <right>40</right>
                 <width>905</width>
                 <height>549</height>
+                <onleft>212</onleft>
+                <onright>212</onright>
+                <onup>9300</onup>
+                <ondown>9300</ondown>
                 <orientation>vertical</orientation>
                 <itemgap>3</itemgap>
                 <scrolltime>0</scrolltime>
-                <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),1)</visible>
+
+             <!-- WIDGET 1 - SETTINGS -->
+
                 <control type="button" id="9451" description="Widget">
+                    <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),1)</visible>
+
                     <width>100%</width>
                     <height>66</height>
                     <label>$LOCALIZE[31233] 1</label>
-                    <label2>$VAR[LabelWidgetShortcutsName]</label2>
-                    <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <label2>$VAR[Label_Widget_Shortcuts_Name_1]</label2>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
-                    <visible allowhiddenfocus="true">String.IsEqual(Window(Home).Property(skinshortcuts-Widget),1)</visible>
                     <onclick>SendClick(312)</onclick>
                 </control>
+
                 <control type="button" id="406" description="Set Custom">
                     <width>100%</width>
                     <height>66</height>
@@ -615,9 +602,11 @@
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),1) + String.IsEqual(Container(211).ListItem.Property(widget),custom)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),1)</visible>
                     <onclick>SetProperty(Backg,yes,Home)</onclick>
                     <onclick>SetProperty(custommenu,yes,Home)</onclick>
                 </control>
+
                 <control type="radiobutton" id="10030" description="Widget Fullscreen">
                     <radioposx>845</radioposx>
                     <selected>String.IsEqual(Container(211).ListItem.Property(widgetFullscreen),yes) | Skin.HasSetting(homemenu.netflix)</selected>
@@ -625,6 +614,7 @@
                     <height>66</height>
                     <label>$LOCALIZE[31364]</label>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),1)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
@@ -634,17 +624,20 @@
                     <onclick>SendClick(404)</onclick>
                     <enable>!String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu) + !Skin.HasSetting(homemenu.netflix)</enable>
                 </control>
+
                 <control type="button" id="9401" description="Widget Aspect">
                     <width>100%</width>
                     <height>66</height>
                     <label>31228</label>
-                    <label2>$VAR[LabelWidgetType]</label2>
+                    <label2>$VAR[Label_Widget_Type_1]</label2>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),1)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <enable>!String.IsEqual(Container(211).ListItem.Property(widgettarget),system) + !String.IsEqual(Container(211).ListItem.Property(widget),epg) + !Skin.HasSetting(homemenu.horizontal.clean)</enable>
                 </control>
+
                 <control type="radiobutton" id="9411" description="Widget ClearLogo">
                     <radioposx>845</radioposx>
                     <selected>!String.IsEqual(Container(211).ListItem.Property(widgetClearLogoThumb),no)</selected>
@@ -652,6 +645,7 @@
                     <height>66</height>
                     <label>$LOCALIZE[31262]$LOCALIZE[31292]</label>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),1)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
@@ -662,23 +656,27 @@
                     <onclick>SendClick(404)</onclick>
                     <visible>!String.IsEqual(Container(211).ListItem.Property(widget),epg)</visible>
                 </control>
+
                 <control type="button" id="10001" description="Widget Aspect Ratio">
                     <width>100%</width>
                     <height>66</height>
                     <label>$LOCALIZE[31262]$LOCALIZE[31356]</label>
-                    <label2>$VAR[Label_Aspect_Ratio]</label2>
+                    <label2>$VAR[Label_Widget_Aspect_Ratio_1]</label2>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <visible>String.IsEqual(Container(211).ListItem.Property(widgetaspect),Square) | String.IsEqual(Container(211).ListItem.Property(widgetaspect),SquareSmall) | String.IsEqual(Container(211).ListItem.Property(widgetaspect),SquareMediumSubmenu)</visible>
+
                     <visible>!String.IsEqual(Container(211).ListItem.Property(widget),epg) + !Skin.HasSetting(homemenu.horizontal.clean)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),1)</visible>
                 </control>
+
                 <control type="button" id="10301" description="Widget Edge Distance">
                     <width>100%</width>
                     <height>66</height>
                     <label>$LOCALIZE[31262]$LOCALIZE[31403]</label>
-                    <label2>$VAR[Label_Edge_Distance]</label2>
+                    <label2>$VAR[Label_Widget_Edge_Distance_1]</label2>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
@@ -686,98 +684,94 @@
                     <visible>String.IsEqual(Container(211).ListItem.Property(widgetaspect),Square) | String.IsEqual(Container(211).ListItem.Property(widgetaspect),SquareSmall) | String.IsEqual(Container(211).ListItem.Property(widgetaspect),SquareSmallSubmenu) | String.IsEqual(Container(211).ListItem.Property(widgetaspect),SquareMediumSubmenu)</visible>
                     <visible>!String.Contains(Container(211).ListItem.Property(widget),weather) + !String.IsEqual(Container(211).ListItem.Property(widget),system)</visible>
                     <visible>!String.IsEqual(Container(211).ListItem.Property(widget),epg) + !Skin.HasSetting(homemenu.horizontal.clean)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),1)</visible>
                 </control>
+
                 <control type="button" id="9402" description="Widget SortBy">
                     <width>100%</width>
                     <height>66</height>
                     <label>581</label>
                     <label2>$VAR[Label_Sort_By]</label2>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),1)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
                 </control>
+
                 <control type="button" id="9403">
                     <description>Change widget 1 sort order</description>
                     <width>100%</width>
                     <height>66</height>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),1)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <label>580</label>
-                    <label2>$VAR[LabelSort]</label2>
+                    <label2>$VAR[Label_Widget_Sort_1]</label2>
                 </control>
+
                 <control type="button" id="4196">
                     <description>Enable</description>
                     <width>100%</width>
                     <height>66</height>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),1)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <label>$LOCALIZE[31302]</label>
-                    <label2>$VAR[AutoScrollTime1]</label2>
+                    <label2>$VAR[Widget_AutoScroll_Time_1]</label2>
                 </control>
+
                 <control type="button" id="41911" description="ListType">
                     <width>100%</width>
                     <height>66</height>
                     <label>$LOCALIZE[31303]</label>
-                    <label2>$VAR[LabelwidgetListType]</label2>
+                    <label2>$VAR[Label_Widget_List_Type_1]</label2>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),1)</visible>
                     <visible>!$EXP[Home_Is_Horizontal_Clean]</visible>
                 </control>
-            </control>
 
             <!-- WIDGET 2 - SETTINGS -->
 
-            <control type="grouplist" id="9400">
-                <top>112</top>
-
-                <onleft>SetFocus(9102)</onleft>
-                <onright>SetFocus(9102)</onright>
-
-                <onup>9400</onup>
-                <ondown>9400</ondown>
-                <right>40</right>
-                <width>905</width>
-                <height>549</height>
-                <orientation>vertical</orientation>
-                <itemgap>3</itemgap>
-                <scrolltime>0</scrolltime>
-                <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),2)</visible>
                 <control type="button" id="4197">
                     <description>Enable</description>
                     <width>100%</width>
                     <height>66</height>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),2)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <label>126</label>
-                    <label2>$VAR[Enable2]</label2>
-                    <visible allowhiddenfocus="true">String.IsEqual(Window(Home).Property(skinshortcuts-Widget),2)</visible>
+                    <label2>$VAR[Label_Widget_Status_Enable_2]</label2>
                     <onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetEnable.2)) | String.IsEqual(Container(211).ListItem.Property(widgetEnable.2),no)">SetProperty(customProperty,widgetEnable.2)</onclick>
                     <onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetEnable.2)) | String.IsEqual(Container(211).ListItem.Property(widgetEnable.2),no)">SetProperty(customValue,yes)</onclick>
                     <onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetEnable.2),yes)">SetProperty(customProperty,widgetEnable.2)</onclick>
                     <onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetEnable.2),yes)">SetProperty(customValue,)</onclick>
                     <onclick>SendClick(404)</onclick>
                 </control>
+
                 <control type="button" id="9345" description="Widget">
                     <width>100%</width>
                     <height>66</height>
                     <label>$LOCALIZE[31233] 2</label>
-                    <label2>$VAR[LabelWidgetShortcutsName2]</label2>
+                    <label2>$VAR[Label_Widget_Shortcuts_Name_2]</label2>
                     <onclick>SetProperty(widgetID,2)</onclick>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),2)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <onclick>SendClick(312)</onclick>
                 </control>
+
                 <control type="button" id="407" description="Set Custom">
                     <width>100%</width>
                     <height>66</height>
@@ -790,6 +784,7 @@
                     <onclick>SetProperty(Backg,yes,Home)</onclick>
                     <onclick>SetProperty(custommenu,yes,Home)</onclick>
                 </control>
+
                 <control type="radiobutton" id="10031" description="Widget Fullscreen">
                     <radioposx>845</radioposx>
                     <selected>String.IsEqual(Container(211).ListItem.Property(widgetFullscreen.2),yes) | Skin.HasSetting(homemenu.netflix)</selected>
@@ -797,6 +792,7 @@
                     <height>66</height>
                     <label>$LOCALIZE[31364]</label>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),2)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <onclick>SetProperty(customProperty,widgetFullscreen.2)</onclick>
@@ -806,17 +802,20 @@
                     <enable>!Skin.HasSetting(homemenu.netflix)</enable>
                     <include>Def_Dialog_Buttons_Gradient</include>
                 </control>
+
                 <control type="button" id="9521" description="Widget Aspect">
                     <width>100%</width>
                     <height>66</height>
                     <label>31228</label>
-                    <label2>$VAR[LabelWidgetType2]</label2>
+                    <label2>$VAR[Label_Widget_Type_2]</label2>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),2)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <enable>!String.IsEqual(Container(211).ListItem.Property(widgettarget.2),system) + !String.IsEqual(Container(211).ListItem.Property(widget.2),epg) + !Skin.HasSetting(homemenu.horizontal.clean)</enable>
                 </control>
+
                 <control type="radiobutton" id="9412" description="Widget ClearLogo">
                     <radioposx>845</radioposx>
                     <selected>!String.IsEqual(Container(211).ListItem.Property(widgetClearLogoThumb.2),no)</selected>
@@ -824,6 +823,7 @@
                     <height>66</height>
                     <label>$LOCALIZE[31262]$LOCALIZE[31292]</label>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),2)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
@@ -834,12 +834,14 @@
                     <onclick>SendClick(404)</onclick>
                     <visible>!String.IsEqual(Container(211).ListItem.Property(widget.2),epg)</visible>
                 </control>
+
                 <control type="button" id="10002" description="Widget Aspect Ratio">
                     <width>100%</width>
                     <height>66</height>
                     <label>$LOCALIZE[31262]$LOCALIZE[31356]</label>
-                    <label2>$VAR[Label_Aspect_Ratio2]</label2>
+                    <label2>$VAR[Label_Widget_Aspect_Ratio_2]</label2>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),2)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
@@ -847,12 +849,14 @@
                     <enable>!String.IsEqual(Container(211).ListItem.Property(widget.2),mysubmenu)</enable>
                     <visible>!String.IsEqual(Container(211).ListItem.Property(widget.2),epg) + !Skin.HasSetting(homemenu.horizontal.clean)</visible>
                 </control>
+
                 <control type="button" id="10302" description="Widget Edge Distance">
                     <width>100%</width>
                     <height>66</height>
                     <label>$LOCALIZE[31262]$LOCALIZE[31403]</label>
-                    <label2>$VAR[Label_Edge_Distance2]</label2>
+                    <label2>$VAR[Label_Widget_Edge_Distance_2]</label2>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),2)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
@@ -860,97 +864,94 @@
                     <visible>!String.IsEqual(Container(211).ListItem.Property(widget.2),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.2),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.2),system)</visible>
                     <visible>!String.IsEqual(Container(211).ListItem.Property(widget.2),epg) + !Skin.HasSetting(homemenu.horizontal.clean)</visible>
                 </control>
+
                 <control type="button" id="9792" description="Widget SortBy">
                     <width>100%</width>
                     <height>66</height>
                     <label>581</label>
                     <label2>$VAR[Label_Sort_By2]</label2>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),2)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
                 </control>
+
                 <control type="button" id="9793">
                     <description>Change widget 1 sort order</description>
                     <width>100%</width>
                     <height>66</height>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),2)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <label>580</label>
-                    <label2>$VAR[LabelSort2]</label2>
+                    <label2>$VAR[Label_Widget_Sort_2]</label2>
                 </control>
+
                 <control type="button" id="4195">
                     <width>100%</width>
                     <height>66</height>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),2)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <enable>!String.IsEqual(Container(211).ListItem.Property(widgetListType.2),list)</enable>
                     <label>$LOCALIZE[31302]</label>
-                    <label2>$VAR[AutoScrollTime2]</label2>
+                    <label2>$VAR[Widget_AutoScroll_Time_2]</label2>
                 </control>
+
                 <control type="button" id="41912" description="ListType">
                     <width>100%</width>
                     <height>66</height>
                     <label>$LOCALIZE[31303]</label>
-                    <label2>$VAR[LabelwidgetListType2]</label2>
+                    <label2>$VAR[Label_Widget_List_Type_2]</label2>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu) + !$EXP[Home_Is_Horizontal_Clean]</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),2)</visible>
                 </control>
-            </control>
 
             <!-- WIDGET 3 - SETTINGS -->
 
-            <control type="grouplist" id="9500">
-                <top>112</top>
-
-                <onleft>SetFocus(9103)</onleft>
-                <onright>SetFocus(9103)</onright>
-
-                <onup>9500</onup>
-                <ondown>9500</ondown>
-                <right>40</right>
-                <width>905</width>
-                <height>549</height>
-                <orientation>vertical</orientation>
-                <itemgap>3</itemgap>
-                <scrolltime>0</scrolltime>
-                <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),3)</visible>
                 <control type="button" id="4198">
+                    <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),3)</visible>
                     <description>Enable</description>
                     <width>100%</width>
                     <height>66</height>
                     <include>Def_Dialog_Buttons_Gradient</include>
-                    <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <label>126</label>
-                    <label2>$VAR[Enable3]</label2>
-                    <visible allowhiddenfocus="true">String.IsEqual(Window(Home).Property(skinshortcuts-Widget),3)</visible>
+                    <label2>$VAR[Label_Widget_Status_Enable_3]</label2>
                     <onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetEnable.3)) | String.IsEqual(Container(211).ListItem.Property(widgetEnable.3),no)">SetProperty(customProperty,widgetEnable.3)</onclick>
                     <onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetEnable.3)) | String.IsEqual(Container(211).ListItem.Property(widgetEnable.3),no)">SetProperty(customValue,yes)</onclick>
                     <onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetEnable.3),yes)">SetProperty(customProperty,widgetEnable.3)</onclick>
                     <onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetEnable.3),yes)">SetProperty(customValue,)</onclick>
                     <onclick>SendClick(404)</onclick>
                 </control>
+
                 <control type="button" id="9346" description="Widget">
+                    <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),3)</visible>
                     <width>100%</width>
                     <height>66</height>
                     <label>$LOCALIZE[31233] 3</label>
-                    <label2>$VAR[LabelWidgetShortcutsName3]</label2>
+                    <label2>$VAR[Label_Widget_Shortcuts_Name_3]</label2>
                     <onclick>SetProperty(widgetID,3)</onclick>
-                    <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <onclick>SendClick(312)</onclick>
                 </control>
+
                 <control type="button" id="408" description="Set Custom">
+                    <visible>String.IsEqual(Container(211).ListItem.Property(widget.3),custom)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),3)</visible>
                     <width>100%</width>
                     <height>66</height>
                     <label>$LOCALIZE[31262]$LOCALIZE[31422]</label>
@@ -958,10 +959,10 @@
                     <align>left</align>
                     <animation effect="fade" start="100" end="50" time="0" condition="!String.IsEqual(Container(211).ListItem.Property(widgetEnable.3),yes)">Conditional</animation>
                     <include>Def_Dialog_Buttons_Gradient</include>
-                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),3) + String.IsEqual(Container(211).ListItem.Property(widget.3),custom)</visible>
                     <onclick>SetProperty(Backg,yes,Home)</onclick>
                     <onclick>SetProperty(custommenu,yes,Home)</onclick>
                 </control>
+
                 <control type="radiobutton" id="10032" description="Widget Fullscreen">
                     <radioposx>845</radioposx>
                     <selected>String.IsEqual(Container(211).ListItem.Property(widgetFullscreen.3),yes) | Skin.HasSetting(homemenu.netflix)</selected>
@@ -969,6 +970,7 @@
                     <height>66</height>
                     <label>$LOCALIZE[31364]</label>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),3)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <onclick>SetProperty(customProperty,widgetFullscreen.3)</onclick>
@@ -978,17 +980,20 @@
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <enable>!Skin.HasSetting(homemenu.netflix)</enable>
                 </control>
+
                 <control type="button" id="9621" description="Widget Aspect">
                     <width>100%</width>
                     <height>66</height>
                     <label>31228</label>
-                    <label2>$VAR[LabelWidgetType3]</label2>
+                    <label2>$VAR[Label_Widget_Type_3]</label2>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),3)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <enable>!String.IsEqual(Container(211).ListItem.Property(widgettarget.3),system) + !String.IsEqual(Container(211).ListItem.Property(widget.3),epg) + !Skin.HasSetting(homemenu.horizontal.clean)</enable>
                 </control>
+
                 <control type="radiobutton" id="9413" description="Widget ClearLogo">
                     <radioposx>845</radioposx>
                     <selected>!String.IsEqual(Container(211).ListItem.Property(widgetClearLogoThumb.3),no)</selected>
@@ -1000,100 +1005,97 @@
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <visible>String.IsEqual(Container(211).ListItem.Property(widgetaspect.3),Thumbnail) | String.IsEqual(Container(211).ListItem.Property(widgetaspect.3),ThumbnailSmall)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),3)</visible>
                     <onclick>SetProperty(customProperty,widgetClearLogoThumb.3)</onclick>
                     <onclick condition="!String.IsEqual(Container(211).ListItem.Property(widgetClearLogoThumb.3),no)">SetProperty(customValue,no)</onclick>
                     <onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetClearLogoThumb.3),no)">SetProperty(customValue,)</onclick>
                     <onclick>SendClick(404)</onclick>
                     <visible>!String.IsEqual(Container(211).ListItem.Property(widget.3),epg)</visible>
                 </control>
+
                 <control type="button" id="10003" description="Widget Aspect Ratio">
+                    <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),3)</visible>
+                    <visible>String.IsEqual(Container(211).ListItem.Property(widgetaspect.3),Square)</visible>
+                    <visible>!String.IsEqual(Container(211).ListItem.Property(widget.3),epg) + !Skin.HasSetting(homemenu.horizontal.clean)</visible>
                     <width>100%</width>
                     <height>66</height>
                     <label>$LOCALIZE[31262]$LOCALIZE[31356]</label>
-                    <label2>$VAR[Label_Aspect_Ratio3]</label2>
-                    <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <label2>$VAR[Label_Widget_Aspect_Ratio_3]</label2>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
-                    <visible>String.IsEqual(Container(211).ListItem.Property(widgetaspect.3),Square)</visible>
-                    <visible>!String.IsEqual(Container(211).ListItem.Property(widget.3),epg) + !Skin.HasSetting(homemenu.horizontal.clean)</visible>
                 </control>
+
                 <control type="button" id="10303" description="Widget Edge Distance">
-                    <width>100%</width>
-                    <height>66</height>
-                    <label>$LOCALIZE[31262]$LOCALIZE[31403]</label>
-                    <label2>$VAR[Label_Edge_Distance3]</label2>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
-                    <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
-                    <align>left</align>
-                    <include>Def_Dialog_Buttons_Gradient</include>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),3)</visible>
                     <visible>String.IsEqual(Container(211).ListItem.Property(widgetaspect.3),Square)</visible>
                     <visible>!String.IsEqual(Container(211).ListItem.Property(widget.3),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.3),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.3),system)</visible>
                     <visible>!String.IsEqual(Container(211).ListItem.Property(widget.3),epg) + !Skin.HasSetting(homemenu.horizontal.clean)</visible>
+                    <width>100%</width>
+                    <height>66</height>
+                    <label>$LOCALIZE[31262]$LOCALIZE[31403]</label>
+                    <label2>$VAR[Label_Widget_Edge_Distance_3]</label2>
+                    <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
+                    <align>left</align>
+                    <include>Def_Dialog_Buttons_Gradient</include>
                 </control>
+
                 <control type="button" id="9602" description="Widget SortBy">
                     <width>100%</width>
                     <height>66</height>
                     <label>581</label>
                     <label2>$VAR[Label_Sort_By3]</label2>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),3)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
                 </control>
+
                 <control type="button" id="9603">
                     <description>Change widget 1 sort order</description>
                     <width>100%</width>
                     <height>66</height>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),3)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <label>580</label>
-                    <label2>$VAR[LabelSort3]</label2>
+                    <label2>$VAR[Label_Widget_Sort_3]</label2>
                 </control>
+
                 <control type="button" id="4194">
                     <description>Enable</description>
                     <width>100%</width>
                     <height>66</height>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),3)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <enable>!String.IsEqual(Container(211).ListItem.Property(widgetListType.3),list)</enable>
                     <label>$LOCALIZE[31302]</label>
-                    <label2>$VAR[AutoScrollTime3]</label2>
+                    <label2>$VAR[Widget_AutoScroll_Time_3]</label2>
                     <visible>Skin.HasSetting(home.vertical) + Skin.HasSetting(home.horizontal)</visible>
                 </control>
+
                 <control type="button" id="41913" description="ListType">
                     <width>100%</width>
                     <height>66</height>
                     <label>$LOCALIZE[31303]</label>
-                    <label2>$VAR[LabelwidgetListType3]</label2>
+                    <label2>$VAR[Label_Widget_List_Type_3]</label2>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu) + !$EXP[Home_Is_Horizontal_Clean]</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),3)</visible>
                 </control>
-            </control>
 
             <!-- WIDGET 4 - SETTINGS -->
 
-            <control type="grouplist" id="9600">
-                <top>112</top>
-
-                <onleft>SetFocus(9104)</onleft>
-                <onright>SetFocus(9104)</onright>
-
-                <onup>9600</onup>
-                <ondown>9600</ondown>
-                <right>40</right>
-                <width>905</width>
-                <height>549</height>
-                <orientation>vertical</orientation>
-                <itemgap>3</itemgap>
-                <scrolltime>0</scrolltime>
-                <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),4)</visible>
                 <control type="button" id="4199">
                     <description>Enable</description>
                     <width>100%</width>
@@ -1103,26 +1105,29 @@
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <label>126</label>
-                    <label2>$VAR[Enable4]</label2>
-                    <visible allowhiddenfocus="true">String.IsEqual(Window(Home).Property(skinshortcuts-Widget),4)</visible>
+                    <label2>$VAR[Label_Widget_Status_Enable_4]</label2>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),4)</visible>
                     <onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetEnable.4)) | String.IsEqual(Container(211).ListItem.Property(widgetEnable.4),no)">SetProperty(customProperty,widgetEnable.4)</onclick>
                     <onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetEnable.4)) | String.IsEqual(Container(211).ListItem.Property(widgetEnable.4),no)">SetProperty(customValue,yes)</onclick>
                     <onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetEnable.4),yes)">SetProperty(customProperty,widgetEnable.4)</onclick>
                     <onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetEnable.4),yes)">SetProperty(customValue,)</onclick>
                     <onclick>SendClick(404)</onclick>
                 </control>
+
                 <control type="button" id="9358" description="Widget">
                     <width>100%</width>
                     <height>66</height>
                     <label>$LOCALIZE[31233] 4</label>
-                    <label2>$VAR[LabelWidgetShortcutsName4]</label2>
+                    <label2>$VAR[Label_Widget_Shortcuts_Name_4]</label2>
                     <onclick>SetProperty(widgetID,4)</onclick>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),4)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <onclick>SendClick(312)</onclick>
                 </control>
+
                 <control type="button" id="409" description="Set Custom">
                     <width>100%</width>
                     <height>66</height>
@@ -1132,9 +1137,11 @@
                     <animation effect="fade" start="100" end="50" time="0" condition="!String.IsEqual(Container(211).ListItem.Property(widgetEnable.4),yes)">Conditional</animation>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),4) + String.IsEqual(Container(211).ListItem.Property(widget.4),custom)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),4)</visible>
                     <onclick>SetProperty(Backg,yes,Home)</onclick>
                     <onclick>SetProperty(custommenu,yes,Home)</onclick>
                 </control>
+
                 <control type="radiobutton" id="10033" description="Widget Fullscreen">
                     <radioposx>845</radioposx>
                     <selected>String.IsEqual(Container(211).ListItem.Property(widgetFullscreen.4),yes) | Skin.HasSetting(homemenu.netflix)</selected>
@@ -1142,6 +1149,7 @@
                     <height>66</height>
                     <label>$LOCALIZE[31364]</label>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),4)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <onclick>SetProperty(customProperty,widgetFullscreen.4)</onclick>
@@ -1151,17 +1159,20 @@
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <enable>!Skin.HasSetting(homemenu.netflix)</enable>
                 </control>
+
                 <control type="button" id="9721" description="Widget Aspect">
                     <width>100%</width>
                     <height>66</height>
                     <label>31228</label>
-                    <label2>$VAR[LabelWidgetType4]</label2>
+                    <label2>$VAR[Label_Widget_Type_4]</label2>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),4)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <enable>!String.IsEqual(Container(211).ListItem.Property(widgettarget.4),system) + !String.IsEqual(Container(211).ListItem.Property(widget.4),epg) + !Skin.HasSetting(homemenu.horizontal.clean)</enable>
                 </control>
+
                 <control type="radiobutton" id="9414" description="Widget ClearLogo">
                     <radioposx>845</radioposx>
                     <selected>!String.IsEqual(Container(211).ListItem.Property(widgetClearLogoThumb.4),no)</selected>
@@ -1169,6 +1180,7 @@
                     <height>66</height>
                     <label>$LOCALIZE[31262]$LOCALIZE[31292]</label>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),4)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
@@ -1179,12 +1191,14 @@
                     <onclick>SendClick(404)</onclick>
                     <visible>!String.IsEqual(Container(211).ListItem.Property(widget.4),epg)</visible>
                 </control>
+
                 <control type="button" id="10004" description="Widget Aspect Ratio">
                     <width>100%</width>
                     <height>66</height>
                     <label>$LOCALIZE[31262]$LOCALIZE[31356]</label>
-                    <label2>$VAR[Label_Aspect_Ratio4]</label2>
+                    <label2>$VAR[Label_Widget_Aspect_Ratio_4]</label2>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),4)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
@@ -1192,12 +1206,14 @@
                     <enable>!String.IsEqual(Container(211).ListItem.Property(widget.4),mysubmenu)</enable>
                     <visible>!String.IsEqual(Container(211).ListItem.Property(widget.4),epg) + !Skin.HasSetting(homemenu.horizontal.clean)</visible>
                 </control>
+
                 <control type="button" id="10304" description="Widget Edge Distance">
                     <width>100%</width>
                     <height>66</height>
                     <label>$LOCALIZE[31262]$LOCALIZE[31403]</label>
-                    <label2>$VAR[Label_Edge_Distance4]</label2>
+                    <label2>$VAR[Label_Widget_Edge_Distance_4]</label2>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),4)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
@@ -1205,98 +1221,93 @@
                     <visible>!String.IsEqual(Container(211).ListItem.Property(widget.4),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.4),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.4),system)</visible>
                     <visible>!String.IsEqual(Container(211).ListItem.Property(widget.4),epg) + !Skin.HasSetting(homemenu.horizontal.clean)</visible>
                 </control>
+
                 <control type="button" id="9702" description="Widget SortBy">
                     <width>100%</width>
                     <height>66</height>
                     <label>581</label>
                     <label2>$VAR[Label_Sort_By4]</label2>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),4)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
                 </control>
+
                 <control type="button" id="9703">
                     <description>Change widget 1 sort order</description>
                     <width>100%</width>
                     <height>66</height>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),4)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <label>580</label>
-                    <label2>$VAR[LabelSort4]</label2>
+                    <label2>$VAR[Label_Widget_Sort_4]</label2>
                 </control>
+
                 <control type="button" id="4193">
                     <description>Enable</description>
                     <width>100%</width>
                     <height>66</height>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),4)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <enable>!String.IsEqual(Container(211).ListItem.Property(widgetListType.4),list)</enable>
                     <label>$LOCALIZE[31302]</label>
-                    <label2>$VAR[AutoScrollTime4]</label2>
+                    <label2>$VAR[Widget_AutoScroll_Time_4]</label2>
                     <visible>Skin.HasSetting(home.vertical) + Skin.HasSetting(home.horizontal)</visible>
                 </control>
+
                 <control type="button" id="41914" description="ListType">
                     <width>100%</width>
                     <height>66</height>
                     <label>$LOCALIZE[31303]</label>
-                    <label2>$VAR[LabelwidgetListType4]</label2>
+                    <label2>$VAR[Label_Widget_List_Type_4]</label2>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu) + !$EXP[Home_Is_Horizontal_Clean]</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),4)</visible>
                 </control>
-            </control>
 
             <!-- WIDGET 5 - SETTINGS -->
 
-            <control type="grouplist" id="9700">
-                <top>112</top>
-
-                <onleft>SetFocus(9105)</onleft>
-                <onright>SetFocus(9105)</onright>
-
-                <onup>9700</onup>
-                <ondown>9700</ondown>
-                <right>40</right>
-                <width>905</width>
-                <height>549</height>
-                <orientation>vertical</orientation>
-                <itemgap>3</itemgap>
-                <scrolltime>0</scrolltime>
-                <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),5)</visible>
                 <control type="button" id="4590">
                     <description>Enable</description>
                     <width>100%</width>
                     <height>66</height>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),5)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <label>126</label>
-                    <label2>$VAR[Enable5]</label2>
-                    <visible allowhiddenfocus="true">String.IsEqual(Window(Home).Property(skinshortcuts-Widget),5)</visible>
+                    <label2>$VAR[Label_Widget_Status_Enable_5]</label2>
                     <onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetEnable.5)) | String.IsEqual(Container(211).ListItem.Property(widgetEnable.5),no)">SetProperty(customProperty,widgetEnable.5)</onclick>
                     <onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetEnable.5)) | String.IsEqual(Container(211).ListItem.Property(widgetEnable.5),no)">SetProperty(customValue,yes)</onclick>
                     <onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetEnable.5),yes)">SetProperty(customProperty,widgetEnable.5)</onclick>
                     <onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetEnable.5),yes)">SetProperty(customValue,)</onclick>
                     <onclick>SendClick(404)</onclick>
                 </control>
+
                 <control type="button" id="4591" description="Widget">
                     <width>100%</width>
                     <height>66</height>
                     <label>$LOCALIZE[31233] 5</label>
-                    <label2>$VAR[LabelWidgetShortcutsName5]</label2>
+                    <label2>$VAR[Label_Widget_Shortcuts_Name_5]</label2>
                     <onclick>SetProperty(widgetID,5)</onclick>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),5)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <onclick>SendClick(312)</onclick>
                 </control>
+
                 <control type="button" id="410" description="Set Custom">
                     <width>100%</width>
                     <height>66</height>
@@ -1306,9 +1317,11 @@
                     <animation effect="fade" start="100" end="50" time="0" condition="!String.IsEqual(Container(211).ListItem.Property(widgetEnable.5),yes)">Conditional</animation>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),5) + String.IsEqual(Container(211).ListItem.Property(widget.5),custom)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),5)</visible>
                     <onclick>SetProperty(Backg,yes,Home)</onclick>
                     <onclick>SetProperty(custommenu,yes,Home)</onclick>
                 </control>
+
                 <control type="radiobutton" id="10034" description="Widget Fullscreen">
                     <radioposx>845</radioposx>
                     <selected>String.IsEqual(Container(211).ListItem.Property(widgetFullscreen.5),yes) | Skin.HasSetting(homemenu.netflix)</selected>
@@ -1316,6 +1329,7 @@
                     <height>66</height>
                     <label>$LOCALIZE[31364]</label>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),5)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <onclick>SetProperty(customProperty,widgetFullscreen.5)</onclick>
@@ -1325,17 +1339,20 @@
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <enable>!Skin.HasSetting(homemenu.netflix)</enable>
                 </control>
+
                 <control type="button" id="9821" description="Widget Aspect">
                     <width>100%</width>
                     <height>66</height>
                     <label>31228</label>
-                    <label2>$VAR[LabelWidgetType5]</label2>
+                    <label2>$VAR[Label_Widget_Type_5]</label2>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),5)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <enable>!String.IsEqual(Container(211).ListItem.Property(widgettarget.5),system) + !String.IsEqual(Container(211).ListItem.Property(widget.5),epg) + !Skin.HasSetting(homemenu.horizontal.clean)</enable>
                 </control>
+
                 <control type="radiobutton" id="4592" description="Widget ClearLogo">
                     <radioposx>845</radioposx>
                     <selected>!String.IsEqual(Container(211).ListItem.Property(widgetClearLogoThumb.5),no)</selected>
@@ -1343,6 +1360,7 @@
                     <height>66</height>
                     <label>$LOCALIZE[31262]$LOCALIZE[31292]</label>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),5)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
@@ -1353,12 +1371,14 @@
                     <onclick>SendClick(404)</onclick>
                     <visible>!String.IsEqual(Container(211).ListItem.Property(widget.5),epg)</visible>
                 </control>
+
                 <control type="button" id="10005" description="Widget Aspect Ratio">
                     <width>100%</width>
                     <height>66</height>
                     <label>$LOCALIZE[31262]$LOCALIZE[31356]</label>
-                    <label2>$VAR[Label_Aspect_Ratio5]</label2>
+                    <label2>$VAR[Label_Widget_Aspect_Ratio_5]</label2>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),5)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
@@ -1366,12 +1386,14 @@
                     <enable>!String.IsEqual(Container(211).ListItem.Property(widget.5),mysubmenu)</enable>
                     <visible>!String.IsEqual(Container(211).ListItem.Property(widget.5),epg) + !Skin.HasSetting(homemenu.horizontal.clean)</visible>
                 </control>
+
                 <control type="button" id="10305" description="Widget Edge Distance">
                     <width>100%</width>
                     <height>66</height>
                     <label>$LOCALIZE[31262]$LOCALIZE[31403]</label>
-                    <label2>$VAR[Label_Edge_Distance5]</label2>
+                    <label2>$VAR[Label_Widget_Edge_Distance_5]</label2>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),5)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
@@ -1379,69 +1401,61 @@
                     <visible>!String.IsEqual(Container(211).ListItem.Property(widget.5),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.5),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.5),system)</visible>
                     <visible>!String.IsEqual(Container(211).ListItem.Property(widget.5),epg) + !Skin.HasSetting(homemenu.horizontal.clean)</visible>
                 </control>
+
                 <control type="button" id="9802" description="Widget SortBy">
                     <width>100%</width>
                     <height>66</height>
                     <label>581</label>
                     <label2>$VAR[Label_Sort_By5]</label2>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),5)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
                 </control>
+
                 <control type="button" id="9803">
                     <description>Change widget 1 sort order</description>
                     <width>100%</width>
                     <height>66</height>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),5)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <label>580</label>
-                    <label2>$VAR[LabelSort5]</label2>
+                    <label2>$VAR[Label_Widget_Sort_5]</label2>
                 </control>
+
                 <control type="button" id="4593">
                     <description>Enable</description>
                     <width>100%</width>
                     <height>66</height>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),5)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <enable>!String.IsEqual(Container(211).ListItem.Property(widgetListType.5),list)</enable>
                     <label>$LOCALIZE[31302]</label>
-                    <label2>$VAR[AutoScrollTime5]</label2>
+                    <label2>$VAR[Widget_AutoScroll_Time_5]</label2>
                     <visible>Skin.HasSetting(home.vertical) + Skin.HasSetting(home.horizontal)</visible>
                 </control>
+
                 <control type="button" id="41915" description="ListType">
                     <width>100%</width>
                     <height>66</height>
                     <label>$LOCALIZE[31303]</label>
-                    <label2>$VAR[LabelwidgetListType5]</label2>
+                    <label2>$VAR[Label_Widget_List_Type_5]</label2>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu) + !$EXP[Home_Is_Horizontal_Clean]</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),5)</visible>
                 </control>
-            </control>
 
             <!-- WIDGET 6 - SETTINGS -->
 
-            <control type="grouplist" id="11000">
-                <top>112</top>
-
-                <onleft>SetFocus(9106)</onleft>
-                <onright>SetFocus(9106)</onright>
-
-                <onup>11000</onup>
-                <ondown>11000</ondown>
-                <right>40</right>
-                <width>905</width>
-                <height>549</height>
-                <orientation>vertical</orientation>
-                <itemgap>3</itemgap>
-                <scrolltime>0</scrolltime>
-                <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),6)</visible>
                 <control type="button" id="11001">
                     <description>Enable</description>
                     <width>100%</width>
@@ -1451,26 +1465,29 @@
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <label>126</label>
-                    <label2>$VAR[Enable6]</label2>
-                    <visible allowhiddenfocus="true">String.IsEqual(Window(Home).Property(skinshortcuts-Widget),6)</visible>
+                    <label2>$VAR[Label_Widget_Status_Enable_6]</label2>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),6)</visible>
                     <onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetEnable.6)) | String.IsEqual(Container(211).ListItem.Property(widgetEnable.6),no)">SetProperty(customProperty,widgetEnable.6)</onclick>
                     <onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetEnable.6)) | String.IsEqual(Container(211).ListItem.Property(widgetEnable.6),no)">SetProperty(customValue,yes)</onclick>
                     <onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetEnable.6),yes)">SetProperty(customProperty,widgetEnable.6)</onclick>
                     <onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetEnable.6),yes)">SetProperty(customValue,)</onclick>
                     <onclick>SendClick(404)</onclick>
                 </control>
+
                 <control type="button" id="11002" description="Widget">
+                    <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),6)</visible>
                     <width>100%</width>
                     <height>66</height>
                     <label>$LOCALIZE[31233] 6</label>
-                    <label2>$VAR[LabelWidgetShortcutsName6]</label2>
+                    <label2>$VAR[Label_Widget_Shortcuts_Name_6]</label2>
                     <onclick>SetProperty(widgetID,6)</onclick>
-                    <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <onclick>SendClick(312)</onclick>
                 </control>
+
                 <control type="button" id="411" description="Set Custom">
                     <width>100%</width>
                     <height>66</height>
@@ -1480,11 +1497,13 @@
                     <animation effect="fade" start="100" end="50" time="0" condition="!String.IsEqual(Container(211).ListItem.Property(widgetEnable.6),yes)">Conditional</animation>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),6) + String.IsEqual(Container(211).ListItem.Property(widget.6),custom)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),6)</visible>
                     <onclick>SetProperty(Backg,yes,Home)</onclick>
                     <onclick>SetProperty(custommenu,yes,Home)</onclick>
                     <onclick>SetProperty(level,6)</onclick>
                     <onclick>SendClick(405)</onclick>
                 </control>
+
                 <control type="radiobutton" id="11004" description="Widget Fullscreen">
                     <radioposx>845</radioposx>
                     <selected>String.IsEqual(Container(211).ListItem.Property(widgetFullscreen.6),yes) | Skin.HasSetting(homemenu.netflix)</selected>
@@ -1492,6 +1511,7 @@
                     <height>66</height>
                     <label>$LOCALIZE[31364]</label>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),6)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <onclick>SetProperty(customProperty,widgetFullscreen.6)</onclick>
@@ -1501,17 +1521,20 @@
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <enable>!Skin.HasSetting(homemenu.netflix)</enable>
                 </control>
+
                 <control type="button" id="11005" description="Widget Aspect">
                     <width>100%</width>
                     <height>66</height>
                     <label>31228</label>
-                    <label2>$VAR[LabelWidgetType6]</label2>
+                    <label2>$VAR[Label_Widget_Type_6]</label2>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),6)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <enable>!String.IsEqual(Container(211).ListItem.Property(widgettarget.6),system) + !String.IsEqual(Container(211).ListItem.Property(widget.6),epg) + !Skin.HasSetting(homemenu.horizontal.clean)</enable>
                 </control>
+
                 <control type="radiobutton" id="11006" description="Widget ClearLogo">
                     <radioposx>845</radioposx>
                     <selected>!String.IsEqual(Container(211).ListItem.Property(widgetClearLogoThumb.6),no)</selected>
@@ -1519,6 +1542,7 @@
                     <height>66</height>
                     <label>$LOCALIZE[31262]$LOCALIZE[31292]</label>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),6)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
@@ -1529,12 +1553,14 @@
                     <onclick>SendClick(404)</onclick>
                     <visible>!String.IsEqual(Container(211).ListItem.Property(widget.6),epg)</visible>
                 </control>
+
                 <control type="button" id="11007" description="Widget Aspect Ratio">
                     <width>100%</width>
                     <height>66</height>
                     <label>$LOCALIZE[31262]$LOCALIZE[31356]</label>
-                    <label2>$VAR[Label_Aspect_Ratio6]</label2>
+                    <label2>$VAR[Label_Widget_Aspect_Ratio_6]</label2>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),6)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
@@ -1542,12 +1568,14 @@
                     <enable>!String.IsEqual(Container(211).ListItem.Property(widget.6),mysubmenu)</enable>
                     <visible>!String.IsEqual(Container(211).ListItem.Property(widget.6),epg) + !Skin.HasSetting(homemenu.horizontal.clean)</visible>
                 </control>
+
                 <control type="button" id="11008" description="Widget Edge Distance">
                     <width>100%</width>
                     <height>66</height>
                     <label>$LOCALIZE[31262]$LOCALIZE[31403]</label>
-                    <label2>$VAR[Label_Edge_Distance6]</label2>
+                    <label2>$VAR[Label_Widget_Edge_Distance_6]</label2>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),6)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
@@ -1555,27 +1583,32 @@
                     <visible>!String.IsEqual(Container(211).ListItem.Property(widget.6),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.6),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.6),system)</visible>
                     <visible>!String.IsEqual(Container(211).ListItem.Property(widget.6),epg) + !Skin.HasSetting(homemenu.horizontal.clean)</visible>
                 </control>
+
                 <control type="button" id="11009" description="Widget SortBy">
                     <width>100%</width>
                     <height>66</height>
                     <label>581</label>
                     <label2>$VAR[Label_Sort_By6]</label2>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),6)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
                 </control>
+
                 <control type="button" id="11010">
                     <description>Change widget 1 sort order</description>
                     <width>100%</width>
                     <height>66</height>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),6)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <label>580</label>
-                    <label2>$VAR[LabelSort6]</label2>
+                    <label2>$VAR[Label_Widget_Sort_6]</label2>
                 </control>
+
                 <control type="button" id="11011">
                     <description>Enable</description>
                     <width>100%</width>
@@ -1586,18 +1619,21 @@
                     <align>left</align>
                     <enable>!String.IsEqual(Container(211).ListItem.Property(widgetListType.6),list)</enable>
                     <label>$LOCALIZE[31302]</label>
-                    <label2>$VAR[AutoScrollTime6]</label2>
+                    <label2>$VAR[Widget_AutoScroll_Time_6]</label2>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),6)</visible>
                     <visible>Skin.HasSetting(home.vertical) + Skin.HasSetting(home.horizontal)</visible>
                 </control>
+
                 <control type="button" id="41916" description="ListType">
                     <width>100%</width>
                     <height>66</height>
                     <label>$LOCALIZE[31303]</label>
-                    <label2>$VAR[LabelwidgetListType6]</label2>
+                    <label2>$VAR[Label_Widget_List_Type_6]</label2>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu) + !$EXP[Home_Is_Horizontal_Clean]</visible>
+                    <visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),6)</visible>
                 </control>
             </control>
 
@@ -1605,13 +1641,6 @@
 
             <include>Def_Dialog_Select_label_Num_Item</include>
         </control>
-
-        <!-- <include content="Def_Skin_Shortcuts_Button_Back"><param name="controlid" value="7011" /><param name="setfocus" value="9101" /></include> -->
-        <!-- <include content="Def_Skin_Shortcuts_Button_Back"><param name="controlid" value="7012" /><param name="setfocus" value="9102" /></include> -->
-        <!-- <include content="Def_Skin_Shortcuts_Button_Back"><param name="controlid" value="7013" /><param name="setfocus" value="9103" /></include> -->
-        <!-- <include content="Def_Skin_Shortcuts_Button_Back"><param name="controlid" value="7014" /><param name="setfocus" value="9104" /></include> -->
-        <!-- <include content="Def_Skin_Shortcuts_Button_Back"><param name="controlid" value="7015" /><param name="setfocus" value="9105" /></include> -->
-        <!-- <include content="Def_Skin_Shortcuts_Button_Back"><param name="controlid" value="7016" /><param name="setfocus" value="9106" /></include> -->
 
         <control type="button" id="404">
             <visible allowhiddenfocus="true">false</visible>
