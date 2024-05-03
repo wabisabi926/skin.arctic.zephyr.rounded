@@ -189,9 +189,8 @@
                 <ondown>212</ondown>
                 <onleft>212</onleft>
                 <onright>9300</onright>
-
-                <onclick>SetFocus(9300)</onclick>
                 <onback>ClearProperty(skinshortcuts-Widget,Home)</onback>
+                <onclick>SetFocus(9300)</onclick>
 
                 <scrolltime>0</scrolltime>
                 <itemgap>3</itemgap>
@@ -385,7 +384,7 @@
                 <!--BUTTON - DISPLAY - LIST WIDGETS - ON RIGHT -->
 
                 <control type="button" id="3050" description="Set Label">
-                    <visible allowhiddenfocus="true">String.IsEqual(Window.Property(groupname),mainmenu) + String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible>
+                    <visible>String.IsEqual(Window.Property(groupname),mainmenu) + String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible>
                     <width>100%</width>
                     <height>66</height>
                     <label>31121</label>
@@ -1652,6 +1651,12 @@
         </control>
         <control type="button" id="311">
             <visible allowhiddenfocus="true">false</visible>
+        </control>
+
+        <!-- Button back to button 3050 from Widgets lists -->
+        <control type="button" id="7777">
+            <visible allowhiddenfocus="true">false</visible>
+            <onfocus>SetFocus(3050)</onfocus>
         </control>
 
     </controls>
