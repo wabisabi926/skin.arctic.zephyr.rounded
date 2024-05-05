@@ -20,10 +20,11 @@
 
             <control type="grouplist" id="11">
                 <height>660</height>
-                <width>705</width>
-                <top>115</top>
-                <onright>5</onright>
+                <width>700</width>
+                <top>112</top>
+                <onright>1773</onright>
                 <usecontrolcoords>true</usecontrolcoords>
+                <pagecontrol>1773</pagecontrol>
                 <itemgap>0</itemgap>
                 <include>Animation_Scrolltime_Views_List</include>
 
@@ -35,7 +36,7 @@
                     <visible>!String.IsEqual(ListItem.DBType,set)</visible>
                 </control>
 
-    <!-- MOVIE SECTION -->
+    <!-- VIDEO SECTION -->
 
                 <!-- Trailer -->
                 <control type="radiobutton" id="102">
@@ -47,13 +48,26 @@
                     <visible>!String.IsEqual(ListItem.DBType,set)</visible>
                 </control>
 
-                <!-- Wiki -->
+    <!-- VIDEO / MUSIC SECTION -->
+
+                <!-- Wiki Music -->
+                <control type="radiobutton" id="160">
+                    <include>Def_Button_Gradient_Select</include>
+                    <label>31575</label>
+                    <selected>!Skin.HasSetting(hide.button.music.wiki)</selected>
+                    <onclick>Skin.ToggleSetting(hide.button.music.wiki)</onclick>
+                    <visible>System.AddonIsEnabled(script.wikipedia)</visible>
+                    <visible>Window.IsVisible(DialogMusicInfo.xml)</visible>
+                </control>
+
+                <!-- Wiki Video -->
                 <control type="radiobutton" id="1092">
                     <include>Def_Button_Gradient_Select</include>
                     <label>31575</label>
                     <selected>!Skin.HasSetting(hide.button.video.wiki)</selected>
                     <onclick>Skin.ToggleSetting(hide.button.video.wiki)</onclick>
                     <onclick>System.AddonIsEnabled(script.wikipedia)</onclick>
+                    <visible>System.AddonIsEnabled(script.wikipedia)</visible>
                     <visible>Window.IsVisible(DialogVideoInfo.xml)</visible>
                     <visible>!String.IsEqual(ListItem.DBType,set)</visible>
                 </control>
@@ -65,9 +79,12 @@
                     <label2>$VAR[Label_Language_Wiki_Dialog_Info]</label2>
                     <onclick>SetProperty(includesetting,Value_Wiki_Language,Home)</onclick>
                     <onclick>ActivateWindow(1248)</onclick>
-                    <visible>System.AddonIsEnabled(script.wikipedia) + !String.IsEqual(ListItem.DBType,set) + !Skin.HasSetting(hide.button.video.wiki)</visible>
+                    <visible>System.AddonIsEnabled(script.wikipedia)</visible>
+                    <visible>!String.IsEqual(ListItem.DBType,set)</visible>
+                    <visible>!Skin.HasSetting(hide.button.video.wiki)</visible>
                 </control>
 
+    <!-- VIDEO SECTION - BUTTONS -->
 
                 <!-- Cinema -->
                 <control type="radiobutton" id="109">
@@ -157,8 +174,9 @@
                 <control type="button" id="200">
                     <height>66</height>
                     <include>Def_Button_Title_Menu_Setting_Right</include>
-                    <label>$LOCALIZE[14240]</label>
+                    <label>$LOCALIZE[19033]</label>
                     <enable>false</enable>
+                    <visible>Window.IsVisible(DialogVideoInfo.xml)</visible>
                 </control>
 
                 <!-- Local only -->
@@ -179,17 +197,6 @@
                     <onclick>Skin.ToggleSetting(filter.video.animation)</onclick>
                     <visible>Window.IsVisible(DialogVideoInfo.xml)</visible>
                     <visible>!String.IsEqual(ListItem.DBType,set)</visible>
-                </control>
-
-
-                <!-- Creator -->
-                <control type="radiobutton" id="1353">
-                    <include>Def_Button_Gradient_Select</include>
-                    <label> - $LOCALIZE[31648]</label>
-                    <selected>Skin.HasSetting(show.button.video.creator)</selected>
-                    <onclick>Skin.ToggleSetting(show.button.video.creator)</onclick>
-                    <visible>Window.IsVisible(DialogVideoInfo.xml)</visible>
-                    <visible>!String.IsEqual(ListItem.DBType,set) + !Skin.HasSetting(filter.video.only.local)</visible>
                 </control>
 
                 <!-- Director -->
@@ -272,22 +279,22 @@
                     <visible>!String.IsEqual(ListItem.DBType,set)</visible>
                 </control>
 
-                <!-- Seasons -->
-                <control type="radiobutton" id="1061">
-                    <include>Def_Button_Gradient_Select</include>
-                    <label> - $LOCALIZE[33054]</label>
-                    <selected>!Skin.HasSetting(hide.button.tvshow.season)</selected>
-                    <onclick>Skin.ToggleSetting(hide.button.tvshow.season)</onclick>
-                    <visible>Window.IsVisible(DialogVideoInfo.xml)</visible>
-                    <visible>!String.IsEqual(ListItem.DBType,set)</visible>
-                </control>
-
                 <!-- Creator -->
                 <control type="radiobutton" id="1062">
                     <include>Def_Button_Gradient_Select</include>
                     <label> - $LOCALIZE[31648]</label>
                     <selected>!Skin.HasSetting(hide.button.tvshow.creator)</selected>
                     <onclick>Skin.ToggleSetting(hide.button.tvshow.creator)</onclick>
+                    <visible>Window.IsVisible(DialogVideoInfo.xml)</visible>
+                    <visible>!String.IsEqual(ListItem.DBType,set)</visible>
+                </control>
+
+                <!-- Seasons -->
+                <control type="radiobutton" id="1061">
+                    <include>Def_Button_Gradient_Select</include>
+                    <label> - $LOCALIZE[33054]</label>
+                    <selected>!Skin.HasSetting(hide.button.tvshow.season)</selected>
+                    <onclick>Skin.ToggleSetting(hide.button.tvshow.season)</onclick>
                     <visible>Window.IsVisible(DialogVideoInfo.xml)</visible>
                     <visible>!String.IsEqual(ListItem.DBType,set)</visible>
                 </control>
@@ -351,16 +358,8 @@
                     <visible>!String.IsEqual(ListItem.DBType,set)</visible>
                 </control>
 
-    <!-- MUSIC SECTION -->
+    <!-- MUSIC SECTION - BUTTONS -->
 
-
-                <control type="radiobutton" id="160">
-                    <include>Def_Button_Gradient_Select</include>
-                    <label>31575</label>
-                    <selected>!Skin.HasSetting(hide.button.music.wiki)</selected>
-                    <onclick>Skin.ToggleSetting(hide.button.music.wiki)</onclick>
-                    <visible>Window.IsVisible(DialogMusicInfo.xml) + System.AddonIsEnabled(script.wikipedia)</visible>
-                </control>
                 <control type="radiobutton" id="120">
                     <include>Def_Button_Gradient_Select</include>
                     <label>31201</label>
@@ -443,7 +442,7 @@
                     <enable>!Skin.HasSetting(hide.button.music.fanart)</enable>
                 </control>
 
-    <!-- MOVIE SECTION -->
+    <!-- VIDEO SECTION -->
 
                 <control type="button" id="1501">
                     <height>66</height>
@@ -515,7 +514,7 @@
                     <visible>Window.IsVisible(DialogMusicInfo.xml)</visible>
                 </control>
 
-    <!-- MOVIE SECTION -->
+    <!-- VIDEO SECTION -->
 
                 <!-- Discart -->
                 <control type="radiobutton" id="170">
@@ -586,16 +585,23 @@
                 </control>
             </control>
 
-            <!-- LINE -->
+            <include content="Object_Scrollbar_Dialog">
+                <param name="scrollid" value="1773"/>
+                <param name="onleft" value="11"/>
+                <param name="onright" value="5"/>
+                <param name="height" value="660"/>
+                <param name="centerright" value="362"/>
+            </include>
+
+            <!-- LINE VERTICAL -->
 
             <control type="image">
-                <right>356</right>
-                <top>115</top>
-                <bottom>19</bottom>
+                <right>362</right>
+                <top>112</top>
+                <bottom>17</bottom>
                 <width>1</width>
                 <texture colordiffuse="Black12">common/white.png</texture>
-                <visible>!Control.IsVisible(21)</visible>
-                <animation effect="fade" start="0" end="100" time="100" condition="!Control.HasFocus(1723) + !Container.Scrolling">Conditional</animation>
+                <animation effect="fade" start="0" end="100" time="100" condition="!Control.HasFocus(1773) + !Container.Scrolling">Conditional</animation>
             </control>
 
             <!-- BUTTON -->
@@ -603,7 +609,7 @@
             <control type="button" id="5">
                 <description>Manual</description>
                 <right>31</right>
-                <posy>115</posy>
+                <top>112</top>
                 <width>300</width>
                 <height>66</height>
                 <align>center</align>
