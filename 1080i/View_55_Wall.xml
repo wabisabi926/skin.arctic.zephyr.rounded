@@ -45,13 +45,26 @@
                         <animation effect="fade" start="0" end="0" delay="0" time="50" tween="cubic" easing="inout" reversible="false">Hidden</animation>
                         <control type="image">
                             <visible>Control.HasFocus(55)</visible>
-                            <top>5</top>
+                            <top>-5</top>
+                            <left>1</left>
+                            <width>888</width>
+                            <height>333</height>
+                            <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
+                            <visible>!Skin.HasSetting(global.hide.shadows)</visible>
+                            <animation type="Focus">
+                                <effect type="zoom" start="10,0,202,333" end="10,0,892,333" tween="cubic" easing="inout" delay="1000" time="400"/>
+                                <effect type="fade" start="0" end="100" tween="cubic" easing="inout" delay="200" time="150"/>
+                            </animation>
+                        </control>
+                        <control type="image">
+                            <visible>Control.HasFocus(55)</visible>
+                            <top>4</top>
                             <left>10</left>
                             <width>870</width>
-                            <height>305</height>
-                            <texture colordiffuse="Dark1" border="12">common/box.png</texture>
+                            <height>315</height>
+                            <texture colordiffuse="Panel" border="12">common/box.png</texture>
                             <animation type="Focus">
-                                <effect type="zoom" start="10,0,202,311" end="10,0,868,311" tween="cubic" easing="inout" delay="1000" time="400"/>
+                                <effect type="zoom" start="10,0,202,315" end="10,0,874,315" tween="cubic" easing="inout" delay="1000" time="400"/>
                                 <effect type="fade" start="0" end="100" tween="cubic" easing="inout" delay="200" time="150"/>
                             </animation>
                         </control>
@@ -65,13 +78,25 @@
                         <animation effect="fade" start="0" end="0" delay="0" time="50" tween="cubic" easing="inout" reversible="false">UnFocus</animation>
                         <animation effect="fade" start="0" end="0" delay="0" time="50" tween="cubic" easing="inout" reversible="false">Hidden</animation>
                         <control type="image">
-                            <top>5</top>
+                            <top>-5</top>
+                            <right>1</right>
+                            <width>888</width>
+                            <height>333</height>
+                            <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
+                            <visible>!Skin.HasSetting(global.hide.shadows)</visible>
+                            <animation type="Focus">
+                                <effect type="zoom" start="675,0,202,333" end="0,0,892,333" tween="cubic" easing="inout" delay="1000" time="400"/>
+                                <effect type="fade" start="0" end="100" delay="200" time="150" tween="cubic" easing="inout"/>
+                            </animation>
+                        </control>
+                        <control type="image">
+                            <top>4</top>
                             <right>10</right>
                             <width>870</width>
-                            <height>328</height>
-                            <texture colordiffuse="Dark1" border="12">common/box.png</texture>
+                            <height>315</height>
+                            <texture colordiffuse="Panel" border="12">common/box.png</texture>
                             <animation type="Focus">
-                                <effect type="zoom" start="675,0,202,311" end="0,0,868,311" tween="cubic" easing="inout" delay="1000" time="400"/>
+                                <effect type="zoom" start="675,0,202,315" end="0,0,874,315" tween="cubic" easing="inout" delay="1000" time="400"/>
                                 <effect type="fade" start="0" end="100" delay="200" time="150" tween="cubic" easing="inout"/>
                             </animation>
                         </control>
@@ -217,32 +242,40 @@
         </control>
     </include>
 
-    <include name="View_55_Info_Include">
+    <!-- PLOT SLIDER -->
+
+    <include name="Def_View_55_Slider_Info">
         <animation effect="fade" start="0" end="100" delay="1300" time="200" reversible="false">Focus</animation>
+
+        <!-- Title -->
         <control type="label">
             <width>610</width>
             <height>50</height>
             <font>SmallBold</font>
-            <textcolor>Light1</textcolor>
+            <textcolor>Dark1</textcolor>
             <label>$INFO[ListItem.Label]</label>
         </control>
+
+        <!-- Plot -->
         <control type="textbox">
             <top>70</top>
             <width>610</width>
             <height>150</height>
             <font>Tiny</font>
-            <textcolor>Light2</textcolor>
+            <textcolor>PanelWhite70</textcolor>
             <align>justify</align>
             <label>$INFO[ListItem.Plot]</label>
         </control>
+
+        <!-- Sub Tile -->
         <control type="label">
             <top>230</top>
             <width>610</width>
             <height>50</height>
-            <font>Tiny</font>
+            <font>InfoNetflix</font>
             <align>right</align>
-            <textcolor>Light2</textcolor>
-            <label>$VAR[View55SubLabel]</label>
+            <textcolor>PanelWhite70</textcolor>
+            <label>$VAR[Label_View_55_Slider_Sub_Title]</label>
         </control>
     </include>
 
@@ -250,7 +283,7 @@
         <control type="group">
             <left>35</left>
             <top>20</top>
-            <include>View_55_Info_Include</include>
+            <include>Def_View_55_Slider_Info</include>
         </control>
     </include>
 
@@ -258,7 +291,7 @@
         <control type="group">
             <left>242</left>
             <top>20</top>
-            <include>View_55_Info_Include</include>
+            <include>Def_View_55_Slider_Info</include>
         </control>
     </include>
 

@@ -1875,7 +1875,7 @@
 
                     <!-- SIMILAR MOVIES / TV SHOWS  -->
 
-                    <include content="Def_Layout_Dialog_Info_Video_Wall_Poster" condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)] + !String.IsEqual(ListItem.DBType,set) + !Skin.HasSetting(hide.button.video.similar)">
+                    <include content="Def_Layout_Dialog_Info_Video_Wall_Poster" condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)] + !String.IsEqual(ListItem.DBType,set) + !Skin.HasSetting(hide.button.video.similar) + !Skin.HasSetting(filter.video.only.local)">
                         <param name="arrowleft" value="-598"/>
                         <param name="arrowtop" value="342"/>
                         <param name="arrowright" value="155"/>
@@ -1967,7 +1967,6 @@
                         <param name="visi" value="String.IsEqual(Window.Property(moviecontent),4) + !Window.IsVisible(DialogContextMenu.xml)"/>
                         <param name="Animation_new" value="Animation_CastInfo2"/>
                         <param name="controlid" value="9504"/>
-                        <!-- <param name="focusposition" value="1"/> -->
                         <param name="visible.layouts" value="Control.HasFocus(9504) | Control.HasFocus(6) | Control.HasFocus(10) | Window.IsVisible(DialogBusy.xml)"/>
                         <param name="ContentToLoad" value="$VAR[Def_Content_Youtube_Video]"/>
                         <param name="onclick1" value="SetProperty(VideoYoutubeIsPlaying,$INFO[Container(9504).ListItem.FileNameAndPath],Home)"/>
