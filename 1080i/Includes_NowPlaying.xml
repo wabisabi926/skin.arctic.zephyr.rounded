@@ -179,7 +179,7 @@
                     <!-- FLAG BLACK / WHITE -->
 
                     <control type="grouplist">
-                        <visible>!Skin.HasSetting(enable.furniture.flags.colored)</visible>
+                        <!-- <visible>!Skin.HasSetting(enable.furniture.flags.colored)</visible> -->
                         <visible>VideoPlayer.Content(files) + !VideoPlayer.Content(livetv)</visible>
                         <top>55</top>
                         <left>-2</left>
@@ -207,7 +207,7 @@
                         </control>
                         <control type="image">
                             <width min="20" max="80">auto</width>
-                            <height>48</height>
+                            <height>42</height>
                             <centertop>50%</centertop>
                             <texture colordiffuse="Dark2" fallback="flags/fallback.png">$INFO[VideoPlayer.VideoAspect,flags/aspectratio/,.png]</texture>
                             <aspectratio align="center">keep</aspectratio>
@@ -215,7 +215,7 @@
                         </control>
                         <control type="image">
                             <width min="20" max="90">auto</width>
-                            <height>56</height>
+                            <height>42</height>
                             <centertop>50%</centertop>
                             <texture colordiffuse="Dark2" fallback="flags/fallback.png">$INFO[VideoPlayer.AudioCodec,flags3/audio/,.png]</texture>
                             <aspectratio align="center">keep</aspectratio>
@@ -223,7 +223,7 @@
                         </control>
                         <control type="image">
                             <width min="20" max="70">auto</width>
-                            <height>45</height>
+                            <height>42</height>
                             <centertop>50%</centertop>
                             <texture colordiffuse="Dark2" fallback="flags/fallback.png">$INFO[VideoPlayer.AudioChannels,flags/channels/,.png]</texture>
                             <aspectratio align="center">keep</aspectratio>
@@ -233,54 +233,54 @@
 
                     <!-- FLAG COLORED -->
 
-                    <control type="grouplist">
-                        <visible>Skin.HasSetting(enable.furniture.flags.colored)</visible>
-                        <visible>VideoPlayer.Content(files) + !VideoPlayer.Content(livetv)</visible>
-                        <top>55</top>
-                        <left>-12</left>
-                        <width>450</width>
-                        <height>64</height>
-                        <orientation>horizontal</orientation>
-                        <align>left</align>
-                        <itemgap>12</itemgap>
-                        <usecontrolcoords>true</usecontrolcoords>
+                    <!-- <control type="grouplist"> -->
+                        <!-- <visible>Skin.HasSetting(enable.furniture.flags.colored)</visible> -->
+                        <!-- <visible>VideoPlayer.Content(files) + !VideoPlayer.Content(livetv)</visible> -->
+                        <!-- <top>55</top> -->
+                        <!-- <left>-12</left> -->
+                        <!-- <width>450</width> -->
+                        <!-- <height>64</height> -->
+                        <!-- <orientation>horizontal</orientation> -->
+                        <!-- <align>left</align> -->
+                        <!-- <itemgap>12</itemgap> -->
+                        <!-- <usecontrolcoords>true</usecontrolcoords> -->
 
-                        <control type="image">
-                            <width min="20" max="70">auto</width>
-                            <centertop>50%</centertop>
-                            <texture fallback="flags/fallback.png">$INFO[VideoPlayer.VideoResolution,flags/color/resolution/,.png]</texture>
-                            <aspectratio align="left">keep</aspectratio>
-                            <visible>!String.IsEmpty(VideoPlayer.VideoResolution)</visible>
-                        </control>
-                        <control type="image">
-                            <width min="20" max="80">auto</width>
-                            <centertop>50%</centertop>
-                            <texture fallback="flags/fallback.png">$INFO[VideoPlayer.VideoCodec,flags/color/source/,.png]</texture>
-                            <aspectratio align="center">keep</aspectratio>
-                            <visible>!String.IsEmpty(VideoPlayer.VideoCodec)</visible>
-                        </control>
-                        <control type="image">
-                            <width min="20" max="80">auto</width>
-                            <centertop>50%</centertop>
-                            <texture fallback="flags/fallback.png">$INFO[VideoPlayer.VideoAspect,flags/color/aspectratio/,.png]</texture>
-                            <aspectratio align="center">keep</aspectratio>
-                            <visible>!String.IsEmpty(VideoPlayer.VideoAspect)</visible>
-                        </control>
-                        <control type="image">
-                            <width min="20" max="98">auto</width>
-                            <centertop>50%</centertop>
-                            <texture fallback="flags/fallback.png">$INFO[VideoPlayer.AudioCodec,flags/color/audio/,.png]</texture>
-                            <aspectratio align="center">keep</aspectratio>
-                            <visible>!String.IsEmpty(VideoPlayer.AudioCodec)</visible>
-                        </control>
-                        <control type="image">
-                            <width min="20" max="70">auto</width>
-                            <centertop>50%</centertop>
-                            <texture fallback="flags/fallback.png">$INFO[VideoPlayer.AudioChannels,flags/color/channels/,.png]</texture>
-                            <aspectratio align="center">keep</aspectratio>
-                            <visible>!String.IsEmpty(VideoPlayer.AudioChannels)</visible>
-                        </control>
-                    </control>
+                        <!-- <control type="image"> -->
+                            <!-- <width min="20" max="70">auto</width> -->
+                            <!-- <centertop>50%</centertop> -->
+                            <!-- <texture fallback="flags/fallback.png">$INFO[VideoPlayer.VideoResolution,flags/color/resolution/,.png]</texture> -->
+                            <!-- <aspectratio align="left">keep</aspectratio> -->
+                            <!-- <visible>!String.IsEmpty(VideoPlayer.VideoResolution)</visible> -->
+                        <!-- </control> -->
+                        <!-- <control type="image"> -->
+                            <!-- <width min="20" max="80">auto</width> -->
+                            <!-- <centertop>50%</centertop> -->
+                            <!-- <texture fallback="flags/fallback.png">$INFO[VideoPlayer.VideoCodec,flags/color/source/,.png]</texture> -->
+                            <!-- <aspectratio align="center">keep</aspectratio> -->
+                            <!-- <visible>!String.IsEmpty(VideoPlayer.VideoCodec)</visible> -->
+                        <!-- </control> -->
+                        <!-- <control type="image"> -->
+                            <!-- <width min="20" max="80">auto</width> -->
+                            <!-- <centertop>50%</centertop> -->
+                            <!-- <texture fallback="flags/fallback.png">$INFO[VideoPlayer.VideoAspect,flags/color/aspectratio/,.png]</texture> -->
+                            <!-- <aspectratio align="center">keep</aspectratio> -->
+                            <!-- <visible>!String.IsEmpty(VideoPlayer.VideoAspect)</visible> -->
+                        <!-- </control> -->
+                        <!-- <control type="image"> -->
+                            <!-- <width min="20" max="98">auto</width> -->
+                            <!-- <centertop>50%</centertop> -->
+                            <!-- <texture fallback="flags/fallback.png">$INFO[VideoPlayer.AudioCodec,flags/color/audio/,.png]</texture> -->
+                            <!-- <aspectratio align="center">keep</aspectratio> -->
+                            <!-- <visible>!String.IsEmpty(VideoPlayer.AudioCodec)</visible> -->
+                        <!-- </control> -->
+                        <!-- <control type="image"> -->
+                            <!-- <width min="20" max="70">auto</width> -->
+                            <!-- <centertop>50%</centertop> -->
+                            <!-- <texture fallback="flags/fallback.png">$INFO[VideoPlayer.AudioChannels,flags/color/channels/,.png]</texture> -->
+                            <!-- <aspectratio align="center">keep</aspectratio> -->
+                            <!-- <visible>!String.IsEmpty(VideoPlayer.AudioChannels)</visible> -->
+                        <!-- </control> -->
+                    <!-- </control> -->
 
                     <control type="label">
                         <top>55</top>
