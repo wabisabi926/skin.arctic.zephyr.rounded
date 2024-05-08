@@ -487,12 +487,11 @@
                     <pagecontrol>1679</pagecontrol>
                     <viewtype label="535">list</viewtype>
                     <include>Animation_Scrolltime_Views_List</include>
-
-                    <itemlayout width="ListSquareW" height="64">
-                        <include>50_item_layout_event</include>
+                    <itemlayout width="ListSquareW" height="91.4">
+                        <include>50_item_layout_event_info</include>
                     </itemlayout>
-                    <focusedlayout width="ListSquareW" height="64">
-                        <include>50_focus_layout_event</include>
+                    <focusedlayout width="ListSquareW" height="91.4">
+                        <include>50_focus_layout_event_info</include>
                     </focusedlayout>
                 </control>
                 <control type="scrollbar" id="1679">
@@ -3255,53 +3254,53 @@
 
     <!-- ITEM - VIEW 50 - EVENTS -->
 
-    <include name="50_item_layout_event">
+    <include name="50_item_layout_event_info">
 
         <!-- Icon -->
         <control type="image">
             <left>6</left>
-            <centertop>32</centertop>
-            <width>54</width>
-            <height>54</height>
+            <centertop>45.7</centertop>
+            <width>79.4</width>
+            <height>79.4</height>
             <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
-            <texture diffuse="diffuse/listicon60.png" background="true">$VAR[Image_Poster]</texture>
-            <visible>!ListItem.IsParentFolder + !String.StartsWith(ListItem.Icon,Default)</visible>
+            <texture diffuse="diffuse/listicon80.png" background="true">$INFO[ListItem.Icon]</texture>
+            <visible>!String.StartsWith(ListItem.Icon,Default)</visible>
         </control>
 
         <!-- Icon black -->
         <control type="image">
             <left>6</left>
-            <centertop>32</centertop>
-            <width>54</width>
-            <height>54</height>
+            <centertop>45.7</centertop>
+            <width>79.4</width>
+            <height>79.4</height>
             <texture border="12" colordiffuse="Dark4">common/box.png</texture>
             <visible>String.StartsWith(ListItem.Icon,Default)</visible>
         </control>
         <control type="image">
             <left>6</left>
-            <centertop>32</centertop>
-            <width>54</width>
-            <height>54</height>
+            <centertop>45.7</centertop>
+            <width>79.4</width>
+            <height>79.4</height>
             <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
             <texture colordiffuse="Dark1">$INFO[ListItem.Icon]</texture>
             <visible>String.StartsWith(ListItem.Icon,Default)</visible>
         </control>
 
-
         <!-- Label -->
         <control type="label">
-            <left>100</left>
+            <top>-5</top>
+            <left>120</left>
             <width max="700">auto</width>
             <aligny>center</aligny>
             <height>64</height>
             <font>InfoNetflix</font>
+            <label>$INFO[ListItem.Label]</label>
             <textcolor>Dark1</textcolor>
             <selectedcolor>Dark1</selectedcolor>
-            <label>$INFO[ListItem.Label]</label>
         </control>
 
-        <!-- Label -->
         <control type="label">
+            <top>-5</top>
             <right>30</right>
             <width>500</width>
             <aligny>center</aligny>
@@ -3312,9 +3311,22 @@
             <selectedcolor>Dark1</selectedcolor>
             <label>$INFO[ListItem.Label2]</label>
         </control>
+
+        <!-- second line - Label -->
+        <control type="label">
+            <top>28</top>
+            <left>120</left>
+            <width max="800">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>Small24</font>
+            <label>$INFO[ListItem.Property(Event.Description)]</label>
+            <textcolor>Dark2</textcolor>
+            <selectedcolor>Dark2</selectedcolor>
+        </control>
     </include>
 
-    <include name="50_focus_layout_event">
+    <include name="50_focus_layout_event_info">
         <control type="image">
             <width>100%</width>
             <height>100%</height>
@@ -3325,28 +3337,28 @@
         <!-- Icon -->
         <control type="image">
             <left>6</left>
-            <centertop>32</centertop>
-            <width>54</width>
-            <height>54</height>
+            <centertop>45.7</centertop>
+            <width>79.4</width>
+            <height>79.4</height>
             <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
-            <texture diffuse="diffuse/listicon60.png" background="true">$VAR[Image_Poster]</texture>
-            <visible>!ListItem.IsParentFolder + !String.StartsWith(ListItem.Icon,Default)</visible>
+            <texture diffuse="diffuse/listicon80.png" background="true">$INFO[ListItem.Icon]</texture>
+            <visible>!String.StartsWith(ListItem.Icon,Default)</visible>
         </control>
 
         <!-- Icon black -->
         <control type="image">
             <left>6</left>
-            <centertop>32</centertop>
-            <width>54</width>
-            <height>54</height>
+            <centertop>45.7</centertop>
+            <width>79.4</width>
+            <height>79.4</height>
             <texture border="12" colordiffuse="Dark4">common/box.png</texture>
             <visible>String.StartsWith(ListItem.Icon,Default)</visible>
         </control>
         <control type="image">
             <left>6</left>
-            <centertop>32</centertop>
-            <width>54</width>
-            <height>54</height>
+            <centertop>45.7</centertop>
+            <width>79.4</width>
+            <height>79.4</height>
             <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
             <texture colordiffuse="Selected">$INFO[ListItem.Icon]</texture>
             <visible>String.StartsWith(ListItem.Icon,Default)</visible>
@@ -3354,18 +3366,19 @@
 
         <!-- Label -->
         <control type="label">
-            <left>100</left>
+            <top>-5</top>
+            <left>120</left>
             <width max="700">auto</width>
             <aligny>center</aligny>
             <height>64</height>
             <font>InfoNetflix</font>
+            <label>$INFO[ListItem.Label]</label>
             <textcolor>Selected</textcolor>
             <selectedcolor>Selected</selectedcolor>
-            <label>$INFO[ListItem.Label]</label>
         </control>
 
-        <!-- Label -->
         <control type="label">
+            <top>-5</top>
             <right>30</right>
             <width>500</width>
             <aligny>center</aligny>
@@ -3375,6 +3388,19 @@
             <textcolor>Selected</textcolor>
             <selectedcolor>Selected</selectedcolor>
             <label>$INFO[ListItem.Label2]</label>
+        </control>
+
+        <!-- second line - Label -->
+        <control type="label">
+            <top>28</top>
+            <left>120</left>
+            <width max="800">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>Small24</font>
+            <label>$INFO[ListItem.Property(Event.Description)]</label>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
         </control>
     </include>
 
