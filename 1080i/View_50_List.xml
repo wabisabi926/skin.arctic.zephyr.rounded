@@ -181,9 +181,9 @@
                 <fadetime>PosterFanartFadetime</fadetime>
                 <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
                 <texture diffuse="diffuse/sideposter_square.png" background="true">$VAR[Image_Square_50_List]</texture>
-                <visible>Container.Content(addons) | Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | $EXP[IsAnPlugin] | Container.Content(countries) | Container.Content(genres) | Container.Content(years) | Container.Content(tags) | Container.Content(studios) | Container.Content(directors) | Container.Content(actors) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(files)</visible>
+                <visible>Container.Content(addons) | Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | $EXP[IsAnPlugin] | Container.Content(countries) | Container.Content(genres) | Container.Content(years) | Container.Content(tags) | Container.Content(studios) | Container.Content(directors) | Container.Content(actors) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(files) | Window.IsVisible(EventLog.xml)</visible>
 
-                <visible>!String.StartsWith(ListItem.Icon,Default) | [String.StartsWith(ListItem.Icon,Default) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(countries) + !String.IsEmpty(Skin.String(country.logos.path))] | [Container.Content(genres) + !String.IsEmpty(Skin.String(genre.icons.path))] | [Container.Content(studios) + !String.IsEmpty(Skin.String(studio.logos.path))]]]</visible>
+                <visible>!String.StartsWith(ListItem.Icon,Default) | [String.StartsWith(ListItem.Icon,Default) + [Container.Content(movies) | Window.IsVisible(EventLog.xml) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(countries) + !String.IsEmpty(Skin.String(country.logos.path))] | [Container.Content(genres) + !String.IsEmpty(Skin.String(genre.icons.path))] | [Container.Content(studios) + !String.IsEmpty(Skin.String(studio.logos.path))]]]</visible>
                 <visible>!$EXP[IsYoutube]</visible>
                 <visible>!ListItem.IsParentFolder</visible>
             </control>
@@ -417,7 +417,7 @@
         </control>
     </include>
 
-    <!-- LIST - VIEW 50 - PICS - PROGRAMS - EVENTLOG -->
+    <!-- LIST - VIEW 50 - PICS - PROGRAMS -->
 
     <include name="View_50_List_Square">
         <description>List View (id=50)</description>
@@ -449,6 +449,50 @@
                     </itemlayout>
                     <focusedlayout width="ListSquareW" height="64">
                         <include>50_57_focus_layout_music</include>
+                    </focusedlayout>
+                </control>
+                <control type="scrollbar" id="1679">
+                    <include content="Object_Scrollbar_Vertical">
+                        <param name="scrollid" value="1679"/>
+                    </include>
+                </control>
+            </control>
+            <include>View_50_SidePoster_Square</include>
+        </control>
+    </include>
+
+    <!-- LIST - VIEW 50 - EVENTLOG -->
+
+    <include name="View_50_List_Square_Event">
+        <description>List View (id=50)</description>
+        <control type="group">
+            <visible>Control.IsVisible(50)</visible>
+
+            <include condition="!Skin.HasSetting(furniture.weather.home.only) + !Skin.HasSetting(show.furniture.footer)">Furniture_Footer_Clock_Right</include>
+            <include>Animation_Common</include>
+            <include>View_Slide_For_JumpBar</include>
+
+            <control type="group">
+                <control type="panel" id="50">
+                    <visible>$EXP[Exp_View_50]</visible>
+
+                    <top>PosterPad</top>
+                    <height>PosterH</height>
+                    <left>ListSquareX</left>
+                    <right>SidePad</right>
+                    <onleft condition="!Skin.HasSetting(global.kioskmode)">9000</onleft>
+                    <onright>1679</onright>
+                    <onup>50</onup>
+                    <ondown>50</ondown>
+                    <pagecontrol>1679</pagecontrol>
+                    <viewtype label="535">list</viewtype>
+                    <include>Animation_Scrolltime_Views_List</include>
+
+                    <itemlayout width="ListSquareW" height="64">
+                        <include>50_item_layout_event</include>
+                    </itemlayout>
+                    <focusedlayout width="ListSquareW" height="64">
+                        <include>50_focus_layout_event</include>
                     </focusedlayout>
                 </control>
                 <control type="scrollbar" id="1679">
@@ -3206,6 +3250,131 @@
             <textcolor>Selected</textcolor>
             <selectedcolor>Selected</selectedcolor>
             <label>$VAR[50ListFolderPathFile]</label>
+        </control>
+    </include>
+
+    <!-- ITEM - VIEW 50 - EVENTS -->
+
+    <include name="50_item_layout_event">
+
+        <!-- Icon -->
+        <control type="image">
+            <left>6</left>
+            <centertop>32</centertop>
+            <width>54</width>
+            <height>54</height>
+            <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+            <texture diffuse="diffuse/listicon60.png" background="true">$VAR[Image_Poster]</texture>
+            <visible>!ListItem.IsParentFolder + !String.StartsWith(ListItem.Icon,Default)</visible>
+        </control>
+
+        <!-- Icon black -->
+        <control type="image">
+            <left>6</left>
+            <centertop>32</centertop>
+            <width>54</width>
+            <height>54</height>
+            <texture border="12" colordiffuse="Dark4">common/box.png</texture>
+            <visible>String.StartsWith(ListItem.Icon,Default)</visible>
+        </control>
+        <control type="image">
+            <left>6</left>
+            <centertop>32</centertop>
+            <width>54</width>
+            <height>54</height>
+            <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+            <texture colordiffuse="Dark1">$INFO[ListItem.Icon]</texture>
+            <visible>String.StartsWith(ListItem.Icon,Default)</visible>
+        </control>
+
+
+        <!-- Label -->
+        <control type="label">
+            <left>100</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>InfoNetflix</font>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+            <label>$INFO[ListItem.Label]</label>
+        </control>
+
+        <!-- Label -->
+        <control type="label">
+            <right>30</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+            <label>$INFO[ListItem.Label2]</label>
+        </control>
+    </include>
+
+    <include name="50_focus_layout_event">
+        <control type="image">
+            <width>100%</width>
+            <height>100%</height>
+            <texture border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png</texture>
+            <include>View_List_Scroll_Anim</include>
+        </control>
+
+        <!-- Icon -->
+        <control type="image">
+            <left>6</left>
+            <centertop>32</centertop>
+            <width>54</width>
+            <height>54</height>
+            <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+            <texture diffuse="diffuse/listicon60.png" background="true">$VAR[Image_Poster]</texture>
+            <visible>!ListItem.IsParentFolder + !String.StartsWith(ListItem.Icon,Default)</visible>
+        </control>
+
+        <!-- Icon black -->
+        <control type="image">
+            <left>6</left>
+            <centertop>32</centertop>
+            <width>54</width>
+            <height>54</height>
+            <texture border="12" colordiffuse="Dark4">common/box.png</texture>
+            <visible>String.StartsWith(ListItem.Icon,Default)</visible>
+        </control>
+        <control type="image">
+            <left>6</left>
+            <centertop>32</centertop>
+            <width>54</width>
+            <height>54</height>
+            <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+            <texture colordiffuse="Selected">$INFO[ListItem.Icon]</texture>
+            <visible>String.StartsWith(ListItem.Icon,Default)</visible>
+        </control>
+
+        <!-- Label -->
+        <control type="label">
+            <left>100</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>InfoNetflix</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$INFO[ListItem.Label]</label>
+        </control>
+
+        <!-- Label -->
+        <control type="label">
+            <right>30</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$INFO[ListItem.Label2]</label>
         </control>
     </include>
 

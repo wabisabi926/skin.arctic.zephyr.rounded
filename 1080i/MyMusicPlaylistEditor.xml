@@ -19,44 +19,21 @@
         </control>
         <control type="group">
             <include>Animation_Common</include>
+
+            <!-- LEFT PANEL -->
+
             <control type="group">
-                <description>Left panel</description>
-                <left>SidePad</left>
-                <top>PosterPad</top>
-                <height>598</height>
-                <width>865</width>
-                <control type="image">
-                    <left>-9</left>
-                    <top>-9</top>
-                    <right>-9</right>
-                    <bottom>-9</bottom>
-                    <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-                </control>
-                <control type="image">
-                    <width>100%</width>
-                    <height>100%</height>
-                    <texture border="12" colordiffuse="Panel">common/box.png</texture>
-                </control>
+                <include content="Def_Dialog_Settings"><param name="width" value="850" /></include>
+
+                <!-- HEADER -->
+
                 <control type="label">
-                    <description>Header Label</description>
-                    <top>15</top>
-                    <left>30</left>
-                    <right>30</right>
-                    <align>left</align>
-                    <include>FontTop</include>
-                    <textcolor>Dark2</textcolor>
+                    <include>Def_Dialog_Header_Title</include>
                     <label>$LOCALIZE[2]$INFO[Control.GetLabel(12), - ,]</label>
                 </control>
-                <control type="image">
-                    <top>85</top>
-                    <left>30</left>
-                    <right>30</right>
-                    <height>1</height>
-                    <bottom>10</bottom>
-                    <colordiffuse>Black12</colordiffuse>
-                    <texture>common/white.png</texture>
-                </control>
+                <include>Def_Dialog_Header_Logo</include>
+                <include>Def_Dialog_Header_Line</include>
+
                 <include content="Object_Scrollbar_Filemanager">
                     <param name="scrollid" value="1824"/>
                     <param name="onleft" value="50"/>
@@ -68,6 +45,7 @@
                     <param name="onright" value="9000"/>
                     <param name="left" value="1770"/>
                 </include>
+
                 <control type="list" id="50">
                     <description>Left File List</description>
                     <left>0</left>
@@ -79,6 +57,8 @@
                     <ondown>50</ondown>
                     <onright>1824</onright>
                     <pagecontrol>1824</pagecontrol>
+                    <include>Animation_Scrolltime_Views_List</include>
+
                     <itemlayout height="69" width="865">
                         <control type="label">
                             <left>30</left>
@@ -121,44 +101,19 @@
                     </focusedlayout>
                 </control>
             </control>
+
+            <!-- RIGHT PANEL -->
+
             <control type="group">
-                <description>Right panel</description>
-                <right>SidePad</right>
-                <top>PosterPad</top>
-                <height>598</height>
-                <width>870</width>
-                <control type="image">
-                    <left>-9</left>
-                    <top>-9</top>
-                    <right>-9</right>
-                    <bottom>-9</bottom>
-                    <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-                </control>
-                <control type="image">
-                    <width>100%</width>
-                    <height>100%</height>
-                    <texture border="12" colordiffuse="Panel">common/box.png</texture>
-                </control>
-                <control type="label" id="102">
-                    <description>Header Label</description>
-                    <top>15</top>
-                    <left>30</left>
-                    <right>30</right>
-                    <align>left</align>
-                    <include>FontTop</include>
-                    <textcolor>Dark2</textcolor>
+                <include content="Def_Dialog_Settings"><param name="left" value="990" /><param name="width" value="850" /></include>
+
+                <control type="label">
+                    <include>Def_Dialog_Header_Title</include>
                     <label>$LOCALIZE[559]$INFO[Control.GetLabel(101), - ,]</label>
                 </control>
-                <control type="image">
-                    <top>85</top>
-                    <left>30</left>
-                    <right>30</right>
-                    <height>1</height>
-                    <bottom>10</bottom>
-                    <colordiffuse>Black12</colordiffuse>
-                    <texture>common/white.png</texture>
-                </control>
+                <include>Def_Dialog_Header_Logo</include>
+                <include>Def_Dialog_Header_Line</include>
+
                 <control type="list" id="100">
                     <description>Left File List</description>
                     <left>0</left>
@@ -170,6 +125,8 @@
                     <onup>100</onup>
                     <ondown>100</ondown>
                     <pagecontrol>1825</pagecontrol>
+                    <include>Animation_Scrolltime_Views_List</include>
+
                     <itemlayout height="69" width="870">
                         <control type="label">
                             <left>30</left>
@@ -213,6 +170,9 @@
                 </control>
             </control>
         </control>
+
+        <!-- CONTEXT MENU -->
+
         <control type="group">
             <include>Animation_FadeIn</include>
             <include>Animation_FadeOut</include>
@@ -220,54 +180,23 @@
             <include>Background_Overlay</include>
         </control>
 
-
         <control type="group">
-            <height>340</height>
-            <include>Def_View_ContextMenu_Background</include>
-            <control type="group">
-                <control type="image">
-                    <description>arrow image</description>
-                    <centerleft>50%</centerleft>
-                    <top>-16</top>
-                    <include>arrowdimensions</include>
-                    <texture colordiffuse="White70" flipy="true">common/arrow-small.png</texture>
-                </control>
-                <control type="image">
-                    <description>arrow image</description>
-                    <centerleft>50%</centerleft>
-                    <top>340</top>
-                    <include>arrowdimensions</include>
-                    <texture colordiffuse="White70" flipy="false">common/arrow-small.png</texture>
-                </control>
-            </control>
-            <control type="group">
-                <left>22</left>
-                <top>22</top>
-                <control type="label">
-                    <description>Header Label</description>
-                    <left>70</left>
-                    <width>1000</width>
-                    <top>0</top>
-                    <include>FontTop</include>
-                    <textcolor>Dark2</textcolor>
-                    <label>33063</label>
-                </control>
-                <include>Def_Dialog_Header_Logo</include>
+            <include content="Def_View_ContextMenu_Background"><param name="height" value="340" /></include>
+            <include content="Def_View_ContextMenu_Arrows"><param name="arrow_bottom" value="350" /></include>
 
-                <!-- LINES -->
-                <control type="image">
-                    <top>70</top>
-                    <left>17</left>
-                    <width>385</width>
-                    <height>1</height>
-                    <bottom>10</bottom>
-                    <colordiffuse>Black12</colordiffuse>
-                    <texture>common/white.png</texture>
-                </control>
+            <control type="label">
+                <include>Def_Dialog_Header_Title</include>
+                <label>$LOCALIZE[33063]</label>
             </control>
+            <include>Def_Dialog_Header_Logo</include>
+            <include>Def_Dialog_Header_Line</include>
+
             <control type="grouplist" id="9000">
-                <include>Def_View_ContextMenu_GroupList</include>
-                <top>110</top>
+                <top>112</top>
+                <usecontrolcoords>true</usecontrolcoords>
+                <include content="Def_View_ContextMenu_GroupList"><param name="height" value="350" /></include>
+                <include>Animation_Scrolltime_Views_List</include>
+
                 <control type="button" id="6">
                     <align>left</align>
                     <label>21478</label>

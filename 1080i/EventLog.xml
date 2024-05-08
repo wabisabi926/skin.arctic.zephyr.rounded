@@ -2,35 +2,58 @@
 <window type="dialog">
     <defaultcontrol always="true">50</defaultcontrol>
     <views>50</views>
+    <menucontrol>9000</menucontrol>
+
+    <onload>RunScript(script.skinvariables,action=buildviews)</onload>
+
     <controls>
+        <include condition="!Skin.HasSetting(global.showvideo)">Hidden_Video_Window</include>
         <include>Background_Global</include>
-        <include>View_50_List_Square</include>
         <include>Furniture_Header</include>
         <include>Furniture_Header_Busy</include>
         <include>Furniture_Header_NowPlaying</include>
-        <include>Furniture_Footer_Clock_Right</include>
+        <include condition="Skin.HasSetting(show.furniture.footer)">Furniture_Footer</include>
+        <!-- <include>Furniture_Footer_Clock_Right</include> -->
         <include>Furniture_Header_Clock_Right</include>
+
+        <include condition="$EXP[Exp_View_50_Include]">View_50_List_Square_Event</include>
+
+        <!-- CONTEXT MENU -->
+
         <control type="group">
             <include>Animation_FadeIn</include>
             <include>Animation_FadeOut</include>
             <visible>ControlGroup(9000).HasFocus()</visible>
             <include>Background_Overlay</include>
         </control>
+
         <control type="group">
-            <height>242</height>
-            <include>Def_View_ContextMenu_Background</include>
+            <include content="Def_View_ContextMenu_Background"><param name="height" value="340" /></include>
+            <include content="Def_View_ContextMenu_Arrows"><param name="arrow_bottom" value="350" /></include>
+
+            <control type="label">
+                <include>Def_Dialog_Header_Title</include>
+                <label>$LOCALIZE[33063]</label>
+            </control>
+            <include>Def_Dialog_Header_Logo</include>
+            <include>Def_Dialog_Header_Line</include>
+
             <control type="grouplist" id="9000">
-                <include>Def_View_ContextMenu_GroupList</include>
+                <top>112</top>
+                <usecontrolcoords>true</usecontrolcoords>
+                <include content="Def_View_ContextMenu_GroupList"><param name="height" value="350" /></include>
+                <include>Animation_Scrolltime_Views_List</include>
+
                 <control type="button" id="21">
-                    <include>Def_Button_Context</include>
+                    <include>Def_Button_Gradient_Context</include>
                     <align>left</align>
                 </control>
                 <control type="radiobutton" id="22">
-                    <include>Def_Button_Context</include>
+                    <include>Def_Button_Gradient_Context</include>
                     <align>left</align>
                 </control>
                 <control type="button" id="20">
-                    <include>Def_Button_Context</include>
+                    <include>Def_Button_Gradient_Context</include>
                     <align>left</align>
                     <label>192</label>
                 </control>
