@@ -1091,6 +1091,9 @@
                     <bottom>10</bottom>
                     <texture colordiffuse="Fallback" border="12" background="true">common/box.png</texture>
                </control>
+
+                <!-- Thumb - Actors -->
+
                <control type="image">
                     <left>10</left>
                     <top>10</top>
@@ -1105,21 +1108,13 @@
                     <top>10</top>
                     <right>30</right>
                     <bottom>10</bottom>
-                    <aspectratio scalediffuse="false">scale</aspectratio>
-                    <texture diffuse="diffuse/wall.png" background="true" fallback="$PARAM[fallbackpicture]" colordiffuse="Dark2">$INFO[Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Thumb]</texture>
+                    <aspectratio scalediffuse="false">keep</aspectratio>
+                    <texture diffuse="diffuse/wall.png" colordiffuse="Dark1" background="true" fallback="$PARAM[fallbackpicture]">$INFO[Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Thumb]</texture>
                     <visible>$PARAM[thumb] + String.IsEmpty(Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Thumb)</visible>
-                    <visible>String.IsEqual($PARAM[fallbackpicture],DefaultActor.png)</visible>
                </control>
-               <control type="image">
-                    <left>10</left>
-                    <top>10</top>
-                    <right>30</right>
-                    <bottom>10</bottom>
-                    <aspectratio scalediffuse="false">scale</aspectratio>
-                    <texture diffuse="diffuse/wall.png" background="true" fallback="$PARAM[fallbackpicture]">$INFO[Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Thumb]</texture>
-                    <visible>$PARAM[thumb] + String.IsEmpty(Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Thumb)</visible>
-                    <visible>!String.IsEqual($PARAM[fallbackpicture],DefaultActor.png)</visible>
-               </control>
+
+                <!-- Poster - Movies / TvShows -->
+
                <control type="image">
                     <left>10</left>
                     <top>10</top>
@@ -1127,18 +1122,19 @@
                     <bottom>10</bottom>
                     <aspectratio scalediffuse="false">scale</aspectratio>
                     <texture diffuse="diffuse/wall.png" background="true" fallback="$PARAM[fallbackpicture]">$INFO[Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Art(poster)]</texture>
-                    <visible>$PARAM[poster] + !String.IsEmpty(Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Art(poster))</visible>
+                    <visible>$PARAM[poster] + [!String.IsEmpty(Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Art(poster)) | !Skin.HasSetting(filter.video.only.local)]</visible>
                </control>
                <control type="image">
                     <left>10</left>
                     <top>10</top>
                     <right>30</right>
                     <bottom>10</bottom>
-                    <aspectratio scalediffuse="false">scale</aspectratio>
-                    <texture diffuse="diffuse/wall.png" background="true" fallback="$PARAM[fallbackpicture]">$INFO[Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Icon]</texture>
-                    <visible>$PARAM[poster] + String.IsEmpty(Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Art(poster))</visible>
+                    <aspectratio scalediffuse="false">keep</aspectratio>
+                    <texture diffuse="diffuse/wall.png" colordiffuse="Dark1" background="true" fallback="$PARAM[fallbackpicture]">$INFO[Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Icon]</texture>
+                    <visible>$PARAM[poster] + String.IsEmpty(Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Art(poster)) + Skin.HasSetting(filter.video.only.local)</visible>
                </control>
             </control>
+
             <control type="group">
                <visible>$PARAM[aspectbox]</visible>
                <visible>!Container($PARAM[controlid]).OnNext + !Container($PARAM[controlid]).OnPrevious + !ListItem.IsParentFolder</visible>
