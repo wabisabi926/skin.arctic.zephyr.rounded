@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window type="dialog" id="1202">
     <defaultcontrol always="true">9300</defaultcontrol>
-    <!-- <onload>SetFocus(3100)</onload> -->
+
+    <!-- <onload condition="String.IsEqual(Window(Home).Property(colorfilter),1)">AlarmClock(SkinColor,Control.SetFocus(9300),00:00,silent)</onload> -->
+
+    <onload condition="String.IsEqual(Window(Home).Property(colorfilter),1)">SetProperty(colorstring,$INFO[Skin.String(ColorHighlight.name)],Home)</onload>
+    <onload condition="String.IsEqual(Window(Home).Property(colorfilter),1)">SetProperty(colordesc,ColorHighlight.name,Home)</onload>
+    <onload condition="String.IsEqual(Window(Home).Property(colorfilter),1)">SetProperty(gradient,ColorHighlight,Home)</onload>
+
+    <onload condition="String.IsEqual(Window(Home).Property(colorfilter),2)">SetProperty(gradient,IndicatorColorBackgroundWatched,Home)</onload>
+    <onload condition="String.IsEqual(Window(Home).Property(colorfilter),2)">SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundWatched.name)],Home)</onload>
+    <onload condition="String.IsEqual(Window(Home).Property(colorfilter),2)">SetProperty(colordesc,IndicatorColorBackgroundWatched.name,Home)</onload>
+
+    <onload condition="String.IsEqual(Window(Home).Property(colorfilter),3)">SetProperty(gradient,KodiRatingStarColor,Home)</onload>
+    <onload condition="String.IsEqual(Window(Home).Property(colorfilter),3)">SetProperty(colorstring,$INFO[Skin.String(KodiRatingStarColor.name)],Home)</onload>
+    <onload condition="String.IsEqual(Window(Home).Property(colorfilter),3)">SetProperty(colordesc,KodiRatingStarColor.name,Home)</onload>
+
+    <!-- <onload>AlarmClock(SkinColor,Control.SetFocus(9300),00:00,silent)</onload> -->
+
+    <onload>9300</onload>
 
     <!-- <onload condition="String.IsEmpty(Window(Home).Property(gradient))">SetProperty(gradient,ColorFocus,Home)</onload> -->
 
@@ -76,7 +93,8 @@
                     <onclick condition="String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundLabel)">Skin.SetString(IndicatorColorBackgroundLabel.name,$INFO[ListItem.Label])</onclick>
                     <onclick condition="String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundIsPlayingIcon)">Skin.SetString(IndicatorColorBackgroundIsPlayingicon.name,$INFO[ListItem.Label])</onclick>
 
-                    <onclick condition="String.IsEqual(Window(Home).Property(gradient),ColorHighlight)">SetFocus(90051)</onclick>
+                    <onclick>SetProperty(colorstring,$INFO[Container(3000).ListItem.Label2],Home)</onclick>
+                    <onclick>Control.SetFocus(9300)</onclick>
 
                     <include>Action_BuildTextures_Onclick_Reload_1202</include>
 
@@ -170,7 +188,7 @@
                 <!-- </include> -->
             </control>
 
-            <!-- LIST LABEL COLOR -->
+            <!-- LIST LABEL COLOR - LEFT -->
 
             <control type="grouplist" id="9300">
                 <top>105</top>
@@ -291,90 +309,6 @@
 
                 <!-- MEDIA FLAG STATUS -->
 
-                <!-- is playing -->
-                <control type="radiobutton" id="9111" description="Netflix preview window">
-                    <visible>!String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundIsPlaying)</visible>
-                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
-                    <width>600</width>
-                    <textoffsetx>30</textoffsetx>
-                    <radioposx>490</radioposx>
-                    <include>Def_Button_Settings_Gradient</include>
-                    <label>$LOCALIZE[31533]</label>
-                    <selected>false</selected>
-                    <onclick>SetProperty(gradient,IndicatorColorBackgroundIsPlaying,Home)</onclick>
-                    <onclick>SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundIsPlaying.name)],Home)</onclick>
-                    <onclick>SetProperty(colordesc,IndicatorColorBackgroundIsPlaying.name,Home)</onclick>
-                </control>
-                <control type="radiobutton" id="9112" description="Netflix preview window">
-                    <visible>String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundIsPlaying)</visible>
-                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
-                    <width>600</width>
-                    <textoffsetx>30</textoffsetx>
-                    <radioposx>490</radioposx>
-                    <include>Def_Button_Settings_Gradient</include>
-                    <label>$LOCALIZE[31533]</label>
-                    <selected>true</selected>
-                    <onclick>SetProperty(gradient,IndicatorColorBackgroundIsPlaying,Home)</onclick>
-                    <onclick>SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundIsPlaying.name)],Home)</onclick>
-                    <onclick>SetProperty(colordesc,IndicatorColorBackgroundIsPlaying.name,Home)</onclick>
-                </control>
-
-                <!-- is resumable -->
-                <control type="radiobutton" id="9121" description="Netflix preview window">
-                    <visible>!String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundInProgress)</visible>
-                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
-                    <width>600</width>
-                    <textoffsetx>30</textoffsetx>
-                    <radioposx>490</radioposx>
-                    <include>Def_Button_Settings_Gradient</include>
-                    <label>$LOCALIZE[575]</label>
-                    <selected>false</selected>
-                    <onclick>SetProperty(gradient,IndicatorColorBackgroundInProgress,Home)</onclick>
-                    <onclick>SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundInProgress.name)],Home)</onclick>
-                    <onclick>SetProperty(colordesc,IndicatorColorBackgroundInProgress.name,Home)</onclick>
-                </control>
-                <control type="radiobutton" id="9122" description="Netflix preview window">
-                    <visible>String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundInProgress)</visible>
-                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
-                    <width>600</width>
-                    <textoffsetx>30</textoffsetx>
-                    <radioposx>490</radioposx>
-                    <include>Def_Button_Settings_Gradient</include>
-                    <label>$LOCALIZE[575]</label>
-                    <selected>true</selected>
-                    <onclick>SetProperty(gradient,IndicatorColorBackgroundInProgress,Home)</onclick>
-                    <onclick>SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundInProgress.name)],Home)</onclick>
-                    <onclick>SetProperty(colordesc,IndicatorColorBackgroundInProgress.name,Home)</onclick>
-                </control>
-
-                <!-- unwatched -->
-                <control type="radiobutton" id="9131" description="Netflix preview window">
-                    <visible>!String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundUnWatched)</visible>
-                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
-                    <width>600</width>
-                    <textoffsetx>30</textoffsetx>
-                    <radioposx>490</radioposx>
-                    <include>Def_Button_Settings_Gradient</include>
-                    <label>$LOCALIZE[16101]</label>
-                    <selected>false</selected>
-                    <onclick>SetProperty(gradient,IndicatorColorBackgroundUnWatched,Home)</onclick>
-                    <onclick>SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundUnWatched.name)],Home)</onclick>
-                    <onclick>SetProperty(colordesc,IndicatorColorBackgroundUnWatched.name,Home)</onclick>
-                </control>
-                <control type="radiobutton" id="9132" description="Netflix preview window">
-                    <visible>String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundUnWatched)</visible>
-                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
-                    <width>600</width>
-                    <textoffsetx>30</textoffsetx>
-                    <radioposx>490</radioposx>
-                    <include>Def_Button_Settings_Gradient</include>
-                    <label>$LOCALIZE[16101]</label>
-                    <selected>true</selected>
-                    <onclick>SetProperty(gradient,IndicatorColorBackgroundUnWatched,Home)</onclick>
-                    <onclick>SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundUnWatched.name)],Home)</onclick>
-                    <onclick>SetProperty(colordesc,IndicatorColorBackgroundUnWatched.name,Home)</onclick>
-                </control>
-
                 <!-- watched -->
                 <control type="radiobutton" id="9141" description="Netflix preview window">
                     <visible>!String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundWatched)</visible>
@@ -429,6 +363,90 @@
                     <onclick>SetProperty(gradient,IndicatorColorBackgroundNew,Home)</onclick>
                     <onclick>SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundNew.name)],Home)</onclick>
                     <onclick>SetProperty(colordesc,IndicatorColorBackgroundNew.name,Home)</onclick>
+                </control>
+
+                <!-- is resumable -->
+                <control type="radiobutton" id="9121" description="Netflix preview window">
+                    <visible>!String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundInProgress)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
+                    <width>600</width>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>490</radioposx>
+                    <include>Def_Button_Settings_Gradient</include>
+                    <label>$LOCALIZE[575]</label>
+                    <selected>false</selected>
+                    <onclick>SetProperty(gradient,IndicatorColorBackgroundInProgress,Home)</onclick>
+                    <onclick>SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundInProgress.name)],Home)</onclick>
+                    <onclick>SetProperty(colordesc,IndicatorColorBackgroundInProgress.name,Home)</onclick>
+                </control>
+                <control type="radiobutton" id="9122" description="Netflix preview window">
+                    <visible>String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundInProgress)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
+                    <width>600</width>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>490</radioposx>
+                    <include>Def_Button_Settings_Gradient</include>
+                    <label>$LOCALIZE[575]</label>
+                    <selected>true</selected>
+                    <onclick>SetProperty(gradient,IndicatorColorBackgroundInProgress,Home)</onclick>
+                    <onclick>SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundInProgress.name)],Home)</onclick>
+                    <onclick>SetProperty(colordesc,IndicatorColorBackgroundInProgress.name,Home)</onclick>
+                </control>
+
+                <!-- is playing -->
+                <control type="radiobutton" id="9111" description="Netflix preview window">
+                    <visible>!String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundIsPlaying)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
+                    <width>600</width>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>490</radioposx>
+                    <include>Def_Button_Settings_Gradient</include>
+                    <label>$LOCALIZE[31533]</label>
+                    <selected>false</selected>
+                    <onclick>SetProperty(gradient,IndicatorColorBackgroundIsPlaying,Home)</onclick>
+                    <onclick>SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundIsPlaying.name)],Home)</onclick>
+                    <onclick>SetProperty(colordesc,IndicatorColorBackgroundIsPlaying.name,Home)</onclick>
+                </control>
+                <control type="radiobutton" id="9112" description="Netflix preview window">
+                    <visible>String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundIsPlaying)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
+                    <width>600</width>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>490</radioposx>
+                    <include>Def_Button_Settings_Gradient</include>
+                    <label>$LOCALIZE[31533]</label>
+                    <selected>true</selected>
+                    <onclick>SetProperty(gradient,IndicatorColorBackgroundIsPlaying,Home)</onclick>
+                    <onclick>SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundIsPlaying.name)],Home)</onclick>
+                    <onclick>SetProperty(colordesc,IndicatorColorBackgroundIsPlaying.name,Home)</onclick>
+                </control>
+
+                <!-- unwatched -->
+                <control type="radiobutton" id="9131" description="Netflix preview window">
+                    <visible>!String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundUnWatched)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
+                    <width>600</width>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>490</radioposx>
+                    <include>Def_Button_Settings_Gradient</include>
+                    <label>$LOCALIZE[16101]</label>
+                    <selected>false</selected>
+                    <onclick>SetProperty(gradient,IndicatorColorBackgroundUnWatched,Home)</onclick>
+                    <onclick>SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundUnWatched.name)],Home)</onclick>
+                    <onclick>SetProperty(colordesc,IndicatorColorBackgroundUnWatched.name,Home)</onclick>
+                </control>
+                <control type="radiobutton" id="9132" description="Netflix preview window">
+                    <visible>String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundUnWatched)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
+                    <width>600</width>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>490</radioposx>
+                    <include>Def_Button_Settings_Gradient</include>
+                    <label>$LOCALIZE[16101]</label>
+                    <selected>true</selected>
+                    <onclick>SetProperty(gradient,IndicatorColorBackgroundUnWatched,Home)</onclick>
+                    <onclick>SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundUnWatched.name)],Home)</onclick>
+                    <onclick>SetProperty(colordesc,IndicatorColorBackgroundUnWatched.name,Home)</onclick>
                 </control>
 
                 <!-- label -->
@@ -574,7 +592,7 @@
                 </control>
             </control>
 
-            <!-- PREVIEW COLOR -->
+            <!-- PREVIEW COLOR - RIGHT -->
 
             <control type="grouplist" id="9303">
                 <top>105</top>
@@ -622,39 +640,7 @@
 
                 <!-- MEDIA FLAG STATUS -->
 
-                <control type="radiobutton" id="90022" description="Netflix preview window">
-                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
-                    <width>60</width>
-                    <right>10</right>
-                    <align>right</align>
-                    <textoffsetx>30</textoffsetx>
-                    <radioposx>30</radioposx>
-                    <include content="Def_Button_Colorbox">
-                        <param name="colorcode" value="$VAR[Color_Indicator_Background_Is_Playing]"/>
-                    </include>
-                </control>
-                <control type="radiobutton" id="90032" description="Netflix preview window">
-                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
-                    <width>60</width>
-                    <right>10</right>
-                    <align>right</align>
-                    <textoffsetx>30</textoffsetx>
-                    <radioposx>30</radioposx>
-                    <include content="Def_Button_Colorbox">
-                        <param name="colorcode" value="$VAR[Color_Indicator_Background_In_Progress]"/>
-                    </include>
-                </control>
-                <control type="radiobutton" id="90042" description="Netflix preview window">
-                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
-                    <width>60</width>
-                    <right>10</right>
-                    <align>right</align>
-                    <textoffsetx>30</textoffsetx>
-                    <radioposx>30</radioposx>
-                    <include content="Def_Button_Colorbox">
-                        <param name="colorcode" value="$VAR[Color_Indicator_Background_UnWatched]"/>
-                    </include>
-                </control>
+                <!-- watched -->
                 <control type="radiobutton" id="90022" description="Netflix preview window">
                     <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
                     <width>60</width>
@@ -666,6 +652,7 @@
                         <param name="colorcode" value="$VAR[Color_Indicator_Background_Watched]"/>
                     </include>
                 </control>
+                <!-- new -->
                 <control type="radiobutton" id="90032" description="Netflix preview window">
                     <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
                     <width>60</width>
@@ -677,6 +664,44 @@
                         <param name="colorcode" value="$VAR[Color_Indicator_Background_New]"/>
                     </include>
                 </control>
+                <!-- is resumable -->
+                <control type="radiobutton" id="90032" description="Netflix preview window">
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
+                    <width>60</width>
+                    <right>10</right>
+                    <align>right</align>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>30</radioposx>
+                    <include content="Def_Button_Colorbox">
+                        <param name="colorcode" value="$VAR[Color_Indicator_Background_In_Progress]"/>
+                    </include>
+                </control>
+                <!-- is playing -->
+                <control type="radiobutton" id="90022" description="Netflix preview window">
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
+                    <width>60</width>
+                    <right>10</right>
+                    <align>right</align>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>30</radioposx>
+                    <include content="Def_Button_Colorbox">
+                        <param name="colorcode" value="$VAR[Color_Indicator_Background_Is_Playing]"/>
+                    </include>
+                </control>
+
+                <!-- unwatched -->
+                <control type="radiobutton" id="90042" description="Netflix preview window">
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
+                    <width>60</width>
+                    <right>10</right>
+                    <align>right</align>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>30</radioposx>
+                    <include content="Def_Button_Colorbox">
+                        <param name="colorcode" value="$VAR[Color_Indicator_Background_UnWatched]"/>
+                    </include>
+                </control>
+                <!-- label -->
                 <control type="radiobutton" id="90042" description="Netflix preview window">
                     <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
                     <width>60</width>
@@ -688,6 +713,7 @@
                         <param name="colorcode" value="$VAR[Color_Indicator_Background_Label]"/>
                     </include>
                 </control>
+                <!-- icon -->
                 <control type="radiobutton" id="90042" description="Netflix preview window">
                     <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
                     <width>60</width>
@@ -746,7 +772,59 @@
 
             </control>
 
-            <!-- PREVIEW -->
+            <!-- PREVIEW COLOR STAR RATING -->
+
+            <control type="group">
+                <visible>String.IsEqual(Window(Home).Property(colorfilter),3)</visible>
+                <top>434</top>
+
+                <!-- LABEL ACTUAL / PREVIEW -->
+
+                <control type="grouplist">
+                    <orientation>vertical</orientation>
+                    <itemgap>0</itemgap>
+                    <enable>false</enable>
+
+                    <control type="button">
+                        <enable>false</enable>
+                        <textoffsetx>30</textoffsetx>
+                        <align>left</align>
+                        <width>300</width>
+                        <disabledcolor>PanelWhite100</disabledcolor>
+                        <height>66</height>
+                        <label>$LOCALIZE[31211] :</label>
+                    </control>
+
+                    <control type="button">
+                        <enable>false</enable>
+                        <textoffsetx>30</textoffsetx>
+                        <align>left</align>
+                        <width>600</width>
+                        <disabledcolor>PanelWhite100</disabledcolor>
+                        <height>66</height>
+                        <label>$LOCALIZE[1000] :</label>
+                    </control>
+                </control>
+
+                <!-- ACTUAL COLOR RATING STAR -->
+
+                <include content="Def_Color_Preview_Star" >
+                    <param name="right" value="900" />
+                    <param name="top" value="0" />
+                    <param name="color" value="$INFO[Window(Home).Property(colorstring)]" />
+                </include>
+
+                <!-- PREVIEW COLOR RATING STAR -->
+
+                <include content="Def_Color_Preview_Star" >
+                    <param name="visible" value="Control.HasFocus(3000)" />
+                    <param name="right" value="900" />
+                    <param name="top" value="66" />
+                    <param name="color" value="$INFO[Container(3000).ListItem.Label2]" />
+                </include>
+            </control>
+
+            <!-- PREVIEW TEXT / FOCUS / GRADIENT -->
 
             <control type="group">
                 <visible>!String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
@@ -754,34 +832,36 @@
                 <height>66</height>
                 <top>500</top>
 
+                <!-- PREVIEW COLOR TEXT -->
+
                 <control type="grouplist" id="97101">
-                    <!-- <visible>ControlGroup(9100).HasFocus(9102)</visible> -->
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),1)</visible>
                     <orientation>horizontal</orientation>
                     <enable>false</enable>
-                    <height>70</height>
+                    <height>66</height>
 
                     <control type="button">
-                        <visible>!String.IsEqual(Window(Home).Property(gradient),ColorHighlight) | !Control.HasFocus(3000)</visible>
+                        <visible>!Control.HasFocus(3000)</visible>
                         <enable>false</enable>
                         <textoffsetx>30</textoffsetx>
                         <font>Button</font>
                         <align>left</align>
                         <width>600</width>
-                        <disabledcolor>$VAR[Color_Highlight]</disabledcolor>
-                        <height>70</height>
-                        <label>$LOCALIZE[1000]</label>
+                        <disabledcolor>$INFO[Window(Home).Property(colorstring)]</disabledcolor>
+                        <height>66</height>
+                        <label>$LOCALIZE[1000] :</label>
                     </control>
 
                     <control type="button">
-                        <visible>String.IsEqual(Window(Home).Property(gradient),ColorHighlight) + Control.HasFocus(3000)</visible>
+                        <visible>Control.HasFocus(3000)</visible>
                         <enable>false</enable>
                         <textoffsetx>30</textoffsetx>
                         <font>Button</font>
                         <align>left</align>
                         <width>600</width>
-                        <disabledcolor>$INFO[Container(3000).ListItem.Label]</disabledcolor>
-                        <height>70</height>
-                        <label>$LOCALIZE[1000]</label>
+                        <disabledcolor>$INFO[Container(3000).ListItem.Label2]</disabledcolor>
+                        <height>66</height>
+                        <label>$LOCALIZE[1000] :</label>
                     </control>
                 </control>
 
@@ -795,10 +875,10 @@
                     <!-- <label>$LOCALIZE[1000]</label> -->
                 <!-- </control> -->
 
-                <!-- PREVIEW COLOR FOCUS GRADIENT -->
+                <!-- PREVIEW COLOR FOCUS / GRADIENT -->
 
                 <control type="group">
-                    <visible>String.IsEqual(Window(Home).Property(gradient),ColorHighlight) | String.IsEqual(Window(Home).Property(gradient),ColorFocus) | String.IsEqual(Window(Home).Property(gradient),ColorFocusGradient)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),1)</visible>
                     <left>290</left>
                     <control type="image">
                         <width>280</width>
@@ -826,59 +906,67 @@
                     </control>
                 </control>
 
-                <!-- PREVIEW OTHERS COLOR -->
+                <!-- PREVIEW OTHERS COLOR FLAT -->
 
-                <control type="group">
-                    <visible>String.IsEqual(Window(Home).Property(gradient),KodiRatingStarColor) | String.IsEqual(Window(Home).Property(gradient),UserRatingStarColor) | String.IsEqual(Window(Home).Property(gradient),MpaaCertifColor) | String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundIsPlaying) | String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundInProgress) | String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundUnWatched) | String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundWatched) | String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundNew) | String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundLabel) | String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundIsPlayingIcon)</visible>
-                    <left>280</left>
-                    <include content="Def_Texte">
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(gradient),ColorHighlight)"/>
-                        <param name="color" value="$VAR[Color_Highlight]"/>
-                    </include>
-                    <include content="Def_Texte">
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(gradient),KodiRatingStarColor)"/>
-                        <param name="color" value="$VAR[Color_Rating_Kodi_Star]"/>
-                    </include>
-                    <include content="Def_Texte">
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(gradient),UserRatingStarColor)"/>
-                        <param name="color" value="$VAR[Color_Rating_User_Star]"/>
-                    </include>
-                    <include content="Def_Texte">
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(gradient),MpaaCertifColor)"/>
-                        <param name="color" value="$VAR[Color_Mpaa_Certif]"/>
-                    </include>
-                    <include content="Def_Texte">
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundIsPlaying)"/>
-                        <param name="color" value="$VAR[Color_Indicator_Background_Is_Playing]"/>
-                    </include>
-                    <include content="Def_Texte">
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundInProgress)"/>
-                        <param name="color" value="$VAR[Color_Indicator_Background_In_Progress]"/>
-                    </include>
-                    <include content="Def_Texte">
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundUnWatched)"/>
-                        <param name="color" value="$VAR[Color_Indicator_Background_UnWatched]"/>
-                    </include>
-                    <include content="Def_Texte">
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundWatched)"/>
-                        <param name="color" value="$VAR[Color_Indicator_Background_Watched]"/>
-                    </include>
-                    <include content="Def_Texte">
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundNew)"/>
-                        <param name="color" value="$VAR[Color_Indicator_Background_New]"/>
-                    </include>
-                    <include content="Def_Texte">
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundLabel)"/>
-                        <param name="color" value="$VAR[Color_Indicator_Background_Label]"/>
-                    </include>
-                    <include content="Def_Texte">
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundIsPlayingIcon)"/>
-                        <param name="color" value="$VAR[Color_Indicator_Background_Is_Playing_Icon]"/>
-                    </include>
-                </control>
+                <!-- <control type="group"> -->
+                    <!-- <visible>String.IsEqual(Window(Home).Property(colorfilter),3)</visible> -->
+                    <!-- <left>290</left> -->
+                    <!-- <include content="Def_Color_Preview_Flat"> -->
+                        <!-- <param name="visible" value="String.IsEqual(Window(Home).Property(gradient),ColorHighlight)"/> -->
+                        <!-- <param name="color" value="$VAR[Color_Highlight]"/> -->
+                    <!-- </include> -->
+                    <!-- <include content="Def_Color_Preview_Flat"> -->
+                        <!-- <param name="visible" value="String.IsEqual(Window(Home).Property(gradient),KodiRatingStarColor)"/> -->
+                        <!-- <param name="color" value="$VAR[Color_Rating_Kodi_Star]"/> -->
+                    <!-- </include> -->
+                    <!-- <include content="Def_Color_Preview_Flat"> -->
+                        <!-- <param name="visible" value="String.IsEqual(Window(Home).Property(gradient),UserRatingStarColor)"/> -->
+                        <!-- <param name="color" value="$VAR[Color_Rating_User_Star]"/> -->
+                    <!-- </include> -->
+                    <!-- <include content="Def_Color_Preview_Flat"> -->
+                        <!-- <param name="visible" value="String.IsEqual(Window(Home).Property(gradient),MpaaCertifColor)"/> -->
+                        <!-- <param name="color" value="$VAR[Color_Mpaa_Certif]"/> -->
+                    <!-- </include> -->
+                    <!-- <include content="Def_Color_Preview_Flat"> -->
+                        <!-- <param name="visible" value="String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundIsPlaying)"/> -->
+                        <!-- <param name="color" value="$VAR[Color_Indicator_Background_Is_Playing]"/> -->
+                    <!-- </include> -->
+                    <!-- <include content="Def_Color_Preview_Flat"> -->
+                        <!-- <param name="visible" value="String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundInProgress)"/> -->
+                        <!-- <param name="color" value="$VAR[Color_Indicator_Background_In_Progress]"/> -->
+                    <!-- </include> -->
+                    <!-- <include content="Def_Color_Preview_Flat"> -->
+                        <!-- <param name="visible" value="String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundUnWatched)"/> -->
+                        <!-- <param name="color" value="$VAR[Color_Indicator_Background_UnWatched]"/> -->
+                    <!-- </include> -->
+                    <!-- <include content="Def_Color_Preview_Flat"> -->
+                        <!-- <param name="visible" value="String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundWatched)"/> -->
+                        <!-- <param name="color" value="$VAR[Color_Indicator_Background_Watched]"/> -->
+                    <!-- </include> -->
+                    <!-- <include content="Def_Color_Preview_Flat"> -->
+                        <!-- <param name="visible" value="String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundNew)"/> -->
+                        <!-- <param name="color" value="$VAR[Color_Indicator_Background_New]"/> -->
+                    <!-- </include> -->
+                    <!-- <include content="Def_Color_Preview_Flat"> -->
+                        <!-- <param name="visible" value="String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundLabel)"/> -->
+                        <!-- <param name="color" value="$VAR[Color_Indicator_Background_Label]"/> -->
+                    <!-- </include> -->
+                    <!-- <include content="Def_Color_Preview_Flat"> -->
+                        <!-- <param name="visible" value="String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundIsPlayingIcon)"/> -->
+                        <!-- <param name="color" value="$VAR[Color_Indicator_Background_Is_Playing_Icon]"/> -->
+                    <!-- </include> -->
+                <!-- </control> -->
+
             </control>
 
-            <!-- LISTS, BUTTONS -->
+            <!-- PREVIEW MEDIA FLAG -->
+
+            <include content="Def_Color_Preview_Media_Status" condition="String.IsEqual(Window(Home).Property(colorfilter),2)">
+                <param name="right" value="960" />
+                <param name="top" value="600" />
+            </include>
+
+            <!-- CODE COLOR SELECTED / CODE COLOR MANUAL -->
 
             <control type="grouplist" id="9000">
                 <visible>!String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
@@ -902,7 +990,7 @@
                 <control type="button" id="3300">
                     <width>600</width>
                     <disabledcolor>PanelWhite100</disabledcolor>
-                    <label>$LOCALIZE[737]:</label>
+                    <label>$LOCALIZE[737] :</label>
                     <label2>$INFO[Container(3000).ListItem.Label2,#,]</label2>
                     <enable>false</enable>
                     <include>Def_Dialog_ButtonsDefault</include>
@@ -921,14 +1009,34 @@
 
                 <control type="button" id="3600">
                     <width>600</width>
-                    <include>Def_Dialog_ButtonsDefault</include>
-                    <label>$LOCALIZE[31569]:</label>
+                    <include>Def_Button_Settings_Gradient</include>
+                    <label>$LOCALIZE[31569] :</label>
                     <label2>#$INFO[Window(Home).Property(colorstring)]</label2>
+
+                    <!-- <onclick condition="String.IsEqual(Window(Home).Property(gradient),ColorHighlight)">Skin.SetString(ColorHighlight.name,$INFO[ListItem.Label])</onclick> -->
+                    <!-- <onclick condition="String.IsEqual(Window(Home).Property(gradient),ColorFocus)">Skin.SetString(ColorFocus.name,$INFO[ListItem.Label])</onclick> -->
+                    <!-- <onclick condition="String.IsEqual(Window(Home).Property(gradient),ColorFocusGradient)">Skin.SetString(ColorFocusGradient.name,$INFO[ListItem.Label])</onclick> -->
+
+                    <!-- <onclick condition="String.IsEqual(Window(Home).Property(gradient),KodiRatingStarColor)">Skin.SetString(KodiRatingStarColor.name,$INFO[ListItem.Label])</onclick> -->
+                    <!-- <onclick condition="String.IsEqual(Window(Home).Property(gradient),UserRatingStarColor)">Skin.SetString(UserRatingStarColor.name,$INFO[ListItem.Label])</onclick> -->
+                    <!-- <onclick condition="String.IsEqual(Window(Home).Property(gradient),MpaaCertifColor)">Skin.SetString(MpaaCertifColor.name,$INFO[ListItem.Label])</onclick> -->
+
+                    <!-- <onclick condition="String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundIsPlaying)">Skin.SetString(IndicatorColorBackgroundIsPlaying.name,$INFO[ListItem.Label])</onclick> -->
+                    <!-- <onclick condition="String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundInProgress)">Skin.SetString(IndicatorColorBackgroundInProgress.name,$INFO[ListItem.Label])</onclick> -->
+                    <!-- <onclick condition="String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundUnWatched)">Skin.SetString(IndicatorColorBackgroundUnWatched.name,$INFO[ListItem.Label])</onclick> -->
+                    <!-- <onclick condition="String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundWatched)">Skin.SetString(IndicatorColorBackgroundWatched.name,$INFO[ListItem.Label])</onclick> -->
+                    <!-- <onclick condition="String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundNew)">Skin.SetString(IndicatorColorBackgroundNew.name,$INFO[ListItem.Label])</onclick> -->
+                    <!-- <onclick condition="String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundLabel)">Skin.SetString(IndicatorColorBackgroundLabel.name,$INFO[ListItem.Label])</onclick> -->
+                    <!-- <onclick condition="String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundIsPlayingIcon)">Skin.SetString(IndicatorColorBackgroundIsPlayingicon.name,$INFO[ListItem.Label])</onclick> -->
+
+                    <!-- <onclick>SetProperty(colorstring,$INFO[Container(3000).ListItem.Label2],Home)</onclick> -->
+                    <!-- <onclick>Control.SetFocus(9300)</onclick> -->
+
                     <onclick>Skin.SetString($INFO[Window(Home).Property(colordesc)])</onclick>
                 </control>
             </control>
 
-            <!-- BUTTON VALID / ABORT -->
+            <!-- BUTTON VALID / ACTUAL COLOR / PREVIEW COLOR -->
 
             <control type="grouplist" id="9100">
                 <left>20</left>
@@ -1019,7 +1127,6 @@
             <!-- </control> -->
 
             </control>
-
         </control>
     </controls>
 </window>
