@@ -5,6 +5,21 @@
         <property name="ItemSelected">$LOCALIZE[31104]</property>
     </include>
 
+    <variable name="Value_Item_Rating_IMDb">
+        <value condition="!String.IsEmpty(ListItem.Rating(imdb))">$INFO[ListItem.Rating(imdb)]</value>
+        <value condition="!String.IsEmpty(Container(99950).ListItem.Property(IMDb_Rating))">$INFO[Container(99950).ListItem.Property(IMDb_Rating)]</value>
+    </variable>
+
+    <variable name="Value_Item_Rating">
+        <value condition="Integer.IsEqual(ListItem.Rating,10.0)">10</value>
+        <value>$INFO[ListItem.Rating]</value>
+    </variable>
+
+    <variable name="Value_Item_Rating_IMDb_Ext">
+        <value condition="!String.IsEmpty(Container($PARAM[controlid]).ListItem.Rating(imdb))">$INFO[Container($PARAM[controlid]).ListItem.Rating(imdb)]</value>
+        <value condition="!String.IsEmpty(Container(99950).ListItem.Property(IMDb_Rating))">$INFO[Container(99950).ListItem.Property(IMDb_Rating)]</value>
+    </variable>
+
     <!-- DEF COLOR -->
 
     <variable name="Value_Color_Settings">
