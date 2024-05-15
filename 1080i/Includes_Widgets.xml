@@ -120,22 +120,22 @@
     <include name="Def_Widgets_Skinshortcuts">
 
         <!-- Widget 1 -->
-        <include>skinshortcuts-template-widget-vertical.1</include>
+        <include>skinshortcuts-template-widget-vertical-1</include>
 
         <!-- Widget 2 -->
-        <include>skinshortcuts-template-widget-vertical.2</include>
+        <include>skinshortcuts-template-widget-vertical-2</include>
 
         <!-- Widget 3 -->
-        <include>skinshortcuts-template-widget-vertical.3</include>
+        <include>skinshortcuts-template-widget-vertical-3</include>
 
         <!-- Widget 4 -->
-        <include>skinshortcuts-template-widget-vertical.4</include>
+        <include>skinshortcuts-template-widget-vertical-4</include>
 
         <!-- Widget 5 -->
-        <include>skinshortcuts-template-widget-vertical.5</include>
+        <include>skinshortcuts-template-widget-vertical-5</include>
 
         <!-- Widget 6 -->
-        <include>skinshortcuts-template-widget-vertical.6</include>
+        <include>skinshortcuts-template-widget-vertical-6</include>
     </include>
 
     <!--------------------------------------->
@@ -148,8 +148,16 @@
         <param name="movement" value="$PARAM[movement]" default="0"/>
         <param name="movement2" value="$PARAM[movement2]" default="0"/>
         <param name="widgetaspect" value="$PARAM[widgetaspect]" default="Poster"/>
+        <param name="submenuVisibility" value="$PARAM[submenuVisibility]" />
 
         <definition>
+
+            <!-- Animation Widget on menu 300 -->
+            <include>Animation_Foreground_FadeInOut</include>
+
+            <!-- Animation Item Widget -->
+            <include>Animation_Scrolltime_Widgets_List</include>
+
             <include content="Def_Top" condition="Skin.HasSetting(homemenu.horizontal.clean)">
                <param name="top" value="200" />
             </include>
@@ -254,7 +262,8 @@
             </include>
 
             <orientation>$PARAM[orientation]</orientation>
-            <include>Animation_Scrolltime_Widgets_List</include>
+
+
         </definition>
     </include>
 

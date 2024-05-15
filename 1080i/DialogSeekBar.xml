@@ -11,6 +11,8 @@
     <visible>!Window.IsVisible(DialogPVRChannelsOSD.xml) + !Window.IsVisible(DialogPVRChannelGuide.xml)</visible>
     <visible>!Window.IsVisible(script-wikipedia.xml)</visible>
 
+    <onload condition="Player.HasAudio + !String.IsEmpty(MusicPlayer.DBID) + !String.IsEmpty(MusicPlayer.Album)">RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;window_id=Home&amp;window_prop=Encoded.MusicPlayer.Album&amp;&amp;$INFO[MusicPlayer.Album]")</onload>
+
     <zorder>0</zorder>
     <controls>
 

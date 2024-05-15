@@ -181,7 +181,7 @@
     <include name="Home_Horizontal_Row">
 
         <control type="group">
-            <animation effect="slide" start="0" end="0,163" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(9099) + Skin.HasSetting(homemenu.horizontal.clean) + Skin.HasSetting(homemenu.slide)">Conditional</animation>
+            <animation effect="slide" start="0" end="0,163" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(9099) + !Control.HasFocus(399) + Skin.HasSetting(homemenu.horizontal.clean) + Skin.HasSetting(homemenu.slide)">Conditional</animation>
             <animation effect="slide" start="0" end="0,30" time="0" condition="Skin.HasSetting(home.horizontal)">Conditional</animation>
             <animation effect="slide" start="0" end="0,250" time="150" condition="!Skin.HasSetting(home.horizontal) + Control.HasFocus(301)">Conditional</animation>
             <animation effect="slide" start="0" end="0,160" time="400" tween="back" reversible="false" easing="out" condition="Skin.HasSetting(home.horizontal) + Control.HasFocus(301)">Conditional</animation>
@@ -193,7 +193,7 @@
             <include condition="!Skin.HasSetting(show.home.header.clock.left)">Furniture_Footer_Clock_Right</include>
 
             <control type="group">
-                <animation effect="slide" start="0" end="0,163" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(9099) + [Skin.HasSetting(homemenu.slide) | [Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + Skin.HasSetting(enable.furniture.home.nowplaying.extended)] + !ControlGroup(301).HasFocus()] + $EXP[Home_Is_Horizontal] + !Skin.HasSetting(homemenu.horizontal.clean)">Conditional</animation>
+                <animation effect="slide" start="0" end="0,163" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(9099) + !Control.HasFocus(399) + [Skin.HasSetting(homemenu.slide) | [Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + Skin.HasSetting(enable.furniture.home.nowplaying.extended)] + !ControlGroup(301).HasFocus()] + $EXP[Home_Is_Horizontal] + !Skin.HasSetting(homemenu.horizontal.clean)">Conditional</animation>
                 <control type="image">
                     <visible>Integer.IsGreater(Container(300).NumItems,6)</visible>
                     <top>962</top>
@@ -223,8 +223,20 @@
                 <control type="list" id="300">
                     <include>Animation_FadeIn_Delay</include>
                     <include>Animation_FadeOut</include>
-                    <description>Home Wraplist</description>
+                    <include>Animation_Scrolltime_Views_List</include>
+
+                    <include condition="!Skin.HasSetting(show.home.header.clock.left) + [[Skin.HasSetting(furniture.clock.top.right) + Skin.HasSetting(homemenu.netflix)] | !Skin.HasSetting(furniture.clock.top.right)] + !Skin.HasSetting(hide.furniture.clock.bottom.right)">Def_Home_Menu_Row_width_Reduce</include>
+                    <include condition="Skin.HasSetting(show.home.header.clock.left) | [Skin.HasSetting(furniture.clock.top.right) + !Skin.HasSetting(homemenu.netflix)] | Skin.HasSetting(hide.furniture.clock.bottom.right)">Def_Home_Menu_Row_width_Max</include>
+
                     <left>SidePad</left>
+                    <orientation>horizontal</orientation>
+
+                    <include condition="Skin.HasSetting(home.showicons)">Home_Horizontal_Content_Icon</include>
+                    <include condition="!Skin.HasSetting(home.showicons)">Home_Horizontal_Content_No_Icon</include>
+
+                    <onfocus condition="String.IsEmpty(Window.Property(MenuSelect))">SetFocus(399)</onfocus>
+                    <onfocus condition="String.IsEmpty(Window.Property(MenuSelect))">SetProperty(TMDbHelper.WidgetContainer,301,Home)</onfocus>
+
                     <onfocus>ClearProperty(ContainerPosition,Home)</onfocus>
                     <onfocus>ClearProperty(listitem.trailer,Home)</onfocus>
                     <onfocus>ClearProperty(controlsvisible,Home)</onfocus>
@@ -232,31 +244,7 @@
                     <onfocus>ClearProperty(LaunchSearch,Home)</onfocus>
                     <onfocus>ClearProperty(SetBackMenu300AfterSubMenu302,Home)</onfocus>
 
-                    <!-- NOWPLAYING : AUTO SLIDE / DISPLAY  IF WIDGET IS FOCUS -->
-
-                    <onfocus condition="Skin.HasSetting(enable.furniture.home.nowplaying.extended) + Window.IsVisible(Home) + Skin.HasSetting(enable.home.auto.show.nowplaying.extended)">SetProperty(nowplaying.auto.show.timer,1,Home)</onfocus>
-                    <onunfocus>ClearProperty(nowplaying.auto.show.timer,Home)</onunfocus>
-
-                     <!-- MAIN MENU : FOCUS IF INACTIVITY -->
-
-                    <onfocus condition="Window.IsVisible(Home)">ClearProperty(focus.main.menu.timer,Home)</onfocus>
-                    <include condition="!Skin.HasSetting(show.home.header.clock.left) + [[Skin.HasSetting(furniture.clock.top.right) + Skin.HasSetting(homemenu.netflix)] | !Skin.HasSetting(furniture.clock.top.right)] + !Skin.HasSetting(hide.furniture.clock.bottom.right)">Def_Home_Menu_Row_width_Reduce</include>
-                    <include condition="Skin.HasSetting(show.home.header.clock.left) | [Skin.HasSetting(furniture.clock.top.right) + !Skin.HasSetting(homemenu.netflix)] | Skin.HasSetting(hide.furniture.clock.bottom.right)">Def_Home_Menu_Row_width_Max</include>
-
-                    <onup condition="$EXP[Extended_Now_Playing_Is_Visible] + Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button) + Skin.HasSetting(home.extended.nowplaying.tracklist) + Integer.IsGreater(Container(778).NumItems,0) + Player.HasAudio">778</onup>
-                    <onup condition="$EXP[Extended_Now_Playing_Is_Visible] + !Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button)">777</onup>
-                    <onup condition="!Player.HasVideo | !Skin.HasSetting(global.showvideo)">301</onup>
-                    <onup>301</onup>
-
-                    <ondown condition="Integer.IsGreater(Container(302).NumItems,0) + [!Skin.HasSetting(submenu.only.on.click.if.main.menu.empty) | [Skin.HasSetting(submenu.only.on.click.if.main.menu.empty) + !String.StartsWith(Container(300).ListItem.Property(path),SetFocus(302,0))]]">SetFocus(302,0)</ondown>
-
-                    <onback condition="Skin.HasSetting(home.onback.go.to.first.widget) + Integer.IsGreater(Container(301).NumItems,0)">SetFocus(301)</onback>
-                    <onleft>9099</onleft>
-                    <onright>300</onright>
-                    <orientation>horizontal</orientation>
                     <include>Animation_Scrolltime_Views_List</include>
-                    <include condition="Skin.HasSetting(home.showicons)">Home_Horizontal_Content_Icon</include>
-                    <include condition="!Skin.HasSetting(home.showicons)">Home_Horizontal_Content_No_Icon</include>
                 </control>
             </control>
         </control>
@@ -298,7 +286,7 @@
                     <textcolor>$VAR[Color_Highlight]</textcolor>
                     <font>Home</font>
                     <label>$INFO[ListItem.Label]</label>
-                    <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Skin.HasSetting(home.vertical)">Conditional</animation>
+                    <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(399) + !Skin.HasSetting(home.vertical)">Conditional</animation>
                 </control>
                 <control type="image">
                     <top>50</top>
@@ -321,7 +309,7 @@
                     <textcolor>Dark1</textcolor>
                     <font>Home</font>
                     <label>$INFO[ListItem.Label]</label>
-                    <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Skin.HasSetting(home.vertical)">Conditional</animation>
+                    <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(399) + !Skin.HasSetting(home.vertical)">Conditional</animation>
                 </control>
                 <control type="image">
                     <top>70</top>
@@ -333,7 +321,7 @@
                     <animation effect="fade" end="100" start="0" delay="300" time="400" reversible="false">Focus</animation>
                 </control>
                 <control type="group">
-                    <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Skin.HasSetting(home.vertical)">Conditional</animation>
+                    <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(399) + !Skin.HasSetting(home.vertical)">Conditional</animation>
                     <control type="image">
                         <top>51</top>
                         <centerleft>45.7%</centerleft>
@@ -403,7 +391,7 @@
         </itemlayout>
         <focusedlayout width="222" height="220">
             <control type="group">
-                <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Skin.HasSetting(home.vertical)">Conditional</animation>
+                <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(399) + !Skin.HasSetting(home.vertical)">Conditional</animation>
                 <control type="image">
                     <include content="Def_Width" condition="Skin.HasSetting(homemenu.only.icons)">
                         <param name="width" value="100"/>
@@ -989,6 +977,96 @@
             <onfocus condition="!Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + !Integer.IsEqual(Container(301).NumItems,1) + !Integer.IsEqual(Container(301).NumItems,0) + Skin.HasSetting(enable.furniture.home.nowplaying.extended) + Player.HasMedia">SetFocus(300)</onfocus>
             <onfocus condition="Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + !Integer.IsEqual(Container(301).NumItems,1) + !Integer.IsEqual(Container(301).NumItems,0) + Skin.HasSetting(enable.furniture.home.nowplaying.extended) + Player.HasMedia">SetFocus(4567)</onfocus>
         </control>
+
+        <control type="button" id="399">
+            <include>Def_Hidden_Button</include>
+
+            <visible allowhiddenfocus="true">False</visible>
+
+            <onleft condition="String.IsEmpty(Container(300).ListItemNoWrap(-1).Label)">ClearProperty(AnimationDirection)</onleft>
+            <onleft condition="String.IsEmpty(Container(300).ListItemNoWrap(-1).Label)">9099</onleft>
+
+            <!-- <onleft condition="Skin.HasSetting(Home.DisableSearchMenu) + String.IsEmpty(Container(300).ListItemNoWrap(-1).Label)">SetProperty(OptionsMenuFocused,303,Home)</onleft> -->
+            <!-- <onleft condition="Skin.HasSetting(Home.DisableSearchMenu) + String.IsEmpty(Container(300).ListItemNoWrap(-1).Label)">SetFocus(303)</onleft> -->
+
+            <!-- BUTOON SEARCH -->
+
+            <onright condition="String.IsEmpty(Container(300).ListItemNoWrap(1).Label)">ClearProperty(AnimationDirection)</onright>
+            <onright condition="String.IsEmpty(Container(300).ListItemNoWrap(1).Label)">9099</onright>
+
+            <!-- MAIN MENU - LEFT -->
+
+            <onleft condition="!String.IsEmpty(Container(300).ListItemNoWrap(-1).Label)">SetProperty(AnimationDirection,Left)</onleft>
+            <!-- <onleft condition="!String.IsEmpty(Container(300).ListItemNoWrap(-1).Label)">SetProperty(WidgetWait,1,Home)</onleft> -->
+            <onleft condition="!String.IsEmpty(Container(300).ListItemNoWrap(-1).Label)">Control.Move(300,-1)</onleft>
+            <!-- <onleft condition="!String.IsEmpty(Container(300).ListItemNoWrap(-1).Label)">AlarmClock(WidgetWait,ClearProperty(WidgetWait,Home),00:00,silent)</onleft> -->
+
+            <!-- MAIN MENU - RIGHT -->
+
+            <onright condition="!String.IsEmpty(Container(300).ListItemNoWrap(1).Label)">SetProperty(AnimationDirection,Right)</onright>
+            <!-- <onright condition="!String.IsEmpty(Container(300).ListItemNoWrap(1).Label)">SetProperty(WidgetWait,1,Home)</onright> -->
+            <onright condition="!String.IsEmpty(Container(300).ListItemNoWrap(1).Label)">Control.Move(300,1)</onright>
+            <!-- <onright condition="!String.IsEmpty(Container(300).ListItemNoWrap(1).Label)">AlarmClock(WidgetWait,ClearProperty(WidgetWait),00:00,silent)</onright> -->
+
+            <!-- <onfocus>ClearProperty(OptionsMenuFocused,Home)</onfocus> -->
+
+            <!-- <onfocus>SetProperty(TMDbHelper.WidgetContainer,301,Home)</onfocus> -->
+            <!-- <onfocus>$VAR[Set_TMDB_Helper_Widget_Container]</onfocus> -->
+
+            <onfocus>SetProperty(WindowTitle,$INFO[Container(300).ListItem.Label],Home)</onfocus>
+
+            <!-- <onright>$VAR[Set_TMDB_Helper_Widget_Container]</onright> -->
+            <!-- <onright>SetProperty(WindowTitle,$INFO[Container(300).ListItem.Label],Home)</onright> -->
+
+            <!-- <onleft>$VAR[Set_TMDB_Helper_Widget_Container]</onleft> -->
+            <!-- <onleft>SetProperty(WindowTitle,$INFO[Container(300).ListItem.Label],Home)</onleft> -->
+
+            <!-- <ondown condition="String.IsEmpty(Container(300).ListItem.Property(menuOnUpAction)) + String.IsEmpty(Skin.String(HomeMenu.OnUp)) + !Integer.IsEqual(Container(302).NumItems,0)">SetFocus(302,0,absolute)</ondown> -->
+
+            <!-- <ondown condition="String.IsEmpty(Container(300).ListItem.Property(menuOnUpAction)) + Skin.String(HomeMenu.OnUp,PowerMenu)">SetProperty(OptionsMenuFocused,303,Home)</ondown> -->
+            <!-- <ondown condition="String.IsEmpty(Container(300).ListItem.Property(menuOnUpAction)) + Skin.String(HomeMenu.OnUp,PowerMenu)">SetFocus(303)</ondown> -->
+
+            <!-- <ondown condition="!String.IsEmpty(Container(300).ListItem.Property(menuOnUpAction))">SetProperty(CustomHubHeader,$INFO[Container(300).ListItem.Label],Home)</ondown> -->
+
+            <!-- <ondown condition="!String.IsEmpty(Container(300).ListItem.Property(menuOnUpAction))">SetProperty(submenuVisibility,$INFO[Container(300).ListItem.Property(submenuVisibility)],Home)</ondown> -->
+            <!-- <ondown condition="!String.IsEmpty(Container(300).ListItem.Property(menuOnUpAction))">$INFO[Container(300).ListItem.Property(menuOnUpAction)]</ondown> -->
+
+
+            <!-- MAIN MENU 300 -->
+
+            <onclick condition="!Skin.HasSetting(submenu.only.on.click.if.main.menu.empty) | [Skin.HasSetting(submenu.only.on.click.if.main.menu.empty) + Integer.IsEqual(Container(302).NumItems,0)]">SetProperty(MenuSelect,1)</onclick>
+            <onclick condition="!Skin.HasSetting(submenu.only.on.click.if.main.menu.empty) | [Skin.HasSetting(submenu.only.on.click.if.main.menu.empty) + Integer.IsEqual(Container(302).NumItems,0)]">SetFocus(300)</onclick>
+            <onclick condition="!Skin.HasSetting(submenu.only.on.click.if.main.menu.empty) | [Skin.HasSetting(submenu.only.on.click.if.main.menu.empty) + Integer.IsEqual(Container(302).NumItems,0)]">Action(Select)</onclick>
+            <onclick condition="!Skin.HasSetting(submenu.only.on.click.if.main.menu.empty) | [Skin.HasSetting(submenu.only.on.click.if.main.menu.empty) + Integer.IsEqual(Container(302).NumItems,0)]">ClearProperty(MenuSelect)</onclick>
+
+            <!-- SUB MENU 302  -->
+
+            <oninfo condition="!Integer.IsEqual(Container(302).NumItems,0)">SetFocus(302,0,absolute)</oninfo>
+            <ondown condition="!Integer.IsEqual(Container(302).NumItems,0)">SetFocus(302,0,absolute)</ondown>
+            <onclick condition="Skin.HasSetting(submenu.only.on.click.if.main.menu.empty) + !Integer.IsEqual(Container(302).NumItems,0)">SetFocus(302,0,absolute)</onclick>
+
+            <!-- NOWPLAYING : AUTO SLIDE / DISPLAY  IF WIDGET IS FOCUS -->
+
+            <onfocus condition="Skin.HasSetting(enable.furniture.home.nowplaying.extended) + Window.IsVisible(Home) + Skin.HasSetting(enable.home.auto.show.nowplaying.extended)">SetProperty(nowplaying.auto.show.timer,1,Home)</onfocus>
+            <onunfocus>ClearProperty(nowplaying.auto.show.timer,Home)</onunfocus>
+
+            <!-- MAIN MENU : FOCUS IF INACTIVITY -->
+
+            <onfocus condition="Window.IsVisible(Home)">ClearProperty(focus.main.menu.timer,Home)</onfocus>
+
+            <onup condition="$EXP[Extended_Now_Playing_Is_Visible] + Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button) + Skin.HasSetting(home.extended.nowplaying.tracklist) + Integer.IsGreater(Container(778).NumItems,0) + Player.HasAudio">778</onup>
+            <onup condition="$EXP[Extended_Now_Playing_Is_Visible] + !Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button)">777</onup>
+
+            <!-- <ondown condition="Integer.IsGreater(Container(302).NumItems,0) + [!Skin.HasSetting(submenu.only.on.click.if.main.menu.empty) | [Skin.HasSetting(submenu.only.on.click.if.main.menu.empty) + !String.StartsWith(Container(300).ListItem.Property(path),SetFocus(302,0))]]">SetFocus(302,0)</ondown> -->
+
+            <!-- WIDGETS 301 -->
+
+            <onback condition="Skin.HasSetting(home.onback.go.to.first.widget) + Integer.IsGreater(Container(301).NumItems,0)">SetFocus(301)</onback>
+            <onup condition="!Player.HasVideo | !Skin.HasSetting(global.showvideo)">301</onup>
+            <onup>301</onup>
+
+        </control>
+
     </include>
 
     <!-- HORIZONTAL CLEAN - ITEM COUNT -->
@@ -1002,7 +1080,7 @@
             <animation effect="slide" start="0" end="0,448" time="0" condition="Skin.HasSetting(homemenu.slide)">Conditional</animation>
             <animation effect="slide" start="0" end="30,0" time="0" condition="Integer.IsEqual(Container(301).NumItems,1)">Conditional</animation>
             <visible>Skin.HasSetting(homemenu.horizontal.clean)</visible>
-            <visible>![Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml) | Window.IsVisible(DialogPVRInfo.xml) | Window.IsVisible(DialogAddonInfo.xml) | Window.IsVisible(skin.arctic.zephyr.mod.script-gto-info.xml)] + !Control.HasFocus(300) + !Control.HasFocus(302)</visible>
+            <visible>![Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml) | Window.IsVisible(DialogPVRInfo.xml) | Window.IsVisible(DialogAddonInfo.xml) | Window.IsVisible(skin.arctic.zephyr.mod.script-gto-info.xml)] + !Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(399)</visible>
             <control type="label">
                 <include>Animation_Delay_FadeIn_300</include>
                 <align>right</align>
@@ -1033,7 +1111,7 @@
 
             <animation effect="slide" start="0" end="-100" time="0" delay="0" condition="true">Conditional</animation>
 
-            <animation effect="slide" start="0" end="-270" time="300" delay="0" center="auto" tween="sine" easing="out" condition="[!Control.HasFocus(300) + !Control.HasFocus(302)] + ![Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)] + [Skin.HasSetting(homemenu.slide) | [Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + Skin.HasSetting(enable.furniture.home.nowplaying.extended)]] + !Control.HasFocus(9099)">Conditional</animation>
+            <animation effect="slide" start="0" end="-270" time="300" delay="0" center="auto" tween="sine" easing="out" condition="[!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(399)] + ![Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)] + [Skin.HasSetting(homemenu.slide) | [Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + Skin.HasSetting(enable.furniture.home.nowplaying.extended)]] + !Control.HasFocus(9099)">Conditional</animation>
 
             <!-- MAIN MENU - SUB MENU -->
 
@@ -1048,7 +1126,7 @@
                     <animation effect="slide" start="0,0" end="-296,0" time="0" condition="Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)">Conditional</animation>
 
                     <animation effect="slide" start="0,0" end="0,-8" time="0" condition="true">Conditional</animation>
-                    <animation effect="fade" start="100" end="0" time="400" condition="[!Control.HasFocus(300) + !Control.HasFocus(302)] + ![Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)] + [Skin.HasSetting(homemenu.slide) | [Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + Skin.HasSetting(enable.furniture.home.nowplaying.extended)]] + !Control.HasFocus(9099)">Conditional</animation>
+                    <animation effect="fade" start="100" end="0" time="400" condition="[!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(399)] + ![Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)] + [Skin.HasSetting(homemenu.slide) | [Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + Skin.HasSetting(enable.furniture.home.nowplaying.extended)]] + !Control.HasFocus(9099)">Conditional</animation>
 
                     <include condition="![Skin.HasSetting(home.showicons) + Skin.HasSetting(homemenu.only.icons)]">Animation_Slide_Vertical_Menu</include>
                     <include condition="[Skin.HasSetting(home.showicons) + Skin.HasSetting(homemenu.only.icons)]" content="Animation_Slide_Vertical_Menu">
@@ -1069,27 +1147,10 @@
                     <height>720</height>
 
                     <orientation>vertical</orientation>
-                    <onright condition="$EXP[Extended_Now_Playing_Is_Visible] + Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button) + Skin.HasSetting(home.extended.nowplaying.tracklist) + Integer.IsGreater(Container(778).NumItems,0) + Player.HasAudio">778</onright>
-                    <onright condition="$EXP[Extended_Now_Playing_Is_Visible] + !Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button)">777</onright>
 
-                    <onfocus>ClearProperty(LaunchSearch,Home)</onfocus>
+                    <onfocus condition="String.IsEmpty(Window.Property(MenuSelect))">SetFocus(399)</onfocus>
+                    <onfocus condition="String.IsEmpty(Window.Property(MenuSelect))">SetProperty(TMDbHelper.WidgetContainer,301,Home)</onfocus>
 
-                    <onup>9099</onup>
-                    <onright>301</onright>
-                    <onleft condition="!Skin.HasSetting(submenu.only.on.click.if.main.menu.empty)">302</onleft>
-
-                    <!-- NOWPLAYING : AUTO SLIDE / DISPLAY  IF WIDGET IS FOCUS -->
-
-                    <onfocus condition="Skin.HasSetting(enable.furniture.home.nowplaying.extended) + Window.IsVisible(Home) + Skin.HasSetting(enable.home.auto.show.nowplaying.extended)">SetProperty(nowplaying.auto.show.timer,1,Home)</onfocus>
-                    <onunfocus>ClearProperty(nowplaying.auto.show.timer,Home)</onunfocus>
-
-                    <!-- MAIN MENU : FOCUS IF INACTIVITY -->
-
-                    <onfocus condition="Window.IsVisible(Home)">ClearProperty(focus.main.menu.timer,Home)</onfocus>
-
-                    <onback condition="Skin.HasSetting(home.onback.go.to.first.widget) + Integer.IsGreater(Container(301).NumItems,0)">SetFocus(301)</onback>
-                    <include>Animation_Scrolltime_Views_List</include>
-                    <onfocus>ClearProperty(listitem.trailer,Home)</onfocus>
 
                     <!-- MAIN MENU NOT FOCUSED -->
 
@@ -1155,7 +1216,7 @@
                             <width>80</width>
                             <height>80</height>
                             <texture colordiffuse="$VAR[Color_Highlight]">$INFO[Container(300).ListItem.Icon]</texture>
-                            <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302)">Conditional</animation>
+                            <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(399)">Conditional</animation>
                             <visible>Skin.HasSetting(home.showicons) + !Skin.HasSetting(homemenu.items.underlined)</visible>
                         </control>
 
@@ -1185,7 +1246,7 @@
                             <textcolor>$VAR[Color_Highlight]</textcolor>
                             <font>Home</font>
                             <label>$INFO[Container(300).ListItem.Label]</label>
-                            <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302)">Conditional</animation>
+                            <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(399)">Conditional</animation>
                             <visible>Skin.HasSetting(home.showicons) + !Skin.HasSetting(homemenu.items.underlined) + !Skin.HasSetting(homemenu.only.icons)</visible>
                         </control>
 
@@ -1199,7 +1260,7 @@
                             <control type="image">
                                 <texture border="4">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/scrollh_h.png</texture>
                             </control>
-                            <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302)">Conditional</animation>
+                            <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(399)">Conditional</animation>
                             <visible>Skin.HasSetting(home.showicons) + Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(homemenu.items.underlined)</visible>
                         </control>
                         <control type="image">
@@ -1208,7 +1269,7 @@
                             <top>1</top>
                             <height>80</height>
                             <texture colordiffuse="Dark1">$INFO[ListItem.Icon]</texture>
-                            <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302)">Conditional</animation>
+                            <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(399)">Conditional</animation>
                             <visible>Skin.HasSetting(home.showicons) + Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(homemenu.items.underlined)</visible>
                         </control>
 
@@ -1230,7 +1291,7 @@
                                 <texturenofocus border="4">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/underline_h.png</texturenofocus>
                                 <label>$INFO[Container(300).ListItem.Label]</label>
                             </control>
-                            <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302)">Conditional</animation>
+                            <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(399)">Conditional</animation>
                             <visible>!Skin.HasSetting(home.showicons) + Skin.HasSetting(homemenu.items.underlined)</visible>
                         </control>
 
@@ -1262,7 +1323,7 @@
                                     <label>        $INFO[Container(300).ListItem.Label]</label>
                                 </control>
                             </control>
-                            <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302)">Conditional</animation>
+                            <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(399)">Conditional</animation>
                             <visible>!Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons) + Skin.HasSetting(homemenu.items.underlined)</visible>
                         </control>
 
@@ -1308,6 +1369,7 @@
                     <width>PosterW</width>
                     <height>720</height>
                     <orientation>vertical</orientation>
+
                     <onright>300</onright>
                     <!-- <onleft>300</onleft> -->
                     <ondown>302</ondown>
@@ -1492,7 +1554,7 @@
                                     <label>        $INFO[Container(302).ListItem.Label]</label>
                                 </control>
                             </control>
-                            <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302)">Conditional</animation>
+                            <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(399)">Conditional</animation>
                             <visible>!Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons) + Skin.HasSetting(homemenu.items.underlined)</visible>
                         </control>
 
@@ -1615,6 +1677,80 @@
                 <onfocus condition="!Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + !Integer.IsEqual(Container(301).NumItems,1) + !Integer.IsEqual(Container(301).NumItems,0) + Skin.HasSetting(enable.furniture.home.nowplaying.extended) + Player.HasMedia">SetFocus(300)</onfocus>
                 <onfocus condition="Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + !Integer.IsEqual(Container(301).NumItems,1) + !Integer.IsEqual(Container(301).NumItems,0) + Skin.HasSetting(enable.furniture.home.nowplaying.extended) + Player.HasMedia">SetFocus(9567)</onfocus>
             </control>
+
+            <control type="button" id="399">
+                <include>Def_Hidden_Button</include>
+
+                <visible allowhiddenfocus="true">False</visible>
+
+
+
+                <!-- BUTOON SEARCH -->
+
+                <!-- <onup condition="String.IsEmpty(Container(300).ListItemNoWrap(-1).Label)">ClearProperty(AnimationDirection)</onup> -->
+                <!-- <onup condition="String.IsEmpty(Container(300).ListItemNoWrap(-1).Label)">9099</onup> -->
+                <!-- <ondown condition="String.IsEmpty(Container(300).ListItemNoWrap(1).Label)">ClearProperty(AnimationDirection)</ondown> -->
+                <!-- <ondown condition="String.IsEmpty(Container(300).ListItemNoWrap(1).Label)">9099</ondown> -->
+
+                <!-- MAIN MENU - LEFT -->
+
+                <onup condition="!String.IsEmpty(Container(300).ListItemNoWrap(-1).Label)">SetProperty(AnimationDirection,Up)</onup>
+                <onup condition="!String.IsEmpty(Container(300).ListItemNoWrap(-1).Label)">Control.Move(300,-1)</onup>
+                <onup condition="!String.IsEmpty(Container(300).ListItemNoWrap(-1).Label)">SetProperty(TMDbHelper.WidgetContainer,301,Home)</onup>
+                <onup condition="String.IsEmpty(Container(300).ListItemNoWrap(-1).Label)">9099</onup>
+
+
+                <ondown condition="!String.IsEmpty(Container(300).ListItemNoWrap(1).Label)">SetProperty(AnimationDirection,Down)</ondown>
+                <ondown condition="!String.IsEmpty(Container(300).ListItemNoWrap(1).Label)">Control.Move(300,1)</ondown>
+                <ondown condition="!String.IsEmpty(Container(300).ListItemNoWrap(1).Label)">SetProperty(TMDbHelper.WidgetContainer,301,Home)</ondown>
+                <ondown condition="String.IsEmpty(Container(300).ListItemNoWrap(1).Label)">9099</ondown>
+
+                <!-- <onfocus>ClearProperty(OptionsMenuFocused,Home)</onfocus> -->
+
+                <!-- <onfocus>SetProperty(TMDbHelper.WidgetContainer,301,Home)</onfocus> -->
+                <!-- <onfocus>$VAR[Set_TMDB_Helper_Widget_Container]</onfocus> -->
+
+                <onfocus>SetProperty(WindowTitle,$INFO[Container(300).ListItem.Label],Home)</onfocus>
+
+                <!-- MAIN MENU 300 -->
+
+                <onclick condition="!Skin.HasSetting(submenu.only.on.click.if.main.menu.empty) | [Skin.HasSetting(submenu.only.on.click.if.main.menu.empty) + Integer.IsEqual(Container(302).NumItems,0)]">SetProperty(MenuSelect,1)</onclick>
+                <onclick condition="!Skin.HasSetting(submenu.only.on.click.if.main.menu.empty) | [Skin.HasSetting(submenu.only.on.click.if.main.menu.empty) + Integer.IsEqual(Container(302).NumItems,0)]">SetFocus(300)</onclick>
+                <onclick condition="!Skin.HasSetting(submenu.only.on.click.if.main.menu.empty) | [Skin.HasSetting(submenu.only.on.click.if.main.menu.empty) + Integer.IsEqual(Container(302).NumItems,0)]">Action(Select)</onclick>
+                <onclick condition="!Skin.HasSetting(submenu.only.on.click.if.main.menu.empty) | [Skin.HasSetting(submenu.only.on.click.if.main.menu.empty) + Integer.IsEqual(Container(302).NumItems,0)]">ClearProperty(MenuSelect)</onclick>
+
+                <!-- SUB MENU 302  -->
+
+                <oninfo condition="!Integer.IsEqual(Container(302).NumItems,0)">SetFocus(302,0,absolute)</oninfo>
+                <onleft condition="!Integer.IsEqual(Container(302).NumItems,0)">SetFocus(302,0,absolute)</onleft>
+                <onclick condition="Skin.HasSetting(submenu.only.on.click.if.main.menu.empty) + !Integer.IsEqual(Container(302).NumItems,0)">SetFocus(302,0,absolute)</onclick>
+
+                <!-- NOWPLAYING : AUTO SLIDE / DISPLAY  IF WIDGET IS FOCUS -->
+
+                <onfocus condition="Skin.HasSetting(enable.furniture.home.nowplaying.extended) + Window.IsVisible(Home) + Skin.HasSetting(enable.home.auto.show.nowplaying.extended)">SetProperty(nowplaying.auto.show.timer,1,Home)</onfocus>
+                <onunfocus>ClearProperty(nowplaying.auto.show.timer,Home)</onunfocus>
+
+                <!-- MAIN MENU : FOCUS IF INACTIVITY -->
+
+                <onfocus condition="Window.IsVisible(Home)">ClearProperty(focus.main.menu.timer,Home)</onfocus>
+
+                <onright condition="$EXP[Extended_Now_Playing_Is_Visible] + Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button) + Skin.HasSetting(home.extended.nowplaying.tracklist) + Integer.IsGreater(Container(778).NumItems,0) + Player.HasAudio">778</onright>
+                <onright condition="$EXP[Extended_Now_Playing_Is_Visible] + !Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button)">777</onright>
+
+                <!-- WIDGETS 301 -->
+
+                <onback condition="Skin.HasSetting(home.onback.go.to.first.widget) + Integer.IsGreater(Container(301).NumItems,0)">SetFocus(301)</onback>
+                <onright>301</onright>
+
+                <!-- <onleft condition="!Skin.HasSetting(submenu.only.on.click.if.main.menu.empty)">302</onleft> -->
+
+                <onfocus>ClearProperty(LaunchSearch,Home)</onfocus>
+                <onfocus>ClearProperty(listitem.trailer,Home)</onfocus>
+
+                <!-- MAIN MENU : FOCUS IF INACTIVITY -->
+
+            </control>
+
         </control>
     </include>
 
@@ -1771,6 +1907,7 @@
     <include name="Home_Widgets_Info_Sub">
         <param name="id" value="$PARAM[id]"/>
         <param name="labelisvisible" value="$PARAM[labelisvisible]" default="true"/>
+
         <definition>
             <control type="group">
                 <animation effect="slide" start="0" end="0,385" time="0" condition="[Integer.IsEqual(Container(301).NumItems,1) + !String.IsEqual(Container(300).ListItem.Property(widgetFullscreen),yes)] + !Skin.HasSetting(homemenu.netflix)">Conditional</animation>
@@ -1778,6 +1915,7 @@
                 <animation effect="slide" start="0" end="0,10" time="0" condition="!Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(home.widgets.show.reflections)">Conditional</animation>
                 <animation effect="slide" start="0" end="0,-15" time="0" condition="!Skin.HasSetting(homemenu.netflix) + Skin.HasSetting(home.widgets.show.reflections)">Conditional</animation>
                 <animation effect="fade" start="100" end="0" time="150" condition="!ControlGroup(301).HasFocus() + Skin.HasSetting(home.hide.netflix.plot) + Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(homemenu.horizontal.clean)">Conditional</animation>
+
                 <include>Animation_Vertical_Widgets_Label_Focus_Search</include>
                 <control type="grouplist">
                     <left>SidePad</left>
@@ -2390,6 +2528,7 @@
     <!-- WIDGET - LABEL -->
 
     <include name="Widget_Title_Label">
+
         <include content="Animation_FadeOut_Home_Fullscreen_Widget" condition="Skin.HasSetting(homemenu.horizontal.clean)">
             <param name="condition" value="$PARAM[animation_condition]"/>
         </include>
