@@ -25,35 +25,15 @@
         </animation>
     </include>
 
-    <include name="Animation_Common_Widget">
-        <animation type="Visible" reversible="false">
-            <effect type="fade" start="0" end="100" time="300" delay="300" tween="sine" easing="in" />
-            <effect type="zoom" start="85" end="100" time="300" delay="300" center="auto" tween="sine" easing="out" />
-        </animation>
-        <animation type="Hidden" reversible="false">
-            <effect type="zoom" start="100" end="85" center="auto" tween="sine" delay="0" easing="out" time="300" />
-            <effect type="fade" start="100" end="0" tween="cubic" easing="out" delay="0" time="300" />
-        </animation>
-    </include>
-
-    <!-- <include name="Animation_Foreground_FadeInOut"> -->
-        <!-- <animation type="WindowOpen" reversible="false"> -->
-            <!-- <effect type="fade" start="0" end="100" time="400" delay="0" tween="sine" easing="out"/> -->
-        <!-- </animation> -->
-        <!-- <animation type="WindowClose" reversible="false"> -->
-            <!-- <effect type="fade" start="100" end="0" time="400" delay="0" tween="sine" easing="out"/> -->
-        <!-- </animation> -->
-    <!-- </include> -->
-
     <include name="Animation_Widget_Direction">
         <animation type="Conditional" reversible="false" condition="$PARAM[visible]">
-            <effect type="fade" start="0" end="100" delay="100" time="200" tween="sine" easing="out"/>
+            <effect type="fade" start="0" end="100" delay="100" time="1200" tween="sine" easing="out"/>
         </animation>
         <animation type="Conditional" reversible="false" condition="$PARAM[visible] + String.IsEqual(Window(Home).Property(AnimationDirection),Left)">
-            <effect type="slide" start="-380" end="0" delay="100" time="400" tween="cubic" easing="out" />
+            <effect type="slide" start="-380" end="0" delay="100" time="800" tween="cubic" easing="out" />
         </animation>
         <animation type="Conditional" reversible="false" condition="$PARAM[visible] + String.IsEqual(Window(Home).Property(AnimationDirection),Right)">
-            <effect type="slide" start="380" end="0" delay="100" time="400" tween="cubic" easing="out" />
+            <effect type="slide" start="380" end="0" delay="100" time="800" tween="cubic" easing="out" />
         </animation>
         <animation type="Conditional" reversible="false" condition="$PARAM[visible] + String.IsEqual(Window(Home).Property(AnimationDirection),Down)">
             <effect type="slide" start="0,320" end="0" delay="100" time="600" tween="cubic" easing="out" />
@@ -63,17 +43,17 @@
         </animation>
 
         <animation type="Hidden" reversible="false">
-            <effect type="fade" start="100" end="0" delay="0" time="100" tween="sine" easing="out" />
+            <effect type="fade" start="100" end="50" delay="0" time="100" tween="sine" easing="out" />
         </animation>
 
         <animation type="Conditional" reversible="false" condition="!$PARAM[visible]">
             <effect type="fade" start="100" end="0" delay="0" time="600" tween="sine" easing="out" />
         </animation>
         <animation type="Conditional" reversible="false" condition="!$PARAM[visible] + String.IsEqual(Window(Home).Property(AnimationDirection),Left)">
-            <effect type="slide" end="380" start="0" time="600" tween="cubic" easing="out" />
+            <effect type="slide" end="380" start="0" time="800" tween="cubic" easing="out" />
         </animation>
         <animation type="Conditional" reversible="false" condition="!$PARAM[visible] + String.IsEqual(Window(Home).Property(AnimationDirection),Right)">
-            <effect type="slide" end="-380" start="0" time="600" tween="cubic" easing="out" />
+            <effect type="slide" end="-380" start="0" time="800" tween="cubic" easing="out" />
         </animation>
         <animation type="Conditional" reversible="false" condition="!$PARAM[visible] + String.IsEqual(Window(Home).Property(AnimationDirection),Down)">
             <effect type="slide" end="0,-320" start="0" time="600" tween="cubic" easing="out" />
@@ -110,11 +90,11 @@
     <!-- ANIMATION WIDGET -->
 
     <include name="Animation_Fade_Vertical">
-        <animation effect="fade" start="100" end="50" time="400" condition="Control.HasFocus(300) | Control.HasFocus(302) | Control.HasFocus(9099) | Control.HasFocus(399)">Conditional</animation>
+        <animation effect="fade" start="100" end="50" time="400" condition="Control.HasFocus(300) | Control.HasFocus(302) | Control.HasFocus(9099) | Control.HasFocus(399) | Control.HasFocus(222)">Conditional</animation>
     </include>
 
     <include name="Animation_Fade_Horizontal">
-        <animation effect="fade" start="100" end="70" time="400" condition="Control.HasFocus(300) | Control.HasFocus(302) | Control.HasFocus(9099) | Control.HasFocus(399)">Conditional</animation>
+        <animation effect="fade" start="100" end="70" time="400" condition="Control.HasFocus(300) | Control.HasFocus(302) | Control.HasFocus(9099) | Control.HasFocus(399) | Control.HasFocus(222)">Conditional</animation>
     </include>
 
     <include name="Animation_Vertical_Widgets_Label">
@@ -157,13 +137,13 @@
 
     <include name="Animation_FadeOut_Home_Fullscreen_Widget">
         <include condition="$EXP[Home_Is_Horizontal_Netflix] | $EXP[Home_Is_Vertical_Netflix]" content="Animation_FadeOut_Home_Fullscreen_Widget_Type3">
-            <param name="condition" value="$PARAM[condition] + !Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(2011) + !Control.HasFocus(9099) + !Control.HasFocus(399)"/>
+            <param name="condition" value="$PARAM[condition] + !Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(2011) + !Control.HasFocus(9099) + !Control.HasFocus(399) + !Control.HasFocus(222)"/>
         </include>
         <include condition="!Skin.HasSetting(homemenu.horizontal.clean) + !Skin.HasSetting(homemenu.netflix)" content="Animation_FadeOut_Home_Fullscreen_Widget_Type1">
-            <param name="condition" value="$PARAM[condition] + !Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(2011) + !Control.HasFocus(9099) + !Control.HasFocus(399)"/>
+            <param name="condition" value="$PARAM[condition] + !Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(2011) + !Control.HasFocus(9099) + !Control.HasFocus(399) + !Control.HasFocus(222)"/>
         </include>
         <include condition="$EXP[Home_Is_Horizontal_Clean]" content="Animation_FadeOut_Home_Fullscreen_Widget_Type2">
-            <param name="condition" value="$PARAM[condition] + !Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(2011) + !Control.HasFocus(9099) + !Control.HasFocus(399)"/>
+            <param name="condition" value="$PARAM[condition] + !Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(2011) + !Control.HasFocus(9099) + !Control.HasFocus(399) + !Control.HasFocus(222)"/>
         </include>
     </include>
 
@@ -722,7 +702,7 @@
     </include>
 
     <include name="Animation_Home.Clean">
-        <animation effect="slide" start="0" end="0,163" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(9099) + !Control.HasFocus(399)">Conditional</animation>
+        <animation effect="slide" start="0" end="0,163" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(9099) + !Control.HasFocus(399) + !Control.HasFocus(222)">Conditional</animation>
     </include>
 
     <include name="Animation_Focus_Zoom">
