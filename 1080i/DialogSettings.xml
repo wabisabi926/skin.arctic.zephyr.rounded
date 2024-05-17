@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
 
-    <onload condition="Skin.HasSetting(osd.open.auto.pause) + Player.HasMedia + Player.HasVideo + !Player.Paused">PlayerControl(Play)</onload>
+    <onload condition="Skin.HasSetting(osd.open.auto.pause) + Player.HasMedia + Player.HasVideo + !Player.Paused + !String.IsEmpty(VideoPlayer.DBID)">PlayerControl(Play)</onload>
     <onunload condition="Skin.HasSetting(osd.open.auto.pause) + Player.HasMedia + Player.HasVideo + Player.Paused + !Window.IsVisible(VideoOSD.xml)">PlayerControl(Play)</onunload>
 
     <onunload condition="!Player.PauseEnabled">setfocus(15)</onunload>
@@ -12,7 +12,7 @@
             <animation effect="fade" start="100" end="0" time="400" condition="Window.IsVisible(SliderDialog)">Conditional</animation>
             <include>Background_Overlay</include>
         </control>
-        
+
         <control type="group">
             <animation effect="fade" start="100" end="0" time="400" condition="Window.IsVisible(SliderDialog) | Window.IsVisible(DialogSubtitles.xml)">Conditional</animation>
             <include content="Def_Dialog_InfoPanel"><param name="height" value="866" /><param name="width" value="1100" /><param name="colordiffuse" value="Panel" /></include>
