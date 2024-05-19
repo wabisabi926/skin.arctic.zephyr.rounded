@@ -2,7 +2,7 @@
 <window id="0">
 
     <defaultcontrol always="false">300</defaultcontrol>
-    <include>Action_Blur_Onload</include>
+    <include condition="Skin.HasSetting(enabled.tmdb.helper.blur)">Action_Blur_Onload</include>
 
     <onload>RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=300&amp;group=mainmenu|x1111|x1112|x1113|x1114|x1115|x1116|x1117|x1118|x1119|powermenu&amp;levels=6)</onload>
     <onload>RunScript(script.skinvariables,action=buildviews)</onload>
@@ -18,29 +18,27 @@
     <onunload>ClearProperty(ClearArtAnimation,Home)</onunload>
     <onunload>ClearProperty(set.listitem.poster,Home)</onunload>
 
-    <!-- <onload condition="!System.AddonIsEnabled(plugin.video.themoviedb.helper)">Skin.SetBool(TMDbHelper.EnableCrop)</onload> -->
-
-    <!-- <onload condition="Skin.HasSetting(show.home.netflix.title.clearlogo)">Skin.SetBool(TMDbHelper.EnableCrop)</onload> -->
-    <!-- <onload condition="Skin.HasSetting(enable.blur.effect)">Skin.SetBool(TMDbHelper.EnableBlur)</onload> -->
-
-    <!-- <onload condition="![Skin.HasSetting(TMDbHelper.EnableCrop) | Skin.HasSetting(enable.blur.effect)]">Skin.SetBool(TMDbHelper.DisableArtwork)</onload> -->
-    <!-- <onload condition="[Skin.HasSetting(TMDbHelper.EnableCrop) | Skin.HasSetting(enable.blur.effect)]">Skin.Reset(TMDbHelper.DisableArtwork)</onload> -->
-
-
-    <!-- <onload condition="![Skin.HasSetting(TMDbHelper.EnableCrop) | Skin.HasSetting(TMDbHelper.EnableBlur)]">Skin.SetBool(TMDbHelper.DisableArtwork)</onload> -->
-    <!-- <onload condition="[Skin.HasSetting(TMDbHelper.EnableCrop) | Skin.HasSetting(TMDbHelper.EnableBlur)]">Skin.Reset(TMDbHelper.DisableArtwork)</onload> -->
-
     <!-- START TMDBH SERVICE -->
 
+    <onload condition="Skin.HasSetting(enabled.tmdb.helper.service)">Skin.SetBool(TMDbHelper.Service)</onload>
+    <onload condition="Skin.HasSetting(enabled.tmdb.helper.crop)">Skin.SetBool(TMDbHelper.EnableCrop)</onload>
+    <onload condition="Skin.HasSetting(enabled.tmdb.helper.blur)">Skin.SetBool(TMDbHelper.EnableBlur)</onload>
+    <onload condition="!Skin.HasSetting(enabled.tmdb.helper.crop) + !Skin.HasSetting(enabled.tmdb.helper.blur)">Skin.SetBool(TMDbHelper.DisableArtwork)</onload>
     <onload>Skin.SetString(TMDbHelper.MonitorContainer,99950)</onload>
-    <onload>ClearProperty(TMDbHelper.HideView,Home)</onload>
     <onload>Skin.SetString(Wikipedia.Format.Link,[COLOR=$VAR[Color_Highlight]]{}[/COLOR])</onload>
-    <onload>Skin.SetBool(TMDbHelper.EnableCrop)</onload>
 
-    <onload>Skin.Reset(TMDbHelper.DirectCallAuto)</onload>
+    <!-- STOP TMDBH SERVICE -->
+
+    <onload condition="!Skin.HasSetting(enabled.tmdb.helper.service)">Skin.Reset(TMDbHelper.Service)</onload>
+    <onload condition="!Skin.HasSetting(enabled.tmdb.helper.crop)">Skin.Reset(TMDbHelper.EnableCrop)</onload>
+    <onload condition="!Skin.HasSetting(enabled.tmdb.helper.blur)">Skin.Reset(TMDbHelper.EnableBlur)</onload>
+    <onload condition="[Skin.HasSetting(enabled.tmdb.helper.crop) | Skin.HasSetting(enabled.tmdb.helper.blur)]">Skin.Reset(TMDbHelper.DisableArtwork)</onload>
+
+
+
+    <!-- <onload>Skin.Reset(TMDbHelper.DirectCallAuto)</onload> -->
     <!-- <onload>Skin.SetBool(TMDbHelper.DirectCallAuto)</onload> -->
-    <onload>Skin.Reset(TMDbHelper.DisableArtwork)</onload>
-    <onload>Skin.SetBool(TMDbHelper.EnableBlur)</onload>
+
 
     <!-- AUTO SLIDE NOWPLAYING -->
 
