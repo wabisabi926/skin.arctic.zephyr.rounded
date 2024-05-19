@@ -2009,7 +2009,6 @@
             <param name="visible" value="!String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://) + String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode) + !Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(homemenu.horizontal.clean)" />
             <param name="id" value="$PARAM[id]" />
         </include>
-
         <include content="Widgets_Item_Main_Title">
             <param name="label" value="$INFO[Container($PARAM[id]).ListItem.TvShowTitle,, - ]$INFO[Container($PARAM[id]).ListItem.Title]" />
             <param name="visible" value="!String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://) + String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode) + [Skin.HasSetting(homemenu.netflix) | Skin.HasSetting(homemenu.horizontal.clean)]" />
@@ -2019,14 +2018,7 @@
         <!-- ALL OTHER -->
         <include content="Widgets_Item_Main_Title">
             <param name="label" value="$INFO[Container($PARAM[id]).ListItem.Label]" />
-            <param name="visible" value="!String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://) + !String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode) + String.IsEmpty(Container($PARAM[id]).ListItem.Property(Item))" />
-            <param name="id" value="$PARAM[id]" />
-        </include>
-
-        <!-- GTO -->
-        <include content="Widgets_Item_Main_Title">
-            <param name="label" value="$INFO[Container($PARAM[id]).ListItem.Label2]$INFO[Container($PARAM[id]).ListItem.Property(StartTime), (,)]" />
-            <param name="visible" value="!String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://) + !String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(Item)) + !String.IsEmpty(Container($PARAM[id]).ListItem.Label2)" />
+            <param name="visible" value="!String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://) + !String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode) + !String.IsEmpty(Container($PARAM[id]).ListItem.Label)" />
             <param name="id" value="$PARAM[id]" />
         </include>
 
@@ -2036,13 +2028,11 @@
             <param name="visible" value="String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://) + !String.IsEmpty(Container($PARAM[id]).ListItem.Title)" />
             <param name="id" value="$PARAM[id]" />
         </include>
-
         <include content="Widgets_Item_Main_Title">
             <param name="label" value="$INFO[Container($PARAM[id]).ListItem.Label]" />
             <param name="visible" value="String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://) + String.IsEmpty(Container($PARAM[id]).ListItem.Title)" />
             <param name="id" value="$PARAM[id]" />
         </include>
-
     </include>
 
     <!-- WIDGETS - ITEM - MAIN TITLE / CLEARLOGO - PART2 -->
@@ -2074,7 +2064,7 @@
                 <left>$PARAM[left]</left>
                 <align>left</align>
                 <textcolor>Dark1</textcolor>
-                <label>$INFO[Container($PARAM[id]).ListItem.Label]</label>
+                <label>$PARAM[label]</label>
                 <include condition="Skin.HasSetting(labels.autoscroll)">LabelScroll</include>
                 <visible>$PARAM[visible] + !String.IsEqual(Container($PARAM[id]).ListItem.DBType,album)</visible>
                 <visible>[Skin.HasSetting(show.home.netflix.title.clearlogo) + !$EXP[Exp_Title_Clearlogo_Available]] | !Skin.HasSetting(show.home.netflix.title.clearlogo) | !Skin.HasSetting(enabled.tmdb.helper.crop)</visible>
