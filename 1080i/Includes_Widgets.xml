@@ -942,22 +942,15 @@
             <!-- CLEARLOGO -->
 
             <control type="image">
-                <!-- <include content="Def_Bottom" condition="$PARAM[small]"> -->
-                   <!-- <param name="bottom" value="10" /> -->
-                <!-- </include> -->
-                <!-- <include content="Def_Top" condition="$PARAM[small]"> -->
-                   <!-- <param name="top" value="100" /> -->
-                <!-- </include> -->
                 <include content="Def_Height" condition="$PARAM[small]">
                    <param name="height" value="50" />
                 </include>
                 <include content="Def_width" condition="$PARAM[small]">
                    <param name="width" value="50" />
                 </include>
-                <height>90</height>
+                <height>84</height>
                 <width>200</width>
-                <right>10</right>
-                <!-- <top>50</top> -->
+                <right>14</right>
                 <bottom>20</bottom>
                 <aspectratio align="right" aligny="bottom">keep</aspectratio>
                 <texture background="true">$VAR[Image_Home_ClearLogo]</texture>
@@ -968,24 +961,8 @@
                 [Skin.HasSetting(dont.use.landscape.movies) + Skin.HasSetting(use.clearlogo.on.fanart.movies) + String.IsEqual(ListItem.DBType,movie)] |
                 [!Skin.HasSetting(dont.use.landscape.movies) + String.IsEmpty(ListItem.Art(landscape)) + String.IsEqual(ListItem.DBType,movie)] |
                 [Skin.HasSetting(use.clearlogo.on.fanart.artists) + [String.IsEqual(ListItem.DBType,artist) | String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,song)]]</visible>
-
                 <visible>!String.IsEqual(ListItem.DBType,genre) + !String.EndsWith(Container.FolderPath,Genres) + !String.IsEqual(ListItem.DBType,episode) + !String.IsEqual(ListItem.DBType,actors)</visible>
             </control>
-            <!-- <control type="image"> -->
-                <!-- <width>150</width> -->
-                <!-- <hight>90</hight> -->
-                <!-- <right>20</right> -->
-                <!-- <include content="Def_Bottom" condition="$PARAM[small]"> -->
-                   <!-- <param name="bottom" value="101" /> -->
-                <!-- </include> -->
-                <!-- <bottom>20</bottom> -->
-                <!-- <height>ClearLogoTitleMaxHeight</height> -->
-                <!-- <width>ClearLogoTitleMaxWidth</width> -->
-                <!-- <aspectratio scalediffuse="true" align="left">keep</aspectratio> -->
-                <!-- <texture background="true">$VAR[Image_Crop_ClearLogo]</texture> -->
-                <!-- <visible>Skin.HasSetting(dont.use.landscape.tvshows)</visible> -->
-                <!-- <visible>!String.IsEqual(ListItem.DBType,genre) + !String.EndsWith(Container.FolderPath,Genres)</visible> -->
-            <!-- </control> -->
 
             <control type="group">
                 <visible>Skin.HasSetting(enable.view.video.rating.num)</visible>
@@ -1169,9 +1146,10 @@
 
             <control type="image">
                 <width>200</width>
-                <right>30</right>
+                <height>80</height>
+                <right>34</right>
                 <include content="Def_Bottom" condition="$PARAM[small]">
-                   <param name="bottom" value="101" />
+                   <param name="bottom" value="110" />
                 </include>
                 <bottom>30</bottom>
                 <aspectratio align="right" aligny="bottom">keep</aspectratio>
