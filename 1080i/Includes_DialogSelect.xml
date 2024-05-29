@@ -1811,20 +1811,19 @@
             <include>Def_Dialog_Header_Logo</include>
             <include>Def_Dialog_Header_Line</include>
 
-
-            <control type="scrollbar" id="61">
-                <description>Scroll bar</description>
-                <right>-20</right>
-                <width>12</width>
-                <orientation>vertical</orientation>
-            </control>
+            <include content="Object_Scrollbar_Dialog">
+                <param name="scrollid" value="61"/>
+                <param name="onleft" value="3"/>
+                <param name="onright" value="9001"/>
+                <param name="centerright" value="360"/>
+            </include>
 
             <control type="panel" id="3">
 				<top>112</top>
 				<left>30</left>
                 <width>1284</width>
                 <height>708</height>
-                <onright>9001</onright>
+                <onright>61</onright>
                 <pagecontrol>61</pagecontrol>
                 <scrolltime>200</scrolltime>
 
@@ -1927,53 +1926,40 @@
                 <bottom>17</bottom>
                 <width>1</width>
                 <texture colordiffuse="Black12">common/white.png</texture>
-                <animation effect="fade" start="0" end="100" time="100" condition="!Control.HasFocus(1723) + !Container.Scrolling">Conditional</animation>
+                <animation effect="fade" start="0" end="100" time="100" condition="!Control.HasFocus(61) + !Container.Scrolling">Conditional</animation>
             </control>
 
-            <control type="group">
-                <description>Emulator name and icon</description>
-                <right>0</right>
-                <width>310</width>
-                <top>162</top>
-                <height>330</height>
-                <bottom>50</bottom>
-                <control type="group">
-                    <left>52</left>
-                    <control type="image">
-                        <left>-20</left>
-                        <right>-20</right>
-                        <top>-20</top>
-                        <bottom>-20</bottom>
-                        <texture border="40">buttons/dialogbutton-nofo.png</texture>
-                    </control>
-                    <control type="label">
-                        <description>Label for Saved with: text</description>
-                        <top>14</top>
-                        <height>20</height>
-                        <font>font16</font>
-                        <shadowcolor>text_shadow</shadowcolor>
-                        <label>35255</label>
-                        <align>center</align>
-                    </control>
-                    <control type="label" id="10823">
-                        <description>Emulator name</description>
-                        <top>60</top>
-                        <height>20</height>
-                        <font>font23_narrow</font>
-                        <textcolor>button_focus</textcolor>
-                        <shadowcolor>text_shadow</shadowcolor>
-                        <align>center</align>
-                    </control>
-                    <control type="image" id="10824">
-                        <description>Emulator icon</description>
-                        <top>108</top>
-                        <height>192</height>
-                        <right>33</right>
-                        <width>192</width>
-                        <aspectratio>keep</aspectratio>
-                    </control>
-                </control>
+
+            <control type="label" id="10823">
+                <description>Emulator name</description>
+                <top>412</top>
+                <height>20</height>
+                <width>300</width>
+                <right>30</right>
+
+                <font>font23_narrow</font>
+                <textcolor>button_focus</textcolor>
+                <align>center</align>
             </control>
+            <control type="label">
+                <description>Label for Saved with: text</description>
+                <top>442</top>
+                <height>20</height>
+                <width>300</width>
+                <right>30</right>
+                <font>font16</font>
+                <label>35255</label>
+                <align>center</align>
+            </control>
+            <control type="image" id="10824">
+                <description>Emulator icon</description>
+                <top>492</top>
+                <height>300</height>
+                <right>30</right>
+                <width>300</width>
+                <aspectratio>keep</aspectratio>
+            </control>
+
 
             <control type="group">
                 <description>Bottom bar of text area</description>
@@ -1999,7 +1985,9 @@
                 </control>
             </control>
 
+            <!-- NUM ITEMS -->
 
+            <include>Def_Dialog_Select_label_Num_Item</include>
 		</control>
 	</include>
 
@@ -2303,10 +2291,9 @@
 
             <include content="Object_Scrollbar_Dialog">
                 <param name="scrollid" value="61"/>
-                <param name="onleft" value="108113"/>
+                <param name="onleft" value="10811"/>
                 <param name="onright" value="7"/>
                 <param name="centerright" value="360"/>
-                <!-- <param name="visible" value="Control.IsVisible(3) + !Control.IsVisible(6)" /> -->
             </include>
 
             <control type="panel" id="10811">
@@ -2326,7 +2313,6 @@
                         <height>256</height>
                         <aspectratio>scale</aspectratio>
                         <texture border="4">$INFO[ListItem.Icon]</texture>
-                        <bordertexture colordiffuse="border_alpha">colors/black.png</bordertexture>
                         <bordersize>4</bordersize>
                     </control>
                     <control type="image">
@@ -2336,7 +2322,6 @@
                         <height>256</height>
                         <aspectratio>scale</aspectratio>
                         <texture border="4">$INFO[ListItem.Art(screenshot)]</texture>
-                        <bordertexture colordiffuse="border_alpha">colors/black.png</bordertexture>
                         <bordersize>4</bordersize>
                     </control>
                     <control type="gamewindow">
@@ -2384,7 +2369,6 @@
                         <height>256</height>
                         <aspectratio>scale</aspectratio>
                         <texture border="4">$INFO[ListItem.Icon]</texture>
-                        <bordertexture colordiffuse="border_alpha">colors/black.png</bordertexture>
                         <bordersize>4</bordersize>
                     </control>
                     <control type="image">
@@ -2394,7 +2378,6 @@
                         <height>256</height>
                         <aspectratio>scale</aspectratio>
                         <texture border="4">$INFO[ListItem.Art(screenshot)]</texture>
-                        <bordertexture colordiffuse="border_alpha">colors/black.png</bordertexture>
                         <bordersize>4</bordersize>
                     </control>
                     <control type="gamewindow">
@@ -2439,8 +2422,7 @@
                 <bottom>17</bottom>
                 <width>1</width>
                 <texture colordiffuse="Black12">common/white.png</texture>
-                <animation effect="fade" start="0" end="100" time="100" condition="!Control.HasFocus(1723) + !Container.Scrolling">Conditional</animation>
-                <visible>!Control.IsVisible(21)</visible>
+                <animation effect="fade" start="0" end="100" time="100" condition="!Control.HasFocus(61) + !Container.Scrolling">Conditional</animation>
             </control>
 
             <!-- BUTTON ON RIGHT -->
@@ -2473,6 +2455,10 @@
                 <autoscroll time="3000" delay="5000" repeat="5000">true</autoscroll>
                 <label>$INFO[ListItem.Property(savestate.caption)]</label>
             </control>
+
+            <!-- NUM ITEMS -->
+
+            <include>Def_Dialog_Select_label_Num_Item</include>
         </control>
 	</include>
 

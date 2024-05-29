@@ -329,7 +329,7 @@
 
 	<include name="GameDialogAgents">
 		<control type="group">
-            <include content="Def_Dialog_Background"><param name="height" value="962" /><param name="width" value="1200" /></include>
+            <include content="Def_Dialog_Background"><param name="height" value="820" /><param name="width" value="1480" /></include>
 
             <control type="label" id="2">
                 <include>Def_Dialog_Header_Title</include>
@@ -339,346 +339,397 @@
             <include>Def_Dialog_Header_Logo</include>
             <include>Def_Dialog_Header_Line</include>
 
-			<control type="group">
-				<description>Content area</description>
-				<top>112</top>
-				<bottom>40</bottom>
-				<control type="group">
-					<description>Area of the dialog for ports</description>
-					<height>96</height>
+            <include content="Object_Scrollbar_Dialog">
+                <param name="scrollid" value="61"/>
+                <param name="onleft" value="3"/>
+                <param name="onright" value="18"/>
+                <param name="centerright" value="360"/>
+            </include>
 
-					<control type="button" id="3">
-						<description>Ports button</description>
-						<top>112</top>
-						<ondown>7</ondown>
-						<label>$LOCALIZE[35110]</label>
-						<font>font37</font>
-						<textoffsetx>36</textoffsetx>
-						<align>left</align>
-						<aligny>center</aligny>
-                        <texturefocus>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texturefocus>
-                        <texturenofocus colordiffuse="Black12" border="12">common/white.png</texturenofocus>
-						<onclick>ActivateWindow(GamePorts)</onclick>
-					</control>
+            <control type="button" id="3">
+                <description>Ports button</description>
+                <top>112</top>
+                <ondown>7</ondown>
+                <onright>61</onright>
+                <label>$LOCALIZE[35110]</label>
+                <font>InfoNetflix</font>
+                <textcolor>PanelWhite100</textcolor>
+                <selectedcolor>PanelWhite100</selectedcolor>
+                <textoffsetx>36</textoffsetx>
+                <align>left</align>
+                <aligny>center</aligny>
+                <width>1120</width>
+                <height>100</height>
+                <texturefocus>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texturefocus>
+                <texturenofocus colordiffuse="Black12" border="12">common/white.png</texturenofocus>
+                <onclick>ActivateWindow(GamePorts)</onclick>
+            </control>
 
-					<control type="gamecontrollerlist" id="4">
-						<description>Active port list. Length should fit 13 listitems (12 controllers and one "controller disconnected" indicator).</description>
-						<right>0</right>
-						<width>1248</width>
-						<orientation>horizontal</orientation>
-						<align>right</align>
-						<enable>false</enable>
-						<itemlayout width="96" height="96">
-							<control type="gamecontroller">
-								<texture>$INFO[ListItem.Icon]</texture>
-								<controllerid>$INFO[ListItem.Property(game.controllerid)]</controllerid>
-								<controlleraddress>$INFO[ListItem.FilenameAndPath]</controlleraddress>
-								<controllerdiffuse>button_focus</controllerdiffuse>
-							</control>
-						</itemlayout>
-						<focusedlayout width="96" height="96">
-							<control type="gamecontroller">
-								<texture>$INFO[ListItem.Icon]</texture>
-								<controllerid>$INFO[ListItem.Property(game.controllerid)]</controllerid>
-								<controlleraddress>$INFO[ListItem.FilenameAndPath]</controlleraddress>
-								<controllerdiffuse>button_focus</controllerdiffuse>
-							</control>
-						</focusedlayout>
-						<!--
-							Note to skinners: this control can be populated
-							with static content for testing.
-						<content>
-							<item>
-								<icon>DefaultAddonNone.png</icon>
-							</item>
-							<item>
-								<property name="game.controllerid">game.controller.snes</property>
-							</item>
-							<item>
-								<property name="game.controllerid">game.controller.snes</property>
-							</item>
-							<item>
-								<property name="game.controllerid">game.controller.snes</property>
-							</item>
-							<item>
-								<property name="game.controllerid">game.controller.snes</property>
-							</item>
-							<item>
-								<property name="game.controllerid">game.controller.snes</property>
-							</item>
-							<item>
-								<property name="game.controllerid">game.controller.snes</property>
-							</item>
-							<item>
-								<property name="game.controllerid">game.controller.snes</property>
-							</item>
-							<item>
-								<property name="game.controllerid">game.controller.snes</property>
-							</item>
-							<item>
-								<property name="game.controllerid">game.controller.snes</property>
-							</item>
-							<item>
-								<property name="game.controllerid">game.controller.snes</property>
-							</item>
-							<item>
-								<property name="game.controllerid">game.controller.snes</property>
-							</item>
-							<item>
-								<property name="game.controllerid">game.controller.snes</property>
-							</item>
-						</content>
-						-->
-					</control>
-				</control>
-				<control type="group">
-					<description>Area of the dialog for player controllers</description>
-					<top>136</top>
-					<height>576</height>
-					<control type="image">
-						<description>Controller list background</description>
-						<top>-20</top>
-						<bottom>-20</bottom>
-						<left>-20</left>
-						<right>-20</right>
-						<texture border="40">buttons/dialogbutton-nofo.png</texture>
-					</control>
-					<control type="list" id="7">
-						<description>Controller list</description>
-						<onup>3</onup>
-						<ondown>10</ondown>
-						<pagecontrol>61</pagecontrol>
-						<scrolltime tween="sine">200</scrolltime>
-						<orientation>vertical</orientation>
-						<itemlayout width="1740" height="96">
-							<include>AgentControllerList</include>
-						</itemlayout>
-						<focusedlayout width="1740" height="96">
-							<control type="image">
-								<texture>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texture>
-								<visible>Control.HasFocus(7)</visible>
-							</control>
-							<include>AgentControllerList</include>
-						</focusedlayout>
-						<!--
-							Note to skinners: this control can be populated
-							with static content for testing.
-						<content>
-							<item>
-								<label>Player 1</label>
-							</item>
-							<item>
-								<label>Player 2</label>
-							</item>
-							<item>
-								<label>Player 3</label>
-							</item>
-							<item>
-								<label>Player 4</label>
-							</item>
-							<item>
-								<label>Player 5</label>
-							</item>
-							<item>
-								<label>Player 6</label>
-							</item>
-							<item>
-								<label>Player 7</label>
-							</item>
-							<item>
-								<label>Player 8</label>
-							</item>
-							<item>
-								<label>Player 9</label>
-							</item>
-							<item>
-								<label>Player 10</label>
-							</item>
-							<item>
-								<label>Player 11</label>
-							</item>
-							<item>
-								<label>Player 12</label>
-							</item>
-						</content>
-						-->
-					</control>
-				</control>
-				<control type="scrollbar" id="61">
-					<description>Controller list scroll bar</description>
-					<top>136</top>
-					<height>576</height>
-					<right>-12</right>
-					<width>12</width>
-					<orientation>vertical</orientation>
-				</control>
-				<control type="grouplist" id="10">
-					<description>Action buttons</description>
-					<left>-20</left>
-					<right>-20</right>
-					<bottom>-20</bottom>
-					<height>100</height>
-					<onup>7</onup>
-					<orientation>horizontal</orientation>
-					<itemgap>dialogbuttons_itemgap</itemgap>
-					<include content="DefaultDialogButton">
-						<param name="width" value="330" />
-						<param name="id" value="18" />
-						<param name="label" value="$LOCALIZE[186]" />
-					</include>
-				</control>
-			</control>
+            <control type="gamecontrollerlist" id="4">
+                <description>Active port list. Length should fit 13 listitems (12 controllers and one "controller disconnected" indicator).</description>
+                <top>112</top>
+                <left>700</left>
+                <right>30</right>
+                <width>1120</width>
+                <height>100</height>
+                <orientation>horizontal</orientation>
+                <align>left</align>
+                <enable>false</enable>
+
+                <itemlayout width="96" height="100">
+                    <control type="gamecontroller">
+                        <texture>$INFO[ListItem.Icon]</texture>
+                        <controllerid>$INFO[ListItem.Property(game.controllerid)]</controllerid>
+                        <controlleraddress>$INFO[ListItem.FilenameAndPath]</controlleraddress>
+                    </control>
+                </itemlayout>
+                <focusedlayout width="96" height="100">
+                    <control type="gamecontroller">
+                        <texture>$INFO[ListItem.Icon]</texture>
+                        <controllerid>$INFO[ListItem.Property(game.controllerid)]</controllerid>
+                        <controlleraddress>$INFO[ListItem.FilenameAndPath]</controlleraddress>
+                    </control>
+                </focusedlayout>
+                <!--
+                    Note to skinners: this control can be populated
+                    with static content for testing.
+                <content>
+                    <item>
+                        <icon>DefaultAddonNone.png</icon>
+                    </item>
+                    <item>
+                        <property name="game.controllerid">game.controller.snes</property>
+                    </item>
+                    <item>
+                        <property name="game.controllerid">game.controller.snes</property>
+                    </item>
+                    <item>
+                        <property name="game.controllerid">game.controller.snes</property>
+                    </item>
+                    <item>
+                        <property name="game.controllerid">game.controller.snes</property>
+                    </item>
+                    <item>
+                        <property name="game.controllerid">game.controller.snes</property>
+                    </item>
+                    <item>
+                        <property name="game.controllerid">game.controller.snes</property>
+                    </item>
+                    <item>
+                        <property name="game.controllerid">game.controller.snes</property>
+                    </item>
+                    <item>
+                        <property name="game.controllerid">game.controller.snes</property>
+                    </item>
+                    <item>
+                        <property name="game.controllerid">game.controller.snes</property>
+                    </item>
+                    <item>
+                        <property name="game.controllerid">game.controller.snes</property>
+                    </item>
+                    <item>
+                        <property name="game.controllerid">game.controller.snes</property>
+                    </item>
+                    <item>
+                        <property name="game.controllerid">game.controller.snes</property>
+                    </item>
+                </content>
+                -->
+            </control>
+
+            <control type="list" id="7">
+                <description>Area of the dialog for player controllers</description>
+                <top>208</top>
+                <height>600</height>
+                <onright>61</onright>
+                <onup>3</onup>
+                <ondown>10</ondown>
+                <pagecontrol>61</pagecontrol>
+                <scrolltime tween="sine">200</scrolltime>
+                <orientation>vertical</orientation>
+                <itemlayout width="1120" height="100">
+                    <control type="label">
+                        <description>Controller name as reported by the driver</description>
+                        <top>20</top>
+                        <left>30</left>
+                        <label>$INFO[ListItem.Label]</label>
+                        <textcolor>PanelWhite100</textcolor>
+                        <selectedcolor>PanelWhite100</selectedcolor>
+                        <font>InfoNetflix</font>
+                        <align>left</align>
+                    </control>
+                    <include>AgentControllerList</include>
+                </itemlayout>
+                <focusedlayout width="1120" height="100">
+                    <control type="image">
+                        <texture>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texture>
+                        <visible>Control.HasFocus(7)</visible>
+                    </control>
+                    <control type="label">
+                        <description>Controller name as reported by the driver</description>
+                        <top>20</top>
+                        <left>30</left>
+                        <label>$INFO[ListItem.Label]</label>
+                        <textcolor>Selected</textcolor>
+                        <selectedcolor>Selected</selectedcolor>
+                        <font>InfoNetflix</font>
+                        <align>left</align>
+                        <visible>Control.HasFocus(7)</visible>
+                    </control>
+                    <control type="label">
+                        <description>Controller name as reported by the driver</description>
+                        <top>20</top>
+                        <left>30</left>
+                        <label>$INFO[ListItem.Label]</label>
+                        <textcolor>PanelWhite100</textcolor>
+                        <selectedcolor>PanelWhite100</selectedcolor>
+                        <font>InfoNetflix</font>
+                        <align>left</align>
+                        <visible>!Control.HasFocus(7)</visible>
+                    </control>
+                    <include>AgentControllerList</include>
+                </focusedlayout>
+                <!--
+                    Note to skinners: this control can be populated
+                    with static content for testing.
+                <content>
+                    <item>
+                        <label>Player 1</label>
+                    </item>
+                    <item>
+                        <label>Player 2</label>
+                    </item>
+                    <item>
+                        <label>Player 3</label>
+                    </item>
+                    <item>
+                        <label>Player 4</label>
+                    </item>
+                    <item>
+                        <label>Player 5</label>
+                    </item>
+                    <item>
+                        <label>Player 6</label>
+                    </item>
+                    <item>
+                        <label>Player 7</label>
+                    </item>
+                    <item>
+                        <label>Player 8</label>
+                    </item>
+                    <item>
+                        <label>Player 9</label>
+                    </item>
+                    <item>
+                        <label>Player 10</label>
+                    </item>
+                    <item>
+                        <label>Player 11</label>
+                    </item>
+                    <item>
+                        <label>Player 12</label>
+                    </item>
+                </content>
+                -->
+            </control>
+
+            <!-- LINES VERTICAL -->
+
+            <include content="Def_Dialog_Line_Vertical"><param name="right" value="360" /><param name="bottom" value="17" /></include>
+
+            <!-- BUTTON ON RIGHT -->
+
+            <control type="grouplist" id="9001">
+                <right>30</right>
+                <top>112</top>
+                <width>300</width>
+                <height>490</height>
+                <onleft>3</onleft>
+                <onright>3</onright>
+                <itemgap>4</itemgap>
+                <scrolltime tween="quadratic">200</scrolltime>
+                <include content="Def_Dialog_Button_Video_Manager">
+                    <param name="id" value="18" />
+                    <param name="label" value="$LOCALIZE[186]" />
+                </include>
+            </control>
+
+            <!-- NUM ITEMS -->
+
+            <include>Def_Dialog_Select_label_Num_Item</include>
 		</control>
 	</include>
 
     <include name="GameDialogPorts">
 		<control type="group">
-            <include content="Def_Dialog_Background"><param name="height" value="830" /><param name="width" value="1820" /></include>
+            <include content="Def_Dialog_Background"><param name="height" value="820" /><param name="width" value="1480" /></include>
 
             <control type="label" id="2">
                 <include>Def_Dialog_Header_Title</include>
-                <label>35058</label>
+                <!-- <label>35058</label> -->
             </control>
 
             <include>Def_Dialog_Header_Logo</include>
             <include>Def_Dialog_Header_Line</include>
 
-			<control type="group">
-				<description>Content area</description>
-				<top>100</top>
-				<bottom>30</bottom>
-				<left>30</left>
-				<right>30</right>
-				<control type="group">
-					<description>Port list</description>
-					<width>1430</width>
-					<height>700</height>
-					<control type="image">
-						<description>Port list background</description>
-						<top>-20</top>
-						<bottom>-20</bottom>
-						<left>-20</left>
-						<right>-20</right>
-						<texture border="40">buttons/dialogbutton-nofo.png</texture>
-					</control>
-					<control type="list" id="3">
-						<description>Port item list</description>
-						<onright>9001</onright>
-						<onup>3</onup>
-						<ondown>3</ondown>
-						<pagecontrol>62</pagecontrol>
-						<scrolltime tween="sine">200</scrolltime>
-						<orientation>vertical</orientation>
-						<itemlayout width="1440" height="100">
-							<control type="group">
-								<control type="label">
-									<top>20</top>
-									<left>20</left>
-									<label>$INFO[ListItem.Label]</label>
-									<font>font37</font>
-									<shadowcolor>text_shadow</shadowcolor>
-									<align>left</align>
-								</control>
-								<control type="label">
-									<top>20</top>
-									<right>132</right>
-									<label>$INFO[ListItem.Label2]</label>
-									<font>font37</font>
-									<shadowcolor>text_shadow</shadowcolor>
-									<align>right</align>
-								</control>
-								<control type="gamecontroller">
-									<right>12</right>
-									<width>100</width>
-									<texture>$INFO[ListItem.Icon]</texture>
-									<portaddress>$INFO[ListItem.FilenameAndPath]</portaddress>
-									<controllerdiffuse>button_focus</controllerdiffuse>
-								</control>
-							</control>
-						</itemlayout>
-						<focusedlayout width="1440" height="100">
-							<control type="group">
-								<control type="image">
-									<top>-20</top>
-									<bottom>-20</bottom>
-									<left>-20</left>
-									<right>-20</right>
-									<texture>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texture>
-									<visible>Control.HasFocus(3)</visible>
-								</control>
-								<control type="label">
-									<top>20</top>
-									<left>20</left>
-									<label>$INFO[ListItem.Label]</label>
-									<font>font37</font>
-									<shadowcolor>text_shadow</shadowcolor>
-									<align>left</align>
-								</control>
-								<control type="label">
-									<top>20</top>
-									<right>132</right>
-									<label>$INFO[ListItem.Label2]</label>
-									<font>font37</font>
-									<shadowcolor>text_shadow</shadowcolor>
-									<align>right</align>
-								</control>
-								<control type="gamecontroller">
-									<right>12</right>
-									<width>100</width>
-									<texture>$INFO[ListItem.Icon]</texture>
-									<portaddress>$INFO[ListItem.FilenameAndPath]</portaddress>
-									<controllerdiffuse>button_focus</controllerdiffuse>
-								</control>
-							</control>
-						</focusedlayout>
-					</control>
-				</control>
+            <include content="Object_Scrollbar_Dialog">
+                <param name="scrollid" value="62"/>
+                <param name="onleft" value="3"/>
+                <param name="onright" value="9001"/>
+                <param name="centerright" value="360"/>
+            </include>
 
-                <control type="scrollbar" id="62">
-					<left>1430</left>
-					<width>12</width>
-					<orientation>vertical</orientation>
-				</control>
+			<control type="list" id="3">
+				<description>Port item list</description>
+				<top>112</top>
+				<left>0</left>
+				<width>1120</width>
+				<height>700</height>
+				<onright>62</onright>
+				<onup>3</onup>
+				<ondown>3</ondown>
+				<pagecontrol>62</pagecontrol>
+				<scrolltime tween="sine">200</scrolltime>
 
-				<control type="grouplist" id="9001">
-					<top>-20</top>
-					<right>-20</right>
-					<width>330</width>
-					<onleft>3</onleft>
-					<itemgap>dialogbuttons_itemgap</itemgap>
-					<include content="DefaultDialogButton">
-						<param name="width" value="330" />
-						<param name="id" value="18" />
-						<param name="label" value="$LOCALIZE[186]" />
-					</include>
-					<include content="DefaultDialogButton">
-						<param name="width" value="330" />
-						<param name="id" value="19" />
-						<param name="label" value="$LOCALIZE[13007]" />
-					</include>
-				</control>
+				<orientation>vertical</orientation>
+
+				<itemlayout width="1120" height="100">
+					<control type="group">
+						<control type="label">
+							<top>20</top>
+							<left>30</left>
+							<label>$INFO[ListItem.Label]</label>
+                            <font>InfoNetflix</font>
+                            <textcolor>PanelWhite100</textcolor>
+                            <selectedcolor>PanelWhite100</selectedcolor>
+							<align>left</align>
+						</control>
+						<control type="label">
+							<top>20</top>
+							<right>132</right>
+							<label>$INFO[ListItem.Label2]</label>
+                            <font>InfoNetflix</font>
+                            <textcolor>PanelWhite100</textcolor>
+                            <selectedcolor>PanelWhite100</selectedcolor>
+							<align>right</align>
+						</control>
+						<control type="gamecontroller">
+							<right>12</right>
+							<width>100</width>
+							<texture>$INFO[ListItem.Icon]</texture>
+							<portaddress>$INFO[ListItem.FilenameAndPath]</portaddress>
+							<controllerdiffuse>button_focus</controllerdiffuse>
+						</control>
+					</control>
+				</itemlayout>
+				<focusedlayout width="1120" height="100">
+					<control type="group">
+                        <visible>Control.HasFocus(3)</visible>
+                        <control type="image">
+                            <texture>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texture>
+                            <visible>Control.HasFocus(3)</visible>
+                        </control>
+						<control type="label">
+							<top>20</top>
+							<left>30</left>
+							<label>$INFO[ListItem.Label]</label>
+							<font>InfoNetflix</font>
+                            <textcolor>Selected</textcolor>
+							<align>left</align>
+						</control>
+						<control type="label">
+							<top>20</top>
+							<right>132</right>
+							<label>$INFO[ListItem.Label2]</label>
+							<font>InfoNetflix</font>
+                            <textcolor>Selected</textcolor>
+							<align>right</align>
+                            <visible>Control.HasFocus(3)</visible>
+						</control>
+						<control type="gamecontroller">
+							<right>12</right>
+							<width>100</width>
+							<texture>$INFO[ListItem.Icon]</texture>
+							<portaddress>$INFO[ListItem.FilenameAndPath]</portaddress>
+							<controllerdiffuse>button_focus</controllerdiffuse>
+						</control>
+					</control>
+					<control type="group">
+                        <visible>!Control.HasFocus(3)</visible>
+						<control type="label">
+							<top>20</top>
+							<left>20</left>
+							<label>$INFO[ListItem.Label]</label>
+                            <font>InfoNetflix</font>
+                            <textcolor>PanelWhite100</textcolor>
+                            <selectedcolor>PanelWhite100</selectedcolor>
+							<align>left</align>
+						</control>
+						<control type="label">
+							<top>20</top>
+							<right>132</right>
+							<label>$INFO[ListItem.Label2]</label>
+                            <font>InfoNetflix</font>
+                            <textcolor>PanelWhite100</textcolor>
+                            <selectedcolor>PanelWhite100</selectedcolor>
+							<align>right</align>
+						</control>
+						<control type="gamecontroller">
+							<right>12</right>
+							<width>100</width>
+							<texture>$INFO[ListItem.Icon]</texture>
+							<portaddress>$INFO[ListItem.FilenameAndPath]</portaddress>
+							<controllerdiffuse>button_focus</controllerdiffuse>
+						</control>
+					</control>
+				</focusedlayout>
 			</control>
+
+			<control type="scrollbar" id="62">
+				<left>1120</left>
+				<width>12</width>
+				<orientation>vertical</orientation>
+			</control>
+
+            <!-- LINES VERTICAL -->
+
+            <include content="Def_Dialog_Line_Vertical"><param name="right" value="360" /><param name="bottom" value="17" /></include>
+
+            <!-- BUTTON ON RIGHT -->
+
+            <control type="grouplist" id="9001">
+                <right>30</right>
+                <top>112</top>
+                <width>300</width>
+                <height>490</height>
+                <onleft>3</onleft>
+                <itemgap>4</itemgap>
+                <scrolltime tween="quadratic">200</scrolltime>
+                <include content="Def_Dialog_Button_Video_Manager">
+                    <param name="id" value="18" />
+                    <param name="label" value="$LOCALIZE[186]" />
+                </include>
+                <include content="Def_Dialog_Button_Video_Manager">
+                    <param name="id" value="19" />
+                    <param name="label" value="$LOCALIZE[13007]" />
+                </include>
+            </control>
+
+            <!-- NUM ITEMS -->
+
+            <include>Def_Dialog_Select_label_Num_Item</include>
 		</control>
 	</include>
 
 	<include name="AgentControllerList">
-		<control type="label">
-			<description>Controller name as reported by the driver</description>
-			<top>20</top>
-			<left>20</left>
-			<label>$INFO[ListItem.Label]</label>
-			<font>font37</font>
-			<shadowcolor>text_shadow</shadowcolor>
-			<align>left</align>
-		</control>
 		<control type="gamecontrollerlist">
 			<description>Controller list which indicates the port a player's controller is connected to. Length should fit 13 listitems (12 controller items and one "input disabled" item).</description>
 			<right>0</right>
-			<width>1248</width>
+			<width>1120</width>
 			<orientation>horizontal</orientation>
 			<align>right</align>
 			<enable>false</enable>
-			<itemlayout width="96" height="96">
+			<itemlayout width="96" height="100">
 				<control type="gamecontroller">
 					<texture>$INFO[ListItem.Icon]</texture>
 					<controllerid>$INFO[ListItem.Property(game.controllerid)]</controllerid>
@@ -686,7 +737,7 @@
 					<controllerdiffuse>button_focus</controllerdiffuse>
 				</control>
 			</itemlayout>
-			<focusedlayout width="96" height="96">
+			<focusedlayout width="96" height="100">
 				<control type="gamecontroller">
 					<texture>$INFO[ListItem.Icon]</texture>
 					<controllerid>$INFO[ListItem.Property(game.controllerid)]</controllerid>
