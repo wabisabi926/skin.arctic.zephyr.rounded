@@ -269,7 +269,7 @@
             <!-- DIALOG SELECT - ID 3  -->
 
             <!-- <include>Def_Dialog_Select</include> -->
-			<control type="list" id="3"></control>
+            <control type="list" id="3"></control>
 
             <control type="list" id="6">
                 <left>0</left>
@@ -389,7 +389,6 @@
             <!-- NUM ITEMS -->
 
             <include>Def_Dialog_Select_label_Num_Item</include>
-
         </control>
     </include>
 
@@ -416,7 +415,7 @@
             </include>
 
             <!-- DIALOG SELECT - ID 3  -->
-			<control type="list" id="3"></control>
+            <control type="list" id="3"></control>
 
             <control type="panel" id="6">
                 <left>-10</left>
@@ -617,7 +616,7 @@
             <!-- DIALOG SELECT - ID 3  -->
 
             <!-- <include>Def_Dialog_Select</include> -->
-			<control type="list" id="3"></control>
+            <control type="list" id="3"></control>
 
             <control type="panel" id="6">
                 <left>22</left>
@@ -666,7 +665,6 @@
                 <font>Button</font>
                 <textcolor>Black70</textcolor>
                 <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</texturefocus>
-                <!-- <animation effect="slide" start="0" end="0,-83" condition="!Control.IsVisible(5)">Conditional</animation> -->
             </control>
 
             <!-- CAST PICTURE -->
@@ -699,7 +697,6 @@
                 <align>center</align>
                 <top>726</top>
                 <left>960</left>
-                <!-- <width>222</width> -->
                 <right>20</right>
                 <height>44</height>
                 <scroll>true</scroll>
@@ -732,726 +729,6 @@
                 <haspath>false</haspath>
                 <label>$INFO[Container(6).ListItem.Label]</label>
                 <visible>!String.IsEmpty(Window(Home).Property(ListVideoForCast))</visible>
-                <animation effect="fade" start="0" end="100" time="300" delay="300">WindowOpen</animation>
-                <animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
-                <animation effect="fade" start="0" end="100" time="300">Visible</animation>
-                <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
-            </control>
-
-            <!-- NUM ITEMS -->
-
-            <include>Def_Dialog_Select_label_Num_Item</include>
-        </control>
-    </include>
-
-    <include name="Def_Dialog_Select_Video_Version">
-        <control type="group">
-            <include content="Def_Dialog_Background"><param name="height" value="882" /><param name="width" value="1320" /></include>
-
-            <!-- HEADER -->
-
-            <control type="label" id="1">
-                <include>Def_Dialog_Header_Title</include>
-                <label/>
-            </control>
-
-            <include>Def_Dialog_Header_Logo</include>
-            <include>Def_Dialog_Header_Line</include>
-
-            <include content="Object_Scrollbar_Dialog">
-                <param name="scrollid" value="1723"/>
-                <param name="onleft" value="6"/>
-                <param name="onright" value="1888"/>
-                <param name="centerright" value="360"/>
-            </include>
-
-            <!-- DIALOG SELECT - ID 3  -->
-			<control type="list" id="3"></control>
-
-            <control type="list" id="6">
-                <left>0</left>
-                <top>112</top>
-                <width>700</width>
-                <height>690</height>
-                <onleft>5</onleft>
-                <onright>1723</onright>
-                <pagecontrol>1723</pagecontrol>
-                <onup>6</onup>
-                <ondown>6</ondown>
-                <include>Animation_Scrolltime_Views_List</include>
-
-                <!-- VIDEO VERSION SELECTION -->
-
-                <itemlayout height="138">
-                    <control type="image">
-                        <left>32</left>
-                        <top>12</top>
-                        <width>111</width>
-                        <height>111</height>
-                        <aspectratio scalediffuse="false">keep</aspectratio>
-                        <texture fallback="DefaultAddonNone.png">$VAR[Image_Dialog_Select_List]</texture>
-                        <visible>[!String.StartsWith(ListItem.Icon,Default) | !String.IsEmpty(ListItem.Art(poster))]</visible>
-                    </control>
-                   <control type="image">
-                        <left>32</left>
-                        <top>12</top>
-                        <width>111</width>
-                        <height>111</height>
-                        <aspectratio scalediffuse="false">keep</aspectratio>
-                        <texture fallback="DefaultAddonNone.png" colordiffuse="Dark2">$INFO[ListItem.Icon]</texture>
-                        <visible>[String.StartsWith(ListItem.Icon,Default) | String.IsEmpty(ListItem.Icon)] + String.IsEmpty(ListItem.Art(poster))</visible>
-                    </control>
-
-                    <control type="label">
-                        <left>170</left>
-                        <width>496</width>
-                        <top>0</top>
-                        <right>20</right>
-                        <height>60</height>
-                        <font>Small</font>
-                        <textcolor>PanelWhite100</textcolor>
-                        <selectedcolor>PanelWhite100</selectedcolor>
-                        <aligny>center</aligny>
-                        <label>$VAR[MediaInfoListLabelVar]</label>
-                    </control>
-                    <control type="label">
-                        <left>170</left>
-                        <width>496</width>
-                        <top>50</top>
-                        <right>20</right>
-                        <height>35</height>
-                        <font>Mini</font>
-                        <textcolor>PanelWhite100</textcolor>
-                        <selectedcolor>PanelWhite100</selectedcolor>
-                        <aligny>center</aligny>
-                        <label>$INFO[ListItem.Duration,$LOCALIZE[180]: ]</label>
-                    </control>
-                    <control type="label">
-                        <left>170</left>
-                        <width>496</width>
-                        <top>85</top>
-                        <right>20</right>
-                        <height>30</height>
-                        <font>Mini</font>
-                        <textcolor>PanelWhite100</textcolor>
-                        <selectedcolor>PanelWhite100</selectedcolor>
-                        <aligny>center</aligny>
-                        <label>$VAR[VideoCodecVar,, ]$INFO[ListItem.VideoResolution,| , ]$VAR[VideoResolutionTypeVar,, ]$VAR[VideoHDRVar,| , ]$INFO[ListItem.VideoAspect,| ,:1 ]$VAR[AudioCodecVar,| , ]$VAR[AudioChannelsVar]</label>
-                    </control>
-
-                    <!-- <control type="label"> -->
-                        <!-- <top>-18</top> -->
-                        <!-- <left>170</left> -->
-                        <!-- <width>496</width> -->
-                        <!-- <height>135</height> -->
-                        <!-- <font>Small</font> -->
-                        <!-- <textcolor>PanelWhite100</textcolor> -->
-                        <!-- <selectedcolor>PanelWhite100</selectedcolor> -->
-                        <!-- <label>$INFO[ListItem.Label]</label> -->
-                        <!-- <animation effect="slide" end="0,18" condition="String.IsEmpty(ListItem.Label2)">Conditional</animation> -->
-                    <!-- </control> -->
-                    <!-- <control type="label"> -->
-                        <!-- <left>170</left> -->
-                        <!-- <top>18</top> -->
-                        <!-- <width>496</width> -->
-                        <!-- <height>135</height> -->
-                        <!-- <font>Mini</font> -->
-                        <!-- <textcolor>PanelWhite100</textcolor> -->
-                        <!-- <selectedcolor>PanelWhite100</selectedcolor> -->
-                        <!-- <label>$INFO[ListItem.Label2]</label> -->
-                    <!-- </control> -->
-                    <control type="image">
-                        <right>30</right>
-                        <centertop>50%</centertop>
-                        <width>28</width>
-                        <height>28</height>
-                        <texture colordiffuse="PanelWhite100">buttons/radio-off.png</texture>
-                        <visible>!ListItem.IsSelected</visible>
-                    </control>
-                    <control type="image">
-                        <right>30</right>
-                        <centertop>50%</centertop>
-                        <width>28</width>
-                        <height>28</height>
-                        <texture colordiffuse="PanelWhite100">buttons/radio-on.png</texture>
-                        <visible>ListItem.IsSelected</visible>
-                    </control>
-                </itemlayout>
-                <focusedlayout height="138">
-                    <control type="group">
-                        <visible>!Control.HasFocus(6)</visible>
-                        <control type="image">
-                            <left>32</left>
-                            <top>12</top>
-                            <width>111</width>
-                            <height>111</height>
-                            <aspectratio scalediffuse="false">keep</aspectratio>
-                            <texture fallback="DefaultAddonNone.png">$VAR[Image_Dialog_Select_List]</texture>
-                            <visible>!String.StartsWith(ListItem.Icon,Default) + !String.IsEmpty(ListItem.Icon)</visible>
-                        </control>
-                        <control type="image">
-                            <left>32</left>
-                            <top>12</top>
-                            <width>111</width>
-                            <height>111</height>
-                            <aspectratio scalediffuse="false">keep</aspectratio>
-                            <texture fallback="DefaultAddonNone.png" colordiffuse="Selected">$VAR[Image_Dialog_Select_List]</texture>
-                            <visible>String.StartsWith(ListItem.Icon,Default) | String.IsEmpty(ListItem.Icon)</visible>
-                        </control>
-                        <control type="label">
-                            <left>170</left>
-                            <width>496</width>
-                            <top>0</top>
-                            <right>20</right>
-                            <height>60</height>
-                            <font>Small</font>
-                            <aligny>center</aligny>
-                            <textcolor>PanelWhite100</textcolor>
-                            <selectedcolor>PanelWhite100</selectedcolor>
-                            <label>$VAR[MediaInfoListLabelVar]</label>
-                        </control>
-                        <control type="label">
-                            <left>170</left>
-                            <width>496</width>
-                            <top>50</top>
-                            <right>20</right>
-                            <height>35</height>
-                            <font>Mini</font>
-                            <textcolor>PanelWhite100</textcolor>
-                            <selectedcolor>PanelWhite100</selectedcolor>
-                            <aligny>center</aligny>
-                            <label>$INFO[ListItem.Duration,$LOCALIZE[180]: ]</label>
-                        </control>
-                        <control type="label">
-                            <left>170</left>
-                            <width>496</width>
-                            <top>85</top>
-                            <right>20</right>
-                            <height>30</height>
-                            <font>Mini</font>
-                            <textcolor>PanelWhite100</textcolor>
-                            <selectedcolor>PanelWhite100</selectedcolor>
-                            <aligny>center</aligny>
-                            <label>$VAR[VideoCodecVar,, ]$INFO[ListItem.VideoResolution,| , ]$VAR[VideoResolutionTypeVar,, ]$VAR[VideoHDRVar,| , ]$INFO[ListItem.VideoAspect,| ,:1 ]$VAR[AudioCodecVar,| , ]$VAR[AudioChannelsVar]</label>
-                        </control>
-
-                        <!-- <control type="label"> -->
-                            <!-- <top>-18</top> -->
-                            <!-- <left>170</left> -->
-                            <!-- <width>496</width> -->
-                            <!-- <height>135</height> -->
-                            <!-- <font>Small</font> -->
-                            <!-- <textcolor>PanelWhite100</textcolor> -->
-                            <!-- <selectedcolor>PanelWhite100</selectedcolor> -->
-                            <!-- <info>ListItem.Label</info> -->
-                            <!-- <animation effect="slide" end="0,18" condition="String.IsEmpty(ListItem.Label2)">Conditional</animation> -->
-                        <!-- </control> -->
-                        <!-- <control type="label"> -->
-                            <!-- <left>170</left> -->
-                            <!-- <top>18</top> -->
-                            <!-- <width>496</width> -->
-                            <!-- <height>135</height> -->
-                            <!-- <font>Mini</font> -->
-                            <!-- <textcolor>PanelWhite100</textcolor> -->
-                            <!-- <selectedcolor>PanelWhite100</selectedcolor> -->
-                            <!-- <label>$INFO[ListItem.Label2]</label> -->
-                        <!-- </control> -->
-
-                        <control type="image">
-                            <right>30</right>
-                            <centertop>50%</centertop>
-                            <width>28</width>
-                            <height>28</height>
-                            <texture colordiffuse="Selected">buttons/radio-off.png</texture>
-                            <visible>!ListItem.IsSelected</visible>
-                        </control>
-                        <control type="image">
-                            <right>30</right>
-                            <centertop>50%</centertop>
-                            <width>28</width>
-                            <height>28</height>
-                            <texture colordiffuse="Selected">buttons/radio-on.png</texture>
-                            <visible>ListItem.IsSelected</visible>
-                        </control>
-                    </control>
-                    <control type="group">
-                        <visible>Control.HasFocus(6)</visible>
-                        <control type="image">
-                            <width>696</width>
-                            <height>135</height>
-                            <texture>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texture>
-                        </control>
-                        <control type="image">
-                            <left>32</left>
-                            <top>12</top>
-                            <width>111</width>
-                            <height>111</height>
-                            <aspectratio scalediffuse="false">keep</aspectratio>
-                            <texture fallback="DefaultAddonNone.png">$VAR[Image_Dialog_Select_List]</texture>
-                            <visible>!String.StartsWith(ListItem.Icon,Default) + !String.IsEmpty(ListItem.Icon)</visible>
-                        </control>
-                        <control type="image">
-                            <left>32</left>
-                            <top>12</top>
-                            <width>111</width>
-                            <height>111</height>
-                            <aspectratio scalediffuse="false">keep</aspectratio>
-                            <texture fallback="DefaultAddonNone.png" colordiffuse="Selected">$VAR[Image_Dialog_Select_List]</texture>
-                            <visible>[String.StartsWith(ListItem.Icon,Default) | String.IsEmpty(ListItem.Icon)]</visible>
-                        </control>
-
-                        <control type="label">
-                            <left>170</left>
-                            <width>496</width>
-                            <top>0</top>
-                            <right>20</right>
-                            <height>60</height>
-                            <font>Small</font>
-                            <aligny>center</aligny>
-                            <textcolor>Selected</textcolor>
-                            <selectedcolor>Selected</selectedcolor>
-                            <label>$VAR[MediaInfoListLabelVar]</label>
-                        </control>
-                        <control type="label">
-                            <left>170</left>
-                            <width>496</width>
-                            <top>50</top>
-                            <right>20</right>
-                            <height>35</height>
-                            <font>Mini</font>
-                            <textcolor>Selected</textcolor>
-                            <selectedcolor>Selected</selectedcolor>
-                            <aligny>center</aligny>
-                            <label>$INFO[ListItem.Duration,$LOCALIZE[180]: ]</label>
-                        </control>
-                        <control type="label">
-                            <left>170</left>
-                            <width>496</width>
-                            <top>85</top>
-                            <right>20</right>
-                            <height>30</height>
-                            <font>Mini</font>
-                            <textcolor>Selected</textcolor>
-                            <selectedcolor>Selected</selectedcolor>
-                            <aligny>center</aligny>
-                            <label>$VAR[VideoCodecVar,, ]$INFO[ListItem.VideoResolution,| , ]$VAR[VideoResolutionTypeVar,, ]$VAR[VideoHDRVar,| , ]$INFO[ListItem.VideoAspect,| ,:1 ]$VAR[AudioCodecVar,| , ]$VAR[AudioChannelsVar]</label>
-                        </control>
-
-                        <!-- <control type="label"> -->
-                            <!-- <top>-18</top> -->
-                            <!-- <left>170</left> -->
-                            <!-- <width>496</width> -->
-                            <!-- <height>135</height> -->
-                            <!-- <font>Small</font> -->
-                            <!-- <textcolor>Selected</textcolor> -->
-                            <!-- <selectedcolor>Selected</selectedcolor> -->
-                            <!-- <label>$INFO[ListItem.Label]</label> -->
-                            <!-- <animation effect="slide" end="0,18" condition="String.IsEmpty(ListItem.Label2)">Conditional</animation> -->
-                        <!-- </control> -->
-                        <!-- <control type="label"> -->
-                            <!-- <left>170</left> -->
-                            <!-- <top>18</top> -->
-                            <!-- <width>496</width> -->
-                            <!-- <height>135</height> -->
-                            <!-- <font>Mini</font> -->
-                            <!-- <textcolor>Selected</textcolor> -->
-                            <!-- <selectedcolor>Selected</selectedcolor> -->
-                            <!-- <label>$INFO[ListItem.Label2]</label> -->
-                        <!-- </control> -->
-
-                        <control type="image">
-                            <right>30</right>
-                            <centertop>50%</centertop>
-                            <width>28</width>
-                            <height>28</height>
-                            <texture colordiffuse="Selected">buttons/radio-off.png</texture>
-                            <visible>!ListItem.IsSelected</visible>
-                        </control>
-                        <control type="image">
-                            <right>30</right>
-                            <centertop>50%</centertop>
-                            <width>28</width>
-                            <height>28</height>
-                            <texture colordiffuse="Selected">buttons/radio-on.png</texture>
-                            <visible>ListItem.IsSelected</visible>
-                        </control>
-                    </control>
-                </focusedlayout>
-            </control>
-
-            <!-- PATH VIDEO VERSION -->
-
-            <control type="label">
-                <align>left</align>
-                <bottom>17</bottom>
-                <left>30</left>
-                <right>140</right>
-                <height>44</height>
-                <scroll>true</scroll>
-                <font>Tiny</font>
-                <haspath>false</haspath>
-                <label>$INFO[Container(6).ListItem.FileNameAndPath]</label>
-                <visible>Window.IsActive(selectvideoversion) | Window.IsActive(selectvideoextra)</visible>
-                <animation effect="fade" start="0" end="100" time="300" delay="300">WindowOpen</animation>
-                <animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
-                <animation effect="fade" start="0" end="100" time="300">Visible</animation>
-                <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
-            </control>
-
-            <!-- NUM ITEMS -->
-
-            <include>Def_Dialog_Select_label_Num_Item</include>
-        </control>
-    </include>
-
-    <include name="Def_Dialog_Select_Video_Extra">
-        <control type="group">
-            <include content="Def_Dialog_Background"><param name="height" value="882" /><param name="width" value="1320" /></include>
-
-            <!-- HEADER -->
-
-            <control type="label" id="1">
-                <include>Def_Dialog_Header_Title</include>
-                <label/>
-            </control>
-
-            <include>Def_Dialog_Header_Logo</include>
-            <include>Def_Dialog_Header_Line</include>
-
-            <include content="Object_Scrollbar_Dialog">
-                <param name="scrollid" value="1723"/>
-                <param name="onleft" value="6"/>
-                <param name="onright" value="1888"/>
-                <param name="centerright" value="360"/>
-            </include>
-
-            <!-- DIALOG SELECT - ID 3  -->
-			<control type="list" id="3"></control>
-
-            <control type="list" id="6">
-                <left>0</left>
-                <top>112</top>
-                <width>700</width>
-                <height>690</height>
-                <onleft>5</onleft>
-                <onright>1723</onright>
-                <pagecontrol>1723</pagecontrol>
-                <onup>6</onup>
-                <ondown>6</ondown>
-                <include>Animation_Scrolltime_Views_List</include>
-
-                <!-- VIDEO VERSION SELECTION -->
-
-                <itemlayout height="138">
-                    <control type="image">
-                        <left>32</left>
-                        <top>12</top>
-                        <width>111</width>
-                        <height>111</height>
-                        <aspectratio scalediffuse="false">keep</aspectratio>
-                        <texture fallback="DefaultAddonNone.png">$VAR[Image_Dialog_Select_List]</texture>
-                        <visible>[!String.StartsWith(ListItem.Icon,Default) | !String.IsEmpty(ListItem.Art(poster))]</visible>
-                    </control>
-                   <control type="image">
-                        <left>32</left>
-                        <top>12</top>
-                        <width>111</width>
-                        <height>111</height>
-                        <aspectratio scalediffuse="false">keep</aspectratio>
-                        <texture fallback="DefaultAddonNone.png" colordiffuse="Dark2">$INFO[ListItem.Icon]</texture>
-                        <visible>[String.StartsWith(ListItem.Icon,Default) | String.IsEmpty(ListItem.Icon)] + String.IsEmpty(ListItem.Art(poster))</visible>
-                    </control>
-
-                    <control type="label">
-                        <left>170</left>
-                        <width>496</width>
-                        <top>0</top>
-                        <right>20</right>
-                        <height>60</height>
-                        <font>Small</font>
-                        <textcolor>PanelWhite100</textcolor>
-                        <selectedcolor>PanelWhite100</selectedcolor>
-                        <aligny>center</aligny>
-                        <label>$VAR[MediaInfoListLabelVar]</label>
-                    </control>
-                    <control type="label">
-                        <left>170</left>
-                        <width>496</width>
-                        <top>50</top>
-                        <right>20</right>
-                        <height>35</height>
-                        <font>Mini</font>
-                        <textcolor>PanelWhite100</textcolor>
-                        <selectedcolor>PanelWhite100</selectedcolor>
-                        <aligny>center</aligny>
-                        <label>$INFO[ListItem.Duration,$LOCALIZE[180]: ]</label>
-                    </control>
-                    <control type="label">
-                        <left>170</left>
-                        <width>496</width>
-                        <top>85</top>
-                        <right>20</right>
-                        <height>30</height>
-                        <font>Mini</font>
-                        <textcolor>PanelWhite100</textcolor>
-                        <selectedcolor>PanelWhite100</selectedcolor>
-                        <aligny>center</aligny>
-                        <label>$VAR[VideoCodecVar,, ]$INFO[ListItem.VideoResolution,| , ]$VAR[VideoResolutionTypeVar,, ]$VAR[VideoHDRVar,| , ]$INFO[ListItem.VideoAspect,| ,:1 ]$VAR[AudioCodecVar,| , ]$VAR[AudioChannelsVar]</label>
-                    </control>
-
-                    <!-- <control type="label"> -->
-                        <!-- <top>-18</top> -->
-                        <!-- <left>170</left> -->
-                        <!-- <width>496</width> -->
-                        <!-- <height>135</height> -->
-                        <!-- <font>Small</font> -->
-                        <!-- <textcolor>PanelWhite100</textcolor> -->
-                        <!-- <selectedcolor>PanelWhite100</selectedcolor> -->
-                        <!-- <label>$INFO[ListItem.Label]</label> -->
-                        <!-- <animation effect="slide" end="0,18" condition="String.IsEmpty(ListItem.Label2)">Conditional</animation> -->
-                    <!-- </control> -->
-                    <!-- <control type="label"> -->
-                        <!-- <left>170</left> -->
-                        <!-- <top>18</top> -->
-                        <!-- <width>496</width> -->
-                        <!-- <height>135</height> -->
-                        <!-- <font>Mini</font> -->
-                        <!-- <textcolor>PanelWhite100</textcolor> -->
-                        <!-- <selectedcolor>PanelWhite100</selectedcolor> -->
-                        <!-- <label>$INFO[ListItem.Label2]</label> -->
-                    <!-- </control> -->
-                    <control type="image">
-                        <right>30</right>
-                        <centertop>50%</centertop>
-                        <width>28</width>
-                        <height>28</height>
-                        <texture colordiffuse="PanelWhite100">buttons/radio-off.png</texture>
-                        <visible>!ListItem.IsSelected</visible>
-                    </control>
-                    <control type="image">
-                        <right>30</right>
-                        <centertop>50%</centertop>
-                        <width>28</width>
-                        <height>28</height>
-                        <texture colordiffuse="PanelWhite100">buttons/radio-on.png</texture>
-                        <visible>ListItem.IsSelected</visible>
-                    </control>
-                </itemlayout>
-                <focusedlayout height="138">
-                    <control type="group">
-                        <visible>!Control.HasFocus(6)</visible>
-                        <control type="image">
-                            <left>32</left>
-                            <top>12</top>
-                            <width>111</width>
-                            <height>111</height>
-                            <aspectratio scalediffuse="false">keep</aspectratio>
-                            <texture fallback="DefaultAddonNone.png">$VAR[Image_Dialog_Select_List]</texture>
-                            <visible>!String.StartsWith(ListItem.Icon,Default) + !String.IsEmpty(ListItem.Icon)</visible>
-                        </control>
-                        <control type="image">
-                            <left>32</left>
-                            <top>12</top>
-                            <width>111</width>
-                            <height>111</height>
-                            <aspectratio scalediffuse="false">keep</aspectratio>
-                            <texture fallback="DefaultAddonNone.png" colordiffuse="Selected">$VAR[Image_Dialog_Select_List]</texture>
-                            <visible>String.StartsWith(ListItem.Icon,Default) | String.IsEmpty(ListItem.Icon)</visible>
-                        </control>
-                        <control type="label">
-                            <left>170</left>
-                            <width>496</width>
-                            <top>0</top>
-                            <right>20</right>
-                            <height>60</height>
-                            <font>Small</font>
-                            <aligny>center</aligny>
-                            <textcolor>PanelWhite100</textcolor>
-                            <selectedcolor>PanelWhite100</selectedcolor>
-                            <label>$VAR[MediaInfoListLabelVar]</label>
-                        </control>
-                        <control type="label">
-                            <left>170</left>
-                            <width>496</width>
-                            <top>50</top>
-                            <right>20</right>
-                            <height>35</height>
-                            <font>Mini</font>
-                            <textcolor>PanelWhite100</textcolor>
-                            <selectedcolor>PanelWhite100</selectedcolor>
-                            <aligny>center</aligny>
-                            <label>$INFO[ListItem.Duration,$LOCALIZE[180]: ]</label>
-                        </control>
-                        <control type="label">
-                            <left>170</left>
-                            <width>496</width>
-                            <top>85</top>
-                            <right>20</right>
-                            <height>30</height>
-                            <font>Mini</font>
-                            <textcolor>PanelWhite100</textcolor>
-                            <selectedcolor>PanelWhite100</selectedcolor>
-                            <aligny>center</aligny>
-                            <label>$VAR[VideoCodecVar,, ]$INFO[ListItem.VideoResolution,| , ]$VAR[VideoResolutionTypeVar,, ]$VAR[VideoHDRVar,| , ]$INFO[ListItem.VideoAspect,| ,:1 ]$VAR[AudioCodecVar,| , ]$VAR[AudioChannelsVar]</label>
-                        </control>
-
-                        <!-- <control type="label"> -->
-                            <!-- <top>-18</top> -->
-                            <!-- <left>170</left> -->
-                            <!-- <width>496</width> -->
-                            <!-- <height>135</height> -->
-                            <!-- <font>Small</font> -->
-                            <!-- <textcolor>PanelWhite100</textcolor> -->
-                            <!-- <selectedcolor>PanelWhite100</selectedcolor> -->
-                            <!-- <info>ListItem.Label</info> -->
-                            <!-- <animation effect="slide" end="0,18" condition="String.IsEmpty(ListItem.Label2)">Conditional</animation> -->
-                        <!-- </control> -->
-                        <!-- <control type="label"> -->
-                            <!-- <left>170</left> -->
-                            <!-- <top>18</top> -->
-                            <!-- <width>496</width> -->
-                            <!-- <height>135</height> -->
-                            <!-- <font>Mini</font> -->
-                            <!-- <textcolor>PanelWhite100</textcolor> -->
-                            <!-- <selectedcolor>PanelWhite100</selectedcolor> -->
-                            <!-- <label>$INFO[ListItem.Label2]</label> -->
-                        <!-- </control> -->
-
-                        <control type="image">
-                            <right>30</right>
-                            <centertop>50%</centertop>
-                            <width>28</width>
-                            <height>28</height>
-                            <texture colordiffuse="Selected">buttons/radio-off.png</texture>
-                            <visible>!ListItem.IsSelected</visible>
-                        </control>
-                        <control type="image">
-                            <right>30</right>
-                            <centertop>50%</centertop>
-                            <width>28</width>
-                            <height>28</height>
-                            <texture colordiffuse="Selected">buttons/radio-on.png</texture>
-                            <visible>ListItem.IsSelected</visible>
-                        </control>
-                    </control>
-                    <control type="group">
-                        <visible>Control.HasFocus(6)</visible>
-                        <control type="image">
-                            <width>696</width>
-                            <height>135</height>
-                            <texture>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texture>
-                        </control>
-                        <control type="image">
-                            <left>32</left>
-                            <top>12</top>
-                            <width>111</width>
-                            <height>111</height>
-                            <aspectratio scalediffuse="false">keep</aspectratio>
-                            <texture fallback="DefaultAddonNone.png">$VAR[Image_Dialog_Select_List]</texture>
-                            <visible>!String.StartsWith(ListItem.Icon,Default) + !String.IsEmpty(ListItem.Icon)</visible>
-                        </control>
-                        <control type="image">
-                            <left>32</left>
-                            <top>12</top>
-                            <width>111</width>
-                            <height>111</height>
-                            <aspectratio scalediffuse="false">keep</aspectratio>
-                            <texture fallback="DefaultAddonNone.png" colordiffuse="Selected">$VAR[Image_Dialog_Select_List]</texture>
-                            <visible>[String.StartsWith(ListItem.Icon,Default) | String.IsEmpty(ListItem.Icon)]</visible>
-                        </control>
-
-                        <control type="label">
-                            <left>170</left>
-                            <width>496</width>
-                            <top>0</top>
-                            <right>20</right>
-                            <height>60</height>
-                            <font>Small</font>
-                            <aligny>center</aligny>
-                            <textcolor>Selected</textcolor>
-                            <selectedcolor>Selected</selectedcolor>
-                            <label>$VAR[MediaInfoListLabelVar]</label>
-                        </control>
-                        <control type="label">
-                            <left>170</left>
-                            <width>496</width>
-                            <top>50</top>
-                            <right>20</right>
-                            <height>35</height>
-                            <font>Mini</font>
-                            <textcolor>Selected</textcolor>
-                            <selectedcolor>Selected</selectedcolor>
-                            <aligny>center</aligny>
-                            <label>$INFO[ListItem.Duration,$LOCALIZE[180]: ]</label>
-                        </control>
-                        <control type="label">
-                            <left>170</left>
-                            <width>496</width>
-                            <top>85</top>
-                            <right>20</right>
-                            <height>30</height>
-                            <font>Mini</font>
-                            <textcolor>Selected</textcolor>
-                            <selectedcolor>Selected</selectedcolor>
-                            <aligny>center</aligny>
-                            <label>$VAR[VideoCodecVar,, ]$INFO[ListItem.VideoResolution,| , ]$VAR[VideoResolutionTypeVar,, ]$VAR[VideoHDRVar,| , ]$INFO[ListItem.VideoAspect,| ,:1 ]$VAR[AudioCodecVar,| , ]$VAR[AudioChannelsVar]</label>
-                        </control>
-
-                        <!-- <control type="label"> -->
-                            <!-- <top>-18</top> -->
-                            <!-- <left>170</left> -->
-                            <!-- <width>496</width> -->
-                            <!-- <height>135</height> -->
-                            <!-- <font>Small</font> -->
-                            <!-- <textcolor>Selected</textcolor> -->
-                            <!-- <selectedcolor>Selected</selectedcolor> -->
-                            <!-- <label>$INFO[ListItem.Label]</label> -->
-                            <!-- <animation effect="slide" end="0,18" condition="String.IsEmpty(ListItem.Label2)">Conditional</animation> -->
-                        <!-- </control> -->
-                        <!-- <control type="label"> -->
-                            <!-- <left>170</left> -->
-                            <!-- <top>18</top> -->
-                            <!-- <width>496</width> -->
-                            <!-- <height>135</height> -->
-                            <!-- <font>Mini</font> -->
-                            <!-- <textcolor>Selected</textcolor> -->
-                            <!-- <selectedcolor>Selected</selectedcolor> -->
-                            <!-- <label>$INFO[ListItem.Label2]</label> -->
-                        <!-- </control> -->
-
-                        <control type="image">
-                            <right>30</right>
-                            <centertop>50%</centertop>
-                            <width>28</width>
-                            <height>28</height>
-                            <texture colordiffuse="Selected">buttons/radio-off.png</texture>
-                            <visible>!ListItem.IsSelected</visible>
-                        </control>
-                        <control type="image">
-                            <right>30</right>
-                            <centertop>50%</centertop>
-                            <width>28</width>
-                            <height>28</height>
-                            <texture colordiffuse="Selected">buttons/radio-on.png</texture>
-                            <visible>ListItem.IsSelected</visible>
-                        </control>
-                    </control>
-                </focusedlayout>
-            </control>
-
-            <!-- PATH VIDEO VERSION -->
-
-            <control type="label">
-                <align>left</align>
-                <bottom>17</bottom>
-                <left>30</left>
-                <right>140</right>
-                <height>44</height>
-                <scroll>true</scroll>
-                <font>Tiny</font>
-                <haspath>false</haspath>
-                <label>$INFO[Container(6).ListItem.FileNameAndPath]</label>
-                <visible>Window.IsActive(selectvideoversion) | Window.IsActive(selectvideoextra)</visible>
                 <animation effect="fade" start="0" end="100" time="300" delay="300">WindowOpen</animation>
                 <animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
                 <animation effect="fade" start="0" end="100" time="300">Visible</animation>
@@ -1797,8 +1074,8 @@
 
     <!-- DIALOG - SELECT - GAMES -->
 
-	<include name="Def_Dialog_Select_Game_Save">
-		<control type="group">
+    <include name="Def_Dialog_Select_Game_Save">
+        <control type="group">
             <include content="Def_Dialog_Background"><param name="height" value="882" /><param name="width" value="1644" /></include>
 
             <!-- HEADER -->
@@ -1819,8 +1096,8 @@
             </include>
 
             <control type="panel" id="3">
-				<top>112</top>
-				<left>30</left>
+                <top>112</top>
+                <left>30</left>
                 <width>1284</width>
                 <height>708</height>
                 <onright>61</onright>
@@ -1929,14 +1206,12 @@
                 <animation effect="fade" start="0" end="100" time="100" condition="!Control.HasFocus(61) + !Container.Scrolling">Conditional</animation>
             </control>
 
-
             <control type="label" id="10823">
                 <description>Emulator name</description>
                 <top>412</top>
                 <height>20</height>
                 <width>300</width>
                 <right>30</right>
-
                 <font>font23_narrow</font>
                 <textcolor>button_focus</textcolor>
                 <align>center</align>
@@ -1959,7 +1234,6 @@
                 <width>300</width>
                 <aspectratio>keep</aspectratio>
             </control>
-
 
             <control type="group">
                 <description>Bottom bar of text area</description>
@@ -1988,11 +1262,11 @@
             <!-- NUM ITEMS -->
 
             <include>Def_Dialog_Select_label_Num_Item</include>
-		</control>
-	</include>
+        </control>
+    </include>
 
-	<include name="Def_Dialog_Select_Game_Filter">
-		<control type="group">
+    <include name="Def_Dialog_Select_Game_Filter">
+        <control type="group">
             <include content="Def_Dialog_Background"><param name="height" value="882" /><param name="width" value="1644" /></include>
 
             <!-- HEADER -->
@@ -2010,12 +1284,11 @@
                 <param name="onleft" value="108113"/>
                 <param name="onright" value="7"/>
                 <param name="centerright" value="360"/>
-                <!-- <param name="visible" value="Control.IsVisible(3) + !Control.IsVisible(6)" /> -->
             </include>
 
             <control type="panel" id="10811">
-				<top>112</top>
-				<left>30</left>
+                <top>112</top>
+                <left>30</left>
                 <width>1284</width>
                 <height>708</height>
                 <onright>61</onright>
@@ -2139,12 +1412,11 @@
                 <align>justify</align>
                 <autoscroll time="3000" delay="5000" repeat="5000">true</autoscroll>
             </control>
-
         </control>
-	</include>
+    </include>
 
-	<include name="Def_Dialog_Select_Game_View">
-		<control type="group">
+    <include name="Def_Dialog_Select_Game_View">
+        <control type="group">
             <include content="Def_Dialog_Background"><param name="height" value="882" /><param name="width" value="1644" /></include>
 
             <!-- HEADER -->
@@ -2158,8 +1430,8 @@
             <include>Def_Dialog_Header_Line</include>
 
             <control type="panel" id="10811">
-				<top>112</top>
-				<left>30</left>
+                <top>112</top>
+                <left>30</left>
                 <width>1284</width>
                 <height>708</height>
                 <onright>7</onright>
@@ -2272,11 +1544,11 @@
                 <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</texturefocus>
                 <onclick>Action(close)</onclick>
             </control>
-		</control>
-	</include>
+        </control>
+    </include>
 
-	<include name="Def_Dialog_Select_Game_Save_In_Game">
-		<control type="group">
+    <include name="Def_Dialog_Select_Game_Save_In_Game">
+        <control type="group">
             <include content="Def_Dialog_Background"><param name="height" value="882" /><param name="width" value="1644" /></include>
 
             <!-- HEADER -->
@@ -2297,8 +1569,8 @@
             </include>
 
             <control type="panel" id="10811">
-				<top>112</top>
-				<left>30</left>
+                <top>112</top>
+                <left>30</left>
                 <width>1284</width>
                 <height>708</height>
                 <onright>61</onright>
@@ -2460,6 +1732,5 @@
 
             <include>Def_Dialog_Select_label_Num_Item</include>
         </control>
-	</include>
-
+    </include>
 </includes>
