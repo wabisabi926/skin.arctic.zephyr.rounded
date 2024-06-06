@@ -4,7 +4,7 @@
     <controls>
         <include>Background_Overlay</include>
         <control type="group">
-            <include content="Def_Dialog_InfoPanel"><param name="height" value="840" /><param name="width" value="1722" /><param name="colordiffuse" value="Panel" /></include>
+            <include content="Def_Dialog_InfoPanel"><param name="height" value="866" /><param name="width" value="1722" /><param name="colordiffuse" value="Panel" /></include>
 
             <control type="label">
                 <include>Def_Dialog_Header_Title</include>
@@ -37,8 +37,9 @@
                     <onright>60</onright>
                     <onup>13</onup>
                     <ondown>13</ondown>
-                    <scrolltime tween="cubic" easing="out">500</scrolltime>
+                    <include>Animation_Scrolltime_Views_List</include>
                     <pagecontrol>60</pagecontrol>
+
                     <itemlayout height="70" width="454">
                         <control type="image">
                             <left>25</left>
@@ -94,7 +95,26 @@
 
             <!-- LINE VERTICAL -->
 
-            <include content="Def_Dialog_Line_Vertical"><param name="right" value="1268"/></include>
+            <control type="image">
+                <right>1268</right>
+                <top>112</top>
+                <bottom>17</bottom>
+                <width>1</width>
+                <texture colordiffuse="Black12">common/white.png</texture>
+                <animation effect="fade" start="0" end="100" time="100" condition="!Control.HasFocus(60) + !Container.Scrolling">Conditional</animation>
+            </control>
+
+            <!-- NUM ITEMS -->
+
+            <control type="label">
+                <right>1298</right>
+                <font>Tiny</font>
+                <height>44</height>
+                <bottom>17</bottom>
+                <align>right</align>
+                <textcolor>Black70</textcolor>
+                <label>$INFO[Container(13).CurrentItem]$INFO[Container(13).NumItems, / ,]</label>
+            </control>
 
             <control type="group">
                 <description>Group list</description>
@@ -119,7 +139,7 @@
                     <onright>61</onright>
                     <onup>11</onup>
                     <ondown>11</ondown>
-                    <scrolltime tween="cubic" easing="out">500</scrolltime>
+                    <include>Animation_Scrolltime_Views_List</include>
                     <pagecontrol>61</pagecontrol>
                     <itemlayout height="70" width="454">
                         <control type="image">
@@ -176,7 +196,26 @@
 
             <!-- LINE VERTICAL -->
 
-            <include content="Def_Dialog_Line_Vertical"><param name="right" value="814"/></include>
+            <control type="image">
+                <right>814</right>
+                <top>112</top>
+                <bottom>17</bottom>
+                <width>1</width>
+                <texture colordiffuse="Black12">common/white.png</texture>
+                <animation effect="fade" start="0" end="100" time="100" condition="!Control.HasFocus(61) + !Container.Scrolling">Conditional</animation>
+            </control>
+
+            <!-- NUM ITEMS -->
+
+            <control type="label">
+                <right>844</right>
+                <font>Tiny</font>
+                <height>44</height>
+                <bottom>17</bottom>
+                <align>right</align>
+                <textcolor>Black70</textcolor>
+                <label>$INFO[Container(11).CurrentItem]$INFO[Container(11).NumItems, / ,]</label>
+            </control>
 
             <control type="group">
                 <description>Group list</description>
@@ -200,7 +239,7 @@
                     <onright>62</onright>
                     <onup>12</onup>
                     <ondown>12</ondown>
-                    <scrolltime tween="cubic" easing="out">500</scrolltime>
+                    <include>Animation_Scrolltime_Views_List</include>
                     <pagecontrol>62</pagecontrol>
                     <itemlayout height="70" width="454">
                         <control type="image">
@@ -246,7 +285,6 @@
                 </control>
             </control>
 
-
             <include content="Object_Scrollbar_Dialog">
                 <param name="scrollid" value="62"/>
                 <param name="top" value="146"/>
@@ -258,7 +296,26 @@
 
             <!-- LINES VERTICAL -->
 
-            <include content="Def_Dialog_Line_Vertical"><param name="right" value="360" /></include>
+            <control type="image">
+                <right>360</right>
+                <top>112</top>
+                <bottom>17</bottom>
+                <width>1</width>
+                <texture colordiffuse="Black12">common/white.png</texture>
+                <animation effect="fade" start="0" end="100" time="100" condition="!Control.HasFocus(62) + !Container.Scrolling">Conditional</animation>
+            </control>
+
+            <!-- NUM ITEMS -->
+
+            <control type="label">
+                <right>390</right>
+                <font>Tiny</font>
+                <height>44</height>
+                <bottom>17</bottom>
+                <align>right</align>
+                <textcolor>Black70</textcolor>
+                <label>$INFO[Container(12).CurrentItem]$INFO[Container(12).NumItems, / ,]</label>
+            </control>
 
             <!-- BUTTON -->
 
@@ -270,9 +327,10 @@
                 <align>right</align>
                 <itemgap>14</itemgap>
                 <orientation>vertical</orientation>
-                <onup>11</onup>
-                <ondown>13</ondown>
-                <onleft>13</onleft>
+                <onup>9000</onup>
+                <ondown>9000</ondown>
+                <onright>13</onright>
+                <onleft>12</onleft>
 
                 <control type="button" id="29">
                     <description>OK</description>
