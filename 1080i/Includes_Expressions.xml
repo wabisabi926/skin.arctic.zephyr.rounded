@@ -162,7 +162,7 @@
 
     <expression name="TrailerWindowIsActive">Skin.HasSetting(home.netflix.autoplay.trailer) + [[Window.IsVisible(Home) + [$EXP[Home_Is_Horizontal_Netflix] | $EXP[Home_Is_Horizontal_Clean] | $EXP[Home_Is_Vertical_Netflix]]] | Control.IsVisible(521) | Control.IsVisible(522)] + !Window.IsVisible(DialogVideoInfo.xml) + String.IsEqual(Window(Home).Property(TrailerPath2),Player.FileNameAndPath) + !String.IsEmpty(Player.FileNameAndPath)</expression>
 
-    <expression name="TrailerIsReady">Skin.HasSetting(home.netflix.autoplay.trailer) + [Window.IsVisible(Home) | Window.IsVisible(MyVideoNav.xml) | $EXP[InGameMode]] + !Control.HasFocus(300) + !Player.HasMedia + !String.IsEmpty(Window(Home).Property(listitem.trailer)) + !System.HasVisibleModalDialog + !Window.IsVisible(script-globalsearch.xml) + !String.IsEqual(Window(Home).Property(TrailerPath),Window(Home).Property(listitem.trailer)) + !System.IdleTime(30)</expression>
+    <expression name="TrailerIsReady">Skin.HasSetting(home.netflix.autoplay.trailer) + [Window.IsVisible(Home) | Window.IsVisible(MyVideoNav.xml) | $EXP[IsGameMode]] + !Control.HasFocus(300) + !Player.HasMedia + !String.IsEmpty(Window(Home).Property(listitem.trailer)) + !System.HasVisibleModalDialog + !Window.IsVisible(script-globalsearch.xml) + !String.IsEqual(Window(Home).Property(TrailerPath),Window(Home).Property(listitem.trailer)) + !System.IdleTime(30)</expression>
 
     <expression name="TrailerWaitingForPlayer">!String.IsEmpty(Window(Home).Property(TrailerPath2)) + !String.IsEmpty(Window(Home).Property(TrailerPath)) + String.IsEmpty(Player.FileNameAndPath)</expression>
 
@@ -316,7 +316,9 @@
           ]
     </expression>
 
-    <expression name="InGameMode">
+    <!-- IS A GAME ? -->
+
+    <expression name="IsGameMode">
         [ String.Contains(Container.FolderPath,plugin://plugin.program.ael)
         | String.Contains(Container.FolderPath,plugin://plugin.program.advanced.launcher)
         | String.Contains(Container.FolderPath,plugin://plugin.program.advanced.emulator.launcher)
@@ -325,6 +327,16 @@
         | String.Contains(Container.FolderPath,plugin://plugin.program.iagl)
         | Window.IsActive(games)
         | Container.Content(games) ]
+    </expression>
+
+    <!-- IS PVR DIALOG ? -->
+
+    <expression name="IsPvrDialog">
+        [Window.IsVisible(MyPVRChannels.xml)
+        | Window.IsVisible(MyPVRSearch.xml)
+        | Window.IsVisible(MyPVRTimers.xml)
+        | Window.IsVisible(MyPVRGuide.xml)
+        | Window.IsVisible(MyPVRRecordings.xml)]
     </expression>
 
 </includes>
