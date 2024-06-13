@@ -213,7 +213,7 @@
                     <label>31549</label>
                     <selected>!Skin.HasSetting(hide.ratings)</selected>
                     <onclick>Skin.ToggleSetting(hide.ratings)</onclick>
-                    <visible>Control.IsVisible(50) | Control.IsVisible(57) | Control.IsVisible(56)</visible>
+                    <visible>Control.IsVisible(50) | Control.IsVisible(57)</visible>
                 </control>
                 <control type="radiobutton" id="9034" description="Info Wall (55)">
                     <include>Def_Button_Gradient_Context</include>
@@ -462,18 +462,13 @@
                     <visible>Control.IsVisible(512)</visible>
                 </control>
 
+                <!-- GLOBAL -->
+
                 <control type="button" id="55552">
                     <include>Def_Context_Menu_Label</include>
                     <label>31451</label>
                 </control>
-                <control type="radiobutton" id="9080">
-                    <include>Def_Button_Gradient_Context</include>
-                    <align>left</align>
-                    <label>31487</label>
-                    <selected>Skin.HasSetting(show.reflections)</selected>
-                    <onclick>Skin.ToggleSetting(show.reflections)</onclick>
-                    <visible>Control.IsVisible(50) | Control.IsVisible(519) | Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(524) | Control.IsVisible(514) | Control.IsVisible(509) | Control.IsVisible(53) | Control.IsVisible(527)</visible>
-                </control>
+
                 <control type="radiobutton" id="9082">
                     <include>Def_Button_Gradient_Context</include>
                     <align>left</align>
@@ -493,6 +488,30 @@
                     <onclick condition="Skin.HasSetting(enable.items.focus.glow) + !Skin.HasSetting(enable.items.focus.glow.high) + !Skin.HasSetting(items.focus.glow.low)">Skin.SetBool(enable.items.focus.glow.high)</onclick>
                     <onclick condition="Skin.HasSetting(enable.items.focus.glow) + Skin.HasSetting(enable.items.focus.glow.high)">Skin.Reset(enable.items.focus.glow)</onclick>
                     <onclick condition="Skin.HasSetting(enable.items.focus.glow) + Skin.HasSetting(enable.items.focus.glow.high)">Skin.Reset(enable.items.focus.glow.high)</onclick>
+                </control>
+                <control type="radiobutton" id="9080">
+                    <include>Def_Button_Gradient_Context</include>
+                    <align>left</align>
+                    <label>31487</label>
+                    <selected>Skin.HasSetting(show.reflections)</selected>
+                    <onclick>Skin.ToggleSetting(show.reflections)</onclick>
+                    <visible>Control.IsVisible(50) | Control.IsVisible(519) | Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(524) | Control.IsVisible(514) | Control.IsVisible(509) | Control.IsVisible(53) | Control.IsVisible(527)</visible>
+                </control>
+                <control type="radiobutton" id="9584">
+                    <include>Def_Button_Gradient_Context</include>
+                    <label>31009</label>
+                    <align>left</align>
+                    <selected>Skin.HasSetting(enable.furniture.flags.colored)</selected>
+                    <onclick>Skin.ToggleSetting(enable.furniture.flags.colored)</onclick>
+                    <visible>!Skin.HasSetting(hide.furniture.flags) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                </control>
+                <control type="radiobutton" id="9586">
+                    <include>Def_Button_Gradient_Context</include>
+                    <label>31015</label>
+                    <align>left</align>
+                    <selected>Skin.HasSetting(show.header.clearlogo)</selected>
+                    <onclick>Skin.ToggleSetting(show.header.clearlogo)</onclick>
+                    <onclick>ReloadSkin()</onclick>
                 </control>
 
                 <!-- FILTER -->

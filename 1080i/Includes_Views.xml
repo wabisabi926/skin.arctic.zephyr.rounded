@@ -995,7 +995,7 @@
             <visible>String.IsEmpty(Window(Home).Property(TrailerWindowedIsPlaying))</visible>
             <visible>Player.HasMedia</visible>
             <visible>!Control.HasFocus(161) + !Control.HasFocus(166)</visible>
-            <visible>!Skin.HasSetting(show.home.nowplaying.video.flix) | !$EXP[VideoWindowFlixIsActive]</visible>
+            <visible>![$EXP[VideoWindowFlixIsActive] + Player.HasMedia + Player.HasVideo]</visible>
 
             <animation effect="slide" start="0" end="0,-250" time="150" condition="Control.HasFocus(301) + !Skin.HasSetting(home.vertical)">Conditional</animation>
 

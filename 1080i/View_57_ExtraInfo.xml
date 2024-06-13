@@ -578,7 +578,7 @@
                             <textcolor>PanelWhite70</textcolor>
                             <selectedcolor>PanelWhite70</selectedcolor>
                             <label>$VAR[Label_Year]$VAR[LabelGenre,  •  ,]</label>
-                            <visible>![Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
+                            <visible>![Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | $EXP[IsGameMode]]</visible>
                             <visible>!String.IsEmpty(ListItem.Year)</visible>
                         </control>
                         <control type="label">
@@ -589,7 +589,7 @@
                             <textcolor>PanelWhite70</textcolor>
                             <selectedcolor>PanelWhite70</selectedcolor>
                             <label>$LOCALIZE[20094]</label>
-                            <visible>![Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
+                            <visible>![Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | $EXP[IsGameMode]]</visible>
                             <visible>String.IsEmpty(ListItem.Year) + !String.IsEmpty(Container.PluginName)</visible>
                         </control>
                         <control type="label">
@@ -601,6 +601,16 @@
                             <selectedcolor>PanelWhite70</selectedcolor>
                             <label>$VAR[Label_Music_Sub_Title]</label>
                             <visible>Container.Content(artists) | Container.Content(albums) | Container.Content(songs)</visible>
+                        </control>
+                        <control type="label">
+                            <top>48</top>
+                            <height>64</height>
+                            <aligny>center</aligny>
+                            <font>InfoNetflix</font>
+                            <textcolor>PanelWhite70</textcolor>
+                            <selectedcolor>PanelWhite70</selectedcolor>
+                            <label>$VAR[Label_Game_Genre]</label>
+                            <visible>$EXP[IsGameMode]</visible>
                         </control>
                     </control>
 
