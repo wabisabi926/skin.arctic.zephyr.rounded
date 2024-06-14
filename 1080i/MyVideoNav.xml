@@ -200,7 +200,7 @@
                 <control type="button" id="55551">
                     <include>Def_Context_Menu_Label</include>
                     <label>31060</label>
-                    <visible>!Control.IsVisible(519) + !Control.IsVisible(500) + !Control.IsVisible(58) + !Control.IsVisible(52) + !Control.IsVisible(547) + ![Control.IsVisible(557) + $EXP[IsYoutube]]</visible>
+                    <visible>!Control.IsVisible(519) + !Control.IsVisible(500) + !Control.IsVisible(58) + !Control.IsVisible(52) + !Control.IsVisible(547) + ![Control.IsVisible(557) + $EXP[IsYoutube]] + ![Control.IsVisible(555) + $EXP[IsYoutube]]</visible>
                 </control>
                 <control type="radiobutton" id="90445">
                     <include>Def_Button_Gradient_Context</include>
@@ -725,11 +725,12 @@
                     <onclick>ActivateWindow(1109)</onclick>
                 </control>
 
-                <!-- OTHER OPTIONS -->
+                <!-- ACTION -->
 
-                <control type="button" id="55554">
+                <control type="button" id="666">
                     <include>Def_Context_Menu_Label</include>
-                    <label>31061</label>
+                    <label>14230</label>
+                    <!-- <visible>!String.IsEmpty(Container.PluginName)</visible> -->
                 </control>
                 <control type="button" id="9091">
                     <description>Global Search</description>
@@ -739,36 +740,7 @@
                     <onclick>SetFocus(50)</onclick>
                     <onclick>ActivateWindow(1107)</onclick>
                 </control>
-                <control type="button" id="9099">
-                    <include>Def_Button_Gradient_Context</include>
-                    <align>left</align>
-                    <label>14247</label>
-                    <onclick>CleanLibrary(video)</onclick>
-                </control>
-                <control type="togglebutton" id="20">
-                    <description>Update</description>
-                    <align>left</align>
-                    <label>653</label>
-                    <altlabel>13353</altlabel>
-                    <include>Def_Button_Gradient_Context</include>
-                    <usealttexture>Library.IsScanningVideo</usealttexture>
-                </control>
-                <include>ButtonPlaylist</include>
-                <control type="button" id="5555">
-                    <include>Def_Button_Gradient_Context</include>
-                    <align>left</align>
-                    <label>31168</label>
-                    <onclick>ReloadSkin()</onclick>
-                    <visible>Skin.HasSetting(DebugInfo)</visible>
-                </control>
 
-                <!-- ACTION -->
-
-                <control type="button" id="666">
-                    <include>Def_Context_Menu_Label</include>
-                    <label>14230</label>
-                    <visible>!String.IsEmpty(Container.PluginName)</visible>
-                </control>
                 <control type="button" id="621">
                     <include>Def_Button_Gradient_Context</include>
                     <align>left</align>
@@ -799,6 +771,23 @@
                     <onclick>Addon.OpenSettings($INFO[Container.PluginName])</onclick>
                     <visible>!String.IsEmpty(Container.PluginName)</visible>
                 </control>
+
+                <control type="button" id="9099">
+                    <include>Def_Button_Gradient_Context</include>
+                    <align>left</align>
+                    <label>14247</label>
+                    <onclick>CleanLibrary(video)</onclick>
+                </control>
+                <control type="togglebutton" id="20">
+                    <description>Update</description>
+                    <align>left</align>
+                    <label>653</label>
+                    <altlabel>13353</altlabel>
+                    <include>Def_Button_Gradient_Context</include>
+                    <usealttexture>Library.IsScanningVideo</usealttexture>
+                </control>
+
+                <include>Def_View_ContextMenu_Button_Playlist</include>
 
                 <!-- MINI PLAYER -->
 

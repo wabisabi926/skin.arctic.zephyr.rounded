@@ -277,6 +277,8 @@
         <right>64</right>
     </include>
 
+    <!-- DEF HUB WINDOW -->
+
     <include name="Def_Hub_Window">
         <include>Background_Global</include>
         <include>Furniture_Header</include>
@@ -691,14 +693,8 @@
                     <include>Def_Button_Gradient_Context</include>
                     <usealttexture>Library.IsScanningVideo</usealttexture>
                </control>
-               <include>ButtonPlaylist</include>
-               <control type="button" id="5555">
-                    <include>Def_Button_Gradient_Context</include>
-                    <align>left</align>
-                    <label>31168</label>
-                    <onclick>ReloadSkin()</onclick>
-                    <visible>Skin.HasSetting(DebugInfo)</visible>
-               </control>
+
+               <include>Def_View_ContextMenu_Button_Playlist</include>
             </control>
         </control>
     </include>
@@ -2061,25 +2057,6 @@
     <variable name="SetsPath">
         <value condition="ListItem.IsCollection + !String.IsEmpty(ListItem.DBID)">videodb://movies/sets/$INFO[ListItem.DBID]/?setid=$INFO[ListItem.DBID]</value>
     </variable>
-
-    <include name="ButtonPlaylist">
-        <control type="button" id="6148">
-            <description>Music playlist</description>
-            <label>13350</label>
-            <include>Def_Button_Gradient_Context</include>
-            <align>left</align>
-            <onclick>ActivateWindow(musicplaylist)</onclick>
-            <visible>!String.IsEqual(Playlist.Length(music),0) + Window.IsVisible(MyMusicNav.xml)</visible>
-        </control>
-        <control type="button" id="6149">
-            <description>Video playlist</description>
-            <label>13350</label>
-            <include>Def_Button_Gradient_Context</include>
-            <align>left</align>
-            <onclick>ActivateWindow(videoplaylist)</onclick>
-            <visible>!String.IsEqual(Playlist.Length(video),0) + Window.IsVisible(MyVideoNav.xml)</visible>
-        </control>
-    </include>
 
     <include name="Container_NumItems">
         <param name="id" value="$PARAM[id]" default="9505"/>
