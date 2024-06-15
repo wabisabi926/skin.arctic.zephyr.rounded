@@ -240,7 +240,7 @@
             <width>auto</width>
             <height min="51" max="51">auto</height>
 
-            <!-- ARTISTS / ALBUMS / SONGS -->
+            <!-- ARTISTS / ALBUMS / SONGS / MYPLAILIST MUSIC -->
 
             <control type="grouplist">
                 <visible>!String.IsEmpty(Container.NumItems) + [Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
@@ -260,6 +260,19 @@
                     <include>Label_Header_Sub_Info_Definition</include>
                     <label>$INFO[Control.GetLabel(3),  •  ,]</label>
                 </control>
+
+                <control type="label">
+                    <include>Label_Header_Sub_Info_Definition</include>
+                    <label>$INFO[Container.TotalTime,  •  ,]</label>
+                    <visible>Window.IsActive(musicplaylist)</visible>
+                </control>
+
+                <control type="label">
+                    <include>Label_Header_Sub_Icon_Definition</include>
+                    <label>   &#61968;</label>
+                    <visible>Window.IsActive(musicplaylist)</visible>
+                </control>
+
             </control>
 
             <!-- MOVIES / TVSHOWS / SEASONS / EPISODES -->
@@ -360,6 +373,32 @@
                 </control>
             </control>
 
+            <!-- videoplaylist -->
+            <control type="grouplist">
+                <visible>Window.IsActive(videoplaylist)</visible>
+                <itemgap>0</itemgap>
+                <orientation>horizontal</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
+                <control type="label">
+                    <include>Label_Header_Sub_Info_Definition</include>
+                    <label>$INFO[Container.CurrentItem] / $INFO[Container.NumItems,,]</label>
+                </control>
+
+                <control type="label">
+                    <include>Label_Header_Sub_Icon_Definition</include>
+                    <label>$VAR[Label_Icon_Container_Type]</label>
+                </control>
+                <control type="label">
+                    <include>Label_Header_Sub_Info_Definition</include>
+                    <label>$INFO[Container.TotalTime,  •  ,]</label>
+                </control>
+
+                <control type="label">
+                    <include>Label_Header_Sub_Icon_Definition</include>
+                    <label>   &#61968;</label>
+                </control>
+            </control>
+
             <!-- addons -->
             <control type="grouplist">
                 <visible>Window.IsVisible(AddonBrowser.xml)</visible>
@@ -440,7 +479,7 @@
             <!-- all -->
             <control type="grouplist">
                 <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
-                <visible>!String.IsEmpty(Container.NumItems) + !Container.Filtered + !String.Contains(Control.GetLabel(14),*)</visible>
+                <visible>!String.IsEmpty(Container.NumItems) + !Container.Filtered + !String.Contains(Control.GetLabel(14),*) + !Window.IsActive(videoplaylist)</visible>
                 <itemgap>0</itemgap>
                 <orientation>horizontal</orientation>
                 <usecontrolcoords>true</usecontrolcoords>
@@ -481,7 +520,7 @@
             <!-- FALLBACK -->
 
             <control type="grouplist">
-                <visible>![Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | $EXP[IsPvrDialog] | Window.IsVisible(AddonBrowser.xml) | Window.IsVisible(LoginScreen.xml)]</visible>
+                <visible>![Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | $EXP[IsPvrDialog] | Window.IsVisible(AddonBrowser.xml) | Window.IsVisible(LoginScreen.xml) | Window.IsActive(videoplaylist)]</visible>
                 <visible>![Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
                 <itemgap>0</itemgap>
                 <orientation>horizontal</orientation>
@@ -531,14 +570,6 @@
 
     <variable name="Label_Header_Sub">
 
-        <!-- videoplaylist -->
-
-        <value condition="Window.IsActive(videoplaylist)">[COLOR=$VAR[Color_Hightligh_Title]]$INFO[Container.CurrentItem] / $INFO[Container.NumItems][/COLOR] $LOCALIZE[20342]  •  [COLOR=$VAR[Color_Hightligh_Title]]$INFO[Container.TotalTime][/COLOR] $LOCALIZE[31582] $INFO[Control.GetLabel(3),  •  ,]</value>
-
-        <!-- musicplaylist -->
-
-        <value condition="Window.IsActive(musicplaylist)">[COLOR=$VAR[Color_Hightligh_Title]]$INFO[Container.CurrentItem] / $INFO[Container.NumItems][/COLOR] $LOCALIZE[36921]  •  [COLOR=$VAR[Color_Hightligh_Title]]$INFO[Container.TotalTime][/COLOR] $LOCALIZE[31582] $INFO[Control.GetLabel(3),  •  ,]</value>
-
         <!-- DialogVideoInfo -->
 
         <value condition="Window.IsVisible(DialogVideoInfo.xml)">$LOCALIZE[31214]</value>
@@ -547,26 +578,9 @@
 
         <value condition="[Window.IsVisible(script-globalsearch-main.xml) | Window.IsVisible(script-globalsearch-info.xml)] + String.IsEmpty(Control.GetLabel(190)) + String.IsEmpty(Control.GetLabel(191)) + String.IsEmpty(Control.GetLabel(199))">$VAR[Label_GlobalSearch_Header]</value>
 
-        <!-- LoginScreen -->
-
-        <value condition="Window.IsVisible(LoginScreen.xml)">$LOCALIZE[10029]</value>
-
-
-        <!-- OTHERS - FILTERED / UNWATCHED / ALL  -->
-
-        <value condition="!String.IsEmpty(Container.NumItems) + !Window.IsVisible(Home) + !Container.Filtered + !String.Contains(Control.GetLabel(14),*)">[COLOR=$VAR[Color_Hightligh_Title]]$INFO[Container.CurrentItem] / $INFO[Container.NumItems,,[/COLOR] $LOCALIZE[31083]]$INFO[Control.GetLabel(3),  •  ,]</value>
-
-        <value condition="!String.IsEmpty(Container.NumItems) + !Window.IsVisible(Home) + !Container.Filtered + String.Contains(Control.GetLabel(14),*)">[COLOR=$VAR[Color_Hightligh_Title]]$INFO[Container.CurrentItem] / $INFO[Container.NumItems,,[/COLOR] $LOCALIZE[31083]]$INFO[Control.GetLabel(3),  •  ,]  •  [COLOR=$VAR[Color_Hightligh_Title]]$LOCALIZE[31458] $LOCALIZE[31438][/COLOR] : $LOCALIZE[107]</value>
-
-        <value condition="!String.IsEmpty(Container.NumItems) + !Window.IsVisible(Home) + Container.Filtered + !String.Contains(Control.GetLabel(14),*)">[COLOR=$VAR[Color_Hightligh_Title]]$INFO[Container.CurrentItem] / $INFO[Container.NumItems,,[/COLOR] $LOCALIZE[31083]]$INFO[Control.GetLabel(3),  •  ,]  •  [COLOR=$VAR[Color_Hightligh_Title]]$INFO[Control.GetLabel(19).index(0)][/COLOR] : [COLOR=$VAR[Color_Hightligh_Title]]$INFO[Control.GetLabel(19).index(1)][/COLOR]</value>
-
-        <value condition="!String.IsEmpty(Container.NumItems) + !Window.IsVisible(Home) + Container.Filtered + String.Contains(Control.GetLabel(14),*)">[COLOR=$VAR[Color_Hightligh_Title]]$INFO[Container.CurrentItem] / $INFO[Container.NumItems,,[/COLOR] $LOCALIZE[31083]]$INFO[Control.GetLabel(3),  •  ,]  •  [COLOR=$VAR[Color_Hightligh_Title]]$LOCALIZE[31458] $LOCALIZE[31438][/COLOR] : $LOCALIZE[107]  •  [COLOR=$VAR[Color_Hightligh_Title]]$INFO[Control.GetLabel(19).index(0)][/COLOR] : [COLOR=$VAR[Color_Hightligh_Title]]$INFO[Control.GetLabel(19).index(1)][/COLOR]</value>
-
-
         <!-- CONTAINER 9500 -->
 
         <value condition="!String.IsEmpty(Container(9500).NumItems) + !Window.IsVisible(Home)">[COLOR=$VAR[Color_Hightligh_Title]]$INFO[Container(9500).NumItems,,[/COLOR] $LOCALIZE[31083]]</value>
-
 
         <!-- MYWEATHER -->
 
@@ -580,9 +594,6 @@
 
         <value condition="String.IsEmpty(Pvr.BackendChannels)">[COLOR=$VAR[Color_Hightligh_Title]]$INFO[Window(Home).Property(Movies.Count)][/COLOR] $LOCALIZE[20342]  •  [COLOR=$VAR[Color_Hightligh_Title]]$INFO[Window(Home).Property(Episodes.Count)][/COLOR] $LOCALIZE[20360]  •  [COLOR=$VAR[Color_Hightligh_Title]]$INFO[Window(Home).Property(Music.AlbumsCount)][/COLOR] $LOCALIZE[132]</value>
 
-        <!-- FALLBACK -->
-
-        <value>[COLOR=$VAR[Color_Hightligh_Title]]$INFO[Window(Home).Property(Movies.Count)][/COLOR] $LOCALIZE[20342]  •  [COLOR=$VAR[Color_Hightligh_Title]]$INFO[Window(Home).Property(TVShows.Count)][/COLOR] $LOCALIZE[36903]  •  [COLOR=$VAR[Color_Hightligh_Title]]$INFO[Window(Home).Property(Music.AlbumsCount)][/COLOR] $LOCALIZE[132]  •  [COLOR=$VAR[Color_Hightligh_Title]]$INFO[Pvr.BackendChannels][/COLOR] $LOCALIZE[19019]</value>
     </variable>
 
 
