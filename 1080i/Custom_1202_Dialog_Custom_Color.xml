@@ -2,6 +2,9 @@
 <window type="dialog" id="1202">
     <defaultcontrol always="true">9300</defaultcontrol>
 
+    <onload>ClearProperty(dialog_color_reload,Home)</onload>
+    <onunload condition="String.IsEmpty(Window(Home).Property(dialog_color_reload))">ClearProperty(gradient,Home)</onunload>
+
     <onload condition="String.IsEqual(Window(Home).Property(colorfilter),1) + String.IsEmpty(Window(Home).Property(gradient))">SetProperty(colorstring,$INFO[Skin.String(ColorHighlight.name)],Home)</onload>
     <onload condition="String.IsEqual(Window(Home).Property(colorfilter),1) + String.IsEmpty(Window(Home).Property(gradient))">SetProperty(colordesc,ColorHighlight.name,Home)</onload>
     <onload condition="String.IsEqual(Window(Home).Property(colorfilter),1) + String.IsEmpty(Window(Home).Property(gradient))">SetProperty(gradient,ColorHighlight,Home)</onload>
@@ -80,6 +83,8 @@
 
                     <onclick>SetProperty(colorstring,$INFO[Container(3000).ListItem.Label2],Home)</onclick>
                     <onclick>AlarmClock(SkinColor,Control.SetFocus(9300),00:01,silent)</onclick>
+
+                    <onclick condition="String.IsEqual(Window(Home).Property(gradient),ColorFocus) | String.IsEqual(Window(Home).Property(gradient),ColorFocusGradient)">SetProperty(dialog_color_reload,1,Home)</onclick>
                     <include>Action_BuildTextures_Onclick_Reload_1202</include>
 
                     <itemlayout height="60" width="60">
@@ -1084,6 +1089,7 @@
 
                     <!-- <include>Action_BuildTextures_Onclick</include> -->
 
+                    <onclick>ClearProperty(dialog_color_reload,Home)</onclick>
                     <onclick>Close</onclick>
 
                     <include>Def_Button_Dimensions_Square_Blur</include>

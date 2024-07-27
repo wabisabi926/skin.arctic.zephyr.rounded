@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window id="1102" type="dialog">
-    <visible>System.IdleTime(3) + Window.IsVisible(DialogVideoInfo.xml) + String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id)) + String.IsEmpty(Window(Home).Property(Init_Value_TMDb)) + !Window.IsVisible(DialogSelect.xml)</visible>
+    <visible>System.IdleTime(2) + Window.IsVisible(DialogVideoInfo.xml) + String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id)) + String.IsEmpty(Window(Home).Property(Init_Value_TMDb)) + !Window.IsVisible(DialogSelect.xml)</visible>
 
     <!-- ============ -->
     <!-- TMDB ON LINE -->
@@ -45,6 +45,6 @@
     <onload condition="!Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,movie) + String.IsEmpty(Window(Home).Property(Studio_Query))">SetProperty(Studio_Query,$VAR[Path_Studio_TMDb_ID],Home)</onload>
     <onload condition="!Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,tvshow) + String.IsEmpty(Window(Home).Property(Network_Query))">SetProperty(Network_Query,$VAR[Path_Network_TMDb_ID],Home)</onload>
 
-    <onload>AlarmClock(Dialog_Info_Init_Value_TMDb,SetProperty(Init_Value_TMDb,1,Home),00:03,silent)</onload>
+    <onload>AlarmClock(Dialog_Info_Init_Value_TMDb,SetProperty(Init_Value_TMDb,1,Home),00:00,silent)</onload>
     <!-- <onunload>SetProperty(Init_Value_TMDb,1,Home)</onunload> -->
 </window>
