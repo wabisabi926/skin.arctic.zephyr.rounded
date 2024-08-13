@@ -735,6 +735,8 @@
         <param name="icon_colordiffuse" default="Dark1" />
         <param name="back_colordiffuse" default="$VAR[Color_Background]" />
         <param name="vertical" default="false" />
+        <param name="flag_lang_audio" default="false" />
+        <param name="flag_lang_subtitle" default="false" />
         <definition>
             <control type="button" id="$PARAM[id]">
                 <height>$PARAM[size]</height>
@@ -778,6 +780,23 @@
                         <width>$PARAM[size]</width>
                         <texture colordiffuse="Selected" flipx="$PARAM[flipx]">$PARAM[icon]</texture>
                         <visible>Control.HasFocus($PARAM[id])</visible>
+                    </control>
+                    <control type="image">
+                       <bottom>-3</bottom>
+                       <right>-6</right>
+                       <width>24</width>
+                       <height>21</height>
+                       <texture>$INFO[VideoPlayer.SubtitlesLanguage,flags/lang/,.png]</texture>
+                       <visible>VideoPlayer.SubtitlesEnabled</visible>
+                       <visible>$PARAM[flag_lang_subtitle]</visible>
+                    </control>
+                    <control type="image">
+                       <bottom>-3</bottom>
+                       <right>-6</right>
+                       <width>24</width>
+                       <height>21</height>
+                       <texture>$INFO[VideoPlayer.AudioLanguage,flags/lang/,.png]</texture>
+                       <visible>$PARAM[flag_lang_audio]</visible>
                     </control>
                 </control>
             </control>
@@ -1096,6 +1115,7 @@
                     <param name="id" value="2" />
                     <param name="groupid" value="6099" />
                     <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
+                    <param name="flag_lang_audio" value="true" />
                     <align>left</align>
                     <onclick>AudioNextLanguage</onclick>
                     <onup>9403</onup>
@@ -1110,6 +1130,7 @@
                     <param name="id" value="3" />
                     <param name="groupid" value="6199" />
                     <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
+                    <param name="flag_lang_subtitle" value="true" />
                     <align>left</align>
                     <onclick>NextSubtitle</onclick>
                     <onup>9303</onup>
