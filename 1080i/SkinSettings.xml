@@ -2347,6 +2347,16 @@
                         <onclick>Skin.ToggleSetting(filter.video.only.local)</onclick>
                     </control>
 
+                    <!-- Discart -->
+                    <control type="radiobutton" id="9305">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(8)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>31063</label>
+                        <selected>Skin.HasSetting(Show.Discart.Video.Info)</selected>
+                        <onclick>Skin.ToggleSetting(Show.Discart.Video.Info)</onclick>
+                    </control>
+
                     <!-- Actors -->
                     <control type="radiobutton" id="9306">
                         <width>1310</width>
@@ -2357,14 +2367,14 @@
                         <onclick>Skin.ToggleSetting(HideActorImages)</onclick>
                     </control>
 
-                    <!-- Trailer Windowed -->
-                    <control type="radiobutton" id="9308">
+                    <!-- Clearlogo -->
+                    <control type="radiobutton" id="9307">
                         <width>1310</width>
                         <visible>Container(3000).HasFocus(8)</visible>
                         <include>Def_Button_Settings_Gradient</include>
-                        <label>31117</label>
-                        <selected>Skin.HasSetting(PlayTrailerWindowed)</selected>
-                        <onclick>Skin.ToggleSetting(PlayTrailerWindowed)</onclick>
+                        <label>31015</label>
+                        <selected>Skin.HasSetting(show.dialog.info.clearlogo.video)</selected>
+                        <onclick>Skin.ToggleSetting(show.dialog.info.clearlogo.video)</onclick>
                     </control>
 
                     <!-- Consensus / Mpaa / Artworks -->
@@ -2395,6 +2405,18 @@
                         <onclick condition="Skin.HasSetting(show.tagline.never)">Skin.Reset(show.tagline.never)</onclick>
                     </control>
 
+                    <!-- Trailer Windowed -->
+                    <control type="radiobutton" id="9308">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(8)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>31117</label>
+                        <selected>Skin.HasSetting(PlayTrailerWindowed)</selected>
+                        <onclick>Skin.ToggleSetting(PlayTrailerWindowed)</onclick>
+                    </control>
+
+                    <!-- CINEMA EXPERIENCE -->
+
                     <control type="label" id="9319" description="Backup">
                         <visible>Container(3000).HasFocus(8)</visible>
                         <textoffsetx>30</textoffsetx>
@@ -2406,6 +2428,7 @@
                         <label>31146</label>
                     </control>
 
+                    <!-- Set path -->
                     <control type="button" id="9320">
                         <width>1310</width>
                         <visible>Container(3000).HasFocus(8)</visible>
@@ -2414,6 +2437,8 @@
                         <label2>$VAR[Label_IntroPath]</label2>
                         <onclick>Skin.SetPath(IntroPath)</onclick>
                     </control>
+
+                    <!-- Set trailer count -->
                     <control type="button" id="9321">
                         <width>1310</width>
                         <visible>Container(3000).HasFocus(8)</visible>
