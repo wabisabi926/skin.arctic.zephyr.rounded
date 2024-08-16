@@ -992,12 +992,14 @@
             <right>81</right>
             <include>Def_List_Dimension</include>
 
-            <ondown condition="String.IsEqual(Window.Property(moviecontent),1) + String.IsEqual(Window.Property(ShowDisc),1) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.Art(discart))">ClearProperty(ShowDisc)</ondown>
-
             <onleft>9000</onleft>
             <onright>9000</onright>
 
-            <ondown condition="!String.IsEqual(ListItem.Property(item.type),person) + !String.IsEqual(ListItem.DBType,set)">9090</ondown>
+            <!-- Hide discart -->
+            <ondown condition="String.IsEqual(Window.Property(moviecontent),1) + String.IsEqual(Window.Property(ShowDisc),1) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.Art(discart))">ClearProperty(ShowDisc)</ondown>
+            <!-- focus second row button navigation -->
+            <ondown condition="!String.IsEqual(ListItem.Property(item.type),person) + !String.IsEqual(ListItem.DBType,set) + String.IsEmpty(Window.Property(ShowDisc))">9090</ondown>
+            <!-- show resume overlay -->
             <ondown condition="String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.DBType,set)">9601</ondown>
 
             <orientation>horizontal</orientation>
