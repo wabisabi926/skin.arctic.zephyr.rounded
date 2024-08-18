@@ -139,6 +139,19 @@
 
     <!-- OSD - CONTEXTE MENU PLAYER -->
 
+    <include name="Def_View_Menu_Control_Buttons_UpDown">
+        <ondown condition="Window.IsVisible(MyPlaylist.xml)">SetFocus(20)</ondown>
+        <ondown condition="Window.IsVisible(MyMusicNav.xml)">SetFocus(16)</ondown>
+        <ondown condition="Window.IsVisible(AddonBrowser.xml)">SetFocus(9)</ondown>
+        <ondown condition="Window.IsVisible(MyPVRChannels.xml)">SetFocus(9001)</ondown>
+        <ondown condition="Window.IsVisible(MyFavourites.xml)">SetFocus(19)</ondown>
+        <ondown condition="Window.IsVisible(MyGames.xml)">SetFocus(9001)</ondown>
+        <ondown condition="Window.IsVisible(MyPics.xml)">SetFocus(9001)</ondown>
+        <ondown condition="Window.IsVisible(MyPrograms.xml)">SetFocus(9001)</ondown>
+        <ondown condition="Window.IsVisible(MyVideoNav.xml)">SetFocus(14)</ondown>
+        <ondown condition="Window.IsVisible(MyWeather.xml)">SetFocus(9008)</ondown>
+    </include>
+
     <include name="Def_View_Menu_Control_Buttons">
         <control type="grouplist" id="6150">
             <visible>Player.HasMedia | Player.Playing</visible>
@@ -150,8 +163,13 @@
             <itemgap>28</itemgap>
             <include>Animation_Scrolltime_Views_List</include>
             <orientation>horizontal</orientation>
-            <onup>20</onup>
-            <ondown>9000</ondown>
+
+            <!-- <onup>20</onup> -->
+            <!-- <ondown>9000</ondown> -->
+
+            <!-- <onup>9000</onup> -->
+            <!-- <ondown>20</ondown> -->
+
             <onleft>6150</onleft>
             <onright>6150</onright>
             <onback>50</onback>
@@ -169,6 +187,7 @@
                 <onclick>PlayerControl(Previous)</onclick>
                 <enable>Player.PauseEnabled</enable>
                 <animation effect="fade" start="100" end="33" time="100" condition="!Player.PauseEnabled">Conditional</animation>
+                <include>Def_View_Menu_Control_Buttons_UpDown</include>
             </include>
 
             <include content="Def_OSD_Button">
@@ -184,6 +203,7 @@
                 <onclick>PlayerControl(Rewind)</onclick>
                 <enable>Player.SeekEnabled</enable>
                 <animation effect="fade" start="100" end="33" time="100" condition="!Player.PauseEnabled">Conditional</animation>
+                <include>Def_View_Menu_Control_Buttons_UpDown</include>
             </include>
 
             <include content="Def_OSD_Button">
@@ -198,6 +218,7 @@
                 <onclick>PlayerControl(Play)</onclick>
                 <enable>Player.PauseEnabled</enable>
                 <animation effect="fade" start="100" end="33" time="100" condition="!Player.PauseEnabled">Conditional</animation>
+                <include>Def_View_Menu_Control_Buttons_UpDown</include>
             </include>
 
             <include content="Def_OSD_Button">
@@ -210,6 +231,7 @@
                 <param name="groupid" value="6499" />
                 <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
                 <onclick>PlayerControl(Stop)</onclick>
+                <include>Def_View_Menu_Control_Buttons_UpDown</include>
             </include>
 
             <include content="Def_OSD_Button">
@@ -224,6 +246,7 @@
                 <onclick>PlayerControl(Forward)</onclick>
                 <enable>Player.SeekEnabled</enable>
                 <animation effect="fade" start="100" end="33" time="100" condition="!Player.SeekEnabled">Conditional</animation>
+                <include>Def_View_Menu_Control_Buttons_UpDown</include>
             </include>
 
             <include content="Def_OSD_Button">
@@ -236,6 +259,7 @@
                 <param name="groupid" value="6699" />
                 <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
                 <onclick>PlayerControl(Next)</onclick>
+                <include>Def_View_Menu_Control_Buttons_UpDown</include>
             </include>
 
             <include content="Def_OSD_Button">
@@ -249,6 +273,7 @@
                 <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
                 <onclick condition="Player.HasVideo">ActivateWindow(fullscreenvideo)</onclick>
                 <onclick condition="Player.HasAudio">ActivateWindow(visualisation)</onclick>
+                <include>Def_View_Menu_Control_Buttons_UpDown</include>
             </include>
 
              <include content="Def_OSD_Button">
@@ -264,6 +289,7 @@
                 <onclick condition="Player.HasVideo">ActivateWindow(videoplaylist)</onclick>
                 <enable>!VideoPlayer.Content(livetv)</enable>
                 <animation effect="fade" start="100" end="33" time="100" condition="VideoPlayer.Content(livetv)">Conditional</animation>
+                <include>Def_View_Menu_Control_Buttons_UpDown</include>
             </include>
         </control>
     </include>

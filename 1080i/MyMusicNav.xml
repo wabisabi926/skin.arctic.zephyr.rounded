@@ -104,6 +104,21 @@
                 <include content="Def_View_ContextMenu_GroupList"><param name="height" value="560" /></include>
                 <include>Animation_Scrolltime_Views_List</include>
 
+                <!-- NOW PLAYING -->
+
+                <control type="button" id="55555">
+                    <include>Def_Context_Menu_Label</include>
+                    <label>31540</label>
+                    <!-- <visible>Player.HasMedia | Player.Playing | !String.IsEqual(Playlist.Length(video),0) | !String.IsEqual(Playlist.Length(music),0)</visible> -->
+                    <visible>Player.Playing</visible>
+                </control>
+
+                <!-- <include>Def_View_ContextMenu_Button_Playlist</include> -->
+
+                <!-- MINI PLAYER -->
+
+                <include>Def_View_ContextMenu_Player</include>
+
                 <!-- FILTER -->
 
                 <control type="button" id="55553">
@@ -418,13 +433,6 @@
                     <include>Def_Button_Gradient_Context</include>
                     <usealttexture>Library.IsScanningMusic</usealttexture>
                 </control>
-
-                <include>Def_View_ContextMenu_Button_Playlist</include>
-
-                <!-- MINI PLAYER -->
-
-                <include>Def_View_ContextMenu_Player</include>
-
             </control>
         </control>
 

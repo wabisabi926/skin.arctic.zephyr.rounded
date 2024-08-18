@@ -1251,7 +1251,7 @@
     <variable name="Label_List_Extended_Music">
         <value condition="Container.Content(artists) + !ListItem.IsParentFolder">$INFO[ListItem.Label]$INFO[ListItem.Genre,  •  ,]</value>
         <value condition="Container.Content(albums) + !ListItem.IsParentFolder">$INFO[ListItem.Artist]$INFO[ListItem.Year,  •  ,]$INFO[ListItem.Genre,  •  ,]</value>
-        <value condition="Container.Content(songs) + !ListItem.IsParentFolder + !$EXP[IsAnPlugin]">$INFO[ListItem.Year]$INFO[ListItem.Artist,  •  ,]$INFO[ListItem.Album,  •  ,]</value>
+        <value condition="String.IsEqual(ListItem.DBType,song) + !ListItem.IsParentFolder + !$EXP[IsAnPlugin]">$INFO[ListItem.Year]$INFO[ListItem.Artist,  •  ,]$INFO[ListItem.Album,  •  ,]</value>
         <value condition="!ListItem.IsParentFolder + !String.IsEmpty(ListItem.Year)">$INFO[ListItem.Year]</value>
         <value condition="!String.IsEmpty(Container.PluginName) + !ListItem.IsParentFolder + !Container.Content(songs)">$INFO[ListItem.FolderPath]</value>
         <value condition="!String.IsEmpty(Container.PluginName) + !ListItem.IsParentFolder + Container.Content(songs)">$INFO[ListItem.Label]$INFO[ListItem.Genre,  •  ,]</value>
@@ -1259,8 +1259,8 @@
     </variable>
 
     <variable name="label_music_list">
-        <value condition="Container.Content(songs) + Window.IsVisible(MyMusicNav.xml) + Skin.HasSetting(enable.view.5x.51x.extended.list) + !$EXP[IsAnPlugin]">$INFO[ListItem.TrackNumber]. $INFO[ListItem.Title]</value>
-        <value condition="Container.Content(songs) + Window.IsVisible(MyPlaylist.xml) + Skin.HasSetting(enable.view.5x.51x.extended.list.playlist) + !$EXP[IsAnPlugin]">$INFO[ListItem.TrackNumber]. $INFO[ListItem.Title]</value>
+        <value condition="String.IsEqual(ListItem.DBType,song) + Window.IsVisible(MyMusicNav.xml) + Skin.HasSetting(enable.view.5x.51x.extended.list) + !$EXP[IsAnPlugin]">$INFO[ListItem.TrackNumber]. $INFO[ListItem.Title]</value>
+        <value condition="String.IsEqual(ListItem.DBType,song) + Window.IsVisible(MyPlaylist.xml) + Skin.HasSetting(enable.view.5x.51x.extended.list.playlist) + !$EXP[IsAnPlugin]">$INFO[ListItem.TrackNumber]. $INFO[ListItem.Title]</value>
         <value>$INFO[ListItem.Label]</value>
     </variable>
 
@@ -1600,6 +1600,10 @@
         <value>$INFO[ListItem.Label2,$LOCALIZE[20347] ,]</value>
     </variable>
 
+    <variable name="Label_Dialog_Info_Music_Extended">
+        <value condition="Control.IsVisible(9501) + !String.IsEmpty(Container(9501).ListItem.Album)">$INFO[ListItem.Year]$VAR[Label_Duration_Time_Check,  •  ,]</value>
+        <!-- <value>$INFO[ListItem.Label2,$LOCALIZE[20347] ,]</value> -->
+    </variable>
 
     <!-- LABEL - DIALOG INFO - MUSIC / VIDEO - PLOT -->
 

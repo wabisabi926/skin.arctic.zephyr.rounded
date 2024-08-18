@@ -1442,6 +1442,8 @@
            <texture colordiffuse="$VAR[Color_Stars_Rating_User_Video_Ext]">flags/star0.png</texture>
            <visible>!Skin.HasSetting(enable.flags.rating.numeric) + !Integer.IsGreater(Container($PARAM[controlid]).ListItem.UserRating,0) + Skin.HasSetting(userrating.stars.override.rating.stars) + !String.IsEmpty(Container($PARAM[controlid]).ListItem.UserRating)</visible>
         </control>
+
+
         <control type="image">
            <left>0</left>
            <width>64</width>
@@ -1464,7 +1466,7 @@
            <height>64</height>
            <centertop>48%</centertop>
            <texture colordiffuse="$VAR[Color_Stars_Rating_Video_Ext]">flags/star0.png</texture>
-           <visible>!Skin.HasSetting(enable.flags.rating.numeric) + !Integer.IsGreater(Container($PARAM[controlid]).ListItem.Rating,0)</visible>
+           <visible>!Skin.HasSetting(enable.flags.rating.numeric) + !Integer.IsGreater(Container($PARAM[controlid]).ListItem.Rating,0) + [[Skin.HasSetting(userrating.stars.override.rating.stars) + String.IsEmpty(Container($PARAM[controlid]).ListItem.UserRating)] | !Skin.HasSetting(userrating.stars.override.rating.stars)]</visible>
         </control>
 
         <!-- Star 2 -->
