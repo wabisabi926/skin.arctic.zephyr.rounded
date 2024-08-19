@@ -2567,7 +2567,7 @@
                 <left>20</left>
                 <right>20</right>
                 <bottom>20</bottom>
-                <visible>Player.Seeking  | Player.DisplayAfterSeek | Player.Paused | Player.Forwarding | Player.Rewinding</visible>
+                <visible>Player.Seeking  | Player.DisplayAfterSeek | Player.Paused | Player.Forwarding | Player.Rewinding | !String.IsEmpty(Window(Home).Property(show_mini_osd))</visible>
                 <include>Animation_FadeIn</include>
                 <include>Animation_FadeOut</include>
                 <include>Object_OSD_Seekbar_Bar</include>
@@ -2589,7 +2589,8 @@
                 <!-- <onclick condition="!Player.HasVideo">SetFocus(9000)</onclick> -->
                 <!-- <onclick condition="!Player.HasVideo">ClearProperty(VideoYoutubeIsPlaying,Home)</onclick> -->
 
-                <onclick condition="Player.HasVideo">PlayerControl(Play)</onclick>
+                <onclick condition="Player.HasVideo + String.IsEmpty(Window(Home).Property(show_mini_osd))">SetProperty(show_mini_osd,1,Home)</onclick>
+                <onclick condition="Player.HasVideo + !String.IsEmpty(Window(Home).Property(show_mini_osd))">ClearProperty(show_mini_osd,Home)</onclick>
                 <!-- <onfocus condition="!Player.HasVideo">SetFocus(9000)</onfocus> -->
 
                 <!-- <onunfocus>SetFocus(9000)</onunfocus> -->
@@ -2598,22 +2599,27 @@
 
                 <onback>9000</onback>
                 <onback>ClearProperty(VideoYoutubeIsPlaying,Home)</onback>
+                <onback>ClearProperty(show_mini_osd,Home)</onback>
                 <onback condition="Player.HasVideo">Stop</onback>
 
                 <onleft condition="!Player.HasVideo">SetFocus(9000)</onleft>
                 <onleft condition="!Player.HasVideo">ClearProperty(VideoYoutubeIsPlaying,Home)</onleft>
+                <onleft condition="!Player.HasVideo">ClearProperty(show_mini_osd,Home)</onleft>
                 <onleft condition="Player.HasVideo">StepBack</onleft>
 
                 <onright condition="!Player.HasVideo">SetFocus(9000)</onright>
                 <onright condition="!Player.HasVideo">ClearProperty(VideoYoutubeIsPlaying,Home)</onright>
+                <onright condition="!Player.HasVideo">ClearProperty(show_mini_osd,Home)</onright>
                 <onright condition="Player.HasVideo">StepForward</onright>
 
                 <onup>SetFocus(9000)</onup>
                 <onup>ClearProperty(VideoYoutubeIsPlaying,Home)</onup>
+                <onup>ClearProperty(show_mini_osd,Home)</onup>
                 <onup condition="Player.HasVideo">Stop</onup>
 
                 <ondown>SetFocus(9000)</ondown>
                 <ondown>ClearProperty(VideoYoutubeIsPlaying,Home)</ondown>
+                <ondown>ClearProperty(show_mini_osd,Home)</ondown>
                 <ondown condition="Player.HasVideo">Stop</ondown>
 
            </control>
