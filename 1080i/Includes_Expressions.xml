@@ -17,7 +17,7 @@
 
     <!-- SHOW VIDEO IN HOME IN WINDOWS FLIX -->
 
-    <expression name="VideoWindowFlixIsActive">!Skin.HasSetting(enable.furniture.home.nowplaying.extended) + Skin.HasSetting(show.home.nowplaying.video.flix) + !Skin.HasSetting(home.hide.nowplaying)  + [Window.IsVisible(Home) + [$EXP[Home_Is_Horizontal_Netflix] | $EXP[Home_Is_Horizontal_Clean] | $EXP[Home_Is_Vertical_Netflix]]] + !Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml) + !$EXP[TrailerWindowIsActive]</expression>
+    <expression name="VideoWindowFlixIsActive">!$EXP[Extended_Now_Playing_Is_Enable] + Skin.HasSetting(show.home.nowplaying.video.flix) + !Skin.HasSetting(home.hide.nowplaying)  + [Window.IsVisible(Home) + [$EXP[Home_Is_Horizontal_Netflix] | $EXP[Home_Is_Horizontal_Clean] | $EXP[Home_Is_Vertical_Netflix]]] + !Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml) + !$EXP[TrailerWindowIsActive]</expression>
 
     <!-- TMDBHELPER IS UPDATING ? -->
 
@@ -125,7 +125,7 @@
 
     <!-- AUTO SLIDE MENU IF NOWPLAYING -->
 
-    <expression name="Has_Now_Playing_Auto_Slide_Out_Animation">[!$EXP[TrailerIsReady] + !$EXP[TrailerIsPlaying] + !$EXP[TrailerWaitingForPlayer] + !$EXP[TrailerWindowIsActive] + Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + !String.IsEmpty(Window(Home).Property(nowplaying.auto.show.timer)) + Skin.HasSetting(enable.furniture.home.nowplaying.extended) + [!Skin.HasSetting(homemenu.slide) | Skin.HasSetting(hide.only.if.widgetcontainer.gets.focus)]]</expression>
+    <expression name="Has_Now_Playing_Auto_Slide_Out_Animation">[!$EXP[TrailerIsReady] + !$EXP[TrailerIsPlaying] + !$EXP[TrailerWaitingForPlayer] + !$EXP[TrailerWindowIsActive] + Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + !String.IsEmpty(Window(Home).Property(nowplaying.auto.show.timer)) + $EXP[Extended_Now_Playing_Is_Enable] + [!Skin.HasSetting(homemenu.slide) | Skin.HasSetting(hide.only.if.widgetcontainer.gets.focus)]]</expression>
 
     <!-- DISPLAY NOWPLAYING IF WIDGET IS FOCUS -->
 
@@ -133,15 +133,17 @@
 
     <!-- AUTO SHOW NOWPLAYING HELPER -->
 
-    <expression name="Extended_Now_Playing_Helper_AutoShow">[!$EXP[TrailerIsReady] + !$EXP[TrailerIsPlaying] + !$EXP[TrailerWaitingForPlayer] + !$EXP[TrailerWindowIsActive] + [System.IdleTime(5) + !String.IsEmpty(Window(Home).Property(nowplaying.auto.show.timer)) + Skin.HasSetting(enable.furniture.home.nowplaying.extended) + Window.IsVisible(Home) + [Player.HasMedia | Player.Playing] + Skin.HasSetting(enable.home.auto.show.nowplaying.extended) + !Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml) + !Window.IsVisible(DialogAddonInfo.xml) + !Window.IsVisible(DialogPVRInfo.xml) + !Window.IsVisible(DialogContextMenu.xml)] + !Window.IsVisible(DialogBusy.xml) + !Window.IsVisible(DialogConfirm.xml)]</expression>
+    <expression name="Extended_Now_Playing_Helper_AutoShow">[!$EXP[TrailerIsReady] + !$EXP[TrailerIsPlaying] + !$EXP[TrailerWaitingForPlayer] + !$EXP[TrailerWindowIsActive] + [System.IdleTime(5) + !String.IsEmpty(Window(Home).Property(nowplaying.auto.show.timer)) + $EXP[Extended_Now_Playing_Is_Enable] + Window.IsVisible(Home) + [Player.HasMedia | Player.Playing] + Skin.HasSetting(enable.home.auto.show.nowplaying.extended) + !Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml) + !Window.IsVisible(DialogAddonInfo.xml) + !Window.IsVisible(DialogPVRInfo.xml) + !Window.IsVisible(DialogContextMenu.xml)] + !Window.IsVisible(DialogBusy.xml) + !Window.IsVisible(DialogConfirm.xml)]</expression>
 
     <!-- AUTO CLOSE NOWPLAYING HELPER -->
 
-    <expression name="Extended_Now_Playing_Helper_AutoClose">[!$EXP[TrailerIsReady] + !$EXP[TrailerIsPlaying] + !$EXP[TrailerWaitingForPlayer] + !$EXP[TrailerWindowIsActive] + [[!String.IsEmpty(Window(Home).Property(controlsvisible)) | Control.HasFocus(25) | Control.HasFocus(778)] + Skin.HasSetting(enable.furniture.home.nowplaying.extended) + Window.IsVisible(Home) + !Player.HasMedia + !Player.Playing + !Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button)]]</expression>
+    <expression name="Extended_Now_Playing_Helper_AutoClose">[!$EXP[TrailerIsReady] + !$EXP[TrailerIsPlaying] + !$EXP[TrailerWaitingForPlayer] + !$EXP[TrailerWindowIsActive] + [[!String.IsEmpty(Window(Home).Property(controlsvisible)) | Control.HasFocus(25) | Control.HasFocus(778)] + $EXP[Extended_Now_Playing_Is_Enable] + Window.IsVisible(Home) + !Player.HasMedia + !Player.Playing + !Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button)]]</expression>
 
     <!-- NOWPLAYING VISIBLE -->
 
-    <expression name="Extended_Now_Playing_Is_Visible">[Skin.HasSetting(enable.furniture.home.nowplaying.extended) + Window.IsVisible(Home) + Player.HasMedia] + [[!ControlGroup(301).HasFocus() + !Control.HasFocus(9808) + !Control.HasFocus(9888) + !Control.HasFocus(9567) + !Control.HasFocus(8808) + !Control.HasFocus(8888) + !Control.HasFocus(4567)] | ControlGroup(777).HasFocus()]</expression>
+    <expression name="Extended_Now_Playing_Is_Visible">[$EXP[Extended_Now_Playing_Is_Enable] + Player.HasMedia + Window.IsVisible(Home)] + [[!ControlGroup(301).HasFocus() + !Control.HasFocus(9808) + !Control.HasFocus(9888) + !Control.HasFocus(9567) + !Control.HasFocus(8808) + !Control.HasFocus(8888) + !Control.HasFocus(4567)] | ControlGroup(777).HasFocus()]</expression>
+
+    <expression name="Extended_Now_Playing_Is_Enable">[Skin.HasSetting(enable.furniture.home.nowplaying.extended) + [[!Skin.HasSetting(show.home.nowplaying.video.flix) + Player.HasVideo] | Player.HasAudio]]</expression>
 
     <!-- ENABLE DIALOG INFO BRIGHTNESS -->
 

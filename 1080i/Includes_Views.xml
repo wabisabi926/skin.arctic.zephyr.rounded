@@ -636,14 +636,14 @@
             <include>Animation_ClearLogo.FadeOut</include>
             <visible>Window.IsVisible(Home) + !Skin.HasSetting(homemenu.netflix) + Skin.HasSetting(show.home.header.clearlogo)</visible>
             <visible>![Window.IsVisible(DialogMusicInfo.xml) + Window.IsVisible(DialogVideoInfo.xml)]</visible>
-            <visible>[!Skin.HasSetting(home.hide.nowplaying) + !Player.HasAudio] | [Skin.HasSetting(enable.furniture.home.nowplaying.extended) + !$EXP[Extended_Now_Playing_Is_Visible] + Player.HasAudio]</visible>
+            <visible>[!Skin.HasSetting(home.hide.nowplaying) + !Player.HasAudio] | [$EXP[Extended_Now_Playing_Is_Enable] + !$EXP[Extended_Now_Playing_Is_Visible] + Player.HasAudio]</visible>
             <visible>ControlGroup(301).HasFocus()</visible>
 
             <animation effect="slide" start="0" end="0,60" time="0" condition="$EXP[Home_Is_Horizontal] + Window.IsVisible(Home.xml)">Conditional</animation>
             <animation effect="slide" start="0" end="0,40" time="0" condition="$EXP[Home_Is_Vertical] + Window.IsVisible(Home.xml)">Conditional</animation>
 
             <!-- Hide with NowPlaying -->
-            <animation type="Conditional" condition="Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + Skin.HasSetting(enable.furniture.home.nowplaying.extended) + [ControlGroup(777).HasFocus() | !$EXP[Extended_Now_Playing_Helper_AutoShow]] + !ControlGroup(301).HasFocus() + Window.IsVisible(Home) + !Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml) + !Window.IsVisible(DialogAddonInfo.xml) + !Window.IsVisible(DialogPVRInfo.xml) + !Window.IsVisible(DialogContextMenu.xml)" reversible="true">
+            <animation type="Conditional" condition="Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + $EXP[Extended_Now_Playing_Is_Enable] + [ControlGroup(777).HasFocus() | !$EXP[Extended_Now_Playing_Helper_AutoShow]] + !ControlGroup(301).HasFocus() + Window.IsVisible(Home) + !Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml) + !Window.IsVisible(DialogAddonInfo.xml) + !Window.IsVisible(DialogPVRInfo.xml) + !Window.IsVisible(DialogContextMenu.xml)" reversible="true">
                 <effect type="slide" start="0,0" end="350,0" tween="sine" easing="out" time="300" delay="0"/>
                 <effect type="fade" start="100" end="0" time="150" delay="0"/>
             </animation>
@@ -668,7 +668,7 @@
             <include condition="!Window.IsVisible(MyFavourites.xml)">Animation_Furniture_Visible_Home_Label</include>
 
             <!-- Hide with NowPlaying -->
-            <animation type="Conditional" condition="Skin.HasSetting(hide.home.header.with.nowplaying.extended) + Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + Skin.HasSetting(enable.furniture.home.nowplaying.extended) + [ControlGroup(777).HasFocus() | !$EXP[Extended_Now_Playing_Helper_AutoShow]] + !Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(399) + !Control.HasFocus(222) + !Control.HasFocus(9099) + !ControlGroup(301).HasFocus() + Window.IsVisible(Home) + !Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml) + !Window.IsVisible(DialogAddonInfo.xml) + !Window.IsVisible(MyPVRGuide.xml) + !Window.IsVisible(DialogPVRInfo.xml) + !Window.IsVisible(DialogContextMenu.xml)" reversible="true">
+            <animation type="Conditional" condition="Skin.HasSetting(hide.home.header.with.nowplaying.extended) + Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + $EXP[Extended_Now_Playing_Is_Enable] + [ControlGroup(777).HasFocus() | !$EXP[Extended_Now_Playing_Helper_AutoShow]] + !Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(399) + !Control.HasFocus(222) + !Control.HasFocus(9099) + !ControlGroup(301).HasFocus() + Window.IsVisible(Home) + !Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml) + !Window.IsVisible(DialogAddonInfo.xml) + !Window.IsVisible(MyPVRGuide.xml) + !Window.IsVisible(DialogPVRInfo.xml) + !Window.IsVisible(DialogContextMenu.xml)" reversible="true">
                 <effect type="slide" start="0,0" end="-115,0" tween="sine" easing="out" time="300" delay="0"/>
                 <effect type="fade" start="100" end="0" time="150" delay="0"/>
             </animation>
@@ -893,14 +893,14 @@
             <visible>!Window.IsVisible(DialogNotification.xml)</visible>
             <visible>!Window.IsVisible(DialogExtendedProgressBar.xml)</visible>
             <visible>!Window.IsActive(DialogNotification.xml)</visible>
-            <visible>[Window.IsActive(Home) + Skin.HasSetting(enable.furniture.home.nowplaying.extended)] | [!Skin.HasSetting(hide.furniture.nowplaying) + !Player.HasMedia] | Skin.HasSetting(hide.furniture.nowplaying)</visible>
+            <visible>[Window.IsActive(Home) + $EXP[Extended_Now_Playing_Is_Enable]] | [!Skin.HasSetting(hide.furniture.nowplaying) + !Player.HasMedia] | Skin.HasSetting(hide.furniture.nowplaying)</visible>
 
             <!-- Hide with NowPlaying -->
-            <animation type="Conditional" condition="Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + Skin.HasSetting(enable.furniture.home.nowplaying.extended) + [ControlGroup(777).HasFocus() | !$EXP[Extended_Now_Playing_Helper_AutoShow]] + !Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(399) + !Control.HasFocus(222) + !ControlGroup(301).HasFocus() + Window.IsVisible(Home) + !Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml) + !Window.IsVisible(DialogAddonInfo.xml) + !Window.IsVisible(DialogPVRInfo.xml) + !Window.IsVisible(DialogContextMenu.xml) + !Control.HasFocus(9099)" reversible="true">
+            <animation type="Conditional" condition="Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + $EXP[Extended_Now_Playing_Is_Enable] + [ControlGroup(777).HasFocus() | !$EXP[Extended_Now_Playing_Helper_AutoShow]] + !Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(399) + !Control.HasFocus(222) + !ControlGroup(301).HasFocus() + Window.IsVisible(Home) + !Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml) + !Window.IsVisible(DialogAddonInfo.xml) + !Window.IsVisible(DialogPVRInfo.xml) + !Window.IsVisible(DialogContextMenu.xml) + !Control.HasFocus(9099)" reversible="true">
                 <effect type="slide" start="0,0" end="350,0" tween="sine" easing="out" time="300" delay="0"/>
                 <effect type="fade" start="100" end="0" time="150" delay="0"/>
             </animation>
-            <!-- <animation effect="slide" start="0" end="-350" time="300" delay="0" center="auto" tween="sine" easing="out" condition="[!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(399) + !Control.HasFocus(222) + !ControlGroup(301).HasFocus() + !Control.HasFocus(2011)] + ![Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)] + [Skin.HasSetting(homemenu.slide) | [Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + Skin.HasSetting(enable.furniture.home.nowplaying.extended)]] + !Control.HasFocus(9099)">Conditional</animation> -->
+            <!-- <animation effect="slide" start="0" end="-350" time="300" delay="0" center="auto" tween="sine" easing="out" condition="[!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(399) + !Control.HasFocus(222) + !ControlGroup(301).HasFocus() + !Control.HasFocus(2011)] + ![Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)] + [Skin.HasSetting(homemenu.slide) | [Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + $EXP[Extended_Now_Playing_Is_Enable]]] + !Control.HasFocus(9099)">Conditional</animation> -->
 
 
             <top>70</top>
@@ -1626,7 +1626,7 @@
 
             <!-- Hide with NowPlaying -->
 
-            <animation type="Conditional" condition="Skin.HasSetting(hide.home.header.with.nowplaying.extended) + Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + Skin.HasSetting(enable.furniture.home.nowplaying.extended) + [ControlGroup(777).HasFocus() | !$EXP[Extended_Now_Playing_Helper_AutoShow]] + !Control.HasFocus(300) + !Control.HasFocus(399) + !Control.HasFocus(222) + !Control.HasFocus(302) + !Control.HasFocus(9099) + !ControlGroup(301).HasFocus() + Window.IsVisible(Home) + !Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml) + !Window.IsVisible(DialogAddonInfo.xml) + !Window.IsVisible(DialogPVRInfo.xml) + !Window.IsVisible(DialogContextMenu.xml)" reversible="true">
+            <animation type="Conditional" condition="Skin.HasSetting(hide.home.header.with.nowplaying.extended) + Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + $EXP[Extended_Now_Playing_Is_Enable] + [ControlGroup(777).HasFocus() | !$EXP[Extended_Now_Playing_Helper_AutoShow]] + !Control.HasFocus(300) + !Control.HasFocus(399) + !Control.HasFocus(222) + !Control.HasFocus(302) + !Control.HasFocus(9099) + !ControlGroup(301).HasFocus() + Window.IsVisible(Home) + !Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml) + !Window.IsVisible(DialogAddonInfo.xml) + !Window.IsVisible(DialogPVRInfo.xml) + !Window.IsVisible(DialogContextMenu.xml)" reversible="true">
                 <effect type="slide" start="0,0" end="115,0" tween="sine" easing="out" time="300" delay="0"/>
                 <effect type="fade" start="100" end="0" time="150" delay="0"/>
             </animation>

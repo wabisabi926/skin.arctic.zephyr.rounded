@@ -171,7 +171,7 @@
                 <visible>Player.HasMedia</visible>
                 <include>Animation_FadeIn</include>
                 <include>Animation_FadeOut</include>
-                <include condition="!Skin.HasSetting(enable.furniture.home.nowplaying.extended) + !Skin.HasSetting(home.hide.nowplaying)">Furniture_Header_NowPlaying</include>
+                <include condition="!$EXP[Extended_Now_Playing_Is_Enable] + !Skin.HasSetting(home.hide.nowplaying)">Furniture_Header_NowPlaying</include>
             </control>
         </control>
     </include>
@@ -193,7 +193,7 @@
             <include condition="!Skin.HasSetting(show.home.header.clock.left)">Furniture_Footer_Clock_Right</include>
 
             <control type="group">
-                <animation effect="slide" start="0" end="0,163" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(9099) + !Control.HasFocus(399) + !Control.HasFocus(222) + [Skin.HasSetting(homemenu.slide) | [Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + Skin.HasSetting(enable.furniture.home.nowplaying.extended)] + !ControlGroup(301).HasFocus()] + $EXP[Home_Is_Horizontal] + !Skin.HasSetting(homemenu.horizontal.clean)">Conditional</animation>
+                <animation effect="slide" start="0" end="0,163" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(9099) + !Control.HasFocus(399) + !Control.HasFocus(222) + [Skin.HasSetting(homemenu.slide) | [Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + $EXP[Extended_Now_Playing_Is_Enable]] + !ControlGroup(301).HasFocus()] + $EXP[Home_Is_Horizontal] + !Skin.HasSetting(homemenu.horizontal.clean)">Conditional</animation>
                 <control type="image">
                     <visible>Integer.IsGreater(Container(300).NumItems,6)</visible>
                     <top>962</top>
@@ -706,7 +706,7 @@
                 <onfocus>SetProperty(SetBackMenu300AfterSubMenu302,1,Home)</onfocus>
 
                 <!-- NowPlaying : Auto slide / Display  if Widget is focus -->
-                <onfocus condition="Skin.HasSetting(enable.furniture.home.nowplaying.extended) + Window.IsVisible(Home) + Skin.HasSetting(enable.home.auto.show.nowplaying.extended)">SetProperty(nowplaying.auto.show.timer,1,Home)</onfocus>
+                <onfocus condition="$EXP[Extended_Now_Playing_Is_Enable] + Window.IsVisible(Home) + Skin.HasSetting(enable.home.auto.show.nowplaying.extended)">SetProperty(nowplaying.auto.show.timer,1,Home)</onfocus>
                 <onunfocus>ClearProperty(nowplaying.auto.show.timer,Home)</onunfocus>
 
                 <!-- Main Menu : Focus if inactivity -->
@@ -949,7 +949,7 @@
                 <include>Def_Widgets_Skinshortcuts</include>
 
             </control>
-            <include condition="Skin.HasSetting(enable.furniture.home.nowplaying.extended)">Furniture_Home_NowPlaying</include>
+            <include condition="$EXP[Extended_Now_Playing_Is_Enable]">Furniture_Home_NowPlaying</include>
         </control>
 
         <!-- HOME HORIZONTAL -->
@@ -971,9 +971,9 @@
             <include>Def_Hidden_Button</include>
             <onfocus condition="Integer.IsEqual(Container(301).NumItems,1) + Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">SetFocus(4567)</onfocus>
             <onfocus condition="Integer.IsEqual(Container(301).NumItems,1)">SetFocus(300)</onfocus>
-            <onfocus condition="!Integer.IsEqual(Container(301).NumItems,1) + !Integer.IsEqual(Container(301).NumItems,0) + [!Player.HasMedia | !Skin.HasSetting(enable.furniture.home.nowplaying.extended)]">SetFocus($INFO[Window(Home).Property(BackToId)])</onfocus>
-            <onfocus condition="!Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + !Integer.IsEqual(Container(301).NumItems,1) + !Integer.IsEqual(Container(301).NumItems,0) + Skin.HasSetting(enable.furniture.home.nowplaying.extended) + Player.HasMedia">SetFocus(300)</onfocus>
-            <onfocus condition="Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + !Integer.IsEqual(Container(301).NumItems,1) + !Integer.IsEqual(Container(301).NumItems,0) + Skin.HasSetting(enable.furniture.home.nowplaying.extended) + Player.HasMedia">SetFocus(4567)</onfocus>
+            <onfocus condition="!Integer.IsEqual(Container(301).NumItems,1) + !Integer.IsEqual(Container(301).NumItems,0) + [!Player.HasMedia | !$EXP[Extended_Now_Playing_Is_Enable]]">SetFocus($INFO[Window(Home).Property(BackToId)])</onfocus>
+            <onfocus condition="!Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + !Integer.IsEqual(Container(301).NumItems,1) + !Integer.IsEqual(Container(301).NumItems,0) + $EXP[Extended_Now_Playing_Is_Enable] + Player.HasMedia">SetFocus(300)</onfocus>
+            <onfocus condition="Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + !Integer.IsEqual(Container(301).NumItems,1) + !Integer.IsEqual(Container(301).NumItems,0) + $EXP[Extended_Now_Playing_Is_Enable] + Player.HasMedia">SetFocus(4567)</onfocus>
         </control>
 
         <control type="button" id="399">
@@ -1022,7 +1022,7 @@
 
             <!-- NOWPLAYING : AUTO SLIDE / DISPLAY  IF WIDGET IS FOCUS -->
 
-            <onfocus condition="Skin.HasSetting(enable.furniture.home.nowplaying.extended) + Window.IsVisible(Home) + Skin.HasSetting(enable.home.auto.show.nowplaying.extended)">SetProperty(nowplaying.auto.show.timer,1,Home)</onfocus>
+            <onfocus condition="$EXP[Extended_Now_Playing_Is_Enable] + Window.IsVisible(Home) + Skin.HasSetting(enable.home.auto.show.nowplaying.extended)">SetProperty(nowplaying.auto.show.timer,1,Home)</onfocus>
             <onunfocus>ClearProperty(nowplaying.auto.show.timer,Home)</onunfocus>
 
             <!-- MAIN MENU : FOCUS IF INACTIVITY -->
@@ -1093,7 +1093,7 @@
 
         <include>Furniture_Header</include>
         <include>Furniture_Header_Busy</include>
-        <include condition="!Skin.HasSetting(enable.furniture.home.nowplaying.extended) + !Skin.HasSetting(home.hide.nowplaying)">Furniture_Header_NowPlaying</include>
+        <include condition="!$EXP[Extended_Now_Playing_Is_Enable] + !Skin.HasSetting(home.hide.nowplaying)">Furniture_Header_NowPlaying</include>
         <include>Furniture_Footer_Clock_Right</include>
         <include>Furniture_Header_Clock_Right</include>
         <include>Widget_Navigation_Arrows</include>
@@ -1101,7 +1101,7 @@
         <control type="group">
 
             <animation effect="slide" start="0" end="-100" time="0" delay="0" condition="true">Conditional</animation>
-            <animation effect="slide" start="0" end="-260" time="300" delay="0" center="auto" tween="sine" easing="out" condition="[!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(399) + !Control.HasFocus(222)] + ![Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)] + [Skin.HasSetting(homemenu.slide) | [Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + Skin.HasSetting(enable.furniture.home.nowplaying.extended)]] + !Control.HasFocus(9099)">Conditional</animation>
+            <animation effect="slide" start="0" end="-260" time="300" delay="0" center="auto" tween="sine" easing="out" condition="[!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(399) + !Control.HasFocus(222)] + ![Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)] + [Skin.HasSetting(homemenu.slide) | [Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + $EXP[Extended_Now_Playing_Is_Enable]]] + !Control.HasFocus(9099)">Conditional</animation>
 
             <!-- MAIN MENU - SUB MENU -->
 
@@ -1116,7 +1116,7 @@
                     <animation effect="slide" start="0,0" end="-296,0" time="0" condition="Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)">Conditional</animation>
 
                     <animation effect="slide" start="0,0" end="0,-8" time="0" condition="true">Conditional</animation>
-                    <animation effect="fade" start="100" end="0" time="400" condition="[!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(399) + !Control.HasFocus(222)] + ![Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)] + [Skin.HasSetting(homemenu.slide) | [Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + Skin.HasSetting(enable.furniture.home.nowplaying.extended)]] + !Control.HasFocus(9099)">Conditional</animation>
+                    <animation effect="fade" start="100" end="0" time="400" condition="[!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(399) + !Control.HasFocus(222)] + ![Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)] + [Skin.HasSetting(homemenu.slide) | [Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + $EXP[Extended_Now_Playing_Is_Enable]]] + !Control.HasFocus(9099)">Conditional</animation>
 
                     <include condition="![Skin.HasSetting(home.showicons) + Skin.HasSetting(homemenu.only.icons)]">Animation_Slide_Vertical_Menu</include>
                     <include condition="[Skin.HasSetting(home.showicons) + Skin.HasSetting(homemenu.only.icons)]" content="Animation_Slide_Vertical_Menu">
@@ -1370,7 +1370,7 @@
 
                     <!-- NOWPLAYING : AUTO SLIDE / DISPLAY  IF WIDGET IS FOCUS -->
 
-                    <onfocus condition="Skin.HasSetting(enable.furniture.home.nowplaying.extended) + Window.IsVisible(Home) + Skin.HasSetting(enable.home.auto.show.nowplaying.extended)">SetProperty(nowplaying.auto.show.timer,1,Home)</onfocus>
+                    <onfocus condition="$EXP[Extended_Now_Playing_Is_Enable] + Window.IsVisible(Home) + Skin.HasSetting(enable.home.auto.show.nowplaying.extended)">SetProperty(nowplaying.auto.show.timer,1,Home)</onfocus>
                     <onunfocus>ClearProperty(nowplaying.auto.show.timer,Home)</onunfocus>
 
                     <!-- MAIN MENU : FOCUS IF INACTIVITY -->
@@ -1649,7 +1649,7 @@
                         <include>Def_Widgets_Skinshortcuts</include>
 
                     </control>
-                    <include condition="Skin.HasSetting(enable.furniture.home.nowplaying.extended)">Furniture_Home_NowPlaying</include>
+                    <include condition="$EXP[Extended_Now_Playing_Is_Enable]">Furniture_Home_NowPlaying</include>
                 </control>
             </control>
 
@@ -1674,9 +1674,9 @@
                 <include>Def_Hidden_Button</include>
                 <onfocus condition="Integer.IsEqual(Container(301).NumItems,1) + Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">SetFocus(9567)</onfocus>
                 <onfocus condition="Integer.IsEqual(Container(301).NumItems,1)">SetFocus(300)</onfocus>
-                <onfocus condition="!Integer.IsEqual(Container(301).NumItems,1) + !Integer.IsEqual(Container(301).NumItems,0) + [!Player.HasMedia | !Skin.HasSetting(enable.furniture.home.nowplaying.extended)]">SetFocus($INFO[Window(Home).Property(BackToId)])</onfocus>
-                <onfocus condition="!Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + !Integer.IsEqual(Container(301).NumItems,1) + !Integer.IsEqual(Container(301).NumItems,0) + Skin.HasSetting(enable.furniture.home.nowplaying.extended) + Player.HasMedia">SetFocus(300)</onfocus>
-                <onfocus condition="Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + !Integer.IsEqual(Container(301).NumItems,1) + !Integer.IsEqual(Container(301).NumItems,0) + Skin.HasSetting(enable.furniture.home.nowplaying.extended) + Player.HasMedia">SetFocus(9567)</onfocus>
+                <onfocus condition="!Integer.IsEqual(Container(301).NumItems,1) + !Integer.IsEqual(Container(301).NumItems,0) + [!Player.HasMedia | !$EXP[Extended_Now_Playing_Is_Enable]]">SetFocus($INFO[Window(Home).Property(BackToId)])</onfocus>
+                <onfocus condition="!Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + !Integer.IsEqual(Container(301).NumItems,1) + !Integer.IsEqual(Container(301).NumItems,0) + $EXP[Extended_Now_Playing_Is_Enable] + Player.HasMedia">SetFocus(300)</onfocus>
+                <onfocus condition="Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + !Integer.IsEqual(Container(301).NumItems,1) + !Integer.IsEqual(Container(301).NumItems,0) + $EXP[Extended_Now_Playing_Is_Enable] + Player.HasMedia">SetFocus(9567)</onfocus>
             </control>
 
             <control type="button" id="399">
@@ -1721,7 +1721,7 @@
 
                 <!-- NOWPLAYING : AUTO SLIDE / DISPLAY  IF WIDGET IS FOCUS -->
 
-                <onfocus condition="Skin.HasSetting(enable.furniture.home.nowplaying.extended) + Window.IsVisible(Home) + Skin.HasSetting(enable.home.auto.show.nowplaying.extended)">SetProperty(nowplaying.auto.show.timer,1,Home)</onfocus>
+                <onfocus condition="$EXP[Extended_Now_Playing_Is_Enable] + Window.IsVisible(Home) + Skin.HasSetting(enable.home.auto.show.nowplaying.extended)">SetProperty(nowplaying.auto.show.timer,1,Home)</onfocus>
                 <onunfocus>ClearProperty(nowplaying.auto.show.timer,Home)</onunfocus>
 
                 <!-- MAIN MENU : FOCUS IF INACTIVITY -->
