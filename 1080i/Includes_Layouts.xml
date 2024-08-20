@@ -152,6 +152,19 @@
         <ondown condition="Window.IsVisible(MyWeather.xml)">SetFocus(9008)</ondown>
     </include>
 
+    <include name="Def_View_Menu_Control_Buttons_OnClick">
+        <onclick condition="Window.IsVisible(MyPlaylist.xml)">SetFocus(20)</onclick>
+        <onclick condition="Window.IsVisible(MyMusicNav.xml)">SetFocus(16)</onclick>
+        <onclick condition="Window.IsVisible(AddonBrowser.xml)">SetFocus(9)</onclick>
+        <onclick condition="Window.IsVisible(MyPVRChannels.xml)">SetFocus(9001)</onclick>
+        <onclick condition="Window.IsVisible(MyFavourites.xml)">SetFocus(19)</onclick>
+        <onclick condition="Window.IsVisible(MyGames.xml)">SetFocus(9001)</onclick>
+        <onclick condition="Window.IsVisible(MyPics.xml)">SetFocus(9001)</onclick>
+        <onclick condition="Window.IsVisible(MyPrograms.xml)">SetFocus(9001)</onclick>
+        <onclick condition="Window.IsVisible(MyVideoNav.xml)">SetFocus(14)</onclick>
+        <onclick condition="Window.IsVisible(MyWeather.xml)">SetFocus(9008)</onclick>
+    </include>
+
     <include name="Def_View_Menu_Control_Buttons">
         <control type="grouplist" id="6150">
             <visible>Player.HasMedia | Player.Playing</visible>
@@ -232,6 +245,7 @@
                 <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
                 <onclick>PlayerControl(Stop)</onclick>
                 <include>Def_View_Menu_Control_Buttons_UpDown</include>
+                <include>Def_View_Menu_Control_Buttons_OnClick</include>
             </include>
 
             <include content="Def_OSD_Button">
@@ -287,8 +301,8 @@
                 <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
                 <onclick condition="Player.HasAudio">ActivateWindow(musicplaylist)</onclick>
                 <onclick condition="Player.HasVideo">ActivateWindow(videoplaylist)</onclick>
-                <enable>!VideoPlayer.Content(livetv)</enable>
-                <animation effect="fade" start="100" end="33" time="100" condition="VideoPlayer.Content(livetv)">Conditional</animation>
+                <enable>!VideoPlayer.Content(livetv) + !Window.IsVisible(MyPlaylist.xml)</enable>
+                <animation effect="fade" start="100" end="33" time="100" condition="VideoPlayer.Content(livetv) | Window.IsVisible(MyPlaylist.xml)">Conditional</animation>
                 <include>Def_View_Menu_Control_Buttons_UpDown</include>
             </include>
         </control>
