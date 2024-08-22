@@ -996,7 +996,6 @@
         <control type="group">
             <include>Animation_FurnitureVisible_NowPlaying</include>
             <visible>String.IsEmpty(Window(Home).Property(TrailerFade))</visible>
-            <visible>!Skin.HasSetting(hide.furniture.nowplaying)</visible>
             <visible>!Window.IsVisible(DialogVolumeBar.xml) | Player.Muted</visible>
             <visible>!Window.IsVisible(DialogNotification.xml)</visible>
             <visible>!Window.IsVisible(DialogExtendedProgressBar.xml)</visible>
@@ -1004,7 +1003,7 @@
             <visible>!Window.IsActive(DialogNotification.xml)</visible>
             <visible>String.IsEmpty(Window(Home).Property(VideoYoutubeIsPlaying))</visible>
             <visible>String.IsEmpty(Window(Home).Property(TrailerWindowedIsPlaying))</visible>
-            <visible>Player.HasMedia</visible>
+            <visible>Player.HasMedia + !Skin.HasSetting(hide.furniture.nowplaying)</visible>
             <visible>!Control.HasFocus(161) + !Control.HasFocus(166)</visible>
             <visible>![$EXP[VideoWindowFlixIsActive] + Player.HasMedia + Player.HasVideo]</visible>
 
