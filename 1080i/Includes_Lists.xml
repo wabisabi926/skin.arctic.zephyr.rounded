@@ -910,10 +910,14 @@
                 <onleft>$PARAM[controlid]</onleft>
                 <onright>$PARAM[controlid]</onright>
 
-                <include>Def_Dialog_Info_On_Back_Music</include>
+                <onback>SetFocus(9501,0,absolute)</onback>
+                <onback>SetFocus(9502,3,absolute)</onback>
+                <onback>SetFocus(9508,0,absolute)</onback>
+                <onback>SetFocus(9504,3,absolute)</onback>
+                <onback>9000</onback>
+
                 <ondown condition="Control.IsVisible(9508) | Control.IsVisible(9501) | Control.IsVisible(9502) | Control.IsVisible(9504)">$PARAM[controlid]7</ondown>
                 <ondown condition="![Control.IsVisible(9508) | Control.IsVisible(9501) | Control.IsVisible(9502) | Control.IsVisible(9504)]">9000</ondown>
-                <onback>9000</onback>
 
                 <onclick condition="!Control.IsVisible(9501) + Player.HasMedia">PlayerControl(Stop)</onclick>
 
@@ -968,11 +972,14 @@
             <!-- SCROLLBAR  -->
 
             <include content="Object_Scrollbar_Dialog_Horizontal">
-                <!-- <param name="visible" value="!Control.IsVisible(9501)"/> -->
                 <param name="scrollid" value="$PARAM[controlid]7"/>
                 <param name="onleft" value="$PARAM[controlid]7"/>
                 <param name="onright" value="$PARAM[controlid]7"/>
                 <param name="onup" value="$PARAM[controlid]"/>
+                <param name="ondown1" value="SetFocus(9501,0,absolute)"/>
+                <param name="ondown2" value="SetFocus(9508,0,absolute)"/>
+                <param name="ondown3" value="SetFocus(9502,3,absolute)"/>
+                <param name="ondown4" value="SetFocus(9504,3,absolute)"/>
                 <param name="ondown" value="9000"/>
                 <param name="onback" value="9000"/>
                 <param name="width" value="1730"/>
