@@ -916,10 +916,17 @@
                 <onback>SetFocus(9504,3,absolute)</onback>
                 <onback>9000</onback>
 
+
+
                 <ondown condition="Control.IsVisible(9508) | Control.IsVisible(9501) | Control.IsVisible(9502) | Control.IsVisible(9504)">$PARAM[controlid]7</ondown>
                 <ondown condition="![Control.IsVisible(9508) | Control.IsVisible(9501) | Control.IsVisible(9502) | Control.IsVisible(9504)]">9000</ondown>
 
                 <onclick condition="!Control.IsVisible(9501) + Player.HasMedia">PlayerControl(Stop)</onclick>
+
+                <ondown condition="![Control.IsVisible(9508) | Control.IsVisible(9501) | Control.IsVisible(9502) | Control.IsVisible(9504)]">SetFocus(9501,0,absolute)</ondown>
+                <ondown condition="![Control.IsVisible(9508) | Control.IsVisible(9501) | Control.IsVisible(9502) | Control.IsVisible(9504)]">SetFocus(9508,0,absolute)</ondown>
+                <ondown condition="![Control.IsVisible(9508) | Control.IsVisible(9501) | Control.IsVisible(9502) | Control.IsVisible(9504)]">SetFocus(9502,3,absolute)</ondown>
+                <ondown condition="![Control.IsVisible(9508) | Control.IsVisible(9501) | Control.IsVisible(9502) | Control.IsVisible(9504)]">SetFocus(9504,3,absolute)</ondown>
 
                 <include content="OnClickInclude" condition="$PARAM[music_info_onclick]">
                     <param name="onclick1" value="$PARAM[onclick1]"/>

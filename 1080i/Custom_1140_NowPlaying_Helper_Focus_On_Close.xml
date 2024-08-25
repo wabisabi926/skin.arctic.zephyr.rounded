@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<window type="dialog" id="1192">
+<window type="dialog" id="1140">
     <visible>$EXP[Extended_Now_Playing_Helper_AutoClose] | $EXP[Extended_Now_Playing_Helper_AutoShow]</visible>
 
     <!-- CLOSE NOW PLAYING -->
@@ -20,6 +20,11 @@
 
     <!-- SHOW NOW PLAYING -->
     <!-- <onload condition="$EXP[Extended_Now_Playing_Helper_AutoShow]">SetFocus(773)</onload> -->
+
+    <!-- CLEANING ENCODE VALUE ALBUM / TITLE / FILENAME ON CLOSE NOW PLAYING -->
+    <onload>ClearProperty(Encoded.MusicPlayer.Album,Home)</onload>
+    <onload>ClearProperty(Encoded.Player.Filename,Home)</onload>
+    <onload>ClearProperty(Encoded.Player.Title,Home)</onload>
 
     <controls />
 </window>
