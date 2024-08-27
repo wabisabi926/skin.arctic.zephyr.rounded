@@ -1039,12 +1039,15 @@
             <include>Def_OSD_UpDown_Home_NowPlaying</include>
             <texturefocus colordiffuse="$VAR[Color_Highlight]" flipx="true">osd/info.png</texturefocus>
             <texturenofocus colordiffuse="Dark2" flipx="true">osd/info.png</texturenofocus>
+            <onclick condition="!Container(999).IsUpdating + Integer.IsGreater(Container(999).NumItems,0)">SetProperty(showinfofromhome,1)</onclick>
             <onclick condition="!Container(999).IsUpdating + Integer.IsGreater(Container(999).NumItems,0)">SetFocus(999)</onclick>
             <onclick condition="!Container(999).IsUpdating + Integer.IsGreater(Container(999).NumItems,0)">Action(info)</onclick>
+            <oninfo condition="!Container(999).IsUpdating + Integer.IsGreater(Container(999).NumItems,0)">SetProperty(showinfofromhome,1)</oninfo>
             <oninfo condition="!Container(999).IsUpdating + Integer.IsGreater(Container(999).NumItems,0)">SetFocus(999)</oninfo>
             <oninfo condition="!Container(999).IsUpdating + Integer.IsGreater(Container(999).NumItems,0)">Action(info)</oninfo>
             <onfocus condition="Skin.HasSetting(osd.open.auto.pause) + Player.Paused + Player.HasVideo + !String.IsEmpty(VideoPlayer.DBID)">PlayerControl(Play)</onfocus>
             <onfocus condition="!Player.HasMedia">SetFocus(300)</onfocus>
+            <onfocus condition="Player.HasMedia + !String.IsEmpty(Window.Property(showinfofromhome))">SetFocus(15)</onfocus>
             <visible allowhiddenfocus="!String.IsEmpty(VideoPlayer.DBID) | !String.IsEmpty(MusicPlayer.DBID)">false</visible>
         </control>
 
@@ -1105,6 +1108,7 @@
             <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
             <include>Def_OSD_UpDown_Home_NowPlaying</include>
             <onclick>PlayerControl(Stop)</onclick>
+            <onfocus>ClearProperty(showinfofromhome)</onfocus>
         </include>
 
         <include content="Def_OSD_Button">
