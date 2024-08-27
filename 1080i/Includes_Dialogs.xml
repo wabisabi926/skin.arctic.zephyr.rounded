@@ -733,8 +733,8 @@
             <include>Def_List_Dimension</include>
             <orientation>horizontal</orientation>
 
-            <ondown condition="Control.HasFocus(9002) + String.IsEqual(Window.Property(ShowDisc),1) + !String.IsEmpty(ListItem.Art(discart)) + String.IsEmpty(Window.Property(RotateCover))">ClearProperty(ShowDisc)</ondown>
-            <ondown condition="Control.HasFocus(9002) + String.IsEqual(Window.Property(ShowDisc),1) + !String.IsEmpty(ListItem.Art(discart))">ClearProperty(RotateCover)</ondown>
+            <ondown condition="Control.HasFocus(12) + String.IsEqual(Window.Property(ShowDisc),1) + !String.IsEmpty(ListItem.Art(discart)) + String.IsEmpty(Window.Property(RotateCover))">ClearProperty(ShowDisc)</ondown>
+            <ondown condition="Control.HasFocus(12) + String.IsEqual(Window.Property(ShowDisc),1) + !String.IsEmpty(ListItem.Art(discart))">ClearProperty(RotateCover)</ondown>
 
             <ondown condition="!String.IsEqual(Window.Property(ShowDisc),1) + !String.IsEqual(Window.Property(RotateCover),1)">9601</ondown>
 
@@ -748,11 +748,11 @@
             <onup condition="String.IsEmpty(Window.Property(musiccontent))">50</onup>
 
             <!-- <onup condition="String.IsEqual(Window.Property(musiccontent),8) + Integer.IsGreater(Container(9508).NumItems,1)">9508</onup> -->
-            <onup condition="Control.HasFocus(9002) + !String.IsEqual(Window.Property(ShowDisc),1) + !String.IsEmpty(ListItem.Art(discart))">SetProperty(ShowDisc,1)</onup>
-            <onup condition="Control.HasFocus(9002) + String.IsEqual(Window.Property(ShowDisc),1) + !String.IsEmpty(ListItem.Art(discart)) + !String.IsEmpty(ListItem.Art(back))">SetProperty(RotateCover,1)</onup>
-            <onup condition="Control.HasFocus(9002) + String.IsEqual(Window.Property(ShowDisc),1) + !String.IsEmpty(ListItem.Art(discart)) + String.IsEmpty(ListItem.Art(back))">ClearProperty(ShowDisc)</onup>
-            <onup condition="Control.HasFocus(9002) + String.IsEqual(Window.Property(ShowDisc),1) + String.IsEqual(Window.Property(RotateCover),1) + !String.IsEmpty(ListItem.Art(discart))">ClearProperty(RotateCover)</onup>
-            <onup condition="Control.HasFocus(9002) + String.IsEqual(Window.Property(ShowDisc),1) + String.IsEqual(Window.Property(RotateCover),1) + !String.IsEmpty(ListItem.Art(discart))">ClearProperty(ShowDisc)</onup>
+            <onup condition="Control.HasFocus(12) + !String.IsEqual(Window.Property(ShowDisc),1) + !String.IsEmpty(ListItem.Art(discart))">SetProperty(ShowDisc,1)</onup>
+            <onup condition="Control.HasFocus(12) + String.IsEqual(Window.Property(ShowDisc),1) + !String.IsEmpty(ListItem.Art(discart)) + !String.IsEmpty(ListItem.Art(back))">SetProperty(RotateCover,1)</onup>
+            <onup condition="Control.HasFocus(12) + String.IsEqual(Window.Property(ShowDisc),1) + !String.IsEmpty(ListItem.Art(discart)) + String.IsEmpty(ListItem.Art(back))">ClearProperty(ShowDisc)</onup>
+            <onup condition="Control.HasFocus(12) + String.IsEqual(Window.Property(ShowDisc),1) + String.IsEqual(Window.Property(RotateCover),1) + !String.IsEmpty(ListItem.Art(discart))">ClearProperty(RotateCover)</onup>
+            <onup condition="Control.HasFocus(12) + String.IsEqual(Window.Property(ShowDisc),1) + String.IsEqual(Window.Property(RotateCover),1) + !String.IsEmpty(ListItem.Art(discart))">ClearProperty(ShowDisc)</onup>
             <onup condition="String.IsEmpty(Window.Property(musiccontent))">9010</onup>
 
             <!-- Back fullscreen Now Playing -->
@@ -762,7 +762,8 @@
                 <onfocus>ClearProperty(RotateCover)</onfocus>
                 <include>Def_Button_Dimensions_Square</include>
                 <onclick condition="Player.HasVideo">close</onclick>
-                <onclick condition="Player.HasAudio">close</onclick>
+                <onclick condition="Player.HasAudio">Dialog.Close(musicinformation,force)</onclick>
+                <onclick condition="Player.HasAudio">Dialog.Close(songinformation,force)</onclick>
                 <onclick condition="Player.HasVideo">ActivateWindow(fullscreenvideo)</onclick>
                 <onclick condition="Player.HasAudio">ActivateWindow(visualisation)</onclick>
                 <texturenofocus colordiffuse="Dark4" border="12">common/boxsquare.png</texturenofocus>
@@ -774,20 +775,6 @@
                 <selected>Player.Playing</selected>
                 <visible>Player.HasMedia</visible>
             </control>
-
-            <!-- Albums list  -->
-            <!-- <control type="radiobutton" id="9050"> -->
-                <!-- <visible>String.IsEqual(ListItem.DBType,artist) | String.IsEqual(ListItem.DBType,album)</visible> -->
-                <!-- <onfocus condition="!String.IsEqual(Window.Property(musiccontent),2)">ClearProperty(musiccontent)</onfocus> -->
-                <!-- <onfocus>ClearProperty(ShowDisc)</onfocus> -->
-                <!-- <onfocus>ClearProperty(musiccontent)</onfocus> -->
-                <!-- <onfocus>ClearProperty(TMDbHelper.WidgetContainer)</onfocus> -->
-                <!-- <onclick>SetFocus(9501)</onclick> -->
-                <!-- <include>Def_Button_Dimensions_Square</include> -->
-                <!-- <include content="Def_Button_Textures"> -->
-                    <!-- <param name="icon" value="buttonsdialogs/compact-disc.png"/> -->
-                <!-- </include> -->
-            <!-- </control> -->
 
             <!-- Lire -->
             <control type="radiobutton" id="9001">
@@ -823,36 +810,13 @@
             </control>
 
             <!-- Info Button -->
-            <control type="radiobutton" id="9002">
-                <!-- <enable>!String.IsEqual(ListItem.DBType,artist)</enable> -->
+            <control type="radiobutton" id="12">
                 <onfocus>ClearProperty(musiccontent)</onfocus>
                 <include>Def_Button_Dimensions_Square</include>
-
-                <onclick condition="String.IsEqual(ListItem.DBType,album) + !String.IsEqual(ListItem.DBType,artist) + !Container(996).IsUpdating + Integer.IsGreater(Container(996).NumItems,0)">SetProperty(ShowArtistInfo,1,Home)</onclick>
-
-                <onclick condition="String.IsEqual(ListItem.DBType,album) + !String.IsEqual(ListItem.DBType,artist) + !Container(996).IsUpdating + Integer.IsGreater(Container(996).NumItems,0)">close</onclick>
-
-                <onclick condition="String.IsEqual(ListItem.DBType,song) + !String.IsEqual(ListItem.DBType,artist) + !Container(998).IsUpdating + Integer.IsGreater(Container(998).NumItems,0)">SetProperty(ShowAlbumInfo,1,Home)</onclick>
-
-                <onclick condition="String.IsEqual(ListItem.DBType,song) + !String.IsEqual(ListItem.DBType,artist) + !Container(998).IsUpdating + Integer.IsGreater(Container(998).NumItems,0)">close</onclick>
-
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/info.png"/>
                 </include>
             </control>
-
-            <!-- Info artist -->
-            <!-- <control type="radiobutton" id="9010"> -->
-                <!-- <visible>!String.IsEqual(ListItem.DBType,artist)</visible> -->
-                <!-- <onfocus>ClearProperty(musiccontent)</onfocus> -->
-                <!-- <onfocus>ClearProperty(TMDbHelper.WidgetContainer)</onfocus> -->
-                <!-- <include>Def_Button_Dimensions_Square</include> -->
-                <!-- <onclick condition="!String.IsEqual(ListItem.DBType,artist) + !Container(996).IsUpdating + Integer.IsGreater(Container(996).NumItems,0)">SetProperty(ShowArtistInfo,1,Home)</onclick> -->
-                <!-- <onclick condition="!String.IsEqual(ListItem.DBType,artist) + !Container(996).IsUpdating + Integer.IsGreater(Container(996).NumItems,0)">close</onclick> -->
-                <!-- <include content="Def_Button_Textures"> -->
-                    <!-- <param name="icon" value="buttonsdialogs/director.png"/> -->
-                <!-- </include> -->
-            <!-- </control> -->
 
             <!-- Wikipedia Button -->
             <control type="radiobutton" id="9030">
