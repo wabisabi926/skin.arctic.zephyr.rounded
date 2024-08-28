@@ -15,6 +15,7 @@
     <onunload>ClearProperty(SlideHomeNowPlaying,Home)</onunload>
     <onunload condition="Control.HasFocus(5238)">Container.SetViewMode(523)</onunload>
     <onunload condition="Control.HasFocus(5228)">Container.SetViewMode(522)</onunload>
+    <onunload condition="!Player.HasAudio + !String.IsEmpty(Window(Home).Property(Encoded.MusicPlayer.Album))">alarmclock(ResetValue,ClearProperty(Encoded.MusicPlayer.Album),Home),00:00,silent)</onunload>
 
     <controls>
         <include condition="Skin.HasSetting(enabled.tmdb.helper.service)">Defs_TMDbHelper_Loader</include>

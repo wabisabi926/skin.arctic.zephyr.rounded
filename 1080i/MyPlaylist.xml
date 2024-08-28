@@ -6,6 +6,7 @@
     <include condition="Skin.HasSetting(enabled.tmdb.helper.blur)">Action_Blur_Onload</include>
 
     <onload>RunScript(script.skinvariables,action=buildviews)</onload>
+    <onunload condition="!Player.HasAudio + !String.IsEmpty(Window(Home).Property(Encoded.MusicPlayer.Album))">alarmclock(ResetValue,ClearProperty(Encoded.MusicPlayer.Album),Home),00:00,silent)</onunload>
 
     <controls>
         <include condition="Skin.HasSetting(enabled.tmdb.helper.service)">Defs_TMDbHelper_Loader</include>
