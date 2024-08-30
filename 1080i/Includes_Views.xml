@@ -1299,27 +1299,29 @@
 
             <!-- FILES MANAGER -->
 
-            <control type="label">
-                <width min="128" max="1400">auto</width>
+            <control type="textbox">
+                <width min="128" max="1200">auto</width>
+                <top>18</top>
                 <left>12</left>
-                <height>64</height>
+                <height min="64" max="80">auto</height>
                 <align>left</align>
-                <font>InfoNetflix</font>
+                <font>Mini</font>
                 <textcolor>Dark2</textcolor>
                 <selectedcolor>Dark2</selectedcolor>
-                <label>PATH: $INFO[Control.GetLabel(101)]</label>
+                <label>[UPPERCASE]$LOCALIZE[535] $LOCALIZE[39162][/UPPERCASE] :    $INFO[Control.GetLabel(101)]</label>
                 <visible>Window.IsVisible(FileManager.xml)</visible>
                 <visible>Control.HasFocus(20) | Control.HasFocus(1824)</visible>
             </control>
-            <control type="label">
-                <width min="128" max="1400">auto</width>
+            <control type="textbox">
+                <width min="128" max="1200">auto</width>
+                <top>18</top>
                 <left>12</left>
-                <height>64</height>
+                <height min="64" max="128">auto</height>
                 <align>left</align>
-                <font>InfoNetflix</font>
+                <font>Mini</font>
                 <textcolor>Dark2</textcolor>
                 <selectedcolor>Dark2</selectedcolor>
-                <label>PATH: $INFO[Control.GetLabel(102)]</label>
+                <label>[UPPERCASE]$LOCALIZE[535] $LOCALIZE[39164][/UPPERCASE] :    $INFO[Control.GetLabel(102)]</label>
                 <visible>Window.IsVisible(FileManager.xml)</visible>
                 <visible>Control.HasFocus(21) | Control.HasFocus(1825)</visible>
             </control>
@@ -1532,7 +1534,7 @@
                 <font>InfoNetflix</font>
                 <textcolor>Dark2</textcolor>
                 <label>$LOCALIZE[19076] $INFO[Container(20).NumItems,  •  , $LOCALIZE[31083]]</label>
-                <visible>Window.IsVisible(FileManager.xml) + Control.HasFocus(20)</visible>
+                <visible>Window.IsVisible(FileManager.xml) + [Control.HasFocus(20) | Control.HasFocus(1824)]</visible>
                 <visible>Integer.IsGreater(Container(20).NumItems,1)</visible>
             </control>
             <control type="label">
@@ -1544,7 +1546,7 @@
                 <font>InfoNetflix</font>
                 <textcolor>Dark2</textcolor>
                 <label>$LOCALIZE[21400] $INFO[Container(20).NumItems] $LOCALIZE[31383]</label>
-                <visible>Window.IsVisible(FileManager.xml) + Control.HasFocus(20)</visible>
+                <visible>Window.IsVisible(FileManager.xml) + [Control.HasFocus(20) | Control.HasFocus(1824)]</visible>
                 <visible>Integer.IsEqual(Container(20).NumItems,1)</visible>
             </control>
             <control type="label">
@@ -1556,7 +1558,7 @@
                 <font>InfoNetflix</font>
                 <textcolor>Dark2</textcolor>
                 <label>$LOCALIZE[19076] $INFO[Container(21).NumItems,  •  , $LOCALIZE[31083]]</label>
-                <visible>Window.IsVisible(FileManager.xml) + Control.HasFocus(21)</visible>
+                <visible>Window.IsVisible(FileManager.xml) + [Control.HasFocus(21) | Control.HasFocus(1825)]</visible>
                 <visible>Integer.IsGreater(Container(21).NumItems,1)</visible>
             </control>
             <control type="label">
@@ -1568,7 +1570,7 @@
                 <font>InfoNetflix</font>
                 <textcolor>Dark2</textcolor>
                 <label>$LOCALIZE[21400] $INFO[Container(21).NumItems] $LOCALIZE[31383]</label>
-                <visible>Window.IsVisible(FileManager.xml) + Control.HasFocus(21)</visible>
+                <visible>Window.IsVisible(FileManager.xml) + [Control.HasFocus(21) | Control.HasFocus(1825)]</visible>
                 <visible>Integer.IsEqual(Container(21).NumItems,1)</visible>
             </control>
 
