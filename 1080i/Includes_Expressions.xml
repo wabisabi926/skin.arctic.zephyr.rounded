@@ -140,7 +140,7 @@
 
     <!-- AUTO CLOSE NOWPLAYING HELPER -->
 
-    <expression name="Extended_Now_Playing_Helper_AutoClose">[!$EXP[TrailerIsReady] + !$EXP[TrailerIsPlaying] + !$EXP[TrailerWaitingForPlayer] + !$EXP[TrailerWindowIsActive] + [[!String.IsEmpty(Window(Home).Property(controlsvisible)) | Control.HasFocus(25) | Control.HasFocus(778)] + Skin.HasSetting(enable.furniture.home.nowplaying.extended) + !Player.HasMedia + Window.IsVisible(Home) + !Player.Playing + !Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button)]]</expression>
+    <expression name="Extended_Now_Playing_Helper_AutoClose">[!$EXP[TrailerIsReady] + !$EXP[TrailerIsPlaying] + !$EXP[TrailerWaitingForPlayer] + !$EXP[TrailerWindowIsActive] + [[!String.IsEmpty(Window(Home).Property(controlsvisible)) | Control.HasFocus(25) | Control.HasFocus(778)] + Skin.HasSetting(enable.furniture.home.nowplaying.extended) + !Player.HasMedia + Window.IsVisible(Home) + !Player.Playing + !Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button)] + !Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml) + !Window.IsVisible(DialogAddonInfo.xml)]</expression>
 
     <!-- NOWPLAYING VISIBLE -->
 
