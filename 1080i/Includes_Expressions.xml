@@ -48,6 +48,10 @@
     <expression name="Home_Is_Horizontal">!Skin.HasSetting(home.vertical) + Skin.HasSetting(home.horizontal)</expression>
     <expression name="Home_Is_Horizontal_Clean">Skin.HasSetting(home.horizontal) + Skin.HasSetting(homemenu.netflix) + Skin.HasSetting(homemenu.horizontal.clean)</expression>
 
+    <!-- HOME TMDB HELPER NEEDED ? -->
+
+    <expression name="TMDbHelper_Needed">[[Skin.HasSetting(show.home.netflix.title.clearlogo) + Skin.HasSetting(enabled.tmdb.helper.crop)] | Skin.HasSetting(enabled.tmdb.helper.blur)] + [$EXP[Home_Is_Vertical_Netflix] | $EXP[Home_Is_Horizontal_Netflix] | $EXP[Home_Is_Horizontal_Clean]]</expression>
+
     <!-- WIDGETS ENABLE ? -->
 
     <expression name="Widget1Enabled">String.IsEqual(Container(300).ListItem.Property(widgetEnable),yes)</expression>
