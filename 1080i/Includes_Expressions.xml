@@ -23,13 +23,18 @@
 
     <expression name="VideoWindowFlixIsActive">!$EXP[Extended_Now_Playing_Is_Enable] + Skin.HasSetting(show.home.nowplaying.video.flix) + !Skin.HasSetting(home.hide.nowplaying)  + [Window.IsVisible(Home) + [$EXP[Home_Is_Horizontal_Netflix] | $EXP[Home_Is_Horizontal_Clean] | $EXP[Home_Is_Vertical_Netflix]]] + !Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml) + !Window.IsVisible(DialogAddonInfo.xml) + !$EXP[TrailerWindowIsActive]</expression>
 
-    <!-- TMDBHELPER IS UPDATING ? -->
+    <!-- TMDB HELPER IS UPDATING ? -->
 
     <expression name="Exp_TMDbHelper_IsUpdating">[!String.IsEmpty(Window(Home).Property(TMDBHelper.IsUpdating)) | !String.IsEmpty(Window(Home).Property(TMDBHelper.IsUpdatingRating))]</expression>
 
+    <!-- TMDB HELPER IS NEEDED IN HOME ? -->
+
+    <expression name="TMDbHelper_IsNeeded">[[Skin.HasSetting(show.home.netflix.title.clearlogo) + Skin.HasSetting(enabled.tmdb.helper.crop)] | Skin.HasSetting(enabled.tmdb.helper.blur)] + [$EXP[Home_Is_Vertical_Netflix] | $EXP[Home_Is_Horizontal_Netflix] | $EXP[Home_Is_Horizontal_Clean]]</expression>
+
     <!-- CLEARLOGO  -->
 
-    <expression name="Exp_Title_Clearlogo_Available">[!String.IsEmpty(Container(99950).ListItem.Art(cropimage)) | !String.IsEmpty(Container(99950).ListItem.Property(base_clearlogo))]</expression>
+    <expression name="Exp_Title_Clearlogo_Available">[!String.IsEmpty(Container(99950).ListItem.Art(cropimage)) | !String.IsEmpty(Container(99950).ListItem.Property(base_clearlogo)) | !String.IsEmpty(Container(99950).ListItem.Property(base_clearlogo)) | !String.IsEmpty(ListItem.Art(clearlogo)) | !String.IsEmpty(ListItem.Art(artist.clearlogo)) | !String.IsEmpty(ListItem.Art(tvshow.clearlogo))]</expression>
+
     <expression name="Exp_Title_Clearlogo_PlayingNow_Available">[!String.IsEmpty(Player.Art(clearlogo)) | !String.IsEmpty(Player.Art(tvshow.clearlogo)) | !String.IsEmpty(Player.Art(artist.clearlogo))]</expression>
 
     <!-- CONTEXT MENU  -->
@@ -47,10 +52,6 @@
     <expression name="Home_Is_Vertical">Skin.HasSetting(home.vertical)</expression>
     <expression name="Home_Is_Horizontal">!Skin.HasSetting(home.vertical) + Skin.HasSetting(home.horizontal)</expression>
     <expression name="Home_Is_Horizontal_Clean">Skin.HasSetting(home.horizontal) + Skin.HasSetting(homemenu.netflix) + Skin.HasSetting(homemenu.horizontal.clean)</expression>
-
-    <!-- HOME TMDB HELPER NEEDED ? -->
-
-    <expression name="TMDbHelper_Needed">[[Skin.HasSetting(show.home.netflix.title.clearlogo) + Skin.HasSetting(enabled.tmdb.helper.crop)] | Skin.HasSetting(enabled.tmdb.helper.blur)] + [$EXP[Home_Is_Vertical_Netflix] | $EXP[Home_Is_Horizontal_Netflix] | $EXP[Home_Is_Horizontal_Clean]]</expression>
 
     <!-- WIDGETS ENABLE ? -->
 
