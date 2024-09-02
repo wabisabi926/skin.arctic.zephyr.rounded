@@ -163,11 +163,11 @@
         </definition>
     </include>
 
-    <!-- DIALOG SETTINGS MOVIE/TVSHOW/MUSIC DIALOG INFO -->
+    <!-- DIALOG SETTINGS MOVIE / TVSHOW / MUSIC DIALOG INFO -->
 
     <include name="Def_Dialog_Custom_Settings">
         <control type="group" id="9800">
-            <visible allowhiddenfocus="true">ControlGroup(9400).HasFocus() + !Window.IsVisible(DialogBusy.xml)</visible>
+            <visible allowhiddenfocus="true">Control.HasFocus(9400) + !Window.IsVisible(DialogBusy.xml)</visible>
             <visible>![Window.IsVisible(DialogNumeric.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(DialogKeyboard.xml)]</visible>
 
             <include>Animation_FadeIn</include>
@@ -175,204 +175,312 @@
             <include>Background_Overlay</include>
 
             <control type="group">
-                <top>204</top>
-                <left>732</left>
-                <width>488</width>
-                <height>364</height>
 
-                <control type="image">
-                    <left>-9</left>
-                    <top>-21</top>
-                    <right>9</right>
-                    <height>352</height>
-                    <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                    <visible>!Integer.IsGreater(Container(9400).NumItems,3)</visible>
-                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-                </control>
-                <control type="image">
-                    <visible>!Integer.IsGreater(Container(9400).NumItems,3)</visible>
-                    <left>0</left>
-                    <top>-12</top>
-                    <right>18</right>
-                    <height>334</height>
-                    <colordiffuse>White100</colordiffuse>
-                    <texture border="12">common/box.png</texture>
-                </control>
+                <include>Animation_ZoomIn</include>
+                <include>Animation_FadeOut</include>
 
-                <control type="image">
-                    <left>-9</left>
-                    <top>-21</top>
-                    <right>9</right>
-                    <height>422</height>
-                    <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                    <visible>Integer.IsEqual(Container(9400).NumItems,4)</visible>
-                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-                </control>
-                <control type="image">
-                    <visible>Integer.IsEqual(Container(9400).NumItems,4)</visible>
-                    <left>0</left>
-                    <top>-12</top>
-                    <right>18</right>
-                    <height>404</height>
-                    <colordiffuse>White100</colordiffuse>
-                    <texture border="12">common/box.png</texture>
-                </control>
+                <top>200</top>
+                <centerleft>50%</centerleft>
+                <width>566</width>
 
-                <control type="image">
-                    <left>-9</left>
-                    <top>-21</top>
-                    <right>9</right>
-                    <height>492</height>
-                    <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                    <visible>Integer.IsEqual(Container(9400).NumItems,5)</visible>
-                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-                </control>
-                <control type="image">
-                    <visible>Integer.IsEqual(Container(9400).NumItems,5)</visible>
-                    <left>0</left>
-                    <top>-12</top>
-                    <right>18</right>
-                    <height>474</height>
-                    <colordiffuse>White100</colordiffuse>
-                    <texture border="12">common/box.png</texture>
-                </control>
-
-                <control type="image">
-                    <left>-9</left>
-                    <top>-21</top>
-                    <right>9</right>
-                    <height>614</height>
-                    <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                    <visible>Integer.IsEqual(Container(9400).NumItems,6)</visible>
-                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-                </control>
-                <control type="image">
-                    <visible>Integer.IsEqual(Container(9400).NumItems,6)</visible>
-                    <left>0</left>
-                    <top>-12</top>
-                    <right>18</right>
-                    <height>544</height>
-                    <colordiffuse>White100</colordiffuse>
-                    <texture border="12">common/box.png</texture>
-                </control>
+                <!-- ARROWS -->
 
                 <control type="group">
-                    <left>18</left>
-                    <top>0</top>
-                    <control type="label">
-                        <description>Header Label</description>
-                        <left>70</left>
-                        <width>1000</width>
-                        <top>0</top>
-                        <include>FontTop</include>
-                        <textcolor>Dark2</textcolor>
-                        <label>16106</label>
-                    </control>
-                    <include content="Def_Dialog_Header_Logo">
-                        <param name="dimensions" value="40"/>
-                        <param name="top" value="15"/>
-                        <param name="left" value="15"/>
-                    </include>
-
-                    <!-- LINES -->
-                    <control type="image">
-                        <top>70</top>
-                        <left>17</left>
-                        <width>376</width>
-                        <height>1</height>
-                        <bottom>10</bottom>
-                        <colordiffuse>Black12</colordiffuse>
-                        <texture>common/white.png</texture>
-                    </control>
-                </control>
-
-                <control type="group">
-                    <height>350</height>
-                    <left>-22</left>
-                    <top>-22</top>
+                    <visible>Integer.IsGreater(Container(9400).NumItems,0)</visible>
                     <control type="image">
                         <description>arrow image</description>
                         <centerleft>50%</centerleft>
-                        <top>-16</top>
+                        <top>-40</top>
                         <include>arrowdimensions</include>
                         <texture colordiffuse="White70" flipy="true">common/arrow-small.png</texture>
                     </control>
                     <control type="image">
                         <description>arrow image</description>
                         <centerleft>50%</centerleft>
-                        <top>352</top>
+                        <top>698</top>
                         <include>arrowdimensions</include>
                         <texture colordiffuse="White70" flipy="false">common/arrow-small.png</texture>
-                        <animation effect="slide" end="0,70" time="0" condition="Integer.IsGreater(Container(9400).NumItems,3)">Conditional</animation>
-                        <animation effect="slide" end="0,70" time="0" condition="Integer.IsGreater(Container(9400).NumItems,4)">Conditional</animation>
-                        <animation effect="slide" end="0,70" time="0" condition="Integer.IsGreater(Container(9400).NumItems,5)">Conditional</animation>
-                        <animation effect="slide" end="0,70" time="0" condition="Integer.IsGreater(Container(9400).NumItems,6)">Conditional</animation>
+                        <animation effect="slide" end="0,-75" time="0" condition="Integer.IsEqual(Container(9400).NumItems,7)">Conditional</animation>
+                        <animation effect="slide" end="0,-145" time="0" condition="Integer.IsEqual(Container(9400).NumItems,6)">Conditional</animation>
+                        <animation effect="slide" end="0,-215" time="0" condition="Integer.IsEqual(Container(9400).NumItems,5)">Conditional</animation>
+                        <animation effect="slide" end="0,-285" time="0" condition="Integer.IsEqual(Container(9400).NumItems,4)">Conditional</animation>
+                        <animation effect="slide" end="0,-355" time="0" condition="Integer.IsEqual(Container(9400).NumItems,3)">Conditional</animation>
+                        <animation effect="slide" end="0,-425" time="0" condition="Integer.IsEqual(Container(9400).NumItems,2)">Conditional</animation>
+                        <animation effect="slide" end="0,-495" time="0" condition="Integer.IsEqual(Container(9400).NumItems,1)">Conditional</animation>
                     </control>
                 </control>
 
-                <control type="grouplist" id="9400">
-                    <top>90</top>
+                <control type="image">
+                    <description>background image</description>
+                    <left>-1</left>
+                    <top>-17</top>
+                    <width>568</width>
+                    <height>218</height>
+                    <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
+                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
+                    <visible>Integer.IsEqual(Container(9400).NumItems,1)</visible>
+                </control>
+                <control type="image">
+                    <description>background image</description>
+                    <left>8</left>
+                    <top>-8</top>
+                    <width>550</width>
+                    <height>200</height>
+                    <texture border="12" colordiffuse="White100">common/box.png</texture>
+                    <visible>Integer.IsEqual(Container(9400).NumItems,1)</visible>
+                </control>
+                <control type="image">
+                    <description>background image</description>
+                    <left>-1</left>
+                    <top>-17</top>
+                    <width>568</width>
+                    <height>288</height>
+                    <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
+                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
+                    <visible>Integer.IsEqual(Container(9400).NumItems,2)</visible>
+                </control>
+                <control type="image">
+                    <description>background image</description>
+                    <left>8</left>
+                    <top>-8</top>
+                    <width>550</width>
+                    <height>270</height>
+                    <texture border="12" colordiffuse="White100">common/box.png</texture>
+                    <visible>Integer.IsEqual(Container(9400).NumItems,2)</visible>
+                </control>
+                <control type="image">
+                    <description>background image</description>
+                    <left>-1</left>
+                    <top>-17</top>
+                    <width>568</width>
+                    <height>358</height>
+                    <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
+                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
+                    <visible>Integer.IsEqual(Container(9400).NumItems,3)</visible>
+                </control>
+                <control type="image">
+                    <description>background image</description>
+                    <left>8</left>
+                    <top>-8</top>
+                    <width>550</width>
+                    <height>340</height>
+                    <texture border="12" colordiffuse="White100">common/box.png</texture>
+                    <visible>Integer.IsEqual(Container(9400).NumItems,3)</visible>
+                </control>
+                <control type="image">
+                    <description>background image</description>
+                    <left>-1</left>
+                    <top>-17</top>
+                    <width>568</width>
+                    <height>428</height>
+                    <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
+                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
+                    <visible>Integer.IsEqual(Container(9400).NumItems,4)</visible>
+                </control>
+                <control type="image">
+                    <description>background image</description>
+                    <left>8</left>
+                    <top>-8</top>
+                    <width>550</width>
+                    <height>410</height>
+                    <texture border="12" colordiffuse="White100">common/box.png</texture>
+                    <visible>Integer.IsEqual(Container(9400).NumItems,4)</visible>
+                </control>
+                <control type="image">
+                    <description>background image</description>
+                    <left>-1</left>
+                    <top>-17</top>
+                    <width>568</width>
+                    <height>498</height>
+                    <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
+                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
+                    <visible>Integer.IsEqual(Container(9400).NumItems,5)</visible>
+                </control>
+                <control type="image">
+                    <description>background image</description>
+                    <left>8</left>
+                    <top>-8</top>
+                    <width>550</width>
+                    <height>480</height>
+                    <texture border="12" colordiffuse="White100">common/box.png</texture>
+                    <visible>Integer.IsEqual(Container(9400).NumItems,5)</visible>
+                </control>
+                <control type="image">
+                    <description>background image</description>
+                    <left>-1</left>
+                    <top>-17</top>
+                    <width>568</width>
+                    <height>568</height>
+                    <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
+                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
+                    <visible>Integer.IsEqual(Container(9400).NumItems,6)</visible>
+                </control>
+                <control type="image">
+                    <description>background image</description>
+                    <left>8</left>
+                    <top>-8</top>
+                    <width>550</width>
+                    <height>550</height>
+                    <texture border="12" colordiffuse="White100">common/box.png</texture>
+                    <visible>Integer.IsEqual(Container(9400).NumItems,6)</visible>
+                </control>
+                <control type="image">
+                    <description>background image</description>
+                    <left>-1</left>
+                    <top>-17</top>
+                    <width>568</width>
+                    <height>638</height>
+                    <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
+                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
+                    <visible>Integer.IsEqual(Container(9400).NumItems,7)</visible>
+                </control>
+                <control type="image">
+                    <description>background image</description>
+                    <left>8</left>
+                    <top>-8</top>
+                    <width>550</width>
+                    <height>620</height>
+                    <texture border="12" colordiffuse="White100">common/box.png</texture>
+                    <visible>Integer.IsEqual(Container(9400).NumItems,7)</visible>
+                </control>
+                <control type="image">
+                    <description>background image</description>
+                    <left>-1</left>
+                    <top>-17</top>
+                    <width>568</width>
+                    <height>708</height>
+                    <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
+                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
+                    <visible>Integer.IsGreater(Container(9400).NumItems,7)</visible>
+                </control>
+                <control type="image">
+                    <description>background image</description>
+                    <left>8</left>
+                    <top>-8</top>
+                    <width>550</width>
+                    <height>690</height>
+                    <texture border="12" colordiffuse="White100">common/box.png</texture>
+                    <visible>Integer.IsGreater(Container(9400).NumItems,7)</visible>
+                </control>
+
+                <!-- HEADER -->
+
+                <control type="group">
+                    <top>-7</top>
+                    <left>7</left>
+                    <right>7</right>
+
+                    <control type="label">
+                        <include>Def_Dialog_Header_Title</include>
+                        <label>16106</label>
+                    </control>
+
+                    <include>Def_Dialog_Header_Logo</include>
+                    <include>Def_Dialog_Header_Line</include>
+                </control>
+
+                <!-- LIST MENU -->
+
+                <control type="list" id="9400">
+                    <top>105</top>
+                    <height min="100" max="570">auto</height>
+                    <bottom>16</bottom>
+                    <left>8</left>
+                    <right>8</right>
                     <onback>9000</onback>
                     <onleft>9000</onleft>
                     <onright>9000</onright>
-                    <usecontrolcoords>true</usecontrolcoords>
-                    <itemgap>0</itemgap>
+                    <onleft>Close</onleft>
+                    <onright>Close</onright>
+                    <onback>300</onback>
+                    <orientation>vertical</orientation>
                     <include>Animation_Scrolltime_Views_List</include>
-                    <height>490</height>
-                    <control type="button" id="92">
-                        <include>Def_Button_Gradient_Context</include>
-                        <label>184</label>
-                        <align>left</align>
-                        <onclick>SendClick(6)</onclick>
-                    </control>
-                    <control type="button" id="93">
-                        <include>Def_Button_Gradient_Context</include>
-                        <label>31250</label>
-                        <align>left</align>
-                        <onclick>SendClick(10)</onclick>
-                    </control>
-                    <control type="button" id="94">
-                        <description>Artwork Downloader</description>
-                        <include>Def_Button_Gradient_Context</include>
-                        <label>$ADDON[script.artwork.downloader 32194]</label>
-                        <align>left</align>
-                        <onclick condition="String.IsEqual(ListItem.DBType,tvshow)">RunScript(script.artwork.downloader, mode=gui, mediatype=tvshow, dbid=$INFO[ListItem.DBID])</onclick>
-                        <onclick condition="String.IsEqual(ListItem.DBType,movie)">RunScript(script.artwork.downloader, mode=gui, mediatype=movie, dbid=$INFO[ListItem.DBID])</onclick>
-                        <onclick condition="String.IsEqual(ListItem.DBType,musicvideo)">RunScript(script.artwork.downloader, mode=gui, mediatype=musicvideo, dbid=$INFO[ListItem.DBID])</onclick>
-                        <visible>System.AddonIsEnabled(script.artwork.downloader) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,musicvideo)]</visible>
-                    </control>
-                    <control type="button" id="95">
-                        <description>Artwork Downloader</description>
-                        <include>Def_Button_Gradient_Context</include>
-                        <label>$ADDON[script.artwork.downloader 32193]</label>
-                        <align>left</align>
-                        <onclick condition="String.IsEqual(ListItem.DBType,tvshow)">RunScript(script.artwork.downloader, mediatype=tvshow, dbid=$INFO[ListItem.DBID])</onclick>
-                        <onclick condition="String.IsEqual(ListItem.DBType,movie)">RunScript(script.artwork.downloader, mediatype=movie, dbid=$INFO[ListItem.DBID])</onclick>
-                        <onclick condition="String.IsEqual(ListItem.DBType,musicvideo)">RunScript(script.artwork.downloader, mediatype=musicvideo, dbid=$INFO[ListItem.DBID])</onclick>
-                        <visible>System.AddonIsEnabled(script.artwork.downloader) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,musicvideo)]</visible>
-                    </control>
-                    <control type="button" id="98">
-                        <include>Def_Button_Gradient_Context</include>
-                        <label>7</label>
-                        <align>left</align>
-                        <onclick>Dialog.Close(all)</onclick>
-                        <onclick>ActivateWindow(filemanager,"$INFO[ListItem.Path]",return)</onclick>
-                        <visible>!$EXP[IsPluginItem] + !String.IsEqual(ListItem.DBType,set)</visible>
-                        <!-- <visible>[!$EXP[IsPluginItem] | !String.IsEmpty(ListItem.DBID)] + !String.IsEqual(ListItem.DBType,set)</visible> -->
-                    </control>
-                    <control type="button" id="97">
-                        <include>Def_Button_Gradient_Context</include>
-                        <label>$ADDON[script.metadata.editor 32000]</label>
-                        <align>left</align>
-                        <onclick>RunScript(script.metadata.editor,dbid=$INFO[ListItem.DBID],type=$INFO[ListItem.DBType])</onclick>
-                        <visible>System.AddonIsEnabled(script.metadata.editor)</visible>
-                    </control>
-                    <control type="button" id="96">
-                        <include>Def_Button_Gradient_Context</include>
-                        <label>5</label>
-                        <align>left</align>
-                        <onclick>ActivateWindow(1260)</onclick>
-                    </control>
+
+                    <itemlayout width="566" height="70">
+                        <control type="image">
+                            <left>22</left>
+                            <top>8</top>
+                            <width>56</width>
+                            <height>56</height>
+                            <texture colordiffuse="Dark2">$INFO[Container(300).ListItem.Icon]</texture>
+                        </control>
+                        <control type="label">
+                            <align>left</align>
+                            <left>90</left>
+                            <aligny>center</aligny>
+                            <width>100%</width>
+                            <centertop>50%</centertop>
+                            <height>100%</height>
+                            <textcolor>Dark2</textcolor>
+                            <include>Def_Button_Context</include>
+                            <label>$INFO[ListItem.Label]</label>
+                        </control>
+                    </itemlayout>
+                    <focusedlayout width="566" height="70">
+                        <control type="image">
+                            <width>100%</width>
+                            <height>100%</height>
+                            <texture>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texture>
+                        </control>
+                        <control type="image">
+                            <left>22</left>
+                            <top>8</top>
+                            <width>56</width>
+                            <height>56</height>
+                            <texture colordiffuse="Selected">$INFO[Container(300).ListItem.Icon]</texture>
+                        </control>
+                        <control type="label">
+                            <align>left</align>
+                            <left>90</left>
+                            <aligny>center</aligny>
+                            <width>100%</width>
+                            <centertop>50%</centertop>
+                            <height>100%</height>
+                            <textcolor>Selected</textcolor>
+                            <include>Def_Button_Context</include>
+                            <label>$INFO[ListItem.Label]</label>
+                        </control>
+                    </focusedlayout>
+                    <content>
+
+                        <!-- Actualise info -->
+                        <item>
+                            <label>$LOCALIZE[184]</label>
+                            <icon>special://skin/extras/icons/update.png</icon>
+                            <onclick>SendClick(6)</onclick>
+                        </item>
+
+                        <!-- Change Artwork -->
+                        <item>
+                            <label>$LOCALIZE[31250]</label>
+                            <icon>special://skin/extras/icons/actor.png</icon>
+                            <onclick>SendClick(10)</onclick>
+                        </item>
+
+                        <!-- Files manager -->
+                        <item>
+                            <label>7</label>
+                            <icon>special://skin/extras/icons/filemanager.png</icon>
+                            <onclick>Dialog.Close(all)</onclick>
+                            <onclick>ActivateWindow(filemanager,"$INFO[ListItem.Path]",return)</onclick>
+                            <visible>!$EXP[IsPluginItem] + !String.IsEqual(ListItem.DBType,set)</visible>
+                        </item>
+
+                        <!-- Metadata editor -->
+                        <item>
+                            <label>$ADDON[script.metadata.editor 32000]</label>
+                            <icon>special://skin/extras/icons/bookmarks.png</icon>
+                            <onclick>RunScript(script.metadata.editor,dbid=$INFO[ListItem.DBID],type=$INFO[ListItem.DBType])</onclick>
+                            <visible>System.AddonIsEnabled(script.metadata.editor)</visible>
+                        </item>
+
+                        <!-- Settings -->
+                        <item>
+                            <label>5</label>
+                            <icon>special://skin/extras/icons/addons.png</icon>
+                            <onclick>ActivateWindow(1260)</onclick>
+                        </item>
+                    </content>
                 </control>
             </control>
         </control>
