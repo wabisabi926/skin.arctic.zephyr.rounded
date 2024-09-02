@@ -274,7 +274,7 @@
             <!-- ARTIST BIOGRAPHY -->
 
             <control type="group">
-                <visible>!String.IsEmpty(Window(Home).Property(OSDArtistDetails))</visible>
+                <visible>[!String.IsEmpty(Window(Home).Property(OSDArtistDetails)) | Skin.HasSetting(show.osd.artist.infos)]</visible>
                 <visible>!Window.IsVisible(script-cu-lrclyrics-main.xml)</visible>
                 <animation type="Visible" reversible="false">
                     <effect type="fade" start="0" end="100" time="600" delay="200" />
