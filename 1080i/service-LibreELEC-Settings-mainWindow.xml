@@ -223,7 +223,8 @@
                     <width>1310</width>
                     <height>490</height>
                     <onleft>1000</onleft>
-                    <onright>1500</onright>
+                    <onright condition="Control.IsVisible(1500)">1500</onright>
+                    <onright condition="!Control.IsVisible(1500)">1097</onright>
                     <include>Animation_Scrolltime_Views_List</include>
                     <pagecontrol>1097</pagecontrol>
                     <visible>String.IsEqual(Container(1000).ListItem.Property(listTyp),1100)</visible>
@@ -431,6 +432,18 @@
 
                     </focusedlayout>
                 </control>
+
+                <!-- SCROLLBAR -->
+
+                <include content="Object_Scrollbar_Dialog_Vertical">
+                    <param name="scrollid" value="1097"/>
+                    <param name="visible" value="Control.IsVisible(1100)"/>
+                    <param name="top" value="140"/>
+                    <param name="onleft" value="1100"/>
+                    <param name="onright" value="1100"/>
+                    <param name="height" value="490"/>
+                    <param name="centerright" value="4"/>
+                </include>
 
                 <!-- NETWORK MENU CONTENT -->
 
