@@ -336,14 +336,24 @@
                 <visible>Window.IsVisible(Custom_1140_NowPlaying_Helper_Focus_On_Close.xml)</visible>
             </control>
 
-            <!-- Custom_1141_NowPlaying_Helper_Encode_Title.xml  -->
+            <!-- Custom_1141_NowPlaying_Helper_Video_Encode_Title.xml  -->
             <control type="label">
                 <width>780</width>
                 <textcolor>red</textcolor>
                 <font>Tiny</font>
                 <align>left</align>
-                <label>Custom_1141_NowPlaying_Helper_Encode_Title.xml</label>
-                <visible>Window.IsVisible(Custom_1141_NowPlaying_Helper_Encode_Title.xml)</visible>
+                <label>Custom_1141_NowPlaying_Helper_Video_Encode_Title.xml</label>
+                <visible>Window.IsVisible(Custom_1141_NowPlaying_Helper_Video_Encode_Title.xml)</visible>
+            </control>
+
+            <!-- Custom_1142_OSD_Music_Info_Helper.xml  -->
+            <control type="label">
+                <width>780</width>
+                <textcolor>FFFFFFFF</textcolor>
+                <font>Tiny</font>
+                <align>left</align>
+                <label>Custom_1182_OSD_Music_Info_Helper.xml</label>
+                <visible>Window.IsVisible(Custom_1182_OSD_Music_Info_Helper.xml)</visible>
             </control>
 
             <!-- Custom_1181_OSD_Info_Helper.xml  -->
@@ -2310,10 +2320,10 @@
                 <!-- <textcolor>cyan</textcolor> -->
             <!-- </include> -->
 
-            <include content="Overlay_InfoLabel">
-                <label> - OSD - Property(OSDArtistDetails) : $INFO[Window(Home).Property(OSDArtistDetails)]</label>
-                <textcolor>cyan</textcolor>
-            </include>
+            <!-- <include content="Overlay_InfoLabel"> -->
+                <!-- <label> - OSD - Property(OSDArtistDetails) : $INFO[Window(Home).Property(OSDArtistDetails)]</label> -->
+                <!-- <textcolor>cyan</textcolor> -->
+            <!-- </include> -->
 
             <!-- <include content="Overlay_InfoLabel"> -->
                 <!-- <label> - OSD - Player.ShowInfo : VRAI </label> -->
@@ -2371,20 +2381,35 @@
                 <!-- <textcolor>yellowgreen</textcolor> -->
             <!-- </include> -->
 
-            <!-- <include content="Overlay_InfoLabel"> -->
-                <!-- <label> - Property(Encoded.ListItem.Album) : $INFO[Window(Home).Property(Encoded.ListItem.Album)]</label> -->
-                <!-- <textcolor>yellowgreen</textcolor> -->
-            <!-- </include> -->
+            <include content="Overlay_InfoLabel">
+                <label> - INFO [ListItem.Album] :                $INFO[ListItem.Album]</label>
+                <textcolor>magenta</textcolor>
+            </include>
+
+            <include content="Overlay_InfoLabel">
+                <label> - Property(Encoded.ListItem.Album) : $INFO[Window(Home).Property(Encoded.ListItem.Album)]</label>
+                <textcolor>yellowgreen</textcolor>
+            </include>
 
             <!-- <include content="Overlay_InfoLabel"> -->
                 <!-- <label> - Property(ShowAlbumInfo) : $INFO[Window(Home).Property(ShowAlbumInfo)]</label> -->
                 <!-- <textcolor>yellowgreen</textcolor> -->
             <!-- </include> -->
 
-            <!-- <include content="Overlay_InfoLabel"> -->
-                <!-- <label> - Property(Encoded.MusicPlayer.Album) : $INFO[Window(Home).Property(Encoded.MusicPlayer.Album)]</label> -->
-                <!-- <textcolor>yellowgreen</textcolor> -->
-            <!-- </include> -->
+            <include content="Overlay_InfoLabel">
+                <label> - INFO [MusicPlayer.Album] :                $INFO[MusicPlayer.Album]</label>
+                <textcolor>magenta</textcolor>
+            </include>
+
+            <include content="Overlay_InfoLabel">
+                <label> - Property(MusicPlayerAlbumLabel) :   $INFO[Window(Home).Property(MusicPlayerAlbumLabel)]</label>
+                <textcolor>magenta</textcolor>
+            </include>
+
+            <include content="Overlay_InfoLabel">
+                <label> - Property(Encoded.MusicPlayer.Album) : $INFO[Window(Home).Property(Encoded.MusicPlayer.Album)]</label>
+                <textcolor>yellowgreen</textcolor>
+            </include>
 
             <!-- <include content="Overlay_InfoLabel"> -->
                 <!-- <label> - Property(Encoded.Player.Filename) : $INFO[Window(Home).Property(Encoded.Player.Filename)]</label> -->
@@ -2418,25 +2443,20 @@
                 <!-- <textcolor>magenta</textcolor> -->
             <!-- </include> -->
 
-            <include content="Overlay_InfoLabel">
-                <label> - Property(Encoded.ListItem.Studio) : $INFO[Window(Home).Property(Encoded.ListItem.Studio)]</label>
-                <textcolor>orange</textcolor>
-            </include>
+            <!-- <include content="Overlay_InfoLabel"> -->
+                <!-- <label> - Property(Encoded.ListItem.Studio) : $INFO[Window(Home).Property(Encoded.ListItem.Studio)]</label> -->
+                <!-- <textcolor>orange</textcolor> -->
+            <!-- </include> -->
 
-            <include content="Overlay_InfoLabel">
-                <label> - Property(Encoded.ListItem.Set) : $INFO[Window(Home).Property(Encoded.ListItem.Set)]</label>
-                <textcolor>orange</textcolor>
-            </include>
+            <!-- <include content="Overlay_InfoLabel"> -->
+                <!-- <label> - Property(Encoded.ListItem.Set) : $INFO[Window(Home).Property(Encoded.ListItem.Set)]</label> -->
+                <!-- <textcolor>orange</textcolor> -->
+            <!-- </include> -->
 
     <!-- MUSIC STATE -->
 
             <!-- <include content="Overlay_InfoLabel"> -->
-                <!-- <label> - MusicPlayer.Album : $INFO[MusicPlayer.Album]</label> -->
-                <!-- <textcolor>magenta</textcolor> -->
-            <!-- </include> -->
-
-            <!-- <include content="Overlay_InfoLabel"> -->
-                <!-- <label> - Album Name : $INFO[ListItem.Label]</label> -->
+                <!-- <label> - MusicPlayer.DBID : $INFO[MusicPlayer.DBID]</label> -->
                 <!-- <textcolor>magenta</textcolor> -->
             <!-- </include> -->
 
@@ -2474,7 +2494,7 @@
             <!-- </include> -->
 
 
-    <!-- TMDbHelper -->
+    <!-- TMDB HELPER -->
 
             <!-- <include content="Overlay_InfoLabel"> -->
                 <!-- <label> - TMDbHelper.WidgetContainer (Home): $INFO[Window(Home).Property(TMDbHelper.WidgetContainer)]</label> -->
@@ -2593,13 +2613,6 @@
                 <!-- <label> - [ListItem.Property(item.type)] : $INFO[ListItem.Property(item.type)]</label> -->
                 <!-- <textcolor>cyan</textcolor> -->
             <!-- </include> -->
-
-
-
-
-
-
-
 
             <!-- <include content="Overlay_InfoLabel"> -->
                 <!-- <label> - TMDb ID Container(99950) : $INFO[Container(99950).ListItem.Property(TMDb_ID)]</label> -->

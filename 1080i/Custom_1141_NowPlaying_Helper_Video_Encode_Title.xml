@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog" id="1141">
+    <visible>$EXP[Extended_Now_Playing_Is_Visible] + !String.IsEmpty(Window(Home).Property(controlsvisible))</visible>
+    <visible>String.IsEmpty(Window(Home).Property(Encoded.Player.Filename)) + String.IsEmpty(Window(Home).Property(Encoded.Player.Title))</visible>
+    <visible>Player.HasVideo + !String.IsEmpty(VideoPlayer.DBID)</visible>
+
+    <!-- ENCODE TITLE / FILENAME -->
+
+    <onload>RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;window_id=Home&amp;window_prop=Encoded.Player.Filename&amp;&amp;$INFO[Player.Filename]")</onload>
+
+    <onload>RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;window_id=Home&amp;window_prop=Encoded.Player.Title&amp;&amp;$INFO[Player.Title]")</onload>
+
+    <controls />
+</window>
