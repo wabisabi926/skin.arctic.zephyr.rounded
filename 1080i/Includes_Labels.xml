@@ -1668,7 +1668,7 @@
 
     <!-- LABEL - DIALOG INFO - MUSIC / VIDEO - PLOT -->
 
-    <variable name="Label_Plot_Box_Video">
+    <variable name="Label_Plot_Box_Video_Music">
         <value condition="!String.IsEmpty(Window(Home).Property(Set.Movies.ExtendedPlot)) + [Container.Content(Sets) | String.Contains(ListItem.Path,videodb://movies/sets)]">$INFO[Window(Home).Property(Set.Movies.ExtendedPlot)]</value>
         <value condition="!String.IsEmpty(ListItem.Property(Artist_Description))">$INFO[ListItem.Property(Artist_Description)]</value>
         <value condition="!String.IsEmpty(ListItem.Property(Album_Description))">$INFO[ListItem.Property(Album_Description)]</value>
@@ -1692,7 +1692,7 @@
     </variable>
 
     <variable name="Label_Overlay_Info_Music_Plot">
-        <value condition="Window.IsVisible(DialogMusicInfo.xml) + Container.Content(albums)">$VAR[Label_Dialog_Info_Header_Tagline_Music,[B],[/B][CR][CR]]$VAR[Label_Plot_Box_Video]</value>
+        <value condition="Window.IsVisible(DialogMusicInfo.xml) + Container.Content(albums)">$VAR[Label_Dialog_Info_Header_Tagline_Music,[B],[/B][CR][CR]]$VAR[Label_Plot_Box_Video_Music]</value>
         <value condition="Window.IsVisible(DialogMusicInfo.xml) + !Container.Content(albums)">$VAR[Label_Dialog_Info_Header_Tagline_Music,[B],[/B][CR][CR]]$INFO[ListItem.Property(Artist_Description)]</value>
     </variable>
 
