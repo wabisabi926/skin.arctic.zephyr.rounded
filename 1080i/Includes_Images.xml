@@ -339,6 +339,19 @@
         <value condition="!String.IsEmpty(ListItem.Art(artist.clearlogo))">$INFO[ListItem.Art(artist.clearlogo)]</value>
     </variable>
 
+    <variable name="Image_Crop_ClearLogo_Video_Ext">
+        <value condition="Skin.HasSetting(enabled.tmdb.helper.crop) + !String.IsEmpty(Container(99950).ListItem.Art(cropimage))">$INFO[Container(99950).ListItem.Art(cropimage)]</value>
+        <value condition="Skin.HasSetting(enabled.tmdb.helper.crop) + !String.IsEmpty(Container(99950).ListItem.Property(base_clearlogo))">$INFO[Container(99950).ListItem.Property(base_clearlogo)]</value>
+        <value>$INFO[Container($PARAM[controlid]).ListItem.Art(clearlogo)]</value>
+    </variable>
+
+    <variable name="Image_Crop_ClearLogo_Music_Ext">
+        <value condition="Skin.HasSetting(enabled.tmdb.helper.crop) + !String.IsEmpty(Container(99950).ListItem.Art(cropimage))">$INFO[Container(99950).ListItem.Art(cropimage)]</value>
+        <value condition="Skin.HasSetting(enabled.tmdb.helper.crop) + !String.IsEmpty(Container(99950).ListItem.Property(base_clearlogo))">$INFO[Container(99950).ListItem.Property(base_clearlogo)]</value>
+        <value condition="!String.IsEmpty(ListItem.Art(artist.clearlogo))">$INFO[ListItem.Art(artist.clearlogo)]</value>
+        <value condition="!String.IsEmpty(ListItem.Art(clearlogo))">$INFO[ListItem.Art(clearlogo)]</value>
+    </variable>
+
     <variable name="Image_Crop_ClearLogo_Player">
         <value condition="!String.IsEmpty(Window(Home).Property(TMDBHelper.Player.CropImage))">$INFO[Window(Home).Property(TMDBHelper.Player.CropImage)]</value>
     </variable>
