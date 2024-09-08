@@ -149,7 +149,7 @@
                     <textcolor>PanelWhite70</textcolor>
                     <selectedcolor>PanelWhite70</selectedcolor>
                     <label>$VAR[LabelSub_1_GenreAlbum]</label>
-                    <visible>!container.content(movies) + !container.content(sets) + !container.content(artists)</visible>
+                    <visible>container.content(albums)</visible>
                 </control>
 
                 <!-- SUB TITLE - ARTISTS -->
@@ -185,7 +185,7 @@
                     <visible>!container.content(files) + !container.content(artists) + ![Container.Content(movies) + String.IsEmpty(ListItem.DBType) + !$EXP[IsAnPlugin]]</visible>
                 </control>
 
-                <!-- PLOT - MOVIES -->
+                <!-- PLOT -->
 
                 <control type="textbox">
                     <font>Tiny</font>
@@ -193,18 +193,6 @@
                     <textcolor>Dark2</textcolor>
                     <selectedcolor>Dark2</selectedcolor>
                     <label>$VAR[Label_Plot_Box_Video_Music]</label>
-                    <visible>!container.content(tvshows)</visible>
-                </control>
-
-                <!-- PLOT - OTHERS -->
-
-                <control type="textbox">
-                    <font>Tiny</font>
-                    <height min="36" max="150">auto</height>
-                    <textcolor>Dark2</textcolor>
-                    <selectedcolor>Dark2</selectedcolor>
-                    <label>$VAR[Label_Plot_Box_Video_Music]</label>
-                    <visible>container.content(tvshows)</visible>
                 </control>
             </control>
 
