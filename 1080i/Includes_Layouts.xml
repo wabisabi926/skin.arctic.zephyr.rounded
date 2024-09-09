@@ -140,7 +140,8 @@
     <!-- OSD - CONTEXTE MENU PLAYER -->
 
     <include name="Def_View_Menu_Control_Buttons_UpDown">
-        <ondown condition="Window.IsVisible(MyPlaylist.xml)">SetFocus(20)</ondown>
+        <ondown condition="Window.IsVisible(MyPlaylist.xml) + !MusicPartyMode.Enabled">SetFocus(20)</ondown>
+        <ondown condition="Window.IsVisible(MyPlaylist.xml) + MusicPartyMode.Enabled">SetFocus(9001)</ondown>
         <ondown condition="Window.IsVisible(MyMusicNav.xml)">SetFocus(16)</ondown>
         <ondown condition="Window.IsVisible(AddonBrowser.xml)">SetFocus(9)</ondown>
         <ondown condition="Window.IsVisible(MyPVRChannels.xml)">SetFocus(9001)</ondown>
