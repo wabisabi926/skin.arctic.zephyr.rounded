@@ -763,6 +763,8 @@
         <value condition="Container.Content(albums)">$INFO[ListItem.Label]$INFO[ListItem.Year,  •  ,]$VAR[Label_Duration_Time_Check,  •  ,]</value>
 
         <value condition="Control.IsVisible(57) + Container.Content(songs)">$INFO[ListItem.Album]$INFO[ListItem.Year,  •  ,]</value>
+        <value condition="Control.IsVisible(523) + Container.Content(songs)">$INFO[ListItem.Album]$INFO[ListItem.Year,  •  ,]</value>
+
         <value condition="Container.Content(songs)">$INFO[ListItem.Album]$INFO[ListItem.Year,  •  ,]$INFO[ListItem.TrackNumber ,  •  ,]. $INFO[ListItem.Title]</value>
 
         <value condition="!String.IsEmpty(ListItem.Year)">$INFO[ListItem.Year]$VAR[Label_Duration_Time_Check,  •  ,]$VAR[RatingLabel,  •  ,]</value>
@@ -1267,8 +1269,8 @@
     </variable>
 
     <variable name="label_music_list">
-        <value condition="String.IsEqual(ListItem.DBType,song) + Window.IsVisible(MyMusicNav.xml) + Skin.HasSetting(enable.view.5x.51x.extended.list) + !$EXP[IsAnPlugin]">$INFO[ListItem.TrackNumber]. $INFO[ListItem.Title]</value>
-        <value condition="String.IsEqual(ListItem.DBType,song) + Window.IsVisible(MyPlaylist.xml) + Skin.HasSetting(enable.view.5x.51x.extended.list.playlist) + !$EXP[IsAnPlugin]">$INFO[ListItem.TrackNumber]. $INFO[ListItem.Title]</value>
+        <value condition="String.IsEqual(ListItem.DBType,song) + Window.IsVisible(MyMusicNav.xml) + Skin.HasSetting(enable.view.5x.51x.extended.list) + !$EXP[IsAnPlugin]">$INFO[ListItem.TrackNumber,,.  ]$INFO[ListItem.Title]</value>
+        <value condition="String.IsEqual(ListItem.DBType,song) + Window.IsVisible(MyPlaylist.xml) + Skin.HasSetting(enable.view.5x.51x.extended.list.playlist) + !$EXP[IsAnPlugin]">$INFO[ListItem.TrackNumber,,.  ]$INFO[ListItem.Title]</value>
         <value>$INFO[ListItem.Label]</value>
     </variable>
 
@@ -1276,6 +1278,11 @@
         <value condition="Container.Content(files) | Container.Content(addons)">$INFO[ListItem.Label]</value>
         <value condition="!String.IsEmpty(Container.PluginName)">$INFO[System.AddonTitle(Container.PluginName)]</value>
         <value>$INFO[ListItem.Artist]</value>
+    </variable>
+
+    <variable name="label_widget_view_523">
+        <value condition="Container.Content(songs)">$INFO[ListItem.TrackNumber,,.  ]$INFO[ListItem.Title]</value>
+        <value>$INFO[ListItem.Label]</value>
     </variable>
 
     <variable name="label_sub_title_view_500">
@@ -1660,7 +1667,7 @@
     </variable>
 
     <variable name="Label_Dialog_Info_Music_Extended_Line_1">
-        <value condition="Control.IsVisible(9508)">$INFO[Container($PARAM[controlid]).ListItem.TrackNumber]. $INFO[Container($PARAM[controlid]).ListItem.Title]</value>
+        <value condition="Control.IsVisible(9508)">$INFO[Container($PARAM[controlid]).ListItem.TrackNumber,,.  ]$INFO[Container($PARAM[controlid]).ListItem.Title]</value>
         <value condition="Control.IsVisible(9501)">$INFO[ListItem.Label]</value>
     </variable>
 
