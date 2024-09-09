@@ -160,14 +160,14 @@
                 </control>
 
                 <!-- Local only ? -->
-                <control type="radiobutton" id="116">
-                    <include>Def_Button_Gradient_Select</include>
-                    <label>$LOCALIZE[31662]</label>
-                    <selected>!Skin.HasSetting(hide.button.video.local.only)</selected>
-                    <onclick>Skin.ToggleSetting(hide.button.video.local.only)</onclick>
-                    <visible>Window.IsVisible(DialogVideoInfo.xml)</visible>
-                    <visible>!String.IsEqual(ListItem.DBType,set)</visible>
-                </control>
+                <!-- <control type="radiobutton" id="116"> -->
+                    <!-- <include>Def_Button_Gradient_Select</include> -->
+                    <!-- <label>$LOCALIZE[31662]</label> -->
+                    <!-- <selected>!Skin.HasSetting(hide.button.video.local.only)</selected> -->
+                    <!-- <onclick>Skin.ToggleSetting(hide.button.video.local.only)</onclick> -->
+                    <!-- <visible>Window.IsVisible(DialogVideoInfo.xml)</visible> -->
+                    <!-- <visible>!String.IsEqual(ListItem.DBType,set)</visible> -->
+                <!-- </control> -->
 
                 <!-- RECOMMENDATION -->
 
@@ -481,6 +481,7 @@
                     <onclick>Skin.ToggleSetting(showartwork.video.tmdbhelper)</onclick>
                     <visible>!Skin.HasSetting(hide.button.video.fanart)</visible>
                     <visible>Window.IsVisible(DialogVideoInfo.xml)</visible>
+                    <enable>System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)</enable>
                 </control>
 
                 <!-- TITLE SECTION -->

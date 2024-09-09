@@ -1448,9 +1448,8 @@
                 <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/storageinfo.png</textureradioofffocus>
                 <textureradiooffnofocus colordiffuse="Dark2">buttonsdialogs/storageinfo.png</textureradiooffnofocus>
                 <usealttexture>Skin.HasSetting(filter.video.only.local)</usealttexture>
-                <visible>[!String.IsEqual(ListItem.DBType,video) + !String.IsEmpty(ListItem.DBType)] | String.IsEqual(ListItem.Property(item.type),person)</visible>
-                <enable>System.AddonIsEnabled(plugin.video.themoviedb.helper)</enable>
-                <visible>!Skin.HasSetting(hide.button.video.local.only)</visible>
+                <visible>String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(item.type),set)</visible>
+                <enable>System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)</enable>
                 <visible>String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.DBType,set)</visible>
             </control>
 
@@ -1580,6 +1579,7 @@
                 <onclick condition="!String.IsEmpty(ListItem.Property(tmdb_id))">RunScript(plugin.video.themoviedb.helper,sync_trakt=watchlist,tmdb_id=$INFO[ListItem.Property(tmdb_id)],cache_refresh)</onclick>
                 <onclick condition="String.IsEmpty(ListItem.Property(tmdb_id))">RunScript(plugin.video.themoviedb.helper,sync_trakt=watchlist,tmdb_id=$INFO[Container(99950).ListItem.Property(tmdb_id)],$VAR[DB_type],cache_refresh)</onclick>
                 <visible>!Skin.HasSetting(hide.button.video.trakt) + [!String.IsEmpty(ListItem.Property(tmdb_id)) | !String.IsEmpty(Container(99950).ListItem.Property(tmdb_id))] + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)] + !String.IsEmpty(Window(Home).Property(TMDbHelper.TraktIsAuth))</visible>
+                <enable>System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)</enable>
             </control>
 
             <!-- VERSION -->
@@ -1707,9 +1707,28 @@
                 <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/storageinfo.png</textureradioofffocus>
                 <textureradiooffnofocus colordiffuse="Dark2">buttonsdialogs/storageinfo.png</textureradiooffnofocus>
                 <usealttexture>Skin.HasSetting(filter.video.only.local)</usealttexture>
-                <visible>[!String.IsEqual(ListItem.DBType,video) + !String.IsEmpty(ListItem.DBType)] | String.IsEqual(ListItem.Property(item.type),person)</visible>
-                <enable>System.AddonIsEnabled(plugin.video.themoviedb.helper)</enable>
-                <visible>!Skin.HasSetting(hide.button.video.local.only)</visible>
+                <visible>![String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(item.type),set)]</visible>
+                <visible>System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)</visible>
+            </control>
+
+            <!-- LOCAL ONLY IF TMDB HELPER DISABLE -->
+
+             <control type="radiobutton" id="90124">
+                <onfocus condition="!String.IsEqual(ListItem.Property(item.type),person)">ClearProperty(moviecontent)</onfocus>
+                <onfocus condition="String.IsEqual(ListItem.Property(item.type),person)">SetProperty(moviecontent,13)</onfocus>
+                <onfocus>ClearProperty(ShowDisc)</onfocus>
+                <onfocus condition="!Skin.HasSetting(filter.video.only.local)">Skin.ToggleSetting(filter.video.only.local)</onfocus>
+
+                <include>Def_Button_Dimensions</include>
+                <texturenofocus colordiffuse="Dark4" border="12">common/boxsquare.png</texturenofocus>
+                <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</texturefocus>
+                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/tmdb.png</textureradioonfocus>
+                <textureradioonnofocus colordiffuse="Dark2">buttonsdialogs/tmdb.png</textureradioonnofocus>
+                <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/storageinfo.png</textureradioofffocus>
+                <textureradiooffnofocus colordiffuse="Dark2">buttonsdialogs/storageinfo.png</textureradiooffnofocus>
+                <usealttexture>Skin.HasSetting(filter.video.only.local)</usealttexture>
+                <visible>![String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(item.type),set)]</visible>
+                <visible>![System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)]</visible>
             </control>
 
         <!-- TVSOWS -->
