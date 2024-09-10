@@ -141,7 +141,7 @@
                 <param name="visible" value="!Container.Content(songs) + !Container.Content(albums)"/>
             </include>
 
-            <include>Clearlogo_Info_Low</include>
+            <include>LowList_Title</include>
         </control>
     </include>
 
@@ -285,11 +285,11 @@
                 <param name="visible" value="!Container.Content(songs) + !Container.Content(albums)"/>
             </include>
 
-            <include>Clearlogo_Info_Low</include>
+            <include>LowList_Title</include>
 
             <include content="Fanart_Info">
                 <param name="left" value="70"/>
-                <param name="top" value="480"/>
+                <param name="top" value="490"/>
                 <param name="visible" value="Container.Content(songs) | Container.Content(albums)"/>
             </include>
         </control>
@@ -418,13 +418,46 @@
                 <param name="visible" value="!Container.Content(songs) + !Container.Content(albums)"/>
             </include>
 
-            <include>Clearlogo_Info_Low</include>
+            <include>LowList_Title</include>
 
             <include content="Fanart_Info">
                 <param name="left" value="70"/>
-                <param name="top" value="480"/>
+                <param name="top" value="490"/>
                 <param name="visible" value="Container.Content(songs) | Container.Content(albums)"/>
             </include>
+        </control>
+    </include>
+
+    <include name="LowList_Title">
+        <control type="group">
+            <left>SidePad</left>
+            <include content="Def_Top" condition="!Skin.HasSetting(home.widgets.show.reflections)">
+                <param name="top" value="195" />
+            </include>
+            <include content="Def_Top" condition="Skin.HasSetting(home.widgets.show.reflections)">
+                <param name="top" value="191" />
+            </include>
+            <width>645</width>
+
+            <control type="label">
+                <bottom>560</bottom>
+                <aligny>bottom</aligny>
+                <align>left</align>
+                <height>200</height>
+                <width>845</width>
+                <font>EpisodeNumberNew</font>
+                <label>$VAR[Label_Main_Title_Fanart_56_57]</label>
+                <visible>Container.Content(songs) | Container.Content(albums)</visible>
+            </control>
+            <control type="image" description="clearlogo">
+                <height>270</height>
+                <width>600</width>
+                <aspectratio scalediffuse="true" align="left">keep</aspectratio>
+                <texture background="true">$VAR[Image_Crop_ClearLogo]</texture>
+                <animation effect="fade" start="0" end="100" time="200" delay="0" reversible="true">Visible</animation>
+                <animation effect="fade" start="100" end="0" delay="400" time="200" reversible="true">Hidden</animation>
+                <visible>![Container.Content(songs) | Container.Content(albums)]</visible>
+            </control>
         </control>
     </include>
 
@@ -453,6 +486,7 @@
                         <textcolor>Dark1</textcolor>
                         <selectedcolor>Dark1</selectedcolor>
                         <label>$VAR[Label_Main_Title_Fanart_56_57]</label>
+                        <visible>![Container.Content(songs) | Container.Content(albums)]</visible>
                     </control>
 
                     <!-- SUB TITLE -->
@@ -464,11 +498,11 @@
                         <font>Tiny</font>
                         <textcolor>Dark1</textcolor>
                         <selectedcolor>Dark1</selectedcolor>
-                        <label>$VAR[LabelGenre]</label>
+                        <label>$VAR[Label_Year]$VAR[LabelGenre,  •  ,]</label>
                     </control>
                     <control type="textbox">
                         <top>125</top>
-                        <bottom>17</bottom>
+                        <bottom>-50</bottom>
                         <align>justify</align>
                         <font>Tiny</font>
                         <textcolor>Dark2</textcolor>
@@ -736,20 +770,5 @@
                 </control>
             </control>
         </definition>
-    </include>
-
-    <include name="Clearlogo_Info_Low">
-        <control type="group">
-            <control type="image">
-                <bottom>635</bottom>
-                <left>SidePad</left>
-                <align>left</align>
-                <height>200</height>
-                <width>480</width>
-                <aspectratio align="left" aligny="bottom">keep</aspectratio>
-                <texture background="true">$VAR[Image_Crop_ClearLogo]</texture>
-                <fadetime>ClearArtFadetime</fadetime>
-            </control>
-        </control>
     </include>
 </includes>
