@@ -5,9 +5,6 @@
     [Skin.HasSetting(filter.video.only.local) + [$EXP[DialogInfoSingleValue] | !Skin.HasSetting(enabled.tmdb.helper.service)] + System.IdleTime(1) + Window.IsVisible(DialogVideoInfo.xml) + String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id)) + String.IsEmpty(Window(Home).Property(Init_Value_TMDb)) + !Window.IsVisible(DialogSelect.xml)]</visible>
 
 
-    <!-- Encode label set -->
-    <onload>RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;unencoded_paths=true&amp;window_id=Home&amp;window_prop=Encoded.ListItem.Set&amp;&amp;$INFO[ListItem.Set]")</onload>
-
     <!-- ============ -->
     <!-- TMDB ON LINE -->
     <!-- ============ -->
@@ -32,7 +29,10 @@
     <onload condition="!String.IsEmpty(ListItem.Studio) + !String.Contains(ListItem.Studio, / ) + String.IsEmpty(Window(Home).Property(SetStudioSelected))">SetProperty(SetStudioSelected,$INFO[ListItem.Studio],Home)</onload>
 
     <!-- Encode label studio -->
-    <onload>RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;unencoded_paths=true&amp;window_id=Home&amp;window_prop=Encoded.ListItem.Studio&amp;&amp;$INFO[Window(Home).Property(SetStudioSelected)]")</onload>
+    <onload condition="Skin.HasSetting(filter.video.only.local)">RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;unencoded_paths=true&amp;window_id=Home&amp;window_prop=Encoded.ListItem.Studio&amp;&amp;$INFO[Window(Home).Property(SetStudioSelected)]")</onload>
+
+    <!-- Encode label set -->
+    <onload condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,movie)">RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;unencoded_paths=true&amp;window_id=Home&amp;window_prop=Encoded.ListItem.Set&amp;&amp;$INFO[ListItem.Set]")</onload>
 
     <!-- ============ -->
     <!-- TMDB ON LINE -->
@@ -53,5 +53,5 @@
     <onload condition="!Skin.HasSetting(filter.video.only.local) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + String.IsEmpty(Window(Home).Property(Network_Query))">SetProperty(Network_Query,$VAR[Path_Network_TMDb_ID],Home)</onload>
 
     <onload>AlarmClock(Dialog_Info_Init_Value_TMDb,SetProperty(Init_Value_TMDb,1,Home),00:00,silent)</onload>
-    <!-- <onunload>SetProperty(Init_Value_TMDb,1,Home)</onunload> -->
+    <onunload>SetProperty(Init_Value_TMDb,1,Home)</onunload>
 </window>
