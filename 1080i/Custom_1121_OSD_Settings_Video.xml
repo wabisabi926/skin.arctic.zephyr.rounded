@@ -2,6 +2,7 @@
 <window type="dialog" id="1121">
     <zorder>1</zorder>
     <defaultcontrol always="true">9000</defaultcontrol>
+
     <onload condition="Skin.HasSetting(osd.open.auto.pause) + Player.HasMedia + Player.HasVideo + !Player.Paused + !String.IsEmpty(VideoPlayer.DBID)">PlayerControl(Play)</onload>
     <onunload condition="Skin.HasSetting(osd.open.auto.pause) + Player.HasMedia + Player.HasVideo + Player.Paused + !Window.IsVisible(VideoOSD.xml)">PlayerControl(Play)</onunload>
 
@@ -13,7 +14,7 @@
         <include>Animation_Common</include>
 
         <control type="group">
-            <include content="Def_View_ContextMenu_Background"><param name="height" value="619" /></include>
+            <include content="Def_View_ContextMenu_Background"><param name="height" value="619" /><param name="visible" value="ControlGroup(9000).HasFocus() | control.hasfocus(1799)"/></include>
             <include content="Def_View_ContextMenu_Arrows"><param name="arrow_bottom" value="629" /></include>
 
             <control type="label">
@@ -30,9 +31,13 @@
                 <itemgap>0</itemgap>
                 <usecontrolcoords>true</usecontrolcoords>
                 <include>Animation_Scrolltime_Views_List</include>
-
-                <onright>Dialog.Close(1121)</onright>
+                <onup>9000</onup>
+                <ondown>9000</ondown>
+                <orientation>vertical</orientation>
+                <!-- <onright>Dialog.Close(1121)</onright> -->
                 <onleft>Dialog.Close(1121)</onleft>
+                <onright>1799</onright>
+                <pagecontrol>1799</pagecontrol>
 
                 <!-- OSD -->
 
@@ -229,6 +234,16 @@
                     <onclick>ActivateWindow(playerprocessinfo)</onclick>
                 </control>
             </control>
+
+            <!-- SCROLLBAR -->
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="1799"/>
+                <param name="onleft" value="9000"/>
+                <param name="onright" value="Dialog.Close(1121)"/>
+                <param name="height" value="490"/>
+                <param name="centerright" value="4"/>
+            </include>
         </control>
     </controls>
 </window>
