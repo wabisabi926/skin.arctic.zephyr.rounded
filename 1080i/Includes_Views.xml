@@ -570,10 +570,6 @@
         </control>
     </include>
 
-
-
-
-
     <variable name="Label_Header_Sub">
 
         <!-- DialogVideoInfo -->
@@ -603,17 +599,17 @@
     </variable>
 
 
-
-
+    <!-- FURNITURE - HEADER -->
 
     <include name="Furniture_Header">
 
         <!-- VIEWS - HEADER - CLEARLOGO - CROP - NO CROP -->
 
         <control type="image" description="clearlogo">
-            <include>Animation_FadeIn</include>
-            <include>Animation_FadeOut</include>
-            <include>Animation_ClearLogo.FadeOut</include>
+            <animation effect="fade" start="0" end="100" time="200" delay="0" reversible="true">Visible</animation>
+            <animation effect="fade" start="100" end="0" delay="400" time="200" reversible="true">Hidden</animation>
+            <fadetime>ClearArtFadetime</fadetime>
+
             <visible>[!Window.IsVisible(Home) + Skin.HasSetting(show.header.clearlogo)]</visible>
             <visible>![Window.IsVisible(Home) + Window.IsVisible(DialogVideoInfo.xml)]</visible>
             <visible>![Window.IsVisible(Home) + Skin.HasSetting(show.home.netflix.title.clearlogo) + $EXP[Home_Is_Vertical]]</visible>
@@ -636,9 +632,10 @@
         <!-- HOME - HEADER - CLEARLOGO - CROP -->
 
         <control type="image" description="clearlogo home">
-            <include>Animation_FadeIn</include>
-            <include>Animation_FadeOut</include>
-            <include>Animation_ClearLogo.FadeOut</include>
+            <animation effect="fade" start="0" end="100" time="200" delay="0" reversible="true">Visible</animation>
+            <animation effect="fade" start="100" end="0" delay="400" time="200" reversible="true">Hidden</animation>
+            <fadetime>ClearArtFadetime</fadetime>
+
             <visible>Skin.HasSetting(show.home.header.clearlogo) + $EXP[Exp_Title_Clearlogo_Home_Crop]</visible>
             <visible>Window.IsVisible(Home) + !Skin.HasSetting(homemenu.netflix)</visible>
             <visible>![Window.IsVisible(DialogMusicInfo.xml) + Window.IsVisible(DialogVideoInfo.xml)]</visible>
@@ -668,9 +665,9 @@
         <!-- HOME - HEADER - CLEARLOGO - MOVIE / VIDEO / TVSHOW / ARTIST -->
 
         <control type="image" description="clearlogo home">
-            <include>Animation_FadeIn</include>
-            <include>Animation_FadeOut</include>
-            <include>Animation_ClearLogo.FadeOut</include>
+            <animation effect="fade" start="0" end="100" time="200" delay="0" reversible="true">Visible</animation>
+            <animation effect="fade" start="100" end="0" delay="400" time="200" reversible="true">Hidden</animation>
+            <fadetime>ClearArtFadetime</fadetime>
 
             <visible>Skin.HasSetting(show.home.header.clearlogo) + !$EXP[Exp_Title_Clearlogo_Home_Crop] + !String.IsEmpty(Container($PARAM[id]).ListItem.Art(clearlogo))</visible>
             <visible>Window.IsVisible(Home) + !Skin.HasSetting(homemenu.netflix)</visible>
@@ -702,9 +699,9 @@
         <!-- HOME - HEADER - CLEARLOGO - SEASON / EPISODE -->
 
         <control type="image" description="clearlogo home">
-            <include>Animation_FadeIn</include>
-            <include>Animation_FadeOut</include>
-            <include>Animation_ClearLogo.FadeOut</include>
+            <animation effect="fade" start="0" end="100" time="200" delay="0" reversible="true">Visible</animation>
+            <animation effect="fade" start="100" end="0" delay="400" time="200" reversible="true">Hidden</animation>
+            <fadetime>ClearArtFadetime</fadetime>
 
             <visible>Skin.HasSetting(show.home.header.clearlogo) + !$EXP[Exp_Title_Clearlogo_Home_Crop] + !String.IsEmpty(Container($PARAM[id]).ListItem.Art(tvshow.clearlogo))</visible>
             <visible>Window.IsVisible(Home) + !Skin.HasSetting(homemenu.netflix)</visible>
@@ -736,9 +733,9 @@
         <!-- HOME - HEADER - CLEARLOGO - ALBUM -->
 
         <control type="image" description="clearlogo home">
-            <include>Animation_FadeIn</include>
-            <include>Animation_FadeOut</include>
-            <include>Animation_ClearLogo.FadeOut</include>
+            <animation effect="fade" start="0" end="100" time="200" delay="0" reversible="true">Visible</animation>
+            <animation effect="fade" start="100" end="0" delay="400" time="200" reversible="true">Hidden</animation>
+            <fadetime>ClearArtFadetime</fadetime>
 
             <visible>Skin.HasSetting(show.home.header.clearlogo) + !$EXP[Exp_Title_Clearlogo_Home_Crop] + !String.IsEmpty(Container($PARAM[id]).ListItem.Art(artist.clearlogo))</visible>
             <visible>Window.IsVisible(Home) + !Skin.HasSetting(homemenu.netflix)</visible>
