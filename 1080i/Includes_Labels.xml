@@ -829,9 +829,8 @@
 
         <value condition="$EXP[IsGameMode]">$VAR[Label_Game_Genre]</value>
 
-        <value condition="!String.IsEmpty(ListItem.Genre) + !Container.Content(episodes)">$INFO[ListItem.Genre]</value>
-
-        <value condition="!String.IsEmpty(Window(Home).Property(Set.Movies.Genre))">$INFO[Window(Home).Property(Set.Movies.Genre)]</value>
+        <value condition="!String.IsEmpty(Container(99950).ListItem.Property(Genre.1.Name)) + !Container.Content(episodes)">$INFO[Container(99950).ListItem.Property(Genre.1.Name)]$INFO[Container(99950).ListItem.Property(Genre.2.Name), / ,]</value>
+        <value condition="!String.IsEmpty(ListItem.Genre) + String.IsEmpty(Container(99950).ListItem.Property(Genre.1.Name)) + !Container.Content(episodes)">$INFO[ListItem.Genre]</value>
 
         <value condition="!String.IsEmpty(ListItem.Property(Artist_Genre))">$INFO[ListItem.Property(Artist_Genre)]</value>
 
@@ -848,7 +847,7 @@
         <value condition="[Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)] + !String.IsEmpty(ListItem.Genre)">$INFO[ListItem.Genre]</value>
         <value condition="$EXP[IsGameMode]">$VAR[Label_Game_Genre]</value>
         <!-- <value condition="!String.IsEmpty(ListItem.Genre)">$INFO[ListItem.Genre]</value> -->
-        <value condition="!String.IsEmpty(Window(Home).Property(Set.Movies.Genre))">$INFO[Window(Home).Property(Set.Movies.Genre)]</value>
+
         <value condition="!String.IsEmpty(ListItem.Property(Artist_Genre))">$INFO[ListItem.Property(Artist_Genre)]</value>
         <value>$LOCALIZE[19055]</value>
     </variable>

@@ -573,11 +573,11 @@
                 <!-- PROGRESS -->
 
                 <control type="group">
-                    <top>148</top>
+                    <top>319</top>
                     <left>526</left>
                     <width>155</width>
                     <height>155</height>
-                    <visible>Skin.HasSetting(furniture.progress.circle) + !ListItem.IsParentFolder + !String.IsEqual(ListItem.DBType,set) + !Window.IsVisible(MyMusicNav.xml) + !Window.IsVisible(MyPlaylist.xml) + $PARAM[visible_progress] + !String.IsEmpty(ListItem.DBType) + !$EXP[IsYoutube]</visible>
+                    <visible>Skin.HasSetting(furniture.progress.circle) + !ListItem.IsParentFolder + !String.IsEqual(ListItem.DBType,set) + !Window.IsVisible(MyMusicNav.xml) + !Window.IsVisible(MyPlaylist.xml) + !String.IsEmpty(ListItem.DBType) + !$EXP[IsYoutube]</visible>
                     <control type="group">
                         <control type="image" description="Back">
                             <centertop>44%</centertop>
@@ -850,7 +850,8 @@
                             <texture diffuse="diffuse/diffuse_progress.png" border="0">dialog/loading-back.png</texture>
                         </control>
                         <control type="group">
-                            <visible>!ListItem.IsParentFolder + [Container.Content(movies) | Container.Content(episodes)]</visible>
+                            <visible>!ListItem.IsParentFolder</visible>
+                            <visible>Container.Content(movies) | Container.Content(episodes)</visible>
                             <include>Animation_SwitchText</include>
                             <control type="image">
                                 <visible>ListItem.IsResumable</visible>
@@ -869,12 +870,12 @@
                         </control>
                     </control>
                     <control type="image">
-                        <visible>!ListItem.IsParentFolder + [Container.Content(tvshows) | Container.Content(seasons)]</visible>
+                        <visible>!ListItem.IsParentFolder</visible>
+                        <visible>String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)</visible>
                         <width>139</width>
                         <height>139</height>
                         <centertop>44%</centertop>
                         <texture diffuse="diffuse/diffuse_progress.png" colordiffuse="$VAR[Color_Highlight]">progress/tvshows/p$INFO[ListItem.Property(WatchedEpisodePercent)].png</texture>
-                        <visible>String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)</visible>
                         <include>Animation_SwitchText</include>
                     </control>
                     <control type="label">
