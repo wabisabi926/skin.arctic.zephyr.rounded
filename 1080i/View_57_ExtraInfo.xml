@@ -55,7 +55,7 @@
                 <include>Def_Hidden_ListControl</include>
                 <content>$INFO[Container($PARAM[id]).ListItem.DBID,musicdb://artists/,/]</content>
             </control>
-            <include content="Fanart_Info">
+            <include content="57_Fanart_Info">
                 <param name="left" value="70"/>
             </include>
         </control>
@@ -143,12 +143,12 @@
                 <content>$INFO[Container($PARAM[id]).ListItem.DBID,musicdb://artists/,/]</content>
             </control>
 
-            <include content="LowList_Info">
+            <include content="57_LowList_Info">
                 <param name="left" value="70"/>
                 <param name="visible" value="!$EXP[IsAnPlugin]"/>
             </include>
 
-            <include>LowList_Title</include>
+            <include>57_LowList_Title</include>
 
             <include content="View_524_Fanart">
                 <param name="left" value="70"/>
@@ -214,7 +214,7 @@
                 <content>$INFO[Container($PARAM[id]).ListItem.DBID,musicdb://artists/,/]</content>
             </control>
 
-            <include content="Fanart_Info">
+            <include content="57_Fanart_Info">
                 <param name="left" value="70"/>
             </include>
         </control>
@@ -303,14 +303,14 @@
                 <content>$INFO[Container($PARAM[id]).ListItem.DBID,musicdb://artists/,/]</content>
             </control>
 
-            <include content="LowList_Info">
+            <include content="57_LowList_Info">
                 <param name="left" value="70"/>
                 <param name="visible" value="!Container.Content(songs) + !Container.Content(albums)"/>
             </include>
 
-            <include>LowList_Title</include>
+            <include>57_LowList_Title</include>
 
-            <include content="Fanart_Info">
+            <include content="57_Fanart_Info">
                 <param name="left" value="70"/>
                 <param name="top" value="490"/>
                 <param name="visible" value="Container.Content(songs) | Container.Content(albums)"/>
@@ -372,7 +372,7 @@
                 <include>Def_Hidden_ListControl</include>
                 <content>$INFO[Container($PARAM[id]).ListItem.DBID,musicdb://artists/,/]</content>
             </control>
-            <include content="Fanart_Info">
+            <include content="57_Fanart_Info">
                 <param name="left" value="70"/>
             </include>
         </control>
@@ -443,12 +443,12 @@
                 <content>$INFO[Container($PARAM[id]).ListItem.DBID,musicdb://artists/,/]</content>
             </control>
 
-            <include content="LowList_Info">
+            <include content="57_LowList_Info">
                 <param name="left" value="70"/>
                 <param name="visible" value="!Container.Content(songs) + !Container.Content(albums)"/>
             </include>
 
-            <include>LowList_Title</include>
+            <include>57_LowList_Title</include>
 
             <include content="View_524_Fanart">
                 <param name="left" value="70"/>
@@ -458,7 +458,7 @@
         </control>
     </include>
 
-    <include name="LowList_Title">
+    <include name="57_LowList_Title">
         <control type="group">
             <left>SidePad</left>
             <include content="Def_Top" condition="!Skin.HasSetting(home.widgets.show.reflections)">
@@ -492,7 +492,7 @@
         </control>
     </include>
 
-    <include name="LowList_Info">
+    <include name="57_LowList_Info">
         <param name="visible" value="$PARAM[visible]" default="true"/>
         <definition>
             <control type="group">
@@ -569,11 +569,65 @@
                         <label>$VAR[Label_Plot_Box_Video_Music]</label>
                     </control>
                 </control>
+
+                <!-- PROGRESS -->
+
+                <control type="group">
+                    <top>148</top>
+                    <left>526</left>
+                    <width>155</width>
+                    <height>155</height>
+                    <visible>Skin.HasSetting(furniture.progress.circle) + !ListItem.IsParentFolder + !String.IsEqual(ListItem.DBType,set) + !Window.IsVisible(MyMusicNav.xml) + !Window.IsVisible(MyPlaylist.xml) + $PARAM[visible_progress] + !String.IsEmpty(ListItem.DBType) + !$EXP[IsYoutube]</visible>
+                    <control type="group">
+                        <control type="image" description="Back">
+                            <centertop>44%</centertop>
+                            <width>139</width>
+                            <height>139</height>
+                            <texture diffuse="diffuse/diffuse_progress.png" border="0">dialog/loading-back.png</texture>
+                        </control>
+                        <control type="group">
+                            <visible>!ListItem.IsParentFolder + [Container.Content(movies) | Container.Content(episodes)]</visible>
+                            <include>Animation_SwitchText</include>
+                            <control type="image">
+                                <visible>ListItem.IsResumable</visible>
+                                <centertop>44%</centertop>
+                                <width>139</width>
+                                <height>139</height>
+                                <texture diffuse="diffuse/diffuse_progress.png" colordiffuse="$VAR[Color_Highlight]">$INFO[ListItem.PercentPlayed,progress/circle/p,.png]</texture>
+                            </control>
+                            <control type="image">
+                                <visible>String.Contains(ListItem.Overlay,OverlayWatched.png) + !ListItem.IsResumable</visible>
+                                <centertop>44%</centertop>
+                                <width>139</width>
+                                <height>139</height>
+                                <texture diffuse="diffuse/diffuse_progress.png" colordiffuse="$VAR[Color_Highlight]">progress/circle/p100.png</texture>
+                            </control>
+                        </control>
+                    </control>
+                    <control type="image">
+                        <visible>!ListItem.IsParentFolder + [Container.Content(tvshows) | Container.Content(seasons)]</visible>
+                        <width>139</width>
+                        <height>139</height>
+                        <centertop>44%</centertop>
+                        <texture diffuse="diffuse/diffuse_progress.png" colordiffuse="$VAR[Color_Highlight]">progress/tvshows/p$INFO[ListItem.Property(WatchedEpisodePercent)].png</texture>
+                        <visible>String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)</visible>
+                        <include>Animation_SwitchText</include>
+                    </control>
+                    <control type="label">
+                        <include>Animation_SwitchText</include>
+                        <width>140</width>
+                        <centertop>43%</centertop>
+                        <align>center</align>
+                        <label>$VAR[Label_Progress_Circle]</label>
+                        <font>WatchedLabel</font>
+                        <textcolor>Dark2</textcolor>
+                    </control>
+                </control>
             </control>
         </definition>
     </include>
 
-    <include name="Fanart_Info">
+    <include name="57_Fanart_Info">
         <param name="top" value="$PARAM[top]" default="206"/>
         <param name="width_condition" value="$PARAM[width_condition]" default="Skin.HasSetting(furniture.progress.circle)"/>
         <param name="visible" value="$PARAM[visible]" default="true"/>
@@ -587,6 +641,7 @@
                 <height>660</height>
                 <visible>$EXP[Exp_View_50] | $EXP[Exp_View_550] | $EXP[Exp_View_57] | $EXP[Exp_View_56] | $EXP[Exp_View_505] | $EXP[Exp_View_516] | $EXP[Exp_View_526]</visible>
                 <visible>$PARAM[visible]</visible>
+
                 <control type="group">
                     <height>370</height>
 
@@ -667,9 +722,9 @@
                 <control type="group">
                     <visible>!$EXP[IsYoutube_Comments]</visible>
 
-                    <visible>![Skin.HasSetting(57list.low) + !Window.IsVisible(MyPlaylist.xml) + [Container.Content(songs) | Container.Content(albums)]]</visible>
-                    <visible>![Skin.HasSetting(57list.low.playlist) + Window.IsVisible(MyPlaylist.xml) + [Container.Content(songs) | Container.Content(albums)]]</visible>
-                    <visible>![Skin.HasSetting(57list.low) + Window.IsVisible(MyVideoNav.xml) + Container.Content(movies)]</visible>
+                    <visible>![$EXP[Exp_View_57] + Skin.HasSetting(57list.low) + !Window.IsVisible(MyPlaylist.xml) + [Container.Content(songs) | Container.Content(albums)]]</visible>
+                    <visible>![$EXP[Exp_View_57] + Skin.HasSetting(57list.low.playlist) + Window.IsVisible(MyPlaylist.xml) + [Container.Content(songs) | Container.Content(albums)]]</visible>
+                    <visible>![$EXP[Exp_View_57] + Skin.HasSetting(57list.low) + Window.IsVisible(MyVideoNav.xml) + Container.Content(movies)]</visible>
                     <!-- <visible>![Skin.HasSetting(57list.low) + $EXP[IsAnPlugin]]</visible> -->
 
                     <left>10</left>

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 
+    <!-- WITHOUT FANART -->
+
     <include name="View_56_MediaInfo">
         <description>List View (id=56)</description>
         <control type="group">
@@ -45,13 +47,13 @@
 
                 <!-- SCROLLBAR -->
                 <control type="scrollbar" id="1608">
-                    <include content="Object_Scrollbar_Views_Vertical" condition="Skin.HasSetting(enable.view.56.info)">
+                    <include content="Object_Scrollbar_Views_Vertical" condition="Skin.HasSetting(enable.view.56.fanart)">
                         <param name="scrollid" value="1608"/>
                         <param name="idlayout" value="56"/>
                         <param name="centerright" value="720"/>
                         <param name="height" value="458"/>
                     </include>
-                    <include content="Object_Scrollbar_Views_Vertical" condition="!Skin.HasSetting(enable.view.56.info)">
+                    <include content="Object_Scrollbar_Views_Vertical" condition="!Skin.HasSetting(enable.view.56.fanart)">
                         <param name="scrollid" value="1608"/>
                         <param name="idlayout" value="56"/>
                         <param name="height" value="458"/>
@@ -96,7 +98,9 @@
         </control>
     </include>
 
-    <include name="View_56_MediaInfo2">
+    <!-- WITH FANART -->
+
+    <include name="View_56_MediaInfo_Fanart">
         <description>List View (id=56)</description>
         <control type="group">
             <visible>Control.IsVisible(56)</visible>
@@ -125,27 +129,27 @@
                     <viewtype label="544">list</viewtype>
                     <include>Animation_Scrolltime_Views_List</include>
                     <itemlayout condition="!Skin.HasSetting(enable.view.5x.51x.extended.list)" width="648" height="64">
-                        <include>56itemlayout</include>
+                        <include>56_item_layout</include>
                     </itemlayout>
                     <focusedlayout condition="!Skin.HasSetting(enable.view.5x.51x.extended.list)" width="648" height="64">
-                        <include>56focuslayout</include>
+                        <include>56_focus_layout</include>
                     </focusedlayout>
                     <itemlayout condition="Skin.HasSetting(enable.view.5x.51x.extended.list) + [Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]" width="648" height="91.4">
-                        <include>56itemlayout_info</include>
+                        <include>56_item_layout_info</include>
                     </itemlayout>
                     <focusedlayout condition="Skin.HasSetting(enable.view.5x.51x.extended.list) + [Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]" width="648" height="91.4">
-                        <include>56focuslayout_info</include>
+                        <include>56_focus_layout_info</include>
                     </focusedlayout>
                 </control>
 
                 <!-- SCROLLBAR -->
                 <control type="scrollbar" id="1609">
-                    <include content="Object_Scrollbar_Views_Vertical" condition="Skin.HasSetting(enable.view.56.info)">
+                    <include content="Object_Scrollbar_Views_Vertical" condition="Skin.HasSetting(enable.view.56.fanart)">
                         <param name="scrollid" value="1609"/>
                         <param name="idlayout" value="56"/>
                         <param name="centerright" value="720"/>
                     </include>
-                    <include content="Object_Scrollbar_Views_Vertical" condition="!Skin.HasSetting(enable.view.56.info)">
+                    <include content="Object_Scrollbar_Views_Vertical" condition="!Skin.HasSetting(enable.view.56.fanart)">
                         <param name="scrollid" value="1609"/>
                         <param name="idlayout" value="56"/>
                         <param name="centerright" value="720"/>
@@ -156,13 +160,15 @@
 
             <include>View_50_SidePoster</include>
 
-            <include content="Fanart_Info">
+            <include content="57_Fanart_Info">
                 <param name="left" value="1205"/>
             </include>
         </control>
     </include>
 
-    <include name="View_56_MediaInfo3">
+    <!-- LOW LIST -->
+
+    <include name="View_56_MediaInfo_LowList">
         <description>List View (id=56)</description>
         <control type="group">
             <visible>Control.IsVisible(56)</visible>
@@ -173,7 +179,7 @@
 
             <control type="group">
                 <top>275</top>
-                <control type="panel" id="56">
+                <control type="fixedlist" id="56">
                     <visible>$EXP[Exp_View_56]</visible>
 
                     <include>Def_On_Info</include>
@@ -187,32 +193,41 @@
                     <onright>1833</onright>
                     <onup>56</onup>
                     <ondown>56</ondown>
+
+                    <focusposition>1</focusposition>
+                    <include content="Def_Movement" condition="Skin.HasSetting(enable.view.5x.51x.extended.list)">
+                        <param name="movement" value="2" />
+                    </include>
+                    <include content="Def_Movement" condition="!Skin.HasSetting(enable.view.5x.51x.extended.list)">
+                        <param name="movement" value="3" />
+                    </include>
+
                     <pagecontrol>1833</pagecontrol>
 
                     <viewtype label="544">list</viewtype>
                     <include>Animation_Scrolltime_Views_List</include>
                     <itemlayout condition="!Skin.HasSetting(enable.view.5x.51x.extended.list)" width="654" height="64">
-                        <include>56itemlayout</include>
+                        <include>56_item_layout</include>
                     </itemlayout>
                     <focusedlayout condition="!Skin.HasSetting(enable.view.5x.51x.extended.list)" width="654" height="64">
-                        <include>56focuslayout</include>
+                        <include>56_focus_layout</include>
                     </focusedlayout>
-                    <itemlayout condition="Skin.HasSetting(enable.view.5x.51x.extended.list) + [Container.Content(movies) | Container.Content(tvshows)]" width="654" height="91.4">
-                        <include>56itemlayout_info</include>
+                    <itemlayout condition="Skin.HasSetting(enable.view.5x.51x.extended.list)" width="654" height="91.4">
+                        <include>56_item_layout_info</include>
                     </itemlayout>
-                    <focusedlayout condition="Skin.HasSetting(enable.view.5x.51x.extended.list) + [Container.Content(movies) | Container.Content(tvshows)]" width="654" height="91.4">
-                        <include>56focuslayout_info</include>
+                    <focusedlayout condition="Skin.HasSetting(enable.view.5x.51x.extended.list)" width="654" height="91.4">
+                        <include>56_focus_layout_info</include>
                     </focusedlayout>
                 </control>
                 <control type="scrollbar" id="1833">
-                    <include content="Object_Scrollbar_Views_Vertical" condition="Skin.HasSetting(enable.view.56.info)">
+                    <include content="Object_Scrollbar_Views_Vertical" condition="Skin.HasSetting(enable.view.56.fanart)">
                         <param name="scrollid" value="1833"/>
                         <param name="top" value="216"/>
                         <param name="height" value="365"/>
                         <param name="idlayout" value="56"/>
                         <param name="centerright" value="720"/>
                     </include>
-                    <include content="Object_Scrollbar_Views_Vertical" condition="!Skin.HasSetting(enable.view.56.info)">
+                    <include content="Object_Scrollbar_Views_Vertical" condition="!Skin.HasSetting(enable.view.56.fanart)">
                         <param name="scrollid" value="1833"/>
                         <param name="top" value="216"/>
                         <param name="height" value="365"/>
@@ -224,13 +239,15 @@
 
             <include>View_50_SidePoster</include>
 
-            <include content="LowList_Info">
+            <include content="57_LowList_Info">
                 <param name="left" value="1205"/>
             </include>
         </control>
     </include>
 
-    <include name="56itemlayout">
+    <!-- LAYOUT -->
+
+    <include name="56_item_layout">
 
         <!-- Label -->
         <control type="label">
@@ -273,7 +290,7 @@
         </control>
     </include>
 
-    <include name="56focuslayout">
+    <include name="56_focus_layout">
         <control type="image">
             <width>100%</width>
             <height>100%</height>
@@ -321,7 +338,7 @@
         </control>
     </include>
 
-    <include name="56itemlayout_info">
+    <include name="56_item_layout_info">
 
         <!-- Label -->
         <control type="label">
@@ -396,7 +413,7 @@
         </control>
     </include>
 
-    <include name="56focuslayout_info">
+    <include name="56_focus_layout_info">
         <control type="image">
             <width>100%</width>
             <height>100%</height>
