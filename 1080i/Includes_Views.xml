@@ -267,7 +267,7 @@
                     <aspectratio scalediffuse="true" align="left">keep</aspectratio>
                     <texture background="true">$VAR[Image_Crop_ClearLogo]</texture>
                     <animation effect="fade" start="0" end="100" time="200" delay="0" reversible="true">Visible</animation>
-                    <animation effect="fade" start="100" end="0" delay="400" time="200" reversible="true">Hidden</animation>
+                    <!-- <animation effect="fade" start="100" end="0" delay="400" time="200" reversible="true">Hidden</animation> -->
                     <fadetime>ClearArtFadetime</fadetime>
                     <visible>$EXP[View_Flix_Show_Clearlogo_Enable]</visible>
                     <visible>$EXP[Exp_Title_Clearlogo_Available]</visible>
@@ -276,17 +276,23 @@
                 <!-- MAIN TITLE - TEXT -->
 
                 <control type="label">
-                    <!-- <height condtion="!$EXP[View_Flix_Show_Clearlogo_Enable]">ClearLogoTitleMaxHeight</height> -->
-                    <height>40</height>
+                    <include content="Def_Height" condition="$EXP[View_Flix_Show_Clearlogo_Enable]">
+                        <param name="height">ClearLogoTitleMaxHeight</param>
+                    </include>
+                    <include content="Def_Height" condition="!$EXP[View_Flix_Show_Clearlogo_Enable]">
+                        <param name="height">40</param>
+                    </include>
                     <textcolor>Dark1</textcolor>
                     <font>LargeNew</font>
                     <label fallback="19055">$VAR[Label_View_Flix_Main_Title]</label>
                     <include condition="Skin.HasSetting(labels.autoscroll)">LabelScroll</include>
                     <visible>[$EXP[View_Flix_Show_Clearlogo_Enable] + !$EXP[Exp_Title_Clearlogo_Available]] | !$EXP[View_Flix_Show_Clearlogo_Enable]</visible>
                 </control>
-                <control type="textbox">
-                    <height>15</height>
-                </control>
+
+                <!-- <control type="textbox"> -->
+                    <!-- <height>15</height> -->
+                    <!-- <visible>!$EXP[View_Flix_Show_Clearlogo_Enable]</visible> -->
+                <!-- </control> -->
 
                 <!-- SUB TITLE -->
 
@@ -312,7 +318,7 @@
                     <textcolor>Dark2</textcolor>
                     <selectedcolor>Dark2</selectedcolor>
                     <label>$VAR[Label_Plot_Box_Video_Music]</label>
-                    <visible>$EXP[View_Flix_Show_Clearlogo_Enable] + !$EXP[Exp_Title_Clearlogo_Available]</visible>
+                    <visible>$EXP[View_Flix_Show_Clearlogo_Enable]</visible>
                     <!-- <visible>!ListItem.IsFolder</visible> -->
                 </control>
             </control>
