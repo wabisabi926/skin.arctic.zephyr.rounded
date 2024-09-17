@@ -1917,6 +1917,40 @@
 
     <!-- HIDDEN LIST -->
 
+    <include name="Def_Hidden_List_Artist_Album_Count">
+        <definition>
+            <control type="list" id="$PARAM[id]81">
+                <visible>String.IsEqual(ListItem.DBType,artist)</visible>
+                <include>Def_Hidden_ListControl</include>
+                <content>$INFO[ListItem.DBID,musicdb://artists/,/]</content>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Hidden_Album_Track_Count">
+        <control type="list" id="5014">
+            <visible>Container.Content(albums) | String.IsEqual(ListItem.DBType,album)</visible>
+            <include>Def_Hidden_ListControl</include>
+            <content>$VAR[Album_Path]</content>
+        </control>
+    </include>
+
+    <include name="Hidden_List_Home_Artist_Album_Count">
+        <control type="list" id="44024">
+            <visible>String.IsEqual(ListItem.DBType,artist)</visible>
+            <include>Def_Hidden_ListControl</include>
+            <content>$INFO[Container($PARAM[id]).ListItem.DBID,musicdb://artists/,/]</content>
+        </control>
+    </include>
+
+    <include name="Hidden_List_Home_Album_Song_Count">
+        <control type="list" id="44022">
+            <visible>String.IsEqual(ListItem.DBType,album)</visible>
+            <include>Def_Hidden_ListControl</include>
+            <content>$VAR[Album_Path]</content>
+        </control>
+    </include>
+
     <include name="Hidden_Button_Search">
         <control type="button" id="9099" description="Helper">
             <include>Def_Hidden_Button</include>
@@ -1949,33 +1983,11 @@
         </control>
     </include>
 
-    <include name="Hidden_Album_Track_Count">
-        <control type="list" id="5014">
-            <visible>Container.Content(albums) | String.IsEqual(ListItem.DBType,album)</visible>
-            <include>Def_Hidden_ListControl</include>
-            <content>$VAR[AlbumPath]</content>
-        </control>
-    </include>
-
     <include name="Hidden_Album_Track_Count_Dialog_Music_Info_Ext">
         <control type="list" id="95017">
             <visible>Control.HasFocus(9501)</visible>
             <include>Def_Hidden_ListControl</include>
             <content>$VAR[Album_Path_9501_Ext]</content>
-        </control>
-    </include>
-
-    <include name="Hidden_Album_Count">
-        <control type="list" id="44022">
-            <visible>String.IsEqual(ListItem.DBType,album)</visible>
-            <include>Def_Hidden_ListControl</include>
-            <!-- <content>$INFO[Container($PARAM[id]).ListItem.FolderPath]</content> -->
-            <content>$VAR[AlbumPath]</content>
-        </control>
-        <control type="list" id="44024">
-            <visible>String.IsEqual(ListItem.DBType,artist)</visible>
-            <include>Def_Hidden_ListControl</include>
-            <content>$INFO[Container($PARAM[id]).ListItem.DBID,musicdb://artists/,/]</content>
         </control>
     </include>
 
@@ -2014,17 +2026,10 @@
         </control>
     </include>
 
-    <include name="Hidden_TMDb_Helper_InfoList">
-        <control type="list" id="90051">
-            <include>Def_Hidden_ListControl</include>
-            <content>$VAR[Hidden_TMDb_Helper_InfoList_Content]</content>
-        </control>
-    </include>
-
     <include name="Hidden_Actor_Info">
         <control type="list" id="44422">
             <include>Def_Hidden_ListControl</include>
-            <content target="videos">$VAR[ActorPath]</content>
+            <content target="videos">$VAR[Actor_Path]</content>
         </control>
     </include>
 

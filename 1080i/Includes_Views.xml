@@ -255,7 +255,7 @@
 
             <!-- CLERALOGO ENABLE - CLEARLOGO NOT AVAILABLE / DISABLE -->
 
-            <control type="grouplist">
+            <control type="group">
                 <orientation>vertical</orientation>
                 <itemgap>0</itemgap>
 
@@ -296,7 +296,120 @@
 
                 <!-- SUB TITLE -->
 
-                <include>Label_View_Flix_Sub_Title</include>
+                <include content="Label_View_Flix_Sub_Title">
+                    <param name="top" value="45"/>
+                </include>
+
+                <!-- PLOT -->
+
+                <include content="Label_View_Flix_Plot">
+                    <param name="top" value="120"/>
+                </include>
+
+            </control>
+        </control>
+    </include>
+
+    <include name="Label_View_Flix_Sub_Title">
+        <param name="visible" value="$PARAM[visible]" default="true"/>
+        <param name="width" value="$PARAM[width]" default="100%"/>
+        <param name="width_condition" value="$PARAM[width_condition]" default="Skin.HasSetting(furniture.progress.circle)"/>
+
+        <definition>
+            <control type="group">
+
+                <visible>$PARAM[visible]</visible>
+
+                <top>$PARAM[top]</top>
+                <left>$PARAM[left]</left>
+                <height>$PARAM[height]</height>
+
+                <include content="Def_Width" condition="$PARAM[width_condition]">
+                    <param name="width" value="520"/>
+                </include>
+                <width>$PARAM[width]</width>
+
+                <!-- SUB TITLE - FILES -->
+
+                <control type="label">
+                    <aligny>center</aligny>
+                    <font>InfoNetflix</font>
+                    <textcolor>PanelWhite70</textcolor>
+                    <selectedcolor>PanelWhite70</selectedcolor>
+                    <label>$LOCALIZE[19076] $INFO[Container(44025).NumItems,  •  , $LOCALIZE[31083]]</label>
+                    <visible>Container.Content(files) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType) + !$EXP[IsAnPlugin]]</visible>
+                </control>
+
+                <!-- SUB TITLE - PLUGIN -->
+
+                <control type="label">
+                    <aligny>center</aligny>
+                    <font>InfoNetflix</font>
+                    <textcolor>PanelWhite70</textcolor>
+                    <selectedcolor>PanelWhite70</selectedcolor>
+                    <label>$LOCALIZE[20094]$INFO[System.AddonVersion(Container.PluginName),  •  v ]</label>
+                    <visible>$EXP[IsAnPlugin]</visible>
+                    <visible>!$EXP[IsYoutube]</visible>
+                </control>
+
+                <!-- SUB TITLE - ADDONS -->
+
+                <control type="label">
+                    <aligny>center</aligny>
+                    <font>InfoNetflix</font>
+                    <textcolor>PanelWhite70</textcolor>
+                    <selectedcolor>PanelWhite70</selectedcolor>
+                    <label>$INFO[ListItem.AddonType]$INFO[ListItem.AddonVersion,  •  v ]</label>
+                    <visible>Container.Content(addons)</visible>
+                </control>
+
+                <!-- SUB TITLE - GAMES -->
+
+                <control type="label">
+                    <aligny>center</aligny>
+                    <font>InfoNetflix</font>
+                    <textcolor>PanelWhite70</textcolor>
+                    <selectedcolor>PanelWhite70</selectedcolor>
+                    <label>$VAR[Label_View_Flix_Sub_Title]</label>
+                    <visible>$EXP[IsGameMode]</visible>
+                </control>
+
+                <!-- ALBUMS / SONGS -->
+
+                <control type="label">
+                    <font>InfoNetflix</font>
+                    <textcolor>PanelWhite70</textcolor>
+                    <selectedcolor>PanelWhite70</selectedcolor>
+                    <label>$VAR[Label_View_Flix_Sub_Title_Music]</label>
+                    <visible>Container.Content(albums) | Container.Content(songs) | container.content(artists)</visible>
+                </control>
+
+                <!-- SUB TITLE - OTHERS -->
+
+                <control type="label">
+                    <aligny>center</aligny>
+                    <font>InfoNetflix</font>
+                    <textcolor>PanelWhite70</textcolor>
+                    <selectedcolor>PanelWhite70</selectedcolor>
+                    <label>$VAR[Label_View_Flix_Sub_Title]</label>
+                    <visible>![container.content(files) | Container.Content(addons) | $EXP[IsGameMode] | [$EXP[IsAnPlugin] + !$EXP[IsYoutube]]]</visible>
+                    <visible>![Container.Content(albums) | Container.Content(songs) | container.content(artists)]</visible>
+                </control>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Label_View_Flix_Plot">
+        <param name="top" value="$PARAM[top]" default="100"/>
+        <param name="width" value="$PARAM[width]" default="100%"/>
+        <param name="visible" value="$PARAM[visible]" default="true"/>
+
+        <definition>
+            <control type="group">
+                <visible>$PARAM[visible]</visible>
+
+                <top>$PARAM[top]</top>
+                <width>$PARAM[width]</width>
 
                 <!-- PLOT -->
 
@@ -322,83 +435,81 @@
                     <!-- <visible>!ListItem.IsFolder</visible> -->
                 </control>
             </control>
-        </control>
-
-        <control type="list" id="52281">
-            <include>Def_Hidden_ListControl</include>
-            <content>$INFO[Container($PARAM[id]).ListItem.DBID,musicdb://artists/,/]</content>
-        </control>
+        </definition>
     </include>
 
-    <include name="Label_View_Flix_Sub_Title">
+    <include name="Label_View_Info_Circle_Progress">
+        <param name="top" value="$PARAM[top]" default="360"/>
+        <param name="left" value="$PARAM[left]" default="526"/>
+        <param name="width" value="$PARAM[width]" default="155"/>
+        <param name="height" value="$PARAM[height]" default="155"/>
 
-        <!-- SUB TITLE - FILES -->
+        <param name="visible" value="$PARAM[visible]" default="Skin.HasSetting(furniture.progress.circle)"/>
+        <param name="width_condition" value="$PARAM[width_condition]" default="Skin.HasSetting(furniture.progress.circle)"/>
 
-        <control type="label">
-            <aligny>center</aligny>
-            <font>InfoNetflix</font>
-            <textcolor>PanelWhite70</textcolor>
-            <selectedcolor>PanelWhite70</selectedcolor>
-            <label>$LOCALIZE[19076] $INFO[Container(44025).NumItems,  •  , $LOCALIZE[31083]]</label>
-            <visible>Container.Content(files) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType) + !$EXP[IsAnPlugin]]</visible>
-        </control>
+        <definition>
+            <control type="group">
+                <visible>!ListItem.IsParentFolder + !String.IsEqual(ListItem.DBType,set) + !Window.IsVisible(MyMusicNav.xml) + !Window.IsVisible(MyPlaylist.xml) + !String.IsEmpty(ListItem.DBType) + !$EXP[IsYoutube]</visible>
 
-        <!-- SUB TITLE - PLUGIN -->
+                <visible>$PARAM[visible]</visible>
 
-        <control type="label">
-            <aligny>center</aligny>
-            <font>InfoNetflix</font>
-            <textcolor>PanelWhite70</textcolor>
-            <selectedcolor>PanelWhite70</selectedcolor>
-            <label>$LOCALIZE[20094]$INFO[System.AddonVersion(Container.PluginName),  •  v ]</label>
-            <visible>$EXP[IsAnPlugin]</visible>
-            <visible>!$EXP[IsYoutube]</visible>
-        </control>
+                <top>$PARAM[top]</top>
+                <left>$PARAM[left]</left>
+                <width>$PARAM[width]</width>
+                <height>$PARAM[height]</height>
 
-        <!-- SUB TITLE - ADDONS -->
+                <control type="group">
+                    <control type="image" description="Back">
+                        <centertop>44%</centertop>
+                        <width>139</width>
+                        <height>139</height>
+                        <texture diffuse="diffuse/diffuse_progress.png" border="0">dialog/loading-back.png</texture>
+                    </control>
+                    <control type="group">
+                        <visible>!ListItem.IsParentFolder</visible>
+                        <visible>Container.Content(movies) | Container.Content(episodes)</visible>
+                        <include>Animation_SwitchText</include>
+                        <control type="image">
+                            <visible>ListItem.IsResumable</visible>
+                            <centertop>44%</centertop>
+                            <width>139</width>
+                            <height>139</height>
+                            <texture diffuse="diffuse/diffuse_progress.png" colordiffuse="$VAR[Color_Highlight]">$INFO[ListItem.PercentPlayed,progress/circle/p,.png]</texture>
+                        </control>
+                        <control type="image">
+                            <visible>String.Contains(ListItem.Overlay,OverlayWatched.png) + !ListItem.IsResumable</visible>
+                            <centertop>44%</centertop>
+                            <width>139</width>
+                            <height>139</height>
+                            <texture diffuse="diffuse/diffuse_progress.png" colordiffuse="$VAR[Color_Highlight]">progress/circle/p100.png</texture>
+                        </control>
+                    </control>
+                </control>
+                <control type="image">
+                    <visible>!ListItem.IsParentFolder</visible>
+                    <visible>String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)</visible>
+                    <width>139</width>
+                    <height>139</height>
+                    <centertop>44%</centertop>
+                    <texture diffuse="diffuse/diffuse_progress.png" colordiffuse="$VAR[Color_Highlight]">progress/tvshows/p$INFO[ListItem.Property(WatchedEpisodePercent)].png</texture>
+                    <include>Animation_SwitchText</include>
+                </control>
+                <control type="label">
+                    <include>Animation_SwitchText</include>
+                    <width>140</width>
+                    <centertop>43%</centertop>
+                    <align>center</align>
+                    <label>$VAR[Label_Progress_Circle]</label>
+                    <font>WatchedLabel</font>
+                    <textcolor>Dark2</textcolor>
+                </control>
+            </control>
 
-        <control type="label">
-            <aligny>center</aligny>
-            <font>InfoNetflix</font>
-            <textcolor>PanelWhite70</textcolor>
-            <selectedcolor>PanelWhite70</selectedcolor>
-            <label>$INFO[ListItem.AddonType]$INFO[ListItem.AddonVersion,  •  v ]</label>
-            <visible>Container.Content(addons)</visible>
-        </control>
-
-        <!-- SUB TITLE - GAMES -->
-
-        <control type="label">
-            <aligny>center</aligny>
-            <font>InfoNetflix</font>
-            <textcolor>PanelWhite70</textcolor>
-            <selectedcolor>PanelWhite70</selectedcolor>
-            <label>$VAR[Label_View_Flix_Sub_Title]</label>
-            <visible>$EXP[IsGameMode]</visible>
-        </control>
-
-        <!-- ALBUMS / SONGS -->
-
-        <control type="label">
-            <font>InfoNetflix</font>
-            <textcolor>PanelWhite70</textcolor>
-            <selectedcolor>PanelWhite70</selectedcolor>
-            <label>$VAR[Label_View_Flix_Sub_Title_Music]</label>
-            <visible>Container.Content(albums) | Container.Content(songs) | container.content(artists)</visible>
-        </control>
-
-        <!-- SUB TITLE - OTHERS -->
-
-        <control type="label">
-            <aligny>center</aligny>
-            <font>InfoNetflix</font>
-            <textcolor>PanelWhite70</textcolor>
-            <selectedcolor>PanelWhite70</selectedcolor>
-            <label>$VAR[Label_View_Flix_Sub_Title]</label>
-            <visible>![container.content(files) | Container.Content(addons) | $EXP[IsGameMode] | [$EXP[IsAnPlugin] + !$EXP[IsYoutube]]]</visible>
-            <visible>![Container.Content(albums) | Container.Content(songs) | container.content(artists)]</visible>
-        </control>
+        </definition>
     </include>
+
+
+    <!-- FURNITURE - HEADER - LABEL -->
 
     <include name="Label_Header_Sub_Info">
         <control type="group">
@@ -438,7 +549,6 @@
                     <label>   &#61968;</label>
                     <visible>Window.IsActive(musicplaylist)</visible>
                 </control>
-
             </control>
 
             <!-- MOVIES / TVSHOWS / SEASONS / EPISODES -->

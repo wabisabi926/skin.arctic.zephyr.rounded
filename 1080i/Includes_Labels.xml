@@ -799,6 +799,12 @@
         <value>$LOCALIZE[19055]</value>
     </variable>
 
+    <variable name="Label_Premiered_Year">
+        <value condition="!String.IsEmpty(ListItem.Premiered)">$INFO[ListItem.Premiered,  •  ,]</value>
+        <value condition="$EXP[IsGameMode]">$VAR[Label_Game_Year,  •  ,]</value>
+        <value condition="!String.IsEmpty(ListItem.Year)">$INFO[ListItem.Year,  •  ,]</value>
+    </variable>
+
     <!-- LABEL - VIEWS FLIX -->
 
     <variable name="Label_View_Flix_Main_Title">
@@ -819,7 +825,7 @@
 
         <value condition="Container.Content(seasons)">$LOCALIZE[20373] $INFO[ListItem.Season,,  •  ]$INFO[ListItem.Year,,  •  ]$INFO[ListItem.Property(TotalEpisodes),, $LOCALIZE[20360]] $INFO[ListItem.Property(UnWatchedEpisodes),  •  , $LOCALIZE[16101]]$INFO[Container($PARAM[id]).ListItem.Rating,  •  ]</value>
 
-        <value condition="Container.Content(episodes) + !$EXP[IsYoutube]">$INFO[ListItem.Season,$LOCALIZE[20373] ,]$INFO[ListItem.Episode,  •  $LOCALIZE[20359] ,]$VAR[LabelPremieredYear]$VAR[Label_Duration_Time_Check,  •  ,]$VAR[RatingLabel,  •  ,]</value>
+        <value condition="Container.Content(episodes) + !$EXP[IsYoutube]">$INFO[ListItem.Season,$LOCALIZE[20373] ,]$INFO[ListItem.Episode,  •  $LOCALIZE[20359] ,]$VAR[Label_Premiered_Year]$VAR[Label_Duration_Time_Check,  •  ,]$VAR[RatingLabel,  •  ,]</value>
 
         <value condition="Container.Content(actors) + !String.IsEmpty(ListItem.Property(Gender))">$INFO[ListItem.Property(Gender)] $INFO[ListItem.Property(Age),  •  ,] $LOCALIZE[31644]$INFO[ListItem.Property(Department),  •  ,]</value>
 
@@ -887,12 +893,6 @@
         <!-- <value>$VAR[Label_Duration_Time_Check]$VAR[RatingLabel,  •  ,]</value> -->
 
         <value condition="!String.IsEmpty(ListItem.Duration(mins))">$VAR[Label_Duration_Time_Check]</value>
-    </variable>
-
-    <variable name="LabelPremieredYear">
-        <value condition="!String.IsEmpty(ListItem.Premiered)">$INFO[ListItem.Premiered,  •  ,]</value>
-        <value condition="$EXP[IsGameMode]">$VAR[Label_Game_Year,  •  ,]</value>
-        <value condition="!String.IsEmpty(ListItem.Year)">$INFO[ListItem.Year,  •  ,]</value>
     </variable>
 
     <!-- LABEL - DIALOG CONTEXT MENU - PLOT -->
@@ -1701,6 +1701,9 @@
         <value condition="!String.IsEmpty(ListItem.Property(Artist_Description))">$INFO[ListItem.Property(Artist_Description)]</value>
         <value condition="!String.IsEmpty(ListItem.Property(Album_Description))">$INFO[ListItem.Property(Album_Description)]</value>
         <value condition="!String.IsEmpty(ListItem.AddonDescription)">$INFO[ListItem.AddonDescription]</value>
+
+        <!-- <value condition="Container.Content(actors) + !String.IsEmpty(ListItem.Plot)">$INFO[ListItem.Plot]</value> -->
+        <!-- <value condition="Container.Content(actors) + !$INFO[Container(99950).ListItem.Plot]">$INFO[Container(99950).ListItem.Plot]</value> -->
 
         <value condition="Container.Content(episodes)">$INFO[ListItem.Title,[B],[/B][CR],]$INFO[ListItem.Plot]</value>
         <value condition="$EXP[IsGameMode]">$VAR[Label_Game_Plot]</value>

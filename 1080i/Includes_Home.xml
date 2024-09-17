@@ -2348,6 +2348,30 @@
                 <visible>String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://)</visible>
             </control>
 
+            <!-- ACTORS -->
+
+            <control type="grouplist">
+                <itemgap>0</itemgap>
+                <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,actor)</visible>
+                <orientation>horizontal</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
+                <control type="label">
+                    <include>Widgets_Item_SubTitle_Info_Definition</include>
+                    <label fallback="19055">$INFO[Container(99950).ListItem.Property(Gender),,  •  ]</label>
+                    <visible>!String.IsEmpty(Container(99950).ListItem.Property(Gender))</visible>
+                </control>
+                <control type="label">
+                    <include>Widgets_Item_SubTitle_Info_Definition</include>
+                    <label fallback="19055">$INFO[Container(99950).ListItem.Property(Age),,  •  ]</label>
+                    <visible>!String.IsEmpty(Container(99950).ListItem.Property(Age))</visible>
+                </control>
+                <control type="label">
+                    <include>Widgets_Item_SubTitle_Info_Definition</include>
+                    <label fallback="19055">$INFO[Container(99950).ListItem.Property(Department)]</label>
+                    <visible>!String.IsEmpty(Container(99950).ListItem.Property(Department))</visible>
+                </control>
+            </control>
+
             <!-- OTHERS / PLUGING -->
 
             <control type="grouplist">
@@ -2489,7 +2513,8 @@
             <!-- Actor -->
             <control type="textbox">
                 <include>Widgets_Item_Plot_Definition</include>
-                <label fallback="19055">$INFO[Container(44422).ListItemAbsolute(0).Label,$ADDON[script.embuary.info 32017]: ]$INFO[Container(44422).ListItemAbsolute(1).Label,$COMMA ]$INFO[Container(44422).ListItemAbsolute(2).Label,$COMMA ]$INFO[Container(44422).ListItemAbsolute(3).Label,$COMMA ]$INFO[Container(44422).ListItemAbsolute(4).Label,$COMMA ]$INFO[Container(44422).ListItemAbsolute(5).Label,$COMMA ]</label>
+                <label fallback="19055">$INFO[Container(99950).ListItem.Plot]</label>
+                <visible>!String.IsEmpty(Container(99950).ListItem.Plot)</visible>
                 <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,actor)</visible>
             </control>
 
