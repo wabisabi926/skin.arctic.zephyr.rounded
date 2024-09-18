@@ -240,7 +240,7 @@
         <textcolor>Dark2</textcolor>
     </include>
 
-    <!-- VIEW FLIX -->
+    <!-- VIEW FLIX / INFO -->
 
     <include name="View_Flix_Minimal_Content">
         <control type="group">
@@ -359,7 +359,7 @@
                     <selectedcolor>PanelWhite70</selectedcolor>
                     <label>$LOCALIZE[20094]$INFO[System.AddonVersion(Container.PluginName),  •  v ]</label>
                     <visible>$EXP[IsAnPlugin]</visible>
-                    <visible>!$EXP[IsYoutube]</visible>
+                    <visible>Container.Content()</visible>
                 </control>
 
                 <!-- SUB TITLE - ADDONS -->
@@ -371,17 +371,6 @@
                     <selectedcolor>PanelWhite70</selectedcolor>
                     <label>$INFO[ListItem.AddonType]$INFO[ListItem.AddonVersion,  •  v ]</label>
                     <visible>Container.Content(addons)</visible>
-                </control>
-
-                <!-- SUB TITLE - GAMES -->
-
-                <control type="label">
-                    <aligny>center</aligny>
-                    <font>InfoNetflix</font>
-                    <textcolor>PanelWhite70</textcolor>
-                    <selectedcolor>PanelWhite70</selectedcolor>
-                    <label>$VAR[Label_View_Flix_Sub_Title]</label>
-                    <visible>$EXP[IsGameMode]</visible>
                 </control>
 
                 <!-- ALBUMS / SONGS -->
@@ -402,7 +391,7 @@
                     <textcolor>PanelWhite70</textcolor>
                     <selectedcolor>PanelWhite70</selectedcolor>
                     <label>$VAR[Label_View_Flix_Sub_Title]</label>
-                    <visible>![container.content(files) | Container.Content(addons) | $EXP[IsGameMode] | [$EXP[IsAnPlugin] + !$EXP[IsYoutube]]]</visible>
+                    <visible>![container.content(files) | Container.Content(addons) | [$EXP[IsAnPlugin] + Container.Content()]]</visible>
                     <visible>![Container.Content(albums) | Container.Content(songs) | container.content(artists)]</visible>
                 </control>
             </control>
@@ -1610,7 +1599,7 @@
                 <font>MediumBold3</font>
                 <textcolor>Dark1</textcolor>
                 <selectedcolor>Dark1</selectedcolor>
-                <label>$INFO[ListItem.Label] </label>
+                <label>$INFO[ListItem.Label]</label>
                 <visible>Container.Content(addons) + !ListItem.IsParentFolder</visible>
                 <visible>![Control.IsVisible(500) | Control.IsVisible(503) | Control.IsVisible(51) | Control.IsVisible(57) | Control.IsVisible(50) | Control.IsVisible(550) | Control.IsVisible(523)]</visible>
             </control>

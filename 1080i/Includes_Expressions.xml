@@ -37,6 +37,11 @@
 
     <!-- CLEARLOGO  -->
 
+
+    <!-- VIEW Flix Show Clearlogo ? -->
+
+    <expression name="View_Flix_Show_Clearlogo_Enable">[[Skin.HasSetting(show.view.netflix.title.clearlogo.game) + Window.IsVisible(MyGames.xml)] | [Skin.HasSetting(show.view.netflix.title.clearlogo.video) + Window.IsVisible(MyVideoNav.xml)] | [Skin.HasSetting(show.view.netflix.title.clearlogo.music) + Window.IsVisible(MyMusicNav.xml)]]</expression>
+    
     <expression name="Exp_Title_Clearlogo_Available">[!String.IsEmpty(Container(99950).ListItem.Art(cropimage)) | !String.IsEmpty(Container(99950).ListItem.Property(base_clearlogo)) | !String.IsEmpty(ListItem.Art(clearlogo)) | !String.IsEmpty(ListItem.Art(tvshow.clearlogo)) | !String.IsEmpty(ListItem.Art(artist.clearlogo))]</expression>
 
     <expression name="Exp_Title_Clearlogo_Home_Crop">[Skin.HasSetting(enabled.tmdb.helper.crop) + [!String.IsEmpty(Container(99950).ListItem.Art(cropimage)) | !String.IsEmpty(Container(99950).ListItem.Property(base_clearlogo))]]</expression>
@@ -173,10 +178,6 @@
     <expression name="View_List">Control.IsVisible(50) | Control.IsVisible(550) | Control.IsVisible(56) | Control.IsVisible(57)</expression>
     <expression name="View_Fanart">Control.IsVisible(547) | Control.IsVisible(557) | Control.IsVisible(56) | Control.IsVisible(57)</expression>
     <expression name="View_Poster">Control.IsVisible(55) | Control.IsVisible(509) | Control.IsVisible(517) | Control.IsVisible(519)</expression>
-
-    <!-- VIEW Flix Show Clearlogo ? -->
-
-    <expression name="View_Flix_Show_Clearlogo_Enable">[[Skin.HasSetting(show.view.netflix.title.clearlogo.game) + Window.IsVisible(MyGames.xml)] | [Skin.HasSetting(show.view.netflix.title.clearlogo.video) + Window.IsVisible(MyVideoNav.xml)] | [Skin.HasSetting(show.view.netflix.title.clearlogo.music) + Window.IsVisible(MyMusicNav.xml)]]</expression>
 
     <!-- VIEW 524 Flix List -->
 

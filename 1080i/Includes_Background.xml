@@ -318,12 +318,15 @@
         <!-- Settings -->
         <value condition="!String.IsEmpty(Skin.String(fanart.fallback.settings)) + [Window.IsVisible(Settings.xml) | Window.IsVisible(skinsettings.xml) | Window.IsVisible(SettingsSystemInfo.xml) | Window.IsVisible(service-CoreELEC-Settings-mainWindow.xml) | Window.IsVisible(service-LibreELEC-Settings-mainWindow.xml) | Window.IsVisible(SettingsCategory.xml) | Window.IsVisible(AddonBrowser.xml) | Window.IsVisible(FileManager.xml) | Window.IsVisible(SettingsProfile.xml) | Window.IsVisible(MyPrograms.xml)]">$INFO[Skin.String(fanart.fallback.settings)]</value>
 
+        <!-- Person (videos) -->
+        <value condition="!String.IsEmpty(Skin.String(fanart.fallback.person)) + [Container.Content(directors) | Container.Content(actors) | String.IsEqual(ListItem.Property(item.type),person)]">$INFO[Skin.String(fanart.fallback.person)]</value>
+
         <!-- OTHERS -->
 
         <value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(landscape))">$INFO[ListItem.Art(landscape)]</value>
         <!-- <value condition="!String.IsEmpty(ListItem.Thumb)">$INFO[ListItem.Thumb]</value> -->
-        <value condition="!String.IsEmpty(Skin.String(fanart.fallback.settings)) + $EXP[IsAnPlugin]">$INFO[Skin.String(fanart.fallback.settings)]</value>
+        <value condition="!String.IsEmpty(Skin.String(fanart.fallback.settings)) + $EXP[IsAnPlugin] + Container.Content()">$INFO[Skin.String(fanart.fallback.settings)]</value>
         <value condition="!String.IsEmpty(Container(99950).ListItem.Art(fanart))">$INFO[Container(99950).ListItem.Art(fanart)]</value>
 
         <!-- HOME ONLY -->

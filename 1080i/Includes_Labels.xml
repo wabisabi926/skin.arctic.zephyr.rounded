@@ -809,33 +809,49 @@
 
     <variable name="Label_View_Flix_Main_Title">
         <value condition="Container.Content(files) | Container.Content(addons)">$INFO[ListItem.Label]</value>
-        <value condition="!String.IsEmpty(Container.PluginName)">$INFO[System.AddonTitle(Container.PluginName)]</value>
+        <value condition="!String.IsEmpty(Container.PluginName) + Containet.Content()">$INFO[System.AddonTitle(Container.PluginName)]</value>
         <value condition="[Container.Content(artists) | Container.Content(albums) | Container.Content(songs)] + !ListItem.IsFolder">$INFO[ListItem.Artist]</value>
         <value>$INFO[ListItem.Label]</value>
     </variable>
 
     <variable name="Label_View_Flix_Sub_Title">
+
+        <!-- GAMES -->
+
         <value condition="$EXP[IsGameMode]">$VAR[Label_Game_Year,,  •  ]$VAR[Label_Game_Genre]$VAR[Label_Game_Rating,  •  ,]</value>
+
+        <!-- COLLECTION -->
 
         <value condition="ListItem.IsCollection">$INFO[Container(99950).ListItem.Property(Set.Years),,  •  ]$INFO[Container(44023).NumItems]$INFO[Container(99950).ListItem.Property(Set.NumItems),/,] $LOCALIZE[31018]$INFO[ListItem.Rating,  •  ,]</value>
 
+        <!-- TVSHOWS -->
+
         <value condition="Container.Content(tvshows)">$INFO[ListItem.Year,,  •  ]$INFO[ListItem.Property(TotalEpisodes),, $LOCALIZE[20360]] $INFO[ListItem.Property(UnWatchedEpisodes),  •  , $LOCALIZE[16101]]$INFO[Container($PARAM[id]).ListItem.Rating,  •  ]</value>
 
-        <value condition="Container.Content(seasons) + String.IsEmpty(ListItem.Season)">$LOCALIZE[20366]  •  $INFO[ListItem.Year,,  •  ]$INFO[ListItem.Property(TotalEpisodes),, $LOCALIZE[20360]] $INFO[ListItem.Property(UnWatchedEpisodes),  •  , $LOCALIZE[16101]]$INFO[Container($PARAM[id]).ListItem.Rating,  •  ]</value>
+        <!-- SEASONS -->
 
+        <value condition="Container.Content(seasons) + String.IsEmpty(ListItem.Season)">$LOCALIZE[20366]  •  $INFO[ListItem.Year,,  •  ]$INFO[ListItem.Property(TotalEpisodes),, $LOCALIZE[20360]] $INFO[ListItem.Property(UnWatchedEpisodes),  •  , $LOCALIZE[16101]]$INFO[Container($PARAM[id]).ListItem.Rating,  •  ]</value>
         <value condition="Container.Content(seasons)">$LOCALIZE[20373] $INFO[ListItem.Season,,  •  ]$INFO[ListItem.Year,,  •  ]$INFO[ListItem.Property(TotalEpisodes),, $LOCALIZE[20360]] $INFO[ListItem.Property(UnWatchedEpisodes),  •  , $LOCALIZE[16101]]$INFO[Container($PARAM[id]).ListItem.Rating,  •  ]</value>
+
+        <!-- EPISODES -->
 
         <value condition="Container.Content(episodes) + !$EXP[IsYoutube]">$INFO[ListItem.Season,$LOCALIZE[20373] ,]$INFO[ListItem.Episode,  •  $LOCALIZE[20359] ,]$VAR[Label_Premiered_Year]$VAR[Label_Duration_Time_Check,  •  ,]$VAR[RatingLabel,  •  ,]</value>
 
-        <value condition="Container.Content(actors) + !String.IsEmpty(ListItem.Property(Gender))">$INFO[ListItem.Property(Gender)] $INFO[ListItem.Property(Age),  •  ,] $LOCALIZE[31644]$INFO[ListItem.Property(Department),  •  ,]</value>
+        <!-- ACTORS -->
 
+        <value condition="Container.Content(actors) + !Container.SortMethod(1) + !$EXP[IsAnPlugin]">$INFO[ListItem.Label2] $LOCALIZE[38026]</value>
+        <value condition="Container.Content(actors) + !String.IsEmpty(ListItem.Property(Gender))">$INFO[ListItem.Property(Gender)]$INFO[ListItem.Property(Age),  •  , $LOCALIZE[31644]]$INFO[ListItem.Property(Department),  •  ,]</value>
         <value condition="Container.Content(actors) + !String.IsEmpty(ListItem.Property(Department))">$INFO[ListItem.Property(Department)]</value>
+
+        <!-- MOVIES / SETS -->
 
         <value condition="Container.Content(movies) | Container.Content(sets)">$INFO[ListItem.Year]$VAR[Label_Genre,  •  ,]$VAR[Label_Duration_Time_Check,  •  ,]$INFO[Container($PARAM[id]).ListItem.Rating,  •  ]</value>
 
+        <!-- YOUTUBE -->
+
         <value condition="$EXP[IsYoutube] + !ListItem.IsFolder">$INFO[Container($PARAM[id]).ListItem.Year]$INFO[Container($PARAM[id]).ListItem.DateAdded,  •  ,]$INFO[Container($PARAM[id]).ListItem.Duration(mins),  •  , $LOCALIZE[31084]]</value>
 
-        <value condition="Container.Content(actors) + !Container.SortMethod(1)">$INFO[ListItem.Label2] $LOCALIZE[38026]</value>
+        <!-- OTHERS -->
 
         <value condition="!String.IsEmpty(ListItem.Label)">$INFO[ListItem.Label]</value>
 
@@ -843,54 +859,52 @@
     </variable>
 
     <variable name="Label_View_Flix_Sub_Title_Music">
-        <value condition="Control.IsVisible(515) + Container.Content(artists) + Integer.IsEqual(Container(51581).NumItems,1)">$INFO[Container(51581).NumItems,, $LOCALIZE[558]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
-        <value condition="Control.IsVisible(515) + Container.Content(artists)">$INFO[Container(51581).NumItems,, $LOCALIZE[132]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
 
-        <value condition="Control.IsVisible(5238) + Container.Content(artists) + Integer.IsEqual(Container(523881).NumItems,1)">$INFO[Container(523881).NumItems,, $LOCALIZE[558]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
-        <value condition="Control.IsVisible(5238) + Container.Content(artists)">$INFO[Container(523881).NumItems,, $LOCALIZE[132]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
+        <!-- ARTISTS -->
 
-        <value condition="Control.IsVisible(5228) + Container.Content(artists) + Integer.IsEqual(Container(522881).NumItems,1)">$INFO[Container(522881).NumItems,, $LOCALIZE[558]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
-        <value condition="Control.IsVisible(5228) + Container.Content(artists)">$INFO[Container(522881).NumItems,, $LOCALIZE[132]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
+        <value condition="Container.Content(artists) + Control.IsVisible(515) + Integer.IsEqual(Container(51581).NumItems,1)">$INFO[Container(51581).NumItems,, $LOCALIZE[558]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
+        <value condition="Container.Content(artists) + Control.IsVisible(515)">$INFO[Container(51581).NumItems,, $LOCALIZE[132]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
+        <value condition="Container.Content(artists) + Control.IsVisible(5238) + Integer.IsEqual(Container(523881).NumItems,1)">$INFO[Container(523881).NumItems,, $LOCALIZE[558]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
+        <value condition="Container.Content(artists) + Control.IsVisible(5238)">$INFO[Container(523881).NumItems,, $LOCALIZE[132]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
+        <value condition="Container.Content(artists) + Control.IsVisible(5228) + Integer.IsEqual(Container(522881).NumItems,1)">$INFO[Container(522881).NumItems,, $LOCALIZE[558]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
+        <value condition="Container.Content(artists) + Control.IsVisible(5228)">$INFO[Container(522881).NumItems,, $LOCALIZE[132]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
+        <value condition="Container.Content(artists) + Control.IsVisible(50) + Integer.IsEqual(Container(5081).NumItems,1)">$INFO[Container(5081).NumItems,, $LOCALIZE[558]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
+        <value condition="Container.Content(artists) + Control.IsVisible(50)">$INFO[Container(5081).NumItems,, $LOCALIZE[132]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
+        <value condition="Container.Content(artists) + Control.IsVisible(57) + Integer.IsEqual(Container(5781).NumItems,1)">$INFO[Container(5781).NumItems,, $LOCALIZE[558]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
+        <value condition="Container.Content(artists) + Control.IsVisible(57)">$INFO[Container(5781).NumItems,, $LOCALIZE[132]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
+        <value condition="Container.Content(artists) + Control.IsVisible(500) + Integer.IsEqual(Container(50081).NumItems,1)">$INFO[Container(50081).NumItems,, $LOCALIZE[558]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
+        <value condition="Container.Content(artists) + Control.IsVisible(500)">$INFO[Container(50081).NumItems,, $LOCALIZE[132]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
+        <value condition="Container.Content(artists) + Control.IsVisible(547) + Integer.IsEqual(Container(54781).NumItems,1)">$INFO[Container(54781).NumItems,, $LOCALIZE[558]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
+        <value condition="Container.Content(artists) + Control.IsVisible(547)">$INFO[Container(54781).NumItems,, $LOCALIZE[132]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
+        <value condition="Container.Content(artists) + Control.IsVisible(503) + Integer.IsEqual(Container(50381).NumItems,1)">$INFO[Container(50381).NumItems,, $LOCALIZE[558]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
+        <value condition="Container.Content(artists) + Control.IsVisible(503)">$INFO[Container(50381).NumItems,, $LOCALIZE[132]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
+        <value condition="Container.Content(artists) + Control.IsVisible(505) + Integer.IsEqual(Container(50581).NumItems,1)">$INFO[Container(50581).NumItems,, $LOCALIZE[558]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
+        <value condition="Container.Content(artists) + Control.IsVisible(505)">$INFO[Container(50581).NumItems,, $LOCALIZE[132]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
+        <value condition="Container.Content(artists) + Control.IsVisible(508) + Integer.IsEqual(Container(50881).NumItems,1)">$INFO[Container(50881).NumItems,, $LOCALIZE[558]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
+        <value condition="Container.Content(artists) + Control.IsVisible(508)">$INFO[Container(50881).NumItems,, $LOCALIZE[132]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
+        <value condition="Container.Content(artists) + Control.IsVisible(514) + Integer.IsEqual(Container(51481).NumItems,1)">$INFO[Container(51481).NumItems,, $LOCALIZE[558]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
+        <value condition="Container.Content(artists) + Control.IsVisible(514)">$INFO[Container(51481).NumItems,, $LOCALIZE[132]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
+        <value condition="Container.Content(artists) + Control.IsVisible(557) + Integer.IsEqual(Container(55781).NumItems,1)">$INFO[Container(55781).NumItems,, $LOCALIZE[558]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
+        <value condition="Container.Content(artists) + Control.IsVisible(557)">$INFO[Container(55781).NumItems,, $LOCALIZE[132]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
+        <value condition="Container.Content(artists) + Control.IsVisible(523) + Integer.IsEqual(Container(52381).NumItems,1)">$INFO[Container(52381).NumItems,, $LOCALIZE[558]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
+        <value condition="Container.Content(artists) + Control.IsVisible(523)">$INFO[Container(52381).NumItems,, $LOCALIZE[132]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
+        <value condition="Container.Content(artists) + Control.IsVisible(522) + Integer.IsEqual(Container(52281).NumItems,1)">$INFO[Container(52281).NumItems,, $LOCALIZE[558]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
+        <value condition="Container.Content(artists) + Control.IsVisible(522)">$INFO[Container(52281).NumItems,, $LOCALIZE[132]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
+        <value condition="Container.Content(artists) + Control.IsVisible(524) + Integer.IsEqual(Container(52481).NumItems,1)">$INFO[Container(52481).NumItems,, $LOCALIZE[558]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
+        <value condition="Container.Content(artists) + Control.IsVisible(524)">$INFO[Container(52481).NumItems,, $LOCALIZE[132]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
 
-        <value condition="Control.IsVisible(50) + Container.Content(artists) + Integer.IsEqual(Container(5081).NumItems,1)">$INFO[Container(5081).NumItems,, $LOCALIZE[558]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
-        <value condition="Control.IsVisible(50) + Container.Content(artists)">$INFO[Container(5081).NumItems,, $LOCALIZE[132]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
-        <value condition="Control.IsVisible(57) + Container.Content(artists) + Integer.IsEqual(Container(5781).NumItems,1)">$INFO[Container(5781).NumItems,, $LOCALIZE[558]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
-        <value condition="Control.IsVisible(57) + Container.Content(artists)">$INFO[Container(5781).NumItems,, $LOCALIZE[132]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
-        <value condition="Control.IsVisible(500) + Container.Content(artists) + Integer.IsEqual(Container(50081).NumItems,1)">$INFO[Container(50081).NumItems,, $LOCALIZE[558]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
-        <value condition="Control.IsVisible(500) + Container.Content(artists)">$INFO[Container(50081).NumItems,, $LOCALIZE[132]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
-        <value condition="Control.IsVisible(547) + Container.Content(artists) + Integer.IsEqual(Container(54781).NumItems,1)">$INFO[Container(54781).NumItems,, $LOCALIZE[558]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
-        <value condition="Control.IsVisible(547) + Container.Content(artists)">$INFO[Container(54781).NumItems,, $LOCALIZE[132]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,] </value>
-        <value condition="Control.IsVisible(503) + Container.Content(artists) + Integer.IsEqual(Container(50381).NumItems,1)">$INFO[Container(50381).NumItems,, $LOCALIZE[558]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
-        <value condition="Control.IsVisible(503) + Container.Content(artists)">$INFO[Container(50381).NumItems,, $LOCALIZE[132]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
-        <value condition="Control.IsVisible(505) + Container.Content(artists) + Integer.IsEqual(Container(50581).NumItems,1)">$INFO[Container(50581).NumItems,, $LOCALIZE[558]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
-        <value condition="Control.IsVisible(505) + Container.Content(artists)">$INFO[Container(50581).NumItems,, $LOCALIZE[132]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
-        <value condition="Control.IsVisible(508) + Container.Content(artists) + Integer.IsEqual(Container(50881).NumItems,1)">$INFO[Container(50881).NumItems,, $LOCALIZE[558]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
-        <value condition="Control.IsVisible(508) + Container.Content(artists)">$INFO[Container(50881).NumItems,, $LOCALIZE[132]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
-        <value condition="Control.IsVisible(514) + Container.Content(artists) + Integer.IsEqual(Container(51481).NumItems,1)">$INFO[Container(51481).NumItems,, $LOCALIZE[558]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
-        <value condition="Control.IsVisible(514) + Container.Content(artists)">$INFO[Container(51481).NumItems,, $LOCALIZE[132]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
-        <value condition="Control.IsVisible(557) + Container.Content(artists) + Integer.IsEqual(Container(55781).NumItems,1)">$INFO[Container(55781).NumItems,, $LOCALIZE[558]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
-        <value condition="Control.IsVisible(557) + Container.Content(artists)">$INFO[Container(55781).NumItems,, $LOCALIZE[132]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
-
-        <value condition="Control.IsVisible(523) + Container.Content(artists) + Integer.IsEqual(Container(52381).NumItems,1)">$INFO[Container(52381).NumItems,, $LOCALIZE[558]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
-        <value condition="Control.IsVisible(523) + Container.Content(artists)">$INFO[Container(52381).NumItems,, $LOCALIZE[132]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
-        <value condition="Control.IsVisible(522) + Container.Content(artists) + Integer.IsEqual(Container(52281).NumItems,1)">$INFO[Container(52281).NumItems,, $LOCALIZE[558]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
-        <value condition="Control.IsVisible(522) + Container.Content(artists)">$INFO[Container(52281).NumItems,, $LOCALIZE[132]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
-        <value condition="Control.IsVisible(524) + Container.Content(artists) + Integer.IsEqual(Container(52481).NumItems,1)">$INFO[Container(52481).NumItems,, $LOCALIZE[558]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
-        <value condition="Control.IsVisible(524) + Container.Content(artists)">$INFO[Container(52481).NumItems,, $LOCALIZE[132]] $INFO[Container($PARAM[id]).ListItem.Genre, •  ,]</value>
-        <!-- <value condition="Container.Content(albums) + Skin.HasSetting(show.view.netflix.title.clearlogo.music)">$INFO[ListItem.Label]$INFO[ListItem.Year,  •  ,]$VAR[Label_Duration_Time_Check,  •  ,]</value> -->
+        <!-- ALBUMS -->
 
         <value condition="Container.Content(albums) + String.StartsWith(ListItem.Label,$LOCALIZE[427])">$INFO[ListItem.Album,,  •  ]$INFO[ListItem.Label]$INFO[ListItem.Year,  •  ,]$VAR[Label_Duration_Time_Check,  •  ,]</value>
-
         <value condition="Container.Content(albums) + !String.StartsWith(ListItem.Label,$LOCALIZE[427])">$INFO[ListItem.Label]$INFO[ListItem.Year,  •  ,]$VAR[Label_Duration_Time_Check,  •  ,]</value>
 
-        <value condition="Control.IsVisible(57) + Container.Content(songs)">$INFO[ListItem.Album]$INFO[ListItem.Year,  •  ,]</value>
-        <value condition="Control.IsVisible(523) + Container.Content(songs)">$INFO[ListItem.Album]$INFO[ListItem.Year,  •  ,]</value>
+        <!-- SONGS -->
 
+        <value condition="Container.Content(songs) + Control.IsVisible(57)">$INFO[ListItem.Album]$INFO[ListItem.Year,  •  ,]</value>
+        <value condition="Container.Content(songs) + Control.IsVisible(523)">$INFO[ListItem.Album]$INFO[ListItem.Year,  •  ,]</value>
         <value condition="Container.Content(songs)">$INFO[ListItem.Album]$INFO[ListItem.Year,  •  ,]$INFO[ListItem.TrackNumber ,  •  ,]. $INFO[ListItem.Title]</value>
 
         <value condition="!String.IsEmpty(ListItem.Year)">$INFO[ListItem.Year]$VAR[Label_Duration_Time_Check,  •  ,]$VAR[RatingLabel,  •  ,]</value>
-
-        <!-- <value>$VAR[Label_Duration_Time_Check]$VAR[RatingLabel,  •  ,]</value> -->
 
         <value condition="!String.IsEmpty(ListItem.Duration(mins))">$VAR[Label_Duration_Time_Check]</value>
     </variable>
@@ -1376,7 +1390,7 @@
         <value condition="Control.HasFocus(9058)">$LOCALIZE[31161] $INFO[ListItem.Label] $LOCALIZE[31649]</value>
         <value condition="Control.HasFocus(9059)">$LOCALIZE[31643] $INFO[ListItem.Label] $LOCALIZE[31649]</value>
         <value condition="Control.HasFocus(9017)">$LOCALIZE[31647]</value>
-        <value condition="Control.HasFocus(9054)">$LOCALIZE[31645] $INFO[ListItem.Label]</value>
+        <value condition="Control.HasFocus(9054)">$INFO[ListItem.Label]</value>
         <value condition="Control.HasFocus(9006)">$LOCALIZE[31135] $INFO[Window(Home).Property(SetDirectorSelected)]</value>
         <value condition="Control.HasFocus(9056)">$LOCALIZE[31640] $INFO[Window(Home).Property(SetWriterSelected)]</value>
         <value condition="Control.HasFocus(9020)">$LOCALIZE[31651] $INFO[Window(Home).Property(SetCreatorSelected)]</value>
@@ -1434,7 +1448,7 @@
         <value condition="Control.HasFocus(9052) | Control.HasFocus(9552)">$INFO[Container(9552).NumItems] $LOCALIZE[342]</value>
         <value condition="Control.HasFocus(9057) | Control.HasFocus(9557)">$INFO[Container(9557).NumItems] $LOCALIZE[31650]</value>
         <value condition="Control.HasFocus(9053) | Control.HasFocus(9553)">$INFO[Container(9553).NumItems] $LOCALIZE[20343]</value>
-        <value condition="Control.HasFocus(9054) | Control.HasFocus(9554)">$INFO[Container(9554).NumItems] $LOCALIZE[1]</value>
+        <value condition="Control.HasFocus(9554)">$INFO[Container(9554).NumItems] $LOCALIZE[1]</value>
         <value condition="Control.HasFocus(9004) | Control.HasFocus(9504)">$INFO[Container(9504).NumItems] $LOCALIZE[3]</value>
         <value condition="Control.HasFocus(9006) | Control.HasFocus(9506)">$INFO[Container(9506).NumItems] $LOCALIZE[342]</value>
         <value condition="Control.HasFocus(9056) | Control.HasFocus(9556)">$INFO[Container(9556).NumItems] $LOCALIZE[342]</value>
@@ -1449,11 +1463,9 @@
 
         <value condition="String.IsEqual(ListItem.DBType,movie)">$INFO[ListItem.Director]</value>
 
-        <!-- <value condition="!Control.HasFocus(9579) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !Integer.IsGreater(Container(99950).ListItem.Season,1) + !Skin.HasSetting(filter.video.only.local)">$INFO[Container(99950).ListItem.Season] $LOCALIZE[36904]$INFO[Container(99950).ListItem.Episode,  •  , $LOCALIZE[20453]] </value> -->
+        <!-- <value condition="!Control.HasFocus(9579) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !Integer.IsGreater(Container(99950).ListItem.Season,1) + !Skin.HasSetting(filter.video.only.local)">$INFO[Container(99950).ListItem.Season] $LOCALIZE[36904]$INFO[Container(99950).ListItem.Episode,  •  , $LOCALIZE[20453]]</value> -->
 
         <!-- <value condition="!Control.HasFocus(9579) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + Integer.IsGreater(Container(99950).ListItem.Season,1) + !Skin.HasSetting(filter.video.only.local)">$INFO[Container(99950).ListItem.Season] $LOCALIZE[36905]$INFO[Container(99950).ListItem.Episode,  •  , $LOCALIZE[20453]]</value> -->
-
-
 
 
         <value condition="String.IsEqual(ListItem.Property(item.type),person)">$INFO[ListItem.Property(Gender)] $INFO[ListItem.Property(Department),  •  ,]</value>
@@ -1482,7 +1494,7 @@
         <value condition="String.IsEqual(ListItem.DBType,tvshow) + !Integer.IsGreater(ListItem.Property(TotalSeasons),1) + Skin.HasSetting(filter.video.only.local)">$INFO[ListItem.Property(TotalSeasons)] $LOCALIZE[36904]$INFO[ListItem.Property(TotalEpisodes),  •  ,] $LOCALIZE[36907]</value>
         <value condition="String.IsEqual(ListItem.DBType,tvshow) + Integer.IsGreater(ListItem.Property(TotalSeasons),1) + Skin.HasSetting(filter.video.only.local)">$INFO[ListItem.Property(TotalSeasons)] $LOCALIZE[36905]$INFO[ListItem.Property(TotalEpisodes),  •  ,] $LOCALIZE[36907]</value>
 
-        <value condition="String.IsEqual(ListItem.DBType,tvshow) + !Integer.IsGreater(Container(99950).ListItem.Season,1) + !Skin.HasSetting(filter.video.only.local)">$INFO[Container(99950).ListItem.Season] $LOCALIZE[36904]$INFO[Container(99950).ListItem.Episode,  •  , $LOCALIZE[20453]] </value>
+        <value condition="String.IsEqual(ListItem.DBType,tvshow) + !Integer.IsGreater(Container(99950).ListItem.Season,1) + !Skin.HasSetting(filter.video.only.local)">$INFO[Container(99950).ListItem.Season] $LOCALIZE[36904]$INFO[Container(99950).ListItem.Episode,  •  , $LOCALIZE[20453]]</value>
         <value condition="String.IsEqual(ListItem.DBType,tvshow) + Integer.IsGreater(Container(99950).ListItem.Season,1) + !Skin.HasSetting(filter.video.only.local)">$INFO[Container(99950).ListItem.Season] $LOCALIZE[36905]$INFO[Container(99950).ListItem.Episode,  •  , $LOCALIZE[20453]]</value>
 
         <value condition="String.IsEqual(ListItem.DBType,season)">$INFO[ListItem.TVShowTitle]$INFO[ListItem.Property(TotalEpisodes),  •  , $LOCALIZE[20453]]</value>
