@@ -71,9 +71,9 @@
 
             <include>View_Flix_Minimal_Content</include>
 
-            <include condition="Skin.HasSetting(show.view.524.poster.movies)">View_524_Poster</include>
+            <include condition="Skin.HasSetting(show.view.524.poster.movies)">524_Poster</include>
 
-            <include content="View_524_Fanart" condition="!Skin.HasSetting(show.view.524.poster.movies)">
+            <include content="524_Fanart" condition="!Skin.HasSetting(show.view.524.poster.movies)">
                 <param name="top" value="522" />
                 <param name="left" value="70" />
             </include>
@@ -152,9 +152,9 @@
 
             <include>View_Flix_Minimal_Content</include>
 
-            <include content="View_524_Album" condition="!Skin.HasSetting(show.view.524.fanart.artist)"></include>
+            <include content="524_Album" condition="!Skin.HasSetting(show.view.524.fanart.artist)"></include>
 
-            <include content="View_524_Fanart" condition="Skin.HasSetting(show.view.524.fanart.artist)">
+            <include content="524_Fanart" condition="Skin.HasSetting(show.view.524.fanart.artist)">
                 <param name="top" value="522" />
                 <param name="left" value="70" />
             </include>
@@ -162,7 +162,9 @@
         </control>
     </include>
 
-    <include name="View_524_Fanart">
+    <include name="524_Fanart">
+        <param name="top" value="$PARAM[top]" default="522"/>
+        <param name="left" value="$PARAM[left]" default="70"/>
         <param name="height" value="$PARAM[height]" default="370"/>
         <param name="width" value="$PARAM[width]" default="645"/>
         <param name="visible" value="$PARAM[visible]" default="true"/>
@@ -247,7 +249,7 @@
         </definition>
     </include>
 
-    <include name="View_524_Album">
+    <include name="524_Album">
         <param name="top" value="$PARAM[top]" default="522"/>
         <param name="left" value="$PARAM[left]" default="70"/>
         <param name="width" value="$PARAM[width]" default="370"/>
@@ -316,7 +318,7 @@
         </definition>
     </include>
 
-    <include name="View_524_Poster">
+    <include name="524_Poster">
         <param name="top" value="$PARAM[top]" default="522"/>
         <param name="left" value="$PARAM[left]" default="70"/>
         <param name="visible" value="$PARAM[visible]" default="true"/>
