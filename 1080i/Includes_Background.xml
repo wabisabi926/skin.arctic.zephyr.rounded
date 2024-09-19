@@ -845,10 +845,14 @@
         <!-- HUB -->
         <value condition="!Skin.HasSetting(hide.global.fanart) + !String.IsEmpty(Container(9500).ListItem.Art(fanart))">$INFO[Container(9500).ListItem.Art(fanart)]</value>
 
-        <!-- EPISODE / SEASON -->
+        <!-- EPISODE -->
 
         <value condition="!Skin.HasSetting(hide.global.fanart) + Skin.HasSetting(use.thumbnail.episodes) + String.IsEqual(ListItem.DBType,episode) + !String.IsEmpty(ListItem.Art(thumb))">$INFO[ListItem.Art(thumb)]</value>
-        <value condition="!Skin.HasSetting(hide.global.fanart) + !Skin.HasSetting(dont.use.landscape.seasons) + String.IsEqual(ListItem.DBType,season) + !String.IsEmpty(ListItem.Art(landscape)) + !ListItem.IsParentFolder">$INFO[ListItem.Art(landscape)]</value>
+
+        <!-- SEASON -->
+
+        <value condition="!Skin.HasSetting(hide.global.fanart) + String.IsEqual(ListItem.DBType,season) + !Skin.HasSetting(dont.use.landscape.seasons) + !String.IsEmpty(ListItem.Art(landscape)) + !ListItem.IsParentFolder">$INFO[ListItem.Art(landscape)]</value>
+        <value condition="!Skin.HasSetting(hide.global.fanart) + String.IsEqual(ListItem.DBType,season) + Skin.HasSetting(dont.use.landscape.seasons) + !String.IsEmpty(ListItem.Art(tvshow.fanart)) + !ListItem.IsParentFolder">$INFO[ListItem.Art(tvshow.fanart)]</value>
 
         <!-- ALBUM / SONG -->
 
