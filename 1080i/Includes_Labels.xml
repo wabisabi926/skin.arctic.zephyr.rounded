@@ -666,41 +666,20 @@
         <!-- <value condition="Integer.IsEqual(ListItem.Playcount,0) + !$EXP[IsNewMovie] + !$EXP[IsNewTVShow] + !$EXP[IsNewEpisode] + !Skin.HasSetting(hide.markers.unwatched) + !String.IsEqual(ListItem.Property(LabelMore),more)">[COLOR=$VAR[Color_Indicator_Background_UnWatched]]&#61833;[/COLOR]</value> -->
     </variable>
 
-    <variable name="IndicatorFlagLabelIsResumable">
+    <variable name="Label_Flag_Indicator_Is_Resumable">
         <value condition="Skin.HasSetting(markers.inprogress.percentage) + !String.IsEmpty(ListItem.PercentPlayed)">$INFO[ListItem.PercentPlayed,,%]</value>
         <value>$LOCALIZE[31437]</value>
     </variable>
 
-    <variable name="IndicatorFlagLabelIsTVShowInProgress">
+    <variable name="Label_Flag_Indicator_TVShows_In_Progress">
         <value condition="!Skin.HasSetting(hide.markers.inprogress.tvshow.label)">$INFO[ListItem.Property(WatchedEpisodes)]/$INFO[ListItem.Property(TotalEpisodes)]</value>
         <value condition="Skin.HasSetting(markers.inprogress.percentage) + !String.IsEmpty(ListItem.Property(WatchedEpisodePercent))">$INFO[ListItem.Property(WatchedEpisodePercent),,%]</value>
         <value>$LOCALIZE[31437]</value>
     </variable>
 
-    <variable name="IndicatorFlagLabelIsSetInProgress">
+    <variable name="Label_Flag_Indicator_Set_In_Progress">
         <!-- <value condition="Skin.HasSetting(markers.inprogress.percentage) + !String.IsEmpty(ListItem.PercentPlayed)">$INFO[ListItem.PercentPlayed,,%]</value> -->
         <value>$LOCALIZE[31437]</value>
-    </variable>
-
-    <variable name="IndicatorFlagLabel301">
-        <value condition="Skin.HasSetting(hide.markers) | [Container(301).ListItem.IsPlaying + !Skin.HasSetting(hide.markers.isplaying)]"></value>
-        <value condition="[Container(301).ListItem.IsResumable | $EXP[IsTVShowInProgress301]] + Skin.HasSetting(hide.markers.inprogress)"></value>
-        <value condition="Container(301).ListItem.IsResumable">$VAR[IndicatorFlagLabelIsResumable301]</value>
-        <value condition="$EXP[IsTVShowInProgress301]">$VAR[IndicatorFlagLabelIsTVShowInProgress301]</value>
-        <value condition="String.IsEqual(Container(301).ListItem.Overlay,OverlayWatched.png) + Skin.HasSetting(hide.markers.watched)"></value>
-        <value condition="String.IsEqual(Container(301).ListItem.Overlay,OverlayWatched.png)">$LOCALIZE[31438]</value>
-        <value condition="String.IsEqual(Container(301).ListItem.Overlay,OverlayUnwatched.png) + [$EXP[IsNewMovie301] | $EXP[IsNewTVShow301] | $EXP[IsNewEpisode301]] + !Skin.HasSetting(hide.markers.newcontent)">$LOCALIZE[31439]</value>
-    </variable>
-
-    <variable name="IndicatorFlagLabelIsResumable301">
-        <value condition="Skin.HasSetting(markers.inprogress.percentage) + !String.IsEmpty(Container(301).ListItem.PercentPlayed)">$INFO[Container(301).ListItem.PercentPlayed,,%]</value>
-        <value>$LOCALIZE[31437]</value>
-    </variable>
-
-    <variable name="IndicatorFlagLabelIsTVShowInProgress301">
-        <value condition="Skin.HasSetting(hide.markers.inprogress.tvshow.label)">$LOCALIZE[31437]</value>
-        <value condition="Skin.HasSetting(markers.inprogress.percentage) + !String.IsEmpty(Container(301).ListItem.Property(WatchedEpisodePercent)">$INFO[Container(301).ListItem.Property(WatchedEpisodePercent),,%]</value>
-        <value>$INFO[Container(301).ListItem.Property(WatchedEpisodes)]/$INFO[Container(301).ListItem.Property(TotalEpisodes)]</value>
     </variable>
 
     <variable name="Label_Main_Title_Fanart_56_57">
@@ -1114,33 +1093,6 @@
 
     <variable name="RtMclabel">
         <value condition="Skin.HasSetting(show.flags.rating.tomatoes.and.metacritics) + ![ $EXP[Home_Is_Vertical] + !Skin.HasSetting(hide.furniture.flags.vertical.widgets)]">$INFO[Container(99950).ListItem.Property(Metacritic_Rating),  •  MC ,%]$INFO[Container(99950).ListItem.Property(RottenTomatoes_Rating),  •  RT ,%]</value>
-    </variable>
-
-    <variable name="Label_Widget_Sub_Seasons_Episodes">
-        <value>$INFO[Container(301).ListItem.TvShowTitle,,  •  ]$INFO[Container(301).ListItem.Season,$LOCALIZE[20373] ,  •  ]$INFO[Container(301).ListItem.Episode,$LOCALIZE[20359] ,  •  ]</value>
-    </variable>
-
-    <variable name="WidgetSubLabel">
-        <value condition="String.IsEqual(Container(300).ListItem.Property(widget),NextAired)"/>
-        <value condition="String.Contains(Container(300).ListItem.Property(widgetType),artists) + !String.IsEmpty(Container(301).ListItem.Property(Artist_Style))">$INFO[Container(301).ListItem.Property(Artist_Style)]</value>
-        <value condition="String.Contains(Container(300).ListItem.Property(widgetType),artists) + String.IsEmpty(Container(301).ListItem.Property(Artist_Style))">$INFO[Container(301).ListItem.Artist]</value>
-        <value condition="String.Contains(Container(300).ListItem.Property(widgetType),music) | String.Contains(Container(300).ListItem.Property(widgetType),albums) | String.Contains(Container(300).ListItem.Property(widgetType),songs)">$INFO[Container(301).ListItem.Artist]$INFO[Container(44322).NumItems,  •  , $LOCALIZE[134]]$INFO[Container(301).ListItem.Year,  •  ,]</value>
-
-        <!-- Episodes -->
-        <value condition="String.IsEqual(Container(301).ListItem.DBType,episode) + !Skin.HasSetting(show.time.format.hh.mm)">$VAR[Label_Widget_Sub_Seasons_Episodes]$INFO[Container(301).ListItem.Premiered,,  •  ]$INFO[Container(301).ListItem.Duration(mins),, $LOCALIZE[31084]  •  ]$VAR[Label_Rating_301]$VAR[RtMclabel]</value>
-        <value condition="String.IsEqual(Container(301).ListItem.DBType,episode) + Skin.HasSetting(show.time.format.hh.mm) + Integer.IsGreater(Container(301).ListItem.Duration(h),0)">$VAR[Label_Widget_Sub_Seasons_Episodes]$INFO[Container(301).ListItem.Premiered,,  •  ]$INFO[Container(301).ListItem.Duration(h),,$LOCALIZE[31070]] $INFO[Container(301).ListItem.Duration(mm),,$LOCALIZE[31071]  •  ]$VAR[Label_Rating_301]$VAR[RtMclabel]</value>
-        <value condition="String.IsEqual(Container(301).ListItem.DBType,episode) + Skin.HasSetting(show.time.format.hh.mm) + !Integer.IsGreater(Container(301).ListItem.Duration(h),0)">$VAR[Label_Widget_Sub_Seasons_Episodes]$INFO[Container(301).ListItem.Premiered,,  •  ]$INFO[Container(301).ListItem.Duration(mins),,$LOCALIZE[31071]  •  ]$VAR[Label_Rating_301]$VAR[RtMclabel]</value>
-
-        <!-- Movies -->
-        <value condition="String.IsEqual(Container(301).ListItem.DBType,movie) + !Skin.HasSetting(show.time.format.hh.mm) + !String.IsEqual(Container(301).ListItem.DBType,set)">$INFO[Container(301).ListItem.Year,,  •  ]$INFO[Container(301).ListItem.Duration(mins),, $LOCALIZE[31084]]$VAR[Label_Rating_301,  •  ]$VAR[RtMclabel]</value>
-        <value condition="String.IsEqual(Container(301).ListItem.DBType,movie) + Skin.HasSetting(show.time.format.hh.mm) + Integer.IsGreater(Container(301).ListItem.Duration(h),0)">$INFO[Container(301).ListItem.Year,,  •  ]$INFO[Container(301).ListItem.Duration(h),,$LOCALIZE[31070]] $INFO[Container(301).ListItem.Duration(mm),,$LOCALIZE[31071]]$VAR[Label_Rating_301,  •  ]$VAR[RtMclabel]</value>
-        <value condition="String.IsEqual(Container(301).ListItem.DBType,movie) + Skin.HasSetting(show.time.format.hh.mm) + !Integer.IsGreater(Container(301).ListItem.Duration(h),0)">$INFO[Container(301).ListItem.Year,,  •  ]$INFO[Container(301).ListItem.Duration(mins),,$LOCALIZE[31071]]$VAR[Label_Rating_301,  •  ]$VAR[RtMclabel]</value>
-
-        <!-- Sets -->
-        <value condition="String.IsEqual(Container(301).ListItem.DBType,set) + !Skin.HasSetting(show.time.format.hh.mm)">$INFO[Container(301).ListItem.Year,,  •  ]$INFO[Container(44321).NumItems,, $LOCALIZE[342]]$VAR[Label_Rating_301,  •  ]$VAR[RtMclabel]</value>
-
-        <!-- Tv Shows -->
-        <value condition="String.IsEqual(Container(301).ListItem.DBType,tvshow)">$INFO[Container(301).ListItem.Episode,, $LOCALIZE[20360]  •  ]$INFO[Container(301).ListItem.Property(UnWatchedEpisodes),, $LOCALIZE[16101]]$VAR[Label_Rating_301,  •  ]$VAR[RtMclabel]</value>
     </variable>
 
     <variable name="Label_View_55_Slider_Sub_Title">
@@ -2183,11 +2135,6 @@
     <variable name="Label_Rating_9500">
         <value condition="!String.IsEmpty(Container(9500).ListItem.UserRating) + Skin.HasSetting(enable.user.rating.override.kodi.rating)">$INFO[Container(9500).ListItem.UserRating,,.0]</value>
         <value>$INFO[Container(9500).ListItem.Rating]</value>
-    </variable>
-
-    <variable name="Label_Rating_301">
-        <value condition="!String.IsEmpty(Container(301).ListItem.UserRating) + Skin.HasSetting(enable.user.rating.override.kodi.rating)">$INFO[Container(301).ListItem.UserRating,,.0]</value>
-        <value>$INFO[Container(301).ListItem.Rating]</value>
     </variable>
 
     <variable name="Label_Settings_Rating">
