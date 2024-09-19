@@ -347,7 +347,8 @@
                     <textcolor>PanelWhite70</textcolor>
                     <selectedcolor>PanelWhite70</selectedcolor>
                     <label>$LOCALIZE[19076] $INFO[Container(44025).NumItems,  •  , $LOCALIZE[31083]]</label>
-                    <visible>Container.Content(files) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType) + !$EXP[IsAnPlugin]]</visible>
+                    <visible>Container.Content(files) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType) + !$EXP[IsAnPlugin]] | Container.Content(images)</visible>
+                    <visible>ListItem.IsFolder</visible>
                 </control>
 
                 <!-- SUB TITLE - PLUGIN -->
@@ -383,6 +384,16 @@
                     <visible>Container.Content(albums) | Container.Content(songs) | container.content(artists)</visible>
                 </control>
 
+                <!-- IMAGES -->
+
+                <control type="label">
+                    <font>InfoNetflix</font>
+                    <textcolor>PanelWhite70</textcolor>
+                    <selectedcolor>PanelWhite70</selectedcolor>
+                    <label>$INFO[ListItem.PictureDate,,  •  ]$INFO[ListItem.PictureResolution,,  •  ]$INFO[ListItem.Size]</label>
+                    <visible>Container.Content(images) + !ListItem.IsFolder</visible>
+                </control>
+
                 <!-- SUB TITLE - OTHERS -->
 
                 <control type="label">
@@ -392,7 +403,7 @@
                     <selectedcolor>PanelWhite70</selectedcolor>
                     <label>$VAR[Label_View_Flix_Sub_Title]</label>
                     <visible>![container.content(files) | Container.Content(addons) | [$EXP[IsAnPlugin] + Container.Content()]]</visible>
-                    <visible>![Container.Content(albums) | Container.Content(songs) | container.content(artists)]</visible>
+                    <visible>![Container.Content(albums) | Container.Content(songs) | container.content(artists) | Container.Content(images)]</visible>
                 </control>
             </control>
         </definition>
@@ -1571,7 +1582,7 @@
                 <textcolor>Dark1</textcolor>
                 <selectedcolor>Dark1</selectedcolor>
                 <label>$INFO[ListItem.Label]</label>
-                <visible>!Container.Content(movies) + !String.IsEqual(ListItem.DBtype,movie) + !String.IsEqual(ListItem.DBtype,tvshow) + !String.IsEqual(ListItem.DBtype,video) + !$EXP[IsYoutubeItem] + !$EXP[IsYoutube_Comments] + !Container.Content(addons) + !Container.Content(songs) + !Container.Content(albums) + !Container.Content(artists) + !ListItem.IsCollection + !String.IsEqual(ListItem.DBtype,episode) + !String.IsEqual(ListItem.DBtype,season) + !Window.IsVisible(FileManager.xml) + !Container.Content(files) + !ListItem.IsParentFolder</visible>
+                <visible>!Container.Content(movies) + !String.IsEqual(ListItem.DBtype,movie) + !String.IsEqual(ListItem.DBtype,tvshow) + !String.IsEqual(ListItem.DBtype,video) + !$EXP[IsYoutubeItem] + !$EXP[IsYoutube_Comments] + !Container.Content(addons) + !Container.Content(songs) + !Container.Content(albums) + !Container.Content(artists) + !ListItem.IsCollection + !String.IsEqual(ListItem.DBtype,episode) + !String.IsEqual(ListItem.DBtype,season) + !Window.IsVisible(FileManager.xml) + !Container.Content(files) + !ListItem.IsParentFolder + !Window.IsVisible(MyPics.xml)</visible>
             </control>
 
             <!-- YOUTUBE -->
@@ -2452,7 +2463,7 @@
             </control>
             <control type="label" description="IMDB Top 250">
                 <centertop>50%</centertop>
-                <width>auto</width>
+                <width min="68">auto</width>
                 <height>64</height>
                 <font>Tiny</font>
                 <left>-15</left>
@@ -2462,7 +2473,7 @@
             </control>
             <control type="label" description="IMDB Top 250">
                 <centertop>50%</centertop>
-                <width>auto</width>
+                <width min="68">auto</width>
                 <height>64</height>
                 <font>Tiny</font>
                 <left>-15</left>
@@ -2844,7 +2855,7 @@
             </control>
             <control type="label" description="IMDB Top 250">
                 <centertop>50%</centertop>
-                <width>auto</width>
+                <width min="68">auto</width>
                 <height>64</height>
                 <font>Tiny</font>
                 <left>-3</left>
@@ -2854,7 +2865,7 @@
             </control>
             <control type="label" description="IMDB Top 250">
                 <centertop>50%</centertop>
-                <width>auto</width>
+                <width min="68">auto</width>
                 <height>64</height>
                 <font>Tiny</font>
                 <left>-3</left>

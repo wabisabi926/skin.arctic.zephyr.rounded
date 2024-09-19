@@ -1991,12 +1991,12 @@
         </control>
     </include>
 
-    <include name="Hidden_Item_Count">
+    <include name="Hidden_List_Item_Name_In_Folder">
         <control type="list" id="44025">
-            <visible>[Container.Content(movies) + String.IsEmpty(ListItem.DBType)] | Container.Content(genres) | Container.Content(years) | Container.Content(countries) | Container.Content(studios) | Container.Content(videoversions) | Container.Content(tags) | Container.Content(files) | Container.Content(albums)</visible>
+            <visible>[Container.Content(movies) + String.IsEmpty(ListItem.DBType)] | Container.Content(genres) | Container.Content(years) | Container.Content(countries) | Container.Content(studios) | Container.Content(videoversions) | Container.Content(tags) | Container.Content(files) | Container.Content(albums) | Container.Content(images)</visible>
             <visible>ListItem.IsFolder</visible>
             <!-- <visible>ListItem.IsFolder + !$EXP[IsAnPlugin]</visible> -->
-            <visible>Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(MyMusicNav.xml)</visible>
+            <visible>Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(MyMusicNav.xml) | Window.IsVisible(MyPics.xml)</visible>
             <visible>!String.IsEmpty(ListItem.FolderPath)</visible>
             <include>Def_Hidden_ListControl</include>
             <content>$INFO[ListItem.FolderPath]</content>
