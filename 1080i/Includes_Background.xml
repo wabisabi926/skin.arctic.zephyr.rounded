@@ -274,7 +274,7 @@
             <randomize>true</randomize>
             <resetonlabelchange>true</resetonlabelchange>
             <visible>Skin.HasSetting(enable.extra.fanart)</visible>
-            <label>$INFO[ListItem.Art(fanart)]</label>
+
             <label>$INFO[ListItem.Art(fanart1)]</label>
             <label>$INFO[ListItem.Art(fanart2)]</label>
             <label>$INFO[ListItem.Art(fanart3)]</label>
@@ -295,7 +295,8 @@
             <label>$INFO[ListItem.Art(fanart18)]</label>
             <label>$INFO[ListItem.Art(fanart19)]</label>
             <label>$INFO[ListItem.Art(fanart20)]</label>
-            <label>$INFO[ListItem.Art(artist.fanart)]</label>
+            <label>$INFO[ListItem.Art(fanart)]</label>
+
             <label>$INFO[ListItem.Art(artist.fanart1)]</label>
             <label>$INFO[ListItem.Art(artist.fanart2)]</label>
             <label>$INFO[ListItem.Art(artist.fanart3)]</label>
@@ -316,7 +317,8 @@
             <label>$INFO[ListItem.Art(artist.fanart18)]</label>
             <label>$INFO[ListItem.Art(artist.fanart19)]</label>
             <label>$INFO[ListItem.Art(artist.fanart20)]</label>
-            <label>$INFO[ListItem.Art(tvshow.fanart)]</label>
+            <label>$INFO[ListItem.Art(artist.fanart)]</label>
+
             <label>$INFO[ListItem.Art(tvshow.fanart1)]</label>
             <label>$INFO[ListItem.Art(tvshow.fanart2)]</label>
             <label>$INFO[ListItem.Art(tvshow.fanart3)]</label>
@@ -337,6 +339,8 @@
             <label>$INFO[ListItem.Art(tvshow.fanart18)]</label>
             <label>$INFO[ListItem.Art(tvshow.fanart19)]</label>
             <label>$INFO[ListItem.Art(tvshow.fanart20)]</label>
+            <label>$INFO[ListItem.Art(tvshow.fanart)]</label>
+
             <pauseatend>Background_Fanart_Time_Before_Next_Image</pauseatend>
         </control>
 
@@ -681,9 +685,14 @@
         <value condition="!Skin.HasSetting(hide.global.fanart) + Window.IsVisible(Home) + Control.HasFocus(9099) + !String.IsEmpty(Skin.String(fanart.fallback.search))">$INFO[Skin.String(fanart.fallback.search)]</value>
         <value condition="!Skin.HasSetting(hide.global.fanart) + !String.IsEmpty(Skin.String(fanart.fallback.search)) + Window.IsVisible(script-globalsearch.xml) + !Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml) + !Window.IsVisible(DialogAddonInfo.xml)">$INFO[Skin.String(fanart.fallback.search)]</value>
 
+    <!-- =================================== -->
+    <!--           MULTI FANART              -->
+    <!-- =================================== -->
+
+         <value condition="!Skin.HasSetting(hide.global.fanart) + Skin.HasSetting(enable.extra.fanart) + !String.IsEmpty(Control.GetLabel(4399))">$INFO[Control.GetLabel(4399)]</value>
 
     <!-- =================================== -->
-    <!--                  WEATHER            -->
+    <!--             WEATHER                 -->
     <!-- =================================== -->
 
         <value condition="!Skin.HasSetting(hide.global.fanart) + Window.IsVisible(Home) + !Container(301).IsUpdating + !String.IsEmpty(ListItem.Property(FanartCode)) + !String.Contains(Skin.String(weather.fanart.path),multi) + !String.IsEmpty(Skin.String(weather.fanart.path))">$INFO[Skin.String(weather.fanart.path)]$INFO[ListItem.Property(FanartCode),,.jpg]</value>
@@ -692,12 +701,11 @@
 
         <value condition="!Skin.HasSetting(hide.global.fanart) + Window.IsVisible(weather) + !String.IsEmpty(Skin.String(weather.fanart.path))">$INFO[Skin.String(weather.fanart.path)]$INFO[Window(Weather).Property(Current.FanartCode)]/</value>
 
+        <value condition="!Skin.HasSetting(hide.global.fanart) + Window.IsVisible(Home) + !String.IsEmpty(Skin.String(weather.fanart.path)) + Skin.HasSetting(home.showweatherfanart) + [String.IsEmpty(Container(300).ListItem.Property(widget)) | Container(301).IsUpdating]">$INFO[Skin.String(weather.fanart.path)]$INFO[Window(Weather).Property(Current.FanartCode)]/</value>
+
         <!-- <value condition="!Skin.HasSetting(hide.global.fanart) + Window.IsVisible(Home) + ![$EXP[Extended_Now_Playing_Is_Enable] + Player.Playing + !Skin.HasSetting(home.hide.nowplaying) + [$EXP[Home_Is_Horizontal] | $EXP[Home_Is_Vertical]]] + !String.IsEmpty(Skin.String(weather.fanart.path)) + [String.IsEqual(Container(300).ListItem.Property(widget),weatherdaily) | String.IsEqual(Container(300).ListItem.Property(widget),weatherhourly)] + String.Contains(Skin.String(weather.fanart.path),multi) + String.IsEmpty(Container(300).ListItem.Property(Background))">$INFO[Skin.String(weather.fanart.path)]$INFO[Window(Weather).Property(Current.FanartCode)]/</value> -->
 
         <!-- <value condition="!Skin.HasSetting(hide.global.fanart) + Window.IsVisible(Home) + ![$EXP[Extended_Now_Playing_Is_Enable] + Player.Playing + !Skin.HasSetting(home.hide.nowplaying) + [$EXP[Home_Is_Horizontal] | $EXP[Home_Is_Vertical]]] + !String.IsEmpty(Skin.String(weather.fanart.path)) + [String.IsEqual(Container(300).ListItem.Property(widget),weatherdaily) | String.IsEqual(Container(300).ListItem.Property(widget),weatherhourly)] + !String.Contains(Skin.String(weather.fanart.path),multi) + String.IsEmpty(Container(300).ListItem.Property(Background))">$INFO[Skin.String(weather.fanart.path)]$INFO[Window(Weather).Property(Current.FanartCode),,.jpg]</value> -->
-
-
-        <value condition="!Skin.HasSetting(hide.global.fanart) + !String.IsEmpty(Control.GetLabel(4399)) + [!Skin.HasSetting(disable.background.addons.fanart) | [Skin.HasSetting(disable.background.addons.fanart) + !String.Contains(Control.GetLabel(4399),addons) + ![String.Contains(Control.GetLabel(4399),plugin) | String.Contains(Control.GetLabel(4399),script) | String.Contains(Control.GetLabel(4399),service)]]]">$INFO[Control.GetLabel(4399)]</value>
 
         <!-- <value condition="!Skin.HasSetting(hide.global.fanart) + Skin.HasSetting(home.vertical) + Window.IsVisible(Home) + !String.IsEmpty(Skin.String(weather.fanart.path)) + [String.IsEqual(Container(300).ListItem.Property(widget),weatherdaily) | String.IsEqual(Container(300).ListItem.Property(widget),weatherhourly)] + String.Contains(Skin.String(weather.fanart.path),multi)">$INFO[Skin.String(weather.fanart.path)]$INFO[Window(Weather).Property(Current.FanartCode)]/</value> -->
 
@@ -707,16 +715,21 @@
     <!--             NOW PLAYING             -->
     <!-- =================================== -->
 
+        <!-- MUSIC -->
+
         <value condition="!Skin.HasSetting(hide.global.fanart) + $EXP[Extended_Now_Playing_Is_Enable] + Window.IsVisible(Home) + !ControlGroup(301).HasFocus() + !String.IsEmpty(Window(Visualisation).Property(ArtistSlideshow.Image)) + System.AddonIsEnabled(script.artistslideshow) + !Skin.HasSetting(disable.artist.slideshow) + Player.HasAudio">$INFO[Window(Visualisation).Property(ArtistSlideshow.Image)]</value>
 
-        <value condition="!Skin.HasSetting(hide.global.fanart) + $EXP[Extended_Now_Playing_Is_Enable] + Window.IsVisible(Home) + !ControlGroup(301).HasFocus() + [Skin.HasSetting(enable.osd.music.visualisation.fanart) + !String.IsEmpty(Player.Art(fanart)) + [String.IsEmpty(Window(Visualisation).Property(ArtistSlideshow.Image)) | !System.AddonIsEnabled(script.artistslideshow) | Skin.HasSetting(disable.artist.slideshow)]] + Player.HasAudio + [!Skin.HasSetting(disable.background.addons.fanart) | [Skin.HasSetting(disable.background.addons.fanart) + !String.Contains(Player.Art(fanart),addons) + !$EXP[IsFanartAddonEmbeded]]]">$INFO[Player.Art(fanart)]</value>
+        <value condition="!Skin.HasSetting(hide.global.fanart) + $EXP[Extended_Now_Playing_Is_Enable] + Window.IsVisible(Home) + !ControlGroup(301).HasFocus() + [Skin.HasSetting(enable.osd.music.visualisation.fanart) + !String.IsEmpty(Player.Art(fanart)) + [String.IsEmpty(Window(Visualisation).Property(ArtistSlideshow.Image)) | !System.AddonIsEnabled(script.artistslideshow) | Skin.HasSetting(disable.artist.slideshow)]] + Player.HasAudio">$INFO[Player.Art(fanart)]</value>
 
-        <value condition="!Skin.HasSetting(hide.global.fanart) + $EXP[Extended_Now_Playing_Is_Enable] + Window.IsVisible(Home) + !ControlGroup(301).HasFocus() + [!String.IsEmpty(Skin.String(fanart.fallback.music)) + Skin.HasSetting(enable.osd.music.visualisation.fanart)] + Player.HasAudio">$INFO[Skin.String(fanart.fallback.music)]</value>
+        <value condition="!Skin.HasSetting(hide.global.fanart) + $EXP[Extended_Now_Playing_Is_Enable] + Window.IsVisible(Home) + !ControlGroup(301).HasFocus() + !String.IsEmpty(Skin.String(fanart.fallback.music)) + Skin.HasSetting(enable.osd.music.visualisation.fanart) + Player.HasAudio">$INFO[Skin.String(fanart.fallback.music)]</value>
+
+        <!-- EPISODE -->
 
         <value condition="!Skin.HasSetting(hide.global.fanart) + $EXP[Extended_Now_Playing_Is_Enable] + Window.IsVisible(Home) + !ControlGroup(301).HasFocus() + !String.IsEmpty(Player.Art(thumb)) + Player.HasMedia + !String.IsEmpty(VideoPlayer.Episode) + Skin.HasSetting(use.thumbnail.episodes)">$INFO[Player.Art(thumb)]</value>
 
-        <value condition="!Skin.HasSetting(hide.global.fanart) + $EXP[Extended_Now_Playing_Is_Enable] + Window.IsVisible(Home) + !ControlGroup(301).HasFocus() + !String.IsEmpty(Player.Art(fanart)) + Player.HasMedia + [!Skin.HasSetting(disable.background.addons.fanart) | [Skin.HasSetting(disable.background.addons.fanart) + !String.Contains(Player.Art(fanart),addons) + !$EXP[IsFanartAddonEmbeded]]]">$INFO[Player.Art(fanart)]</value>
+        <!-- OTHERS -->
 
+        <value condition="!Skin.HasSetting(hide.global.fanart) + $EXP[Extended_Now_Playing_Is_Enable] + Window.IsVisible(Home) + !ControlGroup(301).HasFocus() + !String.IsEmpty(Player.Art(fanart)) + Player.HasMedia">$INFO[Player.Art(fanart)]</value>
 
 
     <!-- =================================== -->
@@ -739,13 +752,9 @@
 
         <value condition="!Skin.HasSetting(hide.global.fanart) + Window.IsVisible(Home) + !String.IsEmpty(ListItem.Art(fanart)) + [!Skin.HasSetting(disable.background.addons.fanart) | [Skin.HasSetting(disable.background.addons.fanart) + !String.Contains(ListItem.Art(fanart),addons) + ![String.Contains(ListItem.Art(fanart),plugin) | String.Contains(ListItem.Art(fanart),script) | String.Contains(ListItem.Art(fanart),service)]]]">$INFO[ListItem.Art(fanart)]</value>
 
-        <!-- <value condition="!Skin.HasSetting(hide.global.fanart) + Window.IsVisible(Home) + !String.IsEmpty(Container(300).ListItem.Property(background)) + String.Contains(ListItem.Property(path),plugin://plugin.audio.)">$INFO[Container(300).ListItem.Property(background)]</value> -->
-
         <!-- <value condition="!Skin.HasSetting(hide.global.fanart) + Window.IsVisible(Home) + Skin.HasSetting(home.enable.menu.background) + [String.IsEmpty(Container(30111).ListItem.Art(fanart)) | String.IsEmpty(Container(30121).ListItem.Art(fanart)) | String.IsEmpty(Container(30131).ListItem.Art(fanart)) | String.IsEmpty(Container(30141).ListItem.Art(fanart)) | String.IsEmpty(Container(30151).ListItem.Art(fanart)) | String.IsEmpty(Container(30161).ListItem.Art(fanart)) | String.IsEmpty(Container(30171).ListItem.Art(fanart)) | String.IsEmpty(Container(30181).ListItem.Art(fanart)) | String.IsEmpty(Container(30191).ListItem.Art(fanart)) | String.IsEmpty(Container(301101).ListItem.Art(fanart)) | String.IsEmpty(Container(301111).ListItem.Art(fanart)) | String.IsEmpty(Container(301121).ListItem.Art(fanart)) | String.IsEmpty(Container(301131).ListItem.Art(fanart)) | String.IsEmpty(Container(301141).ListItem.Art(fanart)) | String.IsEmpty(Container(301151).ListItem.Art(fanart)) | String.IsEmpty(Container(301161).ListItem.Art(fanart)) | String.IsEmpty(Container(301171).ListItem.Art(fanart)) | String.IsEmpty(Container(301181).ListItem.Art(fanart)) | String.IsEmpty(Container(301191).ListItem.Art(fanart))] + !String.IsEmpty(Container(300).ListItem.Property(Background)) + !Control.HasFocus(9099) + [Control.HasFocus(300) | Control.HasFocus(302) | Control.HasFocus(2011) | Control.HasFocus(399)]">$INFO[Container(300).ListItem.Property(Background)]</value> -->
 
         <!-- <value condition="Window.IsVisible(Home) + [Skin.HasSetting(home.enable.menu.background) |  [!Skin.HasSetting(home.enable.menu.background)+ Window.IsVisible(Home) + String.IsEmpty(ListItem.Property(fanart))]] + !String.IsEmpty(Container(300).ListItem.Property(Background)) + !Control.HasFocus(9099) + ![Control.HasFocus(300) | Control.HasFocus(302) | Control.HasFocus(2011) | Control.HasFocus(399)]">$INFO[Container(300).ListItem.Property(Background)]</value> -->
-
-        <value condition="!Skin.HasSetting(hide.global.fanart) + Window.IsVisible(Home) + !String.IsEmpty(Skin.String(weather.fanart.path)) + Skin.HasSetting(home.showweatherfanart) + [String.IsEmpty(Container(300).ListItem.Property(widget)) | Container(301).IsUpdating]">$INFO[Skin.String(weather.fanart.path)]$INFO[Window(Weather).Property(Current.FanartCode)]/</value>
 
     <!-- ==================================================================================================== -->
     <!--  HOME - ON FOCUS MENU 300 / 302 SHOW ITEM WIDGET BACKGROUND IF home.enable.menu.background DISABLE   -->
