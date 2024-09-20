@@ -648,7 +648,17 @@
             <height>204</height>
             <aspectratio scalediffuse="false">scale</aspectratio>
             <texture diffuse="diffuse/widgetsquare_new_small.png" background="true" fallback="DefaultMovies.png">$VAR[Image_Poster]</texture>
+            <visible>!String.StartsWith(ListItem.Icon,Default)</visible>
             <visible>![String.IsEqual(ListItem.Path,favourites://) | Container.Content(favourites)]</visible>
+        </control>
+        <control type="image">
+            <left>10</left>
+            <top>10</top>
+            <right>10</right>
+            <height>204</height>
+            <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+            <texture diffuse="diffuse/widgetsquare_new_small.png" background="true" colordiffuse="Dark1">$VAR[Image_Poster]</texture>
+            <visible>String.StartsWith(ListItem.Icon,Default)</visible>
         </control>
 
         <!-- FAVOURITES -->
