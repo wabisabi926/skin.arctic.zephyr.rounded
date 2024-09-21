@@ -1286,8 +1286,10 @@
 
     <variable name="label_sub_title_view_500">
         <value condition="Container.Content(artists)">$INFO[ListItem.Genre]</value>
+        <value condition="Container.Content(albums) | Container.Content(songs)">$INFO[ListItem.Artist]</value>
         <value condition="Container.Content(addons)">$INFO[ListItem.AddonVersion,v ]</value>
-        <value>$INFO[ListItem.Artist]</value>
+        <value condition="Container.Content(images) + ListItem.IsFolder">$LOCALIZE[19076]</value>
+        <value condition="Container.Content(images) + !ListItem.IsFolder">$INFO[ListItem.PictureResolution]</value>
     </variable>
 
     <variable name="label_addon_list">
