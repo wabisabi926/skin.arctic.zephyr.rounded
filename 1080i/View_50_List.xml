@@ -50,11 +50,10 @@
                 <fadetime>PosterFanartFadetime</fadetime>
                 <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
                 <texture diffuse="diffuse/listposter2.png" background="true">$VAR[Image_Poster]</texture>
-                <visible>Container.Content(addons) | Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | $EXP[IsAnPlugin] | Container.Content(countries) | Container.Content(genres) | Container.Content(years) | Container.Content(tags) | Container.Content(studios) | Container.Content(directors) | Container.Content(actors) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(files) | Container.Content(favourites) | Window.IsVisible(DialogVideoInfo.xml)</visible>
-
-                <visible>!String.StartsWith(ListItem.Icon,Default) | [String.StartsWith(ListItem.Icon,Default) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(countries) + !String.IsEmpty(Skin.String(country.logos.path))] | [Container.Content(genres) + !String.IsEmpty(Skin.String(genre.icons.path))] | [Container.Content(studios) + !String.IsEmpty(Skin.String(studio.logos.path))]]]</visible>
-                <visible>!$EXP[IsYoutube]</visible>
+                <visible>$EXP[View_Artwork_Condition]</visible>
+                <visible>$EXP[View_Artwork_Specific]</visible>
                 <visible>!ListItem.IsParentFolder</visible>
+                <visible>![$EXP[IsYoutube] | String.IsEqual(ListItem.DBType,genre) | String.IsEqual(ListItem.DBType,country)]</visible>
             </control>
 
             <!-- icon black -->
@@ -66,7 +65,7 @@
                 <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
                 <texture diffuse="diffuse/listposter2.png" background="true" colordiffuse="Dark1">$VAR[Image_Poster]</texture>
                 <visible>String.StartsWith(ListItem.Icon,Default)</visible>
-                <visible>$EXP[IsGameMode] | Container.Content(musicvideos) | Container.Content(files) | [Container.Content(studios) + String.IsEmpty(Skin.String(studio.logos.path))] | [Container.Content(countries) + String.IsEmpty(Skin.String(country.logos.path))] | [Container.Content(genres) + String.IsEmpty(Skin.String(genre.icons.path))] | Container.Content(directors) | Container.Content(actors) | Container.Content(tags) | Container.Content(years) | Container.Content(favourites) | Container.Content(videoversions) | Container.Content(addons) | [Container.Content() + String.StartsWith(Container.FolderPath,addons://)] | $EXP[IsAnLibrary] | $EXP[IsAnSource] | String.StartsWith(Container.FolderPath,musicdb://sources) | String.StartsWith(Container.FolderPath,special://musicplaylists) | String.StartsWith(Container.FolderPath,musicdb://years) | String.StartsWith(Container.FolderPath,musicdb://genres) | [Container.Content(files) + $EXP[IsPluginShortlist]] | ListItem.IsParentFolder | Container.Content(playlists) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content()]</visible>
+                <visible>$EXP[View_Icon_Black]</visible>
             </control>
 
             <!-- Genres -->
@@ -80,14 +79,6 @@
                 <visible>String.IsEqual(ListItem.DBType,genre)</visible>
                 <visible>!ListItem.IsParentFolder</visible>
             </control>
-            <!-- <control type="image"> -->
-                <!-- <width>PosterW</width> -->
-                <!-- <height>PosterH</height> -->
-                <!-- <fadetime>PosterFanartFadetime</fadetime> -->
-                <!-- <aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio> -->
-                <!-- <texture diffuse="diffuse/sideposter_square.png" background="true" fallback="DefaultGenre.png" colordiffuse="Dark1">$VAR[Image_Thumb_Genres]</texture> -->
-                <!-- <visible>String.IsEqual(ListItem.DBType,genre) + String.IsEmpty(Skin.String(genre.icons.path))</visible> -->
-            <!-- </control> -->
 
             <!-- Countries -->
 
@@ -100,14 +91,6 @@
                 <visible>String.IsEqual(ListItem.DBType,country)</visible>
                 <visible>!ListItem.IsParentFolder</visible>
             </control>
-            <!-- <control type="image"> -->
-                <!-- <width>PosterH</width> -->
-                <!-- <height>PosterH</height> -->
-                <!-- <fadetime>PosterFanartFadetime</fadetime> -->
-                <!-- <aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio> -->
-                <!-- <texture diffuse="diffuse/sideposter_square.png" background="true" fallback="DefaultCountry.png" colordiffuse="Dark1">$VAR[Image_Thumb_Countries]</texture> -->
-                <!-- <visible>String.IsEqual(ListItem.DBType,country) + String.IsEmpty(Skin.String(country.logos.path))</visible> -->
-            <!-- </control> -->
 
             <!-- Youtube -->
 
@@ -181,11 +164,10 @@
                 <fadetime>PosterFanartFadetime</fadetime>
                 <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
                 <texture diffuse="diffuse/sideposter_square.png" background="true">$VAR[Image_Square_50_List]</texture>
-                <visible>Window.IsVisible(DialogAddonInfo.xml) | Container.Content(addons) | Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | $EXP[IsAnPlugin] | Container.Content(countries) | Container.Content(genres) | Container.Content(years) | Container.Content(tags) | Container.Content(studios) | Container.Content(directors) | Container.Content(actors) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(files) | Window.IsVisible(EventLog.xml)</visible>
-
-                <visible>!String.StartsWith(ListItem.Icon,Default) | [String.StartsWith(ListItem.Icon,Default) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(countries) + !String.IsEmpty(Skin.String(country.logos.path))] | [Container.Content(genres) + !String.IsEmpty(Skin.String(genre.icons.path))] | [Container.Content(studios) + !String.IsEmpty(Skin.String(studio.logos.path))]]]</visible>
-                <visible>!$EXP[IsYoutube]</visible>
+                <visible>$EXP[View_Artwork_Condition]</visible>
+                <visible>$EXP[View_Artwork_Specific]</visible>
                 <visible>!ListItem.IsParentFolder</visible>
+                <visible>![Container.Content(images) | Container.Content(favourites) | $EXP[IsYoutube]]</visible>
             </control>
 
             <!-- icon black -->
@@ -196,8 +178,7 @@
                 <fadetime>PosterFanartFadetime</fadetime>
                 <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
                 <texture diffuse="diffuse/sideposter_square.png" background="true" colordiffuse="Dark1">$VAR[Image_Square_50_List]</texture>
-                <visible>String.StartsWith(ListItem.Icon,Default)</visible>
-                <visible>$EXP[IsGameMode] | Container.Content(musicvideos) | Container.Content(files) | [Container.Content(studios) + String.IsEmpty(Skin.String(studio.logos.path))] | [Container.Content(countries) + String.IsEmpty(Skin.String(country.logos.path))] | [Container.Content(genres) + String.IsEmpty(Skin.String(genre.icons.path))] | Container.Content(directors) | Container.Content(actors) | Container.Content(tags) | Container.Content(years) | Container.Content(favourites) | Container.Content(videoversions) | Container.Content(addons) | [Container.Content() + String.StartsWith(Container.FolderPath,addons://)] | $EXP[IsAnLibrary] | $EXP[IsAnSource] | String.StartsWith(Container.FolderPath,musicdb://sources) | String.StartsWith(Container.FolderPath,special://musicplaylists) | String.StartsWith(Container.FolderPath,musicdb://years) | String.StartsWith(Container.FolderPath,musicdb://genres) | [Container.Content(files) + $EXP[IsPluginShortlist]] | ListItem.IsParentFolder | Container.Content(playlists) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content()] | Window.IsVisible(EventLog.xml)</visible>
+                <visible>$EXP[View_Icon_Black]</visible>
             </control>
 
             <!-- Pics / Favourites -->

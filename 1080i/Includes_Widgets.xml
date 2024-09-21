@@ -398,9 +398,8 @@
                 <aspectratio scalediffuse="false">scale</aspectratio>
                 <texture diffuse="diffuse/widgetposter_new.png" background="true" fallback="DefaultMovies.png">$VAR[Image_Poster]</texture>
                 <visible>!Control.IsVisible(53) + !Control.IsVisible(517)</visible>
-                <visible>Window.IsActive(DialogVideoInfo.xml) | Window.IsActive(Home) | Container.Content(addons) | Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(favourites) | $EXP[IsAnPlugin] | Container.Content(countries) | Container.Content(genres) | Container.Content(years) | Container.Content(tags) | Container.Content(studios) | Container.Content(directors) | Container.Content(actors) | Container.Content(files) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Window.IsVisible(FileBrowser.xml)</visible>
-
-                <visible>!String.StartsWith(ListItem.Icon,Default) | [String.StartsWith(ListItem.Icon,Default) + [[Container.Content(movies) + !String.IsEmpty(ListItem.DBID)] | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | [Container.Content(countries) + !String.IsEmpty(Skin.String(country.logos.path))] | [Container.Content(genres) + !String.IsEmpty(Skin.String(genre.icons.path))] | [Container.Content(studios) + !String.IsEmpty(Skin.String(studio.logos.path))]] | [Window.IsActive(DialogVideoInfo.xml) + !Control.HasFocus(50)]]</visible>
+                <visible>$EXP[View_Artwork_Condition]</visible>
+                <visible>$EXP[View_Artwork_Specific]</visible>
                 <visible>!ListItem.IsParentFolder</visible>
             </control>
             <control type="image">
@@ -411,10 +410,7 @@
                 <aspectratio scalediffuse="false">keep</aspectratio>
                 <texture colordiffuse="Dark1">$VAR[Image_Poster]</texture>
                 <visible>!Control.IsVisible(53) + !Control.IsVisible(517)</visible>
-
-                <visible>String.StartsWith(ListItem.Icon,Default)</visible>
-
-                <visible>[$EXP[IsGameMode] | Container.Content(musicvideos) | Container.Content(files) | [Container.Content(studios) + String.IsEmpty(Skin.String(studio.logos.path))] | [Container.Content(countries) + String.IsEmpty(Skin.String(country.logos.path))] | [Container.Content(genres) + String.IsEmpty(Skin.String(genre.icons.path))] | Container.Content(directors) | Container.Content(actors) | Container.Content(tags) | Container.Content(years) | Container.Content(episodes) | Container.Content(favourites) | Container.Content(videoversions) | Container.Content(addons) | $EXP[IsAnLibrary] | $EXP[IsAnSource] | String.StartsWith(Container.FolderPath,musicdb://sources) | String.StartsWith(Container.FolderPath,special://musicplaylists) | String.StartsWith(Container.FolderPath,musicdb://years) | String.StartsWith(Container.FolderPath,musicdb://genres) | [Container.Content(files) + $EXP[IsPluginShortlist]] | ListItem.IsParentFolder | Container.Content(playlists) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType)] | ListItem.IsParentFolder]</visible>
+                <visible>$EXP[View_Icon_Black]</visible>
             </control>
 
             <!-- VIEW 53 -->
@@ -521,12 +517,10 @@
             <bottom>$PARAM[distance]</bottom>
             <aspectratio scalediffuse="false">$PARAM[aspectratio]</aspectratio>
             <texture diffuse="diffuse/widgetsquare_new.png" background="true" fallback="DefaultMovies.png">$VAR[Image_Poster]</texture>
-
+            <visible>$EXP[View_Artwork_Condition]</visible>
+            <visible>$EXP[View_Artwork_Specific]</visible>
+            <visible>!ListItem.IsParentFolder</visible>
             <visible>!Control.IsVisible(503) + !String.StartsWith(ListItem.Path,pvr://channels)</visible>
-
-            <visible>Container.Content(addons) | Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | $EXP[IsAnPlugin] | Container.Content(countries) | Container.Content(genres) | Container.Content(years) | Container.Content(tags) | Container.Content(studios) | Container.Content(directors) | Container.Content(actors) | Container.Content(files) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Window.IsVisible(FileBrowser.xml) | Window.IsVisible(MyPics.xml) | [Window.IsVisible(Home) + String.Contains(ListItem.Icon,image://)]</visible>
-
-            <visible>!String.StartsWith(ListItem.Icon,Default) | [String.StartsWith(ListItem.Icon,Default) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | [Container.Content(countries) + !String.IsEmpty(Skin.String(country.logos.path))] | [Container.Content(genres) + !String.IsEmpty(Skin.String(genre.icons.path))] | [Container.Content(studios) + !String.IsEmpty(Skin.String(studio.logos.path))]]]</visible>
         </control>
 
         <control type="image">
@@ -536,9 +530,7 @@
             <bottom>$PARAM[distance]</bottom>
             <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
             <texture diffuse="diffuse/widgetsquare_new.png" background="true" colordiffuse="Dark1">$VAR[Image_Poster]</texture>
-            <visible>String.StartsWith(ListItem.Icon,Default)</visible>
-
-            <visible>[$EXP[IsGameMode] | Container.Content(musicvideos) | Container.Content(files) | [Container.Content(studios) + String.IsEmpty(Skin.String(studio.logos.path))] | [Container.Content(countries) + String.IsEmpty(Skin.String(country.logos.path))] | [Container.Content(genres) + String.IsEmpty(Skin.String(genre.icons.path))] | Container.Content(directors) | Container.Content(actors) | Container.Content(tags) | Container.Content(years) | Container.Content(favourites) | Container.Content(videoversions) | Container.Content(addons) | $EXP[IsAnLibrary] | $EXP[IsAnSource] | String.StartsWith(Container.FolderPath,musicdb://sources) | String.StartsWith(Container.FolderPath,special://musicplaylists) | String.StartsWith(Container.FolderPath,musicdb://years) | String.StartsWith(Container.FolderPath,musicdb://genres) | [Container.Content(files) + $EXP[IsPluginShortlist]] | ListItem.IsParentFolder | Container.Content(playlists) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType)] | [String.StartsWith(Container.FolderPath,videodb://movies) + String.IsEmpty(ListItem.DBType)] | [String.StartsWith(Container.FolderPath,videodb://tvshows) + String.IsEmpty(ListItem.DBType)] | [$EXP[IsAnPlugin] + String.IsEmpty(ListItem.DBType)] | [Window.IsVisible(MyPics.xml) + String.IsEmpty(ListItem.DBType)]]</visible>
+            <visible>$EXP[View_Icon_Black]</visible>
         </control>
 
         <!-- use onfy for file browser for chose artwork -->
@@ -935,8 +927,9 @@
                 <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
                 <texture diffuse="diffuse/widgetfanart_new.png" background="true" fallback="DefaultMovies.png">$VAR[Image_Fanart]</texture>
                 <visible>!Control.IsVisible(513)</visible>
+                <visible>$EXP[View_Artwork_Condition]</visible>
+                <visible>$EXP[View_Artwork_Specific]</visible>
                 <visible>!ListItem.IsParentFolder</visible>
-                <visible>!String.StartsWith(ListItem.Icon,Default) | [String.StartsWith(ListItem.Icon,Default) + ![$EXP[IsGameMode] | Container.Content(musicvideos) | Container.Content(files) | Container.Content(favourites) | Container.Content(years) | Container.Content(directors) | Container.Content(studios) | Container.Content(tags) | Container.Content(videoversions) | Container.Content(addons)]]</visible>
             </control>
 
             <!-- black -->
@@ -947,8 +940,7 @@
                     <bottom>10</bottom>
                 <aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
                 <texture diffuse="diffuse/widgetfanart_new.png" background="true" colordiffuse="Dark1">$VAR[Image_Fanart]</texture>
-                <visible>String.StartsWith(ListItem.Icon,Default)</visible>
-                <visible>[$EXP[IsGameMode] | Container.Content(musicvideos) | Container.Content(files) | Container.Content(favourites) | Container.Content(years) | Container.Content(directors) | Container.Content(studios) | Container.Content(tags) | Container.Content(videoversions) | Container.Content(addons) | $EXP[IsAnLibrary] | $EXP[IsAnSource] | String.StartsWith(Container.FolderPath,musicdb://sources) | String.StartsWith(Container.FolderPath,special://musicplaylists) | String.StartsWith(Container.FolderPath,musicdb://years) | String.StartsWith(Container.FolderPath,musicdb://genres) | [Container.Content(files) + $EXP[IsPluginShortlist]] | ListItem.IsParentFolder | Container.Content(playlists)]</visible>
+                <visible>$EXP[View_Icon_Black]</visible>
             </control>
 
             <control type="image">
@@ -997,13 +989,7 @@
                 <bottom>20</bottom>
                 <aspectratio align="right" aligny="bottom">keep</aspectratio>
                 <texture background="true">$VAR[Image_ClearLogo]</texture>
-                <visible>[Skin.HasSetting(dont.use.landscape.tvshows) + Skin.HasSetting(use.clearlogo.on.fanart.tvshows) + String.IsEqual(ListItem.DBType,tvshow)] |
-                [!Skin.HasSetting(dont.use.landscape.tvshows) + String.IsEmpty(ListItem.Art(landscape)) + String.IsEqual(ListItem.DBType,tvshow)] |
-                [Skin.HasSetting(dont.use.landscape.seasons) + Skin.HasSetting(use.clearlogo.on.fanart.seasons) + String.IsEqual(ListItem.DBType,season)] |
-                [!Skin.HasSetting(dont.use.landscape.seasons) + String.IsEmpty(ListItem.Art(tvshow.landscape)) + String.IsEqual(ListItem.DBType,season)] |
-                [Skin.HasSetting(dont.use.landscape.movies) + Skin.HasSetting(use.clearlogo.on.fanart.movies) + String.IsEqual(ListItem.DBType,movie)] |
-                [!Skin.HasSetting(dont.use.landscape.movies) + String.IsEmpty(ListItem.Art(landscape)) + String.IsEqual(ListItem.DBType,movie)] |
-                [Skin.HasSetting(use.clearlogo.on.fanart.artists) + [String.IsEqual(ListItem.DBType,artist) | String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,song)]]</visible>
+                <visible>$EXP[View_Clearlogo_On_Fanart]</visible>
                 <visible>!String.IsEqual(ListItem.DBType,genre) + !String.EndsWith(Container.FolderPath,Genres) + !String.IsEqual(ListItem.DBType,episode) + !String.IsEqual(ListItem.DBType,actors)</visible>
             </control>
 
