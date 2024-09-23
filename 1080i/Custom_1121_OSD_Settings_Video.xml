@@ -79,10 +79,37 @@
                     <selected>Skin.HasSetting(osd.open.auto.pause)</selected>
                     <onclick>Skin.ToggleSetting(osd.open.auto.pause)</onclick>
                 </control>
+                <control type="radiobutton" id="100">
+                    <description>Filter</description>
+                    <include>Def_Button_Gradient_Context</include>
+                    <label>31494</label>
+                    <align>left</align>
+                    <selected>!Skin.HasSetting(hide.play.pause.info)</selected>
+                    <onclick>Skin.ToggleSetting(hide.play.pause.info)</onclick>
+                </control>
+
+                <!-- GLOBAL -->
 
                 <control type="button" id="810">
                     <include>Def_Context_Menu_Label</include>
                     <label>31451</label>
+                </control>
+                <control type="radiobutton" id="120">
+                    <description>Filter</description>
+                    <include>Def_Button_Gradient_Context</include>
+                    <label>31492</label>
+                    <align>left</align>
+                    <selected>Skin.HasSetting(show.osd.video.clearlogo)</selected>
+                    <onclick>Skin.ToggleSetting(show.osd.video.clearlogo)</onclick>
+                    <visible>!VideoPlayer.Content(livetv)</visible>
+                </control>
+                <control type="radiobutton" id="103" description="Show DiscArt">
+                    <include>Def_Button_Gradient_Context</include>
+                    <label>31409</label>
+                    <align>left</align>
+                    <selected>Skin.HasSetting(show.osd.video.discart)</selected>
+                    <onclick>Skin.ToggleSetting(show.osd.video.discart)</onclick>
+                    <visible>!VideoPlayer.Content(livetv)</visible>
                 </control>
                 <control type="radiobutton" id="82">
                     <description>Filter</description>
@@ -156,26 +183,12 @@
                     <enable>Skin.HasSetting(show.osd.video.rating)</enable>
                     <visible>!VideoPlayer.Content(livetv)</visible>
                 </control>
+
+                <!-- OTHERS -->
+
                 <control type="button" id="802">
                     <include>Def_Context_Menu_Label</include>
                     <label>31061</label>
-                </control>
-                <control type="radiobutton" id="103" description="Show DiscArt">
-                    <include>Def_Button_Gradient_Context</include>
-                    <label>31409</label>
-                    <align>left</align>
-                    <selected>Skin.HasSetting(show.osd.video.discart)</selected>
-                    <onclick>Skin.ToggleSetting(show.osd.video.discart)</onclick>
-                    <visible>!VideoPlayer.Content(livetv)</visible>
-                </control>
-                <control type="radiobutton" id="120">
-                    <description>Filter</description>
-                    <include>Def_Button_Gradient_Context</include>
-                    <label>31271</label>
-                    <align>left</align>
-                    <selected>Skin.HasSetting(show.osd.video.clearlogo)</selected>
-                    <onclick>Skin.ToggleSetting(show.osd.video.clearlogo)</onclick>
-                    <visible>!VideoPlayer.Content(livetv)</visible>
                 </control>
                 <control type="radiobutton" id="99">
                     <include>Def_Button_Gradient_Context</include>
@@ -184,14 +197,6 @@
                     <selected>Skin.HasSetting(pvr.showtechnicalinfo)</selected>
                     <onclick>Skin.ToggleSetting(pvr.showtechnicalinfo)</onclick>
                     <visible>VideoPlayer.Content(livetv)</visible>
-                </control>
-                <control type="radiobutton" id="100">
-                    <description>Filter</description>
-                    <include>Def_Button_Gradient_Context</include>
-                    <label>31494</label>
-                    <align>left</align>
-                    <selected>!Skin.HasSetting(hide.play.pause.info)</selected>
-                    <onclick>Skin.ToggleSetting(hide.play.pause.info)</onclick>
                 </control>
                 <control type="button" id="101">
                     <align>left</align>
