@@ -889,38 +889,39 @@
 
     <include name="Def_OSD_UpDown_Video_Info">
 
-        <!-- Displaying info -->
-        <onup condition="String.IsEmpty(Window(Home).Property(osdshowinfo)) + !Window.IsVisible(MusicOSD.xml)">SetProperty(osdshowinfo,1,Home)</onup>
+        <!-- UP - 1 - Displaying info -->
+        <onup condition="String.IsEmpty(Window(Home).Property(osdshowinfo))">SetProperty(osdshowinfo,1,Home)</onup>
 
-        <!-- Displaying info + plot -->
-        <onup condition="!String.IsEmpty(Window(Home).Property(osdshowinfo)) + !Window.IsVisible(MusicOSD.xml) + Skin.HasSetting(show.osd.video.infos)">SetProperty(OSDVideoDetails,1,Home)</onup>
-        <onup condition="!String.IsEmpty(Window(Home).Property(osdshowinfo)) + !Window.IsVisible(MusicOSD.xml) + Skin.HasSetting(show.osd.video.infos)">SetFocus(9805)</onup>
+        <!-- UP - 2 - Displaying info + plot -->
+        <onup condition="!String.IsEmpty(Window(Home).Property(osdshowinfo))">SetProperty(OSDVideoDetails,1,Home)</onup>
+        <onup condition="!String.IsEmpty(Window(Home).Property(osdshowinfo)) + Control.IsVisible(9805)">SetFocus(9805)</onup>
+        <!-- <onup condition="!String.IsEmpty(Window(Home).Property(osdshowinfo)) + !Control.IsVisible(9805)">SetFocus(556)</onup> -->
+
+        <!-- UP - 3 - Displaying info + plot -->
 
         <!-- Close info + plot -->
-        <onup condition="!String.IsEmpty(Window(Home).Property(osdshowinfo)) + !String.IsEmpty(Window(Home).Property(OSDVideoDetails)) + !Window.IsVisible(MusicOSD.xml) + Skin.HasSetting(show.osd.video.infos)">ClearProperty(osdshowinfo,Home)</onup>
-        <onup condition="!String.IsEmpty(Window(Home).Property(osdshowinfo)) + !String.IsEmpty(Window(Home).Property(OSDVideoDetails)) + !Window.IsVisible(MusicOSD.xml) + Skin.HasSetting(show.osd.video.infos)">ClearProperty(OSDVideoDetails,Home)</onup>
+        <onup condition="!String.IsEmpty(Window(Home).Property(osdshowinfo)) + !String.IsEmpty(Window(Home).Property(OSDVideoDetails))">ClearProperty(osdshowinfo,Home)</onup>
+        <onup condition="!String.IsEmpty(Window(Home).Property(osdshowinfo)) + !String.IsEmpty(Window(Home).Property(OSDVideoDetails))">ClearProperty(OSDVideoDetails,Home)</onup>
 
-        <!-- Close info -->
-        <onup condition="!String.IsEmpty(Window(Home).Property(osdshowinfo)) + !Window.IsVisible(MusicOSD.xml) + !Skin.HasSetting(show.osd.video.infos)">ClearProperty(osdshowinfo,Home)</onup>
+
 
         <!-- Close plot -->
-        <ondown condition="!String.IsEmpty(Window(Home).Property(OSDVideoDetails)) + !Window.IsVisible(MusicOSD.xml)">ClearProperty(OSDVideoDetails,Home)</ondown>
+        <ondown condition="!String.IsEmpty(Window(Home).Property(OSDVideoDetails))">ClearProperty(OSDVideoDetails,Home)</ondown>
 
         <!-- Close info -->
-        <ondown condition="!String.IsEmpty(Window(Home).Property(osdshowinfo)) + String.IsEmpty(Window(Home).Property(OSDVideoDetails)) + !Window.IsVisible(MusicOSD.xml)">ClearProperty(osdshowinfo,Home)</ondown>
+        <ondown condition="!String.IsEmpty(Window(Home).Property(osdshowinfo)) + String.IsEmpty(Window(Home).Property(OSDVideoDetails))">ClearProperty(osdshowinfo,Home)</ondown>
 
         <!-- DISPLAYING PLOT -->
-        <ondown condition="String.IsEmpty(Window(Home).Property(osdshowinfo)) + String.IsEmpty(Window(Home).Property(dontautoclose)) + !Window.IsVisible(MusicOSD.xml)">SetProperty(dontautoclose,1,Home)</ondown>
+        <ondown condition="String.IsEmpty(Window(Home).Property(osdshowinfo)) + String.IsEmpty(Window(Home).Property(dontautoclose))">SetProperty(dontautoclose,1,Home)</ondown>
 
-        <ondown condition="String.IsEmpty(Window(Home).Property(osdshowinfo)) + String.IsEmpty(Window(Home).Property(dontautoclose)) + !Window.IsVisible(MusicOSD.xml) + !String.IsEmpty(VideoPlayer.DBID)">Close</ondown>
-        <ondown condition="String.IsEmpty(Window(Home).Property(osdshowinfo)) + String.IsEmpty(Window(Home).Property(dontautoclose)) + !Window.IsVisible(MusicOSD.xml) + !String.IsEmpty(VideoPlayer.DBID)">SetProperty(dialogvideoinfo,1,Home)</ondown>
+        <ondown condition="String.IsEmpty(Window(Home).Property(osdshowinfo)) + String.IsEmpty(Window(Home).Property(dontautoclose)) + !String.IsEmpty(VideoPlayer.DBID)">Close</ondown>
+        <ondown condition="String.IsEmpty(Window(Home).Property(osdshowinfo)) + String.IsEmpty(Window(Home).Property(dontautoclose)) + !String.IsEmpty(VideoPlayer.DBID)">SetProperty(dialogvideoinfo,1,Home)</ondown>
 
         <!-- MOVIES / TV SHOWS DETAILED INFO -->
-        <ondown condition="String.IsEmpty(Window(Home).Property(osdshowinfo)) + String.IsEmpty(Window(Home).Property(dontautoclose)) + !Window.IsVisible(MusicOSD.xml) + !String.IsEmpty(VideoPlayer.DBID)">$VAR[Def_Dialog_Info_Currently_Playing_Item_VideoOSD]</ondown>
+        <ondown condition="String.IsEmpty(Window(Home).Property(osdshowinfo)) + String.IsEmpty(Window(Home).Property(dontautoclose)) + !String.IsEmpty(VideoPlayer.DBID)">$VAR[Def_Dialog_Info_Currently_Playing_Item_VideoOSD]</ondown>
 
-        <ondown condition="!String.IsEmpty(VideoPlayer.DBID) + String.IsEmpty(Window(Home).Property(osdshowinfo)) + String.IsEmpty(Window(Home).Property(dontautoclose)) + !Window.IsVisible(MusicOSD.xml) + !Player.Paused">PlayerControl(Play)</ondown>
-        <ondown condition="!String.IsEmpty(Window(Home).Property(dontautoclose)) + !Window.IsVisible(MusicOSD.xml)">ClearProperty(dontautoclose,Home)</ondown>
-
+        <ondown condition="!String.IsEmpty(VideoPlayer.DBID) + String.IsEmpty(Window(Home).Property(osdshowinfo)) + String.IsEmpty(Window(Home).Property(dontautoclose)) + !Player.Paused">PlayerControl(Play)</ondown>
+        <ondown condition="!String.IsEmpty(Window(Home).Property(dontautoclose))">ClearProperty(dontautoclose,Home)</ondown>
     </include>
 
     <include name="Def_OSD_UpDown_Video_Wiki">
@@ -1833,6 +1834,7 @@
             <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
             <include>Def_OSD_UpDown_Video_Info</include>
             <onclick>PlayerControl(Rewind)</onclick>
+            <onfocus>ClearProperty(OSDVideoDetails,Home)</onfocus>
             <enable>Player.SeekEnabled</enable>
             <animation effect="fade" start="100" end="33" time="100" condition="!Player.PauseEnabled">Conditional</animation>
         </include>
@@ -1846,7 +1848,6 @@
             <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
             <include>Def_OSD_UpDown_Video_Info</include>
             <onclick>PlayerControl(Play)</onclick>
-            <onfocus>ClearProperty(OSDVideoDetails,Home)</onfocus>
             <enable>Player.PauseEnabled</enable>
             <animation effect="fade" start="100" end="33" time="100" condition="!Player.PauseEnabled">Conditional</animation>
         </include>
@@ -1860,6 +1861,7 @@
             <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
             <include>Def_OSD_UpDown_Video_Info</include>
             <onclick>PlayerControl(Stop)</onclick>
+            <onfocus>ClearProperty(OSDVideoDetails,Home)</onfocus>
         </include>
 
         <include content="Def_OSD_Button">

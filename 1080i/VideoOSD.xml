@@ -38,7 +38,10 @@
         <control type="button" id="556">
             <include>Def_Hidden_Button</include>
             <onfocus condition="!String.IsEmpty(Window(Home).Property(OSDVideoDetails))">ClearProperty(OSDVideoDetails,Home)</onfocus>
-            <onfocus>SetFocus(14)</onfocus>
+            <onfocus condition="!String.IsEmpty(Window(Home).Property(OSDVideoDetails))">SetFocus(14)</onfocus>
+
+            <ondown condition="!String.IsEmpty(Window(Home).Property(OSDVideoDetails))">ClearProperty(OSDVideoDetails,Home)</ondown>
+            <ondown condition="!String.IsEmpty(Window(Home).Property(OSDVideoDetails))">SetFocus(14)</ondown>
         </control>
 
 
