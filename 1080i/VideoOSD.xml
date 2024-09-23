@@ -13,22 +13,34 @@
     <onunload>ClearProperty(dontautoclose,Home)</onunload>
     <onunload>ClearProperty(osdshowinfo,Home)</onunload>
     <onunload>ClearProperty(OSDVideoDetails,Home)</onunload>
+    <onunload>ClearProperty(osdinfoscrollbarfocus,Home)</onunload>
 
     <onload condition="Skin.HasSetting(osd.open.auto.pause) + Player.HasMedia + Player.HasVideo + !Player.Paused + !String.IsEmpty(VideoPlayer.DBID)">PlayerControl(Play)</onload>
     <onunload condition="Skin.HasSetting(osd.open.auto.pause) + Player.HasMedia + Player.HasVideo + Player.Paused + !Integer.IsEqual(Window(Home).Property(dialogvideoinfo),1) + !Integer.IsEqual(Window(Home).Property(wikipedia),1)">PlayerControl(Play)</onunload>
 
     <controls>
+        <!-- OSD -->
         <control type="group">
             <animation effect="fade" start="100" end="0" time="250" condition="[Window.IsVisible(DialogSlider.xml) | [Skin.HasSetting(enable.osd.video.hide.on.pause) + Player.Paused] + String.IsEmpty(Window(Home).Property(OSDVideoDetails))] + !Player.Seeking + !Player.Forwarding + !Player.Rewinding + !Window.IsVisible(videoosd)">Conditional</animation>
             <include>OSD_Video</include>
         </control>
 
-        <!-- INFO OVERLAY -->
+        <!-- PLOT -->
 
-        <include content="Def_Dialog_Info_Overlay">
-            <param name="headerinfo" value="$INFO[VideoPlayer.Title]" />
-            <param name="plotinfo" value="$INFO[VideoPlayer.Tagline,[B],[/B][CR][CR]]$INFO[VideoPlayer.Plot]" />
-            <param name="ondirection" value="14" />
+        <include content="Object_OSD_Plot_Video">
+            <param name="visible" value="!String.IsEmpty(Window(Home).Property(OSDVideoDetails)) + !Window.IsVisible(DialogFullScreenInfo.xml)" />
+            <param name="onleft" value="SetFocus(556)"/>
+            <param name="onright" value="SetFocus(556)"/>
+            <param name="onback" value="SetFocus(556)"/>
+            <param name="scrollid" value="9805" />
         </include>
+
+        <control type="button" id="556">
+            <include>Def_Hidden_Button</include>
+            <onfocus condition="!String.IsEmpty(Window(Home).Property(OSDVideoDetails))">ClearProperty(OSDVideoDetails,Home)</onfocus>
+            <onfocus>SetFocus(14)</onfocus>
+        </control>
+
+
     </controls>
 </window>

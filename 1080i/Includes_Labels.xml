@@ -991,11 +991,6 @@
         <value>???</value>
     </variable>
 
-    <variable name="Label_OSD_Music_Info">
-        <value condition="Skin.HasSetting(show.osd.music.album.info.on.down)">$LOCALIZE[31025]</value>
-        <value>$LOCALIZE[559]</value>
-    </variable>
-
     <!-- LABEL OSD VIDEO -->
 
     <variable name="Label_OSD_Title_Big">
@@ -1074,9 +1069,8 @@
         <value condition="ControlGroup(101).HasFocus() + !String.IsEmpty(VideoPlayer.DBID)">$LOCALIZE[31625] $LOCALIZE[31025]</value>
         <value condition="ControlGroup(101).HasFocus()">$LOCALIZE[31625] $LOCALIZE[207]</value>
         <value condition="ControlGroup(102).HasFocus()">$LOCALIZE[31625] $LOCALIZE[31575]</value>
-        <value condition="ControlGroup(6003).HasFocus() + Skin.HasSetting(show.osd.music.album.info.on.down) + !String.IsEmpty(MusicPlayer.DBID)">$LOCALIZE[31625] $LOCALIZE[31633]</value>
-        <value condition="ControlGroup(6003).HasFocus() + Skin.HasSetting(show.osd.music.album.info.on.down) + String.IsEmpty(MusicPlayer.DBID)">$LOCALIZE[31625] $LOCALIZE[207]</value>
-        <value condition="ControlGroup(6003).HasFocus()">$LOCALIZE[31625] $LOCALIZE[559]</value>
+        <value condition="ControlGroup(6002).HasFocus() + !String.IsEmpty(MusicPlayer.DBID)">$LOCALIZE[31625] $LOCALIZE[31633]</value>
+        <value condition="Control.HasFocus(8200) + !String.IsEmpty(MusicPlayer.DBID)">$LOCALIZE[31675] $LOCALIZE[21891]</value>
     </variable>
 
     <variable name="Label_Header_Settings">

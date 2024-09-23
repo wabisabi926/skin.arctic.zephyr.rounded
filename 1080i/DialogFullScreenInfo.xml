@@ -4,6 +4,7 @@
 
     <onunload>ClearProperty(osdshowinfo,Home)</onunload>
     <onunload>ClearProperty(OSDVideoDetails,Home)</onunload>
+    <onunload>ClearProperty(osdinfoscrollbarfocus,Home)</onunload>
     <onunload>ClearProperty(osdinfo,Home)</onunload>
     <onunload>ClearProperty(dialogvideoinfo,Home)</onunload>
 
@@ -19,7 +20,11 @@
 
             <!-- ON UP - 1 - Show plot + auto pause -->
             <onup condition="String.IsEmpty(Window(Home).Property(OSDVideoDetails))">SetProperty(OSDVideoDetails,1,Home)</onup>
+            <onup condition="String.IsEmpty(Window(Home).Property(OSDVideoDetails))">SetFocus(9804)</onup>
+            <onup condition="String.IsEmpty(Window(Home).Property(OSDVideoDetails))">AlarmClock(Check2,SetProperty(osdinfoscrollbarfocus,1,Home),00:01,silent)</onup>
+
             <onup condition="String.IsEmpty(Window(Home).Property(OSDVideoDetails)) + Skin.HasSetting(osd.open.auto.pause) + !Player.Paused + VideoPlayer.IsFullscreen + !String.IsEmpty(VideoPlayer.DBID)">PlayerControl(Play)</onup>
+
 
             <!-- ON UP - 2 - Hide all plot + auto playing -->
             <onup condition="!String.IsEmpty(Window(Home).Property(OSDVideoDetails))">Close</onup>
@@ -39,6 +44,20 @@
             <onfocus condition="!String.IsEmpty(Window(Home).Property(dialogvideoinfo))">Close</onfocus>
             <onfocus condition="!String.IsEmpty(Window(Home).Property(dialogvideoinfo)) + Player.Paused + Skin.HasSetting(osd.open.auto.pause)">PlayerControl(Play)</onfocus>
             <onfocus condition="!String.IsEmpty(Window(Home).Property(dialogvideoinfo)) + Player.Paused + Skin.HasSetting(osd.open.auto.pause)">ClearProperty(dialogvideoinfo,Home)</onfocus>
+
+            <onfocus condition="!String.IsEmpty(Window(Home).Property(osdinfoscrollbarfocus))">Close</onfocus>
+            <onfocus condition="!String.IsEmpty(Window(Home).Property(osdinfoscrollbarfocus)) + !String.IsEmpty(Window(Home).Property(OSDVideoDetails)) + Skin.HasSetting(osd.open.auto.pause) + Player.Paused + VideoPlayer.IsFullscreen">PlayerControl(Play)</onfocus>
         </control>
+
+        <!-- PLOT -->
+
+        <include content="Object_OSD_Plot_Video">
+            <param name="visible" value="!String.IsEmpty(Window(Home).Property(OSDVideoDetails))" />
+            <param name="onleft" value="SetFocus(555)"/>
+            <param name="onright" value="SetFocus(555)"/>
+            <param name="onback" value="SetFocus(555)"/>
+            <param name="scrollid" value="9804" />
+        </include>
+
     </controls>
 </window>

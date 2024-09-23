@@ -83,7 +83,6 @@
                     <onclick condition="!System.HasAddon(script.cu.lrclyrics)">InstallAddon(script.cu.lrclyrics)</onclick>
                     <onclick condition="System.HasAddon(script.cu.lrclyrics)">RunScript(script.cu.lrclyrics)</onclick>
                 </include>
-
             </control>
 
             <!-- CENTER BUTTONS -->
@@ -274,7 +273,7 @@
             <!-- ARTIST BIOGRAPHY -->
 
             <control type="group">
-                <visible>[!String.IsEmpty(Window(Home).Property(OSDArtistDetails)) | Skin.HasSetting(show.osd.artist.infos)]</visible>
+                <visible>!String.IsEmpty(Window(Home).Property(OSDArtistDetails))</visible>
                 <visible>!Window.IsVisible(script-cu-lrclyrics-main.xml)</visible>
                 <animation type="Visible" reversible="false">
                     <effect type="fade" start="0" end="100" time="600" delay="200" />
@@ -283,6 +282,7 @@
                 <height>560</height>
                 <top>160</top>
                 <right>SidePadNewOSD</right>
+
                 <control type="textbox">
                     <font>Medium</font>
                     <textcolor>$VAR[Color_OSD_Panel_White70Music]</textcolor>
@@ -322,6 +322,14 @@
                     <height>40</height>
                     <centertop>40%</centertop>
                     <texture flipy="true" colordiffuse="$VAR[Color_OSD_Button_Background]">special://skin/extras/icons/angle-up.png</texture>
+                    <visible>ControlGroup(6002).HasFocus()</visible>
+                </control>
+                <control type="image">
+                    <width>40</width>
+                    <height>40</height>
+                    <centertop>40%</centertop>
+                    <texture flipy="false" colordiffuse="$VAR[Color_OSD_Button_Background]">special://skin/extras/icons/angle-up.png</texture>
+                    <visible>Control.HasFocus(8200)</visible>
                 </control>
                 <control type="label">
                     <height>28</height>
@@ -331,7 +339,8 @@
                     <label>$VAR[Label_OSD_Footer_Tip]</label>
                     <aligny>center</aligny>
                 </control>
-                <visible>ControlGroup(6003).HasFocus()</visible>
+                <visible>ControlGroup(6002).HasFocus() | Control.HasFocus(8200)</visible>
+                <visible>!Control.HasFocus(9803)</visible>
             </control>
 
             <!-- <control type="group" id="6060"> -->
@@ -362,14 +371,6 @@
 
             <include>Set_Artist_Search</include>
             <include>Set_Album_Search</include>
-
-            <!-- INFO OVERLAY -->
-
-            <include content="Def_Dialog_Info_Overlay">
-                <param name="headerinfo" value="$INFO[VideoPlayer.Title]" />
-                <param name="plotinfo" value="$INFO[VideoPlayer.Tagline,[B],[/B][CR][CR]]$INFO[VideoPlayer.Plot]" />
-                <param name="ondirection" value="14" />
-            </include>
         </control>
 
         <control type="progress">

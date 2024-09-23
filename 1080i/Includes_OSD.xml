@@ -327,29 +327,40 @@
     </include>
 
     <include name="Object_OSD_Plot_Video">
+        <definition>
+            <control type="group">
+                <visible>$PARAM[visible]</visible>
+                <animation type="Visible" reversible="false">
+                    <effect type="fade" start="0" end="100" time="600" delay="200" />
+                </animation>
+                <animation effect="fade" start="100" end="0" time="150" condition="Window.IsVisible(DialogPlayerProcessInfo.xml)">Conditional</animation>
+                <animation effect="slide" start="0" end="0,-74" time="150" condition="Window.IsVisible(videoosd)">Conditional</animation>
 
-        <!-- VIDEO PLOT -->
+                <left>620</left>
+                <height>560</height>
+                <top>160</top>
+                <right>SidePadNewOSD</right>
 
-        <control type="group">
-            <visible>!String.IsEmpty(Window(Home).Property(OSDVideoDetails))</visible>
-            <animation type="Visible" reversible="false">
-                <effect type="fade" start="0" end="100" time="600" delay="200" />
-            </animation>
-            <animation effect="fade" start="100" end="0" time="150" condition="Window.IsVisible(DialogPlayerProcessInfo.xml)">Conditional</animation>
-            <animation effect="slide" start="0" end="0,-74" time="150" condition="Window.IsVisible(videoosd)">Conditional</animation>
+                <control type="textbox">
+                    <font>Medium</font>
+                    <textcolor>$VAR[Color_OSD_Panel_White70Music]</textcolor>
+                    <label>$INFO[VideoPlayer.Plot]</label>
+                    <autoscroll delay="12000" time="5000" repeat="12000">true</autoscroll>
+                    <pagecontrol>$PARAM[scrollid]</pagecontrol>
+                    <bottom>-20</bottom>
+                </control>
 
-            <left>620</left>
-            <height>560</height>
-            <top>160</top>
-            <right>SidePadNewOSD</right>
-            <control type="textbox">
-                <font>Medium</font>
-                <textcolor>$VAR[Color_OSD_Panel_White70Music]</textcolor>
-                <label>$INFO[VideoPlayer.Plot]</label>
-                <autoscroll delay="12000" time="5000" repeat="12000">true</autoscroll>
-                <bottom>-20</bottom>
+                <include content="Object_Scrollbar_Dialog_Vertical">
+                    <param name="scrollid" value="$PARAM[scrollid]"/>
+                    <param name="onleft" value="$PARAM[onleft]"/>
+                    <param name="onright" value="$PARAM[onright])"/>
+                    <param name="onback" value="$PARAM[onback]"/>
+                    <param name="height" value="570"/>
+                    <param name="top" value="10"/>
+                    <param name="centerright" value="1200"/>
+                </include>
             </control>
-        </control>
+        </definition>
     </include>
 
     <include name="Object_OSD_Plot_Background">
@@ -883,6 +894,7 @@
 
         <!-- Displaying info + plot -->
         <onup condition="!String.IsEmpty(Window(Home).Property(osdshowinfo)) + !Window.IsVisible(MusicOSD.xml) + Skin.HasSetting(show.osd.video.infos)">SetProperty(OSDVideoDetails,1,Home)</onup>
+        <onup condition="!String.IsEmpty(Window(Home).Property(osdshowinfo)) + !Window.IsVisible(MusicOSD.xml) + Skin.HasSetting(show.osd.video.infos)">SetFocus(9805)</onup>
 
         <!-- Close info + plot -->
         <onup condition="!String.IsEmpty(Window(Home).Property(osdshowinfo)) + !String.IsEmpty(Window(Home).Property(OSDVideoDetails)) + !Window.IsVisible(MusicOSD.xml) + Skin.HasSetting(show.osd.video.infos)">ClearProperty(osdshowinfo,Home)</onup>
@@ -924,20 +936,13 @@
         <oninfo>ClearProperty(ShowArtistInfo,Home)</oninfo>
 
         <!-- Show Dialog Music Info -->
-        <ondown condition="Skin.HasSetting(show.osd.music.album.info.on.down) + !Container(997).IsUpdating + Integer.IsGreater(Container(997).NumItems,0) + !String.IsEmpty(MusicPlayer.DBID)">SetFocus(997)</ondown>
-        <ondown condition="Skin.HasSetting(show.osd.music.album.info.on.down) + !Container(997).IsUpdating + Integer.IsGreater(Container(997).NumItems,0) + !String.IsEmpty(MusicPlayer.DBID)">Action(info)</ondown>
-        <oninfo condition="Skin.HasSetting(show.osd.music.album.info.on.down) + !Container(997).IsUpdating + Integer.IsGreater(Container(997).NumItems,0) + !String.IsEmpty(MusicPlayer.DBID)">SetFocus(997)</oninfo>
-        <oninfo condition="Skin.HasSetting(show.osd.music.album.info.on.down) + !Container(997).IsUpdating + Integer.IsGreater(Container(997).NumItems,0) + !String.IsEmpty(MusicPlayer.DBID)">Action(info)</oninfo>
+        <ondown condition="!Container(997).IsUpdating + Integer.IsGreater(Container(997).NumItems,0) + !String.IsEmpty(MusicPlayer.DBID)">SetFocus(997)</ondown>
+        <ondown condition="!Container(997).IsUpdating + Integer.IsGreater(Container(997).NumItems,0) + !String.IsEmpty(MusicPlayer.DBID)">Action(info)</ondown>
+        <oninfo condition="!Container(997).IsUpdating + Integer.IsGreater(Container(997).NumItems,0) + !String.IsEmpty(MusicPlayer.DBID)">SetFocus(997)</oninfo>
+        <oninfo condition="!Container(997).IsUpdating + Integer.IsGreater(Container(997).NumItems,0) + !String.IsEmpty(MusicPlayer.DBID)">Action(info)</oninfo>
 
         <!-- displaying plot -->
-        <ondown condition="Skin.HasSetting(show.osd.music.album.info.on.down) + String.IsEmpty(MusicPlayer.DBID)">SetFocus(9601)</ondown>
-
-
-        <!-- Show Music Playlist -->
-        <oninfo condition="!Skin.HasSetting(show.osd.music.album.info.on.down)">Close</oninfo>
-        <oninfo condition="!Skin.HasSetting(show.osd.music.album.info.on.down)">ActivateWindow(musicplaylist)</oninfo>
-        <ondown condition="!Skin.HasSetting(show.osd.music.album.info.on.down)">Close</ondown>
-        <ondown condition="!Skin.HasSetting(show.osd.music.album.info.on.down)">ActivateWindow(musicplaylist)</ondown>
+        <ondown condition="String.IsEmpty(MusicPlayer.DBID)">SetFocus(9601)</ondown>
     </include>
 
     <include name="Def_OSD_Channel_Number_Input">
@@ -1841,6 +1846,7 @@
             <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
             <include>Def_OSD_UpDown_Video_Info</include>
             <onclick>PlayerControl(Play)</onclick>
+            <onfocus>ClearProperty(OSDVideoDetails,Home)</onfocus>
             <enable>Player.PauseEnabled</enable>
             <animation effect="fade" start="100" end="33" time="100" condition="!Player.PauseEnabled">Conditional</animation>
         </include>
@@ -2319,9 +2325,9 @@
                     <!-- POSTER -->
 
                     <control type="group">
-                        <animation effect="zoom" start="100" end="140" center="0,680" time="400" tween="cubic" easing="out" reversible="false" condition="[Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(Home).Property(OSDVideoDetails)) | Skin.HasSetting(show.osd.artist.infos)]">Conditional</animation>
+                        <animation effect="zoom" start="100" end="140" center="0,680" time="400" tween="cubic" easing="out" reversible="false" condition="[Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(Home).Property(OSDVideoDetails))]">Conditional</animation>
 
-                        <animation effect="zoom" start="140" end="100" center="0,680" time="400" tween="cubic" easing="out" reversible="false" condition="![Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(Home).Property(OSDVideoDetails)) | Skin.HasSetting(show.osd.artist.infos)]">Conditional</animation>
+                        <animation effect="zoom" start="140" end="100" center="0,680" time="400" tween="cubic" easing="out" reversible="false" condition="![Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(Home).Property(OSDVideoDetails))]">Conditional</animation>
 
                         <control type="image">
                             <visible>!VideoPlayer.Content(livetv) + [!String.IsEmpty(Player.Art(tvshow.poster)) | !String.IsEmpty(Player.Art(poster))]</visible>
@@ -2347,9 +2353,9 @@
                     <!-- FANART -->
 
                     <control type="group">
-                        <animation effect="zoom" start="100" end="150" center="0,1230" time="400" tween="cubic" easing="out" reversible="false" condition="[Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(Home).Property(OSDVideoDetails)) | Skin.HasSetting(show.osd.artist.infos)]">Conditional</animation>
+                        <animation effect="zoom" start="100" end="150" center="0,1180" time="400" tween="cubic" easing="out" reversible="false" condition="[Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(Home).Property(OSDVideoDetails))]">Conditional</animation>
 
-                        <animation effect="zoom" start="150" end="100" center="0,1230" time="400" tween="cubic" easing="out" reversible="false" condition="![Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(Home).Property(OSDVideoDetails)) | Skin.HasSetting(show.osd.artist.infos)]">Conditional</animation>
+                        <animation effect="zoom" start="150" end="100" center="0,1180" time="400" tween="cubic" easing="out" reversible="false" condition="![Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(Home).Property(OSDVideoDetails))]">Conditional</animation>
 
                         <control type="image">
                             <visible>!VideoPlayer.Content(livetv) + !String.IsEmpty(Player.Art(thumb)) + String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster))</visible>
@@ -2776,7 +2782,7 @@
                     <width>100%</width>
 
                     <control type="group">
-                        <animation effect="slide" start="0,0" end="-426,0" time="150" condition="!String.IsEmpty(Window(Home).Property(OSDArtistDetails)) | Skin.HasSetting(show.osd.artist.infos)">Conditional</animation>
+                        <animation effect="slide" start="0,0" end="-426,0" time="150" condition="!String.IsEmpty(Window(Home).Property(OSDArtistDetails))">Conditional</animation>
 
                         <left>560</left>
                         <right>SidePadNewOSD</right>
@@ -2860,7 +2866,7 @@
             <left>50</left>
 
             <control type="group">
-                <animation effect="fade" start="100" end="0" time="100" condition="!String.IsEmpty(Window(Home).Property(OSDArtistDetails)) | Skin.HasSetting(show.osd.artist.infos)">Conditional</animation>
+                <animation effect="fade" start="100" end="0" time="100" condition="!String.IsEmpty(Window(Home).Property(OSDArtistDetails))">Conditional</animation>
                 <animation effect="fade" start="0" end="100" time="400" delay="200" condition="String.IsEmpty(Window(Home).Property(OSDArtistDetails)) + !Skin.HasSetting(show.osd.artist.infos)">Conditional</animation>
 
                 <animation type="WindowClose" reversible="false">
@@ -2880,11 +2886,9 @@
             </control>
 
             <control type="group">
-                <animation effect="zoom" start="100" end="150" center="76,1470" time="400" tween="cubic" easing="out" reversible="false" condition="[Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(Home).Property(OSDArtistDetails)) | Skin.HasSetting(show.osd.artist.infos)]">Conditional</animation>
+                <animation effect="zoom" start="100" end="150" center="76,1470" time="400" tween="cubic" easing="out" reversible="false" condition="[Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(Home).Property(OSDArtistDetails))]">Conditional</animation>
 
-                <animation effect="zoom" start="150" end="100" center="76,1470" time="400" tween="cubic" easing="out" reversible="false" condition="![Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(Home).Property(OSDArtistDetails)) | Skin.HasSetting(show.osd.artist.infos)]">Conditional</animation>
-
-                <animation effect="slide" start="0" end="0,-50" time="150" condition="!Window.IsVisible(musicosd) + Skin.HasSetting(show.osd.artist.infos)">Conditional</animation>
+                <animation effect="zoom" start="150" end="100" center="76,1470" time="400" tween="cubic" easing="out" reversible="false" condition="![Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(Home).Property(OSDArtistDetails))]">Conditional</animation>
 
                 <animation type="WindowClose" reversible="false">
                     <effect type="slide" start="0,0" end="-495,0" tween="sine" easing="out" time="300" delay="0"/>
@@ -2928,7 +2932,7 @@
         <!-- ARTIST BIOGRAPHY -->
 
         <control type="group">
-            <visible>[!String.IsEmpty(Window(Home).Property(OSDArtistDetails)) | Skin.HasSetting(show.osd.artist.infos)]</visible>
+            <visible>!String.IsEmpty(Window(Home).Property(OSDArtistDetails))</visible>
             <visible>!Window.IsVisible(script-cu-lrclyrics-main.xml) + !Window.IsVisible(MusicOSD.xml)</visible>
             <animation type="Visible" reversible="false">
                 <effect type="fade" start="0" end="100" time="600" delay="200" />

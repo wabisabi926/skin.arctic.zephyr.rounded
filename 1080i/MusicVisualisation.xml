@@ -35,7 +35,7 @@
          <!-- ARTIST BIOGRAPHY -->
 
          <control type="group">
-            <visible>!String.IsEmpty(Window(Home).Property(OSDArtistDetails)) | Skin.HasSetting(show.osd.artist.infos)</visible>
+            <visible>!String.IsEmpty(Window(Home).Property(OSDArtistDetails))</visible>
             <include>Animation_FadeIn</include>
             <include>Animation_FadeOut</include>
             <control type="image" description="Background">
@@ -51,7 +51,7 @@
             <top>350</top>
             <visible>!Skin.HasSetting(hide.music.visualisation.scrolling.text)</visible>
             <visible>!Window.IsVisible(script-cu-lrclyrics-main.xml)</visible>
-            <visible>String.IsEmpty(Window(Home).Property(OSDArtistDetails)) + !Skin.HasSetting(show.osd.artist.infos)</visible>
+            <visible>String.IsEmpty(Window(Home).Property(OSDArtistDetails))</visible>
             <animation effect="fade" start="0" end="100" time="950" delay="500" tween="cubic" easing="inout">Visible</animation>
             <animation effect="fade" start="0" end="100" time="950" tween="cubic" easing="inout">WindowOpen</animation>
             <animation effect="fade" end="0" start="100" time="350">Hidden</animation>
