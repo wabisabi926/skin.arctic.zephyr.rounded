@@ -24,18 +24,29 @@
     <zorder>0</zorder>
 
     <controls>
+
+        <!-- Background on display Plot -->
+        <include>Object_OSD_Plot_Background</include>
+
+        <!-- Seekbar Video -->
         <control type="group">
-            <animation effect="fade" start="100" end="0" time="250" condition="[Window.IsVisible(DialogSlider.xml) | [Skin.HasSetting(enable.osd.video.hide.on.pause) + Player.Paused]] + !Player.Seeking + !Player.Forwarding + !Player.Rewinding + !Window.IsVisible(videoosd)">Conditional</animation>
+            <animation effect="fade" start="100" end="0" time="250" condition="[Window.IsVisible(DialogSlider.xml) | [Skin.HasSetting(enable.osd.video.hide.on.pause) + Player.Paused + String.IsEmpty(Window(Home).Property(OSDVideoDetails))]] + !Player.Seeking + !Player.Forwarding + !Player.Rewinding + !Window.IsVisible(videoosd)">Conditional</animation>
             <include condition="VideoPlayer.IsFullscreen">OSD_Video_SeekBar</include>
         </control>
 
+        <!-- Seekbar Music -->
         <control type="group">
             <include condition="!VideoPlayer.IsFullscreen">OSD_Music_SeekBar</include>
         </control>
 
+        <!-- Channel number PVR -->
         <include>Def_OSD_Channel_Number_Input</include>
 
         <!-- Clock -->
         <include>Object_OSD_Clock</include>
+
+        <!-- Plot -->
+        <include>Object_OSD_Plot_Video</include>
+
     </controls>
 </window>

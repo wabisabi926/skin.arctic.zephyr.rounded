@@ -1,22 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window type="dialog" id="142">
     <defaultcontrol always="true">555</defaultcontrol>
+
     <onunload>ClearProperty(osdshowinfo,Home)</onunload>
+    <onunload>ClearProperty(OSDVideoDetails,Home)</onunload>
     <onunload>ClearProperty(osdinfo,Home)</onunload>
     <onunload>ClearProperty(dialogvideoinfo,Home)</onunload>
+
     <controls>
         <control type="button" id="555">
             <include>Def_Hidden_Button</include>
+
             <onleft>Close</onleft>
+            <onleft condition="!String.IsEmpty(Window(Home).Property(OSDVideoDetails)) + Skin.HasSetting(osd.open.auto.pause) + Player.Paused + VideoPlayer.IsFullscreen">PlayerControl(Play)</onleft>
+
             <onright>Close</onright>
-            <ondown>Close</ondown>
-            <onup>Close</onup>
+            <onright condition="!String.IsEmpty(Window(Home).Property(OSDVideoDetails)) + Skin.HasSetting(osd.open.auto.pause) + Player.Paused + VideoPlayer.IsFullscreen">PlayerControl(Play)</onright>
+
+            <!-- ON UP - 1 - Show plot + auto pause -->
+            <onup condition="String.IsEmpty(Window(Home).Property(OSDVideoDetails))">SetProperty(OSDVideoDetails,1,Home)</onup>
+            <onup condition="String.IsEmpty(Window(Home).Property(OSDVideoDetails)) + Skin.HasSetting(osd.open.auto.pause) + !Player.Paused + VideoPlayer.IsFullscreen + !String.IsEmpty(VideoPlayer.DBID)">PlayerControl(Play)</onup>
+
+            <!-- ON UP - 2 - Hide all plot + auto playing -->
+            <onup condition="!String.IsEmpty(Window(Home).Property(OSDVideoDetails))">Close</onup>
+            <onup condition="!String.IsEmpty(Window(Home).Property(OSDVideoDetails)) + Skin.HasSetting(osd.open.auto.pause) + Player.Paused + VideoPlayer.IsFullscreen">PlayerControl(Play)</onup>
+
+            <!-- ON DOWN - 1 - Hide plot + auto playing -->
+            <ondown condition="!String.IsEmpty(Window(Home).Property(OSDVideoDetails))">ClearProperty(OSDVideoDetails,Home)</ondown>
+            <ondown condition="!String.IsEmpty(Window(Home).Property(OSDVideoDetails)) + Skin.HasSetting(osd.open.auto.pause) + Player.Paused + VideoPlayer.IsFullscreen + !String.IsEmpty(VideoPlayer.DBID)">PlayerControl(Play)</ondown>
+
+            <!-- ON DOWN - 2 - Hide plot + auto playing -->
+            <ondown condition="String.IsEmpty(Window(Home).Property(OSDVideoDetails))">Close</ondown>
+
             <onclick>Close</onclick>
             <onclick>SetProperty(osdshowinfo,1,Home)</onclick>
             <onclick>ActivateWindow(videoosd)</onclick>
-           <onfocus condition="!String.IsEmpty(Window(Home).Property(dialogvideoinfo))">Close</onfocus>
-           <onfocus condition="!String.IsEmpty(Window(Home).Property(dialogvideoinfo)) + Player.Paused + Skin.HasSetting(osd.open.auto.pause)">PlayerControl(Play)</onfocus>
-           <onfocus condition="!String.IsEmpty(Window(Home).Property(dialogvideoinfo)) + Player.Paused + Skin.HasSetting(osd.open.auto.pause)">ClearProperty(dialogvideoinfo,Home)</onfocus>
+
+            <onfocus condition="!String.IsEmpty(Window(Home).Property(dialogvideoinfo))">Close</onfocus>
+            <onfocus condition="!String.IsEmpty(Window(Home).Property(dialogvideoinfo)) + Player.Paused + Skin.HasSetting(osd.open.auto.pause)">PlayerControl(Play)</onfocus>
+            <onfocus condition="!String.IsEmpty(Window(Home).Property(dialogvideoinfo)) + Player.Paused + Skin.HasSetting(osd.open.auto.pause)">ClearProperty(dialogvideoinfo,Home)</onfocus>
         </control>
     </controls>
 </window>
