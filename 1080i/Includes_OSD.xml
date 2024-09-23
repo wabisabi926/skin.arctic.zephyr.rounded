@@ -2346,34 +2346,40 @@
 
                     <!-- FANART -->
 
-                    <control type="image">
-                        <visible>!VideoPlayer.Content(livetv) + !String.IsEmpty(Player.Art(thumb)) + String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster))</visible>
-                        <left>-9</left>
-                        <top>-45</top>
-                        <width>288</width>
-                        <height>188</height>
-                        <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                        <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-                    </control>
+                    <control type="group">
+                        <animation effect="zoom" start="100" end="150" center="0,1230" time="400" tween="cubic" easing="out" reversible="false" condition="[Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(Home).Property(OSDVideoDetails)) | Skin.HasSetting(show.osd.artist.infos)]">Conditional</animation>
 
-                    <!-- <control type="image"> -->
-                        <!-- <visible>!VideoPlayer.Content(livetv) + !String.IsEmpty(Player.Art(thumb)) + String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster))</visible> -->
-                        <!-- <left>0</left> -->
-                        <!-- <top>-36</top> -->
-                        <!-- <width>270</width> -->
-                        <!-- <height>156</height> -->
-                        <!-- <texture border="12" colordiffuse="$VAR[Color_OSD_Panel_PVR]">common/box.png</texture> -->
-                        <!-- <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio> -->
-                    <!-- </control> -->
+                        <animation effect="zoom" start="150" end="100" center="0,1230" time="400" tween="cubic" easing="out" reversible="false" condition="![Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(Home).Property(OSDVideoDetails)) | Skin.HasSetting(show.osd.artist.infos)]">Conditional</animation>
 
-                    <control type="image">
-                        <visible>!VideoPlayer.Content(livetv) + !String.IsEmpty(Player.Art(thumb)) + String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster))</visible>
-                        <left>0</left>
-                        <top>-36</top>
-                        <width>270</width>
-                        <height>156</height>
-                        <texture diffuse="diffuse/osdthumb_270.png">$VAR[Image_Poster_Player]</texture>
-                        <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                        <control type="image">
+                            <visible>!VideoPlayer.Content(livetv) + !String.IsEmpty(Player.Art(thumb)) + String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster))</visible>
+                            <left>-9</left>
+                            <top>-45</top>
+                            <width>288</width>
+                            <height>174</height>
+                            <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
+                            <visible>!Skin.HasSetting(global.hide.shadows)</visible>
+                        </control>
+
+                        <!-- <control type="image"> -->
+                            <!-- <visible>!VideoPlayer.Content(livetv) + !String.IsEmpty(Player.Art(thumb)) + String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster))</visible> -->
+                            <!-- <left>0</left> -->
+                            <!-- <top>-36</top> -->
+                            <!-- <width>270</width> -->
+                            <!-- <height>156</height> -->
+                            <!-- <texture border="12" colordiffuse="$VAR[Color_OSD_Panel_PVR]">common/box.png</texture> -->
+                            <!-- <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio> -->
+                        <!-- </control> -->
+
+                        <control type="image">
+                            <visible>!VideoPlayer.Content(livetv) + !String.IsEmpty(Player.Art(thumb)) + String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster))</visible>
+                            <left>0</left>
+                            <top>-36</top>
+                            <width>270</width>
+                            <height>156</height>
+                            <texture diffuse="diffuse/osdthumb_270.png">$VAR[Image_Poster_Player]</texture>
+                            <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                        </control>
                     </control>
 
                     <!-- CHANNEL LOGO -->
