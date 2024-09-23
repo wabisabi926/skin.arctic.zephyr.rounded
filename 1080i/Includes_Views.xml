@@ -259,35 +259,11 @@
                 <orientation>vertical</orientation>
                 <itemgap>0</itemgap>
 
-                <!-- CLERALOGO -->
+                <!-- MAIN TITLE -->
 
-                <control type="image" description="clearlogo">
-                    <height>ClearLogoTitleMaxHeight</height>
-                    <width>ClearLogoTitleMaxWidth</width>
-                    <aspectratio scalediffuse="true" align="left">keep</aspectratio>
-                    <texture background="true">$VAR[Image_Crop_ClearLogo]</texture>
-                    <animation effect="fade" start="0" end="100" time="200" delay="0" reversible="true">Visible</animation>
-                    <animation effect="fade" start="100" end="0" delay="400" time="200" reversible="true">Hidden</animation>
-                    <fadetime>ClearArtFadetime</fadetime>
-                    <visible>$EXP[View_Flix_Show_Clearlogo_Enable]</visible>
-                    <visible>$EXP[Exp_Title_Clearlogo_Available]</visible>
-                </control>
-
-                <!-- MAIN TITLE - TEXT -->
-
-                <control type="label">
-                    <include content="Def_Height" condition="$EXP[View_Flix_Show_Clearlogo_Enable]">
-                        <param name="height">ClearLogoTitleMaxHeight</param>
-                    </include>
-                    <include content="Def_Height" condition="!$EXP[View_Flix_Show_Clearlogo_Enable]">
-                        <param name="height">40</param>
-                    </include>
-                    <textcolor>Dark1</textcolor>
-                    <font>LargeNew</font>
-                    <label fallback="19055">$VAR[Label_View_Flix_Main_Title]</label>
-                    <include condition="Skin.HasSetting(labels.autoscroll)">LabelScroll</include>
-                    <visible>[$EXP[View_Flix_Show_Clearlogo_Enable] + !$EXP[Exp_Title_Clearlogo_Available]] | !$EXP[View_Flix_Show_Clearlogo_Enable]</visible>
-                </control>
+                <include content="Label_View_Flix_Main_Title">
+                    <param name="top" value="0"/>
+                </include>
 
                 <!-- SUB TITLE -->
 
@@ -319,6 +295,52 @@
                 </include>
             </control>
         </control>
+    </include>
+
+    <include name="Label_View_Flix_Main_Title">
+        <param name="height" value="$PARAM[height]" default="46"/>
+        <param name="width" value="$PARAM[width]" default="100%"/>
+        <param name="visible" value="$PARAM[visible]" default="true"/>
+
+        <definition>
+            <control type="group">
+                <visible>$PARAM[visible]</visible>
+                <top>$PARAM[top]</top>
+                <left>$PARAM[left]</left>
+                <height>$PARAM[height]</height>
+                <width>$PARAM[width]</width>
+
+                <!-- CLERALOGO -->
+
+                <control type="image" description="clearlogo">
+                    <height>ClearLogoTitleMaxHeight</height>
+                    <width>ClearLogoTitleMaxWidth</width>
+                    <aspectratio scalediffuse="true" align="left">keep</aspectratio>
+                    <texture background="true">$VAR[Image_Crop_ClearLogo]</texture>
+                    <animation effect="fade" start="0" end="100" time="200" delay="0" reversible="true">Visible</animation>
+                    <animation effect="fade" start="100" end="0" delay="400" time="200" reversible="true">Hidden</animation>
+                    <fadetime>ClearArtFadetime</fadetime>
+                    <visible>$EXP[View_Flix_Show_Clearlogo_Enable]</visible>
+                    <visible>$EXP[Exp_Title_Clearlogo_Available]</visible>
+                </control>
+
+                <!-- MAIN TITLE - TEXT -->
+
+                <control type="label">
+                    <include content="Def_Height" condition="$EXP[View_Flix_Show_Clearlogo_Enable]">
+                        <param name="height">ClearLogoTitleMaxHeight</param>
+                    </include>
+                    <include content="Def_Height" condition="!$EXP[View_Flix_Show_Clearlogo_Enable]">
+                        <param name="height">40</param>
+                    </include>
+                    <textcolor>Dark1</textcolor>
+                    <font>LargeNew</font>
+                    <label fallback="19055">$VAR[Label_View_Flix_Main_Title]</label>
+                    <include condition="Skin.HasSetting(labels.autoscroll)">LabelScroll</include>
+                    <visible>[$EXP[View_Flix_Show_Clearlogo_Enable] + !$EXP[Exp_Title_Clearlogo_Available]] | !$EXP[View_Flix_Show_Clearlogo_Enable]</visible>
+                </control>
+            </control>
+        </definition>
     </include>
 
     <include name="Label_View_Flix_Sub_Title">
@@ -1483,7 +1505,7 @@
             <include>Animation_FurnitureVisible_footer</include>
             <visible>Skin.HasSetting(show.furniture.footer) | Control.IsVisible(5048) | Control.IsVisible(5218) | Control.IsVisible(5238)</visible>
 
-            <visible>[!Skin.HasSetting(55wall.showinfo) + Control.IsVisible(55)] | Control.IsVisible(506) | Control.IsVisible(52) | Control.IsVisible(500) | Control.IsVisible(515) | Control.IsVisible(511) | Control.IsVisible(512) | Control.IsVisible(517) | Control.IsVisible(547) | Control.IsVisible(557) | Control.IsVisible(5048) | Control.IsVisible(5218) | [Control.IsVisible(5228) + String.IsEqual(Skin.String(522.landscape.size),2)] | Control.IsVisible(500) | Control.IsVisible(503) | Control.IsVisible(508) | Control.IsVisible(547) | [Control.IsVisible(5238) + String.IsEqual(Skin.String(523.square.size),2)] | Window.IsVisible(FileManager.xml) | Window.IsVisible(script-globalsearch.xml)</visible>
+            <visible>[!Skin.HasSetting(55wall.showinfo) + Control.IsVisible(55)] | Control.IsVisible(506) | Control.IsVisible(52) | Control.IsVisible(500) | Control.IsVisible(515) | Control.IsVisible(512) | Control.IsVisible(517) | Control.IsVisible(547) | Control.IsVisible(557) | Control.IsVisible(5048) | Control.IsVisible(5218) | [Control.IsVisible(5228) + String.IsEqual(Skin.String(522.landscape.size),2)] | Control.IsVisible(500) | Control.IsVisible(503) | Control.IsVisible(508) | Control.IsVisible(547) | [Control.IsVisible(5238) + String.IsEqual(Skin.String(523.square.size),2)] | Window.IsVisible(FileManager.xml) | Window.IsVisible(script-globalsearch.xml)</visible>
             <left>SidePad</left>
             <centerbottom>100</centerbottom>
             <orientation>horizontal</orientation>
@@ -1718,7 +1740,7 @@
                 <label>$VAR[Label_Genre]$INFO[ListItem.Duration(h),  •  ,$LOCALIZE[31070]] $INFO[ListItem.Duration(mm),,$LOCALIZE[31071]]$INFO[ListItem.Rating,  •  ]</label>
                 <visible>!String.IsEmpty(ListItem.Genre)</visible>
                 <visible>Container.Content(movies) | String.IsEqual(ListItem.DBtype,movie) | String.IsEqual(ListItem.DBtype,video)</visible>
-                <visible>![Control.IsVisible(50) | Control.IsVisible(550) | Control.IsVisible(56) | Control.IsVisible(57) | Control.IsVisible(555)] | Window.IsVisible(script-globalsearch.xml)</visible>
+                <visible>![Control.IsVisible(50) | Control.IsVisible(550) | Control.IsVisible(56) | Control.IsVisible(57) | Control.IsVisible(555) | Control.IsVisible(507) | Control.IsVisible(511)] | Window.IsVisible(script-globalsearch.xml)</visible>
                 <visible>!$EXP[IsYoutubeItem]</visible>
             </control>
 

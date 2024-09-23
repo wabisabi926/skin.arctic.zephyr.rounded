@@ -110,40 +110,25 @@
             <visible>Control.IsVisible(53)</visible>
             <include condition="!Skin.HasSetting(disable.wrap.view.53)">53Wrap</include>
             <include condition="Skin.HasSetting(disable.wrap.view.53)">53Fixed</include>
+
+            <!-- SCROLLBAR -->
+
             <control type="scrollbar" id="1633">
                 <include content="Object_Scrollbar_Views_Horizontal">
                     <param name="scrollid" value="1633"/>
                 </include>
             </control>
-            <control type="grouplist">
-                <left>540</left>
-                <right>SidePad</right>
-                <top>690</top>
-                <orientation>vertical</orientation>
-                <visible>![Container(53).OnNext | Container(53).OnPrevious]</visible>
-                <animation effect="fade" start="0" end="100" delay="450" time="250" reversible="false">Visible</animation>
-                <control type="label">
-                    <font>SmallBold</font>
-                    <label>$INFO[ListItem.Label]</label>
-                    <textcolor>Dark1</textcolor>
-                    <height>40</height>
-                    <aligny>top</aligny>
-                </control>
-                <control type="label">
-                    <font>Tiny</font>
-                    <label>$VAR[LabelGenre]</label>
-                    <textcolor>Dark1</textcolor>
-                    <height>42</height>
-                    <aligny>top</aligny>
-                </control>
-                <control type="textbox">
-                    <font>Tiny</font>
-                    <label>$VAR[Label_Plot_Box_Video_Music]</label>
-                    <textcolor>Dark2</textcolor>
-                    <height>68</height>
-                    <align>justify</align>
-                </control>
-            </control>
+
+            <!-- INFORMATION -->
+
+            <include content="57_List_Info">
+                <param name="top" value="660"/>
+                <param name="left" value="540"/>
+                <param name="width" value="1300"/>
+                <param name="plot_height" value="70"/>
+                <param name="animation_condition" value="true"/>
+                <param name="visible" value="![Container(53).OnNext | Container(53).OnPrevious]"/>
+            </include>
         </control>
     </include>
 </includes>

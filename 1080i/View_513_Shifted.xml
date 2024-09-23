@@ -41,19 +41,20 @@
                         <selectedcolor>Dark1</selectedcolor>
                         <font>SmallBold</font>
                         <width>1350</width>
-                        <label fallback="19055">$INFO[ListItem.Label]</label>
+                        <label fallback="19055">$VAR[Label_Main_Title_Fanart_56_57]</label>
                     </control>
                     <control type="label">
                         <visible>!ListItem.IsParentFolder</visible>
                         <top>71</top>
                         <left>410</left>
                         <height>36</height>
-                        <font>Tiny</font>
-                        <textcolor>Dark1</textcolor>
-                        <selectedcolor>Dark1</selectedcolor>
+                        <font>InfoNetflix</font>
+                        <textcolor>PanelWhite70</textcolor>
+                        <selectedcolor>PanelWhite70</selectedcolor>
                         <width>1350</width>
-                        <label>$VAR[513_Row_1]</label>
+                        <label>$VAR[Label_View_Flix_Sub_Title]</label>
                     </control>
+
                     <control type="textbox">
                         <top>126</top>
                         <bottom>17</bottom>
@@ -62,7 +63,7 @@
                         <height>76</height>
                         <textcolor>Dark2</textcolor>
                         <selectedcolor>Dark2</selectedcolor>
-                        <label>$INFO[ListItem.Plot]</label>
+                        <label>$VAR[Label_Plot_Box_Video_Music]</label>
                         <width>1330</width>
                         <autoscroll>false</autoscroll>
                     </control>
@@ -88,7 +89,7 @@
                         <selectedcolor>Dark1</selectedcolor>
                         <font>SmallBold</font>
                         <width>1350</width>
-                        <label fallback="19055">$INFO[ListItem.Label]</label>
+                        <label fallback="19055">$VAR[Label_Main_Title_Fanart_56_57]</label>
                     </control>
                     <control type="group">
                         <visible>!ListItem.IsParentFolder</visible>
@@ -96,21 +97,11 @@
                         <left>410</left>
                         <control type="label">
                             <height>36</height>
-                            <font>Tiny</font>
-                            <textcolor>Dark1</textcolor>
-                            <selectedcolor>Dark1</selectedcolor>
+                            <font>InfoNetflix</font>
+                            <textcolor>PanelWhite70</textcolor>
+                            <selectedcolor>PanelWhite70</selectedcolor>
                             <width>1350</width>
-                            <label>$VAR[Label_Duration_Var_50]</label>
-                            <include>Animation_TestIn</include>
-                        </control>
-                        <control type="label">
-                            <height>36</height>
-                            <font>Tiny</font>
-                            <textcolor>Dark1</textcolor>
-                            <selectedcolor>Dark1</selectedcolor>
-                            <width>1350</width>
-                            <label>$VAR[513_Row_1]</label>
-                            <include>Animation_TestOut</include>
+                            <label>$VAR[Label_View_Flix_Sub_Title]</label>
                         </control>
                     </control>
                     <control type="textbox">
@@ -121,17 +112,22 @@
                         <height>76</height>
                         <textcolor>Dark2</textcolor>
                         <selectedcolor>Dark2</selectedcolor>
-                        <label>$INFO[ListItem.Plot]</label>
+                        <label>$VAR[Label_Plot_Box_Video_Music]</label>
                         <width>1330</width>
                     </control>
                 </focusedlayout>
             </control>
+
+            <!-- SCROLLBAR -->
+
             <control type="scrollbar" id="1689">
                 <include content="Object_Scrollbar_Views_Vertical">
                     <param name="scrollid" value="1689"/>
                     <param name="idlayout" value="513"/>
                 </include>
             </control>
+
+
             <control type="image">
                 <visible>Control.HasFocus(513) + !Container(513).OnPrevious</visible>
                 <include>Animation_Delay_FadeIn</include>

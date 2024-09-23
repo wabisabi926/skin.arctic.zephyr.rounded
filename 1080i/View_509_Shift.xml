@@ -114,19 +114,35 @@
                     <param name="bottom" value="391"/>
                 </include>
             </control>
-            <control type="label">
-                <visible>!ListItem.IsParentFolder</visible>
-                <top>702</top>
-                <include condition="!Skin.HasSetting(509NoCenter)">CenterInfo</include>
-                <left>SidePad</left>
-                <height>36</height>
-                <font>InfoNetflix</font>
-                <textcolor>Dark1</textcolor>
-                <label>$VAR[509_Row_3]</label>
-            </control>
+
+            <include content="Label_View_Flix_Sub_Title">
+                <param name="visible" value="!ListItem.IsParentFolder + Skin.HasSetting(509NoCenter)"/>
+                <param name="top" value="702"/>
+                <param name="height" value="36"/>
+                <param name="left" value="SidePad"/>
+            </include>
+            <include content="Label_View_Flix_Sub_Title">
+                <param name="visible" value="!ListItem.IsParentFolder + !Skin.HasSetting(509NoCenter)"/>
+                <param name="top" value="702"/>
+                <param name="height" value="36"/>
+                <param name="width" value="1550"/>
+                <param name="left" value="180"/>
+                <param name="align" value="center"/>
+            </include>
+
+            <!-- <control type="label"> -->
+                <!-- <visible>!ListItem.IsParentFolder</visible> -->
+                <!-- <top>702</top> -->
+                <!-- <include condition="!Skin.HasSetting(509NoCenter)">CenterInfo</include> -->
+                <!-- <left>SidePad</left> -->
+                <!-- <height>36</height> -->
+                <!-- <font>InfoNetflix</font> -->
+                <!-- <textcolor>Dark1</textcolor> -->
+                <!-- <label>$VAR[509_Row_3]</label> -->
+            <!-- </control> -->
             <control type="textbox">
                 <top>758</top>
-                <bottom>17</bottom>
+                <bottom>7</bottom>
                 <include condition="!Skin.HasSetting(509NoCenter)">CenterInfo</include>
                 <left>SidePad</left>
                 <right>SidePad</right>
@@ -134,7 +150,7 @@
                 <height>110</height>
                 <textcolor>Dark2</textcolor>
                 <selectedcolor>Dark2</selectedcolor>
-                <label>$INFO[ListItem.Plot]</label>
+                <label>$VAR[Label_Plot_Box_Video_Music]</label>
             </control>
         </control>
     </include>
