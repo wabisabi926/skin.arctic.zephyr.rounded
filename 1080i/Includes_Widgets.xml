@@ -635,7 +635,7 @@
             <aspectratio scalediffuse="false">scale</aspectratio>
             <texture diffuse="diffuse/widgetsquare_new_small.png" background="true" fallback="DefaultMovies.png">$VAR[Image_Poster]</texture>
             <visible>!String.StartsWith(ListItem.Icon,Default)</visible>
-            <visible>![String.IsEqual(ListItem.Path,favourites://) | Container.Content(favourites)]</visible>
+            <visible>![String.IsEqual(ListItem.Path,favourites://) | Container.Content(favourites) | String.StartsWith(ListItem.Path,pvr://channels)]</visible>
         </control>
         <control type="image">
             <left>10</left>
@@ -656,8 +656,50 @@
             <height>204</height>
             <aspectratio scalediffuse="false">keep</aspectratio>
             <texture diffuse="diffuse/widgetsquare_new_small.png" background="true" fallback="DefaultMovies.png">$VAR[Image_Poster]</texture>
-            <visible>String.IsEqual(ListItem.Path,favourites://) | Container.Content(favourites)</visible>
+            <visible>String.IsEqual(ListItem.Path,favourites://) | Container.Content(favourites) | String.StartsWith(ListItem.Path,pvr://channels)</visible>
             <visible>!String.StartsWith(ListItem.Icon,Default)</visible>
+        </control>
+
+        <!-- PVR - PROGRESS BAR -->
+
+        <control type="progress">
+            <bottom>110</bottom>
+            <left>35</left>
+            <right>35</right>
+            <height>8</height>
+            <info>ListItem.Progress</info>
+            <lefttexture colordiffuse="$VAR[Color_Focus]" border="4">osd/progress-left.png</lefttexture>
+            <midtexture colordiffuse="$VAR[Color_Focus]" border="4">osd/progress-end.png</midtexture>
+            <righttexture colordiffuse="$VAR[Color_Focus]" border="4">osd/progress-right.png</righttexture>
+            <visible>String.StartsWith(ListItem.Path,pvr://channels)</visible>
+        </control>
+
+        <!-- PVR - LABEL -->
+
+        <control type="label">
+            <bottom>40</bottom>
+            <left>35</left>
+            <right>35</right>
+            <align>center</align>
+            <font>InfoNetflix</font>
+            <textcolor>PanelWhite70</textcolor>
+            <selectedcolor>PanelWhite70</selectedcolor>
+            <label>$INFO[ListItem.label]</label>
+            <visible>String.StartsWith(ListItem.Path,pvr://channels)</visible>
+        </control>
+
+        <!-- PVR - LABEL - 2nd LINE -->
+
+        <control type="label">
+            <bottom>10</bottom>
+            <left>35</left>
+            <right>35</right>
+            <align>center</align>
+            <font>Tiny</font>
+            <textcolor>PanelWhite70</textcolor>
+            <selectedcolor>PanelWhite70</selectedcolor>
+            <label>$VAR[Label_Widget_Landscape_Line_2]</label>
+            <visible>String.StartsWith(ListItem.Path,pvr://channels)</visible>
         </control>
 
         <control type="textbox">
@@ -671,6 +713,7 @@
             <selectedcolor>PanelWhite70</selectedcolor>
             <autoscroll>true</autoscroll>
             <label>$INFO[ListItem.Label]</label>
+            <visible>!String.StartsWith(ListItem.Path,pvr://channels)</visible>
         </control>
 
         <include content="Layout_Indicator_Status" condition="!Skin.HasSetting(hide.markers)">

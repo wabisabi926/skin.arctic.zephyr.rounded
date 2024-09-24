@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 
-    <include name="DialogPVRInfoWIP">
+    <include name="Dialog_PVR_Info">
         <control type="image">
             <width>100%</width>
             <height>100%</height>
@@ -14,73 +14,131 @@
                 <effect type="zoom" end="95" start="100" time="200" center="auto" tween="quadratic" easing="in"/>
             </animation>
 
-            <!-- Poster-->
+            <!-- SQUARE POSTER -->
+
             <control type="group">
+                <include>Animation_Music_FadeOut</include>
                 <include>Animation_SidePoster</include>
-                <control type="group" description="Poster">
-                    <left>SidePad</left>
-                    <top>PosterPad</top>
-                    <control type="image">
-                        <centertop>PosterH</centertop>
-                        <width>PosterH</width>
-                        <height>48</height>
-                        <aspectratio>stretch</aspectratio>
-                        <texture>diffuse/shadowspot.png</texture>
-                    </control>
-                    <control type="image">
-                        <left>-24</left>
-                        <top>-24</top>
-                        <width>PosterShadowH</width>
-                        <height>PosterShadowH</height>
-                        <texture border="40" infill="false">common/$VAR[shadow40]</texture>
-                    </control>
-                    <control type="image">
-                        <width>PosterH</width>
-                        <height>PosterH</height>
-                        <texture colordiffuse="FF181818">common/white.png</texture>
-                    </control>
-                    <control type="image">
-                        <width>PosterH</width>
-                        <height>PosterH</height>
-                        <fadetime>PosterFanartFadetime</fadetime>
-                        <aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
-                        <texture diffuse="diffuse/listposter.png" background="true">$VAR[Image_PVR_Thumb]</texture>
-                    </control>
+                <include>Animation_Wiki_FadeOut</include>
+
+                <left>SidePad</left>
+                <top>PosterPad</top>
+                <!-- <animation effect="fade" end="10" start="100" time="250" condition="[Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hide.button.music.wiki)]">Conditional</animation> -->
+
+                <control type="image">
+                    <centertop>PosterH</centertop>
+                    <width>PosterH</width>
+                    <height>48</height>
+                    <aspectratio>stretch</aspectratio>
+                    <texture>diffuse/shadowspot.png</texture>
+                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
+                </control>
+
+                <control type="image">
+                    <left>-23</left>
+                    <top>-23</top>
+                    <width>PosterShadowH</width>
+                    <height>PosterShadowH</height>
+                    <texture border="40" infill="false">common/$VAR[shadow40]</texture>
+                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
+                </control>
+                <control type="image">
+                    <width>PosterH</width>
+                    <height>PosterH</height>
+                    <texture border="12" colordiffuse="Fallback">common/box.png</texture>
+                </control>
+
+                <control type="image">
+                    <width>PosterH</width>
+                    <height>PosterH</height>
+                    <fadetime>PosterFanartFadetime</fadetime>
+                    <aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
+                    <texture diffuse="diffuse/sideposter_square.png" background="true">$VAR[Image_PVR_Thumb]</texture>
                 </control>
             </control>
 
-            <!-- Main -->
+            <!-- MAIN -->
+
             <control type="group">
                 <include>Animation_RightSide</include>
 
-                <!-- Control Buttons -->
+                <!-- CONTROL BUTTONS -->
+
                 <control type="group">
                     <bottom>-80</bottom>
                     <include>Animation_Video_FadeOut</include>
                     <include>Def_Dialog_Info_Navigation_PVR</include>
                 </control>
+
+                <!-- LABEL HEADER -->
+
                 <control type="group">
-                    <include>Animation_Video_FadeOut</include>
-                    <top>90</top>
-                    <left>780</left>
-                    <width>1070</width>
+                    <include>Animation_Music_FadeOut</include>
+                    <visible>!Window.IsVisible(script-wikipedia.xml)</visible>
+                    <top>70</top>
+                    <left>785</left>
+                    <width>1040</width>
+
+                    <!-- ICON -->
+
+                    <control type="image">
+                        <top>11</top>
+                        <width>80</width>
+                        <height>80</height>
+                        <texture colordiffuse="Panel">common/circle2.png</texture>
+                    </control>
+                    <control type="image">
+                        <top>7</top>
+                        <left>-4</left>
+                        <width>88</width>
+                        <height>88</height>
+                        <texture colordiffuse="PanelWhite100" border="12">$VAR[Image_Header_Icon]</texture>
+                    </control>
+
+                    <!-- MAIN HEADER TITLE -->
+
                     <control type="label">
+                        <left>104</left>
+                        <width>890</width>
                         <font>LargeNew</font>
                         <description>Header Label</description>
                         <textcolor>Dark1</textcolor>
                         <label>$INFO[ListItem.Title]</label>
                     </control>
+
+                    <!-- SUB HEADER TITLE -->
+
                     <control type="label">
                         <top>55</top>
+                        <left>104</left>
                         <height>36</height>
                         <font>Tiny</font>
                         <textcolor>Dark1</textcolor>
+                        <width>78%</width>
                         <label fallback="19055">$INFO[ListItem.ChannelName]$INFO[ListItem.ChannelNumberLabel, (,)]$VAR[PVRInfoStatus,  ,]</label>
                         <aligny>center</aligny>
                     </control>
                 </control>
 
-                <!-- Info -->
+                <!-- FOOTER LABEL -->
+
+                <control type="label">
+                    <right>83</right>
+                    <bottom>100</bottom>
+                    <height>50</height>
+                    <font>Mini</font>
+                    <scroll>false</scroll>
+                    <textcolor>Dark3</textcolor>
+                    <label>$VAR[Label_Dialog_Info_Footer_Tip_Right]</label>
+                    <aligny>center</aligny>
+                    <align>right</align>
+                    <visible>ControlGroup(9000).HasFocus()</visible>
+                    <include>Animation_FadeIn</include>
+                    <include>Animation_FadeOut</include>
+                </control>
+
+                <!-- INFO -->
+
                 <control type="group">
                     <left>ListSquareX</left>
                     <right>SidePad</right>
@@ -124,20 +182,6 @@
                             </control>
                         </control>
                     </control>
-                </control>
-                <control type="label">
-                    <right>83</right>
-                    <bottom>100</bottom>
-                    <height>50</height>
-                    <font>Mini</font>
-                    <scroll>false</scroll>
-                    <textcolor>Dark3</textcolor>
-                    <label>$VAR[Label_Dialog_Info_Footer_Tip_Right]</label>
-                    <aligny>center</aligny>
-                    <align>right</align>
-                    <visible>ControlGroup(9000).HasFocus()</visible>
-                    <include>Animation_FadeIn</include>
-                    <include>Animation_FadeOut</include>
                 </control>
             </control>
         </control>
