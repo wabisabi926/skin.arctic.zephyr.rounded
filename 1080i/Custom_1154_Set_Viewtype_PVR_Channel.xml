@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog" id="1154">
+    <defaultcontrol>11</defaultcontrol>
+
+    <onload>SetProperty(View_Types_pvr_channel_Selected,$VAR[View_Types_pvr_channel_Selected],Home)</onload>
+    <onunload>ClearProperty(View_Types_pvr_channel_Selected,Home)</onunload>
+
+    <controls>
+        <include>Background_Overlay</include>
+
+        <control type="group">
+
+            <include content="Def_Dialog_Background"><param name="height" value="882" /><param name="width" value="1722" /></include>
+
+            <control type="label">
+                <include>Def_Dialog_Header_Title</include>
+                <label>582</label>
+            </control>
+
+            <include>Def_Dialog_Header_Logo</include>
+            <include>Def_Dialog_Header_Line</include>
+
+            <control type="list" id="11">
+                <height>532</height>
+                <width>450</width>
+                <top>112</top>
+                <left>0</left>
+                <onup>11</onup>
+                <ondown>11</ondown>
+                <usecontrolcoords>true</usecontrolcoords>
+                <itemgap>0</itemgap>
+                <include>Animation_Scrolltime_Views_List</include>
+                <orientation>vertical</orientation>
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <itemlayout width="450" height="70">
+                    <control type="label">
+                        <left>30</left>
+                        <right>25</right>
+                        <height>70</height>
+                        <aligny>center</aligny>
+                        <align>left</align>
+                        <font>Small</font>
+                        <textcolor>PanelWhite100</textcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                        <visible>!String.IsEqual(Window(Home).property(View_Types_pvr_channel_Selected),ListItem.Label)</visible>
+                    </control>
+                    <control type="label">
+                        <left>30</left>
+                        <right>25</right>
+                        <height>70</height>
+                        <aligny>center</aligny>
+                        <align>left</align>
+                        <font>Small</font>
+                        <textcolor>$VAR[Color_Highlight]</textcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                        <visible>String.IsEqual(Window(Home).property(View_Types_pvr_channel_Selected),ListItem.Label)</visible>
+                    </control>
+                    <control type="image">
+                        <right>30</right>
+                        <centertop>50%</centertop>
+                        <width>28</width>
+                        <height>28</height>
+                        <texture colordiffuse="Black70">buttons/radio-off.png</texture>
+                        <visible>!String.IsEqual(Window(Home).property(View_Types_pvr_channel_Selected),ListItem.Label)</visible>
+                    </control>
+                    <control type="image">
+                        <right>30</right>
+                        <centertop>50%</centertop>
+                        <width>28</width>
+                        <height>28</height>
+                        <texture colordiffuse="$VAR[Color_Highlight]">buttons/radio-on.png</texture>
+                        <visible>String.IsEqual(Window(Home).property(View_Types_pvr_channel_Selected),ListItem.Label)</visible>
+                    </control>
+                </itemlayout>
+                <focusedlayout width="450" height="70">
+                    <control type="image">
+                        <width>100%</width>
+                        <texture>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texture>
+                    </control>
+                    <control type="label">
+                        <left>30</left>
+                        <height>70</height>
+                        <aligny>center</aligny>
+                        <align>left</align>
+                        <font>Small</font>
+                        <textcolor>Selected</textcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                    <control type="image">
+                        <right>30</right>
+                        <centertop>50%</centertop>
+                        <width>28</width>
+                        <height>28</height>
+                        <texture colordiffuse="Selected">buttons/radio-off.png</texture>
+                        <visible>!String.IsEqual(Window(Home).property(View_Types_pvr_channel_Selected),ListItem.Label)</visible>
+                    </control>
+                    <control type="image">
+                        <right>30</right>
+                        <centertop>50%</centertop>
+                        <width>28</width>
+                        <height>28</height>
+                        <texture colordiffuse="Selected">buttons/radio-on.png</texture>
+                        <visible>String.IsEqual(Window(Home).property(View_Types_pvr_channel_Selected),ListItem.Label)</visible>
+                    </control>
+                </focusedlayout>
+
+                <!-- VERTICAL MULTI WIDGETS FLIX -->
+
+                <content>
+                    <item id="1">
+                        <label>535</label>
+                        <onclick>Container.SetViewMode(50)</onclick>
+                        <onclick>Close</onclick>
+                    </item>
+
+                    <!-- VERTICAL MULTI WIDGETS -->
+
+                    <item id="2">
+                        <label>31170</label>
+                        <onclick>Container.SetViewMode(51)</onclick>
+                        <onclick>Close</onclick>
+                    </item>
+
+                    <!-- HORIZONTAL MULTI WIDGETS FLIX -->
+
+                    <item id="3">
+                        <label>536</label>
+                        <onclick>Container.SetViewMode(52)</onclick>
+                        <onclick>Close</onclick>
+                    </item>
+
+                    <!-- HORIZONTAL MULTI WIDGETS -->
+
+                    <item id="4">
+                        <label>PVR</label>
+                        <onclick>Container.SetViewMode(53)</onclick>
+                        <onclick>Close</onclick>
+                    </item>
+
+                    <!-- HORIZONTAL MINIMAL AND CLEAN -->
+
+                    <item id="5">
+                        <label>31259</label>
+                        <onclick>Container.SetViewMode(54)</onclick>
+                        <onclick>Close</onclick>
+                    </item>
+
+                    <!-- <item id="6"> -->
+                        <!-- <label>PVR</label> -->
+                        <!-- <onclick>Container.SetViewMode(557)</onclick> -->
+                        <!-- <onclick>Close</onclick> -->
+                    <!-- </item> -->
+                </content>
+            </control>
+
+            <!-- LINES VERTICAL -->
+
+            <include content="Def_Dialog_Line_Vertical"><param name="right" value="1272" /></include>
+
+            <!-- VIEW TYPE ON RIGHT -->
+
+            <control type="image">
+                <right>22</right>
+                <top>103</top>
+                <width>1228</width>
+                <height>698</height>
+                <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
+                <visible>!Skin.HasSetting(global.hide.shadows)</visible>
+            </control>
+            <control type="image">
+                <description>Large Icon Image</description>
+                <right>30</right>
+                <top>112</top>
+                <width>1210</width>
+                <height>680</height>
+                <fadetime>300</fadetime>
+                <aspectratio align="center" aligny="center" scalediffuse="false">stretch</aspectratio>
+                <texture diffuse="diffuse/viewtype_1210x680.png" background="true">special://skin/extras/viewtypes_pvr_channel/$VAR[Image_PVR_Channel_View_type].png</texture>
+            </control>
+
+            <!-- NUM ITEMS -->
+
+            <include>Def_Dialog_Select_label_Num_Item</include>
+
+        </control>
+    </controls>
+</window>
