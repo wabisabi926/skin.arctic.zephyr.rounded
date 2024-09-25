@@ -2322,7 +2322,7 @@
                         <animation effect="zoom" start="150" end="100" center="0,870" time="400" tween="cubic" easing="out" reversible="false" condition="String.IsEmpty(Window(Home).Property(OSDVideoDetails))">Conditional</animation>
 
                         <control type="image">
-                            <visible>[VideoPlayer.Content(livetv) + !String.IsEmpty(Player.Art(thumb))] + !Skin.HasSetting(osd.disable.icon.background.pvr)</visible>
+                            <visible>VideoPlayer.Content(livetv) + !String.IsEmpty(VideoPlayer.ChannelLogo)</visible>
                             <width>288</width>
                             <left>-9</left>
                             <height>288</height>
@@ -2336,16 +2336,17 @@
                             <bottom>39</bottom>
                             <left>0</left>
                             <texture border="12" colordiffuse="$VAR[Color_OSD_Panel_PVR]">common/box.png</texture>
-                            <visible>[VideoPlayer.Content(livetv) + !String.IsEmpty(Player.Art(thumb))] + !Skin.HasSetting(osd.disable.icon.background.pvr)</visible>
+                            <animation effect="fade" start="100" end="50" condition="true">Conditional</animation>
+                            <visible>VideoPlayer.Content(livetv) + !String.IsEmpty(VideoPlayer.ChannelLogo)</visible>
                         </control>
                         <control type="image">
-                            <visible>[VideoPlayer.Content(livetv) + !String.IsEmpty(Player.Art(thumb))]</visible>
                             <width>220</width>
                             <left>20</left>
                             <height>220</height>
                             <bottom>59</bottom>
                             <aspectratio>keep</aspectratio>
-                            <texture diffuse="diffuse/osdsquare_270.png">$INFO[Player.Art(thumb)]</texture>
+                            <texture diffuse="diffuse/osdsquare_270.png">$INFO[VideoPlayer.ChannelLogo]</texture>
+                            <visible>VideoPlayer.Content(livetv) + !String.IsEmpty(VideoPlayer.ChannelLogo)</visible>
                         </control>
                     </control>
                 </control>
