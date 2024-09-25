@@ -893,6 +893,20 @@
                 <visible>String.IsEqual(ListItem.DBType,studio)</visible>
             </control>
 
+            <!-- PVR - PROGRESS BAR -->
+
+            <control type="progress">
+                <left>35</left>
+                <right>35</right>
+                <height>8</height>
+                <bottom>95</bottom>
+                <info>ListItem.Progress</info>
+                <lefttexture colordiffuse="$VAR[Color_Focus]" border="4">osd/progress-left.png</lefttexture>
+                <midtexture colordiffuse="$VAR[Color_Focus]" border="4">osd/progress-end.png</midtexture>
+                <righttexture colordiffuse="$VAR[Color_Focus]" border="4">osd/progress-right.png</righttexture>
+                <visible>String.StartsWith(ListItem.Path,pvr://channels)</visible>
+            </control>
+
             <!-- First line -->
             <control type="label">
                 <bottom>40</bottom>
@@ -1151,7 +1165,19 @@
                 <bottom>101</bottom>
                 <aspectratio scalediffuse="false">scale</aspectratio>
                 <texture diffuse="diffuse/widgetfanart_top.png" background="true" fallback="DefaultMovies.png">$VAR[Image_Widget_Thumb]</texture>
-                <visible>!String.IsEqual(ListItem.DBType,genre) + !String.IsEqual(ListItem.DBType,studio) + !String.EndsWith(Container.FolderPath,Genres) + $PARAM[small] + !$PARAM[poster]</visible>
+                <visible>!String.StartsWith(ListItem.Path,pvr://channels) + !String.IsEqual(ListItem.DBType,genre) + !String.IsEqual(ListItem.DBType,studio) + !String.EndsWith(Container.FolderPath,Genres) + $PARAM[small] + !$PARAM[poster]</visible>
+            </control>
+
+            <!-- FANART SMALL -->
+
+            <control type="image">
+                <left>10</left>
+                <top>10</top>
+                <right>10</right>
+                <bottom>101</bottom>
+                <aspectratio scalediffuse="false">keep</aspectratio>
+                <texture diffuse="diffuse/widgetfanart_top.png" background="true" fallback="DefaultMovies.png">$VAR[Image_Widget_Thumb]</texture>
+                <visible>String.StartsWith(ListItem.Path,pvr://channels)</visible>
             </control>
 
             <!-- FANART + POSTER -->
@@ -1222,6 +1248,20 @@
                 <texture background="true">$VAR[Image_ClearLogo]</texture>
                 <visible>$PARAM[clearlogo]</visible>
                 <visible>!String.IsEqual(ListItem.DBType,genre) + !String.EndsWith(Container.FolderPath,Genres)</visible>
+            </control>
+
+            <!-- PVR - PROGRESS BAR -->
+
+            <control type="progress">
+                <left>35</left>
+                <right>35</right>
+                <height>8</height>
+                <bottom>90</bottom>
+                <info>ListItem.Progress</info>
+                <lefttexture colordiffuse="$VAR[Color_Focus]" border="4">osd/progress-left.png</lefttexture>
+                <midtexture colordiffuse="$VAR[Color_Focus]" border="4">osd/progress-end.png</midtexture>
+                <righttexture colordiffuse="$VAR[Color_Focus]" border="4">osd/progress-right.png</righttexture>
+                <visible>String.StartsWith(ListItem.Path,pvr://channels) + $PARAM[small]</visible>
             </control>
 
             <!-- LABEL -->
