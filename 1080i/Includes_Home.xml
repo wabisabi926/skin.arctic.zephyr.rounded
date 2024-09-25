@@ -2343,11 +2343,22 @@
             </control>
 
             <!-- PVR -->
-
-            <control type="label">
-                <include>Widgets_Item_SubTitle_Info_Definition</include>
-                <label>$INFO[Container($PARAM[id]).ListItem.Label]$INFO[Container($PARAM[id]).ListItem.StartTime,  •  ,]$INFO[Container($PARAM[id]).ListItem.EndTime, - ]$INFO[Container($PARAM[id]).ListItem.Duration(mins),  •  , $LOCALIZE[31084]]</label>
+            <control type="grouplist">
+                <itemgap>0</itemgap>
                 <visible>String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://)</visible>
+                <orientation>horizontal</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
+                <control type="label">
+                    <include>Widgets_Item_SubTitle_Info_Definition</include>
+                    <label>$INFO[Container($PARAM[id]).ListItem.Label]$INFO[Container($PARAM[id]).ListItem.StartTime,  •  ,]$INFO[Container($PARAM[id]).ListItem.EndTime, - ]$INFO[Container($PARAM[id]).ListItem.Duration(mins),  •  , $LOCALIZE[31084]]</label>
+                    <visible>!String.IsEqual(ListItem.Path,pvr://channels/tv/)</visible>
+                </control>
+
+                <control type="label">
+                    <include>Widgets_Item_SubTitle_Info_Definition</include>
+                    <label>$INFO[Control.GetLabel(9971)]</label>
+                    <visible>String.IsEqual(ListItem.Path,pvr://channels/tv/)</visible>
+                </control>
             </control>
 
             <!-- ACTORS -->
@@ -2702,9 +2713,6 @@
 
             <visible>[!String.IsEqual(Container(300).ListItem.Property(widgetFullscreen.$PARAM[idshort]),yes) + [Integer.IsEqual($PARAM[idshort],2) | Integer.IsEqual($PARAM[idshort],3) | Integer.IsEqual($PARAM[idshort],4) | Integer.IsEqual($PARAM[idshort],5) | Integer.IsEqual($PARAM[idshort],6)]] | [!String.IsEqual(Container(300).ListItem.Property(widgetFullscreen),yes) + !Integer.IsEqual($PARAM[idshort],2) + !Integer.IsEqual($PARAM[idshort],3) + !Integer.IsEqual($PARAM[idshort],4) + !Integer.IsEqual($PARAM[idshort],5) + !Integer.IsEqual($PARAM[idshort],6)]</visible>
 
-            <!-- <visible>[!String.IsEqual(Container(300).ListItem.Property(widgetFullscreen),yes) + !Integer.IsEqual($PARAM[idshort],2) + !Integer.IsEqual($PARAM[idshort],3) + !Integer.IsEqual($PARAM[idshort],4) + !Integer.IsEqual($PARAM[idshort],5) + !Integer.IsEqual($PARAM[idshort],6)]</visible> -->
-
-            <!-- <visible>[[!String.IsEqual(Container(300).ListItem.Property(widgetFullscreen.$PARAM[idshort]),yes) + [Integer.IsEqual($PARAM[idshort],2) | Integer.IsEqual($PARAM[idshort],3) | Integer.IsEqual($PARAM[idshort],4) | Integer.IsEqual($PARAM[idshort],5) | Integer.IsEqual($PARAM[idshort],6)]] + [Integer.IsEqual($PARAM[idshort],2) | Integer.IsEqual($PARAM[idshort],3) | Integer.IsEqual($PARAM[idshort],4) | Integer.IsEqual($PARAM[idshort],5) | Integer.IsEqual($PARAM[idshort],6)]] | [!String.IsEqual(Container(300).ListItem.Property(widgetFullscreen),yes) + !Integer.IsEqual($PARAM[idshort],2) + !Integer.IsEqual($PARAM[idshort],3) + !Integer.IsEqual($PARAM[idshort],4) + !Integer.IsEqual($PARAM[idshort],5) + !Integer.IsEqual($PARAM[idshort],6)]</visible> -->
 
         </control>
 
@@ -2806,6 +2814,24 @@
             <include>Animation_Vertical_Widgets_Title</include>
             <visible>Control.HasFocus($PARAM[focusid])</visible>
             <visible>String.IsEqual(Container($PARAM[focusid]).ListItem.DBType,artist)</visible>
+            <visible>!Skin.HasSetting(homemenu.netflix)</visible>
+            <visible>[!String.IsEqual(Container(300).ListItem.Property(widgetFullscreen.$PARAM[idshort]),yes) + [Integer.IsEqual($PARAM[idshort],2) | Integer.IsEqual($PARAM[idshort],3) | Integer.IsEqual($PARAM[idshort],4) | Integer.IsEqual($PARAM[idshort],5) | Integer.IsEqual($PARAM[idshort],6)]] | [!String.IsEqual(Container(300).ListItem.Property(widgetFullscreen),yes) + !Integer.IsEqual($PARAM[idshort],2) + !Integer.IsEqual($PARAM[idshort],3) + !Integer.IsEqual($PARAM[idshort],4) + !Integer.IsEqual($PARAM[idshort],5) + !Integer.IsEqual($PARAM[idshort],6)]</visible>
+        </control>
+
+        <!-- PVR - COUNT CHANNEL IN GROUP -->
+
+        <control type="label" id="9971">
+            <align>left</align>
+            <height>38</height>
+            <font>SmallNavi</font>
+            <width>auto</width>
+            <textcolor>Dark2</textcolor>
+            <label>$LOCALIZE[19173]$INFO[Container(44028).NumItems,  •  , $LOCALIZE[19019]]</label>
+            <include>Animation_Vertical_Widgets_Title</include>
+            <visible>Control.HasFocus($PARAM[focusid])</visible>
+            <visible>Integer.IsGreater(Container(44028).NumItems,1)</visible>
+
+            <visible>String.IsEqual(Container($PARAM[id]).ListItem.Path,pvr://channels/tv/) + [String.IsEqual(Container(300).ListItem.Property(widgetEnable.5),yes) | String.IsEqual(Container(300).ListItem.Property(widgetEnable.4),yes) | String.IsEqual(Container(300).ListItem.Property(widgetEnable.3),yes) | String.IsEqual(Container(300).ListItem.Property(widgetEnable.2),yes)]</visible>
             <visible>!Skin.HasSetting(homemenu.netflix)</visible>
             <visible>[!String.IsEqual(Container(300).ListItem.Property(widgetFullscreen.$PARAM[idshort]),yes) + [Integer.IsEqual($PARAM[idshort],2) | Integer.IsEqual($PARAM[idshort],3) | Integer.IsEqual($PARAM[idshort],4) | Integer.IsEqual($PARAM[idshort],5) | Integer.IsEqual($PARAM[idshort],6)]] | [!String.IsEqual(Container(300).ListItem.Property(widgetFullscreen),yes) + !Integer.IsEqual($PARAM[idshort],2) + !Integer.IsEqual($PARAM[idshort],3) + !Integer.IsEqual($PARAM[idshort],4) + !Integer.IsEqual($PARAM[idshort],5) + !Integer.IsEqual($PARAM[idshort],6)]</visible>
         </control>
