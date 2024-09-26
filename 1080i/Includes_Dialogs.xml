@@ -1104,9 +1104,9 @@
             <!-- Hide discart -->
             <ondown condition="String.IsEqual(Window.Property(moviecontent),1) + String.IsEqual(Window.Property(ShowDisc),1) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.Art(discart))">ClearProperty(ShowDisc)</ondown>
             <!-- focus second row button navigation -->
-            <ondown condition="!String.IsEqual(ListItem.Property(item.type),person) + !String.IsEqual(ListItem.DBType,set) + String.IsEmpty(Window.Property(ShowDisc))">9090</ondown>
+            <ondown condition="!String.IsEqual(ListItem.Property(item.type),person) + !String.IsEqual(ListItem.DBType,set) + String.IsEmpty(Window.Property(ShowDisc)) + !String.IsEqual(ListItem.DBType,video)">9090</ondown>
             <!-- show resume overlay -->
-            <ondown condition="String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.DBType,set)">9601</ondown>
+            <ondown condition="String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.DBType,video)">9601</ondown>
 
             <orientation>horizontal</orientation>
 
@@ -1718,6 +1718,7 @@
                 <usealttexture>Skin.HasSetting(filter.video.only.local)</usealttexture>
                 <visible>![String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.DBType,set)]</visible>
                 <visible>System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)</visible>
+                <visible>!String.IsEqual(ListItem.DBType,video)</visible>
             </control>
 
             <!-- LOCAL ONLY IF TMDB HELPER DISABLE -->

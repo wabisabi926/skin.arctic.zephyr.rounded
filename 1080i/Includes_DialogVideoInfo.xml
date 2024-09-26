@@ -117,7 +117,7 @@
                         <aspectratio>keep</aspectratio>
                         <include>Animation_Vertical_Widgets_Title_Loading</include>
                         <visible>$EXP[DialogVideoInfo_IsUpadttingInfo]</visible>
-                        <visible>!String.IsEqual(ListItem.DBType,set)</visible>
+                        <visible>!String.IsEqual(ListItem.DBType,set) + !String.IsEqual(ListItem.DBType,video)</visible>
                         <visible>ControlGroup(9000).HasFocus() | ControlGroup(9090).HasFocus()</visible>
                         <animation effect="fade" start="0" end="100" time="400" delay="100" reversible="false" condition="ControlGroup(9090).HasFocus()">Conditional</animation>
                         <animation effect="fade" start="0" end="100" time="400" delay="100" reversible="false" condition="ControlGroup(9000).HasFocus()">Conditional</animation>
@@ -135,7 +135,7 @@
                         <visible>ControlGroup(9000).HasFocus() | ControlGroup(9090).HasFocus()</visible>
                         <include>Animation_Button_Label_Video</include>
                         <visible>$EXP[DialogVideoInfo_IsUpadttingInfo]</visible>
-                        <visible>!String.IsEqual(ListItem.DBType,set)</visible>
+                        <visible>!String.IsEqual(ListItem.DBType,set) + !String.IsEqual(ListItem.DBType,video)</visible>
                         <animation effect="fade" start="0" end="100" time="400" delay="100" reversible="false" condition="ControlGroup(9090).HasFocus()">Conditional</animation>
                         <animation effect="fade" start="0" end="100" time="400" delay="100" reversible="false" condition="ControlGroup(9000).HasFocus()">Conditional</animation>
                     </control>
@@ -184,10 +184,10 @@
                     <!-- <include content="Def_Width" condition="Player.HasMedia"> -->
                         <!-- <param name="width" value="550" /> -->
                     <!-- </include> -->
-                    <include content="Def_Width" condition="!Skin.HasSetting(show.dialog.info.clearlogo.video)">
+                    <include content="Def_Width" condition="!Skin.HasSetting(show.dialog.info.clearlogo.video) | !$EXP[Exp_Title_Clearlogo_Available]">
                         <param name="width" value="1250" />
                     </include>
-                    <include content="Def_Width" condition="Skin.HasSetting(show.dialog.info.clearlogo.video)">
+                    <include content="Def_Width" condition="Skin.HasSetting(show.dialog.info.clearlogo.video) + $EXP[Exp_Title_Clearlogo_Available]">
                         <param name="width" value="920" />
                     </include>
 
@@ -1222,7 +1222,7 @@
                             <right>0</right>
                             <top>180</top>
                             <left>0</left>
-                            <height>428</height>
+                            <height>438</height>
                             <font>Tiny</font>
                             <textcolor>Dark2</textcolor>
                             <align>left</align>
