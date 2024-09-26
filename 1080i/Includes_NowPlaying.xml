@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 
-    <!-- DEF - NOWPLAYING - HEADER LABEL -->
+    <!-- DEF - HEADER LABEL -->
 
     <include name="NowPlaying_Header_Label">
         <definition>
             <param name="left" value="$PARAM[left]" default="0"/>
             <param name="visible" value="$PARAM[visible]" default="true"/>
             <control type="label">
-                <include content="Def_Height" condition="Player.HasVideo + Skin.HasSetting(show.home.nowplaying.extended.video.title.clearlogo)">
+                <include content="Def_Height" condition="Player.HasVideo + Skin.HasSetting(show.home.nowplaying.extended.video.title.clearlogo) + $EXP[Exp_Title_Clearlogo_PlayingNow_Available]">
                     <param name="height" value="ClearLogoTitleMaxHeight" />
                 </include>
-                <include content="Def_Height" condition="Player.HasAudio | !Skin.HasSetting(show.home.nowplaying.extended.video.title.clearlogo)">
+                <include content="Def_Height" condition="Player.HasAudio | !Skin.HasSetting(show.home.nowplaying.extended.video.title.clearlogo) | !$EXP[Exp_Title_Clearlogo_PlayingNow_Available]">
                     <param name="height" value="56" />
                 </include>
                 <include content="Def_Font">
@@ -29,7 +29,7 @@
         </definition>
     </include>
 
-    <!-- DEF - NOWPLAYING - BUTTON CONTROL -->
+    <!-- DEF - BUTTON CONTROL -->
 
     <include name="NowPlaying_Controls">
         <control type="grouplist" id="777">
@@ -49,7 +49,7 @@
         </control>
     </include>
 
-    <!-- DEF - NOWPLAYING - CLEARLOGO -->
+    <!-- DEF - CLEARLOGO -->
 
     <include name="NowPlaying_ClearArt">
         <control type="group">
@@ -83,7 +83,7 @@
         </control>
     </include>
 
-    <!-- DEF - NOWPLAYING - PLAY PAUSE -->
+    <!-- DEF - PLAY PAUSE -->
 
     <include name="NowPlaying_PlayPause">
         <control type="group">
@@ -118,7 +118,7 @@
         </control>
     </include>
 
-    <!-- DEF - NOWPLAYING - TIME -->
+    <!-- DEF - TIME -->
 
     <include name="NowPlaying_Time">
         <control type="label">
@@ -131,7 +131,7 @@
         </control>
     </include>
 
-    <!-- DEF - NOWPLAYING - INFO RIGHT -->
+    <!-- DEF - INFO RIGHT -->
 
     <include name="NowPlaying_InfoRight">
         <param name="visible" value="$PARAM[visible]" default="true"/>
@@ -149,15 +149,18 @@
                 <visible>$PARAM[visible]</visible>
                 <control type="group">
                     <left>252</left>
+
                     <include content="Def_Top" condition="!Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button)">
                         <param name="top" value="125" />
                     </include>
+
                     <top>60</top>
                     <visible>Player.HasMedia + Player.HasVideo</visible>
 
                     <control type="group">
                         <include>NowPlaying_PlayPause</include>
                         <include>NowPlaying_Time</include>
+
                         <control type="label">
                             <top>55</top>
                             <width>450</width>
@@ -276,6 +279,7 @@
                                 <!-- <visible>!String.IsEmpty(VideoPlayer.AudioChannels)</visible> -->
                             <!-- </control> -->
                         <!-- </control> -->
+
 
                         <control type="label">
                             <top>55</top>
@@ -486,32 +490,12 @@
         </definition>
     </include>
 
-    <!-- DEF - NOWPLAYING - TOP/BOTTOM INFO -->
+    <!-- DEF - HEADER FLIX INFO - LABEL "PLAYING NOW" -->
 
     <include name="NowPlaying_TopBottomInfo">
         <control type="group">
-            <control type="grouplist">
-                <usecontrolcoords>true</usecontrolcoords>
-                <height>40</height>
-                <top>395</top>
-                <orientation>horizontal</orientation>
-                <itemgap>10</itemgap>
 
-                <include content="Widget_Bullet_Hightlight">
-                    <param name="dimensions" value="30"/>
-                    <param name="top" value="5"/>
-                    <param name="left" value="0"/>
-                    <param name="left-gradient" value="-40"/>
-                </include>
-
-                <control type="label">
-                    <height>38</height>
-                    <font>SmallNavi</font>
-                    <width>auto</width>
-                    <textcolor>Dark1</textcolor>
-                    <label>31208</label>
-                </control>
-            </control>
+            <!-- HEADER FLIX INFO -->
 
             <control type="grouplist">
                 <top>32</top>
@@ -774,10 +758,35 @@
                     <animation effect="fade" end="0" start="100" time="350">Hidden</animation>
                 </control>
             </control>
+
+            <!-- LABEL "PLAYING NOW" -->
+
+            <control type="grouplist">
+                <usecontrolcoords>true</usecontrolcoords>
+                <height>40</height>
+                <top>395</top>
+                <orientation>horizontal</orientation>
+                <itemgap>10</itemgap>
+
+                <include content="Widget_Bullet_Hightlight">
+                    <param name="dimensions" value="30"/>
+                    <param name="top" value="5"/>
+                    <param name="left" value="0"/>
+                    <param name="left-gradient" value="-40"/>
+                </include>
+
+                <control type="label">
+                    <height>38</height>
+                    <font>SmallNavi</font>
+                    <width>auto</width>
+                    <textcolor>Dark1</textcolor>
+                    <label>31208</label>
+                </control>
+            </control>
         </control>
     </include>
 
-    <!-- DEF - NOWPLAYING - DISCART -->
+    <!-- DEF - DISCART -->
 
     <include name="Def_NowPlaying_DiscArt">
         <param name="width" value="$PARAM[width]" default="296"/>
@@ -796,7 +805,7 @@
         </definition>
     </include>
 
-    <!-- DEF - NOWPLAYING - AUDIO DISCART -->
+    <!-- DEF - AUDIO - DISCART -->
 
     <include name="NowPlaying_AudioDiscArt">
         <control type="group">
@@ -831,7 +840,7 @@
         </control>
     </include>
 
-    <!-- DEF - NOWPLAYING - VIDEO DISCART -->
+    <!-- DEF - VIDEO - DISCART -->
 
     <include name="NowPlaying_Image_DiscArt_Video">
         <param name="visible" value="$PARAM[visible]" default="true"/>
@@ -873,7 +882,7 @@
         </definition>
     </include>
 
-    <!-- DEF - NOWPLAYING - VIDEO WINDOW -->
+    <!-- DEF - VIDEO - WINDOW -->
 
     <include name="NowPlaying_VideoWindow">
         <control type="group">
@@ -914,7 +923,7 @@
         </control>
     </include>
 
-    <!-- DEF - NOWPLAYING - POSTER -->
+    <!-- DEF - POSTER -->
 
     <include name="NowPlaying_Poster">
         <param name="visible" value="$PARAM[visible]" default="false"/>
@@ -963,7 +972,7 @@
         </definition>
     </include>
 
-    <!-- DEF - NOWPLAYING - SQUARE -->
+    <!-- DEF - SQUARE -->
 
     <include name="NowPlaying_Square">
         <param name="visible" value="$PARAM[visible]" default="false"/>
@@ -1026,7 +1035,7 @@
         </definition>
     </include>
 
-    <!-- DEF - NOWPLAYING - OSD - UPDOWN -->
+    <!-- DEF - OSD - UPDOWN -->
 
     <include name="Def_OSD_UpDown_Home_NowPlaying">
         <onup condition="Skin.HasSetting(home.extended.nowplaying.tracklist) + Integer.IsGreater(Container(778).NumItems,0) + Player.HasAudio">778</onup>
@@ -1039,7 +1048,7 @@
         <onfocus condition="$EXP[Has_Home_Menu_Auto_Slide_Out_Animation]">CancelAlarm(slide_out,true)</onfocus>
     </include>
 
-    <!-- DEF - NOWPLAYING - OSD -->
+    <!-- DEF - OSD -->
 
     <include name="OSD_NowPlaying">
 

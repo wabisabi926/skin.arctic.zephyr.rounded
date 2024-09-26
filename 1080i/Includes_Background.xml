@@ -720,6 +720,8 @@
 
         <value condition="!Skin.HasSetting(hide.global.fanart) + $EXP[Extended_Now_Playing_Is_Enable] + Window.IsVisible(Home) + !ControlGroup(301).HasFocus() + !String.IsEmpty(PVR.EpgEventIcon) + Player.HasMedia + VideoPlayer.Content(livetv)">$INFO[PVR.EpgEventIcon]</value>
 
+        <value condition="!Skin.HasSetting(hide.global.fanart) + $EXP[Extended_Now_Playing_Is_Enable] + Window.IsVisible(Home) + !ControlGroup(301).HasFocus() + String.IsEmpty(PVR.EpgEventIcon) + Player.HasMedia + VideoPlayer.Content(livetv)">$INFO[Skin.String(fanart.fallback.pvr)]</value>
+
         <!-- MUSIC -->
 
         <value condition="!Skin.HasSetting(hide.global.fanart) + $EXP[Extended_Now_Playing_Is_Enable] + Window.IsVisible(Home) + !ControlGroup(301).HasFocus() + !String.IsEmpty(Window(Visualisation).Property(ArtistSlideshow.Image)) + System.AddonIsEnabled(script.artistslideshow) + !Skin.HasSetting(disable.artist.slideshow) + Player.HasAudio">$INFO[Window(Visualisation).Property(ArtistSlideshow.Image)]</value>
