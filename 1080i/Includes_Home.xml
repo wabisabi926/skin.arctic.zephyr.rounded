@@ -11,6 +11,7 @@
             <height>100</height>
             <include>Animation_FadeIn_Slide</include>
             <include>Animation_FadeOut</include>
+            <visible>!Control.HasFocus(301)</visible>
             <visible>!Window.IsVisible(DialogNotification.xml)</visible>
             <visible>!Window.IsVisible(DialogExtendedProgress.xml)</visible>
             <visible>!Window.IsVisible(DialogVolumeBar.xml)</visible>
@@ -97,7 +98,9 @@
             <animation effect="slide" start="0" end="0,163" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(9099) + !Control.HasFocus(399) + !Control.HasFocus(222) + Skin.HasSetting(homemenu.horizontal.clean) + Skin.HasSetting(homemenu.slide)">Conditional</animation>
 
             <animation effect="slide" start="0" end="0,30" time="0" condition="Skin.HasSetting(home.horizontal)">Conditional</animation>
-
+            <animation effect="slide" start="0" end="0,250" time="150" condition="!Skin.HasSetting(home.horizontal) + Control.HasFocus(301)">Conditional</animation>
+            <animation effect="slide" start="0" end="0,160" time="400" tween="back" reversible="false" easing="out" condition="Skin.HasSetting(home.horizontal) + Control.HasFocus(301)">Conditional</animation>
+            <animation effect="slide" end="0" start="0,160" time="150" reversible="false" condition="Skin.HasSetting(home.horizontal) +  !Skin.HasSetting(home.horizontal) + !Control.HasFocus(301)">Conditional</animation>
             <animation effect="slide" end="0" start="0,160" time="150" condition="$EXP[Home_Is_Horizontal]">WindowOpen</animation>
             <animation effect="slide" start="0" end="0,160" time="150" condition="$EXP[Home_Is_Horizontal]">WindowClose</animation>
 
@@ -399,7 +402,7 @@
             <animation effect="slide" end="0,70" condition="!Integer.IsGreater(Container(302).NumItems,3)">Conditional</animation>
             <animation effect="slide" end="0,70" condition="!Integer.IsGreater(Container(302).NumItems,2)">Conditional</animation>
             <animation effect="slide" end="0,70" condition="!Integer.IsGreater(Container(302).NumItems,1)">Conditional</animation>
-
+            <animation effect="slide" start="0" end="0,250" time="150" condition="Control.HasFocus(301)">Conditional</animation>
             <animation effect="slide" start="0" end="0,250" time="150">WindowClose</animation>
             <animation effect="slide" end="0" start="0,250" time="150">WindowOpen</animation>
             <top>181</top>
@@ -1263,6 +1266,7 @@
                 <control type="list" id="302">
                     <visible allowhiddenfocus="true">Control.HasFocus(302)</visible>
                     <animation effect="slide" start="0,0" end="0,-8" time="0" condition="true">Conditional</animation>
+                    <animation effect="fade" start="100" end="33" time="400" condition="Control.HasFocus(301)">Conditional</animation>
                     <include condition="![Skin.HasSetting(home.showicons) + Skin.HasSetting(homemenu.only.icons)]">Animation_Slide_Vertical_Menu</include>
 
                     <include condition="[Skin.HasSetting(home.showicons) + Skin.HasSetting(homemenu.only.icons)]" content="Animation_Slide_Vertical_Menu">
@@ -1699,6 +1703,7 @@
             <animation effect="slide" start="0,0" end="0,640" condition="Container(300).Position(8)">Conditional</animation>
             <animation effect="slide" start="0,0" end="0,720" condition="Container(300).Position(9)">Conditional</animation>
 
+            <animation effect="slide" start="0" end="0,250" time="150" condition="Control.HasFocus(301)">Conditional</animation>
             <animation effect="slide" start="0" end="0,250" time="150">WindowClose</animation>
             <animation effect="slide" end="0" start="0,250" time="150">WindowOpen</animation>
 
@@ -1764,6 +1769,7 @@
             <animation effect="slide" start="0,0" end="0,640" condition="Container(302).Position(8)">Conditional</animation>
             <animation effect="slide" start="0,0" end="0,720" condition="Container(302).Position(9)">Conditional</animation>
 
+            <animation effect="slide" start="0" end="0,250" time="150" condition="Control.HasFocus(301)">Conditional</animation>
             <animation effect="slide" start="0" end="0,250" time="150">WindowClose</animation>
             <animation effect="slide" end="0" start="0,250" time="150">WindowOpen</animation>
             <top>208</top>
