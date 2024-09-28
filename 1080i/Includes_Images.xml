@@ -217,6 +217,9 @@
         <!-- <value>$INFO[ListItem.Art(landscape)]</value> -->
         <!-- <value>$INFO[ListItem.Icon]</value> -->
 
+        <!-- Apple Podcasts -->
+        <value condition="!String.IsEmpty(Skin.String(fanart.fallback.podcasts)) + $EXP[IsItunesItem] + !ListItem.IsParentFolder + !String.StartsWith(ListItem.Icon,Default)">$INFO[Skin.String(fanart.fallback.podcasts)]</value>
+
         <!-- Youtube -->
         <value condition="!String.IsEmpty(ListItem.Art(fanart)) + Container.Content() + $EXP[IsYoutube] + !String.IsEqual(ListItem.DBType,video) + [$EXP[Exp_View_56] | $EXP[Exp_View_57] | $EXP[Exp_View_524]]">$INFO[ListItem.Art(fanart)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(fanart)) + [Container.Content() | String.IsEqual(ListItem.DBType,video)  | String.IsEqual(ListItem.DBType,movie)] + $EXP[IsYoutube] + ![$EXP[Exp_View_56] | $EXP[Exp_View_57] | $EXP[Exp_View_524]]">$INFO[ListItem.Thumb]</value>
@@ -275,11 +278,9 @@
         <value condition="String.IsEqual(ListItem.DBType,tag)">DefaultTags.png</value>
         <value condition="String.IsEqual(ListItem.DBType,set)">DefaultSets.png</value>
         <value condition="Container.Content(years)">DefaultYear.png</value>
-
         <value>$INFO[ListItem.Icon]</value>
 
         <!-- <value condition="!String.IsEmpty(ListItem.Art(landscape)) + Container.Content(seasons) + !Skin.HasSetting(dont.use.landscape.seasons)">$INFO[ListItem.Art(landscape)]</value> -->
-
     </variable>
 
     <variable name="Image_Fanart_View_50x">
@@ -428,7 +429,7 @@
 
     <variable name="Image_Background_Music_Visualisation">
         <value condition="System.AddonIsEnabled(script.artistslideshow) + !Skin.HasSetting(disable.artist.slideshow) + !String.IsEmpty(Window(Visualisation).Property(ArtistSlideshow.Image))">$INFO[Window(Visualisation).Property(ArtistSlideshow.Image)]</value>
-        <value condition="Skin.HasSetting(enable.osd.music.visualisation.fanart) + !String.IsEmpty(Player.Art(fanart)) + [String.IsEmpty(Window(Visualisation).Property(ArtistSlideshow.Image)) | !System.AddonIsEnabled(script.artistslideshow) | Skin.HasSetting(disable.artist.slideshow)] + [!Skin.HasSetting(disable.background.addons.fanart) | [Skin.HasSetting(disable.background.addons.fanart) + !String.Contains(Player.Art(fanart),addons) + !$EXP[IsFanartAddonEmbeded]]]">$INFO[Player.Art(fanart)]</value>
+        <value condition="Skin.HasSetting(enable.osd.music.visualisation.fanart) + !String.IsEmpty(Player.Art(fanart)) + [String.IsEmpty(Window(Visualisation).Property(ArtistSlideshow.Image)) | !System.AddonIsEnabled(script.artistslideshow) | Skin.HasSetting(disable.artist.slideshow)]">$INFO[Player.Art(fanart)]</value>
         <value condition="!String.IsEmpty(Skin.String(fanart.fallback.music)) + Skin.HasSetting(enable.osd.music.visualisation.fanart)">$INFO[Skin.String(fanart.fallback.music)]</value>
         <value condition="!String.IsEmpty(Skin.String(fanart.fallback.music))">$INFO[Skin.String(fanart.fallback.music)]</value>
         <value>background/blur2.png</value>

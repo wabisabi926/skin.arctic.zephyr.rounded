@@ -105,7 +105,7 @@
 
     <!-- PLUGIN ITUNES - LISTITEM -->
 
-    <expression name="IsItunesItem">String.Contains(ListItem.Path,plugin://plugin.video.itunes)</expression>
+    <expression name="IsItunesItem">String.Contains(ListItem.Path,plugin://plugin.video.itunes_podcasts)</expression>
 
     <!-- PLUGIN SHORTLIST -->
 
@@ -227,8 +227,6 @@
     <expression name="TrailerIsPlaying">String.IsEqual(Window(Home).Property(TrailerPath2),Player.FileNameAndPath) + !String.IsEmpty(Player.FileNameAndPath)</expression>
 
     <expression name="AutoTrailerDebugging">Skin.HasSetting(home.netflix.autoplay.trailer) + Skin.HasSetting(DebugInfo.extended) + Skin.HasSetting(DebugInfo.extended)</expression>
-
-    <expression name="IsFanartAddonEmbeded">[String.Contains(Player.Art(fanart),plugin) | String.Contains(Player.Art(fanart),script) | String.Contains(Player.Art(fanart),service)]</expression>
 
     <expression name="IsAudioCodecATMOS">String.Contains(ListItem.FileNameAndPath,atmos) | [VideoPlayer.IsFullscreen + String.Contains(Player.FileNameAndPath,atmos)]</expression>
 
