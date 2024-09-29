@@ -2177,7 +2177,7 @@
         <control type="group">
             <animation effect="fade" start="100" end="0" time="150" condition="Window.IsVisible(DialogPlayerProcessInfo.xml)">Conditional</animation>
             <animation effect="slide" start="0" end="0,-74" time="150" condition="Window.IsVisible(videoosd)">Conditional</animation>
-            <animation effect="slide" start="0" end="0,-39" time="150" condition="VideoPlayer.Content(livetv) + Skin.HasSetting(pvr.showtechnicalinfo)">Conditional</animation>
+            <animation effect="slide" start="0" end="0,-39" time="150" condition="[VideoPlayer.Content(livetv) | VideoPlayer.Content(files)] + Skin.HasSetting(pvr.showtechnicalinfo)">Conditional</animation>
 
             <bottom>80</bottom>
 
@@ -2591,7 +2591,8 @@
             <!-- PVR - INFO TECHNIQUE -->
 
             <control type="group">
-                <visible>VideoPlayer.Content(livetv) + Skin.HasSetting(pvr.showtechnicalinfo)</visible>
+                <visible>VideoPlayer.Content(livetv) | VideoPlayer.Content(files)</visible>
+                <visible>Skin.HasSetting(pvr.showtechnicalinfo)</visible>
                 <include>Animation_OSD_Fade</include>
 
                 <left>130</left>
