@@ -678,6 +678,31 @@
         <value condition="!Skin.HasSetting(hide.global.fanart) + !String.IsEmpty(Container(9558).ListItem.Art(fanart)) + Control.HasFocus(9558)">$INFO[Container(9558).ListItem.Art(fanart)]</value>
         <value condition="!Skin.HasSetting(hide.global.fanart) + !String.IsEmpty(Container(9559).ListItem.Art(fanart)) + Control.HasFocus(9559)">$INFO[Container(9559).ListItem.Art(fanart)]</value>
 
+    <!-- =================================== -->
+    <!--             NOW PLAYING             -->
+    <!-- =================================== -->
+
+        <!-- PVR -->
+
+        <value condition="!Skin.HasSetting(hide.global.fanart) + $EXP[Extended_Now_Playing_Is_Enable] + Window.IsVisible(Home) + !ControlGroup(301).HasFocus() + !String.IsEmpty(PVR.EpgEventIcon) + Player.HasMedia + VideoPlayer.Content(livetv)">$INFO[PVR.EpgEventIcon]</value>
+
+        <value condition="!Skin.HasSetting(hide.global.fanart) + $EXP[Extended_Now_Playing_Is_Enable] + Window.IsVisible(Home) + !ControlGroup(301).HasFocus() + String.IsEmpty(PVR.EpgEventIcon) + Player.HasMedia + [VideoPlayer.Content(livetv) | VideoPlayer.Content(files)]">$INFO[Skin.String(fanart.fallback.pvr)]</value>
+
+        <!-- MUSIC -->
+
+        <value condition="!Skin.HasSetting(hide.global.fanart) + $EXP[Extended_Now_Playing_Is_Enable] + Window.IsVisible(Home) + !ControlGroup(301).HasFocus() + !String.IsEmpty(Window(Visualisation).Property(ArtistSlideshow.Image)) + System.AddonIsEnabled(script.artistslideshow) + !Skin.HasSetting(disable.artist.slideshow) + Player.HasAudio">$INFO[Window(Visualisation).Property(ArtistSlideshow.Image)]</value>
+
+        <value condition="!Skin.HasSetting(hide.global.fanart) + $EXP[Extended_Now_Playing_Is_Enable] + Window.IsVisible(Home) + !ControlGroup(301).HasFocus() + [Skin.HasSetting(enable.osd.music.visualisation.fanart) + !String.IsEmpty(Player.Art(fanart)) + [String.IsEmpty(Window(Visualisation).Property(ArtistSlideshow.Image)) | !System.AddonIsEnabled(script.artistslideshow) | Skin.HasSetting(disable.artist.slideshow)]] + Player.HasAudio">$INFO[Player.Art(fanart)]</value>
+
+        <value condition="!Skin.HasSetting(hide.global.fanart) + $EXP[Extended_Now_Playing_Is_Enable] + Window.IsVisible(Home) + !ControlGroup(301).HasFocus() + !String.IsEmpty(Skin.String(fanart.fallback.music)) + Skin.HasSetting(enable.osd.music.visualisation.fanart) + Player.HasAudio">$INFO[Skin.String(fanart.fallback.music)]</value>
+
+        <!-- EPISODE -->
+
+        <value condition="!Skin.HasSetting(hide.global.fanart) + $EXP[Extended_Now_Playing_Is_Enable] + Window.IsVisible(Home) + !ControlGroup(301).HasFocus() + !String.IsEmpty(Player.Art(thumb)) + Player.HasMedia + !String.IsEmpty(VideoPlayer.Episode) + Skin.HasSetting(use.thumbnail.episodes)">$INFO[Player.Art(thumb)]</value>
+
+        <!-- OTHERS -->
+
+        <value condition="!Skin.HasSetting(hide.global.fanart) + $EXP[Extended_Now_Playing_Is_Enable] + Window.IsVisible(Home) + !ControlGroup(301).HasFocus() + !String.IsEmpty(Player.Art(fanart)) + Player.HasMedia">$INFO[Player.Art(fanart)]</value>
 
     <!-- =================================== -->
     <!--               SEARCH                -->
@@ -711,32 +736,6 @@
         <!-- <value condition="!Skin.HasSetting(hide.global.fanart) + Skin.HasSetting(home.vertical) + Window.IsVisible(Home) + !String.IsEmpty(Skin.String(weather.fanart.path)) + [String.IsEqual(Container(300).ListItem.Property(widget),weatherdaily) | String.IsEqual(Container(300).ListItem.Property(widget),weatherhourly)] + String.Contains(Skin.String(weather.fanart.path),multi)">$INFO[Skin.String(weather.fanart.path)]$INFO[Window(Weather).Property(Current.FanartCode)]/</value> -->
 
         <!-- <value condition="!Skin.HasSetting(hide.global.fanart) + Skin.HasSetting(home.vertical) + Window.IsVisible(Home) + !String.IsEmpty(Skin.String(weather.fanart.path)) + [String.IsEqual(Container(300).ListItem.Property(widget),weatherdaily) | String.IsEqual(Container(300).ListItem.Property(widget),weatherhourly)] + !String.Contains(Skin.String(weather.fanart.path),multi) + String.IsEmpty(Container(300).ListItem.Property(background)) + [Control.HasFocus(300) | Control.HasFocus(302) | Control.HasFocus(2011) | Control.HasFocus(399)]">$INFO[Skin.String(weather.fanart.path)]$INFO[Window(Weather).Property(Current.FanartCode),,.jpg]</value> -->
-
-    <!-- =================================== -->
-    <!--             NOW PLAYING             -->
-    <!-- =================================== -->
-
-        <!-- PVR -->
-
-        <value condition="!Skin.HasSetting(hide.global.fanart) + $EXP[Extended_Now_Playing_Is_Enable] + Window.IsVisible(Home) + !ControlGroup(301).HasFocus() + !String.IsEmpty(PVR.EpgEventIcon) + Player.HasMedia + VideoPlayer.Content(livetv)">$INFO[PVR.EpgEventIcon]</value>
-
-        <value condition="!Skin.HasSetting(hide.global.fanart) + $EXP[Extended_Now_Playing_Is_Enable] + Window.IsVisible(Home) + !ControlGroup(301).HasFocus() + String.IsEmpty(PVR.EpgEventIcon) + Player.HasMedia + VideoPlayer.Content(livetv)">$INFO[Skin.String(fanart.fallback.pvr)]</value>
-
-        <!-- MUSIC -->
-
-        <value condition="!Skin.HasSetting(hide.global.fanart) + $EXP[Extended_Now_Playing_Is_Enable] + Window.IsVisible(Home) + !ControlGroup(301).HasFocus() + !String.IsEmpty(Window(Visualisation).Property(ArtistSlideshow.Image)) + System.AddonIsEnabled(script.artistslideshow) + !Skin.HasSetting(disable.artist.slideshow) + Player.HasAudio">$INFO[Window(Visualisation).Property(ArtistSlideshow.Image)]</value>
-
-        <value condition="!Skin.HasSetting(hide.global.fanart) + $EXP[Extended_Now_Playing_Is_Enable] + Window.IsVisible(Home) + !ControlGroup(301).HasFocus() + [Skin.HasSetting(enable.osd.music.visualisation.fanart) + !String.IsEmpty(Player.Art(fanart)) + [String.IsEmpty(Window(Visualisation).Property(ArtistSlideshow.Image)) | !System.AddonIsEnabled(script.artistslideshow) | Skin.HasSetting(disable.artist.slideshow)]] + Player.HasAudio">$INFO[Player.Art(fanart)]</value>
-
-        <value condition="!Skin.HasSetting(hide.global.fanart) + $EXP[Extended_Now_Playing_Is_Enable] + Window.IsVisible(Home) + !ControlGroup(301).HasFocus() + !String.IsEmpty(Skin.String(fanart.fallback.music)) + Skin.HasSetting(enable.osd.music.visualisation.fanart) + Player.HasAudio">$INFO[Skin.String(fanart.fallback.music)]</value>
-
-        <!-- EPISODE -->
-
-        <value condition="!Skin.HasSetting(hide.global.fanart) + $EXP[Extended_Now_Playing_Is_Enable] + Window.IsVisible(Home) + !ControlGroup(301).HasFocus() + !String.IsEmpty(Player.Art(thumb)) + Player.HasMedia + !String.IsEmpty(VideoPlayer.Episode) + Skin.HasSetting(use.thumbnail.episodes)">$INFO[Player.Art(thumb)]</value>
-
-        <!-- OTHERS -->
-
-        <value condition="!Skin.HasSetting(hide.global.fanart) + $EXP[Extended_Now_Playing_Is_Enable] + Window.IsVisible(Home) + !ControlGroup(301).HasFocus() + !String.IsEmpty(Player.Art(fanart)) + Player.HasMedia">$INFO[Player.Art(fanart)]</value>
 
 
     <!-- =================================== -->
