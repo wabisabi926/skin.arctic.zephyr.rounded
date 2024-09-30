@@ -137,7 +137,7 @@
         <param name="left" value="$PARAM[left]" default="-42"/>
         <definition>
             <control type="group">
-                <animation effect="slide" start="0" end="-222,0" time="150" reversible="false" condition="!VideoPlayer.Content(livetv) + VideoPlayer.Content(files)">condition</animation>
+                <animation effect="slide" start="0" end="-222,0" time="150" reversible="false" condition="[Player.HasMedia + Player.HasVideo] + !VideoPlayer.Content(livetv) + VideoPlayer.Content(files)">condition</animation>
 
                 <width>100%</width>
 
@@ -831,6 +831,7 @@
             <animation type="WindowOpen" reversible="false" condition="$EXP[Extended_Now_Playing_Is_Visible]">
                 <effect type="slide" start="-145,0" end="0,0" tween="sine" easing="out" time="600" delay="500"/>
             </animation>
+
             <animation type="Conditional" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(2011) + !ControlGroup(777).HasFocus() + !Control.HasFocus(778) + !Control.HasFocus(779) + !Control.HasFocus(780) + !Control.HasFocus(9099) + !Control.HasFocus(399) + !Control.HasFocus(222)" reversible="false">
                 <effect type="slide" start="0,0" end="-115,0" tween="sine" easing="out" time="300" delay="0"/>
                 <effect type="fade" start="100" end="0" time="150" delay="0"/>
@@ -1250,7 +1251,7 @@
                 <param name="visible" value="Skin.HasSetting(show.home.nowplaying.extended.video.windows)" />
             </include>
 
-            <!-- POSTER -->
+            <!-- POSTER / SQUARE -->
 
             <include content="NowPlaying_Poster">
                 <param name="visible" value="!Skin.HasSetting(show.home.nowplaying.extended.video.windows)" />
