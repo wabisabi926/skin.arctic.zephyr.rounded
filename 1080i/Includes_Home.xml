@@ -1167,30 +1167,17 @@
 
                         <control type="label">
                             <left>30</left>
-                            <!-- <left>0</left> -->
+                            <right>0</right>
                             <align>left</align>
                             <aligny>center</aligny>
                             <height>100%</height>
                             <textcolor>$VAR[Color_Highlight]</textcolor>
                             <font>Home</font>
                             <label>$INFO[Container(300).ListItem.Label]</label>
-                            <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302)">Conditional</animation>
-                            <visible>!Skin.HasSetting(home.showicons) + !Skin.HasSetting(homemenu.items.underlined) + !Skin.HasSetting(homemenu.only.icons)</visible>
-                        </control>
-
-                        <!-- MAIN MENU - LABEL + ICON - NOT UNDERLINED -->
-
-                        <control type="label">
-                            <left>100</left>
-                            <!-- <left>0</left> -->
-                            <align>left</align>
-                            <aligny>center</aligny>
-                            <height>100%</height>
-                            <textcolor>$VAR[Color_Highlight]</textcolor>
-                            <font>Home</font>
-                            <label>$INFO[Container(300).ListItem.Label]</label>
+                            <scroll>true</scroll>
+                            <scrollspeed>60</scrollspeed>
                             <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(399) + !Control.HasFocus(222)">Conditional</animation>
-                            <visible>Skin.HasSetting(home.showicons) + !Skin.HasSetting(homemenu.items.underlined) + !Skin.HasSetting(homemenu.only.icons)</visible>
+                            <visible>!Skin.HasSetting(home.showicons) + !Skin.HasSetting(homemenu.items.underlined) + !Skin.HasSetting(homemenu.only.icons)</visible>
                         </control>
 
                         <!-- MAIN MENU - ONLY LABEL - UNDERLINED -->
@@ -1198,7 +1185,7 @@
                         <control type="grouplist">
                             <orientation>horizontal</orientation>
                             <left>30</left>
-                            <!-- <left>0</left> -->
+                            <right>0</right>
                             <top>8</top>
                             <align>left</align>
                             <aligny>center</aligny>
@@ -1207,12 +1194,29 @@
                                 <textcolor>Dark1</textcolor>
                                 <font>Home</font>
                                 <textoffsetx>0</textoffsetx>
-                                <width>auto</width>
+                                <width max="250">auto</width>
                                 <texturenofocus border="4">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/underline_h.png</texturenofocus>
                                 <label>$INFO[Container(300).ListItem.Label]</label>
                             </control>
                             <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(399) + !Control.HasFocus(222)">Conditional</animation>
                             <visible>!Skin.HasSetting(home.showicons) + Skin.HasSetting(homemenu.items.underlined)</visible>
+                        </control>
+
+                        <!-- MAIN MENU - LABEL + ICON - NOT UNDERLINED -->
+
+                        <control type="label">
+                            <left>100</left>
+                            <align>left</align>
+                            <right>0</right>
+                            <aligny>center</aligny>
+                            <height>100%</height>
+                            <textcolor>$VAR[Color_Highlight]</textcolor>
+                            <font>Home</font>
+                            <label>$INFO[Container(300).ListItem.Label]</label>
+                            <scroll>true</scroll>
+                            <scrollspeed>60</scrollspeed>
+                            <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(399) + !Control.HasFocus(222)">Conditional</animation>
+                            <visible>Skin.HasSetting(home.showicons) + !Skin.HasSetting(homemenu.items.underlined) + !Skin.HasSetting(homemenu.only.icons)</visible>
                         </control>
 
                         <!-- MAIN MENU - LABEL + ICON - UNDERLINED -->
@@ -1238,7 +1242,7 @@
                                     <textcolor>Dark1</textcolor>
                                     <font>Home</font>
                                     <textoffsetx>0</textoffsetx>
-                                    <width>auto</width>
+                                    <width max="250">auto</width>
                                     <texturenofocus border="4">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/underline_h.png</texturenofocus>
                                     <label>        $INFO[Container(300).ListItem.Label]</label>
                                 </control>
@@ -1335,8 +1339,6 @@
                             <aligny>center</aligny>
                             <height>100%</height>
                             <textcolor>Dark3</textcolor>
-                            <scroll>true</scroll>
-                            <scrollspeed>60</scrollspeed>
                             <font>Home</font>
                             <label>$INFO[Container(302).ListItem.Label]</label>
                             <visible>!Skin.HasSetting(home.showicons)</visible>
@@ -1359,8 +1361,6 @@
                             <aligny>center</aligny>
                             <height>100%</height>
                             <textcolor>Dark3</textcolor>
-                            <scroll>true</scroll>
-                            <scrollspeed>60</scrollspeed>
                             <font>Home</font>
                             <label>$INFO[Container(302).ListItem.Label]</label>
                             <visible>Skin.HasSetting(home.showicons) + !Skin.HasSetting(homemenu.only.icons)</visible>
@@ -1407,7 +1407,7 @@
 
                         <control type="label">
                             <left>30</left>
-                            <right>0</right>
+                            <right>30</right>
                             <align>left</align>
                             <aligny>center</aligny>
                             <height>100%</height>
@@ -1423,7 +1423,7 @@
 
                         <control type="label">
                             <left>100</left>
-                            <right>0</right>
+                            <right>30</right>
                             <align>left</align>
                             <aligny>center</aligny>
                             <height>100%</height>
@@ -1449,7 +1449,7 @@
                                 <textcolor>Dark1</textcolor>
                                 <font>Home</font>
                                 <textoffsetx>0</textoffsetx>
-                                <width>auto</width>
+                                <width max="250">auto</width>
                                 <texturenofocus border="4">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/underline_h.png</texturenofocus>
                                 <label>$INFO[Container(302).ListItem.Label]</label>
                             </control>
@@ -1479,7 +1479,7 @@
                                     <textcolor>Dark1</textcolor>
                                     <font>Home</font>
                                     <textoffsetx>0</textoffsetx>
-                                    <width>auto</width>
+                                    <width max="250">auto</width>
                                     <texturenofocus border="4">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/underline_h.png</texturenofocus>
                                     <label>        $INFO[Container(302).ListItem.Label]</label>
                                 </control>
