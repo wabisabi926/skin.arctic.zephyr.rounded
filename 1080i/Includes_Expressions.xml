@@ -103,9 +103,9 @@
 
     <expression name="IsTMDbHelperItem">String.Contains(ListItem.Path,plugin://plugin.video.themoviedb.helper)</expression>
 
-    <!-- PLUGIN ITUNES - LISTITEM -->
+    <!-- PLUGIN APPLE PODCAST - LISTITEM -->
 
-    <expression name="IsItunesItem">String.Contains(ListItem.Path,plugin://plugin.video.itunes_podcasts)</expression>
+    <expression name="IsItunesItem">String.Contains(ListItem.FolderPath,plugin://plugin.video.itunes_podcasts)</expression>
 
     <!-- PLUGIN SHORTLIST -->
 
@@ -163,11 +163,6 @@
 
     <!-- LAYOUT CONTENT -->
 
-    <expression name="Is_Person_Info">[String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(tmdb_type),person)]</expression>
-
-    <expression name="Is_Info_Dialogs">[Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml) | Window.IsVisible(DialogPVRInfo.xml) | Window.IsVisible(DialogAddonInfo.xml) | Window.IsVisible(script-tmdbhelper-wikipedia.xml)]
-    </expression>
-
     <expression name="Is_View_Video_Flix">Control.IsVisible(522) | Control.IsVisible(521)</expression>
     <expression name="Is_View_Video_Flix_Wall">Control.IsVisible(5228) | Control.IsVisible(5218) | Control.IsVisible(5048)</expression>
 
@@ -191,11 +186,25 @@
     <expression name="View_Fanart">Control.IsVisible(547) | Control.IsVisible(557) | Control.IsVisible(56) | Control.IsVisible(57)</expression>
     <expression name="View_Poster">Control.IsVisible(55) | Control.IsVisible(509) | Control.IsVisible(517) | Control.IsVisible(519)</expression>
 
+    <!-- VIEW INFO DIALOG -->
+
+    <expression name="Is_Person_Info">[String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(tmdb_type),person)]</expression>
+
+    <expression name="Is_Info_Dialogs">[Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml) | Window.IsVisible(DialogPVRInfo.xml) | Window.IsVisible(DialogAddonInfo.xml) | Window.IsVisible(script-tmdbhelper-wikipedia.xml) | Window.IsVisible(script-globalsearch-main.xml) | Window.IsVisible(script-globalsearch-infodialog.xml)]
+    </expression>
+
+    <expression name="Exp_PVRWindows">[Window.IsVisible(MyPVRGuide.xml) | Window.IsVisible(MyPVRChannels.xml) | Window.IsVisible(MyPVRTimers.xml) | Window.IsVisible(MyPVRRecordings.xml) | Window.IsVisible(MyPVRSearch.xml)]</expression>
+
+    <expression name="Exp_InfoDialogs">[Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml) | Window.IsVisible(DialogAddonInfo.xml) | Window.IsVisible(DialogPVRInfo.xml) | Window.IsVisible(script-tmdbhelper-wikipedia.xml)]
+    </expression>
+    <expression name="Exp_InfoDialogs_Active">[Window.IsActive(DialogVideoInfo.xml) | Window.IsActive(DialogMusicInfo.xml) | Window.IsActive(DialogAddonInfo.xml) | Window.IsActive(DialogPVRInfo.xml) | Window.IsActive(script-tmdbhelper-wikipedia.xml)]
+    </expression>
+
     <!-- VIEW ARTWORK / BACKGROUND -->
 
     <expression name="View_Artwork_Condition">[Window.IsActive(DialogVideoInfo.xml) | Window.IsActive(Home) | Container.Content(addons) | Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(favourites) | $EXP[IsAnPlugin] | Container.Content(countries) | Container.Content(genres) | Container.Content(years) | Container.Content(tags) | Container.Content(studios) | Container.Content(directors) | Container.Content(actors) | Container.Content(files) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Window.IsVisible(FileBrowser.xml) | Window.IsVisible(EventLog.xml) | Window.IsVisible(DialogAddonInfo.xml) | Window.IsVisible(DialogPVRInfo.xml) | Window.IsVisible(MyPics.xml)]</expression>
 
-    <expression name="View_Artwork_Specific">[!String.StartsWith(ListItem.Icon,Default) | [String.StartsWith(ListItem.Icon,Default) + [Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | [Container.Content(countries) + !String.IsEmpty(Skin.String(country.logos.path))] | [Container.Content(genres) + !String.IsEmpty(Skin.String(genre.icons.path))] | [Container.Content(studios) + !String.IsEmpty(Skin.String(studio.logos.path))] | [Window.IsActive(DialogVideoInfo.xml) + !Control.HasFocus(50) + !Control.HasFocus(507)] | [Container.Content(movies) + !String.IsEmpty(ListItem.DBType)] ]]]</expression>
+    <expression name="View_Artwork_Specific">[!String.StartsWith(ListItem.Icon,Default) | [String.StartsWith(ListItem.Icon,Default) + [Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | [Container.Content(countries) + !String.IsEmpty(Skin.String(country.logos.path))] | [Container.Content(genres) + !String.IsEmpty(Skin.String(genre.icons.path))] | [Container.Content(studios) + !String.IsEmpty(Skin.String(studio.logos.path))] | [Window.IsActive(DialogVideoInfo.xml) + !Control.HasFocus(50) + !Control.HasFocus(507)] | [Container.Content(movies) + !String.IsEmpty(ListItem.DBType)] | String.IsEqual(ListItem.DBType,tvshow) ]]]</expression>
 
     <expression name="View_Icon_Black">String.StartsWith(ListItem.Icon,Default) + [$EXP[IsGameMode] | Container.Content(musicvideos) | Container.Content(files) | [Container.Content(studios) + String.IsEmpty(Skin.String(studio.logos.path))] | [Container.Content(countries) + String.IsEmpty(Skin.String(country.logos.path))] | [Container.Content(genres) + String.IsEmpty(Skin.String(genre.icons.path))] | Container.Content(directors) | Container.Content(actors) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(tags) | Container.Content(years) | Container.Content(favourites) | Container.Content(videoversions) | Container.Content(addons) | [Container.Content() + String.StartsWith(Container.FolderPath,addons://)] | $EXP[IsAnLibrary] | $EXP[IsAnSource] | String.StartsWith(Container.FolderPath,musicdb://sources) | String.StartsWith(Container.FolderPath,special://musicplaylists) | String.StartsWith(Container.FolderPath,musicdb://years) | String.StartsWith(Container.FolderPath,musicdb://genres) | [Container.Content(files) + $EXP[IsPluginShortlist]] | ListItem.IsParentFolder | Container.Content(playlists) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType)] | [String.StartsWith(Container.FolderPath,videodb://movies) + String.IsEmpty(ListItem.DBType)] | [String.StartsWith(Container.FolderPath,videodb://tvshows) + String.IsEmpty(ListItem.DBType)] | [$EXP[IsAnPlugin] + String.IsEmpty(ListItem.DBType)] | Window.IsVisible(MyPics.xml)]</expression>
 

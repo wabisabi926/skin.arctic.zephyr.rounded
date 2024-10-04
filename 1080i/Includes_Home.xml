@@ -835,46 +835,23 @@
 
             <!-- WIDGET -->
 
-            <control type="grouplist" id="301">
-                <include>Animation_NowPlaying_Widget_Fade</include>
-
+            <control type="group" id="301">
                 <include content="Def_Height" condition="Skin.HasSetting(homemenu.netflix) | Skin.HasSetting(homemenu.horizontal.clean)">
                     <param name="height" value="765" />
                 </include>
                 <include content="Def_Height" condition="!Skin.HasSetting(homemenu.netflix)">
                     <param name="height" value="770" />
                 </include>
-
-                <orientation>vertical</orientation>
-
                 <include content="Def_Bottom" condition="Skin.HasSetting(homemenu.horizontal.clean) + !Skin.HasSetting(hide.widget.title)">
                     <param name="bottom" value="238" />
                 </include>
 
                 <bottom>188</bottom>
-                <width>2030</width>
-
-                <!-- HOME HORIZONTAL -->
-
-                <onup condition="!Skin.HasSetting(disable.widgets.onup.go.back.to.last.item)">SetFocus(8888)</onup>
-
-                <onup condition="!Skin.HasSetting(disable.widgets.onup.go.back.to.main.menu) + Skin.HasSetting(disable.widgets.onup.go.back.to.last.item) + !Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">300</onup>
-                <onup condition="!Skin.HasSetting(disable.widgets.onup.go.back.to.main.menu) + Skin.HasSetting(disable.widgets.onup.go.back.to.last.item) + Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">SetFocus(4567)</onup>
-                <onup condition="Skin.HasSetting(disable.widgets.onup.go.back.to.main.menu) + Skin.HasSetting(disable.widgets.onup.go.back.to.last.item) + Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">SetFocus(301,0)</onup>
-
-
-                <ondown condition="Skin.HasSetting(enable.widgets.ondown.go.back.to.first.item)">SetFocus(8808)</ondown>
-                <ondown condition="!Skin.HasSetting(enable.widgets.ondown.go.back.to.first.item) + Skin.HasSetting(disable.widgets.ondown.go.back.to.position.0) + !Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">300</ondown>
-                <ondown condition="!Skin.HasSetting(enable.widgets.ondown.go.back.to.first.item) + [!Skin.HasSetting(disable.widgets.ondown.go.back.to.position.0) | Skin.HasSetting(enable_widgets_to_position_0_onback_menu)]">SetFocus(4567)</ondown>
-
-                <include>Animation_Scrolltime_Widgets_Container</include>
-
-                <usecontrolcoords>true</usecontrolcoords>
-                <itemgap>0</itemgap>
+                <width>1920</width>
 
                 <!-- WIDGETS -->
 
-                <include>Def_Widgets_Skinshortcuts</include>
+                <include>skinshortcuts-template-widgets</include>
             </control>
 
             <include condition="Skin.HasSetting(enable.furniture.home.nowplaying.extended)">Furniture_Home_NowPlaying</include>
@@ -899,8 +876,12 @@
             <include>Def_Hidden_Button</include>
             <onfocus condition="Integer.IsEqual(Container(301).NumItems,1) + Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">SetFocus(4567)</onfocus>
             <onfocus condition="Integer.IsEqual(Container(301).NumItems,1)">SetFocus(300)</onfocus>
+            <onfocus>SetFocus($INFO[Window(Home).Property(BackToId)])</onfocus>
+
             <onfocus condition="!Integer.IsEqual(Container(301).NumItems,1) + !Integer.IsEqual(Container(301).NumItems,0) + [!Player.HasMedia | !$EXP[Extended_Now_Playing_Is_Enable]]">SetFocus($INFO[Window(Home).Property(BackToId)])</onfocus>
+
             <onfocus condition="!Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + !Integer.IsEqual(Container(301).NumItems,1) + !Integer.IsEqual(Container(301).NumItems,0) + $EXP[Extended_Now_Playing_Is_Enable] + Player.HasMedia">SetFocus(300)</onfocus>
+
             <onfocus condition="Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + !Integer.IsEqual(Container(301).NumItems,1) + !Integer.IsEqual(Container(301).NumItems,0) + $EXP[Extended_Now_Playing_Is_Enable] + Player.HasMedia">SetFocus(4567)</onfocus>
         </control>
 
@@ -926,14 +907,14 @@
             <!-- MAIN MENU - LEFT / RIGHT -->
 
             <onleft condition="!String.IsEmpty(Container(300).ListItemNoWrap(-1).Label)">SetProperty(AnimationDirection,Left)</onleft>
-            <!-- <onleft condition="!String.IsEmpty(Container(300).ListItemNoWrap(-1).Label)">SetProperty(WidgetWait,1,Home)</onleft> -->
+            <onleft condition="!String.IsEmpty(Container(300).ListItemNoWrap(-1).Label)">SetProperty(WidgetWait,1,Home)</onleft>
             <onleft condition="!String.IsEmpty(Container(300).ListItemNoWrap(-1).Label)">Control.Move(300,-1)</onleft>
-            <!-- <onleft condition="!String.IsEmpty(Container(300).ListItemNoWrap(-1).Label)">AlarmClock(WidgetWait,ClearProperty(WidgetWait,Home),00:00,silent)</onleft> -->
+            <onleft condition="!String.IsEmpty(Container(300).ListItemNoWrap(-1).Label)">AlarmClock(WidgetWait,ClearProperty(WidgetWait,Home),00:00,silent)</onleft>
 
             <onright condition="!String.IsEmpty(Container(300).ListItemNoWrap(1).Label)">SetProperty(AnimationDirection,Right)</onright>
-            <!-- <onright condition="!String.IsEmpty(Container(300).ListItemNoWrap(1).Label)">SetProperty(WidgetWait,1,Home)</onright> -->
+            <onright condition="!String.IsEmpty(Container(300).ListItemNoWrap(1).Label)">SetProperty(WidgetWait,1,Home)</onright>
             <onright condition="!String.IsEmpty(Container(300).ListItemNoWrap(1).Label)">Control.Move(300,1)</onright>
-            <!-- <onright condition="!String.IsEmpty(Container(300).ListItemNoWrap(1).Label)">AlarmClock(WidgetWait,ClearProperty(WidgetWait,Home),00:00,silent)</onright> -->
+            <onright condition="!String.IsEmpty(Container(300).ListItemNoWrap(1).Label)">AlarmClock(WidgetWait,ClearProperty(WidgetWait,Home),00:00,silent)</onright>
 
             <!-- MAIN MENU 300 -->
 
@@ -962,9 +943,10 @@
             <onup condition="$EXP[Extended_Now_Playing_Is_Visible] + Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button) + Skin.HasSetting(home.extended.nowplaying.tracklist) + Integer.IsGreater(Container(778).NumItems,0) + Player.HasAudio">778</onup>
             <onup condition="$EXP[Extended_Now_Playing_Is_Visible] + !Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button)">777</onup>
 
-            <!-- WIDGETS 301 -->
+            <!-- CONTAINER 301 -->
 
             <onback condition="Skin.HasSetting(home.onback.go.to.first.widget) + Integer.IsGreater(Container(301).NumItems,0)">SetFocus(301)</onback>
+
             <onup condition="!Player.HasVideo | !Skin.HasSetting(global.showvideo)">301</onup>
             <onup>301</onup>
 
@@ -1167,7 +1149,22 @@
 
                         <control type="label">
                             <left>30</left>
-                            <right>0</right>
+                            <!-- <left>0</left> -->
+                            <align>left</align>
+                            <aligny>center</aligny>
+                            <height>100%</height>
+                            <textcolor>$VAR[Color_Highlight]</textcolor>
+                            <font>Home</font>
+                            <label>$INFO[Container(300).ListItem.Label]</label>
+                            <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302)">Conditional</animation>
+                            <visible>!Skin.HasSetting(home.showicons) + !Skin.HasSetting(homemenu.items.underlined) + !Skin.HasSetting(homemenu.only.icons)</visible>
+                        </control>
+
+                        <!-- MAIN MENU - LABEL + ICON - NOT UNDERLINED -->
+
+                        <control type="label">
+                            <left>100</left>
+                            <!-- <left>0</left> -->
                             <align>left</align>
                             <aligny>center</aligny>
                             <height>100%</height>
@@ -1531,9 +1528,7 @@
                 <control type="group">
                     <animation effect="slide" start="0" end="0,30" time="0" condition="true">Conditional</animation>
 
-                    <control type="grouplist" id="301">
-                        <include>Animation_NowPlaying_Widget_Fade</include>
-
+                    <control type="group" id="301">
                         <include content="Def_Height" condition="Skin.HasSetting(homemenu.netflix)">
                             <param name="height" value="765" />
                         </include>
@@ -1546,26 +1541,11 @@
                         <width>1920</width>
                         <orientation>vertical</orientation>
 
-                        <!-- HOME VERTICAL WIDGETS -->
-
-                        <onup condition="Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget)">9888</onup>
-                        <onup condition="!Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget) + !Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">300</onup>
-                        <onup condition="!Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget) + Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">SetFocus(9567)</onup>
-
-                        <ondown condition="Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget)">9808</ondown>
-                        <ondown condition="!Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget) + !Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">300</ondown>
-                        <ondown condition="!Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget) + Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">SetFocus(9567)</ondown>
-
-                        <include>Animation_Scrolltime_Widgets_Container</include>
-
-                        <usecontrolcoords>true</usecontrolcoords>
-                        <itemgap>0</itemgap>
-
                         <!-- WIDGETS -->
 
-                        <include>Def_Widgets_Skinshortcuts</include>
-
+                        <include>skinshortcuts-template-widgets</include>
                     </control>
+
                     <include condition="Skin.HasSetting(enable.furniture.home.nowplaying.extended)">Furniture_Home_NowPlaying</include>
                 </control>
             </control>
@@ -1648,7 +1628,7 @@
                 <onright condition="$EXP[Extended_Now_Playing_Is_Visible] + Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button) + Skin.HasSetting(home.extended.nowplaying.tracklist) + Integer.IsGreater(Container(778).NumItems,0) + Player.HasAudio">778</onright>
                 <onright condition="$EXP[Extended_Now_Playing_Is_Visible] + !Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button)">777</onright>
 
-                <!-- WIDGETS 301 -->
+                <!-- GROUPLIST 301 -->
 
                 <onback condition="Skin.HasSetting(home.onback.go.to.first.widget) + Integer.IsGreater(Container(301).NumItems,0)">SetFocus(301)</onback>
                 <onright>301</onright>
@@ -1847,6 +1827,7 @@
                 <animation effect="fade" start="100" end="0" time="150" condition="!ControlGroup(301).HasFocus() + Skin.HasSetting(home.hide.netflix.plot) + Skin.HasSetting(homemenu.netflix)">Conditional</animation>
 
                 <include>Animation_Vertical_Widgets_Label_Focus_Search</include>
+
                 <control type="grouplist">
                     <left>SidePad</left>
                     <include content="Def_Width" condition="Skin.HasSetting(homemenu.netflix)">
@@ -2540,32 +2521,34 @@
     <!-- WIDGET - LABEL -->
 
     <include name="Widget_Title_Label">
+        <visible>!Skin.HasSetting(hide.widget.title)</visible>
+        <visible>![!Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button) + !String.IsEmpty(Window(Home).Property(controlsvisible))]</visible>
+
         <animation effect="fade" start="100" end="0" time="150" condition="!ControlGroup(301).HasFocus() + Skin.HasSetting(home.hide.netflix.plot) + Skin.HasSetting(homemenu.horizontal.clean)">Conditional</animation>
 
         <include content="Animation_FadeOut_Home_Fullscreen_Widget" condition="Skin.HasSetting(homemenu.horizontal.clean)">
             <param name="condition" value="$PARAM[animation_condition]"/>
         </include>
 
+        <include>Animation_Vertical_Widgets_Label_Focus_Search</include>
+
         <usecontrolcoords>true</usecontrolcoords>
         <height>40</height>
         <left>SidePad</left>
 
-        <visible>!Skin.HasSetting(hide.widget.title)</visible>
-        <visible>![!Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button) + !String.IsEmpty(Window(Home).Property(controlsvisible))]</visible>
-
         <include content="Def_Top" condition="Skin.HasSetting(homemenu.horizontal.clean) + !Skin.HasSetting(hide.widget.title)">
-            <param name="top" value="725" />
+            <param name="top" value="-40" />
         </include>
         <include content="Def_Top" condition="Skin.HasSetting(homemenu.netflix)">
-            <param name="top" value="390" />
+            <param name="top" value="-380" />
         </include>
         <include content="Def_Top" condition="!Skin.HasSetting(homemenu.netflix)">
-            <param name="top" value="10" />
+            <param name="top" value="-370" />
         </include>
 
         <orientation>horizontal</orientation>
         <itemgap>10</itemgap>
-        <include>Animation_Vertical_Widgets_Label_Focus_Search</include>
+
         <include content="Widget_Bullet_Hightlight">
             <param name="dimensions" value="30"/>
             <param name="top" value="5"/>
@@ -2577,7 +2560,7 @@
             <font>SmallNavi</font>
             <width>auto</width>
             <textcolor>Dark2</textcolor>
-            <label>$VAR[Label_Widget_Widget_$PARAM[idshort]]</label>
+            <label>$PARAM[widget_label]</label>
         </control>
 
         <!-- TV SHOWS  -->
@@ -2831,7 +2814,7 @@
             <texture colordiffuse="$VAR[Color_Highlight]">dialog/loading-spinner.png</texture>
             <aspectratio>keep</aspectratio>
             <include>Animation_Vertical_Widgets_Title_Loading</include>
-            <visible>Container($PARAM[focusid]).IsUpdating</visible>
+            <visible>$PARAM[busy_visible]</visible>
         </control>
     </include>
 
@@ -2994,8 +2977,10 @@
         </include>
 
         <left>SidePad</left>
+
         <include condition="!$PARAM[issettingslayout]">Def_Home_Widget_System_Info_Sub</include>
-        <include condition="$PARAM[issettingslayout]" content="InfoSubWidgetSettingsInclude">
+
+        <include condition="$PARAM[issettingslayout]" content="Def_Home_Widget_Settings_Sub">
             <param name="id" value="$PARAM[id]"/>
         </include>
         </definition>
