@@ -2,7 +2,8 @@
 <overrides>
     <doNotShareMenu />
 
-    <!-- Playlist -->
+    <!-- PLAYLIST -->
+
     <widgetPlaylists>True</widgetPlaylists>
     <groupoverride group="powermenu" condition="Window.IsActive(DialogButtonMenu.xml)">Close</groupoverride>
     <warn heading="31319" message="31320">ActivateWindow(Settings)</warn>
@@ -17,8 +18,9 @@
         <action>System.LogOff</action>
     </override>
 
-    <!-- Widget Sort by -->
-    <propertySettings property="widgetSortby" buttonID="9402" templateonly="True" title="$LOCALIZE[581]"/>
+    <!-- WIDGET SORT BY -->
+
+    <propertySettings property="widgetSortby" buttonID="9903" templateonly="True" title="$LOCALIZE[581]"/>
     <property property="widgetSortby" label="369">title</property>
     <property property="widgetSortby" label="345">year</property>
     <property property="widgetSortby" label="558">album</property>
@@ -36,8 +38,9 @@
     <property property="widgetSortby" label="561">file</property>
     <property property="widgetSortby" label="515">genre</property>
 
-    <!-- Widget Aspect -->
-    <propertySettings property="widgetaspect" buttonID="9401" title="$LOCALIZE[31228]"/>
+    <!-- WIDGET STYLE -->
+
+    <propertySettings property="widgetaspect" buttonID="9901" title="$LOCALIZE[31228]"/>
     <property property="widgetaspect" label="31229" condition="!String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu)">Poster</property>
     <property property="widgetaspect" label="31230">Square</property>
     <property property="widgetaspect" label="31361" condition="!String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget),weather) + !String.IsEqual(Container(211).ListItem.Property(widget),custom)">SquareSmall</property>
@@ -50,17 +53,24 @@
     <property property="widgetaspect" label="31574" condition="!String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget),weather) + !String.IsEqual(Container(211).ListItem.Property(widget),custom) + !String.Contains(Container(211).ListItem.Property(widgetPath),studios) + !String.Contains(Container(211).ListItem.Property(widgetPath),genres)">ThumbnailPosterSmall</property>
     <property property="widgetaspect" label="20020" condition="!String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget),weather) + !String.Contains(Container(211).ListItem.Property(widgetPath),studios) + !String.Contains(Container(211).ListItem.Property(widgetPath),genres)">Banner</property>
 
-    <!-- Widget Sorting -->
-    <propertySettings property="widgetSort" buttonID="9403" templateonly="True" title="$LOCALIZE[580]"/>
+    <!-- WIDGET SORTING -->
+
+    <propertySettings property="widgetSort" buttonID="9904" templateonly="True" title="$LOCALIZE[580]"/>
     <property property="widgetSort" label="585">descending</property>
     <property property="widgetSort" label="584">ascending</property>
 
-    <!-- Widget Banner -->
-    <propertySettings property="widgetBanner" buttonID="9404" title="$LOCALIZE[31207]"/>
-    <property property="widgetBanner" label="107">yes</property>
-    <property property="widgetBanner" label="106">no</property>
+    <!-- WIDGET TYPE -->
 
-    <!-- Widget Square Distance -->
+    <propertySettings property="widgetTarget" buttonID="9902" title="$LOCALIZE[31677]" />
+    <property property="widgetTarget" label="3">videos</property>
+    <property property="widgetTarget" label="2">music</property>
+    <property property="widgetTarget" label="1">pictures</property>
+    <property property="widgetTarget" label="0">programs</property>
+    <property property="widgetTarget" label="4">pvr</property>
+    <property property="widgetTarget" label="1036">favouritesbrowser</property>
+
+    <!-- WIDGET SQUARE DISTANCE -->
+
     <propertySettings property="widgetEdgeDistance.1" buttonID="10301" title="$LOCALIZE[31403]"/>
     <property property="widgetEdgeDistance" label="31404">yes</property>
     <propertySettings property="widgetEdgeDistance.2" buttonID="10302" title="$LOCALIZE[31403]"/>
@@ -74,7 +84,8 @@
     <propertySettings property="widgetEdgeDistance.6" buttonID="11008" title="$LOCALIZE[31403]"/>
     <property property="widgetEdgeDistance.6" label="31404">yes</property>
 
-    <!-- Widget Square Aspect Ratio -->
+    <!-- WIDGET SQUARE ASPECT RATIO -->
+
     <propertySettings property="widgetAspectRatio.1" buttonID="10001" title="$LOCALIZE[31357]"/>
     <property property="widgetAspectRatio" label="$LOCALIZE[31358]">scale</property>
     <propertySettings property="widgetAspectRatio.2" buttonID="10002" title="$LOCALIZE[31357]"/>
@@ -96,13 +107,15 @@
     <property property="widgetAuto" label=" 20">$NUMBER[20000]</property>
     <property property="widgetAuto" label=" 25">$NUMBER[25000]</property>
 
-    <!-- Widget List Type? -->
+    <!-- WIDGET LIST TYPE? -->
+
     <propertySettings property="widgetListType" buttonID="41911" title="$LOCALIZE[31303]"/>
     <property property="widgetListType" label="$LOCALIZE[31125]">wraplist</property>
     <property property="widgetListType" label="$LOCALIZE[31304]">list</property>
     <property property="widgetListType" label="$LOCALIZE[31305]">fixedlist</property>
 
-    <!-- Override Actions Because Im A Dummy Who Doesnt Know The Correct Window IDs To Use -->
+    <!-- OVERRIDE ACTIONS BECAUSE IM A DUMMY WHO DOESNT KNOW THE CORRECT WINDOW IDS TO USE -->
+
     <override action="ActivateWindow(3201)">
         <condition>true</condition>
         <action>ActivateWindow(1111)</action>
@@ -389,6 +402,7 @@
     <thumbnail label="youtube.png">special://skin/extras/icons/youtube.png</thumbnail>
 
     <!-- GROUPINGS -->
+
     <groupings>
         <node label="636">
             <shortcut label="31661" type="636" icon="DefaultAddonContextItem.png">SetFocus(302,0)</shortcut>
@@ -629,7 +643,7 @@
         </node>
         <node label="8">
             <shortcut label="$LOCALIZE[31255]" type="31402" icon="special://skin/extras/icons/sun.png" widget="weatherdaily" condition="!String.IsEmpty(Window(Weather).Property(Daily.IsFetched))" widgetType="widget" widgetTarget="weather">$INCLUDE[skinshortcuts-template-WeatherDailyInfoContent]</shortcut>
-            
+
             <shortcut label="$LOCALIZE[31256]" type="31402" icon="special://skin/extras/icons/sun.png" widget="weatherhourly" condition="!String.IsEmpty(Window(Weather).Property(Hourly.IsFetched))" widgetType="widget" widgetTarget="weather">$INCLUDE[skinshortcuts-template-WeatherHourlyInfoContent]</shortcut>
         </node>
         <node label="$LOCALIZE[130]">

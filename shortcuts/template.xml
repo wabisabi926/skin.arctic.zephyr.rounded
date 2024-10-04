@@ -1,82 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <template>
-    <!-- Widget items for daily weather -->
+    <!-- WIDGET ITEMS FOR DAILY WEATHER -->
+
     <other include="WeatherDailyInfoContent">
         <controls>
             <include>Def_Weather_Daily_Items</include>
         </controls>
     </other>
 
-    <!-- Widget items for hourly weather -->
+    <!-- WIDGET ITEMS FOR HOURLY WEATHER -->
+
     <other include="WeatherHourlyInfoContent">
         <controls>
             <include>Def_Weather_Hourly_Items</include>
         </controls>
     </other>
 
-    <!-- Widget items for systeminfo -->
+    <!-- WIDGET ITEMS FOR SYSTEM INFO -->
+
     <other include="SystemInfoContent">
         <controls>
             <include>Def_System_Info_Items</include>
         </controls>
     </other>
 
-    <!-- Widget items for settings -->
+    <!-- WIDGET ITEMS FOR SETTINGS -->
+
     <other include="SettingsInfoContent">
         <controls>
             <include>Def_Settings_Info_Items</include>
         </controls>
     </other>
 
-    <!-- Widgets -->
+    <!-- WIDGETS -->
+
     <submenu include="widgets" container="301" level="1">
         <property name="mainmenuid" tag="mainmenuid" />
         <property name="submenuVisibility" tag="property" attribute="name|submenuVisibility"/>
 
         <controls>
+            <control type="grouplist" id="$PYTHON[int(mainmenuid) * 1000 + 400]">
 
+                <include>Animation_Common</include>
+                <include>Animation_Foreground_FadeInOut</include>
 
-                <control type="grouplist" id="$PYTHON[int(mainmenuid) * 1000 + 400]">
+                <include>Animation_NowPlaying_Widget_Fade</include>
+                <include>Animation_Scrolltime_Widgets_Container</include>
 
-                    <!-- <visible>String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility])</visible> -->
+                <usecontrolcoords>true</usecontrolcoords>
+                <itemgap>0</itemgap>
+                <orientation>vertical</orientation>
 
-                    <!-- <include>Animation_Common</include> -->
-                    <!-- <include>Animation_Foreground_FadeInOut</include> -->
+                <!-- HOME HORIZONTAL -->
 
-                    <include>Animation_NowPlaying_Widget_Fade</include>
-                    <include>Animation_Scrolltime_Widgets_Container</include>
+                <onup condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(disable.widgets.onup.go.back.to.last.item)">SetFocus(8888)</onup>
+                <onup condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(disable.widgets.onup.go.back.to.main.menu) + Skin.HasSetting(disable.widgets.onup.go.back.to.last.item) + !Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">300</onup>
+                <onup condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(disable.widgets.onup.go.back.to.main.menu) + Skin.HasSetting(disable.widgets.onup.go.back.to.last.item) + Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">SetFocus(4567)</onup>
+                <onup condition="$EXP[Home_Is_Horizontal] + Skin.HasSetting(disable.widgets.onup.go.back.to.main.menu) + Skin.HasSetting(disable.widgets.onup.go.back.to.last.item) + Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">SetFocus(301,0)</onup>
 
-                    <usecontrolcoords>true</usecontrolcoords>
-                    <itemgap>0</itemgap>
-                    <orientation>vertical</orientation>
+                <ondown condition="$EXP[Home_Is_Horizontal] + Skin.HasSetting(enable.widgets.ondown.go.back.to.first.item)">SetFocus(8808)</ondown>
+                <ondown condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(enable.widgets.ondown.go.back.to.first.item) + Skin.HasSetting(disable.widgets.ondown.go.back.to.position.0) + !Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">300</ondown>
+                <ondown condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(enable.widgets.ondown.go.back.to.first.item) + [!Skin.HasSetting(disable.widgets.ondown.go.back.to.position.0) | Skin.HasSetting(enable_widgets_to_position_0_onback_menu)]">SetFocus(4567)</ondown>
 
-                    <!-- HOME HORIZONTAL -->
+                <!-- HOME VERTICAL WIDGETS -->
 
-                    <onup condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(disable.widgets.onup.go.back.to.last.item)">SetFocus(8888)</onup>
-                    <onup condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(disable.widgets.onup.go.back.to.main.menu) + Skin.HasSetting(disable.widgets.onup.go.back.to.last.item) + !Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">300</onup>
-                    <onup condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(disable.widgets.onup.go.back.to.main.menu) + Skin.HasSetting(disable.widgets.onup.go.back.to.last.item) + Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">SetFocus(4567)</onup>
-                    <onup condition="$EXP[Home_Is_Horizontal] + Skin.HasSetting(disable.widgets.onup.go.back.to.main.menu) + Skin.HasSetting(disable.widgets.onup.go.back.to.last.item) + Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">SetFocus(301,0)</onup>
+                <onup condition="$EXP[Home_Is_Vertical] + Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget)">9888</onup>
+                <onup condition="$EXP[Home_Is_Vertical] + !Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget) + !Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">300</onup>
+                <onup condition="$EXP[Home_Is_Vertical] + !Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget) + Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">SetFocus(9567)</onup>
 
-                    <ondown condition="$EXP[Home_Is_Horizontal] + Skin.HasSetting(enable.widgets.ondown.go.back.to.first.item)">SetFocus(8808)</ondown>
-                    <ondown condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(enable.widgets.ondown.go.back.to.first.item) + Skin.HasSetting(disable.widgets.ondown.go.back.to.position.0) + !Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">300</ondown>
-                    <ondown condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(enable.widgets.ondown.go.back.to.first.item) + [!Skin.HasSetting(disable.widgets.ondown.go.back.to.position.0) | Skin.HasSetting(enable_widgets_to_position_0_onback_menu)]">SetFocus(4567)</ondown>
+                <ondown condition="$EXP[Home_Is_Vertical] + Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget)">9808</ondown>
+                <ondown condition="$EXP[Home_Is_Vertical] + !Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget) + !Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">300</ondown>
+                <ondown condition="$EXP[Home_Is_Vertical] + !Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget) + Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">SetFocus(9567)</ondown>
 
+                <!-- LIST WIDGETS ROW -->
 
-                    <!-- HOME VERTICAL WIDGETS -->
-
-                    <onup condition="$EXP[Home_Is_Vertical] + Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget)">9888</onup>
-                    <onup condition="$EXP[Home_Is_Vertical] + !Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget) + !Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">300</onup>
-                    <onup condition="$EXP[Home_Is_Vertical] + !Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget) + Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">SetFocus(9567)</onup>
-
-                    <ondown condition="$EXP[Home_Is_Vertical] + Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget)">9808</ondown>
-                    <ondown condition="$EXP[Home_Is_Vertical] + !Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget) + !Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">300</ondown>
-                    <ondown condition="$EXP[Home_Is_Vertical] + !Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget) + Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">SetFocus(9567)</ondown>
-
-                    <!-- LIST WIDGETS ROW -->
-
-                    <skinshortcuts insert="widgets">items</skinshortcuts>
-                </control>
-
+                <skinshortcuts insert="widgets">items</skinshortcuts>
+            </control>
         </controls>
 
         <items insert="widgets">
@@ -85,24 +84,24 @@
 
             <property name="id" tag="mainmenuid" />
 
-            <!--- Widget Content -->
+            <!--- WIDGET CONTENT -->
 
-            <property name="target" tag="property" attribute="name|widgetTarget"/>
-            <property name="target">$VAR[Def_Widget_Target]</property>
+            <property name="widgetTarget" tag="property" attribute="name|widgetTarget"/>
+            <property name="widgetTarget">$VAR[Def_Widget_Target]</property>
 
-            <property name="sortby" tag="property" attribute="name|widgetSortby"/>
-            <property name="sort" tag="property" attribute="name|widgetSort"/>
+            <property name="widgetSortby" tag="property" attribute="name|widgetSortby"/>
+            <property name="widgetSortorder" tag="property" attribute="name|widgetSortorder"/>
             <property name="browse">never</property>
 
-            <property name="widgetlimit" tag="property" attribute="name|widgetTarget" value="epg">5</property>
+            <property name="widgetlimit" tag="property" attribute="name|widget" value="epg">5</property>
             <property name="widgetlimit">$VAR[Value_Widget_Limit]</property>
 
             <property name="widgetPath" tag="property" attribute="name|list" />
             <property name="widgetPath">$VAR[Def_Widget_Content]</property>
 
-            <!--- Widget Layout -->
+            <!--- WIDGET LAYOUT -->
 
-            <property name="isnormallayout" tag="property" attribute="name|widgetTarget" value="epg">false</property>
+            <property name="isnormallayout" tag="property" attribute="name|widget" value="epg">false</property>
             <property name="isnormallayout" tag="property" attribute="name|widgetTarget" value="weather">false</property>
             <property name="isnormallayout" tag="property" attribute="name|widgetTarget" value="system">false</property>
             <property name="isnormallayout" tag="property" attribute="name|widgetTarget" value="settings">false</property>
@@ -121,10 +120,10 @@
             <property name="isweatherlayout" tag="property" attribute="name|widgetTarget" value="weather">true</property>
             <property name="isweatherlayout">false</property>
 
-            <property name="ispvrlayout" tag="property" attribute="name|widgetTarget" value="epg">true</property>
+            <property name="ispvrlayout" tag="property" attribute="name|widget" value="epg">true</property>
             <property name="ispvrlayout">false</property>
 
-            <!--- Widget Height -->
+            <!--- HEIGHT -->
 
             <property name="layoutheight" tag="property" attribute="name|widgetaspect" value="SquareMediumSubmenu">175</property>
             <property name="layoutheight" tag="property" attribute="name|widgetaspect" value="SquareSmallSubmenu">125</property>
@@ -138,19 +137,19 @@
             <property name="layoutheight2" tag="property" attribute="name|widgetFullscreen" value="yes">780</property>
             <property name="layoutheight2">365</property>
 
-            <!--- Widget Layout Fullscreen ? -->
+            <!--- LAYOUT FULLSCREEN ? -->
 
             <property name="isfullscreenwidget" tag="property" attribute="name|widgetFullscreen" value="yes">true</property>
             <property name="isfullscreenwidget">false</property>
 
-            <!--- Widget Label Visible ? -->
+            <!--- LABEL VISIBLE ? -->
 
             <property name="labelisvisible" tag="property" attribute="name|widget" value="mysubmenu">false</property>
             <property name="labelisvisible" tag="property" attribute="name|widgetTarget" value="weather">false</property>
             <property name="labelisvisible" tag="property" attribute="name|widgetTarget" value="system">false</property>
             <property name="labelisvisible">true</property>
 
-            <!-- Widget Label -->
+            <!-- LABEL -->
 
             <property name="widgetName" tag="label" />
             <property name="widgetName">$LOCALIZE[31087]</property>
@@ -160,7 +159,9 @@
 
             <property name="morevisible" tag="property" attribute="name|widgetTarget" value="system">false</property>
             <property name="morevisible" tag="property" attribute="name|widgetTarget" value="weather">false</property>
+            <property name="morevisible" tag="property" attribute="name|widgetTarget" value="pvr">pvr</property>
             <property name="morevisible" tag="property" attribute="name|widget" value="mysubmenu">false</property>
+
             <property name="morevisible">true</property>
 
             <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[5000]">5000</property>
@@ -182,10 +183,10 @@
             <property name="distance" tag="property" attribute="name|widgetEdgeDistance" value="yes">30</property>
             <property name="distance">10</property>
 
-            <property name="orientation" tag="property" attribute="name|widgetTarget" value="epg">vertical</property>
+            <property name="orientation" tag="property" attribute="name|widget" value="epg">vertical</property>
             <property name="orientation">horizontal</property>
 
-            <!-- Movement -->
+            <!-- MOVEMENT -->
 
             <property name="widgetmovementcheck" tag="property" attribute="name|widgetTarget" value="settings">4</property>
             <property name="widgetmovementcheck" tag="property" attribute="name|widgetTarget" value="system">4</property>
@@ -211,7 +212,7 @@
             <property name="widgetmovementcheck2" tag="property" attribute="name|widgetaspect" value="FanartSmall">4</property>
             <property name="widgetmovementcheck2">6</property>
 
-            <!-- Style -->
+            <!-- STYLE -->
 
             <property name="widgetStyle" tag="property" attribute="name|widgetTarget" value="settings">Square</property>
             <property name="widgetStyle" tag="property" attribute="name|widgetTarget" value="system">Square</property>
@@ -222,7 +223,7 @@
             <property name="widgetStyle" tag="property" attribute="name|widgetaspect" />
             <property name="widgetStyle">Poster</property>
 
-            <!-- Style Sub Menu -->
+            <!-- STYLE SUB MENU -->
 
             <property name="widgetaspectsubcheck" tag="property" attribute="name|widgetaspect" value="SquareSmallSubmenu">SqSmall</property>
             <property name="widgetaspectsubcheck" tag="property" attribute="name|widgetaspect" value="SquareMediumSubmenu">SqMedium</property>
@@ -234,11 +235,9 @@
 
                 <control type="group"  id="$PYTHON[int(mainmenuid) * 1000 + 900 + int(id)]">
 
-                    <visible>String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility]) + [Integer.IsGreater(Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).IsUpdating | !String.IsEmpty(Window(Home).Property(WidgetWait))]</visible>
+                    <visible>String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility]) + [Integer.IsGreater(Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).IsUpdating]</visible>
 
-                    <include content="Animation_Widget_Direction">
-                        <param name="visible" value="[String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility])]" />
-                    </include>
+                    <include>Animation_Foreground_FadeInOut</include>
 
                     <control type="grouplist"  id="$PYTHON[int(mainmenuid) * 1000 + 800 + int(id)]">
                         <include content="Widget_Title_Label" condition="!Skin.HasSetting(hide.widget.title)">
@@ -247,7 +246,7 @@
                             <param name="animation_condition" value="!Control.HasFocus($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)])" />
                             <param name="submenuVisibility">$SKINSHORTCUTS[submenuVisibility]</param>
                             <param name="widget_label" value="$SKINSHORTCUTS[widgetName]" />
-                            <param name="busy_visible" value="Integer.IsEqual(Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).NumItems,0) | [Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).IsUpdating]" />
+                            <param name="busy_visible" value="Integer.IsEqual(Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).IsUpdating" />
                         </include>
                     </control>
                 </control>
@@ -256,11 +255,11 @@
 
                 <control type="group" id="$PYTHON[int(mainmenuid) * 1000 + 700 + int(id)]">
 
-                    <visible>String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility]) + [Integer.IsGreater(Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).IsUpdating | !String.IsEmpty(Window(Home).Property(WidgetWait))] + [$SKINSHORTCUTS[isfullscreenwidget] | Skin.HasSetting(homemenu.netflix)]</visible>
+                    <visible>String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility]) + [Integer.IsGreater(Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).IsUpdating]</visible>
 
-                    <include content="Animation_Widget_Direction">
-                        <param name="visible" value="[String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility])]" />
-                    </include>
+                    <visible>[$SKINSHORTCUTS[isfullscreenwidget] | Skin.HasSetting(homemenu.netflix)]</visible>
+
+                    <include>Animation_Foreground_FadeInOut</include>
 
                     <include content="Animation_FadeOut_Home_Fullscreen_Widget">
                         <param name="condition" value="!Control.HasFocus($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)])"/>
@@ -398,18 +397,17 @@
 
                     <!-- CONTENT -->
 
-                    <content limit="$SKINSHORTCUTS[widgetlimit]" target="$SKINSHORTCUTS[target]" sortby="$SKINSHORTCUTS[sortby]" sortorder="$SKINSHORTCUTS[sort]" browse="$SKINSHORTCUTS[browse]">$SKINSHORTCUTS[widgetPath]</content>
+                    <content limit="$SKINSHORTCUTS[widgetlimit]" target="$SKINSHORTCUTS[widgetTarget]" sortby="$SKINSHORTCUTS[widgetSortby]" sortorder="$SKINSHORTCUTS[widgetSortorder]" browse="$SKINSHORTCUTS[browse]">$SKINSHORTCUTS[widgetPath]</content>
 
                     <!-- MORE CONTENT -->
 
                     <include content="morecontent" condition="Skin.HasSetting(enable.morewidget) + $SKINSHORTCUTS[morevisible]">
                         <param name="id" value="$PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]" />
                         <param name="content" value="$SKINSHORTCUTS[widgetPath]" />
-                        <param name="targetcontent" value="$SKINSHORTCUTS[target]" />
+                        <param name="target" value="$SKINSHORTCUTS[widgetTarget]" />
                     </include>
                 </control>
             </controls>
         </items>
-
     </submenu>
 </template>
