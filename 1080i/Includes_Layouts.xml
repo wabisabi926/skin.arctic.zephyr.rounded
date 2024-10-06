@@ -119,21 +119,31 @@
     </include>
 
     <include name="Def_View_ContextMenu_Button_Playlist">
+        <control type="button" id="6147">
+            <include>Def_Context_Menu_Label</include>
+            <label>13350</label>
+            <visible>[!String.IsEqual(Playlist.Length(music),0) + Window.IsVisible(MyMusicNav.xml)] | [!String.IsEqual(Playlist.Length(video),0) + Window.IsVisible(MyVideoNav.xml)]</visible>
+            <visible>!Player.HasMedia + !Player.Playing</visible>
+        </control>
         <control type="button" id="6148">
             <description>Music playlist</description>
             <label>13350</label>
+            <label2>$INFO[Playlist.Length(music)]</label2>
             <include>Def_Button_Gradient_Context</include>
             <align>left</align>
             <onclick>ActivateWindow(musicplaylist)</onclick>
             <visible>!String.IsEqual(Playlist.Length(music),0) + Window.IsVisible(MyMusicNav.xml)</visible>
+            <visible>!Player.HasMedia + !Player.Playing</visible>
         </control>
         <control type="button" id="6149">
             <description>Video playlist</description>
             <label>13350</label>
+            <label2>$INFO[Playlist.Length(video)]</label2>
             <include>Def_Button_Gradient_Context</include>
             <align>left</align>
             <onclick>ActivateWindow(videoplaylist)</onclick>
             <visible>!String.IsEqual(Playlist.Length(video),0) + Window.IsVisible(MyVideoNav.xml)</visible>
+            <visible>!Player.HasMedia + !Player.Playing</visible>
         </control>
     </include>
 
@@ -168,7 +178,7 @@
 
     <include name="Def_View_Menu_Control_Buttons">
         <control type="grouplist" id="6150">
-            <visible>Player.HasMedia | Player.Playing</visible>
+            <visible>Player.HasMedia | Player.Playing | Player.Paused</visible>
             <usecontrolcoords>true</usecontrolcoords>
             <top>16</top>
             <height>54</height>
@@ -319,14 +329,14 @@
             <textcolor>Dark2</textcolor>
             <scroll>true</scroll>
             <label fallback="19055">$VAR[Label_Layout_Context_Menu_OSD_Player]</label>
-            <visible>Player.HasMedia | Player.Playing</visible>
+            <visible>Player.HasMedia | Player.Playing | Player.Paused</visible>
         </control>
         <control type="group" id="7878">
             <left>20</left>
             <right>20</right>
             <height>10</height>
             <include>Object_OSD_Progress_Bar_Info</include>
-            <visible>Player.HasMedia | Player.Playing</visible>
+            <visible>Player.HasMedia | Player.Playing | Player.Paused</visible>
         </control>
         <include>Def_View_Menu_Control_Buttons</include>
     </include>

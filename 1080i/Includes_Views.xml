@@ -154,7 +154,6 @@
         <value condition="Container.Content(episodes) + !$EXP[IsYoutube]">special://skin/extras/icons/tv.png</value>
         <value condition="Container.Content(songs)">special://skin/extras/icons/songs.png</value>
         <value condition="Container.Content(livetv)">special://skin/extras/icons/livetv.png</value>
-        <value condition="Container.Content(files)">special://skin/extras/icons/files.png</value>
         <value condition="$EXP[IsGameMode]">special://skin/extras/icons/games.png</value>
         <value condition="Container.Content(plugins)">special://skin/extras/icons/video-addons.png</value>
         <value condition="String.Contains(Container.FolderPath,videodb://musicvideos/)">special://skin/extras/icons/musicvideo.png</value>
@@ -169,6 +168,7 @@
         <value condition="Window.IsVisible(FileManager.xml)">special://skin/extras/icons/files.png</value>
         <value condition="Window.IsVisible(Home.xml)">special://skin/extras/icons/home.png</value>
         <value condition="Window.IsVisible(MyVideoNav.xml)">special://skin/extras/icons/video-addons.png</value>
+        <value condition="Container.Content(files)">special://skin/extras/icons/files.png</value>
         <value>special://skin/extras/icons/artist.png</value>
     </variable>
 
@@ -242,7 +242,7 @@
 
     <!-- VIEW FLIX / INFO -->
 
-    <include name="View_Flix_Minimal_Content">
+    <include name="Def_View_Flix_Minimal_Content">
         <param name="visible" value="$PARAM[visible]" default="true"/>
         <definition>
             <control type="group">
@@ -260,34 +260,34 @@
 
                     <!-- MAIN TITLE -->
 
-                    <include content="Label_View_Flix_Main_Title">
+                    <include content="Def_Label_View_Flix_Main_Title">
                         <param name="top" value="0"/>
                     </include>
 
                     <!-- SUB TITLE -->
 
-                    <include content="Label_View_Flix_Sub_Title">
+                    <include content="Def_Label_View_Flix_Sub_Title">
                         <param name="visible" value="!$EXP[View_Flix_Show_Clearlogo_Enable]"/>
                         <param name="top" value="45"/>
                     </include>
-                    <include content="Label_View_Flix_Sub_Title">
+                    <include content="Def_Label_View_Flix_Sub_Title">
                         <param name="visible" value="$EXP[View_Flix_Show_Clearlogo_Enable]"/>
                         <param name="top" value="105"/>
                     </include>
 
                     <!-- PLOT -->
 
-                    <include content="Label_View_Flix_Plot">
+                    <include content="Def_Label_View_Flix_Plot">
                         <param name="visible" value="!$EXP[View_Flix_Show_Clearlogo_Enable]"/>
                         <param name="top" value="120"/>
                         <param name="height" value="176"/>
                     </include>
-                    <include content="Label_View_Flix_Plot">
+                    <include content="Def_Label_View_Flix_Plot">
                         <param name="visible" value="$EXP[View_Flix_Show_Clearlogo_Enable] + !$EXP[Exp_View_524]"/>
                         <param name="top" value="180"/>
                         <param name="height" value="140"/>
                     </include>
-                    <include content="Label_View_Flix_Plot">
+                    <include content="Def_Label_View_Flix_Plot">
                         <param name="visible" value="$EXP[View_Flix_Show_Clearlogo_Enable] + $EXP[Exp_View_524]"/>
                         <param name="top" value="180"/>
                         <param name="height" value="112"/>
@@ -297,7 +297,7 @@
         </definition>
     </include>
 
-    <include name="Label_View_Flix_Main_Title">
+    <include name="Def_Label_View_Flix_Main_Title">
         <param name="height" value="$PARAM[height]" default="46"/>
         <param name="width" value="$PARAM[width]" default="100%"/>
         <param name="visible" value="$PARAM[visible]" default="true"/>
@@ -343,7 +343,7 @@
         </definition>
     </include>
 
-    <include name="Label_View_Flix_Sub_Title">
+    <include name="Def_Label_View_Flix_Sub_Title">
         <param name="height" value="$PARAM[height]" default="46"/>
         <param name="width" value="$PARAM[width]" default="100%"/>
         <param name="width_condition" value="$PARAM[width_condition]" default="Skin.HasSetting(furniture.progress.circle)"/>
@@ -435,14 +435,15 @@
                     <textcolor>PanelWhite70</textcolor>
                     <selectedcolor>PanelWhite70</selectedcolor>
                     <label>$VAR[Label_View_Flix_Sub_Title]</label>
-                    <visible>![container.content(files) | Container.Content(addons) | [$EXP[IsAnPlugin] + Container.Content()]]</visible>
+                    <visible>![Container.Content(addons) | [$EXP[IsAnPlugin] + Container.Content()]]</visible>
                     <visible>![Container.Content(albums) | Container.Content(songs) | container.content(artists) | Container.Content(images) | String.StartsWith(ListItem.Path,pvr://channels)]</visible>
+                    <visible>!container.content(files) | String.IsEqual(Container.FolderPath,playlistvideo://)</visible>
                 </control>
             </control>
         </definition>
     </include>
 
-    <include name="Label_View_Flix_Plot">
+    <include name="Def_Label_View_Flix_Plot">
         <param name="top" value="$PARAM[top]" default="100"/>
         <param name="width" value="$PARAM[width]" default="100%"/>
         <param name="align" value="$PARAM[align]" default="left"/>
@@ -464,7 +465,7 @@
         </definition>
     </include>
 
-    <include name="Label_View_Info_Circle_Progress">
+    <include name="Def_View_Info_Circle_Progress">
         <param name="top" value="$PARAM[top]" default="360"/>
         <param name="left" value="$PARAM[left]" default="516"/>
         <param name="width" value="$PARAM[width]" default="155"/>

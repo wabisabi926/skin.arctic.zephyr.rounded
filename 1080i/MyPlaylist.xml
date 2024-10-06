@@ -19,7 +19,7 @@
         <include condition="$EXP[Exp_View_57_Include]">View_57_ExtraInfo_Playlist</include>
 
         <include condition="$EXP[Exp_View_523_Include]">View_523_Flix_Square</include>
-        <include condition="$EXP[Exp_View_524_Include]">View_524_Flix_List_Music</include>
+        <include condition="$EXP[Exp_View_524_Include]">View_524_Flix_List_Playlist</include>
 
         <!-- <include>Furniture_Footer_Clock_Right</include> -->
 
@@ -67,10 +67,10 @@
                 <control type="button" id="55555">
                     <include>Def_Context_Menu_Label</include>
                     <label>31540</label>
-                    <visible>Player.HasMedia | Player.Playing</visible>
+                    <visible>Player.HasMedia | Player.Playing | Player.Paused</visible>
                 </control>
 
-                <!-- <include>Def_View_ContextMenu_Button_Playlist</include> -->
+                <include>Def_View_ContextMenu_Button_Playlist</include>
 
                 <!-- MINI PLAYER -->
 
@@ -165,8 +165,8 @@
                     <include>Def_Button_Gradient_Context</include>
                     <align>left</align>
                     <label>31231</label>
-                    <selected>!Skin.HasSetting(disable.view.524.extended.list.music)</selected>
-                    <onclick>Skin.ToggleSetting(disable.view.524.extended.list.music)</onclick>
+                    <selected>!Skin.HasSetting(disable.view.524.extended.list.playlist)</selected>
+                    <onclick>Skin.ToggleSetting(disable.view.524.extended.list.playlist)</onclick>
                     <visible>Control.IsVisible(524)</visible>
                 </control>
                 <control type="radiobutton" id="9031">
@@ -198,8 +198,8 @@
                     <include>Def_Button_Gradient_Context</include>
                     <align>left</align>
                     <label>31492</label>
-                    <selected>Skin.HasSetting(show.view.netflix.title.clearlogo.music)</selected>
-                    <onclick>Skin.ToggleSetting(show.view.netflix.title.clearlogo.music)</onclick>
+                    <selected>Skin.HasSetting(show.view.netflix.title.clearlogo.playlist)</selected>
+                    <onclick>Skin.ToggleSetting(show.view.netflix.title.clearlogo.playlist)</onclick>
                     <onclick>ReloadSkin()</onclick>
                     <visible>Control.IsVisible(523) | Control.IsVisible(524)</visible>
                 </control>
