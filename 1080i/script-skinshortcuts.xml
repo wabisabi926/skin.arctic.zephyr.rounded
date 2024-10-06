@@ -414,11 +414,11 @@
                 <control type="button" id="9901" description="Widget Aspect">
                     <width>100%</width>
                     <height>66</height>
+                    <align>left</align>
                     <label>31228</label>
                     <label2>$VAR[Label_Widget_Type]</label2>
                     <!-- <label2>$INFO[Container(211).ListItem.Property(widgetAspect)]</label2> -->
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
-                    <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <enable>!String.IsEqual(Container(211).ListItem.Property(widgettarget),system) + !String.IsEqual(Container(211).ListItem.Property(widget),epg) + !Skin.HasSetting(homemenu.horizontal.clean)</enable>
                     <visible>!String.IsEqual(Container(211).ListItem.Property(skinshortcuts-disabled),True)</visible>
@@ -430,12 +430,12 @@
                 <control type="button" id="9902" description="Widget Aspect">
                     <width>100%</width>
                     <height>66</height>
-                    <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
                     <label>$LOCALIZE[31677]</label>
-                    <!-- <label2>$INFO[Container(211).ListItem.Property(widgetTarget)]</label2> -->
                     <label2>$VAR[Label_Widget_Content]</label2>
+                    <!-- <label2>$INFO[Container(211).ListItem.Property(widgetTarget)]</label2> -->
+                    <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <visible>!String.IsEqual(Container(211).ListItem.Property(skinshortcuts-disabled),True)</visible>
                     <visible>String.EndsWith(Window.Property(groupname),.5) | String.EndsWith(Window.Property(groupname),.4) | String.EndsWith(Window.Property(groupname),.3) | String.EndsWith(Window.Property(groupname),.2) | String.EndsWith(Window.Property(groupname),.1) | String.IsEqual(Window.Property(groupname),searchmenu)</visible>
                     <include>Set_SkinShortcuts_Content_Type_On_Focus</include>
@@ -456,10 +456,8 @@
                     <onclick condition="!String.IsEqual(Container(211).ListItem.Property(widgetClearLogoThumb),no)">SetProperty(customValue,no)</onclick>
                     <onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetClearLogoThumb),no)">SetProperty(customValue,)</onclick>
                     <onclick>SendClick(404)</onclick>
-
                     <visible>!String.IsEqual(Container(211).ListItem.Property(skinshortcuts-disabled),True)</visible>
                     <visible>String.EndsWith(Window.Property(groupname),.5) | String.EndsWith(Window.Property(groupname),.4) | String.EndsWith(Window.Property(groupname),.3) | String.EndsWith(Window.Property(groupname),.2) | String.EndsWith(Window.Property(groupname),.1)</visible>
-
                     <visible>!String.IsEqual(Container(211).ListItem.Property(widget),epg)</visible>
                     <visible>String.IsEqual(Container(211).ListItem.Property(widgetaspect),Thumbnail) | String.IsEqual(Container(211).ListItem.Property(widgetaspect),ThumbnailSmall)</visible>
                 </control>
@@ -485,12 +483,12 @@
                 <control type="button" id="10301" description="Widget Edge Distance">
                     <width>100%</width>
                     <height>66</height>
+                    <align>left</align>
                     <label>$LOCALIZE[31262]$LOCALIZE[31403]</label>
                     <label2>$VAR[Label_Widget_Edge_Distance]</label2>
-                    <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
                     <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
-                    <align>left</align>
                     <include>Def_Dialog_Buttons_Gradient</include>
+                    <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
                     <visible>String.IsEqual(Container(211).ListItem.Property(widgetaspect),Square) | String.IsEqual(Container(211).ListItem.Property(widgetaspect),SquareSmall) | String.IsEqual(Container(211).ListItem.Property(widgetaspect),SquareSmallSubmenu) | String.IsEqual(Container(211).ListItem.Property(widgetaspect),SquareMediumSubmenu)</visible>
                     <visible>!String.Contains(Container(211).ListItem.Property(widget),weather) + !String.IsEqual(Container(211).ListItem.Property(widget),system)</visible>
                     <visible>!String.IsEqual(Container(211).ListItem.Property(widget),epg) + !Skin.HasSetting(homemenu.horizontal.clean)</visible>
@@ -502,13 +500,14 @@
                 <control type="button" id="9903" description="Widget SortBy">
                     <width>100%</width>
                     <height>66</height>
+                    <align>left</align>
                     <label>581</label>
                     <label2>$VAR[Label_Widget_Sort_By]</label2>
+                    <!-- <label2>$INFO[Container(211).ListItem.Property(widgetSortby)]</label2> -->
+                    <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
+                    <include>Def_Dialog_Buttons_Gradient</include>
                     <visible>!String.IsEqual(Container(211).ListItem.Property(skinshortcuts-disabled),True)</visible>
                     <visible>String.EndsWith(Window.Property(groupname),.5) | String.EndsWith(Window.Property(groupname),.4) | String.EndsWith(Window.Property(groupname),.3) | String.EndsWith(Window.Property(groupname),.2) | String.EndsWith(Window.Property(groupname),.1)</visible>
-                    <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
-                    <align>left</align>
-                    <include>Def_Dialog_Buttons_Gradient</include>
                 </control>
 
                 <!-- WIDGETS - SORT ORDER -->
@@ -517,13 +516,14 @@
                     <description>Change widget 1 sort order</description>
                     <width>100%</width>
                     <height>66</height>
-                    <include>Def_Dialog_Buttons_Gradient</include>
-                    <visible>!String.IsEqual(Container(211).ListItem.Property(skinshortcuts-disabled),True)</visible>
-                    <visible>String.EndsWith(Window.Property(groupname),.5) | String.EndsWith(Window.Property(groupname),.4) | String.EndsWith(Window.Property(groupname),.3) | String.EndsWith(Window.Property(groupname),.2) | String.EndsWith(Window.Property(groupname),.1)</visible>
-                    <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
                     <align>left</align>
                     <label>580</label>
                     <label2>$VAR[Label_Widget_Sort_Order]</label2>
+                    <!-- <label2>$INFO[Container(211).ListItem.Property(widgetSortorder)]</label2> -->
+                    <texturenofocus colordiffuse="Black12">common/white.png</texturenofocus>
+                    <include>Def_Dialog_Buttons_Gradient</include>
+                    <visible>!String.IsEqual(Container(211).ListItem.Property(skinshortcuts-disabled),True)</visible>
+                    <visible>String.EndsWith(Window.Property(groupname),.5) | String.EndsWith(Window.Property(groupname),.4) | String.EndsWith(Window.Property(groupname),.3) | String.EndsWith(Window.Property(groupname),.2) | String.EndsWith(Window.Property(groupname),.1)</visible>
                 </control>
 
                 <!-- WIDGETS - ENABLE AUTO SCROLL -->
