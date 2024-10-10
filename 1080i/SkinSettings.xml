@@ -13,7 +13,7 @@
         <include>Furniture_Header</include>
         <include>Furniture_Header_Busy</include>
         <include>Furniture_Header_NowPlaying</include>
-        <include condition="!Skin.HasSetting(furniture.weather.home.only)">Furniture_Footer_Clock_Right</include>
+        <include condition="!Skin.HasSetting(show.clock.date.weather.home.only)">Furniture_Footer_Clock_Right</include>
         <include>OverlayEnableAddons</include>
 
         <control type="group">
@@ -91,6 +91,9 @@
                     <item id="2">
                         <label>10000</label>
                     </item>
+                    <item id="13">
+                        <label>480</label>
+                    </item>
                     <item id="3">
                         <label>31092</label>
                     </item>
@@ -100,17 +103,14 @@
                     <item id="5">
                         <label>31539</label>
                     </item>
-                    <item id="6">
-                        <label>31265</label>
-                    </item>
+                    <!-- <item id="6"> -->
+                        <!-- <label>31265</label> -->
+                    <!-- </item> -->
                     <item id="7">
                         <label>31237</label>
                     </item>
                     <item id="8">
                         <label>31263</label>
-                    </item>
-                    <item id="9">
-                        <label>31145</label>
                     </item>
                     <item id="10">
                         <label>31012</label>
@@ -321,15 +321,79 @@
                         <onclick>RunScript(script.skinshortcuts,type=manage&amp;group=powermenu)</onclick>
                     </control>
 
-                    <!-- HOME - SET VIEW TYPE -->
+                <!-- DISPALY OPITONS -->
 
-                    <control type="button" id="12007" description="Now Playing">
+                    <control type="label" id="9803" description="Backup">
+                        <visible>Container(3000).HasFocus(2)</visible>
+                        <textoffsetx>30</textoffsetx>
+                        <font>Button</font>
+                        <align>left</align>
+                        <width>1310</width>
+                        <textcolor>$VAR[Color_Highlight]</textcolor>
+                        <height>70</height>
+                       <label>31450</label>
+                    </control>
+
+                    <control type="radiobutton" id="9255" description="Weather Top">
                         <width>1310</width>
                         <visible>Container(3000).HasFocus(2)</visible>
                         <include>Def_Button_Settings_Gradient</include>
-                        <label>31377</label>
-                        <onclick>runscript(script.skinvariables,action=buildviews,configure)</onclick>
+                        <label>31122</label>
+                        <selected>Skin.HasSetting(show.furniture.clock.date.weather)</selected>
+                        <onclick>Skin.ToggleSetting(show.furniture.clock.date.weather)</onclick>
                     </control>
+                    <control type="radiobutton" id="92551" description="Clock Top Left">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(2)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>$LOCALIZE[31262]$LOCALIZE[31130]</label>
+                        <selected>Skin.HasSetting(show.home.header.clock.left)</selected>
+                        <onclick>Skin.ToggleSetting(show.home.header.clock.left)</onclick>
+                        <onclick condition="!Skin.HasSetting(show.home.header.clock.left)">Skin.Reset(home.show.label)</onclick>
+                        <enable>Skin.HasSetting(show.furniture.clock.date.weather)</enable>
+                    </control>
+                    <control type="radiobutton" id="9268" description="Weather Bottom Clock Left">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(2)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>$LOCALIZE[31262]$LOCALIZE[31595]</label>
+                        <selected>Skin.HasSetting(show.clock.date.weather.home.only)</selected>
+                        <onclick>Skin.ToggleSetting(show.clock.date.weather.home.only)</onclick>
+                        <enable>Skin.HasSetting(show.furniture.clock.date.weather)</enable>
+                    </control>
+
+                    <!-- CLEARLOGO INSTEAD OF TITLE -->
+
+                    <control type="radiobutton" id="98151" description="Clearlogo">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(2)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>31015</label>
+                        <selected>Skin.HasSetting(show.home.header.clearlogo)</selected>
+                        <onclick>Skin.ToggleSetting(show.home.header.clearlogo)</onclick>
+                        <visible>!Skin.HasSetting(homemenu.netflix)</visible>
+                    </control>
+
+                    <control type="radiobutton" id="9807" description="Flags">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(2)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>$LOCALIZE[31131]</label>
+                        <selected>!Skin.HasSetting(hide.furniture.flags.vertical.widgets)</selected>
+                        <onclick>Skin.ToggleSetting(hide.furniture.flags.vertical.widgets)</onclick>
+                        <visible>Skin.HasSetting(home.vertical)</visible>
+                        <!-- <enable>Skin.HasSetting(homemenu.slide)</enable> -->
+                    </control>
+                    <control type="radiobutton" id="9822">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(2)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>$LOCALIZE[31562]</label>
+                        <selected>Skin.HasSetting(hide.recording.info)</selected>
+                        <onclick>Skin.ToggleSetting(hide.recording.info)</onclick>
+                    </control>
+
+                <!-- MENU BAR -->
 
                     <control type="label" id="98031" description="Backup">
                         <visible>Container(3000).HasFocus(2)</visible>
@@ -455,86 +519,7 @@
                         <onclick>Skin.ToggleSetting(show.submenu.on.click.main.menu)</onclick>
                     </control>
 
-                    <control type="label" id="9803" description="Backup">
-                        <visible>Container(3000).HasFocus(2)</visible>
-                        <textoffsetx>30</textoffsetx>
-                        <font>Button</font>
-                        <align>left</align>
-                        <width>1310</width>
-                        <textcolor>$VAR[Color_Highlight]</textcolor>
-                        <height>70</height>
-                       <label>31450</label>
-                    </control>
-                    <control type="radiobutton" id="9255" description="Weather Top">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(2)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>31122</label>
-                        <selected>Skin.HasSetting(show.furniture.clock.date.weather)</selected>
-                        <onclick>Skin.ToggleSetting(show.furniture.clock.date.weather)</onclick>
-                    </control>
-                    <control type="radiobutton" id="92551" description="Clock Top Left">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(2)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>$LOCALIZE[31262]$LOCALIZE[31130]</label>
-                        <selected>Skin.HasSetting(show.home.header.clock.left)</selected>
-                        <onclick>Skin.ToggleSetting(show.home.header.clock.left)</onclick>
-                        <onclick condition="!Skin.HasSetting(show.home.header.clock.left)">Skin.Reset(home.show.label)</onclick>
-                        <enable>Skin.HasSetting(show.furniture.clock.date.weather)</enable>
-                    </control>
-                    <control type="radiobutton" id="9268" description="Weather Bottom Clock Left">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(2)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>$LOCALIZE[31262]$LOCALIZE[31595]</label>
-                        <selected>Skin.HasSetting(furniture.weather.home.only)</selected>
-                        <onclick>Skin.ToggleSetting(furniture.weather.home.only)</onclick>
-                        <enable>Skin.HasSetting(show.furniture.clock.date.weather)</enable>
-                    </control>
-
-                    <!-- CLEARLOGO INSTEAD OF TITLE -->
-
-                    <control type="radiobutton" id="98151" description="Clearlogo">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(2)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>31015</label>
-                        <selected>Skin.HasSetting(show.home.header.clearlogo)</selected>
-                        <onclick>Skin.ToggleSetting(show.home.header.clearlogo)</onclick>
-                        <visible>!Skin.HasSetting(homemenu.netflix)</visible>
-                    </control>
-
-                    <control type="radiobutton" id="9878" description="ClearLogo">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(2)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>$LOCALIZE[31492]</label>
-                        <selected>Skin.HasSetting(show.home.netflix.title.clearlogo)</selected>
-                        <onclick>Skin.ToggleSetting(show.home.netflix.title.clearlogo)</onclick>
-                        <visible>Skin.HasSetting(homemenu.netflix)</visible>
-                    </control>
-
-                    <control type="radiobutton" id="9807" description="Flags">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(2)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>$LOCALIZE[31131]</label>
-                        <selected>!Skin.HasSetting(hide.furniture.flags.vertical.widgets)</selected>
-                        <onclick>Skin.ToggleSetting(hide.furniture.flags.vertical.widgets)</onclick>
-                        <visible>Skin.HasSetting(home.vertical)</visible>
-                        <!-- <enable>Skin.HasSetting(homemenu.slide)</enable> -->
-                    </control>
-                    <control type="radiobutton" id="9822">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(2)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>$LOCALIZE[31562]</label>
-                        <selected>Skin.HasSetting(hide.recording.info)</selected>
-                        <onclick>Skin.ToggleSetting(hide.recording.info)</onclick>
-                    </control>
-
-                    <!-- HOME - WIDGETS -->
+                <!-- HOME - WIDGETS -->
 
                     <control type="label" id="9818" description="Backup">
                         <visible>Container(3000).HasFocus(2)</visible>
@@ -547,6 +532,20 @@
                        <label>31268</label>
                     </control>
 
+                    <!-- CLEARLOGO / TITLE -->
+
+                    <control type="radiobutton" id="9878" description="ClearLogo">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(2)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>$LOCALIZE[31492]</label>
+                        <selected>Skin.HasSetting(show.home.netflix.title.clearlogo)</selected>
+                        <onclick>Skin.ToggleSetting(show.home.netflix.title.clearlogo)</onclick>
+                        <visible>Skin.HasSetting(homemenu.netflix)</visible>
+                    </control>
+
+                    <!-- HIDE PLOT IF NO FOCUS -->
+
                     <control type="radiobutton" id="9879" description="Netflix Plot">
                         <width>1310</width>
                         <visible>Container(3000).HasFocus(2)</visible>
@@ -554,6 +553,17 @@
                         <label>$LOCALIZE[31473]</label>
                         <selected>Skin.HasSetting(home.hide.netflix.plot)</selected>
                         <onclick>Skin.ToggleSetting(home.hide.netflix.plot)</onclick>
+                    </control>
+
+                    <!-- HIDE WIDGET LABEL -->
+
+                    <control type="radiobutton" id="9848">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(2)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>31498</label>
+                        <selected>Skin.HasSetting(hide.widget.title)</selected>
+                        <onclick>Skin.ToggleSetting(hide.widget.title)</onclick>
                     </control>
 
                     <control type="radiobutton" id="9816" description="Show ClearArt">
@@ -619,16 +629,8 @@
                         <selected>Skin.HasSetting(home.dontautoshowwidget)</selected>
                         <onclick>Skin.ToggleSetting(home.dontautoshowwidget)</onclick>
                     </control>
-                    <control type="radiobutton" id="9848">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(2)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>31498</label>
-                        <selected>Skin.HasSetting(hide.widget.title)</selected>
-                        <onclick>Skin.ToggleSetting(hide.widget.title)</onclick>
-                    </control>
 
-                    <!-- WIDGETS BEHAVIOR -->
+                <!-- WIDGETS BEHAVIOR -->
 
                     <control type="label" id="12009" description="Backup">
                         <visible>Container(3000).HasFocus(2)</visible>
@@ -805,6 +807,231 @@
                         <selected>Skin.HasSetting(rss.top)</selected>
                         <onclick>Skin.ToggleSetting(rss.top)</onclick>
                         <enable>System.GetBool(lookandfeel.enablerssfeeds)</enable>
+                    </control>
+
+                 <!-- APPARENCE -->
+
+                 <!-- HOME - GLOBAL OPTION -->
+
+                    <control type="label" id="12008" description="Backup">
+                        <visible>Container(3000).HasFocus(13)</visible>
+                        <textoffsetx>30</textoffsetx>
+                        <font>Button</font>
+                        <align>left</align>
+                        <width>1310</width>
+                        <textcolor>$VAR[Color_Highlight]</textcolor>
+                        <height>70</height>
+                       <label>31062</label>
+                    </control>
+
+                    <!-- HOME - SET VIEW TYPE -->
+
+                    <control type="button" id="12007" description="Now Playing">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(13)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>31377</label>
+                        <onclick>runscript(script.skinvariables,action=buildviews,configure)</onclick>
+                    </control>
+
+                    <!-- THEME LIGHT / DARK -->
+
+                    <control type="radiobutton" id="9804" description="Autocolor">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(13)</visible>
+                        <enable>System.HasAddon(script.arctic.zephyr.rounded.autocolors) + System.AddonIsEnabled(script.arctic.zephyr.rounded.autocolors)</enable>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>$LOCALIZE[14078] $LOCALIZE[15111] $LOCALIZE[14013] $LOCALIZE[33027]/$LOCALIZE[33028]</label>
+                        <selected>Skin.HasSetting(daynight.autocolor)</selected>
+                        <onclick>Skin.ToggleSetting(daynight.autocolor)</onclick>
+                    </control>
+
+                    <!-- MOUSE ADVERTISING -->
+
+                    <control type="radiobutton" id="12040">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(13)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>31527</label>
+                        <selected>Skin.HasSetting(hide.mouse.warning)</selected>
+                        <onclick>Skin.ToggleSetting(hide.mouse.warning)</onclick>
+                        <onclick>ReloadSkin()</onclick>
+                    </control>
+
+                    <!-- KIOSK MODE -->
+
+                    <control type="radiobutton" id="12018" description="Kiosk Mode">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(13)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>31171</label>
+                        <selected>Skin.HasSetting(global.kioskmode)</selected>
+                        <onclick>Skin.ToggleSetting(global.kioskmode)</onclick>
+                    </control>
+
+                <!-- APPARENCES - BOX / FOCUS -->
+
+                    <control type="label" id="11999" description="Backup">
+                        <visible>Container(3000).HasFocus(13)</visible>
+                        <textoffsetx>30</textoffsetx>
+                        <font>Button</font>
+                        <align>left</align>
+                        <width>1310</width>
+                        <textcolor>$VAR[Color_Highlight]</textcolor>
+                        <height>70</height>
+                        <label>480</label>
+                    </control>
+
+                    <control type="radiobutton" id="9591">
+                        <visible>Container(3000).HasFocus(13)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <align>left</align>
+                        <width>1310</width>
+                        <label>31504</label>
+                        <selected>Skin.HasSetting(items.focus.zoom)</selected>
+                        <onclick>Skin.ToggleSetting(items.focus.zoom)</onclick>
+                    </control>
+                    <control type="radiobutton" id="9592">
+                        <visible>Container(3000).HasFocus(13)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <align>left</align>
+                        <label>$LOCALIZE[31509]</label>
+                        <width>1310</width>
+                        <selected>Skin.HasSetting(enable.items.focus.glow)</selected>
+                        <onclick>Skin.ToggleSetting(enable.items.focus.glow)</onclick>
+                    </control>
+                    <control type="radiobutton" id="92580" description="Show vis in background">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(13)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>31597</label>
+                        <selected>Skin.HasSetting(global.hide.shadows)</selected>
+                        <onclick>Skin.ToggleSetting(global.hide.shadows)</onclick>
+                    </control>
+
+                <!-- MENU - COLOURS -->
+
+                    <!-- PRESETS COLOURS -->
+
+                    <control type="label" id="9050" description="Backup">
+                        <visible>Container(3000).HasFocus(13)</visible>
+                        <textoffsetx>30</textoffsetx>
+                        <font>Button</font>
+                        <align>left</align>
+                        <width>1310</width>
+                        <textcolor>$VAR[Color_Highlight]</textcolor>
+                        <height>70</height>
+                        <label>31552</label>
+                    </control>
+
+                    <control type="button" id="9051" description="Set Custom Colour">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(13)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>$LOCALIZE[31553]</label>
+                        <label2>$VAR[Label_Color_Setting]</label2>
+                        <onclick>SetProperty(includesetting,Value_Color_Settings,Home)</onclick>
+                        <onclick>ActivateWindow(1248)</onclick>
+                    </control>
+
+                    <control type="button" id="9052">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(13)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>$LOCALIZE[31560]</label>
+                        <label2>$INFO[Skin.String(color.preset.name.own)]</label2>
+                        <onclick>ActivateWindow(1265)</onclick>
+                    </control>
+                    <control type="button" id="9670" description="Reset colors?">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(13)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>[I]$LOCALIZE[31114][/I]</label>
+                        <onclick>ActivateWindow(1262)</onclick>
+                    </control>
+
+                    <!-- OPTIONS COLOR -->
+
+                    <control type="label" id="9650" description="Backup">
+                        <visible>Container(3000).HasFocus(13)</visible>
+                        <textoffsetx>30</textoffsetx>
+                        <font>Button</font>
+                        <align>left</align>
+                        <width>1310</width>
+                        <textcolor>$VAR[Color_Highlight]</textcolor>
+                        <height>70</height>
+                        <label>31669</label>
+                    </control>
+
+                    <control type="button" id="9675" description="Set Custom Stars Colour">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(13)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>$LOCALIZE[31106]</label>
+                        <onclick>SetProperty(colorfilter,1,Home)</onclick>
+                        <onclick>ActivateWindow(1202)</onclick>
+                    </control>
+                    <control type="button" id="9665" description="Set Custom Stars Colour">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(13)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>$LOCALIZE[31440]</label>
+                        <onclick>SetProperty(colorfilter,2,Home)</onclick>
+                        <onclick>ActivateWindow(1202)</onclick>
+                    </control>
+                    <control type="button" id="9698" description="Set Custom Stars Colour">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(13)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>$LOCALIZE[31576]</label>
+                        <onclick>SetProperty(colorfilter,3,Home)</onclick>
+                        <onclick>ActivateWindow(1202)</onclick>
+                    </control>
+
+                    <!-- BOOT -->
+
+                    <control type="label" id="120131" description="Backup">
+                        <visible>Container(3000).HasFocus(13)</visible>
+                        <textoffsetx>30</textoffsetx>
+                        <font>Button</font>
+                        <align>left</align>
+                        <width>1310</width>
+                        <textcolor>$VAR[Color_Highlight]</textcolor>
+                        <height>70</height>
+                        <label>14227</label>
+                    </control>
+
+                    <control type="radiobutton" id="120140" description="Startup Video">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(13)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>512</label>
+                        <selected>!Skin.HasSetting(disable.startup.window)</selected>
+                        <onclick>Skin.ToggleSetting(disable.startup.window)</onclick>
+                    </control>
+                    <control type="button" id="12015" description="Set Fallback Image">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(13)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>31216</label>
+                        <label2>$INFO[Skin.String(startupfanart.fallback)]</label2>
+                        <!-- <onclick>SetProperty(Dialog.1.Label,$LOCALIZE[16018])</onclick> -->
+                        <!-- <onclick>SetProperty(Dialog.1.BuiltIn,Skin.Reset(startupfanart.fallback))</onclick> -->
+                        <!-- <onclick>SetProperty(Dialog.2.Label,$LOCALIZE[31238])</onclick> -->
+                        <!-- <onclick>SetProperty(Dialog.2.BuiltIn,Skin.SetImage(startupfanart.fallback))</onclick> -->
+                        <!-- <onclick>RunScript(script.embuary.helper,action=createselect,header=$LOCALIZE[31216])</onclick> -->
+                        <onclick>Skin.SetImage(startupfanart.fallback)</onclick>
+                        <enable>!Skin.HasSetting(disable.startup.window)</enable>
+                    </control>
+                    <control type="button" id="12014" description="Startup Video">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(13)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>31144</label>
+                        <label2>$INFO[Skin.String(StartupPlaylist)]</label2>
+                        <onclick condition="String.IsEmpty(Skin.String(StartupPlaylist))">Skin.SetFile(StartupPlaylist,.mp4|.avi|.mkv|.xvid|.wmv|.mov|.xsp|.mp3|.wma|.flac|.m3u)</onclick>
+                        <onclick condition="!String.IsEmpty(Skin.String(StartupPlaylist))">Skin.Reset(StartupPlaylist)</onclick>
+                        <enable>!Skin.HasSetting(disable.startup.window)</enable>
                     </control>
 
                 <!-- MENU - BACKGROUND  -->
@@ -1185,15 +1412,6 @@
                         <label>31062</label>
                     </control>
 
-                    <control type="radiobutton" id="9804" description="Autocolor">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(4) + System.HasAddon(script.arctic.zephyr.rounded.autocolors)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>$LOCALIZE[14078] $LOCALIZE[15111] $LOCALIZE[14013] $LOCALIZE[33027]/$LOCALIZE[33028]</label>
-                        <selected>Skin.HasSetting(daynight.autocolor)</selected>
-                        <onclick>Skin.ToggleSetting(daynight.autocolor)</onclick>
-                        <enable>System.AddonIsEnabled(script.arctic.zephyr.rounded.autocolors)</enable>
-                    </control>
                     <control type="radiobutton" id="9251" description="Header">
                         <width>1310</width>
                         <visible>Container(3000).HasFocus(4)</visible>
@@ -1202,21 +1420,30 @@
                         <selected>!Skin.HasSetting(hide.furniture.header)</selected>
                         <onclick>Skin.ToggleSetting(hide.furniture.header)</onclick>
                     </control>
-                    <control type="radiobutton" id="92632" description="Weather Top">
+                    <control type="radiobutton" id="12020" description="Busy Loader Minimal">
                         <width>1310</width>
                         <visible>Container(3000).HasFocus(4)</visible>
                         <include>Def_Button_Settings_Gradient</include>
-                        <label>31122</label>
-                        <selected>Skin.HasSetting(show.furniture.clock.date.weather)</selected>
-                        <onclick>Skin.ToggleSetting(show.furniture.clock.date.weather)</onclick>
+                        <label>31209</label>
+                        <selected>Skin.HasSetting(hide.busydialog)</selected>
+                        <onclick>Skin.ToggleSetting(hide.busydialog)</onclick>
+                    </control>
+                    <control type="radiobutton" id="12004">
+                        <width>1310</width>
+                        <align>left</align>
+                        <label>31072</label>
+                        <visible>Container(3000).HasFocus(4)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <selected>Skin.HasSetting(show.time.format.hh.mm)</selected>
+                        <onclick>Skin.ToggleSetting(show.time.format.hh.mm)</onclick>
                     </control>
                     <control type="radiobutton" id="92633" description="Weather Bottom Clock Left">
                         <width>1310</width>
                         <visible>Container(3000).HasFocus(4)</visible>
                         <include>Def_Button_Settings_Gradient</include>
-                        <label>$LOCALIZE[31262]$LOCALIZE[31595]</label>
-                        <selected>Skin.HasSetting(furniture.weather.home.only)</selected>
-                        <onclick>Skin.ToggleSetting(furniture.weather.home.only)</onclick>
+                        <label>$LOCALIZE[31122]</label>
+                        <selected>!Skin.HasSetting(show.clock.date.weather.home.only)</selected>
+                        <onclick>Skin.ToggleSetting(show.clock.date.weather.home.only)</onclick>
                         <enable>Skin.HasSetting(show.furniture.clock.date.weather)</enable>
                     </control>
                     <control type="radiobutton" id="92631" description="Select media flags">
@@ -1226,14 +1453,6 @@
                         <label>$LOCALIZE[31190] ($LOCALIZE[31175])</label>
                         <selected>Skin.HasSetting(enable.view.video.rating.num)</selected>
                         <onclick>Skin.ToggleSetting(enable.view.video.rating.num)</onclick>
-                    </control>
-                    <control type="radiobutton" id="92580" description="Show vis in background">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(4)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>31597</label>
-                        <selected>Skin.HasSetting(global.hide.shadows)</selected>
-                        <onclick>Skin.ToggleSetting(global.hide.shadows)</onclick>
                     </control>
                     <control type="radiobutton" id="92761">
                         <width>1310</width>
@@ -1517,43 +1736,6 @@
                         <enable>!Skin.HasSetting(hide.markers)</enable>
                         <selected>!Skin.HasSetting(hide.markers.newcontent)</selected>
                         <onclick>Skin.ToggleSetting(hide.markers.newcontent)</onclick>
-                    </control>
-
-                    <!-- FOCUS -->
-
-                    <control type="label" id="11999" description="Backup">
-                        <visible>Container(3000).HasFocus(4)</visible>
-                        <textoffsetx>30</textoffsetx>
-                        <font>Button</font>
-                        <align>left</align>
-                        <width>1310</width>
-                        <textcolor>$VAR[Color_Highlight]</textcolor>
-                        <height>70</height>
-                        <label>31110</label>
-                    </control>
-
-                    <control type="radiobutton" id="9591">
-                        <visible>Container(3000).HasFocus(4)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <align>left</align>
-                        <width>1310</width>
-                        <label>31504</label>
-                        <selected>Skin.HasSetting(items.focus.zoom)</selected>
-                        <onclick>Skin.ToggleSetting(items.focus.zoom)</onclick>
-                    </control>
-                    <control type="button" id="9592">
-                        <visible>Container(3000).HasFocus(4)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <align>left</align>
-                        <label>$LOCALIZE[31509]</label>
-                        <label2>$VAR[Label_Items_Glow]</label2>
-                        <width>1310</width>
-                        <onclick condition="!Skin.HasSetting(enable.items.focus.glow)">Skin.SetBool(enable.items.focus.glow)</onclick>
-                        <onclick condition="!Skin.HasSetting(enable.items.focus.glow)">Skin.SetBool(items.focus.glow.low)</onclick>
-                        <onclick condition="Skin.HasSetting(enable.items.focus.glow) + !Skin.HasSetting(enable.items.focus.glow.high) + Skin.HasSetting(items.focus.glow.low)">Skin.Reset(items.focus.glow.low)</onclick>
-                        <onclick condition="Skin.HasSetting(enable.items.focus.glow) + !Skin.HasSetting(enable.items.focus.glow.high) + !Skin.HasSetting(items.focus.glow.low)">Skin.SetBool(enable.items.focus.glow.high)</onclick>
-                        <onclick condition="Skin.HasSetting(enable.items.focus.glow) + Skin.HasSetting(enable.items.focus.glow.high)">Skin.Reset(enable.items.focus.glow)</onclick>
-                        <onclick condition="Skin.HasSetting(enable.items.focus.glow) + Skin.HasSetting(enable.items.focus.glow.high)">Skin.Reset(enable.items.focus.glow.high)</onclick>
                     </control>
 
                     <control type="label" id="11998" description="Backup">
@@ -1897,99 +2079,6 @@
                         <label>$LOCALIZE[31132]</label>
                         <selected>!Skin.HasSetting(hide.furniture.nowplaying)</selected>
                         <onclick>Skin.ToggleSetting(hide.furniture.nowplaying)</onclick>
-                    </control>
-
-                <!-- MENU - COLOURS -->
-
-                    <!-- PRESETS COLOURS -->
-
-                    <control type="label" id="9050" description="Backup">
-                        <visible>Container(3000).HasFocus(6)</visible>
-                        <textoffsetx>30</textoffsetx>
-                        <font>Button</font>
-                        <align>left</align>
-                        <width>1310</width>
-                        <textcolor>$VAR[Color_Highlight]</textcolor>
-                        <height>70</height>
-                        <label>31552</label>
-                    </control>
-
-                    <control type="button" id="9051" description="Set Custom Colour">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(6)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>$LOCALIZE[31553]</label>
-                        <label2>$VAR[Label_Color_Setting]</label2>
-                        <onclick>SetProperty(includesetting,Value_Color_Settings,Home)</onclick>
-                        <onclick>ActivateWindow(1248)</onclick>
-                    </control>
-
-                    <control type="button" id="9052">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(6)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>$LOCALIZE[31560]</label>
-                        <label2>$INFO[Skin.String(color.preset.name.own)]</label2>
-                        <onclick>ActivateWindow(1265)</onclick>
-                    </control>
-
-                    <!-- OPTIONS COLOR -->
-
-                    <control type="label" id="9650" description="Backup">
-                        <visible>Container(3000).HasFocus(6)</visible>
-                        <textoffsetx>30</textoffsetx>
-                        <font>Button</font>
-                        <align>left</align>
-                        <width>1310</width>
-                        <textcolor>$VAR[Color_Highlight]</textcolor>
-                        <height>70</height>
-                        <label>31669</label>
-                    </control>
-
-                    <control type="button" id="9675" description="Set Custom Stars Colour">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(6)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>$LOCALIZE[31106]</label>
-                        <onclick>SetProperty(colorfilter,1,Home)</onclick>
-                        <onclick>ActivateWindow(1202)</onclick>
-                    </control>
-                    <control type="button" id="9665" description="Set Custom Stars Colour">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(6)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>$LOCALIZE[31440]</label>
-                        <onclick>SetProperty(colorfilter,2,Home)</onclick>
-                        <onclick>ActivateWindow(1202)</onclick>
-                    </control>
-                    <control type="button" id="9698" description="Set Custom Stars Colour">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(6)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>$LOCALIZE[31576]</label>
-                        <onclick>SetProperty(colorfilter,3,Home)</onclick>
-                        <onclick>ActivateWindow(1202)</onclick>
-                    </control>
-
-                    <!-- OPTIONS COLOR PALETTES -->
-
-                    <control type="label" id="9676" description="Backup">
-                        <visible>Container(3000).HasFocus(6)</visible>
-                        <textoffsetx>30</textoffsetx>
-                        <font>Button</font>
-                        <align>left</align>
-                        <width>1310</width>
-                        <textcolor>$VAR[Color_Highlight]</textcolor>
-                        <height>70</height>
-                        <label>33063</label>
-                    </control>
-
-                    <control type="button" id="9670" description="Reset colors?">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(6)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>[I]$LOCALIZE[31114][/I]</label>
-                        <onclick>ActivateWindow(1262)</onclick>
                     </control>
 
                 <!-- MENU - VIDEO / MUSIC OSD -->
@@ -2438,149 +2527,6 @@
                         <onclick>Skin.ToggleSetting(show.dialog.info.clearlogo.music)</onclick>
                     </control>
 
-                <!-- EXTRAS -->
-
-                    <control type="label" id="12001" description="Backup">
-                        <visible>Container(3000).HasFocus(9)</visible>
-                        <textoffsetx>30</textoffsetx>
-                        <font>Button</font>
-                        <align>left</align>
-                        <width>1310</width>
-                        <textcolor>$VAR[Color_Highlight]</textcolor>
-                        <height>70</height>
-                        <label>31062</label>
-                    </control>
-
-
-                    <!-- SETTING LANGUAGE DIALOG WIKIPEDIA -->
-
-                    <control type="button" id="12042">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(9)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>$LOCALIZE[248] $LOCALIZE[31575]</label>
-                        <label2>$VAR[Label_Language_Wiki_Dialog_Info]</label2>
-                        <onclick>SetProperty(includesetting,Value_Wiki_Language,Home)</onclick>
-                        <onclick>ActivateWindow(1248)</onclick>
-                        <visible>System.AddonIsEnabled(script.wikipedia)</visible>
-                    </control>
-                    <control type="radiobutton" id="12004">
-                        <width>1310</width>
-                        <align>left</align>
-                        <label>31072</label>
-                        <visible>Container(3000).HasFocus(9)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <selected>Skin.HasSetting(show.time.format.hh.mm)</selected>
-                        <onclick>Skin.ToggleSetting(show.time.format.hh.mm)</onclick>
-                    </control>
-                    <control type="radiobutton" id="12040">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(9)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>31527</label>
-                        <selected>Skin.HasSetting(hide.mouse.warning)</selected>
-                        <onclick>Skin.ToggleSetting(hide.mouse.warning)</onclick>
-                        <onclick>ReloadSkin()</onclick>
-                    </control>
-
-                    <!-- BOOT -->
-
-                    <control type="label" id="120131" description="Backup">
-                        <visible>Container(3000).HasFocus(9)</visible>
-                        <textoffsetx>30</textoffsetx>
-                        <font>Button</font>
-                        <align>left</align>
-                        <width>1310</width>
-                        <textcolor>$VAR[Color_Highlight]</textcolor>
-                        <height>70</height>
-                        <label>14227</label>
-                    </control>
-
-                    <control type="radiobutton" id="120140" description="Startup Video">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(9)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>512</label>
-                        <selected>!Skin.HasSetting(disable.startup.window)</selected>
-                        <onclick>Skin.ToggleSetting(disable.startup.window)</onclick>
-                    </control>
-                    <control type="button" id="12015" description="Set Fallback Image">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(9)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>31216</label>
-                        <label2>$INFO[Skin.String(startupfanart.fallback)]</label2>
-                        <!-- <onclick>SetProperty(Dialog.1.Label,$LOCALIZE[16018])</onclick> -->
-                        <!-- <onclick>SetProperty(Dialog.1.BuiltIn,Skin.Reset(startupfanart.fallback))</onclick> -->
-                        <!-- <onclick>SetProperty(Dialog.2.Label,$LOCALIZE[31238])</onclick> -->
-                        <!-- <onclick>SetProperty(Dialog.2.BuiltIn,Skin.SetImage(startupfanart.fallback))</onclick> -->
-                        <!-- <onclick>RunScript(script.embuary.helper,action=createselect,header=$LOCALIZE[31216])</onclick> -->
-                        <onclick>Skin.SetImage(startupfanart.fallback)</onclick>
-                        <enable>!Skin.HasSetting(disable.startup.window)</enable>
-                    </control>
-                    <control type="button" id="12014" description="Startup Video">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(9)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>31144</label>
-                        <label2>$INFO[Skin.String(StartupPlaylist)]</label2>
-                        <onclick condition="String.IsEmpty(Skin.String(StartupPlaylist))">Skin.SetFile(StartupPlaylist,.mp4|.avi|.mkv|.xvid|.wmv|.mov|.xsp|.mp3|.wma|.flac|.m3u)</onclick>
-                        <onclick condition="!String.IsEmpty(Skin.String(StartupPlaylist))">Skin.Reset(StartupPlaylist)</onclick>
-                        <enable>!Skin.HasSetting(disable.startup.window)</enable>
-                    </control>
-
-                    <!-- MISC -->
-
-                    <control type="label" id="12013" description="Backup">
-                        <visible>Container(3000).HasFocus(9)</visible>
-                        <textoffsetx>30</textoffsetx>
-                        <font>Button</font>
-                        <align>left</align>
-                        <width>1310</width>
-                        <textcolor>$VAR[Color_Highlight]</textcolor>
-                        <height>70</height>
-                        <label>31061</label>
-                    </control>
-
-                    <control type="radiobutton" id="12020" description="Busy Loader Minimal">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(9)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>31209</label>
-                        <selected>Skin.HasSetting(hide.busydialog)</selected>
-                        <onclick>Skin.ToggleSetting(hide.busydialog)</onclick>
-                    </control>
-                    <control type="radiobutton" id="12018" description="Kiosk Mode">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(9)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>31171</label>
-                        <selected>Skin.HasSetting(global.kioskmode)</selected>
-                        <onclick>Skin.ToggleSetting(global.kioskmode)</onclick>
-                    </control>
-
-                    <!-- ADDON UP NEXT -->
-
-                    <control type="label" id="12301" description="Backup">
-                        <visible>Container(3000).HasFocus(9)</visible>
-                        <textoffsetx>30</textoffsetx>
-                        <font>Button</font>
-                        <align>left</align>
-                        <width>1310</width>
-                        <textcolor>$VAR[Color_Highlight]</textcolor>
-                        <height>70</height>
-                        <label>31470</label>
-                    </control>
-
-                    <control type="radiobutton" id="12302">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(9)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>31471</label>
-                        <selected>Skin.HasSetting(addon.upnext.use.thumbnail)</selected>
-                        <onclick>Skin.ToggleSetting(addon.upnext.use.thumbnail)</onclick>
-                    </control>
-
                 <!-- MENU - RESSOURCES -->
 
                     <control type="label" id="9550" description="Backup">
@@ -2725,6 +2671,55 @@
                         <param name="visible" value="Container(3000).HasFocus(11)"/>
                         <param name="addonname" value="script.artwork.dump"/>
                     </include>
+
+                    <!-- OPTIONS -->
+
+                    <control type="label" id="12001" description="Backup">
+                        <visible>Container(3000).HasFocus(11)</visible>
+                        <textoffsetx>30</textoffsetx>
+                        <font>Button</font>
+                        <align>left</align>
+                        <width>1310</width>
+                        <textcolor>$VAR[Color_Highlight]</textcolor>
+                        <height>70</height>
+                        <label>$LOCALIZE[24000] $LOCALIZE[31575]</label>
+                    </control>
+
+
+                    <!-- SETTING LANGUAGE DIALOG WIKIPEDIA -->
+
+                    <control type="button" id="12042">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(11)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>$LOCALIZE[248] $LOCALIZE[31575]</label>
+                        <label2>$VAR[Label_Language_Wiki_Dialog_Info]</label2>
+                        <onclick>SetProperty(includesetting,Value_Wiki_Language,Home)</onclick>
+                        <onclick>ActivateWindow(1248)</onclick>
+                        <visible>System.AddonIsEnabled(script.wikipedia)</visible>
+                    </control>
+
+                    <!-- ADDON UP NEXT -->
+
+                    <control type="label" id="12301" description="Backup">
+                        <visible>Container(3000).HasFocus(11)</visible>
+                        <textoffsetx>30</textoffsetx>
+                        <font>Button</font>
+                        <align>left</align>
+                        <width>1310</width>
+                        <textcolor>$VAR[Color_Highlight]</textcolor>
+                        <height>70</height>
+                        <label>$LOCALIZE[24000] $LOCALIZE[31470]</label>
+                    </control>
+
+                    <control type="radiobutton" id="12302">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(11)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>31471</label>
+                        <selected>Skin.HasSetting(addon.upnext.use.thumbnail)</selected>
+                        <onclick>Skin.ToggleSetting(addon.upnext.use.thumbnail)</onclick>
+                    </control>
 
                 <!-- MENU - BACKUP -->
 

@@ -492,17 +492,18 @@
                 <top>10</top>
                 <right>10</right>
                 <bottom>10</bottom>
-                <texture colordiffuse="White70" border="12" background="true">common/box.png</texture>
-                <visible>!Window.IsVisible(DialogVideoInfo.xml)</visible>
+                <texture colordiffuse="ffb0bec5" border="12" background="true">common/box.png</texture>
+                <animation effect="fade" start="100" end="80" condition="true">Conditional</animation>
+                <!-- <visible>!Window.IsVisible(DialogVideoInfo.xml)</visible> -->
             </control>
-            <control type="image">
-                <left>10</left>
-                <top>10</top>
-                <right>10</right>
-                <bottom>10</bottom>
-                <texture colordiffuse="Panel" border="12" background="true">common/box.png</texture>
-                <visible>Window.IsVisible(DialogVideoInfo.xml)</visible>
-            </control>
+            <!-- <control type="image"> -->
+                <!-- <left>10</left> -->
+                <!-- <top>10</top> -->
+                <!-- <right>10</right> -->
+                <!-- <bottom>10</bottom> -->
+                <!-- <texture colordiffuse="Panel" border="12" background="true">common/box.png</texture> -->
+                <!-- <visible>Window.IsVisible(DialogVideoInfo.xml)</visible> -->
+            <!-- </control> -->
 
             <!-- All others -->
 
@@ -1531,7 +1532,7 @@
             <bottom>-14</bottom>
             <texture border="18">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/selectbox_h.png</texture>
             <visible>Control.HasFocus($PARAM[shortcutsid])</visible>
-            <include>Animation_SelectBoxHome</include>
+            <include>Animation_Select_Focus</include>
         </control>
     </include>
 
@@ -1887,26 +1888,25 @@
             <control type="group">
                 <visible>Skin.HasSetting(enable.items.focus.glow)</visible>
                 <animation center="auto" effect="zoom" end="$PARAM[glow_zoom]" start="100" time="0" condition="true">Conditional</animation>
-                <animation effect="fade" start="100" end="66" time="0" condition="Skin.HasSetting(items.focus.glow.low)">Conditional</animation>
                 <control type="image">
-                   <left>$PARAM[glow_left]</left>
-                   <top>$PARAM[glow_top]</top>
-                   <right>$PARAM[glow_right]</right>
-                   <bottom>0</bottom>
-                   <height>$PARAM[glow_height]</height>
-                   <texture  border="32">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/glow_h.png</texture>
-                   <visible>Control.HasFocus($PARAM[id])</visible>
-                   <include>Animation_SelectBoxHome</include>
+                    <left>$PARAM[glow_left]</left>
+                    <top>$PARAM[glow_top]</top>
+                    <right>$PARAM[glow_right]</right>
+                    <bottom>0</bottom>
+                    <height>$PARAM[glow_height]</height>
+                    <texture  border="40">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/glow_h.png</texture>
+                    <visible>Control.HasFocus($PARAM[id])</visible>
+                    <include>Animation_Select_Focus</include>
                 </control>
                 <control type="image">
-                   <left>$PARAM[glow_left]</left>
-                   <top>$PARAM[glow_top]</top>
-                   <right>$PARAM[glow_right]</right>
-                   <bottom>0</bottom>
-                   <height>$PARAM[glow_height]</height>
-                   <texture border="32">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/glow_h.png</texture>
-                   <visible>Control.HasFocus($PARAM[id]) + Skin.HasSetting(enable.items.focus.glow.high)</visible>
-                   <include>Animation_SelectBoxHome</include>
+                    <left>$PARAM[glow_left]</left>
+                    <top>$PARAM[glow_top]</top>
+                    <right>$PARAM[glow_right]</right>
+                    <bottom>0</bottom>
+                    <height>$PARAM[glow_height]</height>
+                    <texture border="32">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/glow_h.png</texture>
+                    <visible>Control.HasFocus($PARAM[id])</visible>
+                    <include>Animation_Select_Focus</include>
                 </control>
             </control>
         </definition>
@@ -1932,7 +1932,7 @@
                <bottom>3</bottom>
                <texture border="18">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/selectbox_h.png</texture>
                <visible>Control.HasFocus($PARAM[id])</visible>
-               <include>Animation_SelectBoxHome</include>
+               <include>Animation_Select_Focus</include>
             </control>
         </control>
         <control type="group">
@@ -1944,7 +1944,7 @@
                <bottom>4</bottom>
                <texture border="18">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/selectbox_h.png</texture>
                <visible>Control.HasFocus($PARAM[id])</visible>
-               <include>Animation_SelectBoxHome</include>
+               <include>Animation_Select_Focus</include>
             </control>
         </control>
     </include>
