@@ -325,7 +325,7 @@
     </include>
 
     <include name="Object_OSD_Player_Plot">
-        <param name="textcolor" default="$VAR[Color_OSD_Panel_White70Music]" />
+        <param name="textcolor" default="$VAR[Color_OSD_Panel_White70]" />
         <param name="label" default="$VAR[Label_OSD_Player_Plot]" />
         <param name="top" default="160" />
         <param name="height" default="560" />
@@ -426,17 +426,13 @@
 
     <variable name="Color_OSD_Panel_White30">
         <value>PanelWhite90</value>
-   </variable>
-
-    <variable name="Color_OSD_Panel_White30Music">
-        <value condition="Player.HasMedia + Player.HasVideo">PanelWhite90</value>
     </variable>
 
     <variable name="Color_OSD_Panel_White70">
         <value>PanelWhiteSetting</value>
     </variable>
 
-    <variable name="Color_OSD_Panel_White70Music">
+    <variable name="Color_OSD_Panel_White100">
         <value>PanelWhiteSetting</value>
     </variable>
 
@@ -446,11 +442,6 @@
         <value condition="String.IsEqual(Control.GetLabel(400),DefaultIconError.png)">e6e6002e</value>
         <value>ffbbbbbb</value>
     </variable>
-
-    <variable name="Color_OSD_Panel_White100">
-        <value>PanelWhiteSetting</value>
-    </variable>
-
 
     <!-- OSD - VIDEO - SUB MENU -->
 
@@ -2423,16 +2414,33 @@
 
                     <!-- MAIN TITLE -->
 
-                    <control type="label" description="Title">
-                        <include>Animation_OSD_Fade</include>
-                        <bottom>85</bottom>
-                        <height>40</height>
-                        <width>950</width>
-                        <font>LargeNew</font>
-                        <textcolor>$VAR[Color_OSD_Panel_White70Music]</textcolor>
-                        <label>$VAR[Label_OSD_Title_Big]</label>
-                        <!-- <visible>!Player.Forwarding + !Player.Rewinding + !Player.Seeking + !Player.IsTempo + !Player.Paused</visible> -->
+                    <control type="group">
                         <visible>!Skin.HasSetting(show.osd.video.clearlogo) | [Skin.HasSetting(show.osd.video.clearlogo) + !$EXP[Exp_Title_Clearlogo_Player_Available]] </visible>
+                        <include>Animation_OSD_Fade</include>
+
+                        <align>left</align>
+
+                        <include content="Def_Width" condition="Skin.HasSetting(show.osd.video.numeric.rating) + !Skin.HasSetting(show.osd.video.flags.icons)">
+                            <param name="width" value="1420"/>
+                        </include>
+                        <include content="Def_Width" condition="!Skin.HasSetting(show.osd.video.numeric.rating) + !Skin.HasSetting(show.osd.video.flags.icons)">
+                            <param name="width" value="1280"/>
+                        </include>
+                        <include content="Def_Width" condition="Skin.HasSetting(show.osd.video.numeric.rating) + Skin.HasSetting(show.osd.video.flags.icons)">
+                            <param name="width" value="970"/>
+                        </include>
+                        <include content="Def_Width" condition="!Skin.HasSetting(show.osd.video.numeric.rating) + Skin.HasSetting(show.osd.video.flags.icons)">
+                            <param name="width" value="830"/>
+                        </include>
+
+                        <control type="label" description="Show">
+                            <bottom>85</bottom>
+                            <height>40</height>
+                            <font>LargeNew</font>
+                            <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
+                            <label>$VAR[Label_OSD_Title_Big]</label>
+                            <include condition="Skin.HasSetting(labels.autoscroll)">LabelScroll</include>
+                        </control>
                     </control>
 
                     <!-- SUB TITLE -->
@@ -2502,7 +2510,7 @@
                         <bottom>85</bottom>
                         <height>40</height>
                         <font>MediumBold</font>
-                        <textcolor>$VAR[Color_OSD_Panel_White70Music]</textcolor>
+                        <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
                         <label>$VAR[Label_OSD_Player_Video_Status]</label>
                     </control>
 
@@ -2695,7 +2703,7 @@
                     <height>64</height>
                     <align>right</align>
                     <font>InfoNetflix</font>
-                    <textcolor>$VAR[Color_OSD_Panel_White70Music]</textcolor>
+                    <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
                     <label>$INFO[Player.Time]$INFO[Player.Duration,  /  ,]</label>
                 </control>
 
@@ -2717,7 +2725,7 @@
                         <!-- <aligny>center</aligny> -->
                         <!-- <height>65</height> -->
                         <!-- <font>InfoNetflix</font> -->
-                        <!-- <textcolor>$VAR[Color_OSD_Panel_White70Music]</textcolor> -->
+                        <!-- <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor> -->
                         <!-- <label>$VAR[Label_MusicPlayerCodec]</label> -->
                     <!-- </control> -->
                     <!-- <control type="label"> -->
@@ -2725,7 +2733,7 @@
                         <!-- <aligny>center</aligny> -->
                         <!-- <height>65</height> -->
                         <!-- <font>InfoNetflix</font> -->
-                        <!-- <textcolor>$VAR[Color_OSD_Panel_White70Music]</textcolor> -->
+                        <!-- <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor> -->
                         <!-- <label>$INFO[MusicPlayer.BitRate, •  ,kbps]</label> -->
                         <!-- <visible>!String.IsEmpty(MusicPlayer.BitRate)</visible> -->
                     <!-- </control> -->
@@ -2734,7 +2742,7 @@
                         <!-- <aligny>center</aligny> -->
                         <!-- <height>65</height> -->
                         <!-- <font>InfoNetflix</font> -->
-                        <!-- <textcolor>$VAR[Color_OSD_Panel_White70Music]</textcolor> -->
+                        <!-- <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor> -->
                         <!-- <label>$INFO[MusicPlayer.Samplerate, •  ,kHz]</label> -->
                         <!-- <visible>!String.IsEmpty(MusicPlayer.Samplerate)</visible> -->
                     <!-- </control> -->
@@ -2743,7 +2751,7 @@
                         <!-- <aligny>center</aligny> -->
                         <!-- <height>65</height> -->
                         <!-- <font>InfoNetflix</font> -->
-                        <!-- <textcolor>$VAR[Color_OSD_Panel_White70Music]</textcolor> -->
+                        <!-- <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor> -->
                         <!-- <label>$INFO[MusicPlayer.BPM, •  ,bpm]</label> -->
                         <!-- <visible>!String.IsEmpty(MusicPlayer.BPM)</visible> -->
                     <!-- </control> -->
@@ -2752,7 +2760,7 @@
                         <!-- <aligny>center</aligny> -->
                         <!-- <height>65</height> -->
                         <!-- <font>Tiny</font> -->
-                        <!-- <textcolor>$VAR[Color_OSD_Panel_White70Music]</textcolor> -->
+                        <!-- <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor> -->
                         <!-- <label>$INFO[MusicPlayer.BitsPerSample, •  ,bit]</label> -->
                         <!-- <visible>!String.IsEmpty(MusicPlayer.BitsPerSample)</visible> -->
                     <!-- </control> -->
@@ -2813,7 +2821,7 @@
                             <height>40</height>
                             <width>950</width>
                             <font>LargeNew</font>
-                            <textcolor>$VAR[Color_OSD_Panel_White70Music]</textcolor>
+                            <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
                             <label>$VAR[Label_OSD_Player_Audio_Status]</label>
                         </control>
 
@@ -2831,7 +2839,7 @@
                                 <align>left</align>
                                 <height>40</height>
                                 <font>InfoNetflix</font>
-                                <textcolor>$VAR[Color_OSD_Panel_White70Music]</textcolor>
+                                <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
                                 <label>$VAR[Label_OSD_Player_Audio_Sublabel]</label>
                             </control>
                         </control>
