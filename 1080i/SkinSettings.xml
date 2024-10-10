@@ -112,9 +112,6 @@
                     <item id="8">
                         <label>31263</label>
                     </item>
-                    <item id="10">
-                        <label>31012</label>
-                    </item>
                     <item id="11">
                         <label>31011</label>
                     </item>
@@ -869,46 +866,6 @@
                         <onclick>Skin.ToggleSetting(global.kioskmode)</onclick>
                     </control>
 
-                <!-- APPARENCES - BOX / FOCUS -->
-
-                    <control type="label" id="11999" description="Backup">
-                        <visible>Container(3000).HasFocus(13)</visible>
-                        <textoffsetx>30</textoffsetx>
-                        <font>Button</font>
-                        <align>left</align>
-                        <width>1310</width>
-                        <textcolor>$VAR[Color_Highlight]</textcolor>
-                        <height>70</height>
-                        <label>480</label>
-                    </control>
-
-                    <control type="radiobutton" id="9591">
-                        <visible>Container(3000).HasFocus(13)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <align>left</align>
-                        <width>1310</width>
-                        <label>31504</label>
-                        <selected>Skin.HasSetting(items.focus.zoom)</selected>
-                        <onclick>Skin.ToggleSetting(items.focus.zoom)</onclick>
-                    </control>
-                    <control type="radiobutton" id="9592">
-                        <visible>Container(3000).HasFocus(13)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <align>left</align>
-                        <label>$LOCALIZE[31509]</label>
-                        <width>1310</width>
-                        <selected>Skin.HasSetting(enable.items.focus.glow)</selected>
-                        <onclick>Skin.ToggleSetting(enable.items.focus.glow)</onclick>
-                    </control>
-                    <control type="radiobutton" id="92580" description="Show vis in background">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(13)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>31597</label>
-                        <selected>Skin.HasSetting(global.hide.shadows)</selected>
-                        <onclick>Skin.ToggleSetting(global.hide.shadows)</onclick>
-                    </control>
-
                 <!-- MENU - COLOURS -->
 
                     <!-- PRESETS COLOURS -->
@@ -988,6 +945,60 @@
                         <onclick>ActivateWindow(1202)</onclick>
                     </control>
 
+                <!-- MENU - RESSOURCES -->
+
+                    <control type="label" id="9550" description="Backup">
+                        <visible>Container(3000).HasFocus(13)</visible>
+                        <textoffsetx>30</textoffsetx>
+                        <font>Button</font>
+                        <align>left</align>
+                        <width>1310</width>
+                        <textcolor>$VAR[Color_Highlight]</textcolor>
+                        <height>70</height>
+                        <label>31012</label>
+                    </control>
+
+                    <control type="button" id="9583" description="Movie Genre">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(13)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>31309</label>
+                        <label2>$VAR[Label_Genre_Icons]</label2>
+                        <onclick>RunScript(script.image.resource.select,property=genre.icons&amp;type=resource.images.moviegenreicons)</onclick>
+                    </control>
+                    <control type="button" id="9584" description="Studios">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(13)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>31310</label>
+                        <label2>$VAR[Label_Studio_Icons]</label2>
+                        <onclick>RunScript(script.image.resource.select,property=studio.logos&amp;type=resource.images.studios)</onclick>
+                    </control>
+                    <control type="button" id="95841" description="Countries">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(13)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>31602</label>
+                        <label2>$VAR[Label_Country_Icons]</label2>
+                        <onclick>RunScript(script.image.resource.select,property=country.logos&amp;type=resource.images.moviecountryicons)</onclick>
+                    </control>
+                    <control type="button" id="9585" description="Record Labels">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(13)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>31311</label>
+                        <label2>$VAR[Label_RecordLabel_Icons]</label2>
+                        <onclick>RunScript(script.image.resource.select,property=recordlabel.logos&amp;type=resource.images.recordlabels)</onclick>
+                    </control>
+                    <control type="button" id="95851" description="GameIcons">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(13)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>31567</label>
+                        <label2>$VAR[Label_Game_Icons]</label2>
+                        <onclick>RunScript(script.image.resource.select,property=game.logos&amp;type=resource.images.gamestudios)</onclick>
+                    </control>
+
                     <!-- BOOT -->
 
                     <control type="label" id="120131" description="Backup">
@@ -1032,6 +1043,46 @@
                         <onclick condition="String.IsEmpty(Skin.String(StartupPlaylist))">Skin.SetFile(StartupPlaylist,.mp4|.avi|.mkv|.xvid|.wmv|.mov|.xsp|.mp3|.wma|.flac|.m3u)</onclick>
                         <onclick condition="!String.IsEmpty(Skin.String(StartupPlaylist))">Skin.Reset(StartupPlaylist)</onclick>
                         <enable>!Skin.HasSetting(disable.startup.window)</enable>
+                    </control>
+
+                <!-- APPARENCES - BOX / FOCUS -->
+
+                    <control type="label" id="11999" description="Backup">
+                        <visible>Container(3000).HasFocus(13)</visible>
+                        <textoffsetx>30</textoffsetx>
+                        <font>Button</font>
+                        <align>left</align>
+                        <width>1310</width>
+                        <textcolor>$VAR[Color_Highlight]</textcolor>
+                        <height>70</height>
+                        <label>480</label>
+                    </control>
+
+                    <control type="radiobutton" id="9591">
+                        <visible>Container(3000).HasFocus(13)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <align>left</align>
+                        <width>1310</width>
+                        <label>31504</label>
+                        <selected>Skin.HasSetting(items.focus.zoom)</selected>
+                        <onclick>Skin.ToggleSetting(items.focus.zoom)</onclick>
+                    </control>
+                    <control type="radiobutton" id="9592">
+                        <visible>Container(3000).HasFocus(13)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <align>left</align>
+                        <label>$LOCALIZE[31509]</label>
+                        <width>1310</width>
+                        <selected>Skin.HasSetting(enable.items.focus.glow)</selected>
+                        <onclick>Skin.ToggleSetting(enable.items.focus.glow)</onclick>
+                    </control>
+                    <control type="radiobutton" id="92580" description="Show vis in background">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(13)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>31597</label>
+                        <selected>Skin.HasSetting(global.hide.shadows)</selected>
+                        <onclick>Skin.ToggleSetting(global.hide.shadows)</onclick>
                     </control>
 
                 <!-- MENU - BACKGROUND  -->
@@ -1644,7 +1695,8 @@
                         <label>31426</label>
                     </control>
 
-                    <!-- Indicators -->
+                    <!-- INDICATORS -->
+
                     <control type="button" id="9590">
                         <visible>Container(3000).HasFocus(4)</visible>
                         <width>1310</width>
@@ -2507,7 +2559,8 @@
                         <label>31672</label>
                     </control>
 
-                    <!-- Discart -->
+                    <!-- DISCART -->
+
                     <control type="radiobutton" id="9323">
                         <width>1310</width>
                         <visible>Container(3000).HasFocus(8)</visible>
@@ -2517,7 +2570,8 @@
                         <onclick>Skin.ToggleSetting(Show.Discart.music.Info)</onclick>
                     </control>
 
-                    <!-- Clearlogo -->
+                    <!-- CLEARLOGO -->
+
                     <control type="radiobutton" id="9324">
                         <width>1310</width>
                         <visible>Container(3000).HasFocus(8)</visible>
@@ -2525,60 +2579,6 @@
                         <label>31293</label>
                         <selected>Skin.HasSetting(show.dialog.info.clearlogo.music)</selected>
                         <onclick>Skin.ToggleSetting(show.dialog.info.clearlogo.music)</onclick>
-                    </control>
-
-                <!-- MENU - RESSOURCES -->
-
-                    <control type="label" id="9550" description="Backup">
-                        <visible>Container(3000).HasFocus(10)</visible>
-                        <textoffsetx>30</textoffsetx>
-                        <font>Button</font>
-                        <align>left</align>
-                        <width>1310</width>
-                        <textcolor>$VAR[Color_Highlight]</textcolor>
-                        <height>70</height>
-                        <label>31012</label>
-                    </control>
-
-                    <control type="button" id="9583" description="Movie Genre">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(10)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>31309</label>
-                        <label2>$VAR[Label_Genre_Icons]</label2>
-                        <onclick>RunScript(script.image.resource.select,property=genre.icons&amp;type=resource.images.moviegenreicons)</onclick>
-                    </control>
-                    <control type="button" id="9584" description="Studios">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(10)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>31310</label>
-                        <label2>$VAR[Label_Studio_Icons]</label2>
-                        <onclick>RunScript(script.image.resource.select,property=studio.logos&amp;type=resource.images.studios)</onclick>
-                    </control>
-                    <control type="button" id="95841" description="Countries">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(10)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>31602</label>
-                        <label2>$VAR[Label_Country_Icons]</label2>
-                        <onclick>RunScript(script.image.resource.select,property=country.logos&amp;type=resource.images.moviecountryicons)</onclick>
-                    </control>
-                    <control type="button" id="9585" description="Record Labels">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(10)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>31311</label>
-                        <label2>$VAR[Label_RecordLabel_Icons]</label2>
-                        <onclick>RunScript(script.image.resource.select,property=recordlabel.logos&amp;type=resource.images.recordlabels)</onclick>
-                    </control>
-                    <control type="button" id="95851" description="GameIcons">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(10)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>31567</label>
-                        <label2>$VAR[Label_Game_Icons]</label2>
-                        <onclick>RunScript(script.image.resource.select,property=game.logos&amp;type=resource.images.gamestudios)</onclick>
                     </control>
 
                 <!-- MENU - SUPPORTED ADDONS -->
