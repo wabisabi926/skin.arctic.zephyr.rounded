@@ -427,6 +427,19 @@
                         <visible>Skin.HasSetting(home.show.menu.icons)</visible>
                     </control>
 
+                    <!-- SUB MENU STYLE -->
+
+                    <control type="button" id="9898" description="Horz Sub">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(2)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>31681</label>
+                        <label2>$VAR[Label_Home_Sub_Menu_Style]</label2>
+                        <selected>Skin.HasSetting(home.show.sub.menu.horizontal)</selected>
+                        <onclick>Skin.ToggleSetting(home.show.sub.menu.horizontal)</onclick>
+                        <visible>!Skin.HasSetting(home.vertical) + !Skin.HasSetting(home.show.menu.icons)</visible>
+                    </control>
+
                     <!-- UNDERLINE FOCUS MENU -->
 
                     <control type="radiobutton" id="9817">
@@ -436,16 +449,17 @@
                         <label>$LOCALIZE[31435]</label>
                         <selected>Skin.HasSetting(home.show.menu.onfocus.underlined)</selected>
                         <onclick>Skin.ToggleSetting(home.show.menu.onfocus.underlined)</onclick>
-                        <enable>![$EXP[Home_Is_Horizontal] + Skin.HasSetting(home.show.menu.icons)]</enable>
                     </control>
-                    <control type="radiobutton" id="9898" description="Horz Sub">
+
+                    <!-- SHOW SUB MENU ON CLICK -->
+
+                    <control type="radiobutton" id="95095">
                         <width>1310</width>
                         <visible>Container(3000).HasFocus(2)</visible>
                         <include>Def_Button_Settings_Gradient</include>
-                        <label>31174</label>
-                        <selected>Skin.HasSetting(home.show.sub.menu.horizontal)</selected>
-                        <onclick>Skin.ToggleSetting(home.show.sub.menu.horizontal)</onclick>
-                        <visible>!Skin.HasSetting(home.vertical) + !Skin.HasSetting(home.show.menu.icons)</visible>
+                        <label>$LOCALIZE[31659]</label>
+                        <selected>Skin.HasSetting(show.submenu.on.click.main.menu)</selected>
+                        <onclick>Skin.ToggleSetting(show.submenu.on.click.main.menu)</onclick>
                     </control>
 
                     <!-- AUTO SLIDE MENU IF INACTIF -->
@@ -494,15 +508,6 @@
                         <selected>Skin.HasSetting(homemenu.auto.back.to.main.only.from.submenu)</selected>
                         <onclick>Skin.ToggleSetting(homemenu.auto.back.to.main.only.from.submenu)</onclick>
                         <visible>Skin.HasSetting(homemenu.auto.back.to.main)</visible>
-                    </control>
-
-                    <control type="radiobutton" id="95095">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(2)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>$LOCALIZE[31659]</label>
-                        <selected>Skin.HasSetting(show.submenu.on.click.main.menu)</selected>
-                        <onclick>Skin.ToggleSetting(show.submenu.on.click.main.menu)</onclick>
                     </control>
 
                 <!-- HOME - WIDGETS -->
