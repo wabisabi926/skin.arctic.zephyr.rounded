@@ -346,7 +346,7 @@
                         <label>$LOCALIZE[31262]$LOCALIZE[31130]</label>
                         <selected>Skin.HasSetting(show.home.header.clock.left)</selected>
                         <onclick>Skin.ToggleSetting(show.home.header.clock.left)</onclick>
-                        <onclick condition="!Skin.HasSetting(show.home.header.clock.left)">Skin.Reset(home.show.label)</onclick>
+                        <onclick condition="!Skin.HasSetting(show.home.header.clock.left)">Skin.Reset(home.show.menu.label.onfocus.icon)</onclick>
                         <enable>Skin.HasSetting(show.furniture.clock.date.weather)</enable>
                     </control>
                     <control type="radiobutton" id="9268" description="Weather Bottom Clock Left">
@@ -410,20 +410,8 @@
                         <visible>Container(3000).HasFocus(2)</visible>
                         <include>Def_Button_Settings_Gradient</include>
                         <label>$LOCALIZE[31164]</label>
-                        <selected>Skin.HasSetting(home.showicons)</selected>
-                        <onclick>Skin.ToggleSetting(home.showicons)</onclick>
-                    </control>
-
-                    <!-- HIDE MENU LABEL -->
-
-                    <control type="radiobutton" id="9810">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(2)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>$LOCALIZE[31262]$LOCALIZE[31349]</label>
-                        <selected>Skin.HasSetting(homemenu.only.icons)</selected>
-                        <onclick>Skin.ToggleSetting(homemenu.only.icons)</onclick>
-                        <visible>Skin.HasSetting(home.showicons)</visible>
+                        <selected>Skin.HasSetting(home.show.menu.icons)</selected>
+                        <onclick>Skin.ToggleSetting(home.show.menu.icons)</onclick>
                     </control>
 
                     <!-- SHOW LABEL MENU IN HEADER -->
@@ -433,9 +421,9 @@
                         <visible>Container(3000).HasFocus(2)</visible>
                         <include>Def_Button_Settings_Gradient</include>
                         <label>$LOCALIZE[31262]$LOCALIZE[31627]</label>
-                        <selected>Skin.HasSetting(home.show.label)</selected>
-                        <onclick>Skin.ToggleSetting(home.show.label)</onclick>
-                        <visible>Skin.HasSetting(home.showicons) + Skin.HasSetting(homemenu.only.icons)</visible>
+                        <selected>Skin.HasSetting(home.show.menu.label.onfocus.icon)</selected>
+                        <onclick>Skin.ToggleSetting(home.show.menu.label.onfocus.icon)</onclick>
+                        <visible>Skin.HasSetting(home.show.menu.icons)</visible>
                     </control>
 
                     <!-- UNDERLINE FOCUS MENU -->
@@ -445,18 +433,18 @@
                         <visible>Container(3000).HasFocus(2)</visible>
                         <include>Def_Button_Settings_Gradient</include>
                         <label>$LOCALIZE[31435]</label>
-                        <selected>Skin.HasSetting(homemenu.items.underlined)</selected>
-                        <onclick>Skin.ToggleSetting(homemenu.items.underlined)</onclick>
-                        <enable>![$EXP[Home_Is_Horizontal] + Skin.HasSetting(home.showicons)]</enable>
+                        <selected>Skin.HasSetting(home.show.menu.onfocus.underlined)</selected>
+                        <onclick>Skin.ToggleSetting(home.show.menu.onfocus.underlined)</onclick>
+                        <enable>![$EXP[Home_Is_Horizontal] + Skin.HasSetting(home.show.menu.icons)]</enable>
                     </control>
                     <control type="radiobutton" id="9898" description="Horz Sub">
                         <width>1310</width>
                         <visible>Container(3000).HasFocus(2)</visible>
                         <include>Def_Button_Settings_Gradient</include>
                         <label>31174</label>
-                        <selected>Skin.HasSetting(home.submenu2)</selected>
-                        <onclick>Skin.ToggleSetting(home.submenu2)</onclick>
-                        <visible>!Skin.HasSetting(home.vertical) + !Skin.HasSetting(home.showicons)</visible>
+                        <selected>Skin.HasSetting(home.show.sub.menu.horizontal)</selected>
+                        <onclick>Skin.ToggleSetting(home.show.sub.menu.horizontal)</onclick>
+                        <visible>!Skin.HasSetting(home.vertical) + !Skin.HasSetting(home.show.menu.icons)</visible>
                     </control>
 
                     <!-- AUTO SLIDE MENU IF INACTIF -->
