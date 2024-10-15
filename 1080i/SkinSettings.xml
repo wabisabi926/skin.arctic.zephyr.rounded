@@ -1109,18 +1109,6 @@
                         <onclick>ActivateWindow(1248)</onclick>
                     </control>
 
-                    <!-- SHOW EXPERT SETTINGS -->
-
-                    <control type="radiobutton" id="97103" description="Netflix preview window">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(3)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>$LOCALIZE[493]</label>
-                        <selected>Skin.HasSetting(set.expert.mode.background)</selected>
-                        <onclick>Skin.ToggleSetting(set.expert.mode.background)</onclick>
-                    </control>
-
-
                 <!-- ============================= -->
                 <!--   BACKGROUND - VIEW FLIX      -->
                 <!-- ============================= -->
@@ -1134,11 +1122,9 @@
                         <textcolor>$VAR[Color_Highlight]</textcolor>
                         <height>70</height>
                        <label>$LOCALIZE[33063] $LOCALIZE[31269] $LOCALIZE[31007]</label>
-                        <visible>Skin.HasSetting(set.expert.mode.background)</visible>
-                        <visible>Skin.HasSetting(enable.blur.effect)</visible>
                     </control>
 
-                    <!-- ENABLE TMDB BLUR -->
+                    <!-- ENABLE BLUR -->
 
                     <control type="radiobutton" id="9711">
                         <width>1310</width>
@@ -1146,24 +1132,8 @@
                         <align>left</align>
                         <label>$LOCALIZE[31058]</label>
                         <visible>Container(3000).HasFocus(3)</visible>
-                        <visible>Skin.HasSetting(set.expert.mode.background)</visible>
                         <selected>Skin.HasSetting(enable.blur.effect)</selected>
-
-
-                        <!-- Install, if not installed -->
-                        <onclick condition="!System.HasAddon(plugin.video.themoviedb.helper)">InstallAddon(plugin.video.themoviedb.helper)</onclick>
-
-                        <!-- Enable/disable blur -->
-                        <onclick condition="System.AddonIsEnabled(plugin.video.themoviedb.helper)">Skin.ToggleSetting(enable.blur.effect)</onclick>
-
-                        <selected>Skin.HasSetting(enabled.tmdb.helper.blur)</selected>
-                        <onclick>Skin.ToggleSetting(enabled.tmdb.helper.blur)</onclick>
-
-                        <onclick condition="!Skin.HasSetting(enable.blur.effect) + !Skin.HasSetting(enable.blur.effect.fake) + Skin.HasSetting(enabled.tmdb.helper.blur)">Skin.ToggleSetting(enabled.tmdb.helper.blur)</onclick>
-                        <!-- <onclick condition="!Skin.HasSetting(enable.blur.effect) + !Skin.HasSetting(enable.blur.effect.fake)">Skin.SetBool(TMDbHelper.EnableBlur)</onclick> -->
-
-                        <onclick condition="Skin.HasSetting(enable.blur.effect) + !Skin.HasSetting(enable.blur.effect.fake) + !Skin.HasSetting(enabled.tmdb.helper.blur)">Skin.ToggleSetting(enabled.tmdb.helper.blur)</onclick>
-                        <!-- <onclick condition="Skin.HasSetting(enable.blur.effect)">Skin.Reset(TMDbHelper.EnableBlur)</onclick> -->
+                        <onclick>Skin.ToggleSetting(enable.blur.effect)</onclick>
                     </control>
 
                     <!--  ENABLE FLIX WINDOWS  -->
@@ -1171,7 +1141,6 @@
                     <control type="radiobutton" id="9874" description="Netflix preview window">
                         <width>1310</width>
                         <visible>Container(3000).HasFocus(3)</visible>
-                        <visible>Skin.HasSetting(set.expert.mode.background)</visible>
                         <include>Def_Button_Settings_Gradient</include>
                         <label>$LOCALIZE[31423]</label>
                         <selected>!Skin.HasSetting(hide.view.flix.preview)</selected>
@@ -1184,7 +1153,6 @@
                     <control type="button" id="9877" description="Fade Netflix preview window">
                         <width>1310</width>
                         <visible>Container(3000).HasFocus(3)</visible>
-                        <visible>Skin.HasSetting(set.expert.mode.background)</visible>
                         <include>Def_Button_Settings_Gradient</include>
                         <label>$LOCALIZE[464]</label>
                         <label2>$VAR[Label_Background_Brightness_Flix]</label2>
@@ -1207,7 +1175,6 @@
                         <textcolor>$VAR[Color_Highlight]</textcolor>
                         <height>70</height>
                        <label>$LOCALIZE[33063] $LOCALIZE[10000]</label>
-                        <visible>Skin.HasSetting(set.expert.mode.background)</visible>
                     </control>
 
                     <!--  SHOW MENU BACKGROUND -->
@@ -1215,57 +1182,11 @@
                     <control type="radiobutton" id="98452" description="Show slideshow instead of fanart">
                         <width>1310</width>
                         <visible>Container(3000).HasFocus(3)</visible>
-                        <visible>Skin.HasSetting(set.expert.mode.background)</visible>
                         <include>Def_Button_Settings_Gradient</include>
                         <label>$LOCALIZE[31630] ($LOCALIZE[10000])</label>
                         <selected>Skin.HasSetting(home.enable.menu.background)</selected>
                         <onclick>Skin.ToggleSetting(home.enable.menu.background)</onclick>
                         <!-- <enable>Skin.HasSetting(hide.global.fanart)</enable> -->
-                    </control>
-
-                <!-- ============================= -->
-                <!--    BACKGROUND - VIEW NO FLIX  -->
-                <!-- ============================= -->
-
-                    <control type="label" id="93190" description="Backup">
-                        <visible>Container(3000).HasFocus(3)</visible>
-                        <textoffsetx>30</textoffsetx>
-                        <font>Button</font>
-                        <align>left</align>
-                        <width>1310</width>
-                        <textcolor>$VAR[Color_Highlight]</textcolor>
-                        <height>70</height>
-                        <label>$LOCALIZE[33063] $LOCALIZE[31269] $LOCALIZE[31607]</label>
-                        <visible>Skin.HasSetting(set.expert.mode.background)</visible>
-                        <visible>Skin.HasSetting(enable.blur.effect)</visible>
-                    </control>
-
-                    <!-- ENABLE FLIX WINDOWS VIEW FOR NOT FLIW VIEW -->
-
-                    <!-- <control type="radiobutton" id="97145"> -->
-                        <!-- <width>1310</width> -->
-                        <!-- <visible>Container(3000).HasFocus(3)</visible> -->
-                        <!-- <visible>Skin.HasSetting(set.expert.mode.background)</visible> -->
-                        <!-- <include>Def_Button_Settings_Gradient</include> -->
-                        <!-- <label>$LOCALIZE[31423] ($LOCALIZE[31269] $LOCALIZE[106] $LOCALIZE[31007])</label> -->
-                        <!-- <selected>Skin.HasSetting(enable.netflix.preview.noflix)</selected> -->
-                        <!-- <onclick>Skin.ToggleSetting(enable.netflix.preview.noflix)</onclick> -->
-                        <!-- <visible>Skin.HasSetting(enable.blur.effect)</visible> -->
-                    <!-- </control> -->
-
-                    <!-- BRIGHTNESS FLIX WINDOWS -->
-
-                    <control type="button" id="99877" description="Fade Netflix preview window">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(3)</visible>
-                        <visible>Skin.HasSetting(set.expert.mode.background)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>$LOCALIZE[464]</label>
-                        <label2>$VAR[Label_Background_Brightness_Flix_Dialog_Info]</label2>
-                        <onclick>SetProperty(includesetting,Value_Brightness_NoFlix,Home)</onclick>
-                        <onclick>ActivateWindow(1248)</onclick>
-                        <visible>!Skin.HasSetting(hide.view.flix.preview)</visible>
-                        <visible>Skin.HasSetting(enable.blur.effect)</visible>
                     </control>
 
                 <!-- ============================= -->
@@ -1283,7 +1204,22 @@
                         <label>31062</label>
                     </control>
 
-                    <!-- FULL SCREEN BRIGHTNESS -->
+
+                    <!-- BRIGHTNESS FLIX WINDOWS -->
+
+                    <control type="button" id="99877" description="Fade Netflix preview window">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(3)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>$LOCALIZE[464]</label>
+                        <label2>$VAR[Label_Background_Brightness_Flix_Dialog_Info]</label2>
+                        <onclick>SetProperty(includesetting,Value_Brightness_NoFlix,Home)</onclick>
+                        <onclick>ActivateWindow(1248)</onclick>
+                        <visible>!Skin.HasSetting(hide.view.flix.preview)</visible>
+                        <visible>Skin.HasSetting(enable.blur.effect)</visible>
+                    </control>
+
+                    <!-- BRIGHTNESS FULL SCREEN -->
 
                     <control type="button" id="97141">
                         <width>1310</width>
@@ -1293,6 +1229,7 @@
                         <label2>$VAR[Label_Background_Brightness_Global]</label2>
                         <onclick>SetProperty(includesetting,Value_Brightness_Full_Screen,Home)</onclick>
                         <onclick>ActivateWindow(1248)</onclick>
+                        <visible>!Skin.HasSetting(enable.blur.effect)</visible>
                     </control>
 
                     <!-- FADE TIME -->
