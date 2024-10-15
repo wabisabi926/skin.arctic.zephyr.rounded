@@ -368,7 +368,7 @@
                         <label>31015</label>
                         <selected>Skin.HasSetting(show.home.header.clearlogo)</selected>
                         <onclick>Skin.ToggleSetting(show.home.header.clearlogo)</onclick>
-                        <visible>!Skin.HasSetting(homemenu.netflix)</visible>
+                        <visible>!Skin.HasSetting(home.style.flix)</visible>
                     </control>
 
                     <control type="radiobutton" id="9807" description="Flags">
@@ -471,7 +471,7 @@
                         <label>$LOCALIZE[31481]</label>
                         <selected>Skin.HasSetting(homemenu.slide)</selected>
                         <onclick>Skin.ToggleSetting(homemenu.slide)</onclick>
-                        <!-- <enable>$EXP[Home_Is_Horizontal] | Skin.HasSetting(homemenu.horizontal.clean) | $EXP[Home_Is_Vertical]</enable> -->
+                        <!-- <enable>$EXP[Home_Is_Horizontal] | Skin.HasSetting(home.style.horizontal.clean) | $EXP[Home_Is_Vertical]</enable> -->
                     </control>
 
                     <!-- AUTO SLIDE MENU IF INACTIF ONLY ON WIDGET FOCUS -->
@@ -495,7 +495,7 @@
                         <label>$LOCALIZE[31605]</label>
                         <selected>Skin.HasSetting(homemenu.auto.back.to.main)</selected>
                         <onclick>Skin.ToggleSetting(homemenu.auto.back.to.main)</onclick>
-                        <!-- <enable>[$EXP[Home_Is_Horizontal] + !Skin.HasSetting(homemenu.horizontal.clean)] | [$EXP[Home_Is_Vertical] + Skin.HasSetting(homemenu.slide)]</enable> -->
+                        <!-- <enable>[$EXP[Home_Is_Horizontal] + !Skin.HasSetting(home.style.horizontal.clean)] | [$EXP[Home_Is_Vertical] + Skin.HasSetting(homemenu.slide)]</enable> -->
                     </control>
 
                     <!-- AUTO BACK TO MAIN FROM SUB MENU ONLY -->
@@ -532,7 +532,7 @@
                         <label>$LOCALIZE[31492]</label>
                         <selected>Skin.HasSetting(show.home.netflix.title.clearlogo)</selected>
                         <onclick>Skin.ToggleSetting(show.home.netflix.title.clearlogo)</onclick>
-                        <visible>Skin.HasSetting(homemenu.netflix)</visible>
+                        <visible>Skin.HasSetting(home.style.flix)</visible>
                     </control>
 
                     <!-- HIDE PLOT IF NO FOCUS -->
@@ -564,7 +564,7 @@
                         <label>$LOCALIZE[31546]</label>
                         <selected>!Skin.HasSetting(hide.home.multiwidgets.clearart)</selected>
                         <onclick>Skin.ToggleSetting(hide.home.multiwidgets.clearart)</onclick>
-                        <visible>!Skin.HasSetting(homemenu.netflix)</visible>
+                        <visible>!Skin.HasSetting(home.style.flix)</visible>
                         <enable>![$EXP[Home_Is_Vertical] + !Skin.HasSetting(homemenu.slide)]</enable>
                     </control>
 
@@ -1079,7 +1079,10 @@
                         <onclick>Skin.ToggleSetting(global.hide.shadows)</onclick>
                     </control>
 
-                <!-- MENU - BACKGROUND  -->
+                <!-- ============================= -->
+                <!--       MENU - BACKGROUND       -->
+                <!-- ============================= -->
+
 
                     <!--  MENU TITLE - Effect presets -->
 
@@ -1094,7 +1097,7 @@
                        <label>31614</label>
                     </control>
 
-                    <!--  MENU TITLE - Set Custom Effects -->
+                    <!-- SET CUSTOM SETTINS -->
 
                     <control type="button" id="97102" description="Set Custom Colour">
                         <width>1310</width>
@@ -1105,6 +1108,9 @@
                         <onclick>SetProperty(includesetting,Value_Color_Settings,Home)</onclick>
                         <onclick>ActivateWindow(1248)</onclick>
                     </control>
+
+                    <!-- SHOW EXPERT SETTINGS -->
+
                     <control type="radiobutton" id="97103" description="Netflix preview window">
                         <width>1310</width>
                         <visible>Container(3000).HasFocus(3)</visible>
@@ -1128,7 +1134,7 @@
                        <visible>Skin.HasSetting(set.expert.mode.background)</visible>
                     </control>
 
-                    <!-- Enable TMDb blur -->
+                    <!-- ENABLE TMDB BLUR -->
 
                     <control type="radiobutton" id="9711">
                         <width>1310</width>
@@ -1156,7 +1162,7 @@
                         <!-- <onclick condition="Skin.HasSetting(enable.blur.effect)">Skin.Reset(TMDbHelper.EnableBlur)</onclick> -->
                     </control>
 
-                    <!--  MENU TITLE - HOME NETFLIX SETTINGS -->
+                <!-- TITLE - HOME SETTINGS -->
 
                     <control type="label" id="98033" description="Backup">
                         <visible>Container(3000).HasFocus(3)</visible>
@@ -1182,7 +1188,7 @@
                         <selected>Skin.HasSetting(enable.blur.on.home)</selected>
                         <onclick>Skin.ToggleSetting(enable.blur.on.home)</onclick>
                         <visible>Skin.HasSetting(enable.blur.effect)</visible>
-                        <visible>!Skin.HasSetting(homemenu.horizontal.clean)</visible>
+                        <visible>!Skin.HasSetting(home.style.horizontal.clean)</visible>
                     </control>
 
                     <!--  ENABLE HOME NETFLIW WINDOWS VIEW  -->
@@ -1193,8 +1199,8 @@
                         <visible>Skin.HasSetting(set.expert.mode.background)</visible>
                         <include>Def_Button_Settings_Gradient</include>
                         <label>$LOCALIZE[31423] ($LOCALIZE[10000])</label>
-                        <selected>!Skin.HasSetting(hide.homemenu.netflix.preview)</selected>
-                        <onclick>Skin.ToggleSetting(hide.homemenu.netflix.preview)</onclick>
+                        <selected>!Skin.HasSetting(hide.home.flix.preview)</selected>
+                        <onclick>Skin.ToggleSetting(hide.home.flix.preview)</onclick>
                     </control>
 
                     <!--  HOME - SHOW MENU BACKGROUND -->
@@ -1202,6 +1208,7 @@
                     <control type="radiobutton" id="98452" description="Show slideshow instead of fanart">
                         <width>1310</width>
                         <visible>Container(3000).HasFocus(3)</visible>
+                        <visible>Skin.HasSetting(set.expert.mode.background)</visible>
                         <include>Def_Button_Settings_Gradient</include>
                         <label>$LOCALIZE[31630] ($LOCALIZE[10000])</label>
                         <selected>Skin.HasSetting(home.enable.menu.background)</selected>
@@ -1231,8 +1238,8 @@
                         <visible>Skin.HasSetting(set.expert.mode.background)</visible>
                         <include>Def_Button_Settings_Gradient</include>
                         <label>$LOCALIZE[31423] ($LOCALIZE[31269] $LOCALIZE[31007])</label>
-                        <selected>!Skin.HasSetting(hide.views.netflix.preview)</selected>
-                        <onclick>Skin.ToggleSetting(hide.views.netflix.preview)</onclick>
+                        <selected>!Skin.HasSetting(hide.views.flix.preview)</selected>
+                        <onclick>Skin.ToggleSetting(hide.views.flix.preview)</onclick>
                     </control>
 
                     <control type="button" id="9877" description="Fade Netflix preview window">
@@ -1244,7 +1251,7 @@
                         <label2>$VAR[Label_Background_Brightness_Flix]</label2>
                         <onclick>SetProperty(includesetting,Value_Background_Brightness_Flix,Home)</onclick>
                         <onclick>ActivateWindow(1248)</onclick>
-                        <visible>!Skin.HasSetting(hide.homemenu.netflix.preview) | !Skin.HasSetting(hide.views.netflix.preview)</visible>
+                        <visible>!Skin.HasSetting(hide.home.flix.preview) | !Skin.HasSetting(hide.views.flix.preview)</visible>
                     </control>
 
                     <!--  MENU TITLE - ALL VIEW NOT FLIX BACKGROUND SETTING -->
@@ -1261,7 +1268,7 @@
                         <visible>Skin.HasSetting(set.expert.mode.background)</visible>
                     </control>
 
-                    <!-- Enable Netflix windows view for Not Fliw View -->
+                    <!-- ENABLE NETFLIX WINDOWS VIEW FOR NOT FLIW VIEW -->
 
                     <control type="radiobutton" id="97145">
                         <width>1310</width>
@@ -1273,7 +1280,7 @@
                         <onclick>Skin.ToggleSetting(enable.netflix.preview.noflix)</onclick>
                     </control>
 
-                    <!-- Brightness Netflix windows -->
+                    <!-- BRIGHTNESS NETFLIX WINDOWS -->
 
                     <control type="button" id="99877" description="Fade Netflix preview window">
                         <width>1310</width>
@@ -1287,7 +1294,7 @@
                         <visible>Skin.HasSetting(enable.netflix.preview.noflix)</visible>
                     </control>
 
-                    <!--  MENU TITLE - Options Globals -->
+                <!--  MENU TITLE - OPTIONS GLOBALS -->
 
                     <control type="label" id="9713" description="Backup">
                         <visible>Container(3000).HasFocus(3)</visible>
@@ -1300,6 +1307,8 @@
                         <label>31062</label>
                     </control>
 
+                    <!-- FULL SCREEN BRIGHTNESS -->
+
                     <control type="button" id="97141">
                         <width>1310</width>
                         <visible>Container(3000).HasFocus(3)</visible>
@@ -1309,6 +1318,9 @@
                         <onclick>SetProperty(includesetting,Value_Background_Brightness_Global,Home)</onclick>
                         <onclick>ActivateWindow(1248)</onclick>
                     </control>
+
+                    <!-- FADE TIME -->
+
                     <control type="button" id="9045">
                         <width>1310</width>
                          <visible>Container(3000).HasFocus(3)</visible>
@@ -1320,6 +1332,9 @@
                         <onclick condition="Integer.IsEqual(Skin.String(Fadetime),3600)">Skin.SetString(Fadetime,1800)</onclick>
                         <onclick condition="Integer.IsEqual(Skin.String(Fadetime),1800)">Skin.SetString(Fadetime,600)</onclick>
                     </control>
+
+                    <!-- SHOW FANART -->
+
                     <control type="radiobutton" id="9714" description="Show fanart">
                         <width>1310</width>
                         <visible>Container(3000).HasFocus(3)</visible>
@@ -1330,6 +1345,9 @@
                         <onclick condition="Skin.HasSetting(hide.global.fanart)">Skin.Reset(home.show.only.menu.background)</onclick>
                         <onclick condition="Skin.HasSetting(hide.global.fanart)">Skin.Reset(show.fallback.background)</onclick>
                     </control>
+
+                     <!-- SHOW EXTRA FANART -->
+
                     <control type="radiobutton" id="99714" description="Show extra fanart">
                         <width>1310</width>
                         <visible>Container(3000).HasFocus(3)</visible>
@@ -1341,7 +1359,18 @@
                         <enable>!Skin.HasSetting(hide.global.fanart)</enable>
                     </control>
 
-                    <!--  MENU TITLE - HOME NETFLIX SETTINGS -->
+                    <!-- SHOW ONLY FALLBACK -->
+
+                    <control type="radiobutton" id="98053" description="Show vis in background">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(3)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>$LOCALIZE[31678]</label>
+                        <selected>Skin.HasSetting(global.show.fallback.only)</selected>
+                        <onclick>Skin.ToggleSetting(global.show.fallback.only)</onclick>
+                    </control>
+
+                <!--  MENU TITLE - HOME NETFLIX SETTINGS -->
 
                     <control type="label" id="98034" description="Backup">
                         <visible>Container(3000).HasFocus(3)</visible>
@@ -1352,7 +1381,7 @@
                         <textcolor>$VAR[Color_Highlight]</textcolor>
                         <height>70</height>
                         <label>31145</label>
-                        <!-- <visible>[$EXP[Home_Is_Horizontal_Netflix] | $EXP[Home_Is_Vertical_Netflix]] + !Skin.HasSetting(homemenu.horizontal.clean)</visible> -->
+                        <!-- <visible>[$EXP[Home_Is_Horizontal_Netflix] | $EXP[Home_Is_Vertical_Netflix]] + !Skin.HasSetting(home.style.horizontal.clean)</visible> -->
                     </control>
 
                     <control type="radiobutton" id="9715" description="Animate Fanart">
@@ -1393,14 +1422,7 @@
                         <label>31127</label>
                         <onclick>ActivateWindow(1151)</onclick>
                     </control>
-                    <control type="radiobutton" id="98053" description="Show vis in background">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(3)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>$LOCALIZE[31678]</label>
-                        <selected>Skin.HasSetting(global.show.fallback.only)</selected>
-                        <onclick>Skin.ToggleSetting(global.show.fallback.only)</onclick>
-                    </control>
+
                     <control type="button" id="9717" description="Set Weather Fanart">
                         <width>1310</width>
                         <visible>Container(3000).HasFocus(3)</visible>

@@ -711,8 +711,8 @@
     <include name="Reset_View_types">
         <onclick>Skin.Reset(home.vertical)</onclick>
         <onclick>Skin.Reset(home.horizontal)</onclick>
-        <onclick>Skin.Reset(homemenu.netflix)</onclick>
-        <onclick>Skin.Reset(homemenu.horizontal.clean)</onclick>
+        <onclick>Skin.Reset(home.style.flix)</onclick>
+        <onclick>Skin.Reset(home.style.horizontal.clean)</onclick>
     </include>
 
     <variable name="Image_Home_Menu_View_type">
@@ -1363,10 +1363,10 @@
     </include>
 
     <variable name="View_Home_Selected">
-        <value condition="Skin.HasSetting(homemenu.horizontal.clean)">$LOCALIZE[31472]</value>
-        <value condition="Skin.HasSetting(home.horizontal) + !Skin.HasSetting(homemenu.netflix)">$LOCALIZE[31254]</value>
-        <value condition="Skin.HasSetting(home.horizontal) + Skin.HasSetting(homemenu.netflix)">$LOCALIZE[31254] $LOCALIZE[31007]</value>
-        <value condition="Skin.HasSetting(home.vertical) + !Skin.HasSetting(homemenu.netflix)">$LOCALIZE[31218]</value>
+        <value condition="Skin.HasSetting(home.style.horizontal.clean)">$LOCALIZE[31472]</value>
+        <value condition="Skin.HasSetting(home.horizontal) + !Skin.HasSetting(home.style.flix)">$LOCALIZE[31254]</value>
+        <value condition="Skin.HasSetting(home.horizontal) + Skin.HasSetting(home.style.flix)">$LOCALIZE[31254] $LOCALIZE[31007]</value>
+        <value condition="Skin.HasSetting(home.vertical) + !Skin.HasSetting(home.style.flix)">$LOCALIZE[31218]</value>
         <value>$LOCALIZE[31218] $LOCALIZE[31007]</value>
     </variable>
 
@@ -1955,13 +1955,13 @@
                     <include>Def_Dimensions_Fullscreen</include>
                     <texture colordiffuse="ffF0F0F0">$VAR[Image_Background_Player_Plot_Overlay]</texture>
                     <animation effect="fade" start="100" end="15" condition="true">Conditional</animation>
-                    <visible>Player.HasMedia + !$EXP[Exp_InfoDialogs]</visible>
+                    <visible>Player.HasMedia + !$EXP[View_Info_Dialog]</visible>
                 </control>
                 <control type="image" description="Background">
                     <include>Def_Dimensions_Fullscreen</include>
                     <texture colordiffuse="Background">background/bg.jpg</texture>
                     <animation effect="fade" start="100" end="85" condition="true">Conditional</animation>
-                    <visible>!Player.HasMedia + !$EXP[Exp_InfoDialogs]</visible>
+                    <visible>!Player.HasMedia + !$EXP[View_Info_Dialog]</visible>
                 </control>
             </control>
 

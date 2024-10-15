@@ -334,7 +334,7 @@
         <definition>
             <visible>$PARAM[visible]</visible>
 
-            <animation effect="fade" start="0" end="0" time="0" condition="Skin.HasSetting(homemenu.horizontal.clean)">Conditional</animation>
+            <animation effect="fade" start="0" end="0" time="0" condition="Skin.HasSetting(home.style.horizontal.clean)">Conditional</animation>
 
             <include content="Animation_FadeOut_Home_Fullscreen_Widget" condition="$EXP[Home_Is_Horizontal_Netflix] | $EXP[Home_Is_Vertical_Netflix]">
                <param name="condition" value="$PARAM[animation_condition]"/>
@@ -342,31 +342,31 @@
 
             <include>Animation_Vertical_Widgets_Container_Focus_Search</include>
 
-            <include content="Def_Top" condition="Skin.HasSetting(homemenu.horizontal.clean)">
+            <include content="Def_Top" condition="Skin.HasSetting(home.style.horizontal.clean)">
                <param name="top" value="200" />
             </include>
-            <include content="Def_Top" condition="Skin.HasSetting(homemenu.netflix)">
+            <include content="Def_Top" condition="Skin.HasSetting(home.style.flix)">
                <param name="top" value="440" />
             </include>
-            <include content="Def_Top" condition="!Skin.HasSetting(homemenu.netflix)">
+            <include content="Def_Top" condition="!Skin.HasSetting(home.style.flix)">
                <param name="top" value="60" />
             </include>
-            <include content="Def_Width" condition="Skin.HasSetting(homemenu.horizontal.clean)">
+            <include content="Def_Width" condition="Skin.HasSetting(home.style.horizontal.clean)">
                <param name="width" value="225" />
             </include>
-            <include content="Def_Height" condition="Skin.HasSetting(homemenu.horizontal.clean)">
+            <include content="Def_Height" condition="Skin.HasSetting(home.style.horizontal.clean)">
                <param name="height" value="565" />
             </include>
-            <include content="Def_Height" condition="Skin.HasSetting(homemenu.netflix)">
+            <include content="Def_Height" condition="Skin.HasSetting(home.style.flix)">
                <param name="height" value="325" />
             </include>
-            <include content="Def_Height" condition="!Skin.HasSetting(homemenu.netflix)">
+            <include content="Def_Height" condition="!Skin.HasSetting(home.style.flix)">
                <param name="height" value="$PARAM[height]" />
             </include>
 
             <height>$PARAM[height]</height>
 
-            <include content="Def_Left" condition="![$EXP[Home_Is_Horizontal] + !Skin.HasSetting(homemenu.horizontal.clean)]">
+            <include content="Def_Left" condition="![$EXP[Home_Is_Horizontal] + !Skin.HasSetting(home.style.horizontal.clean)]">
                 <param name="left" value="70" /></include>
             <left>0</left>
 
