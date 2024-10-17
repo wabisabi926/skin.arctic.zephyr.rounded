@@ -1125,20 +1125,6 @@
                     </control>
 
 
-                    <!-- BRIGHTNESS FLIX WINDOWS -->
-
-                    <control type="button" id="99877" description="Fade Netflix preview window">
-                        <width>1310</width>
-                        <visible>Container(3000).HasFocus(3)</visible>
-                        <include>Def_Button_Settings_Gradient</include>
-                        <label>$LOCALIZE[464]</label>
-                        <label2>$VAR[Label_Background_Brightness_Flix_Dialog_Info]</label2>
-                        <onclick>SetProperty(includesetting,Value_Brightness_NoFlix,Home)</onclick>
-                        <onclick>ActivateWindow(1248)</onclick>
-                        <visible>!Skin.HasSetting(hide.view.flix.preview)</visible>
-                        <visible>Skin.HasSetting(enable.blur.effect)</visible>
-                    </control>
-
                     <!-- BRIGHTNESS FULL SCREEN -->
 
                     <control type="button" id="97141">
@@ -1149,7 +1135,21 @@
                         <label2>$VAR[Label_Background_Brightness_Global]</label2>
                         <onclick>SetProperty(includesetting,Value_Brightness_Full_Screen,Home)</onclick>
                         <onclick>ActivateWindow(1248)</onclick>
-                        <visible>!Skin.HasSetting(enable.blur.effect)</visible>
+                        <visible>!Skin.HasSetting(enable.blur.effect) | Skin.HasSetting(hide.global.fanart) | !$EXP[Home_Is_Flix]</visible>
+                    </control>
+
+                    <!-- BRIGHTNESS FLIX WINDOWS -->
+
+                    <control type="button" id="99877" description="Fade Netflix preview window">
+                        <width>1310</width>
+                        <visible>Container(3000).HasFocus(3)</visible>
+                        <include>Def_Button_Settings_Gradient</include>
+                        <label>$LOCALIZE[464] (flix)</label>
+                        <label2>$VAR[Label_Background_Brightness_Flix_Dialog_Info]</label2>
+                        <onclick>SetProperty(includesetting,Value_Brightness_NoFlix,Home)</onclick>
+                        <onclick>ActivateWindow(1248)</onclick>
+                        <visible>!Skin.HasSetting(hide.view.flix.preview)</visible>
+                        <visible>Skin.HasSetting(enable.blur.effect) + !Skin.HasSetting(hide.global.fanart)</visible>
                     </control>
 
                     <!-- FADE TIME -->
@@ -1314,7 +1314,7 @@
                     </control>
 
                     <!--  BACKGROUNG FALLBACK -->
-                    
+
                     <control type="button" id="98052">
                         <width>1310</width>
                         <visible>Container(3000).HasFocus(3)</visible>
@@ -1324,7 +1324,7 @@
                     </control>
 
                     <!--  BACKGROUNG WEATHER -->
-                
+
                     <control type="button" id="9717" description="Set Weather Fanart">
                         <width>1310</width>
                         <visible>Container(3000).HasFocus(3)</visible>
