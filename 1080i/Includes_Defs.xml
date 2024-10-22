@@ -14,6 +14,10 @@
         <control type="button" id="2011">
             <visible allowhiddenfocus="true">false</visible>
             <include>Def_Hidden_Button</include>
+            <onfocus>ClearProperty(backtoslidehome_2011,Home)</onfocus>
+            <onclick>SetProperty(backtoslidehome_2011,1,Home)</onclick>
+            <onclick>SetFocus($INFO[Window(Home).Property(BackToId)])</onclick>
+            <onclick>Action(info)</onclick>
             <onup condition="!String.IsEmpty(Window(Home).Property(LastMenuItem))">SetFocus($INFO[Window(Home).Property(LastMenuItem)])</onup>
             <onleft condition="!String.IsEmpty(Window(Home).Property(LastMenuItem))">SetFocus($INFO[Window(Home).Property(LastMenuItem)])</onleft>
             <onright condition="!String.IsEmpty(Window(Home).Property(LastMenuItem))">SetFocus($INFO[Window(Home).Property(LastMenuItem)])</onright>

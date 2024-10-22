@@ -30,6 +30,7 @@
     <onunload>ClearProperty(SetUserRating,Home)</onunload>
     <onunload>ClearProperty(ShowDisc)</onunload>
 
+    <onunload condition="!String.IsEmpty(Window(Home).Property(backtoslidehome_2011))">SetFocus(2011)</onunload>
     <onunload condition="!Window.IsVisible(MusicVisualisation.xml) + !String.IsEmpty(Window(Home).Property(shownowplayinginfo))">SetFocus(399)</onunload>
 
     <onunload condition="Player.PauseEnabled + Window.IsVisible(MusicVisualisation.xml) + Window.IsVisible(MusicOSD.xml)">SetFocus(14)</onunload>
