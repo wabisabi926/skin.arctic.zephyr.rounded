@@ -843,15 +843,20 @@
         </control>
          <control type="button" id="8808">
             <include>Def_Hidden_Button</include>
+
             <onfocus condition="String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId)) + Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">SetFocus(4567)</onfocus>
-            <onfocus condition="String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId))">SetFocus(300)</onfocus>
-            <onfocus>SetFocus($INFO[Window(Home).Property(BackToId)])</onfocus>
 
-            <onfocus condition="!String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId)) + !String.IsEmpty(Window(Home).Property(BackToId)) + [!Player.HasMedia | !$EXP[Extended_Now_Playing_Is_Enable]]">SetFocus($INFO[Window(Home).Property(BackToId)])</onfocus>
+            <onfocus condition="String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId)) + !Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">SetFocus(300)</onfocus>
 
-            <onfocus condition="!Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + !String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId)) + !String.IsEmpty(Window(Home).Property(BackToId)) + $EXP[Extended_Now_Playing_Is_Enable] + Player.HasMedia">SetFocus(300)</onfocus>
+            <onfocus condition="!String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId)) + !String.IsEmpty(Window(Home).Property(BackToId)) + Skin.HasSetting(disable.widgets.onup.go.back.to.last.item) + [!Player.HasMedia | !$EXP[Extended_Now_Playing_Is_Visible]]">SetFocus($INFO[Window(Home).Property(BackToId)])</onfocus>
 
-            <onfocus condition="Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + !String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId)) + !String.IsEmpty(Window(Home).Property(BackToId)) + $EXP[Extended_Now_Playing_Is_Enable] + Player.HasMedia">SetFocus(4567)</onfocus>
+            <onfocus condition="!String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId)) + !String.IsEmpty(Window(Home).Property(BackToId)) + !Skin.HasSetting(disable.widgets.onup.go.back.to.last.item) + Player.HasMedia">SetFocus(300)</onfocus>
+
+            <onfocus condition="!String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId)) + !String.IsEmpty(Window(Home).Property(BackToId)) + !Skin.HasSetting(disable.widgets.onup.go.back.to.last.item) + !Player.HasMedia">SetFocus($INFO[Window(Home).Property(BackToId)])</onfocus>
+
+            <onfocus condition="!Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + !String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId)) + !String.IsEmpty(Window(Home).Property(BackToId)) + $EXP[Extended_Now_Playing_Is_Visible] + Player.HasMedia">SetFocus(300)</onfocus>
+
+            <onfocus condition="Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + !String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId)) + !String.IsEmpty(Window(Home).Property(BackToId)) + $EXP[Extended_Now_Playing_Is_Visible] + Player.HasMedia">SetFocus(4567)</onfocus>
         </control>
 
         <control type="button" id="399">
@@ -1709,10 +1714,16 @@
                         <param name="top" value="185"/>
                     </include>
 
-                    <include content="Widgets_Plot" condition="Skin.HasSetting(home.style.horizontal.clean)">
+                    <include content="Widgets_Plot" condition="!Skin.HasSetting(show.home.netflix.title.clearlogo) + Skin.HasSetting(home.style.horizontal.clean)">
                         <param name="id" value="$PARAM[id]"/>
                         <param name="height" value="72"/>
                         <param name="top" value="145"/>
+                    </include>
+
+                    <include content="Widgets_Plot" condition="Skin.HasSetting(show.home.netflix.title.clearlogo) + Skin.HasSetting(home.style.horizontal.clean)">
+                        <param name="id" value="$PARAM[id]"/>
+                        <param name="height" value="72"/>
+                        <param name="top" value="185"/>
                     </include>
                 </control>
             </control>
