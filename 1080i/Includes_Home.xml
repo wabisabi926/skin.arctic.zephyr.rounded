@@ -849,7 +849,9 @@
 
             <onfocus condition="!String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId)) + !String.IsEmpty(Window(Home).Property(BackToId)) + Skin.HasSetting(disable.widgets.onup.go.back.to.last.item) + [!Player.HasMedia | !$EXP[Extended_Now_Playing_Is_Visible]]">SetFocus($INFO[Window(Home).Property(BackToId)])</onfocus>
 
-            <onfocus condition="!String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId)) + !String.IsEmpty(Window(Home).Property(BackToId)) + !Skin.HasSetting(disable.widgets.onup.go.back.to.last.item) + Player.HasMedia">SetFocus(300)</onfocus>
+            <onfocus condition="!Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + !String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId)) + !String.IsEmpty(Window(Home).Property(BackToId)) + !Skin.HasSetting(disable.widgets.onup.go.back.to.last.item) + Player.HasMedia">SetFocus(300)</onfocus>
+
+            <onfocus condition="Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + !String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId)) + !String.IsEmpty(Window(Home).Property(BackToId)) + !Skin.HasSetting(disable.widgets.onup.go.back.to.last.item) + Player.HasMedia">SetFocus(4567)</onfocus>
 
             <onfocus condition="!String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId)) + !String.IsEmpty(Window(Home).Property(BackToId)) + !Skin.HasSetting(disable.widgets.onup.go.back.to.last.item) + !Player.HasMedia">SetFocus($INFO[Window(Home).Property(BackToId)])</onfocus>
 
