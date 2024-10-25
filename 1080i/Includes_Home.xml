@@ -877,6 +877,7 @@
             <onleft condition="String.IsEmpty(Container(300).ListItemNoWrap(-1).Label)">9099</onleft>
 
             <!-- <onright condition="String.IsEmpty(Container(300).ListItemNoWrap(1).Label)">ClearProperty(AnimationDirection,Home)</onright> -->
+            <onright condition="String.IsEmpty(Container(300).ListItemNoWrap(1).Label)">SetProperty(AnimationDirection,Left,Home)</onright>
             <onright condition="String.IsEmpty(Container(300).ListItemNoWrap(1).Label)">SetFocus(300,0,absolute)</onright>
 
             <!-- MAIN MENU - LEFT / RIGHT -->
@@ -925,7 +926,6 @@
 
             <onfocus condition="$EXP[TMDbHelper_Is_Needed] + String.IsEqual(Window(Home).Property(AnimationDirection),Left)">$VAR[Set_TMDB_Helper_Widget_Container_left_up]</onfocus>
             <onfocus condition="$EXP[TMDbHelper_Is_Needed] + String.IsEqual(Window(Home).Property(AnimationDirection),Right)">$VAR[Set_TMDB_Helper_Widget_Container_right_down]</onfocus>
-
             <onfocus condition="$EXP[TMDbHelper_Is_Needed]">Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onfocus>
 
             <onright condition="$EXP[TMDbHelper_Is_Needed] + !String.IsEmpty(Container(300).ListItemNoWrap(1).Label)">AlarmClock(slide_out,SetFocus(222),00:00,silent)</onright>
