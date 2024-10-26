@@ -191,14 +191,14 @@
                         <description>arrow image</description>
                         <centerleft>50%</centerleft>
                         <top>-40</top>
-                        <include>arrowdimensions</include>
+                        <include>Def_Arrow_Size</include>
                         <texture colordiffuse="White70" flipy="true">common/arrow-small.png</texture>
                     </control>
                     <control type="image">
                         <description>arrow image</description>
                         <centerleft>50%</centerleft>
                         <top>698</top>
-                        <include>arrowdimensions</include>
+                        <include>Def_Arrow_Size</include>
                         <texture colordiffuse="White70" flipy="false">common/arrow-small.png</texture>
                         <animation effect="slide" end="0,-75" time="0" condition="Integer.IsEqual(Container(9400).NumItems,7)">Conditional</animation>
                         <animation effect="slide" end="0,-145" time="0" condition="Integer.IsEqual(Container(9400).NumItems,6)">Conditional</animation>
@@ -946,7 +946,7 @@
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
                 <onfocus>ClearProperty(RotateCover)</onfocus>
                 <include>Def_Button_Dimensions_Square</include>
-                <onclick>RunScript(script.wikipedia,wikipedia=$VAR[Wiki_Label],language=$VAR[Def_Wiki_Language])</onclick>
+                <onclick>RunScript(script.wikipedia,wikipedia=$VAR[Label_Wiki_Title_Search],language=$VAR[Def_Wiki_Language])</onclick>
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/wiki.png"/>
                 </include>
@@ -1368,9 +1368,9 @@
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
                 <onfocus>ClearProperty(dontslide,Home)</onfocus>
                 <onclick>SetProperty(dontslide,1,Home)</onclick>
-                <onclick condition="String.IsEqual(ListItem.Property(item.type),person)">RunScript(script.wikipedia,wikipedia=$VAR[Wiki_Label],tmdb_type=movie,language=$VAR[Def_Wiki_Language])</onclick>
-                <onclick condition="String.IsEqual(ListItem.DBType,movie)">RunScript(script.wikipedia,wikipedia=$VAR[Wiki_Label],tmdb_type=movie,language=$VAR[Def_Wiki_Language])</onclick>
-                <onclick condition="String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)">RunScript(script.wikipedia,wikipedia=$VAR[Wiki_Label],tmdb_type=tv,language=$VAR[Def_Wiki_Language])</onclick>
+                <onclick condition="String.IsEqual(ListItem.Property(item.type),person)">RunScript(script.wikipedia,wikipedia=$VAR[Label_Wiki_Title_Search],tmdb_type=movie,language=$VAR[Def_Wiki_Language])</onclick>
+                <onclick condition="String.IsEqual(ListItem.DBType,movie)">RunScript(script.wikipedia,wikipedia=$VAR[Label_Wiki_Title_Search],tmdb_type=movie,language=$VAR[Def_Wiki_Language])</onclick>
+                <onclick condition="String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)">RunScript(script.wikipedia,wikipedia=$VAR[Label_Wiki_Title_Search],tmdb_type=tv,language=$VAR[Def_Wiki_Language])</onclick>
                 <!-- <onclick condition="String.IsEqual(ListItem.DBType,actor)">RunScript(script.wikipedia,wikipedia=$INFO[ListItem.Label],tmdb_type=person,language=$VAR[Def_Wiki_Language])</onclick> -->
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">

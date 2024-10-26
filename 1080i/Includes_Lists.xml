@@ -287,12 +287,12 @@
                 <visible>Control.HasFocus(50) + !Container(50).OnNext + !Container(50).OnPrevious + !ListItem.IsCollection</visible>
                 <include>Animation_Delay_FadeIn</include>
                 <control type="image">
-                    <include>arrowdimensions</include>
+                    <include>Def_Arrow_Size</include>
                     <texture colordiffuse="Dark1" flipy="true">common/arrow-small.png</texture>
                 </control>
                 <control type="image">
                     <top>12</top>
-                    <include>arrowdimensions</include>
+                    <include>Def_Arrow_Size</include>
                     <texture colordiffuse="Dark1" flipy="true">common/arrow-small.png</texture>
                 </control>
             </control>
@@ -1614,13 +1614,13 @@
             <include>Animation_Delay_FadeIn</include>
             <control type="image">
                 <left>$PARAM[arrowleft]</left>
-                <include>arrowdimensions</include>
+                <include>Def_Arrow_Size</include>
                 <texture colordiffuse="Dark1" flipx="true">common/arrow-small-right.png</texture>
                 <animation effect="slide" start="0,0" end="210,0" time="0" condition="String.IsEqual(Container($PARAM[controlid]).CurrentItem,1)">Conditional</animation>
             </control>
             <control type="image">
                 <right>$PARAM[arrowright]</right>
-                <include>arrowdimensions</include>
+                <include>Def_Arrow_Size</include>
                 <texture colordiffuse="Dark1">common/arrow-small-right.png</texture>
             </control>
         </control>
@@ -1931,7 +1931,7 @@
         <control type="list" id="5014">
             <visible>Container.Content(albums) | String.IsEqual(ListItem.DBType,album)</visible>
             <include>Def_Hidden_ListControl</include>
-            <content>$VAR[Album_Path]</content>
+            <content>$VAR[Path_Album]</content>
         </control>
     </include>
 
@@ -1947,7 +1947,7 @@
         <control type="list" id="44022">
             <visible>String.IsEqual(ListItem.DBType,album)</visible>
             <include>Def_Hidden_ListControl</include>
-            <content>$VAR[Album_Path]</content>
+            <content>$VAR[Path_Album]</content>
         </control>
     </include>
 
@@ -1955,7 +1955,7 @@
         <control type="list" id="44028">
             <visible>String.IsEqual(ListItem.Path,pvr://channels/tv/)</visible>
             <include>Def_Hidden_ListControl</include>
-            <content>$VAR[Group_Channel_Path]</content>
+            <content>$VAR[Path_Group_Channel]</content>
         </control>
     </include>
 
@@ -2003,7 +2003,7 @@
         <control type="list" id="95017">
             <visible>Control.HasFocus(9501)</visible>
             <include>Def_Hidden_ListControl</include>
-            <content>$VAR[Album_Path_9501_Ext]</content>
+            <content>$VAR[Path_Album_9501_Ext]</content>
         </control>
     </include>
 
@@ -2023,7 +2023,7 @@
         <control type="list" id="44023">
             <visible>String.IsEqual(ListItem.DBType,set) + !String.IsEmpty(ListItem.DBID)</visible>
             <include>Def_Hidden_ListControl</include>
-            <content>$VAR[SetsPath]</content>
+            <content>$VAR[Path_Sets]</content>
         </control>
     </include>
 
@@ -2031,14 +2031,14 @@
         <control type="list" id="9911">
             <include>Def_Hidden_ListControl</include>
             <visible>String.IsEqual(ListItem.DBType,tvshow) + Integer.IsGreater(ListItem.Property(UnwatchedEpisodes),0) + !String.IsEmpty(ListItem.DBID)</visible>
-            <content sortby="playcount" sortorder="ascending" limit="1">$VAR[UpNextEpisodePath]</content>
+            <content sortby="playcount" sortorder="ascending" limit="1">$VAR[Path_Up_Next_Episode]</content>
         </control>
     </include>
 
     <include name="Hidden_Actor_Info">
         <control type="list" id="44422">
             <include>Def_Hidden_ListControl</include>
-            <content target="videos">$VAR[Actor_Path]</content>
+            <content target="videos">$VAR[Path_Actor]</content>
         </control>
     </include>
 
