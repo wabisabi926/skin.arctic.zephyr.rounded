@@ -2011,7 +2011,7 @@
         <control type="list" id="44025">
             <visible>[Container.Content(movies) + String.IsEmpty(ListItem.DBType)] | Container.Content(genres) | Container.Content(years) | Container.Content(countries) | Container.Content(studios) | Container.Content(videoversions) | Container.Content(tags) | Container.Content(files) | Container.Content(albums) | Container.Content(images)</visible>
             <!-- <visible>ListItem.IsFolder + !$EXP[IsAnPlugin]</visible> -->
-            <visible>ListItem.IsFolder + !$EXP[IsYoutube] + !$EXP[IsTMDbHelper]</visible>
+            <visible>ListItem.IsFolder + [!$EXP[IsAnPlugin] | $EXP[IsPluginShortlist]]</visible>
             <visible>Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(MyMusicNav.xml) | Window.IsVisible(MyPics.xml)</visible>
             <visible>!String.IsEmpty(ListItem.FolderPath)</visible>
             <include>Def_Hidden_ListControl</include>
