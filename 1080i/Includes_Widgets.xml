@@ -149,7 +149,8 @@
 
         <value condition="String.Contains(Container(211).ListItem.Property(widget),weather) + !String.IsEmpty(Container(211).ListItem.Property(widgetaspect)) + ![String.IsEqual(Container(211).ListItem.Property(widgetaspect),Fanart) | String.IsEqual(Container(211).ListItem.Property(widgetaspect),Poster) | String.IsEqual(Container(211).ListItem.Property(widgetaspect),Square)]">[COLOR=FFFF0000]![/COLOR]</value>
 
-        <value condition="!String.IsEmpty(Container(211).ListItem.Property(widgetaspect)) + ![String.IsEqual(Container(211).ListItem.Property(widgetaspect),Square) | String.IsEqual(Container(211).ListItem.Property(widgetaspect),SquareSmall) | String.IsEqual(Container(211).ListItem.Property(widgetaspect),SquareSmallSubmenu) | String.IsEqual(Container(211).ListItem.Property(widgetaspect),SquareMediumSubmenu)] + String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu)">[COLOR=FFFF0000]![/COLOR]</value>
+        <value condition="!String.IsEmpty(Container(211).ListItem.Property(widgetaspect)) + ![String.IsEqual(Container(211).ListItem.Property(widgetaspect),Square) | String.IsEqual(Container(211).ListItem.Property(widgetaspect),SquareMiddle) |
+        String.IsEqual(Container(211).ListItem.Property(widgetaspect),SquareSmall) | String.IsEqual(Container(211).ListItem.Property(widgetaspect),SquareSmallSubmenu) | String.IsEqual(Container(211).ListItem.Property(widgetaspect),SquareMediumSubmenu)] + String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu)">[COLOR=FFFF0000]![/COLOR]</value>
 
         <value condition="!String.IsEmpty(Container(211).ListItem.Property(widgetaspect)) + [String.IsEqual(Container(211).ListItem.Property(widgetaspect),SquareSmallSubmenu) | String.IsEqual(Container(211).ListItem.Property(widgetaspect),SquareMediumSubmenu)] + !String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu)">[COLOR=FFFF0000]![/COLOR]</value>
 
@@ -165,6 +166,7 @@
         <value condition="String.IsEqual(Container(211).ListItem.Property(widgetaspect),ThumbnailSmall)">$LOCALIZE[31572]</value>
         <value condition="String.IsEqual(Container(211).ListItem.Property(widgetaspect),PosterFanartSmall)">$LOCALIZE[31574]</value>
         <value condition="String.IsEqual(Container(211).ListItem.Property(widgetaspect),Square)">$LOCALIZE[31230]</value>
+        <value condition="String.IsEqual(Container(211).ListItem.Property(widgetaspect),SquareMiddle)">$LOCALIZE[31362]</value>
         <value condition="String.IsEqual(Container(211).ListItem.Property(widgetaspect),SquareSmall)">$LOCALIZE[31361]</value>
         <value condition="String.IsEqual(Container(211).ListItem.Property(widgetaspect),SquareSmallSubmenu)">$LOCALIZE[31361]</value>
         <value condition="String.IsEqual(Container(211).ListItem.Property(widgetaspect),SquareMediumSubmenu)">$LOCALIZE[31362]</value>
@@ -792,6 +794,93 @@
             <bottom>-10</bottom>
             <include>Def_Layout_Addon_Status</include>
         </control>
+        <include content="Layout_Indicator_Status" condition="!Skin.HasSetting(hide.markers)">
+            <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
+        </include>
+        <include condition="Skin.HasSetting(enable.morewidget)">more</include>
+    </include>
+
+    <include name="Def_Widget_Square_Middle">
+        <control type="image">
+            <left>1</left>
+            <top>1</top>
+            <right>1</right>
+            <bottom>1</bottom>
+            <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
+            <visible>!Skin.HasSetting(global.hide.shadows)</visible>
+        </control>
+        <control type="image">
+            <left>10</left>
+            <top>10</top>
+            <right>10</right>
+            <bottom>10</bottom>
+            <texture colordiffuse="White70" border="12" background="true">common/box.png</texture>
+            <visible>!String.StartsWith(ListItem.Icon,Default)</visible>
+        </control>
+
+        <!-- ALL OTHERS -->
+
+        <control type="image">
+            <left>10</left>
+            <top>10</top>
+            <right>10</right>
+            <height>260</height>
+            <aspectratio scalediffuse="false">scale</aspectratio>
+            <texture diffuse="diffuse/widgetsquare_new_middle.png" background="true" fallback="DefaultMovies.png">$VAR[Image_Poster]</texture>
+            <visible>!String.StartsWith(ListItem.Icon,Default)</visible>
+            <visible>![String.IsEqual(ListItem.Path,favourites://) | Container.Content(favourites) | String.StartsWith(ListItem.Path,pvr://channels)]</visible>
+        </control>
+        <control type="image">
+            <left>10</left>
+            <top>10</top>
+            <right>10</right>
+            <height>260</height>
+            <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+            <texture diffuse="diffuse/widgetsquare_new_middle.png" background="true" colordiffuse="Dark1">$VAR[Image_Poster]</texture>
+            <visible>String.StartsWith(ListItem.Icon,Default)</visible>
+        </control>
+
+        <!-- FAVOURITES -->
+
+        <control type="image">
+            <left>10</left>
+            <top>10</top>
+            <right>10</right>
+            <height>260</height>
+            <aspectratio scalediffuse="false">keep</aspectratio>
+            <texture diffuse="diffuse/widgetsquare_new_middle.png" background="true" fallback="DefaultMovies.png">$VAR[Image_Poster]</texture>
+            <visible>String.IsEqual(ListItem.Path,favourites://) | Container.Content(favourites) | String.StartsWith(ListItem.Path,pvr://channels)</visible>
+            <visible>!String.StartsWith(ListItem.Icon,Default)</visible>
+        </control>
+
+        <!-- PVR - PROGRESS BAR -->
+
+        <control type="progress">
+            <left>20</left>
+            <right>20</right>
+            <height>8</height>
+            <bottom>55</bottom>
+            <info>ListItem.Progress</info>
+            <lefttexture colordiffuse="$VAR[Color_Focus]" border="4">osd/progress-left.png</lefttexture>
+            <midtexture colordiffuse="$VAR[Color_Focus]" border="4">osd/progress-end.png</midtexture>
+            <righttexture colordiffuse="$VAR[Color_Focus]" border="4">osd/progress-right.png</righttexture>
+            <visible>String.StartsWith(ListItem.Path,pvr://channels)</visible>
+            <visible>!String.IsEqual(ListItem.Path,pvr://channels/tv/</visible>
+        </control>
+
+        <!-- LABEL -->
+
+        <control type="label">
+            <bottom>3</bottom>
+            <left>35</left>
+            <right>35</right>
+            <align>center</align>
+            <font>InfoNetflix</font>
+            <textcolor>PanelWhite70</textcolor>
+            <selectedcolor>PanelWhite70</selectedcolor>
+            <label>$VAR[Label_Widget_Lign_1]</label>
+        </control>
+
         <include content="Layout_Indicator_Status" condition="!Skin.HasSetting(hide.markers)">
             <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
         </include>
@@ -1684,6 +1773,43 @@
                 <include condition="Skin.HasSetting(items.focus.zoom)">Animation_Focus_Zoom</include>
                 <height>$PARAM[height]</height>
                 <include content="Def_Widget_Square">
+                    <param name="aspectratio" value="$PARAM[aspectratio]"/>
+                    <param name="distance" value="$PARAM[distance]"/>
+                </include>
+                <include content="Layout_Widget_Focus">
+                    <param name="id" value="$PARAM[id]"/>
+                    <param name="glow_height" value="$PARAM[glow_height]" />
+                    <param name="glow_top" value="$PARAM[glow_top]"/>
+                    <param name="glow_zoom" value="$PARAM[glow_zoom]"/>
+                    <param name="glow_left" value="$PARAM[glow_left]"/>
+                    <param name="glow_right" value="$PARAM[glow_right]"/>
+                </include>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Layout_Widget_Square_Middle">
+        <param name="height" value="$PARAM[height]" default="325"/>
+        <param name="top" value="$PARAM[top]" default="305"/>
+        <definition>
+            <control type="group">
+                <height>$PARAM[height]</height>
+                <include content="Def_Widget_Square_Middle">
+                    <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
+                    <param name="aspectratio" value="$PARAM[aspectratio]"/>
+                    <param name="distance" value="$PARAM[distance]"/>
+                </include>
+            </control>
+        </definition>
+    </include>
+    <include name="Layout_Widget_Square_Middle_Focus">
+        <param name="height" value="$PARAM[height]" default="325"/>
+        <param name="top" value="$PARAM[top]" default="305"/>
+        <definition>
+            <control type="group">
+                <include condition="Skin.HasSetting(items.focus.zoom)">Animation_Focus_Zoom</include>
+                <height>$PARAM[height]</height>
+                <include content="Def_Widget_Square_Middle">
                     <param name="aspectratio" value="$PARAM[aspectratio]"/>
                     <param name="distance" value="$PARAM[distance]"/>
                 </include>

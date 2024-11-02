@@ -394,11 +394,12 @@
         <param name="ThumbnailSmall" default="false"/>
         <param name="PosterFanartSmall" default="false"/>
         <param name="Square" default="false"/>
+        <param name="SquareMiddle" default="false"/>
         <param name="SquareSmall" default="false"/>
         <param name="SquareSmallSubmenu" default="false"/>
         <param name="SquareMediumSubmenu" default="false"/>
         <definition>
-            <itemlayout height="325" width="222" condition="![$PARAM[Banner] | $PARAM[Thumbnail] | $PARAM[Fanart] | $PARAM[FanartSmall] | $PARAM[ThumbnailSmall] | $PARAM[PosterFanartSmall] | $PARAM[Square] | $PARAM[SquareSmall]]">
+            <itemlayout height="325" width="222" condition="![$PARAM[Banner] | $PARAM[Thumbnail] | $PARAM[Fanart] | $PARAM[FanartSmall] | $PARAM[ThumbnailSmall] | $PARAM[PosterFanartSmall] | $PARAM[Square] | $PARAM[SquareMiddle] | $PARAM[SquareSmall]]">
                 <control type="group">
                    <width>222</width>
                    <include content="Def_Left" condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(home.style.horizontal.clean)"><param name="left" value="70" /></include>
@@ -410,6 +411,16 @@
                    <width>325</width>
                    <include content="Def_Left" condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(home.style.horizontal.clean)"><param name="left" value="70" /></include>
                    <include content="Layout_Widget_Square">
+                        <param name="aspectratio" value="$PARAM[aspectratio]"/>
+                        <param name="distance" value="$PARAM[distance]"/>
+                   </include>
+                </control>
+            </itemlayout>
+            <itemlayout height="325" width="260" condition="$PARAM[SquareMiddle]">
+                <control type="group">
+                   <width>260</width>
+                   <include content="Def_Left" condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(home.style.horizontal.clean)"><param name="left" value="70" /></include>
+                   <include content="Layout_Widget_Square_Middle">
                         <param name="aspectratio" value="$PARAM[aspectratio]"/>
                         <param name="distance" value="$PARAM[distance]"/>
                    </include>
@@ -488,12 +499,13 @@
         <param name="ThumbnailSmall" default="false"/>
         <param name="PosterFanartSmall" default="false"/>
         <param name="Square" default="false"/>
+        <param name="SquareMiddle" default="false"/>
         <param name="SquareSmall" default="false"/>
         <param name="SquareSmallSubmenu" default="false"/>
         <param name="SquareMediumSubmenu" default="false"/>
         <definition>
 
-        <focusedlayout height="325" width="222" condition="![$PARAM[Banner] | $PARAM[Thumbnail] | $PARAM[Fanart] | $PARAM[FanartSmall] | $PARAM[ThumbnailSmall] | $PARAM[PosterFanartSmall] | $PARAM[Square] | $PARAM[SquareSmall]] | $EXP[Home_Is_Horizontal_Clean]">
+        <focusedlayout height="325" width="222" condition="![$PARAM[Banner] | $PARAM[Thumbnail] | $PARAM[Fanart] | $PARAM[FanartSmall] | $PARAM[ThumbnailSmall] | $PARAM[PosterFanartSmall] | $PARAM[Square] | $PARAM[SquareMiddle] | $PARAM[SquareSmall]] | $EXP[Home_Is_Horizontal_Clean]">
             <control type="group">
                <width>222</width>
                <include content="Def_Left" condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(home.style.horizontal.clean)"><param name="left" value="70" /></include>
@@ -512,6 +524,21 @@
                <width>325</width>
                <include content="Def_Left" condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(home.style.horizontal.clean)"><param name="left" value="70" /></include>
                <include content="Layout_Widget_Square_Focus">
+                    <param name="id" value="$PARAM[shortcutsid]"/>
+                    <param name="aspectratio" value="$PARAM[aspectratio]"/>
+                    <param name="distance" value="$PARAM[distance]"/>
+                    <param name="glow_left" value="1"/>
+                    <param name="glow_right" value="2"/>
+               </include>
+            </control>
+            <include condition="Skin.HasSetting(home.netflix.autoplay.trailer) + [$EXP[Home_Is_Horizontal_Flix] | $EXP[Home_Is_Vertical_Flix] | $EXP[Home_Is_Horizontal_Clean]]">SetAutoTrailerControl</include>
+        </focusedlayout>
+
+        <focusedlayout height="325" width="260" condition="$PARAM[SquareMiddle] + !$EXP[Home_Is_Horizontal_Clean]">
+            <control type="group">
+               <width>260</width>
+               <include content="Def_Left" condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(home.style.horizontal.clean)"><param name="left" value="70" /></include>
+               <include content="Layout_Widget_Square_Middle_Focus">
                     <param name="id" value="$PARAM[shortcutsid]"/>
                     <param name="aspectratio" value="$PARAM[aspectratio]"/>
                     <param name="distance" value="$PARAM[distance]"/>
