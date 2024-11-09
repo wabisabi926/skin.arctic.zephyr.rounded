@@ -32,11 +32,12 @@
 
     <include name="Def_View_ContextMenu_GroupList">
         <param name="height" default="350"/>
+        <param name="idlayout" default="50"/>
         <definition>
             <visible allowhiddenfocus="true">ControlGroup(9000).HasFocus() | ControlGroup(9001).HasFocus()</visible>
-            <onleft>50</onleft>
-            <onright>50</onright>
-            <onback>50</onback>
+            <onleft>$PARAM[idlayout]</onleft>
+            <onright>$PARAM[idlayout]</onright>
+            <onback>$PARAM[idlayout]</onback>
             <left>0</left>
             <top>16</top>
             <width>470</width>
@@ -70,18 +71,6 @@
                 <texture colordiffuse="White100" border="12">common/box.png</texture>
             </control>
         </definition>
-    </include>
-
-    <include name="Def_View_ContextMenu_GroupList_Hub">
-        <visible allowhiddenfocus="true">ControlGroup(9000).HasFocus()</visible>
-        <onleft>9500</onleft>
-        <onright>9500</onright>
-        <onback>9500</onback>
-        <left>8</left>
-        <top>16</top>
-        <width>510</width>
-        <height>350</height>
-        <itemgap>0</itemgap>
     </include>
 
     <include name="Def_View_ContextMenu_Arrows">
@@ -150,6 +139,7 @@
     <!-- OSD - CONTEXTE MENU PLAYER -->
 
     <include name="Def_View_Menu_Control_Buttons_UpDown">
+        <ondown condition="Window.IsVisible(Custom_1111_Hub_Movies.xml)">SetFocus(9296)</ondown>
         <ondown condition="Window.IsVisible(MyPlaylist.xml) + !MusicPartyMode.Enabled">SetFocus(20)</ondown>
         <ondown condition="Window.IsVisible(MyPlaylist.xml) + MusicPartyMode.Enabled">SetFocus(9001)</ondown>
         <ondown condition="Window.IsVisible(MyMusicNav.xml)">SetFocus(16)</ondown>

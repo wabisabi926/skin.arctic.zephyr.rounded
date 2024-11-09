@@ -2028,11 +2028,14 @@
         <!-- <oninfo condition="Container.Content(tvshows)">RunScript(plugin.video.themoviedb.helper,add_query=$INFO[ListItem.Label],type=tv,call_auto=1190)</oninfo> -->
     </include>
 
-    <!-- DEF HUB WINDOW -->
+    <!-- =================================== -->
+    <!--         DEF HUB WINDOW              -->
+    <!-- =================================== -->
 
     <include name="Def_Hub_Window">
         <include condition="Skin.HasSetting(enabled.tmdb.helper.service)">Defs_TMDbHelper_Loader</include>
         <include condition="!Skin.HasSetting(show.global.visualisation.background.video)">Hidden_Video_Window</include>
+
         <include>Background_Global</include>
         <include>Furniture_Header</include>
         <include>Furniture_Header_Busy</include>
@@ -2040,14 +2043,18 @@
         <include condition="!Skin.HasSetting(show.clock.date.weather.home.only)">Furniture_Footer_Clock_Right</include>
         <include>Furniture_Header_Clock_Right</include>
         <include>Furniture_Flags_Hub</include>
+
         <control type="group">
             <include>Animation_Common</include>
             <control type="group">
-               <top>PosterPad</top>
-               <left>SidePad</left>
-               <right>SidePad</right>
-               <height>640</height>
-               <control type="group">
+                <top>PosterPad</top>
+                <left>SidePad</left>
+                <right>SidePad</right>
+                <height>640</height>
+
+                <!-- FANART -->
+
+                <control type="group">
                     <control type="image">
                        <left>-9</left>
                        <width>1140</width>
@@ -2071,14 +2078,15 @@
                        <texture background="true" diffuse="diffuse/home-fanart.png">background/bg_fallback.jpg</texture>
                        <visible>!Integer.IsGreater(Container(9500).NumItems,0)</visible>
                     </control>
+
                     <control type="wraplist" id="9500">
                        <description>Widget</description>
                        <left>0</left>
                        <width>1122</width>
                        <top>0</top>
                        <bottom>0</bottom>
-                       <onright>9501</onright>
-                       <onleft>9000</onleft>
+                       <onright>60</onright>
+                       <onleft>9501</onleft>
                        <onup>9500</onup>
                        <ondown>9500</ondown>
                        <preloaditems>0</preloaditems>
@@ -2171,7 +2179,7 @@
                           <aligny>center</aligny>
                           <height>64</height>
                           <align>right</align>
-                          <font>Small</font>
+                          <font>InfoNetflix</font>
                           <textcolor>White100</textcolor>
                           <selectedcolor>White100</selectedcolor>
                           <label>$VAR[Label_Rating_9500]</label>
@@ -2269,16 +2277,20 @@
                         <visible>Control.HasFocus(9500)</visible>
                         </control>
                     </control>
-               </control>
-               <control type="group">
+                </control>
+
+                <!-- MENU -->
+
+                <control type="group">
                     <control type="list" id="9501">
                        <description>Widget</description>
-                       <left>1140</left>
+                       <left>1150</left>
+                       <width>610</width>
                        <right>0</right>
                        <top>0</top>
                        <height>640</height>
-                       <onleft>9500</onleft>
-                       <onright>60</onright>
+                       <onleft>60</onleft>
+                       <onright>9000</onright>
                        <onup>9501</onup>
                        <ondown>9501</ondown>
                        <pagecontrol>60</pagecontrol>
@@ -2287,7 +2299,8 @@
                        <include>Animation_Scrolltime_Views_List</include>
                        <include>Animation_FadeIn</include>
                        <include>Animation_FadeOut</include>
-                       <itemlayout width="620" height="80">
+
+                       <itemlayout height="80">
                           <control type="image">
                               <right>0</right>
                               <top>5</top>
@@ -2305,7 +2318,7 @@
                               <label>$INFO[ListItem.Label]</label>
                           </control>
                        </itemlayout>
-                       <focusedlayout width="620" height="80">
+                       <focusedlayout height="80">
                           <control type="group">
                               <visible>Control.HasFocus(9501)</visible>
                               <control type="image">
@@ -2355,45 +2368,31 @@
                     </control>
                </control>
             </control>
+
+            <!-- SCROLLBAR -->
+
             <control type="scrollbar" id="60">
-               <onback>9501</onback>
-               <centerright>60</centerright>
-               <top>PosterPad</top>
-               <height>PosterH</height>
-               <width>8</width>
-               <onleft>9501</onleft>
-               <onright>9501</onright>
-               <texturesliderbackground border="4" colordiffuse="Dark4">scrollbar/scrollv.png</texturesliderbackground>
-               <texturesliderbar border="4" colordiffuse="Dark3">scrollbar/scrollv.png</texturesliderbar>
-               <texturesliderbarfocus border="4">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/scrollv_h.png</texturesliderbarfocus>
-               <animation effect="fade" start="100" end="33" time="400" condition="!Control.HasFocus(60) + !Container.Scrolling">Conditional</animation>
+                <onleft>9500</onleft>
+                <include content="Object_Scrollbar_Views_Vertical">
+                    <param name="scrollid" value="60"/>
+                    <param name="idlayout" value="9501"/>
+                    <param name="centerleft" value="1220"/>
+                </include>
             </control>
         </control>
+
         <control type="group">
             <include>Animation_FadeIn</include>
             <include>Animation_FadeOut</include>
             <visible>ControlGroup(9000).HasFocus()</visible>
             <include>Background_Overlay</include>
         </control>
+
+        <!-- CONTEXT MENU -->
+
         <control type="group">
-            <height>483</height>
-            <include>Def_View_ContextMenu_Background</include>
-            <control type="group">
-               <control type="image">
-                    <description>arrow image</description>
-                    <centerleft>50%</centerleft>
-                    <top>-16</top>
-                    <include>Def_Arrow_Size</include>
-                    <texture colordiffuse="White70" flipy="true">common/arrow-small.png</texture>
-               </control>
-               <control type="image">
-                    <description>arrow image</description>
-                    <centerleft>50%</centerleft>
-                    <top>482</top>
-                    <include>Def_Arrow_Size</include>
-                    <texture colordiffuse="White70" flipy="false">common/arrow-small.png</texture>
-               </control>
-            </control>
+            <include content="Def_View_ContextMenu_Background"><param name="height" value="619" /></include>
+            <include content="Def_View_ContextMenu_Arrows"><param name="arrow_bottom" value="629" /></include>
 
             <control type="label">
                 <include>Def_Dialog_Header_Title</include>
@@ -2402,51 +2401,55 @@
             <include>Def_Dialog_Header_Logo</include>
             <include>Def_Dialog_Header_Line</include>
 
-            <control type="image">
-               <top>110</top>
-               <left>8</left>
-               <height>70</height>
-               <width>450</width>
-               <visible>ControlGroup(9000).HasFocus() + !ControlGroup(6150).HasFocus()</visible>
-               <animation effect="fade" start="100" end="100" delay="20" time="1">Visible</animation>
-               <animation effect="slide" end="0,70" time="0" condition="Integer.IsGreater(Container(9000).Position,0)">Conditional</animation>
-               <animation effect="slide" end="0,70" time="0" condition="Integer.IsGreater(Container(9000).Position,1)">Conditional</animation>
-               <animation effect="slide" end="0,70" time="0" condition="Integer.IsGreater(Container(9000).Position,2)">Conditional</animation>
-               <animation effect="slide" end="0,70" time="0" condition="Integer.IsGreater(Container(9000).Position,3)">Conditional</animation>
-               <animation effect="slide" end="0,70" time="0" condition="Integer.IsGreater(Container(9000).Position,4)">Conditional</animation>
-               <animation effect="slide" end="0,70" time="0" condition="Integer.IsGreater(Container(9000).Position,5)">Conditional</animation>
-            </control>
             <control type="grouplist" id="9000">
-               <height>350</height>
-               <top>110</top>
-               <usecontrolcoords>true</usecontrolcoords>
-               <include>Def_View_ContextMenu_GroupList_Hub</include>
-               <include>Animation_Scrolltime_Views_List</include>
-               <control type="radiobutton" id="9296">
+                <top>112</top>
+                <usecontrolcoords>true</usecontrolcoords>
+                <include content="Def_View_ContextMenu_GroupList"><param name="height" value="619" /><param name="idlayout" value="9501" /></include>
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <!-- NOW PLAYING -->
+
+                <control type="button" id="55555">
+                    <include>Def_Context_Menu_Label</include>
+                    <label>31540</label>
+                    <visible>Player.HasMedia | Player.Playing | Player.Paused</visible>
+                </control>
+
+                <include>Def_View_ContextMenu_Button_Playlist</include>
+
+                <!-- MINI PLAYER -->
+
+                <include>Def_View_ContextMenu_Player</include>
+
+                <!-- FILTER -->
+
+                <control type="button" id="55551">
+                    <include>Def_Context_Menu_Label</include>
+                    <label>31060</label>
+                </control>
+                <control type="radiobutton" id="9296">
                     <include>Def_Button_Gradient_Context</include>
                     <align>left</align>
                     <label>31264</label>
                     <selected>Skin.HasSetting(hub.showplot)</selected>
                     <onclick>Skin.ToggleSetting(hub.showplot)</onclick>
-               </control>
-               <control type="radiobutton" id="9584">
+                </control>
+                <control type="radiobutton" id="9584">
                     <include>Def_Button_Gradient_Context</include>
                     <label>31009</label>
                     <align>left</align>
                     <selected>Skin.HasSetting(enable.furniture.flags.colored)</selected>
                     <onclick>Skin.ToggleSetting(enable.furniture.flags.colored)</onclick>
                     <visible>!Skin.HasSetting(hide.furniture.flags) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
-               </control>
-               <control type="togglebutton" id="20">
+                </control>
+                <control type="togglebutton" id="20">
                     <description>Update</description>
                     <align>left</align>
                     <label>653</label>
                     <altlabel>13353</altlabel>
                     <include>Def_Button_Gradient_Context</include>
                     <usealttexture>Library.IsScanningVideo</usealttexture>
-               </control>
-
-               <include>Def_View_ContextMenu_Button_Playlist</include>
+                </control>
             </control>
         </control>
     </include>
