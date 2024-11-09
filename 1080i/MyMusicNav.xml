@@ -7,14 +7,16 @@
     <include condition="Skin.HasSetting(enabled.tmdb.helper.blur)">Action_Blur_Onload</include>
 
     <onload>RunScript(script.skinvariables,action=buildviews)</onload>
-    <onload>ClearProperty(SlideHomeNowPlaying,Home)</onload>
+    <onload>ClearProperty(WallMode,Home)</onload>
 
-    <onload condition="Control.HasFocus(5238)">Container.SetViewMode(523)</onload>
+    <onload>ClearProperty(SlideHomeNowPlaying,Home)</onload>
     <onload condition="Control.HasFocus(5228)">Container.SetViewMode(522)</onload>
+    <onload condition="Control.HasFocus(5238)">Container.SetViewMode(523)</onload>
 
     <onunload>ClearProperty(SlideHomeNowPlaying,Home)</onunload>
-    <onunload condition="Control.HasFocus(5238)">Container.SetViewMode(523)</onunload>
     <onunload condition="Control.HasFocus(5228)">Container.SetViewMode(522)</onunload>
+    <onunload condition="Control.HasFocus(5238)">Container.SetViewMode(523)</onunload>
+
     <onunload condition="!Player.HasAudio + !String.IsEmpty(Window(Home).Property(Encoded.MusicPlayer.Album))">alarmclock(ResetValue,ClearProperty(Encoded.MusicPlayer.Album),Home),00:00,silent)</onunload>
 
     <controls>
@@ -26,41 +28,38 @@
         <include>Object_Jumpbar_Horizontal</include>
 
         <include condition="$EXP[Exp_View_50_Include]">View_50_List_Square_Music</include>
-        <include condition="$EXP[Exp_View_57_Include]">View_57_List_Info_Music</include>
-        <include condition="$EXP[Exp_View_52_Include]">View_52_BigList_Pane</include>
-        <include condition="$EXP[Exp_View_523_Include]">View_523_Flix_Square</include>
-        <include condition="$EXP[Exp_View_500_Include]">View_500_Thumbnails</include>
-        <include condition="$EXP[Exp_View_547_Include]">View_547_ThumbnailsSmall</include>
-        <include condition="$EXP[Exp_View_522_Include]">View_522_Flix_Fanart</include>
-        <include condition="$EXP[Exp_View_555_Include]">View_555_Wall_Episodes</include>
-        <include condition="$EXP[Exp_View_557_Include]">View_557_Wall_Small_Episodes</include>
-        <include condition="$EXP[Exp_View_505_Include]">View_505_506_Wall</include>
-        <include condition="$EXP[Exp_View_508_Include]">View_508_Square_Wall</include>
-        <include condition="$EXP[Exp_View_514_Include]">View_514_Albums</include>
-        <include condition="$EXP[Exp_View_503_Include]">View_503_Poster_Square</include>
-        <include condition="$EXP[Exp_View_521_Include]">View_521_Flix_Poster</include>
-
         <include condition="$EXP[Exp_View_550_Include]">View_550_List_Square_Video</include>
         <include condition="$EXP[Exp_View_52_Include]">View_52_BigList_Pane</include>
-
+        <include condition="$EXP[Exp_View_555_Include]">View_555_Wall_Episodes</include>
+        <include condition="$EXP[Exp_View_557_Include]">View_557_Wall_Small_Episodes</include>
         <include condition="$EXP[Exp_View_517_Include]">View_517_WallSmall</include>
         <include condition="$EXP[Exp_View_55_Include] + Skin.HasSetting(55wall.showinfo)">View_55_Wall_Info</include>
         <include condition="$EXP[Exp_View_55_Include] + Skin.HasSetting(55wall.showposter)">View_55_Wall_Poster</include>
         <include condition="$EXP[Exp_View_55_Include] + !Skin.HasSetting(55wall.showinfo) + !Skin.HasSetting(55wall.showposter)">View_55_Wall</include>
         <include condition="$EXP[Exp_View_56_Include]">View_56_List_MediaInfo</include>
-
+        <include condition="$EXP[Exp_View_57_Include]">View_57_List_Info_Music</include>
+        <include condition="$EXP[Exp_View_500_Include]">View_500_Thumbnails</include>
+        <include condition="$EXP[Exp_View_547_Include]">View_547_ThumbnailsSmall</include>
         <include condition="$EXP[Exp_View_501_Include]">View_501_Fanart</include>
         <include condition="$EXP[Exp_View_507_Include]">View_507_Fanart2</include>
         <include condition="$EXP[Exp_View_512_Include]">View_512_Double_Banner</include>
         <include condition="$EXP[Exp_View_511_Include]">View_511_Double</include>
         <include condition="$EXP[Exp_View_509_Include]">View_509_Shift</include>
         <include condition="$EXP[Exp_View_519_Include]">View_519_Shift_Horizontal</include>
+        <include condition="$EXP[Exp_View_521_Include]">View_521_Flix_Poster</include>
         <include condition="$EXP[Exp_View_58_Include]">View_58_Cards</include>
         <include condition="$EXP[Exp_View_515_Include]">View_515_SideCards</include>
         <include condition="$EXP[Exp_View_53_Include]">View_53_Poster</include>
         <include condition="$EXP[Exp_View_524_Include]">View_524_Flix_List_Music</include>
+        <include condition="$EXP[Exp_View_522_Include]">View_522_Flix_Fanart</include>
         <include condition="$EXP[Exp_View_513_Include]">View_513_Shifted</include>
         <include condition="$EXP[Exp_View_527_Include]">View_527_List_V2</include>
+        <include condition="$EXP[Exp_View_523_Include]">View_523_Flix_Square</include>
+
+        <include condition="$EXP[Exp_View_505_Include]">View_505_506_Wall</include>
+        <include condition="$EXP[Exp_View_508_Include]">View_508_Square_Wall</include>
+        <include condition="$EXP[Exp_View_514_Include]">View_514_Albums</include>
+        <include condition="$EXP[Exp_View_503_Include]">View_503_Poster_Square</include>
 
         <include>Furniture_Header</include>
         <include>Furniture_Header_Busy</include>

@@ -13,31 +13,31 @@
                 <visible>$EXP[Exp_View_505]</visible>
                 <top>206</top>
                 <right>70</right>
-                <width>1120</width>
+                <width>1100</width>
                 <height>674</height>
                 <include>Def_Focus_Context_Menu_On_Right</include>
-                <onright>60</onright>
+                <onleft>1652</onleft>
                 <onup>505</onup>
                 <ondown>505</ondown>
                 <preloaditems>2</preloaditems>
-                <pagecontrol>60</pagecontrol>
+                <pagecontrol>1652</pagecontrol>
 
                 <viewtype label="31213">list</viewtype>
                 <include>Animation_Scrolltime_Views_List</include>
-                <itemlayout height="337" width="222">
+                <itemlayout height="337" width="218">
                     <control type="group">
-                        <height>222</height>
+                        <height>218</height>
                         <include content="Layout_Widget_Square">
                             <param name="id" value="505"/>
-                            <param name="height" value="222"/>
+                            <param name="height" value="218"/>
                             <param name="distance" value="10"/>
                         </include>
                     </control>
                     <control type="textbox">
-                        <top>222</top>
+                        <top>218</top>
                         <left>20</left>
                         <right>20</right>
-                        <height>106</height>
+                        <height>110</height>
                         <textcolor>Dark1</textcolor>
                         <font>Tiny</font>
                         <align>center</align>
@@ -45,12 +45,12 @@
                         <label>$INFO[ListItem.Label]</label>
                     </control>
                 </itemlayout>
-                <focusedlayout height="337" width="222">
+                <focusedlayout height="337" width="218">
                     <control type="group">
                         <height>222</height>
                         <include content="Layout_Widget_Square_Focus">
                             <param name="id" value="505"/>
-                            <param name="height" value="222"/>
+                            <param name="height" value="218"/>
                             <param name="distance" value="10"/>
                             <param name="glow_height" value="224"/>
                             <param name="glow_top" value="-1"/>
@@ -58,10 +58,10 @@
                         </include>
                     </control>
                     <control type="textbox">
-                        <top>222</top>
+                        <top>218</top>
                         <left>20</left>
                         <right>20</right>
-                        <height>106</height>
+                        <height>110</height>
                         <textcolor>Dark1</textcolor>
                         <font>Tiny</font>
                         <align>center</align>
@@ -70,14 +70,18 @@
                     </control>
                 </focusedlayout>
             </control>
-            <include>Object_Scrollbar_View_PVR</include>
+
+            <control type="scrollbar" id="1652">
+                <include content="Object_Scrollbar_Views_Vertical">
+                    <param name="scrollid" value="1652"/>
+                    <param name="idlayout" value="505"/>
+                    <param name="centerleft" value="730"/>
+                </include>
+            </control>
 
             <include content="Def_Hidden_List_Artist_Album_Count"><param name="id" value="505" /></include>
-
-            <control type="group" description="Poster">
-                <width>PosterH</width>
-                <include content="57_List_Info"></include>
-            </control>
+            <include content="524_Fanart"><param name="top" value="206"/></include>
+            <include content="57_List_Info"></include>
         </control>
 
         <control type="group">
@@ -93,11 +97,11 @@
                 <width>1120</width>
                 <height>660</height>
                 <include>Def_Focus_Context_Menu_On_Right</include>
-                <onright>60</onright>
+                <onleft>1657</onleft>
                 <onup>506</onup>
                 <ondown>506</ondown>
                 <preloaditems>2</preloaditems>
-                <pagecontrol>60</pagecontrol>
+                <pagecontrol>1657</pagecontrol>
 
                 <viewtype label="536">list</viewtype>
                 <include>Animation_Scrolltime_Views_List</include>
@@ -119,7 +123,14 @@
                     </include>
                 </focusedlayout>
             </control>
-            <include>Object_Scrollbar_View_PVR</include>
+
+            <control type="scrollbar" id="1657">
+                <include content="Object_Scrollbar_Views_Vertical">
+                    <param name="scrollid" value="1657"/>
+                    <param name="idlayout" value="506"/>
+                </include>
+            </control>
+
             <control type="group" description="Poster">
                 <left>SidePad</left>
                 <top>PosterPad</top>
@@ -168,11 +179,11 @@
                 <left>70</left>
                 <height>674</height>
                 <include>Def_Focus_Context_Menu_On_Right</include>
-                <onright>60</onright>
+                <onleft>1656</onleft>
                 <onup>508</onup>
                 <ondown>508</ondown>
                 <preloaditems>2</preloaditems>
-                <pagecontrol>60</pagecontrol>
+                <pagecontrol>1656</pagecontrol>
 
                 <viewtype label="536">list</viewtype>
                 <include>Animation_Scrolltime_Views_List</include>
@@ -220,7 +231,12 @@
                     </control>
                 </focusedlayout>
             </control>
-            <include>Object_Scrollbar_View_PVR</include>
+            <control type="scrollbar" id="1656">
+                <include content="Object_Scrollbar_Views_Vertical">
+                    <param name="scrollid" value="1656"/>
+                    <param name="idlayout" value="508"/>
+                </include>
+            </control>
 
             <include content="Def_Hidden_List_Artist_Album_Count"><param name="id" value="508" /></include>
         </control>

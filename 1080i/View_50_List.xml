@@ -199,10 +199,13 @@
 
                     <top>PosterPad</top>
                     <height>PosterH</height>
+
                     <include condition="Skin.HasSetting(hide.poster.view.50)" content="Def_Left"><param name="left" value="SidePad" /></include>
+                    <include condition="Skin.HasSetting(hide.poster.view.50)" content="Def_Width"><param name="width" value="1750" /></include>
+
                     <include condition="!Skin.HasSetting(hide.poster.view.50)" content="Def_Left"><param name="left" value="ListX" /></include>
-                    <include condition="Skin.HasSetting(hide.poster.view.50)" content="Def_Width"><param name="width" value="1760" /></include>
                     <include condition="!Skin.HasSetting(hide.poster.view.50)" content="Def_Width"><param name="width" value="ListW" /></include>
+
                     <right>SidePad</right>
                     <include>Def_Focus_Context_Menu_On_Right</include>
                     <onleft>1627</onleft>
@@ -211,23 +214,26 @@
                     <pagecontrol>1627</pagecontrol>
                     <viewtype label="535">list</viewtype>
 
-                    <itemlayout condition="!Skin.HasSetting(enable.view.5x.51x.extended.list)" width="auto" height="64">
+                    <itemlayout condition="!Skin.HasSetting(enable.view.5x.51x.extended.list)" height="64">
                         <include>layout_list_item_video</include>
                     </itemlayout>
-                    <focusedlayout condition="!Skin.HasSetting(enable.view.5x.51x.extended.list)"  width="auto" height="64">
+                    <focusedlayout condition="!Skin.HasSetting(enable.view.5x.51x.extended.list)" height="64">
                         <include>layout_list_focus_video</include>
                     </focusedlayout>
 
-                    <itemlayout condition="Skin.HasSetting(enable.view.5x.51x.extended.list)" width="auto" height="91.4">
+                    <itemlayout condition="Skin.HasSetting(enable.view.5x.51x.extended.list)" height="91.4">
                         <include>layout_list_item_video_info</include>
                     </itemlayout>
-                    <focusedlayout condition="Skin.HasSetting(enable.view.5x.51x.extended.list)" width="auto" height="91.4">
+                    <focusedlayout condition="Skin.HasSetting(enable.view.5x.51x.extended.list)" height="91.4">
                         <include>layout_list_focus_video_info</include>
                     </focusedlayout>
-
                 </control>
                 <control type="scrollbar" id="1627">
-                    <include content="Object_Scrollbar_Views_Vertical">
+                    <include content="Object_Scrollbar_Views_Vertical" condition="!Skin.HasSetting(hide.poster.view.50)">
+                        <param name="scrollid" value="1627"/>
+                        <param name="centerleft" value="530"/>
+                    </include>
+                    <include content="Object_Scrollbar_Views_Vertical" condition="Skin.HasSetting(hide.poster.view.50)">
                         <param name="scrollid" value="1627"/>
                     </include>
                 </control>
@@ -257,30 +263,38 @@
                     <height>PosterH</height>
                     <left>ListSquareX</left>
                     <right>SidePad</right>
+                    <width>ListSquareW</width>
+
                     <include>Def_Focus_Context_Menu_On_Right</include>
-                    <onright>60</onright>
+                    <onleft>1660</onleft>
                     <onup>550</onup>
                     <ondown>550</ondown>
-                    <pagecontrol>60</pagecontrol>
+                    <pagecontrol>1660</pagecontrol>
                     <viewtype label="535">list</viewtype>
                     <include>Animation_Scrolltime_Views_List</include>
 
-                    <itemlayout condition="Skin.HasSetting(disable.view.550.extended.list.video)" width="ListSquareW" height="64">
+                    <itemlayout condition="Skin.HasSetting(disable.view.550.extended.list.video)" height="64">
                         <include>layout_list_item_video</include>
                     </itemlayout>
-                    <focusedlayout condition="Skin.HasSetting(disable.view.550.extended.list.video)" width="ListSquareW" height="64">
+                    <focusedlayout condition="Skin.HasSetting(disable.view.550.extended.list.video)" height="64">
                         <include>layout_list_focus_video</include>
                     </focusedlayout>
 
-                    <itemlayout condition="!Skin.HasSetting(disable.view.550.extended.list.video)" width="ListSquareW" height="91.4">
+                    <itemlayout condition="!Skin.HasSetting(disable.view.550.extended.list.video)" height="91.4">
                         <include>layout_list_item_video_info</include>
                     </itemlayout>
-                    <focusedlayout condition="!Skin.HasSetting(disable.view.550.extended.list.video)" width="ListSquareW" height="91.4">
+                    <focusedlayout condition="!Skin.HasSetting(disable.view.550.extended.list.video)" height="91.4">
                         <include>layout_list_focus_video_info</include>
                     </focusedlayout>
 
                 </control>
-                <include>Object_Scrollbar_View_PVR</include>
+                <control type="scrollbar" id="1660">
+                    <include content="Object_Scrollbar_Views_Vertical">
+                        <param name="scrollid" value="1660"/>
+                        <param name="idlayout" value="550"/>
+                        <param name="centerleft" value="742"/>
+                    </include>
+                </control>
             </control>
             <include>View_50_SidePoster_Square</include>
         </control>
@@ -462,10 +476,11 @@
                     <left>ListSquareX</left>
                     <right>SidePad</right>
                     <include>Def_Focus_Context_Menu_On_Right</include>
-                    <onright>60</onright>
+                    <onleft>1658</onleft>
                     <onup>50</onup>
                     <ondown>50</ondown>
-                    <pagecontrol>60</pagecontrol>
+                    <pagecontrol>1658</pagecontrol>
+
                     <viewtype label="535">list</viewtype>
                     <include>Animation_Scrolltime_Views_List</include>
                     <itemlayout condition="!Skin.HasSetting(enable.view.5x.51x.extended.list)" width="ListSquareW" height="64">
@@ -481,7 +496,12 @@
                         <include>layout_list_focus_playlist_info</include>
                     </focusedlayout>
                 </control>
-                <include>Object_Scrollbar_View_PVR</include>
+
+                <control type="scrollbar" id="1658">
+                    <include content="Object_Scrollbar_Views_Vertical">
+                        <param name="scrollid" value="1658"/>
+                    </include>
+                </control>
             </control>
             <include>View_50_SidePoster_Square</include>
         </control>
