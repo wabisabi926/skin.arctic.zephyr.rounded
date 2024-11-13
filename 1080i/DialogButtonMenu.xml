@@ -256,7 +256,7 @@
                         <width>100%</width>
                         <height>100%</height>
                         <texture>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texture>
-                        <animation effect="fade" start="100" end="50" condition="!Control.HasFocus(3110)">Conditional</animation>
+                        <animation effect="fade" start="100" end="0" condition="!Control.HasFocus(3110)">Conditional</animation>
                     </control>
                     <control type="image">
                         <left>22</left>
@@ -264,6 +264,7 @@
                         <width>56</width>
                         <height>56</height>
                         <texture colordiffuse="Selected">$INFO[Container(300).ListItem.Icon]</texture>
+                        <visible>Control.HasFocus(3110)</visible>
                     </control>
                     <control type="label">
                         <align>left</align>
@@ -275,6 +276,27 @@
                         <textcolor>Selected</textcolor>
                         <include>Def_Button_Context</include>
                         <label>$INFO[ListItem.Label]</label>
+                        <visible>Control.HasFocus(3110)</visible>
+                    </control>
+                    <control type="image">
+                        <left>22</left>
+                        <top>8</top>
+                        <width>56</width>
+                        <height>56</height>
+                        <texture colordiffuse="Dark2">$INFO[Container(300).ListItem.Icon]</texture>
+                        <visible>!Control.HasFocus(3110)</visible>
+                    </control>
+                    <control type="label">
+                        <align>left</align>
+                        <left>90</left>
+                        <aligny>center</aligny>
+                        <width>100%</width>
+                        <centertop>50%</centertop>
+                        <height>100%</height>
+                        <textcolor>Dark2</textcolor>
+                        <include>Def_Button_Context</include>
+                        <label>$INFO[ListItem.Label]</label>
+                        <visible>!Control.HasFocus(3110)</visible>
                     </control>
                 </focusedlayout>
 
@@ -290,7 +312,7 @@
                 <param name="onleft" value="3110"/>
                 <param name="onright" value="3110"/>
                 <param name="height" value="560"/>
-                <param name="centerright" value="13"/>
+                <param name="centerright" value="12"/>
             </include>
         </control>
     </controls>
