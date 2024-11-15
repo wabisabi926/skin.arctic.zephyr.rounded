@@ -232,7 +232,7 @@
                 <include>Animation_FadeIn</include>
                 <control type="group">
                     <visible>Container($PARAM[controlid]).IsUpdating | $EXP[TMDbHelper_Is_Updating]</visible>
-                    <include>Animation_Delay_FadeIn</include>
+                    <include>Animation_Delay_FadeIn_200</include>
                     <include>Animation_FadeOut</include>
                     <include content="Object_Spinner_Busy">
                         <param name="haslabel" value="true" />
@@ -285,7 +285,7 @@
                 <left>-291</left>
                 <top>70</top>
                 <visible>Control.HasFocus(50) + !Container(50).OnNext + !Container(50).OnPrevious + !ListItem.IsCollection</visible>
-                <include>Animation_Delay_FadeIn</include>
+                <include>Animation_Delay_FadeIn_200</include>
                 <control type="image">
                     <include>Def_Arrow_Size</include>
                     <texture colordiffuse="Dark1" flipy="true">common/arrow-small.png</texture>
@@ -935,7 +935,7 @@
                 <visible>$PARAM[visible]</visible>
                 <include>Animation_FadeOut_DialogInfo</include>
                 <include>Animation_FadeIn_DialogWIP</include>
-                <include>Animation_Delay_FadeIn</include>
+                <include>Animation_Delay_FadeIn_200</include>
                 <animation effect="fade" start="0" end="100" time="350" tween="sine" easing="out" reversible="false">Visible</animation>
                 <animation effect="fade" start="100" end="0" tween="cubic" easing="out" time="650" reversible="false">Hidden</animation>
 
@@ -1543,7 +1543,7 @@
                     <right>23</right>
                     <bottom>3</bottom>
                     <texture colordiffuse="$VAR[Color_Focus]" border="18">common/selectbox.png</texture>
-                    <include>Animation_Delay_FadeIn</include>
+                    <include>Animation_Delay_FadeIn_200</include>
                     <!-- <visible>Window.IsVisible(DialogMusicInfo.xml) | Window.IsVisible(DialogVideoInfo.xml) | Control.HasFocus(50) </visible> -->
                 </control>
                 <control type="image">
@@ -1552,7 +1552,7 @@
                     <right>23</right>
                     <bottom>3</bottom>
                     <texture border="18">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/selectbox_h.png</texture>
-                    <include>Animation_Delay_FadeIn</include>
+                    <include>Animation_Delay_FadeIn_200</include>
                     <!-- <visible>Window.IsVisible(DialogMusicInfo.xml) | Window.IsVisible(DialogVideoInfo.xml) | Control.HasFocus(50) </visible> -->
                 </control>
                 <control type="image">
@@ -1611,7 +1611,7 @@
             <visible>$PARAM[visible]</visible>
             <top>$PARAM[arrowtop]</top>
             <visible>Control.HasFocus($PARAM[controlid]) + !Container($PARAM[controlid]).OnNext + !Container($PARAM[controlid]).OnPrevious + Integer.IsGreater(Container($PARAM[controlid]).NumItems,1)</visible>
-            <include>Animation_Delay_FadeIn</include>
+            <include>Animation_Delay_FadeIn_200</include>
             <control type="image">
                 <left>$PARAM[arrowleft]</left>
                 <include>Def_Arrow_Size</include>
@@ -1768,7 +1768,7 @@
                     <aspectratio>keep</aspectratio>
                     <texture colordiffuse="88ffffff">common/lupe.png</texture>
                     <visible>Control.HasFocus($PARAM[controlid])</visible>
-                    <include>Animation_Delay_FadeIn</include>
+                    <include>Animation_Delay_FadeIn_200</include>
                 </control>
             </control>
         </control>
