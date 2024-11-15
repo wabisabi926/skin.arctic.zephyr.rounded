@@ -43,15 +43,6 @@
         </animation>
     </include>
 
-    <include name="Animation_Foreground_FadeInOut">
-        <animation type="WindowOpen" reversible="false">
-            <effect type="fade" start="0" end="100" time="400" delay="0" tween="sine" easing="out"/>
-        </animation>
-        <animation type="WindowClose" reversible="false">
-            <effect type="fade" start="100" end="0" time="400" delay="0" tween="sine" easing="out"/>
-        </animation>
-    </include>
-
     <include name="Animation_Slide_Home_Dialog">
         <animation type="Conditional" condition="!$EXP[Home_Is_Horizontal_Clean] + Window.IsVisible(Home) + !Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml)" reversible="true">
             <effect type="slide" start="0,0" end="0,-38" tween="sine" easing="out" time="350" delay="0"/>
@@ -170,28 +161,121 @@
         <animation effect="fade" end="0" start="100" time="300">WindowClose</animation>
     </include>
 
+    <!-- ANIMATION FADE IN / OUT -->
+
+    <include name="Animation_Delay_FadeIn_200">
+        <animation effect="fade" start="0" end="100" time="650" delay="200" tween="cubic" easing="inout" reversible="false">Visible</animation>
+        <animation effect="fade" start="0" end="100" time="650" delay="200" tween="cubic" easing="inout">WindowOpen</animation>
+    </include>
+
+    <include name="Animation_Delay_FadeIn_300">
+        <animation effect="fade" start="0" end="100" time="650" delay="300" tween="cubic" easing="inout" reversible="false">Visible</animation>
+        <animation effect="fade" start="0" end="100" time="650" delay="300" tween="cubic" easing="inout">WindowOpen</animation>
+    </include>
+
+    <include name="Animation_Delay_FadeIn_600">
+        <animation effect="fade" start="0" end="100" time="650" delay="600" tween="cubic" easing="inout" reversible="false">Visible</animation>
+        <animation effect="fade" start="0" end="100" time="650" delay="600" tween="cubic" easing="inout">WindowOpen</animation>
+    </include>
+
+    <include name="Animation_Delay_FadeIn_1200">
+        <animation effect="fade" start="0" end="100" time="650" delay="1200" tween="cubic" easing="inout" reversible="false">Visible</animation>
+        <animation effect="fade" start="0" end="100" time="650" delay="1200" tween="cubic" easing="inout">WindowOpen</animation>
+    </include>
+
     <include name="Animation_FadeOut_Home_Fullscreen_Widget">
-        <include condition="$EXP[Home_Is_Horizontal_Flix] | $EXP[Home_Is_Vertical_Flix]" content="Animation_FadeOut_Home_Fullscreen_Widget_Type3">
+        <include condition="$EXP[Home_Is_Horizontal_Flix] | $EXP[Home_Is_Vertical_Flix]" content="Animation_FadeOut_Home_Fullscreen_Widget_150">
             <param name="condition" value="$PARAM[condition] + !$EXP[Home_Menu_Is_Focus] + !Control.HasFocus(9099) + !Control.HasFocus(2011)"/>
         </include>
-        <include condition="!Skin.HasSetting(home.style.horizontal.clean) + !Skin.HasSetting(home.style.flix)" content="Animation_FadeOut_Home_Fullscreen_Widget_Type1">
+        <include condition="!Skin.HasSetting(home.style.horizontal.clean) + !Skin.HasSetting(home.style.flix)" content="Animation_FadeOut_Home_Fullscreen_Widget_250">
             <param name="condition" value="$PARAM[condition] + !$EXP[Home_Menu_Is_Focus] + !Control.HasFocus(9099) + !Control.HasFocus(2011)"/>
         </include>
-        <include condition="$EXP[Home_Is_Horizontal_Clean]" content="Animation_FadeOut_Home_Fullscreen_Widget_Type2">
+        <include condition="$EXP[Home_Is_Horizontal_Clean]" content="Animation_FadeOut_Home_Fullscreen_Widget_200">
             <param name="condition" value="$PARAM[condition] + !$EXP[Home_Menu_Is_Focus] + !Control.HasFocus(9099) + !Control.HasFocus(2011)"/>
         </include>
     </include>
 
-    <include name="Animation_FadeOut_Home_Fullscreen_Widget_Type1">
+    <include name="Animation_FadeOut_Home_Fullscreen_Widget_250">
         <animation effect="fade" end="33" start="100" time="250" condition="$PARAM[condition]">Conditional</animation>
     </include>
 
-    <include name="Animation_FadeOut_Home_Fullscreen_Widget_Type2">
+    <include name="Animation_FadeOut_Home_Fullscreen_Widget_200">
         <animation effect="fade" end="0" start="100" time="200" condition="$PARAM[condition]">Conditional</animation>
     </include>
 
-    <include name="Animation_FadeOut_Home_Fullscreen_Widget_Type3">
+    <include name="Animation_FadeOut_Home_Fullscreen_Widget_150">
         <animation effect="fade" end="0" start="100" time="150" condition="$PARAM[condition]">Conditional</animation>
+    </include>
+
+    <include name="Animation_FadeIn">
+        <animation effect="fade" start="0" end="100" time="350" tween="cubic" easing="inout">Visible</animation>
+        <animation effect="fade" start="0" end="100" time="350" tween="cubic" easing="inout">WindowOpen</animation>
+    </include>
+
+    <include name="Animation_FadeIn_WeatherDelay">
+        <animation effect="fade" start="0" end="100" time="350" tween="cubic" easing="inout" reversible="false" delay="200">Visible</animation>
+    </include>
+
+    <include name="Animation_FadeIn_Weather">
+        <animation effect="fade" start="0" end="100" time="350" tween="cubic" easing="inout" reversible="false">Visible</animation>
+    </include>
+
+    <include name="Animation_FadeOut_Weather">
+        <animation effect="fade" end="0" start="100" time="150" reversible="false">Hidden</animation>
+    </include>
+
+    <include name="Animation_FadeIn_DialogInfo">
+        <animation effect="fade" start="0" end="100" time="250" delay="100" tween="cubic" easing="inout">Visible</animation>
+    </include>
+
+    <include name="Animation_FadeOut_DialogInfo">
+        <animation effect="fade" end="0" start="100" time="150">Hidden</animation>
+    </include>
+
+    <include name="Animation_FadeOut">
+        <animation effect="fade" end="0" start="100" time="150">Hidden</animation>
+        <animation effect="fade" end="0" start="100" time="150">WindowClose</animation>
+    </include>
+
+    <include name="Animation_FadeIn_Slide">
+        <animation type="Visible" reversible="false">
+            <effect type="fade" start="0" end="100" time="300" delay="150"/>
+            <effect type="slide" start="0,-48" end="0" center="auto" tween="back" easing="out" time="450" delay="150"/>
+        </animation>
+        <animation type="WindowOpen" reversible="false">
+            <effect type="fade" start="0" end="100" time="300" delay="150"/>
+            <effect type="slide" start="0,-48" end="0" center="auto" tween="back" easing="out" time="450" delay="150"/>
+        </animation>
+    </include>
+
+    <include name="Animation_FadeIn_Slide_View_Flix">
+        <animation type="Visible">
+            <effect type="slide" end="0,0" start="0,250" delay="100" time="400" tween="quadratic" />
+            <effect type="fade" end="100" start="0" time="400" delay="100" tween="sine" easing="out"/>
+        </animation>
+        <animation type="Hidden">
+            <effect type="slide" end="0,-250" start="0,0" delay="100" time="400" tween="quadratic" />
+            <effect type="fade" end="0" start="100" time="400" delay="100" tween="sine" easing="out"/>
+        </animation>
+    </include>
+
+    <include name="Animation_FadeIn_Slide_Wall">
+        <!-- <animation type="WindowOpen"> -->
+            <!-- <effect type="slide" end="0,0" start="0,500" delay="100" time="400" tween="quadratic" /> -->
+            <!-- <effect type="fade" end="100" start="0" time="600" delay="100" tween="sine" easing="out"/> -->
+        <!-- </animation> -->
+        <!-- <animation type="WindowClose"> -->
+            <!-- <effect type="slide" end="0,-500" start="0,0" delay="100" time="400" tween="quadratic" /> -->
+            <!-- <effect type="fade" end="0" start="100" time="600" delay="100" tween="sine" easing="out"/> -->
+        <!-- </animation> -->
+        <animation type="Visible">
+            <effect type="slide" end="0,0" start="0,500" delay="100" time="400" tween="quadratic" />
+            <effect type="fade" end="100" start="0" time="600" delay="100" tween="sine" easing="out"/>
+        </animation>
+        <animation type="Hidden">
+            <effect type="slide" end="0,500" start="0,0" delay="100" time="400" tween="quadratic" />
+            <effect type="fade" end="0" start="100" time="600" delay="100" tween="sine" easing="out"/>
+        </animation>
     </include>
 
     <!-- ANIMATION POSTER -->
@@ -367,74 +451,12 @@
         <animation effect="zoom" start="50,50,100,100" end="50,50,60,90" pulse="true" delay="30000" time="400" condition="true">Conditional</animation>
     </include>
 
-    <include name="Animation_FadeIn">
-        <animation effect="fade" start="0" end="100" time="350" tween="cubic" easing="inout">Visible</animation>
-        <animation effect="fade" start="0" end="100" time="350" tween="cubic" easing="inout">WindowOpen</animation>
-    </include>
-
-    <include name="Animation_FadeIn_WeatherDelay">
-        <animation effect="fade" start="0" end="100" time="350" tween="cubic" easing="inout" reversible="false" delay="200">Visible</animation>
-    </include>
-
-    <include name="Animation_FadeIn_Weather">
-        <animation effect="fade" start="0" end="100" time="350" tween="cubic" easing="inout" reversible="false">Visible</animation>
-    </include>
-
-    <include name="Animation_FadeOut_Weather">
-        <animation effect="fade" end="0" start="100" time="150" reversible="false">Hidden</animation>
-    </include>
-
-    <include name="Animation_FadeIn_DialogInfo">
-        <animation effect="fade" start="0" end="100" time="250" delay="100" tween="cubic" easing="inout">Visible</animation>
-    </include>
-
-    <include name="Animation_FadeOut_DialogInfo">
-        <animation effect="fade" end="0" start="100" time="150">Hidden</animation>
-    </include>
-
     <include name="Animation_PosterSlide">
         <animation condition="[String.IsEqual(Window.Property(moviecontent),1) + !String.IsEmpty(ListItem.Art(discart)) + [[Skin.HasSetting(Show.Discart.Video.Info) + Window.IsVisible(DialogVideoInfo.xml)] | [Skin.HasSetting(Show.Discart.Music.Info) + Window.IsVisible(DialogMusicInfo.xml)]]]" effect="slide" end="0,80" start="0,0" time="300">Conditional</animation>
     </include>
 
     <include name="Animation_PosterSlideSquare">
         <animation condition="[Control.HasFocus(12) | String.IsEqual(Window.Property(ShowDisc),1)] + String.IsEmpty(ListItem.Art(discart)) + !String.IsEmpty(ListItem.Art(discart))" effect="slide" end="0,80" start="0,0" time="300">Conditional</animation>
-    </include>
-
-    <include name="Animation_CDSlideSquare">
-        <animation condition="Control.HasFocus(12) + !String.IsEmpty(ListItem.Art(discart))" reversible="false" effect="slide" start="0,0" end="0,-130" delay="0" time="400" tween="quadratic" easing="out">Conditional</animation>
-        <animation type="Hidden">
-            <effect type="slide" reversible="false" start="0,-130" end="0,0" delay="0" time="200" tween="quadratic" easing="out"/>
-        </animation>
-    </include>
-
-    <include name="Animation_Delay_FadeIn_200">
-        <animation effect="fade" start="0" end="100" time="650" delay="200" tween="cubic" easing="inout" reversible="false">Visible</animation>
-        <animation effect="fade" start="0" end="100" time="650" delay="200" tween="cubic" easing="inout">WindowOpen</animation>
-    </include>
-
-    <include name="Animation_Delay_FadeIn_300">
-        <animation effect="fade" start="0" end="100" time="650" delay="300" tween="cubic" easing="inout" reversible="false">Visible</animation>
-        <animation effect="fade" start="0" end="100" time="650" delay="300" tween="cubic" easing="inout">WindowOpen</animation>
-    </include>
-
-    <include name="Animation_Delay_FadeIn_600">
-        <animation effect="fade" start="0" end="100" time="650" delay="600" tween="cubic" easing="inout" reversible="false">Visible</animation>
-        <animation effect="fade" start="0" end="100" time="650" delay="600" tween="cubic" easing="inout">WindowOpen</animation>
-    </include>
-
-    <include name="Animation_Delay_FadeIn_510">
-        <animation effect="fade" start="0" end="100" time="650" delay="200" tween="cubic" easing="inout" reversible="false">Visible</animation>
-        <animation effect="fade" start="0" end="100" time="650" delay="200" tween="cubic" easing="inout">WindowOpen</animation>
-    </include>
-
-    <include name="Animation_Delay_FadeIn_1200">
-        <animation effect="fade" start="0" end="100" time="650" delay="1200" tween="cubic" easing="inout" reversible="false">Visible</animation>
-        <animation effect="fade" start="0" end="100" time="650" delay="1200" tween="cubic" easing="inout">WindowOpen</animation>
-    </include>
-
-    <include name="Animation_FadeFromHome">
-        <animation effect="fade" start="0" end="100" time="350" tween="cubic" easing="inout" condition="Window.Previous(Home)">WindowOpen</animation>
-        <animation effect="fade" end="0" start="100" time="350" tween="cubic" easing="inout" condition="Window.Next(Home)">WindowClose</animation>
     </include>
 
     <include name="Animation_ZoomIn">
@@ -454,10 +476,6 @@
         </definition>
     </include>
 
-    <include name="Animation_FadeIn_DelayNew">
-        <animation effect="fade" start="0" end="100" time="50" delay="200">Visible</animation>
-    </include>
-
     <include name="Animation_FadeIn_Delay">
         <animation type="Visible">
             <effect type="fade" start="0" end="100" time="350" delay="300" tween="cubic" easing="inout"/>
@@ -471,56 +489,6 @@
             <effect type="fade" start="0" end="100" time="350" delay="300" tween="cubic" easing="inout"/>
         </animation>
         <animation effect="fade" start="100" end="0" time="150" tween="cubic" easing="inout">WindowOpen</animation>
-    </include>
-
-    <include name="Animation_FadeOut">
-        <animation effect="fade" end="0" start="100" time="150">Hidden</animation>
-        <animation effect="fade" end="0" start="100" time="150">WindowClose</animation>
-    </include>
-
-    <include name="Animation_FadeOut2">
-        <animation effect="fade" end="0" start="100" time="450" reversible="false">Hidden</animation>
-    </include>
-
-    <include name="Animation_FadeIn_Slide">
-        <animation type="Visible" reversible="false">
-            <effect type="fade" start="0" end="100" time="300" delay="150"/>
-            <effect type="slide" start="0,-48" end="0" center="auto" tween="back" easing="out" time="450" delay="150"/>
-        </animation>
-        <animation type="WindowOpen" reversible="false">
-            <effect type="fade" start="0" end="100" time="300" delay="150"/>
-            <effect type="slide" start="0,-48" end="0" center="auto" tween="back" easing="out" time="450" delay="150"/>
-        </animation>
-    </include>
-
-    <include name="Animation_FadeIn_Slide_View_Flix">
-        <animation type="Visible">
-            <effect type="slide" end="0,0" start="0,250" delay="100" time="400" tween="quadratic" />
-            <effect type="fade" end="100" start="0" time="400" delay="100" tween="sine" easing="out"/>
-        </animation>
-        <animation type="Hidden">
-            <effect type="slide" end="0,-250" start="0,0" delay="100" time="400" tween="quadratic" />
-            <effect type="fade" end="0" start="100" time="400" delay="100" tween="sine" easing="out"/>
-        </animation>
-    </include>
-
-    <include name="Animation_FadeIn_Slide_Wall">
-        <!-- <animation type="WindowOpen"> -->
-            <!-- <effect type="slide" end="0,0" start="0,500" delay="100" time="400" tween="quadratic" /> -->
-            <!-- <effect type="fade" end="100" start="0" time="600" delay="100" tween="sine" easing="out"/> -->
-        <!-- </animation> -->
-        <!-- <animation type="WindowClose"> -->
-            <!-- <effect type="slide" end="0,-500" start="0,0" delay="100" time="400" tween="quadratic" /> -->
-            <!-- <effect type="fade" end="0" start="100" time="600" delay="100" tween="sine" easing="out"/> -->
-        <!-- </animation> -->
-        <animation type="Visible">
-            <effect type="slide" end="0,0" start="0,500" delay="100" time="400" tween="quadratic" />
-            <effect type="fade" end="100" start="0" time="600" delay="100" tween="sine" easing="out"/>
-        </animation>
-        <animation type="Hidden">
-            <effect type="slide" end="0,500" start="0,0" delay="100" time="400" tween="quadratic" />
-            <effect type="fade" end="0" start="100" time="600" delay="100" tween="sine" easing="out"/>
-        </animation>
     </include>
 
     <include name="Animation_SwitchText">
@@ -639,16 +607,8 @@
         </definition>
     </include>
 
-    <include name="Animation_Addon_Info">
-        <animation center="2636,116" condition="ControlGroup(9000).HasFocus() | Control.HasFocus(9601)" effect="zoom" end="77" tween="sine" easing="inout" start="100" time="300">Conditional</animation>
-    </include>
-
     <include name="Animation_Music_FadeOut">
         <animation condition="Control.HasFocus(9501) | Control.HasFocus(160) | Control.HasFocus(9502) | Control.HasFocus(9508) | Control.HasFocus(95087) | Control.HasFocus(95027) | Control.HasFocus(95017)" effect="fade" end="0" start="100" time="300">Conditional</animation>
-    </include>
-
-    <include name="Animation_Music_FadeIn_Clearlogo">
-        <animation condition="Control.HasFocus(9501) | Control.HasFocus(160) | Control.HasFocus(9502) | Control.HasFocus(9508) | Control.HasFocus(95087) | Control.HasFocus(95027)" effect="fade" end="100" start="0" time="300">Conditional</animation>
     </include>
 
 <!--            Def_Layout_Dialog_Info_Video_Wall_Poster            -->
@@ -798,24 +758,10 @@
         <animation effect="slide" start="-30,-30" end="30,30" time="6000" tween="sine" easing="inout" pulse="true" condition="Skin.HasSetting(enable.artist.slideshow.animate)">Conditional</animation>
     </include>
 
-    <include name="Animation_Background_OpenClose">
-        <animation type="WindowOpen" reversible="false" condition="Window.IsVisible(Home) + !$EXP[Home_Is_Horizontal_Clean]">
-            <effect type="fade" start="0" end="100" time="450" delay="0" tween="sine" easing="in"/>
-        </animation>
-        <animation type="WindowOpen" reversible="false" condition="Window.IsVisible(Home) + $EXP[Home_Is_Horizontal_Clean]">
-            <effect type="fade" start="0" end="100" time="450" delay="0" tween="sine" easing="out"/>
-        </animation>
-        <animation type="WindowOpen" reversible="false" condition="!Window.IsVisible(Home)">
-            <effect type="fade" start="0" end="100" time="450" delay="0" tween="sine" easing="in"/>
-        </animation>
-        <animation type="WindowClose" reversible="false">
-            <effect type="fade" end="0" start="100" time="300" tween="sine" easing="out"/>
-        </animation>
-    </include>
-
     <include name="Animation_Fade_Icon">
         <animation effect="fade" condition="true" start="90" end="90" time="0">Conditional</animation>
     </include>
+
     <include name="Animation_List_Information">
         <animation effect="fade" start="0" end="100" delay="450" time="250" reversible="false">Visible</animation>
     </include>
