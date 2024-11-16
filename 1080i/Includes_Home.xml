@@ -117,30 +117,62 @@
             <control type="group">
                 <animation effect="slide" start="0" end="0,163" time="150" condition="!$EXP[Home_Menu_Is_Focus] + !Control.HasFocus(9099) + [Skin.HasSetting(hide.home.menu) | [Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + $EXP[Extended_Now_Playing_Is_Enable]] + !ControlGroup(301).HasFocus()] + $EXP[Home_Is_Horizontal]">Conditional</animation>
 
-                <!-- ARROW (LEFT / RIGHT)-->
+                <!-- ARROW (LEFT / RIGHT) - ICON -->
 
-                <control type="image">
-                    <visible>[Integer.IsGreater(Container(300).NumItems,12) + ![Skin.HasSetting(show.home.header.clock.left) | !Skin.HasSetting(show.furniture.clock.date.weather)]] | [Integer.IsGreater(Container(300).NumItems,16) + [Skin.HasSetting(show.home.header.clock.left) | !Skin.HasSetting(show.furniture.clock.date.weather)]]</visible>
-                    <top>962</top>
-                    <left>52</left>
-                    <include>Def_Arrow_Size</include>
-                    <texture colordiffuse="Dark2" flipx="true">common/arrow-small-right.png</texture>
+                <control type="group">
+                    <visible>Skin.HasSetting(home.show.menu.icons)</visible>
+                    <control type="image">
+                        <visible>[Integer.IsGreater(Container(300).NumItems,12) + ![Skin.HasSetting(show.home.header.clock.left) | !Skin.HasSetting(show.furniture.clock.date.weather)]] | [Integer.IsGreater(Container(300).NumItems,16) + [Skin.HasSetting(show.home.header.clock.left) | !Skin.HasSetting(show.furniture.clock.date.weather)]]</visible>
+                        <top>962</top>
+                        <left>52</left>
+                        <include>Def_Arrow_Size</include>
+                        <texture colordiffuse="Dark2" flipx="true">common/arrow-small-right.png</texture>
+                    </control>
+                    <control type="image">
+                        <visible>Integer.IsGreater(Container(300).NumItems,12)</visible>
+                        <visible>![Skin.HasSetting(show.home.header.clock.left) | !Skin.HasSetting(show.furniture.clock.date.weather)]</visible>
+                        <top>962</top>
+                        <right>480</right>
+                        <include>Def_Arrow_Size</include>
+                        <texture colordiffuse="Dark2" flipx="false">common/arrow-small-right.png</texture>
+                    </control>
+                    <control type="image">
+                        <visible>Integer.IsGreater(Container(300).NumItems,16)</visible>
+                        <visible>[Skin.HasSetting(show.home.header.clock.left) | !Skin.HasSetting(show.furniture.clock.date.weather)]</visible>
+                        <top>962</top>
+                        <right>42</right>
+                        <include>Def_Arrow_Size</include>
+                        <texture colordiffuse="Dark2" flipx="false">common/arrow-small-right.png</texture>
+                    </control>
                 </control>
-                <control type="image">
-                    <visible>Integer.IsGreater(Container(300).NumItems,12)</visible>
-                    <visible>![Skin.HasSetting(show.home.header.clock.left) | !Skin.HasSetting(show.furniture.clock.date.weather)]</visible>
-                    <top>962</top>
-                    <right>480</right>
-                    <include>Def_Arrow_Size</include>
-                    <texture colordiffuse="Dark2" flipx="false">common/arrow-small-right.png</texture>
-                </control>
-                <control type="image">
-                    <visible>Integer.IsGreater(Container(300).NumItems,16)</visible>
-                    <visible>[Skin.HasSetting(show.home.header.clock.left) | !Skin.HasSetting(show.furniture.clock.date.weather)]</visible>
-                    <top>962</top>
-                    <right>42</right>
-                    <include>Def_Arrow_Size</include>
-                    <texture colordiffuse="Dark2" flipx="false">common/arrow-small-right.png</texture>
+
+                <!-- ARROW (LEFT / RIGHT) - TEXT -->
+
+                <control type="group">
+                    <visible>!Skin.HasSetting(home.show.menu.icons)</visible>
+                    <control type="image">
+                        <visible>[Integer.IsGreater(Container(300).NumItems,6) + ![Skin.HasSetting(show.home.header.clock.left) | !Skin.HasSetting(show.furniture.clock.date.weather)]] | [Integer.IsGreater(Container(300).NumItems,8) + [Skin.HasSetting(show.home.header.clock.left) | !Skin.HasSetting(show.furniture.clock.date.weather)]]</visible>
+                        <top>962</top>
+                        <left>52</left>
+                        <include>Def_Arrow_Size</include>
+                        <texture colordiffuse="Dark2" flipx="true">common/arrow-small-right.png</texture>
+                    </control>
+                    <control type="image">
+                        <visible>Integer.IsGreater(Container(300).NumItems,6)</visible>
+                        <visible>![Skin.HasSetting(show.home.header.clock.left) | !Skin.HasSetting(show.furniture.clock.date.weather)]</visible>
+                        <top>962</top>
+                        <right>480</right>
+                        <include>Def_Arrow_Size</include>
+                        <texture colordiffuse="Dark2" flipx="false">common/arrow-small-right.png</texture>
+                    </control>
+                    <control type="image">
+                        <visible>Integer.IsGreater(Container(300).NumItems,8)</visible>
+                        <visible>[Skin.HasSetting(show.home.header.clock.left) | !Skin.HasSetting(show.furniture.clock.date.weather)]</visible>
+                        <top>962</top>
+                        <right>42</right>
+                        <include>Def_Arrow_Size</include>
+                        <texture colordiffuse="Dark2" flipx="false">common/arrow-small-right.png</texture>
+                    </control>
                 </control>
 
                 <!-- MAIN MENU 300 -->
