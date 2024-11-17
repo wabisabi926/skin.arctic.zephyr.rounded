@@ -949,28 +949,6 @@
         </control>
     </include>
 
-    <!-- OSD - LABEL -->
-
-    <variable name="Label_OSD_Player_Rating_Video">
-        <value condition="!String.IsEmpty(VideoPlayer.UserRating) + Skin.HasSetting(userrating.override.kodi.rating.num)">$INFO[VideoPlayer.UserRating,,.0]</value>
-        <value>$INFO[VideoPlayer.Rating]</value>
-    </variable>
-
-    <variable name="Label_OSD_Player_Rating_Music">
-        <value condition="!String.IsEmpty(MusicPlayer.UserRating) + Skin.HasSetting(userrating.override.kodi.rating.num)">$INFO[MusicPlayer.UserRating,,.0]</value>
-        <value>$INFO[MusicPlayer.Rating]</value>
-    </variable>
-
-    <variable name="Label_OSD_Timeout">
-        <value condition="!String.IsEmpty(Skin.String(Value_OSD_Timeout))">$INFO[Skin.String(Value_OSD_Timeout),, $LOCALIZE[31318]]</value>
-        <value>$LOCALIZE[591]</value>
-    </variable>
-
-    <variable name="Label_OSD_Info">
-        <value condition="!String.IsEmpty(Skin.String(Value_OSD_Auto_Hide_Timeout))">$INFO[Skin.String(Value_OSD_Auto_Hide_Timeout),, $LOCALIZE[31318]]</value>
-        <value>$LOCALIZE[591]</value>
-    </variable>
-
     <!-- OSD - BUTTON - CENTER - VIDEO -->
 
     <include name="OSD_Video_Controls">
@@ -1624,6 +1602,7 @@
             <!-- OSD FOOTER INFO TIPS -->
 
             <control type="grouplist">
+                <visible>[ControlGroup(101).HasFocus() + [!String.IsEmpty(VideoPlayer.DBID) | !String.IsEmpty(MusicPlayer.DBID)]] | ControlGroup(102).HasFocus()</visible>
                 <top>75</top>
                 <left>SidePadNewOSD</left>
                 <width>1400</width>
@@ -1643,10 +1622,9 @@
                     <font>Mini</font>
                     <scroll>false</scroll>
                     <textcolor>$VAR[Color_OSD_Button_Background]</textcolor>
-                    <label>$VAR[Label_OSD_Footer_Tip]</label>
+                    <label>$VAR[Label_OSD_Footer_Tip_Video]</label>
                     <aligny>center</aligny>
                 </control>
-                <visible>ControlGroup(101).HasFocus() | ControlGroup(102).HasFocus()</visible>
             </control>
         </control>
     </include>

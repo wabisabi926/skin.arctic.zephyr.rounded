@@ -267,6 +267,8 @@
             <!-- OSD FOOTER INFO TIPS -->
 
             <control type="grouplist" id="6060">
+                <visible>[ControlGroup(6002).HasFocus() + !String.IsEmpty(MusicPlayer.DBID)] | Control.HasFocus(8200)</visible>
+                <visible>!Control.HasFocus(9803)</visible>
                 <top>971</top>
                 <left>SidePadNewOSD</left>
                 <width>1400</width>
@@ -294,11 +296,9 @@
                     <font>Mini</font>
                     <scroll>false</scroll>
                     <textcolor>$VAR[Color_OSD_Button_Background]</textcolor>
-                    <label>$VAR[Label_OSD_Footer_Tip]</label>
+                    <label>$VAR[Label_OSD_Footer_Tip_Music]</label>
                     <aligny>center</aligny>
                 </control>
-                <visible>ControlGroup(6002).HasFocus() | Control.HasFocus(8200)</visible>
-                <visible>!Control.HasFocus(9803)</visible>
             </control>
 
             <control type="list" id="997">
