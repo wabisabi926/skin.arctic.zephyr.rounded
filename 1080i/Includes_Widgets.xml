@@ -418,46 +418,6 @@
         </control>
     </include>
 
-    <!-- DEF - WIDGET - BACKGROUND -->
-
-    <include name="Def_Widget_Background">
-        <param name="colordiffuse" value="$PARAM[colordiffuse]" default="White70" />
-        <param name="condition_fade" value="$PARAM[condition_fade]" default="false" />
-        <param name="pad_shadow" value="$PARAM[pad_shadow]" default="1" />
-        <param name="pad_image" value="$PARAM[pad_image]" default="10" />
-        <definition>
-            <control type="image">
-                <include content="Def_Padding"><param name="pad">$PARAM[pad_shadow]</param></include>
-                <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-            </control>
-            <control type="image">
-                <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
-                <texture border="12" colordiffuse="$PARAM[colordiffuse]">common/box.png</texture>
-                <animation effect="fade" start="100" end="90" condition="$PARAM[condition_fade]">Conditional</animation>
-            </control>
-        </definition>
-    </include>
-
-    <include name="Def_Image_Background">
-        <param name="colordiffuse" value="$PARAM[colordiffuse]" default="White70" />
-        <param name="condition_fade" value="$PARAM[condition_fade]" default="false" />
-        <param name="pad_shadow" value="$PARAM[pad_shadow]" default="-9" />
-        <param name="pad_image" value="$PARAM[pad_image]" default="0" />
-        <definition>
-            <control type="image">
-                <include content="Def_Padding"><param name="pad">$PARAM[pad_shadow]</param></include>
-                <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-            </control>
-            <control type="image">
-                <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
-                <texture border="12" colordiffuse="$PARAM[colordiffuse]">common/box.png</texture>
-                <animation effect="fade" start="100" end="90" condition="$PARAM[condition_fade]">Conditional</animation>
-            </control>
-        </definition>
-    </include>
-
    <!-- DEF - WIDGET - LAYOUTS -->
 
     <include name="Def_Widget_Poster">
@@ -1139,6 +1099,7 @@
                <aspectratio align="center" aligny="center">keep</aspectratio>
                <texture>$INFO[ListItem.Icon]</texture>
             </control>
+
             <control type="group">
                <top>-1</top>
                <control type="label">
@@ -1591,15 +1552,12 @@
     </include>
 
     <include name="Def_Weather_Poster">
-        <control type="image">
-            <left>1</left>
-            <top>1</top>
-            <right>1</right>
-            <bottom>1</bottom>
-            <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-            <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-        </control>
+        <include content="Def_Image_Shaddow">
+            <param name="pad_shadow" value="1" />
+        </include>
+
         <include>Def_Weather_Fanart_Widghets</include>
+
         <control type="image">
             <top>90</top>
             <centerleft>50%</centerleft>
@@ -1659,15 +1617,12 @@
     </include>
 
     <include name="Def_Weather_Square">
-        <control type="image">
-            <left>1</left>
-            <top>1</top>
-            <right>1</right>
-            <bottom>1</bottom>
-            <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-            <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-        </control>
+        <include content="Def_Image_Shaddow">
+            <param name="pad_shadow" value="1" />
+        </include>
+
         <include>Def_Weather_Fanart_Widghets</include>
+
         <control type="image">
             <top>90</top>
             <left>15</left>
@@ -1742,15 +1697,12 @@
     </include>
 
     <include name="Def_Weather_Fanart">
-        <control type="image">
-            <left>1</left>
-            <top>1</top>
-            <right>1</right>
-            <bottom>1</bottom>
-            <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-            <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-        </control>
+        <include content="Def_Image_Shaddow">
+            <param name="pad_shadow" value="1" />
+        </include>
+
         <include>Def_Weather_Fanart_Widghets</include>
+
         <control type="image">
             <top>65</top>
             <left>30</left>

@@ -215,30 +215,20 @@
             <visible>VideoPlayer.IsFullscreen</visible>
             <visible>String.IsEmpty(Window(Home).Property(OSDVideoDetails))</visible>
 
-            <top>80</top>
-            <right>66</right>
-            <width>562</width>
-            <height>100</height>
             <include>Animation_Fade_In</include>
             <include>Animation_Fade_Out</include>
 
+            <top>80</top>
+            <right>80</right>
+            <width>562</width>
+            <height>80</height>
+
             <!-- VIDEO -->
 
-            <control type="image">
-                <left>-9</left>
-                <top>-9</top>
-                <width>562</width>
-                <height>98</height>
-                <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-            </control>
-            <control type="image">
-                <description>background image</description>
-                <width>544</width>
-                <height>80</height>
-                <animation effect="fade" start="100" end="90" condition="true">Conditional</animation>
-                <texture border="12" colordiffuse="$VAR[Color_OSD_Panel]">common/box.png</texture>
-            </control>
+            <include content="Def_Image_Background">
+                <param name="colordiffuse" value="$VAR[Color_OSD_Panel]" />
+                <param name="condition_fade" value="true" />
+            </include>
 
             <!-- HORLOGE -->
 
@@ -447,10 +437,10 @@
 
     <include name="Def_OSD_Context_Audio_Gradient">
         <control type="image">
-            <left>8</left>
-            <right>8</right>
+            <left>0</left>
+            <right>0</right>
             <height>60</height>
-            <bottom>24</bottom>
+            <bottom>17</bottom>
             <texture>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texture>
             <visible>ControlGroup(9411).HasFocus()</visible>
         </control>
@@ -458,10 +448,10 @@
         <control type="grouplist" id="$PARAM[controlid]">
             <include>Animation_Fade_In_Delay</include>
             <include>Animation_Fade_Out</include>
-            <top>24</top>
-            <bottom>24</bottom>
-            <left>8</left>
-            <right>8</right>
+            <top>17</top>
+            <bottom>17</bottom>
+            <left>0</left>
+            <right>0</right>
             <onup>2</onup>
             <ondown>2</ondown>
             <onleft>2</onleft>
@@ -531,10 +521,10 @@
 
     <include name="Def_OSD_Context_Subtitles_Gradient">
         <control type="image">
-            <left>8</left>
-            <right>8</right>
+            <left>0</left>
+            <right>0</right>
             <height>60</height>
-            <bottom>24</bottom>
+            <bottom>17</bottom>
             <texture>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texture>
             <visible>ControlGroup(9311).HasFocus()</visible>
         </control>
@@ -542,10 +532,10 @@
         <control type="grouplist" id="$PARAM[controlid]">
             <include>Animation_Fade_In_Delay</include>
             <include>Animation_Fade_Out</include>
-            <top>24</top>
-            <bottom>24</bottom>
-            <left>8</left>
-            <right>8</right>
+            <top>17</top>
+            <bottom>17</bottom>
+            <left>0</left>
+            <right>0</right>
             <onup>3</onup>
             <ondown>3</ondown>
             <onleft>3</onleft>
@@ -553,6 +543,7 @@
             <itemgap>0</itemgap>
             <orientation>vertical</orientation>
             <scrolltime>200</scrolltime>
+
             <control type="button" id="9301" description="Download">
                <width>100%</width>
                <height>60</height>
@@ -1408,24 +1399,12 @@
                 <!-- <centerleft>1026</centerleft> -->
                 <!-- <width>316</width> -->
                 <!-- <height>512</height> -->
-                <!-- <control type="image"> -->
-                    <!-- <left>-1</left> -->
-                    <!-- <top>-1</top> -->
-                    <!-- <width>318</width> -->
-                    <!-- <height>514</height> -->
-                    <!-- <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture> -->
-                    <!-- <visible>!Skin.HasSetting(global.hide.shadows)</visible> -->
-                <!-- </control> -->
-                <!-- <control type="image"> -->
-                    <!-- <description>background image</description> -->
-                    <!-- <left>8</left> -->
-                    <!-- <top>8</top> -->
-                    <!-- <width>300</width> -->
-                    <!-- <height>496</height> -->
-                    <!-- <colordiffuse>$VAR[Color_OSD_Panel]</colordiffuse> -->
-                    <!-- <animation effect="fade" start="100" end="90" condition="true">Conditional</animation> -->
-                    <!-- <texture border="12">common/box.png</texture> -->
-                <!-- </control> -->
+
+                <!-- <include content="Def_Image_Background"> -->
+                    <!-- <param name="colordiffuse" value="$VAR[Color_OSD_Panel]" /> -->
+                    <!-- <param name="condition_fade" value="true" /> -->
+                <!-- </include> -->
+
                 <!-- <include content="Def_OSD_Context_Video_Gradient"> -->
                     <!-- <param name="controlid" value="9800"/> -->
                 <!-- </include> -->
@@ -1441,25 +1420,13 @@
                 <bottom>232</bottom>
                 <centerleft>272</centerleft>
                 <width>336</width>
-                <height>228</height>
-                <control type="image">
-                    <left>-1</left>
-                    <top>-1</top>
-                    <width>338</width>
-                    <height>230</height>
-                    <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-                </control>
-                <control type="image">
-                    <description>background image</description>
-                    <left>8</left>
-                    <top>8</top>
-                    <width>320</width>
-                    <height>212</height>
-                    <colordiffuse>$VAR[Color_OSD_Panel]</colordiffuse>
-                    <animation effect="fade" start="100" end="90" condition="true">Conditional</animation>
-                    <texture border="12">common/box.png</texture>
-                </control>
+                <height>214</height>
+
+                <include content="Def_Image_Background">
+                    <param name="colordiffuse" value="$VAR[Color_OSD_Panel]" />
+                    <param name="condition_fade" value="true" />
+                </include>
+
                 <include content="Def_OSD_Context_Audio_Gradient">
                     <param name="controlid" value="19500"/>
                 </include>
@@ -1475,25 +1442,13 @@
                 <bottom>232</bottom>
                 <centerleft>272</centerleft>
                 <width>336</width>
-                <height>288</height>
-                <control type="image">
-                    <left>-1</left>
-                    <top>-1</top>
-                    <width>338</width>
-                    <height>290</height>
-                    <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-                </control>
-                <control type="image">
-                    <description>background image</description>
-                    <left>8</left>
-                    <top>8</top>
-                    <width>320</width>
-                    <height>272</height>
-                    <colordiffuse>$VAR[Color_OSD_Panel]</colordiffuse>
-                    <animation effect="fade" start="100" end="90" condition="true">Conditional</animation>
-                    <texture border="12">common/box.png</texture>
-                </control>
+                <height>274</height>
+
+                <include content="Def_Image_Background">
+                    <param name="colordiffuse" value="$VAR[Color_OSD_Panel]" />
+                    <param name="condition_fade" value="true" />
+                </include>
+
                 <include content="Def_OSD_Context_Subtitles_Gradient">
                     <param name="controlid" value="9500"/>
                 </include>
@@ -2218,70 +2173,53 @@
                     <!-- POSTER -->
 
                     <control type="group">
+                        <visible>!VideoPlayer.Content(livetv) + [!String.IsEmpty(Player.Art(tvshow.poster)) | !String.IsEmpty(Player.Art(poster))]</visible>
+
                         <animation effect="zoom" start="100" end="140" center="0,680" time="400" tween="cubic" easing="out" reversible="false" condition="!String.IsEmpty(Window(Home).Property(OSDVideoDetails))">Conditional</animation>
 
                         <animation effect="zoom" start="140" end="100" center="0,680" time="400" tween="cubic" easing="out" reversible="false" condition="String.IsEmpty(Window(Home).Property(OSDVideoDetails))">Conditional</animation>
 
+                        <top>-270</top>
+                        <left>0</left>
+                        <width>270</width>
+                        <height>390</height>
+
+                        <include content="Def_Image_Background">
+                            <param name="colordiffuse" value="$VAR[Color_OSD_Panel]" />
+                            <param name="condition_fade" value="false" />
+                        </include>
+
                         <control type="image">
-                            <visible>!VideoPlayer.Content(livetv) + [!String.IsEmpty(Player.Art(tvshow.poster)) | !String.IsEmpty(Player.Art(poster))]</visible>
-                            <left>-9</left>
-                            <top>-279</top>
-                            <width>288</width>
-                            <height>408</height>
-                            <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                            <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-                        </control>
-                        <control type="image">
-                            <visible>!VideoPlayer.Content(livetv) + [!String.IsEmpty(Player.Art(tvshow.poster)) | !String.IsEmpty(Player.Art(poster))]</visible>
-                            <left>0</left>
-                            <top>-270</top>
-                            <width>270</width>
-                            <height>390</height>
-                            <texture border="12" colordiffuse="$VAR[Color_OSD_Panel_PVR]">common/box.png</texture>
-                        </control>
-                        <control type="image">
-                            <visible>!VideoPlayer.Content(livetv) + [!String.IsEmpty(Player.Art(tvshow.poster)) | !String.IsEmpty(Player.Art(poster))]</visible>
-                            <left>0</left>
-                            <top>-270</top>
-                            <width>270</width>
-                            <height>390</height>
+                            <width>100%</width>
+                            <height>100%</height>
                             <texture diffuse="diffuse/poster_w270_h390.png">$VAR[Image_Poster_Player]</texture>
                             <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
                         </control>
+
                     </control>
 
                     <!-- FANART -->
 
                     <control type="group">
+                        <visible>[!VideoPlayer.Content(livetv) + !String.IsEmpty(Player.Art(thumb)) + String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster))] | [VideoPlayer.Content(livetv) + !String.IsEmpty(PVR.EpgEventIcon)]</visible>
+
                         <animation effect="zoom" start="100" end="150" center="0,1180" time="400" tween="cubic" easing="out" reversible="false" condition="!String.IsEmpty(Window(Home).Property(OSDVideoDetails))">Conditional</animation>
 
                         <animation effect="zoom" start="150" end="100" center="0,1180" time="400" tween="cubic" easing="out" reversible="false" condition="String.IsEmpty(Window(Home).Property(OSDVideoDetails))">Conditional</animation>
 
-                        <control type="image">
-                            <visible>[!VideoPlayer.Content(livetv) + !String.IsEmpty(Player.Art(thumb)) + String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster))] | [VideoPlayer.Content(livetv) + !String.IsEmpty(PVR.EpgEventIcon)]</visible>
-                            <left>-9</left>
-                            <top>-45</top>
-                            <width>288</width>
-                            <height>174</height>
-                            <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                            <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-                        </control>
+                        <top>-36</top>
+                        <left>0</left>
+                        <width>270</width>
+                        <height>156</height>
+
+                        <include content="Def_Image_Background">
+                            <param name="colordiffuse" value="$VAR[Color_OSD_Panel]" />
+                            <param name="condition_fade" value="false" />
+                        </include>
 
                         <control type="image">
-                            <visible>[!VideoPlayer.Content(livetv) + !String.IsEmpty(Player.Art(thumb)) + String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster))] | [VideoPlayer.Content(livetv) + !String.IsEmpty(PVR.EpgEventIcon)]</visible>
-                            <left>0</left>
-                            <top>-36</top>
-                            <width>270</width>
-                            <height>156</height>
-                            <texture border="12" colordiffuse="$VAR[Color_OSD_Panel_PVR]">common/box.png</texture>
-                        </control>
-
-                        <control type="image">
-                            <visible>[!VideoPlayer.Content(livetv) + !String.IsEmpty(Player.Art(thumb)) + String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster))] | [VideoPlayer.Content(livetv) + !String.IsEmpty(PVR.EpgEventIcon)]</visible>
-                            <left>0</left>
-                            <top>-36</top>
-                            <width>270</width>
-                            <height>156</height>
+                            <width>100%</width>
+                            <height>100%</height>
                             <texture diffuse="diffuse/fanart_w270_h156.png">$VAR[Image_Poster_Player]</texture>
                             <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
                         </control>
@@ -2290,35 +2228,27 @@
                     <!-- CHANNEL -->
 
                     <control type="group">
+                        <visible>VideoPlayer.Content(livetv) + !String.IsEmpty(VideoPlayer.ChannelLogo) + String.IsEmpty(PVR.EpgEventIcon)</visible>
+
                         <animation effect="zoom" start="100" end="150" center="0,870" time="400" tween="cubic" easing="out" reversible="false" condition="!String.IsEmpty(Window(Home).Property(OSDVideoDetails))">Conditional</animation>
 
                         <animation effect="zoom" start="150" end="100" center="0,870" time="400" tween="cubic" easing="out" reversible="false" condition="String.IsEmpty(Window(Home).Property(OSDVideoDetails))">Conditional</animation>
 
+                        <bottom>39</bottom>
+                        <left>0</left>
+                        <width>270</width>
+                        <height>270</height>
+
                         <!-- CHANNEL LOGO -->
 
+                        <include content="Def_Image_Background">
+                            <param name="colordiffuse" value="$VAR[Color_OSD_Panel]" />
+                            <param name="condition_fade" value="false" />
+                        </include>
+
                         <control type="image">
-                            <visible>VideoPlayer.Content(livetv) + !String.IsEmpty(VideoPlayer.ChannelLogo) + String.IsEmpty(PVR.EpgEventIcon)</visible>
-                            <width>288</width>
-                            <left>-9</left>
-                            <height>288</height>
-                            <bottom>30</bottom>
-                            <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                            <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-                        </control>
-                        <control type="image">
-                            <width>270</width>
-                            <height>270</height>
-                            <bottom>39</bottom>
-                            <left>0</left>
-                            <texture border="12" colordiffuse="$VAR[Color_OSD_Panel_PVR]">common/box.png</texture>
-                            <animation effect="fade" start="100" end="50" condition="true">Conditional</animation>
-                            <visible>VideoPlayer.Content(livetv) + !String.IsEmpty(VideoPlayer.ChannelLogo) + String.IsEmpty(PVR.EpgEventIcon)</visible>
-                        </control>
-                        <control type="image">
-                            <width>220</width>
-                            <left>20</left>
-                            <height>220</height>
-                            <bottom>59</bottom>
+                            <width>100%</width>
+                            <height>100%</height>
                             <aspectratio>keep</aspectratio>
                             <texture diffuse="diffuse/square_w270_h270.png">$INFO[VideoPlayer.ChannelLogo]</texture>
                             <visible>VideoPlayer.Content(livetv) + !String.IsEmpty(VideoPlayer.ChannelLogo) + String.IsEmpty(PVR.EpgEventIcon)</visible>
@@ -2891,26 +2821,19 @@
                     <effect type="slide" start="-495,0" end="0,0" tween="sine" easing="out" time="400" delay="0"/>
                 </animation>
 
+                <top>632</top>
+                <left>SidePad</left>
+                <height>270</height>
+                <width>270</width>
+
+                <include content="Def_Image_Background">
+                    <param name="colordiffuse" value="$VAR[Color_OSD_Panel]" />
+                    <param name="condition_fade" value="false" />
+                </include>
+
                 <control type="image">
-                    <top>623</top>
-                    <left>70</left>
-                    <height>288</height>
-                    <width>288</width>
-                    <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-                </control>
-                <control type="image">
-                    <top>632</top>
-                    <left>SidePad</left>
-                    <height>270</height>
-                    <width>270</width>
-                    <texture colordiffuse="ff181818" diffuse="diffuse/square_w270_h270.png">common/white.png</texture>
-                </control>
-                <control type="image">
-                    <top>632</top>
-                    <left>SidePad</left>
-                    <height>270</height>
-                    <width>270</width>
+                    <height>100%</height>
+                    <width>100%</width>
                     <aspectratio scalediffuse="false">scale</aspectratio>
                     <texture diffuse="diffuse/square_w270_h270.png" fallback="DefaultAlbumCover.png">$VAR[Image_Poster_Player_Audio]</texture>
                 </control>

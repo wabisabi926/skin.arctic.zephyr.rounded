@@ -85,6 +85,8 @@
         <param name="height" default="840"/>
         <param name="width" default="1320"/>
         <param name="colordiffuse" default="White100"/>
+        <param name="pad_shadow" value="$PARAM[pad_shadow]" default="-9" />
+        <param name="pad_image" value="$PARAM[pad_image]" default="0" />
         <definition>
             <include>Animation_Fade_In</include>
             <include>Animation_Fade_Out</include>
@@ -93,16 +95,12 @@
             <height>$PARAM[height]</height>
             <width>$PARAM[width]</width>
             <control type="image">
-                <left>-9</left>
-                <top>-9</top>
-                <right>-9</right>
-                <bottom>-9</bottom>
+                <include content="Def_Padding"><param name="pad">$PARAM[pad_shadow]</param></include>
                 <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
                 <visible>!Skin.HasSetting(global.hide.shadows)</visible>
             </control>
             <control type="image">
-                <width>100%</width>
-                <height>100%</height>
+                <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
                 <texture border="12" colordiffuse="$PARAM[colordiffuse]">common/box.png</texture>
             </control>
         </definition>
@@ -114,6 +112,8 @@
         <param name="centerleft" default="50%"/>
         <param name="centertop" default="50%"/>
         <param name="colordiffuse" default="White100"/>
+        <param name="pad_shadow" value="$PARAM[pad_shadow]" default="-9" />
+        <param name="pad_image" value="$PARAM[pad_image]" default="0" />
         <param name="visible" default="true"/>
         <definition>
             <visible>$PARAM[visible]</visible>
@@ -124,16 +124,12 @@
             <height>$PARAM[height]</height>
             <width>$PARAM[width]</width>
             <control type="image">
-                <left>-9</left>
-                <top>-9</top>
-                <right>-9</right>
-                <bottom>-9</bottom>
+                <include content="Def_Padding"><param name="pad">$PARAM[pad_shadow]</param></include>
                 <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
                 <visible>!Skin.HasSetting(global.hide.shadows)</visible>
             </control>
             <control type="image">
-                <width>100%</width>
-                <height>100%</height>
+                <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
                 <texture border="12" colordiffuse="$PARAM[colordiffuse]">common/box.png</texture>
             </control>
         </definition>
@@ -141,22 +137,20 @@
 
     <include name="Def_Dialog_Background_PowerMenu">
         <param name="colordiffuse" default="White100"/>
+        <param name="pad_shadow" value="$PARAM[pad_shadow]" default="-9" />
+        <param name="pad_image" value="$PARAM[pad_image]" default="0" />
         <param name="visible" default="true"/>
         <definition>
             <control type="group">
                 <visible>$PARAM[visible]</visible>
                 <height>$PARAM[height]</height>
                 <control type="image">
-                    <left>-9</left>
-                    <top>-9</top>
-                    <right>-9</right>
-                    <bottom>-9</bottom>
+                    <include content="Def_Padding"><param name="pad">$PARAM[pad_shadow]</param></include>
                     <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
                     <visible>!Skin.HasSetting(global.hide.shadows)</visible>
                 </control>
                 <control type="image">
-                    <width>100%</width>
-                    <height>100%</height>
+                    <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
                     <texture border="12" colordiffuse="$PARAM[colordiffuse]">common/box.png</texture>
                 </control>
             </control>
@@ -169,22 +163,20 @@
         <param name="height" default="646"/>
         <param name="width" default="1760"/>
         <param name="colordiffuse" default="Panel"/>
+        <param name="pad_shadow" value="$PARAM[pad_shadow]" default="-9" />
+        <param name="pad_image" value="$PARAM[pad_image]" default="0" />
         <definition>
             <top>$PARAM[top]</top>
             <left>$PARAM[left]</left>
             <height>$PARAM[height]</height>
             <width>$PARAM[width]</width>
             <control type="image">
-                <left>-9</left>
-                <top>-9</top>
-                <right>-9</right>
-                <bottom>-9</bottom>
+                <include content="Def_Padding"><param name="pad">$PARAM[pad_shadow]</param></include>
                 <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
                 <visible>!Skin.HasSetting(global.hide.shadows)</visible>
             </control>
             <control type="image">
-                <width>100%</width>
-                <height>100%</height>
+                <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
                 <texture border="12" colordiffuse="$PARAM[colordiffuse]">common/box.png</texture>
             </control>
         </definition>
@@ -202,7 +194,6 @@
             <include>Background_Overlay</include>
 
             <control type="group">
-
                 <include>Animation_ZoomIn</include>
                 <include>Animation_Fade_Out</include>
 
@@ -217,186 +208,69 @@
                     <control type="image">
                         <description>arrow image</description>
                         <centerleft>50%</centerleft>
-                        <top>-40</top>
+                        <top>-24</top>
                         <include>Def_Arrow_Size</include>
                         <texture colordiffuse="White70" flipy="true">common/arrow-small.png</texture>
                     </control>
                     <control type="image">
                         <description>arrow image</description>
                         <centerleft>50%</centerleft>
-                        <top>698</top>
+                        <top>699</top>
                         <include>Def_Arrow_Size</include>
                         <texture colordiffuse="White70" flipy="false">common/arrow-small.png</texture>
-                        <animation effect="slide" end="0,-75" time="0" condition="Integer.IsEqual(Container(9400).NumItems,7)">Conditional</animation>
-                        <animation effect="slide" end="0,-145" time="0" condition="Integer.IsEqual(Container(9400).NumItems,6)">Conditional</animation>
-                        <animation effect="slide" end="0,-215" time="0" condition="Integer.IsEqual(Container(9400).NumItems,5)">Conditional</animation>
-                        <animation effect="slide" end="0,-285" time="0" condition="Integer.IsEqual(Container(9400).NumItems,4)">Conditional</animation>
-                        <animation effect="slide" end="0,-355" time="0" condition="Integer.IsEqual(Container(9400).NumItems,3)">Conditional</animation>
-                        <animation effect="slide" end="0,-425" time="0" condition="Integer.IsEqual(Container(9400).NumItems,2)">Conditional</animation>
-                        <animation effect="slide" end="0,-495" time="0" condition="Integer.IsEqual(Container(9400).NumItems,1)">Conditional</animation>
+                        <animation effect="slide" end="0,-70" time="0" condition="Integer.IsEqual(Container(9400).NumItems,7)">Conditional</animation>
+                        <animation effect="slide" end="0,-140" time="0" condition="Integer.IsEqual(Container(9400).NumItems,6)">Conditional</animation>
+                        <animation effect="slide" end="0,-210" time="0" condition="Integer.IsEqual(Container(9400).NumItems,5)">Conditional</animation>
+                        <animation effect="slide" end="0,-280" time="0" condition="Integer.IsEqual(Container(9400).NumItems,4)">Conditional</animation>
+                        <animation effect="slide" end="0,-350" time="0" condition="Integer.IsEqual(Container(9400).NumItems,3)">Conditional</animation>
+                        <animation effect="slide" end="0,-420" time="0" condition="Integer.IsEqual(Container(9400).NumItems,2)">Conditional</animation>
+                        <animation effect="slide" end="0,-490" time="0" condition="Integer.IsEqual(Container(9400).NumItems,1)">Conditional</animation>
                     </control>
                 </control>
 
-                <control type="image">
-                    <description>background image</description>
-                    <left>-1</left>
-                    <top>-17</top>
-                    <width>568</width>
-                    <height>218</height>
-                    <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-                    <visible>Integer.IsEqual(Container(9400).NumItems,1)</visible>
-                </control>
-                <control type="image">
-                    <description>background image</description>
-                    <left>8</left>
-                    <top>-8</top>
-                    <width>550</width>
-                    <height>200</height>
-                    <texture border="12" colordiffuse="White100">common/box.png</texture>
-                    <visible>Integer.IsEqual(Container(9400).NumItems,1)</visible>
-                </control>
-                <control type="image">
-                    <description>background image</description>
-                    <left>-1</left>
-                    <top>-17</top>
-                    <width>568</width>
-                    <height>288</height>
-                    <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-                    <visible>Integer.IsEqual(Container(9400).NumItems,2)</visible>
-                </control>
-                <control type="image">
-                    <description>background image</description>
-                    <left>8</left>
-                    <top>-8</top>
-                    <width>550</width>
-                    <height>270</height>
-                    <texture border="12" colordiffuse="White100">common/box.png</texture>
-                    <visible>Integer.IsEqual(Container(9400).NumItems,2)</visible>
-                </control>
-                <control type="image">
-                    <description>background image</description>
-                    <left>-1</left>
-                    <top>-17</top>
-                    <width>568</width>
-                    <height>358</height>
-                    <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-                    <visible>Integer.IsEqual(Container(9400).NumItems,3)</visible>
-                </control>
-                <control type="image">
-                    <description>background image</description>
-                    <left>8</left>
-                    <top>-8</top>
-                    <width>550</width>
-                    <height>340</height>
-                    <texture border="12" colordiffuse="White100">common/box.png</texture>
-                    <visible>Integer.IsEqual(Container(9400).NumItems,3)</visible>
-                </control>
-                <control type="image">
-                    <description>background image</description>
-                    <left>-1</left>
-                    <top>-17</top>
-                    <width>568</width>
-                    <height>428</height>
-                    <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-                    <visible>Integer.IsEqual(Container(9400).NumItems,4)</visible>
-                </control>
-                <control type="image">
-                    <description>background image</description>
-                    <left>8</left>
-                    <top>-8</top>
-                    <width>550</width>
-                    <height>410</height>
-                    <texture border="12" colordiffuse="White100">common/box.png</texture>
-                    <visible>Integer.IsEqual(Container(9400).NumItems,4)</visible>
-                </control>
-                <control type="image">
-                    <description>background image</description>
-                    <left>-1</left>
-                    <top>-17</top>
-                    <width>568</width>
-                    <height>498</height>
-                    <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-                    <visible>Integer.IsEqual(Container(9400).NumItems,5)</visible>
-                </control>
-                <control type="image">
-                    <description>background image</description>
-                    <left>8</left>
-                    <top>-8</top>
-                    <width>550</width>
-                    <height>480</height>
-                    <texture border="12" colordiffuse="White100">common/box.png</texture>
-                    <visible>Integer.IsEqual(Container(9400).NumItems,5)</visible>
-                </control>
-                <control type="image">
-                    <description>background image</description>
-                    <left>-1</left>
-                    <top>-17</top>
-                    <width>568</width>
-                    <height>568</height>
-                    <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-                    <visible>Integer.IsEqual(Container(9400).NumItems,6)</visible>
-                </control>
-                <control type="image">
-                    <description>background image</description>
-                    <left>8</left>
-                    <top>-8</top>
-                    <width>550</width>
-                    <height>550</height>
-                    <texture border="12" colordiffuse="White100">common/box.png</texture>
-                    <visible>Integer.IsEqual(Container(9400).NumItems,6)</visible>
-                </control>
-                <control type="image">
-                    <description>background image</description>
-                    <left>-1</left>
-                    <top>-17</top>
-                    <width>568</width>
-                    <height>638</height>
-                    <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-                    <visible>Integer.IsEqual(Container(9400).NumItems,7)</visible>
-                </control>
-                <control type="image">
-                    <description>background image</description>
-                    <left>8</left>
-                    <top>-8</top>
-                    <width>550</width>
-                    <height>620</height>
-                    <texture border="12" colordiffuse="White100">common/box.png</texture>
-                    <visible>Integer.IsEqual(Container(9400).NumItems,7)</visible>
-                </control>
-                <control type="image">
-                    <description>background image</description>
-                    <left>-1</left>
-                    <top>-17</top>
-                    <width>568</width>
-                    <height>708</height>
-                    <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-                    <visible>Integer.IsGreater(Container(9400).NumItems,7)</visible>
-                </control>
-                <control type="image">
-                    <description>background image</description>
-                    <left>8</left>
-                    <top>-8</top>
-                    <width>550</width>
-                    <height>690</height>
-                    <texture border="12" colordiffuse="White100">common/box.png</texture>
-                    <visible>Integer.IsGreater(Container(9400).NumItems,7)</visible>
-                </control>
+                <include content="Def_Dialog_Background_PowerMenu">
+                    <param name="height">199</param>
+                    <param name="visible">Integer.IsEqual(Container(9400).NumItems,1)</param>
+                </include>
+
+                <include content="Def_Dialog_Background_PowerMenu">
+                    <param name="height">269</param>
+                    <param name="visible">Integer.IsEqual(Container(9400).NumItems,2)</param>
+                </include>
+
+                <include content="Def_Dialog_Background_PowerMenu">
+                    <param name="height">339</param>
+                    <param name="visible">Integer.IsEqual(Container(9400).NumItems,3)</param>
+                </include>
+
+                <include content="Def_Dialog_Background_PowerMenu">
+                    <param name="height">409</param>
+                    <param name="visible">Integer.IsEqual(Container(9400).NumItems,4)</param>
+                </include>
+
+                <include content="Def_Dialog_Background_PowerMenu">
+                    <param name="height">479</param>
+                    <param name="visible">Integer.IsEqual(Container(9400).NumItems,5)</param>
+                </include>
+
+                <include content="Def_Dialog_Background_PowerMenu">
+                    <param name="height">549</param>
+                    <param name="visible">Integer.IsEqual(Container(9400).NumItems,6)</param>
+                </include>
+
+                <include content="Def_Dialog_Background_PowerMenu">
+                    <param name="height">619</param>
+                    <param name="visible">Integer.IsEqual(Container(9400).NumItems,7)</param>
+                </include>
+
+                <include content="Def_Dialog_Background_PowerMenu">
+                    <param name="height">689</param>
+                    <param name="visible">Integer.IsGreater(Container(9400).NumItems,7)</param>
+                </include>
 
                 <!-- HEADER -->
 
                 <control type="group">
-                    <top>-7</top>
-                    <left>7</left>
-                    <right>7</right>
-
                     <control type="label">
                         <include>Def_Dialog_Header_Title</include>
                         <label>16106</label>
@@ -409,11 +283,11 @@
                 <!-- LIST MENU -->
 
                 <control type="list" id="9400">
-                    <top>105</top>
-                    <height min="100" max="570">auto</height>
-                    <bottom>16</bottom>
-                    <left>8</left>
-                    <right>8</right>
+                    <top>112</top>
+                    <height min="100" max="560">auto</height>
+                    <bottom>17</bottom>
+                    <left>0</left>
+                    <right>0</right>
                     <onback>9000</onback>
                     <onleft>9000</onleft>
                     <onright>9000</onright>
@@ -468,6 +342,7 @@
                             <label>$INFO[ListItem.Label]</label>
                         </control>
                     </focusedlayout>
+
                     <content>
 
                         <!-- Actualise info -->
@@ -530,23 +405,24 @@
     </include>
 
     <include name="Def_OSD_Dialog_InfoPanel">
-        <include>Animation_Fade_In_Slide</include>
-        <include>Animation_Fade_Out</include>
-        <!-- <centertop>50%</centertop> -->
-        <centerleft>50%</centerleft>
-        <control type="image">
-            <left>-9</left>
-            <top>-9</top>
-            <right>-9</right>
-            <bottom>-9</bottom>
-            <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-            <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-        </control>
-        <control type="image">
-            <width>100%</width>
-            <height>100%</height>
-            <texture colordiffuse="$VAR[Color_OSD_Panel]" border="12">common/box.png</texture>
-        </control>
+        <param name="pad_shadow" value="$PARAM[pad_shadow]" default="-9" />
+        <param name="pad_image" value="$PARAM[pad_image]" default="0" />
+
+        <definition>
+            <include>Animation_Fade_In_Slide</include>
+            <include>Animation_Fade_Out</include>
+            <!-- <centertop>50%</centertop> -->
+            <centerleft>50%</centerleft>
+            <control type="image">
+                <include content="Def_Padding"><param name="pad">$PARAM[pad_shadow]</param></include>
+                <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
+                <visible>!Skin.HasSetting(global.hide.shadows)</visible>
+            </control>
+            <control type="image">
+                <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
+                <texture colordiffuse="$VAR[Color_OSD_Panel]" border="12">common/box.png</texture>
+            </control>
+        </definition>
     </include>
 
     <!-- DEF BUTTON KEYBOARD -->

@@ -498,19 +498,10 @@
                 <height>91</height>
                 <bottom>-102</bottom>
 
-                <control type="image">
-                    <left>-9</left>
-                    <top>-9</top>
-                    <right>-9</right>
-                    <bottom>-9</bottom>
-                    <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-                    <visible>Integer.IsGreater(Container(8000).NumItems,0)</visible>
-                </control>
-                <control type="image">
-                    <texture colordiffuse="White100" border="12">common/box.png</texture>
-                    <visible>Integer.IsGreater(Container(8000).NumItems,0)</visible>
-                </control>
+                <include content="Def_Image_Background">
+                    <param name="colordiffuse" value="White100" />
+                    <param name="visible" value="Integer.IsGreater(Container(8000).NumItems,0)" />
+                </include>
 
                 <control type="panel" id="8000">
                     <top>11</top>

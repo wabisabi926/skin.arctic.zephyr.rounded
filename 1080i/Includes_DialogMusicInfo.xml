@@ -616,6 +616,7 @@
                     <right>SidePad</right>
                     <bottom>184</bottom>
                     <top>335</top>
+
                     <control type="image">
                         <left>204</left>
                         <top>-128</top>
@@ -624,6 +625,14 @@
                         <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
                         <visible>!Skin.HasSetting(global.hide.shadows)</visible>
                     </control>
+                    <control type="image">
+                        <height>607</height>
+                        <width>1054</width>
+                        <left>214</left>
+                        <top>-118</top>
+                        <texture border="12" colordiffuse="Background">common/box.png</texture>
+                    </control>
+
                     <control type="group">
                         <visible>Control.HasFocus(95031)</visible>
                         <left>206</left>
@@ -635,13 +644,6 @@
                             <animation condition="Control.HasFocus(95031)" effect="fade" end="100" start="0" time="150">Conditional</animation>
                             <animation condition="!Control.HasFocus(95031)" effect="fade" end="0" start="100" time="100">Conditional</animation>
                         </control>
-                    </control>
-                    <control type="image">
-                        <height>607</height>
-                        <width>1054</width>
-                        <left>214</left>
-                        <top>-118</top>
-                        <texture border="12" colordiffuse="Background">common/box.png</texture>
                     </control>
 
                     <include content="Def_Dialog_Info_List_Updating">
@@ -675,6 +677,7 @@
                                 <texture diffuse="diffuse/fanart_w1054_h607.png" fallback="DefaultBrokenImage.png">$INFO[ListItem.Label]</texture>
                             </control>
                         </focusedlayout>
+
                         <content>
                             <item id="0">
                                 <label>$INFO[ListItem.Art(fanart)]</label>
@@ -870,6 +873,7 @@
                             </item>
                         </content>
                     </control>
+
                     <control type="image">
                         <right>40</right>
                         <bottom>100</bottom>
@@ -882,6 +886,7 @@
                         <include>Animation_Delay_Fade_In_200</include>
                     </control>
                 </control>
+
                 <control type="group">
                     <visible>String.IsEqual(Window.Property(musiccontent),1)</visible>
                     <include>Animation_Fade_Out_DialogInfo</include>

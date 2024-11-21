@@ -1133,13 +1133,13 @@
 
     <include name="Def_View_Unfocus_List_Poster_Square_Item">
         <param name="fallbackpicture" value="$PARAM[fallbackpicture]" default="pbtmdb.png"/>
-        <param name="visibleshadow" value="$PARAM[visibleshadow]" default="true"/>
         <param name="aspectposter" value="$PARAM[aspectposter]" default="true"/>
         <param name="aspectbox" value="$PARAM[aspectbox]" default="false"/>
         <param name="controlid" value="$PARAM[controlid]"/>
         <param name="storageicon.backgroundlist" value="$PARAM[storageicon.backgroundlist]" default="false"/>
         <param name="poster" value="$PARAM[poster]" default="false"/>
         <param name="thumb" value="$PARAM[thumb]" default="true"/>
+        <param name="pad_image" value="$PARAM[pad_image]" default="10" />
         <definition>
             <control type="group">
                <visible>$PARAM[aspectposter]</visible>
@@ -1149,100 +1149,64 @@
                <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Label)</visible>
                <height>273</height>
                <width>209</width>
-               <control type="image">
-                    <left>1</left>
-                    <top>1</top>
-                    <right>21</right>
-                    <bottom>1</bottom>
-                    <visible>$PARAM[visibleshadow]</visible>
-                    <animation effect="fade" end="0" start="70" time="350" delay="300">Hidden</animation>
-                    <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-               </control>
-               <control type="image">
-                    <left>10</left>
-                    <top>10</top>
-                    <right>30</right>
-                    <bottom>10</bottom>
-                    <texture colordiffuse="Fallback" border="12" background="true">common/box.png</texture>
-               </control>
 
-                <!-- Thumb - Actors -->
+               <control type="group">
+                    <right>20</right>
 
-               <control type="image">
-                    <left>10</left>
-                    <top>10</top>
-                    <right>30</right>
-                    <bottom>10</bottom>
-                    <aspectratio scalediffuse="false">scale</aspectratio>
-                    <texture diffuse="diffuse/poster_w202_h305.png" background="true" fallback="$PARAM[fallbackpicture]">$INFO[Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Thumb]</texture>
-                    <visible>$PARAM[thumb] + !String.IsEmpty(Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Thumb)</visible>
-               </control>
-               <control type="image">
-                    <left>10</left>
-                    <top>10</top>
-                    <right>30</right>
-                    <bottom>10</bottom>
-                    <aspectratio scalediffuse="false">keep</aspectratio>
-                    <texture diffuse="diffuse/poster_w202_h305.png" colordiffuse="Dark1" background="true" fallback="$PARAM[fallbackpicture]">$INFO[Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Thumb]</texture>
-                    <visible>$PARAM[thumb] + String.IsEmpty(Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Thumb)</visible>
-               </control>
+                    <include>Def_Widget_Background</include>
 
-                <!-- Poster - Movies / TvShows -->
+                    <!-- Thumb - Actors -->
 
-               <control type="image">
-                    <left>10</left>
-                    <top>10</top>
-                    <right>30</right>
-                    <bottom>10</bottom>
-                    <aspectratio scalediffuse="false">scale</aspectratio>
-                    <texture diffuse="diffuse/poster_w202_h305.png" background="true" fallback="$PARAM[fallbackpicture]">$INFO[Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Art(poster)]</texture>
-                    <visible>$PARAM[poster] + [!String.IsEmpty(Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Art(poster)) | !Skin.HasSetting(filter.video.only.local)]</visible>
-               </control>
-               <control type="image">
-                    <left>10</left>
-                    <top>10</top>
-                    <right>30</right>
-                    <bottom>10</bottom>
-                    <aspectratio scalediffuse="false">keep</aspectratio>
-                    <texture diffuse="diffuse/poster_w202_h305.png" colordiffuse="Dark1" background="true" fallback="$PARAM[fallbackpicture]">$INFO[Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Icon]</texture>
-                    <visible>$PARAM[poster] + String.IsEmpty(Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Art(poster)) + Skin.HasSetting(filter.video.only.local)</visible>
-               </control>
+                    <control type="image">
+                        <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
+                        <aspectratio scalediffuse="false">scale</aspectratio>
+                        <texture diffuse="diffuse/poster_w202_h305.png" background="true" fallback="$PARAM[fallbackpicture]">$INFO[Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Thumb]</texture>
+                        <visible>$PARAM[thumb] + !String.IsEmpty(Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Thumb)</visible>
+                    </control>
+                    <control type="image">
+                        <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
+                        <aspectratio scalediffuse="false">keep</aspectratio>
+                        <texture diffuse="diffuse/poster_w202_h305.png" colordiffuse="Dark1" background="true" fallback="$PARAM[fallbackpicture]">$INFO[Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Thumb]</texture>
+                        <visible>$PARAM[thumb] + String.IsEmpty(Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Thumb)</visible>
+                    </control>
+
+                    <!-- Poster - Movies / TvShows -->
+
+                    <control type="image">
+                        <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
+                        <aspectratio scalediffuse="false">scale</aspectratio>
+                        <texture diffuse="diffuse/poster_w202_h305.png" background="true" fallback="$PARAM[fallbackpicture]">$INFO[Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Art(poster)]</texture>
+                        <visible>$PARAM[poster] + [!String.IsEmpty(Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Art(poster)) | !Skin.HasSetting(filter.video.only.local)]</visible>
+                    </control>
+                    <control type="image">
+                        <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
+                        <aspectratio scalediffuse="false">keep</aspectratio>
+                        <texture diffuse="diffuse/poster_w202_h305.png" colordiffuse="Dark1" background="true" fallback="$PARAM[fallbackpicture]">$INFO[Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Icon]</texture>
+                        <visible>$PARAM[poster] + String.IsEmpty(Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Art(poster)) + Skin.HasSetting(filter.video.only.local)</visible>
+                    </control>
+                </control>
             </control>
 
             <control type="group">
-               <visible>$PARAM[aspectbox]</visible>
-               <visible>!Container($PARAM[controlid]).OnNext + !Container($PARAM[controlid]).OnPrevious + !ListItem.IsParentFolder</visible>
-               <animation condition="!Container($PARAM[controlid]).OnNext + !Container($PARAM[controlid]).OnPrevious" effect="fade" start="100" end="0" time="400">Hidden</animation>
-               <animation condition="!Container($PARAM[controlid]).OnNext + !Container($PARAM[controlid]).OnPrevious" effect="fade" delay="200" start="0" reversible="false" end="100" time="500">Visible</animation>
-               <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Thumb)</visible>
-               <height>273</height>
-               <width>290</width>
-               <control type="image">
-                    <left>1</left>
-                    <top>1</top>
-                    <right>21</right>
-                    <bottom>1</bottom>
-                    <visible>$PARAM[visibleshadow]</visible>
-                    <animation effect="fade" end="0" start="70" time="350" delay="300">Hidden</animation>
-                    <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-               </control>
-               <control type="image">
-                    <left>10</left>
-                    <top>10</top>
-                    <right>30</right>
-                    <bottom>10</bottom>
-                    <texture colordiffuse="Fallback" border="12" background="true">common/box.png</texture>
-               </control>
-               <control type="image">
-                    <left>10</left>
-                    <top>10</top>
-                    <right>30</right>
-                    <bottom>10</bottom>
-                    <aspectratio scalediffuse="false">scale</aspectratio>
-                    <texture diffuse="diffuse/square_w305_h305.png" background="true" fallback="$PARAM[fallbackpicture]">$INFO[Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Thumb]</texture>
-               </control>
+                    <visible>$PARAM[aspectbox]</visible>
+                    <visible>!Container($PARAM[controlid]).OnNext + !Container($PARAM[controlid]).OnPrevious + !ListItem.IsParentFolder</visible>
+                    <animation condition="!Container($PARAM[controlid]).OnNext + !Container($PARAM[controlid]).OnPrevious" effect="fade" start="100" end="0" time="400">Hidden</animation>
+                    <animation condition="!Container($PARAM[controlid]).OnNext + !Container($PARAM[controlid]).OnPrevious" effect="fade" delay="200" start="0" reversible="false" end="100" time="500">Visible</animation>
+                    <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Thumb)</visible>
+                    <height>273</height>
+                    <width>290</width>
+
+                <control type="group">
+                    <right>20</right>
+
+                    <include>Def_Widget_Background</include>
+
+                    <control type="image">
+                        <include content="Def_Padding"><param name="pad">10</param></include>
+                        <aspectratio scalediffuse="false">scale</aspectratio>
+                        <texture diffuse="diffuse/square_w305_h305.png" background="true" fallback="$PARAM[fallbackpicture]">$INFO[Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Thumb]</texture>
+                    </control>
+                </control>
             </control>
         </definition>
     </include>
@@ -1339,34 +1303,20 @@
                 <animation condition="!Container($PARAM[controlid]).OnNext + !Container($PARAM[controlid]).OnPrevious" effect="fade" start="0" end="0" time="0">Hidden</animation>
                 <animation condition="!Container($PARAM[controlid]).OnNext + !Container($PARAM[controlid]).OnPrevious" effect="fade" delay="250" start="100" reversible="false" end="100" time="0">Visible</animation>
                 <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Label)</visible>
-               <height>273</height>
-               <width>209</width>
-               <control type="image">
-                    <left>1</left>
-                    <top>1</top>
-                    <right>21</right>
-                    <bottom>1</bottom>
-                    <visible>$PARAM[visibleshadow]</visible>
-                    <animation effect="fade" end="0" start="70" time="350" delay="300">Hidden</animation>
-                    <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-               </control>
-               <control type="image">
-                    <left>10</left>
-                    <top>10</top>
-                    <right>30</right>
-                    <bottom>10</bottom>
-                    <texture colordiffuse="Fallback" border="12" background="true">common/box.png</texture>
-               </control>
-               <control type="image">
-                    <left>10</left>
-                    <top>10</top>
-                    <right>30</right>
-                    <bottom>10</bottom>
-                    <aspectratio scalediffuse="false">scale</aspectratio>
-                    <texture diffuse="diffuse/poster_w202_h305.png" background="true" fallback="$PARAM[fallbackpicture]">$INFO[Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Art(poster)]</texture>
-                    <!-- <visible>$PARAM[poster] + [!String.IsEmpty(Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Art(poster)) | !Skin.HasSetting(filter.video.only.local)]</visible> -->
-               </control>
+                <height>273</height>
+                <width>209</width>
+
+                <control type="group">
+                    <right>20</right>
+
+                    <include>Def_Widget_Background</include>
+
+                    <control type="image">
+                        <include content="Def_Padding"><param name="pad">10</param></include>
+                        <aspectratio scalediffuse="false">scale</aspectratio>
+                        <texture diffuse="diffuse/poster_w202_h305.png" background="true" fallback="$PARAM[fallbackpicture]">$INFO[Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Art(poster)]</texture>
+                    </control>
+                </control>
             </control>
         </definition>
     </include>
@@ -1523,80 +1473,31 @@
                 <animation center="auto" easing="inout" effect="zoom" end="$PARAM[zoom]" start="100" time="200" tween="sine">Focus</animation>
                 <animation center="auto" easing="inout" effect="zoom" end="100" start="$PARAM[zoom]" time="200" tween="sine">UnFocus</animation>
 
-                <control type="image">
-                    <left>1</left>
-                    <top>1</top>
-                    <right>21</right>
-                    <bottom>1</bottom>
-                    <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
+                <control type="group">
+                    <right>20</right>
+
+                    <include content="Def_Widget_Background"><param name="colordiffuse" value="black" /></include>
+
+                    <control type="image">
+                        <include content="Def_Padding"><param name="pad">3</param></include>
+                        <texture border="18">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/selectbox_h.png</texture>
+                        <include>Animation_Delay_Fade_In_200</include>
+                    </control>
+
+                    <control type="image">
+                        <include content="Def_Padding"><param name="pad">10</param></include>
+                        <aspectratio scalediffuse="false">$PARAM[aspectratio]</aspectratio>
+                        <texture diffuse="diffuse/square_w405_h405.png" background="true" fallback="$PARAM[fallbackpicture]">$VAR[Image_Cast]</texture>
+                        <visible>$PARAM[thumb]</visible>
+                    </control>
                 </control>
-                <control type="image">
-                    <left>3</left>
-                    <top>3</top>
-                    <right>23</right>
-                    <bottom>3</bottom>
-                    <texture colordiffuse="$VAR[Color_Focus]" border="18">common/selectbox.png</texture>
-                    <include>Animation_Delay_Fade_In_200</include>
-                    <!-- <visible>Window.IsVisible(DialogMusicInfo.xml) | Window.IsVisible(DialogVideoInfo.xml) | Control.HasFocus(50) </visible> -->
-                </control>
-                <control type="image">
-                    <left>3</left>
-                    <top>3</top>
-                    <right>23</right>
-                    <bottom>3</bottom>
-                    <texture border="18">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/selectbox_h.png</texture>
-                    <include>Animation_Delay_Fade_In_200</include>
-                    <!-- <visible>Window.IsVisible(DialogMusicInfo.xml) | Window.IsVisible(DialogVideoInfo.xml) | Control.HasFocus(50) </visible> -->
-                </control>
-                <control type="image">
-                    <left>10</left>
-                    <top>10</top>
-                    <right>30</right>
-                    <bottom>10</bottom>
-                    <texture colordiffuse="black" border="12" background="true">common/box.png</texture>
-                </control>
-                <control type="image">
-                    <left>10</left>
-                    <top>10</top>
-                    <right>30</right>
-                    <bottom>10</bottom>
-                    <aspectratio scalediffuse="false">$PARAM[aspectratio]</aspectratio>
-                    <texture diffuse="diffuse/square_w405_h405.png" background="true" fallback="$PARAM[fallbackpicture]">$VAR[Image_Cast]</texture>
-                    <visible>$PARAM[thumb]</visible>
-                </control>
+
                 <include content="Layout_Indicator_Status" condition="!Skin.HasSetting(hide.markers)">
                     <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
                     <param name="right" value="20" />
                     <param name="top" value="1" />
                 </include>
             </control>
-            <!-- <control type="label"> -->
-               <!-- <left>$PARAM[labelleft]</left> -->
-               <!-- <bottom>$PARAM[labelbottom]</bottom> -->
-               <!-- <width>1300</width> -->
-               <!-- <height>42</height> -->
-               <!-- <font>InfoNetflix</font> -->
-               <!-- <visible>Control.HasFocus($PARAM[controlid])</visible> -->
-               <!-- <textcolor>Dark1</textcolor> -->
-               <!-- <selectedcolor>Dark1</selectedcolor> -->
-               <!-- <label>$VAR[Label_Dialog_Info_Music_Extended_Line_1]</label> -->
-               <!-- <animation effect="fade" start="0" end="100" time="350" tween="sine" delay="200" reversible="false">Focus</animation> -->
-               <!-- <animation effect="fade" start="100" end="0" time="0" delay="0">UnFocus</animation> -->
-            <!-- </control> -->
-            <!-- <control type="label"> -->
-               <!-- <left>$PARAM[labelleft]</left> -->
-               <!-- <bottom>$PARAM[labeltwobottom]</bottom> -->
-               <!-- <width>1300</width> -->
-               <!-- <height>42</height> -->
-               <!-- <font>Tiny</font> -->
-               <!-- <visible>Control.HasFocus($PARAM[controlid])</visible> -->
-               <!-- <textcolor>PanelWhite70</textcolor> -->
-               <!-- <selectedcolor>PanelWhite70</selectedcolor> -->
-               <!-- <label>$VAR[Label_Dialog_Info_Music_Extended_Line_2]</label> -->
-               <!-- <animation effect="fade" start="0" end="100" time="350" tween="sine" delay="200" reversible="false">Focus</animation> -->
-               <!-- <animation effect="fade" start="100" end="0" time="0" delay="0">UnFocus</animation> -->
-            <!-- </control> -->
         </definition>
     </include>
 
@@ -1681,90 +1582,6 @@
                 </control>
             </focusedlayout>
             <content sortorder="descending" limit="1" sortby="playcount">$VAR[Def_Music_Dialog_Most_Played_Song]</content>
-        </control>
-    </include>
-
-    <include name="Def_List_Image">
-        <control type="group">
-            <visible allowhiddenfocus="true">!Container($PARAM[controlid]).IsUpdating</visible>
-            <control type="group">
-                <visible>$PARAM[visible]</visible>
-                <include>Animation_Fade_In_DialogInfo</include>
-                <include>Animation_Fade_Out_DialogInfo</include>
-                <left>$PARAM[listleft]</left>
-                <right>$PARAM[listright]</right>
-                <top>$PARAM[listtop]</top>
-                <bottom>$PARAM[listbottom]</bottom>
-                <control type="group">
-                    <left>-7</left>
-                    <top>-126</top>
-                    <right>-7</right>
-                    <bottom>64</bottom>
-                    <control type="image">
-                        <texture border="18">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/selectbox_h.png</texture>
-                        <animation condition="Control.HasFocus($PARAM[controlid])" effect="fade" end="100" start="0" time="150">Conditional</animation>
-                        <animation condition="!Control.HasFocus($PARAM[controlid])" effect="fade" end="0" start="100" time="100">Conditional</animation>
-                    </control>
-                </control>
-                <control type="image">
-                    <left>-8</left>
-                    <top>-127</top>
-                    <height>625</height>
-                    <width>1286</width>
-                    <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-                </control>
-                <control type="image">
-                    <left>1</left>
-                    <top>-118</top>
-                    <height>607</height>
-                    <width>1268</width>
-                    <texture colordiffuse="Background" border="12">common/box.png</texture>
-                </control>
-                <include content="Def_Dialog_Info_List_Updating">
-                    <param name="visible" value="$PARAM[visible]"/>
-                    <param name="controlid" value="$PARAM[controlid]"/>
-                    <param name="alignleft" value="580"/>
-                    <param name="alignbottom" value="235"/>
-                </include>
-                <control type="fixedlist" id="$PARAM[controlid]">
-                    <top>-118</top>
-                    <left>1</left>
-                    <ondown>9000</ondown>
-                    <onback>9000</onback>
-                    <onup>9000</onup>
-                    <width>1268</width>
-                    <onright>$PARAM[controlid]</onright>
-                    <onleft>$PARAM[controlid]</onleft>
-                    <preloaditems>2</preloaditems>
-                    <autoscroll time="5000">ControlGroup(9000).HasFocus()</autoscroll>
-                    <viewtype label="31005">fixedlist</viewtype>
-                    <orientation>horizontal</orientation>
-                    <include>Animation_Scrolltime_Details_List</include>
-                    <itemlayout width="1268" height="607">
-                        <control type="image">
-                            <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
-                            <texture diffuse="diffuse/fanart_w1268_h607.png" fallback="DefaultArtist.png">$INFO[ListItem.Art(thumb)]</texture>
-                        </control>
-                    </itemlayout>
-                    <focusedlayout width="1268" height="607">
-                        <control type="image">
-                            <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
-                            <texture diffuse="diffuse/fanart_w1268_h607.png" fallback="DefaultArtist.png">$INFO[ListItem.Art(thumb)]</texture>
-                        </control>
-                    </focusedlayout>
-                </control>
-                <control type="image">
-                    <right>40</right>
-                    <bottom>100</bottom>
-                    <width>50</width>
-                    <height>50</height>
-                    <aspectratio>keep</aspectratio>
-                    <texture colordiffuse="88ffffff">common/lupe.png</texture>
-                    <visible>Control.HasFocus($PARAM[controlid])</visible>
-                    <include>Animation_Delay_Fade_In_200</include>
-                </control>
-            </control>
         </control>
     </include>
 

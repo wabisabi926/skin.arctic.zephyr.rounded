@@ -247,7 +247,10 @@
 
     <include name="Def_Dialog_Select_View_Type">
         <control type="group">
-            <include content="Def_Dialog_Background" condition="!String.IsEmpty(Window(Home).Property(SkinViewtypes.DialogIsActive))"><param name="height" value="882" /><param name="width" value="1722" /></include>
+            <include content="Def_Dialog_Background" condition="!String.IsEmpty(Window(Home).Property(SkinViewtypes.DialogIsActive))">
+                <param name="height" value="882" />
+                <param name="width" value="1722" />
+            </include>
 
             <!-- HEADER -->
 
@@ -367,24 +370,9 @@
 
             <!-- VIEW TYPE ON RIGHT -->
 
-            <control type="image">
-                <right>22</right>
-                <top>103</top>
-                <width>1228</width>
-                <height>698</height>
-                <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-            </control>
-            <control type="image">
-                <description>Large Icon Image</description>
-                <right>30</right>
-                <top>112</top>
-                <width>1210</width>
-                <height>680</height>
-                <fadetime>300</fadetime>
-                <aspectratio align="center" aligny="center" scalediffuse="false">stretch</aspectratio>
-                <texture diffuse="diffuse/viewtype_w1210_h680.png" background="true">$INFO[Container(6).ListITem.Icon]</texture>
-            </control>
+            <include content="Def_Dialog_View_Type">
+                <param name="texture" value="$INFO[Container(6).ListITem.Icon]" />
+            </include>
 
             <!-- NUM ITEMS -->
 
@@ -660,30 +648,24 @@
 
             <!-- CAST PICTURE -->
 
-            <control type="image">
-                <right>63</right>
-                <top>388</top>
-                <width>240</width>
-                <height>343</height>
-                <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-            </control>
-            <control type="image">
+            <control type="group">
                 <right>72</right>
                 <top>397</top>
                 <width>222</width>
                 <height>325</height>
-                <texture colordiffuse="Fallback" border="12" background="true">common/box.png</texture>
+
+                <include content="Def_Image_Background">
+                    <param name="colordiffuse" value="Fallback" />
+                </include>
+
+                <control type="image">
+                    <width>100%</width>
+                    <height>100%</height>
+                    <aspectratio scalediffuse="false">scale</aspectratio>
+                    <texture diffuse="diffuse/poster_w202_h305.png" background="true" fallback="DefaultMovies.png">$INFO[Window(Home).Property(ListVideoForCastIcon)]</texture>
+                </control>
             </control>
-            <control type="image">
-                <description>Large Icon Image</description>
-                <right>72</right>
-                <top>397</top>
-                <width>222</width>
-                <height>325</height>
-                <aspectratio scalediffuse="false">scale</aspectratio>
-                <texture diffuse="diffuse/poster_w202_h305.png" background="true" fallback="DefaultMovies.png">$INFO[Window(Home).Property(ListVideoForCastIcon)]</texture>
-            </control>
+
             <control type="label">
                 <align>center</align>
                 <top>726</top>
