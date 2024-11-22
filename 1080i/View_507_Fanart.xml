@@ -96,6 +96,9 @@
                             <align>justify</align>
                             <autoscroll>false</autoscroll>
                         </control>
+
+                        <!-- RATING / VOTES -->
+
                         <control type="label">
                             <top>570</top>
                             <width>450</width>
@@ -104,6 +107,7 @@
                             <label>$VAR[Label_Rating_And_Votes]</label>
                             <selectedcolor>Dark2</selectedcolor>
                             <visible>!Skin.HasSetting(enable.flags.rating.numeric) + !ListItem.IsParentFolder</visible>
+                            <visible>!Skin.HasSetting(hide.501.507.flags.numeric.rating)</visible>
                         </control>
                         <control type="label">
                             <top>570</top>
@@ -113,11 +117,14 @@
                             <label>$INFO[ListItem.Votes,, $LOCALIZE[205]]</label>
                             <selectedcolor>Dark2</selectedcolor>
                             <visible>Skin.HasSetting(enable.flags.rating.numeric) + !ListItem.IsParentFolder</visible>
+                            <visible>!Skin.HasSetting(hide.501.507.flags.numeric.rating)</visible>
                         </control>
 
                         <!-- FLAG STAR RATING -->
 
                         <control type="group">
+                            <visible>!Skin.HasSetting(hide.501.507.flags.numeric.rating)</visible>
+
                             <control type="group">
                                 <visible>!Skin.HasSetting(enable.flags.rating.numeric)</visible>
                                 <top>460</top>

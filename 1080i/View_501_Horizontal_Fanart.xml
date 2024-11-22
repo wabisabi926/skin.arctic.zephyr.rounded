@@ -2,6 +2,7 @@
 <includes>
     <include name="View_501_Fanart">
         <description>List View (id=501)</description>
+
         <control type="group">
             <visible>Control.IsVisible(501)</visible>
 
@@ -20,29 +21,32 @@
                 </include>
 
                 <control type="group">
-                    <control type="wraplist" id="501">
+                    <control type="fixedlist" id="501">
                         <visible>$EXP[Exp_View_501]</visible>
+
                         <top>17</top>
                         <bottom>17</bottom>
                         <width>240</width>
                         <left>-19</left>
+
                         <include>Def_Focus_Context_Menu_On_Right</include>
                         <onleft>1602</onleft>
                         <onup>59</onup>
                         <ondown>59</ondown>
+
                         <focusposition>1</focusposition>
-                        <movement>3</movement>
+                        <movement>9</movement>
                         <pagecontrol>1602</pagecontrol>
-                        <preloaditems>2</preloaditems>
+                        <!-- <preloaditems>2</preloaditems> -->
 
                         <include>Animation_Scrolltime_Views_List</include>
 
-                        <viewtype label="31005">wraplist</viewtype>
+                        <viewtype label="31005">list</viewtype>
 
-                        <itemlayout width="400" height="54">
+                        <itemlayout width="240" height="54">
                             <include>501_item_layout</include>
                         </itemlayout>
-                        <focusedlayout width="400" height="54">
+                        <focusedlayout width="240" height="54">
                             <control type="group">
                                 <visible>Control.HasFocus(501)</visible>
                                 <include>501_item_layout_focus</include>
@@ -55,6 +59,8 @@
                     </control>
                 </control>
             </control>
+
+            <!-- INFO -->
 
             <control type="group">
                 <control type="group">
@@ -117,6 +123,9 @@
                             <align>justify</align>
                             <autoscroll>false</autoscroll>
                         </control>
+
+                        <!-- RATING / VOTES -->
+
                         <control type="label">
                             <top>570</top>
                             <width>450</width>
@@ -125,6 +134,7 @@
                             <label>$VAR[Label_Rating_And_Votes]</label>
                             <selectedcolor>Dark2</selectedcolor>
                             <visible>!Skin.HasSetting(enable.flags.rating.numeric) + !Skin.HasSetting(hide.votes.fanart.view.501.507)</visible>
+                            <visible>!Skin.HasSetting(hide.501.507.flags.numeric.rating)</visible>
                         </control>
                         <control type="label">
                             <top>570</top>
@@ -134,11 +144,14 @@
                             <label>$INFO[ListItem.Votes,, $LOCALIZE[205]]</label>
                             <selectedcolor>Dark2</selectedcolor>
                             <visible>Skin.HasSetting(enable.flags.rating.numeric) + !Skin.HasSetting(hide.votes.fanart.view.501.507)</visible>
+                            <visible>!Skin.HasSetting(hide.501.507.flags.numeric.rating)</visible>
                         </control>
 
                         <!-- FLAG STAR RATING -->
 
                         <control type="group">
+                            <visible>!Skin.HasSetting(hide.501.507.flags.numeric.rating)</visible>
+
                             <control type="group">
                                 <visible>!Skin.HasSetting(enable.flags.rating.numeric)</visible>
                                 <top>460</top>
@@ -192,7 +205,7 @@
 
                         <include content="Def_View_Info_Circle_Progress">
                             <param name="top" value="510"/>
-                            <param name="left" value="245"/>
+                            <param name="left" value="235"/>
                         </include>
                     </control>
                 </control>
@@ -201,16 +214,16 @@
                     <param name="top" value="207" />
                 </include>
             </control>
-            <control type="group">
-                <right>0</right>
-                <control type="scrollbar" id="1602">
-                    <include content="Object_Scrollbar_Views_Vertical">
-                        <param name="scrollid" value="1602"/>
-                        <param name="top" value="216"/>
-                        <param name="height" value="648"/>
-                        <param name="idlayout" value="501"/>
-                    </include>
-                </control>
+
+            <!-- SCROLLBAR -->
+
+            <control type="scrollbar" id="1602">
+                <include content="Object_Scrollbar_Views_Vertical">
+                    <param name="scrollid" value="1602"/>
+                    <param name="top" value="216"/>
+                    <param name="height" value="648"/>
+                    <param name="idlayout" value="501"/>
+                </include>
             </control>
         </control>
     </include>
@@ -234,7 +247,7 @@
             <height>100%</height>
             <left>20</left>
             <texture border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texture>
-            <include>View_List_Scroll_Anim</include>
+            <!-- <include>View_List_Scroll_Anim</include> -->
         </control>
         <control type="label">
             <left>48</left>
