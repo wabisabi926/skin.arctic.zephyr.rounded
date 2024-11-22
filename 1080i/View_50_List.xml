@@ -657,6 +657,7 @@
                     <pagecontrol>1640</pagecontrol>
                     <include>Animation_Scrolltime_Views_List</include>
                     <viewtype label="Squarepics">list</viewtype>
+
                     <itemlayout height="341" width="372" condition="!Skin.HasSetting(pics.layout.fanart)">
                         <include>50_51_item_layout_pics</include>
                     </itemlayout>
@@ -3496,115 +3497,124 @@
     <!-- LAYOUT - VIEW 51 - PICS -->
 
     <include name="50_51_item_layout_pics">
-        <control type="image">
-            <left>5</left>
-            <top>1</top>
-            <right>16</right>
-            <bottom>23</bottom>
-            <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-            <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-        </control>
-        <control type="image">
-            <left>14</left>
-            <top>10</top>
-            <right>25</right>
-            <bottom>32</bottom>
-            <texture colordiffuse="Fallback" border="12" background="true">common/box.png</texture>
-        </control>
-
-        <control type="image">
-            <left>14</left>
-            <top>10</top>
-            <right>25</right>
-            <bottom>32</bottom>
-            <aspectratio scalediffuse="false">scale</aspectratio>
-            <texture diffuse="diffuse/fanart_w542_h305.png" background="true">$VAR[Image_Thumb]</texture>
-            <visible>!String.StartsWith(ListItem.Icon,Default)</visible>
-        </control>
-        <control type="image">
-            <left>14</left>
-            <top>10</top>
-            <right>25</right>
-            <bottom>32</bottom>
-            <aspectratio scalediffuse="false">scale</aspectratio>
-            <texture diffuse="diffuse/fanart_w542_h305.png" colordiffuse="Dark1" background="true">$VAR[Image_Thumb]</texture>
-            <visible>String.StartsWith(ListItem.Icon,Default)</visible>
-        </control>
-
-        <control type="image">
-            <left>14</left>
-            <right>25</right>
-            <bottom>42</bottom>
-            <height>60</height>
-            <texture border="15" colordiffuse="White70">common/white.png</texture>
-        </control>
-        <control type="label">
-            <left>14</left>
-            <right>25</right>
-            <bottom>44</bottom>
-            <height>60</height>
-            <align>center</align>
-            <font>Tiny</font>
-            <label>$INFO[ListItem.Label]</label>
-            <textcolor>Dark2</textcolor>
-        </control>
-    </include>
-
-    <include name="50_51_focus_layout_pics">
         <control type="group">
-            <include condition="Skin.HasSetting(items.focus.zoom)">Animation_Focus_Zoom</include>
+            <top>10</top>
+            <bottom>32</bottom>
+            <left>14</left>
+            <right>25</right>
+            <include content="Def_Image_Background">
+                <param name="colordiffuse" value="Fallback" />
+            </include>
+
             <control type="image">
-                <left>5</left>
-                <top>1</top>
-                <right>16</right>
-                <bottom>23</bottom>
-                <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-            </control>
-            <control type="image">
-                <left>14</left>
-                <top>10</top>
-                <right>25</right>
-                <bottom>32</bottom>
-                <texture colordiffuse="Fallback" border="12" background="true">common/box.png</texture>
+                <include content="Def_Padding"><param name="pad">0</param></include>
+                <aspectratio scalediffuse="false">scale</aspectratio>
+                <texture diffuse="diffuse/fanart_w332_h300.png" background="true">$VAR[Image_Thumb]</texture>
+                <visible>!String.StartsWith(ListItem.Icon,Default) + !Skin.HasSetting(pics.layout.fanart)</visible>
             </control>
 
             <control type="image">
-                <left>14</left>
-                <top>10</top>
-                <right>25</right>
-                <bottom>32</bottom>
+                <include content="Def_Padding"><param name="pad">0</param></include>
                 <aspectratio scalediffuse="false">scale</aspectratio>
-                <texture diffuse="diffuse/square_w305_h305.png" background="true">$VAR[Image_Thumb]</texture>
-                <visible>!String.StartsWith(ListItem.Icon,Default)</visible>
-            </control>
-            <control type="image">
-                <left>14</left>
-                <top>10</top>
-                <right>25</right>
-                <bottom>32</bottom>
-                <aspectratio scalediffuse="false">scale</aspectratio>
-                <texture diffuse="diffuse/square_w305_h305.png" colordiffuse="Dark1" background="true">$VAR[Image_Thumb]</texture>
-                <visible>String.StartsWith(ListItem.Icon,Default)</visible>
+                <texture diffuse="diffuse/fanart_w332_h300.png" colordiffuse="Dark1" background="true">$VAR[Image_Thumb]</texture>
+                <visible>String.StartsWith(ListItem.Icon,Default) + !Skin.HasSetting(pics.layout.fanart)</visible>
             </control>
 
             <control type="image">
-                <left>14</left>
-                <right>25</right>
-                <bottom>42</bottom>
+                <include content="Def_Padding"><param name="pad">0</param></include>
+                <aspectratio scalediffuse="false">scale</aspectratio>
+                <texture diffuse="diffuse/fanart_w512_h300.png" background="true">$VAR[Image_Thumb]</texture>
+                <visible>!String.StartsWith(ListItem.Icon,Default) + Skin.HasSetting(pics.layout.fanart)</visible>
+            </control>
+
+            <control type="image">
+                <include content="Def_Padding"><param name="pad">0</param></include>
+                <aspectratio scalediffuse="false">scale</aspectratio>
+                <texture diffuse="diffuse/fanart_w512_h300.png" colordiffuse="Dark1" background="true">$VAR[Image_Thumb]</texture>
+                <visible>String.StartsWith(ListItem.Icon,Default) + Skin.HasSetting(pics.layout.fanart)</visible>
+            </control>
+
+            <control type="image">
+                <left>0</left>
+                <right>0</right>
+                <bottom>10</bottom>
                 <height>60</height>
                 <texture border="15" colordiffuse="White70">common/white.png</texture>
             </control>
             <control type="label">
-                <left>14</left>
-                <right>25</right>
-                <bottom>44</bottom>
+                <left>0</left>
+                <right>0</right>
+                <bottom>12</bottom>
                 <height>60</height>
                 <align>center</align>
                 <font>Tiny</font>
                 <label>$INFO[ListItem.Label]</label>
                 <textcolor>Dark2</textcolor>
             </control>
+        </control>
+    </include>
+
+    <include name="50_51_focus_layout_pics">
+        <control type="group">
+            <include condition="Skin.HasSetting(items.focus.zoom)">Animation_Focus_Zoom</include>
+
+            <control type="group">
+                <top>10</top>
+                <bottom>32</bottom>
+                <left>14</left>
+                <right>25</right>
+
+                <include content="Def_Image_Background">
+                    <param name="colordiffuse" value="Fallback" />
+                </include>
+
+                <control type="image">
+                    <include content="Def_Padding"><param name="pad">0</param></include>
+                    <aspectratio scalediffuse="false">scale</aspectratio>
+                    <texture diffuse="diffuse/fanart_w332_h300.png" background="true">$VAR[Image_Thumb]</texture>
+                    <visible>!String.StartsWith(ListItem.Icon,Default) + !Skin.HasSetting(pics.layout.fanart)</visible>
+                </control>
+
+                <control type="image">
+                    <include content="Def_Padding"><param name="pad">0</param></include>
+                    <aspectratio scalediffuse="false">scale</aspectratio>
+                    <texture diffuse="diffuse/fanart_w332_h300.png" colordiffuse="Dark1" background="true">$VAR[Image_Thumb]</texture>
+                    <visible>String.StartsWith(ListItem.Icon,Default) + !Skin.HasSetting(pics.layout.fanart)</visible>
+                </control>
+
+                <control type="image">
+                    <include content="Def_Padding"><param name="pad">0</param></include>
+                    <aspectratio scalediffuse="false">scale</aspectratio>
+                    <texture diffuse="diffuse/fanart_w512_h300.png" background="true">$VAR[Image_Thumb]</texture>
+                    <visible>!String.StartsWith(ListItem.Icon,Default) + Skin.HasSetting(pics.layout.fanart)</visible>
+                </control>
+
+                <control type="image">
+                    <include content="Def_Padding"><param name="pad">0</param></include>
+                    <aspectratio scalediffuse="false">scale</aspectratio>
+                    <texture diffuse="diffuse/fanart_w512_h300.png" colordiffuse="Dark1" background="true">$VAR[Image_Thumb]</texture>
+                    <visible>String.StartsWith(ListItem.Icon,Default) + Skin.HasSetting(pics.layout.fanart)</visible>
+                </control>
+
+                <control type="image">
+                    <left>0</left>
+                    <right>0</right>
+                    <bottom>10</bottom>
+                    <height>60</height>
+                    <texture border="15" colordiffuse="White70">common/white.png</texture>
+                </control>
+                <control type="label">
+                    <left>0</left>
+                    <right>0</right>
+                    <bottom>12</bottom>
+                    <height>60</height>
+                    <align>center</align>
+                    <font>Tiny</font>
+                    <label>$INFO[ListItem.Label]</label>
+                    <textcolor>Dark2</textcolor>
+                </control>
+            </control>
+
             <include content="Layout_Widget_Glow" condition="!Skin.HasSetting(pics.layout.fanart)">
                 <param name="glow_height" value="315" />
                 <param name="glow_top" value="2" />
@@ -3612,10 +3622,11 @@
                 <param name="glow_right" value="16" />
                 <param name="id" value="51" />
             </include>
+
             <include content="Layout_Widget_Glow" condition="Skin.HasSetting(pics.layout.fanart)">
                 <param name="glow_height" value="315" />
                 <param name="glow_top" value="2" />
-                <param name="glow_left" value="12" />
+                <param name="glow_left" value="15" />
                 <param name="glow_right" value="23" />
                 <param name="id" value="51" />
             </include>

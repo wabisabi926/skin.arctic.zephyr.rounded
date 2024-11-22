@@ -1,120 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
-    <include name="View_507_Layout">
-        <control type="image">
-            <right>110</right>
-            <width>1160</width>
-            <height>646</height>
-            <aspectratio scalediffuse="false">scale</aspectratio>
-            <texture background="true" diffuse="diffuse/fanart_w1160_h646.png">$VAR[Image_Fanart_View_50x]</texture>
-            <visible>true</visible>
-        </control>
-        <control type="group">
-            <visible>Skin.HasSetting(507.noscrolling)</visible>
-            <left>59</left>
-            <height>650</height>
-            <width>538</width>
-            <control type="label">
-                <top>14</top>
-                <aligny>center</aligny>
-                <height>64</height>
-                <font>SmallBold</font>
-                <textcolor>Dark1</textcolor>
-                <selectedcolor>Dark1</selectedcolor>
-                <label>$INFO[ListItem.Label]</label>
-                <include condition="Skin.HasSetting(labels.autoscroll)">LabelScroll</include>
-            </control>
-            <control type="label">
-                <top>56</top>
-                <height>64</height>
-                <aligny>center</aligny>
-                <font>InfoNetflix</font>
-                <textcolor>PanelWhite70</textcolor>
-                <selectedcolor>PanelWhite70</selectedcolor>
-                <label>$VAR[Label_View_Flix_Sub_Title]</label>
-            </control>
-            <control type="textbox">
-                <top>136</top>
-                <bottom>17</bottom>
-                <font>TinyPlot</font>
-                <height>360</height>
-                <textcolor>Dark2</textcolor>
-                <selectedcolor>Dark2</selectedcolor>
-                <label>$VAR[Label_Plot_Box_Video_Music]</label>
-                <align>justify</align>
-                <autoscroll>false</autoscroll>
-            </control>
-            <control type="label">
-                <top>570</top>
-                <width>450</width>
-                <font>Small333</font>
-                <textcolor>Dark2</textcolor>
-                <label>$VAR[Label_Rating_And_Votes]</label>
-                <selectedcolor>Dark2</selectedcolor>
-                <visible>!Skin.HasSetting(enable.flags.rating.numeric) + !ListItem.IsParentFolder + !Skin.HasSetting(hide.votes.fanart.view.501.507)</visible>
-            </control>
-            <control type="label">
-                <top>570</top>
-                <width>450</width>
-                <font>Small333</font>
-                <textcolor>Dark2</textcolor>
-                <label>$INFO[ListItem.Votes,, $LOCALIZE[205]]</label>
-                <selectedcolor>Dark2</selectedcolor>
-                <visible>Skin.HasSetting(enable.flags.rating.numeric) + !ListItem.IsParentFolder + !Skin.HasSetting(hide.votes.fanart.view.501.507)</visible>
-            </control>
-            <control type="group">
-                <animation effect="slide" start="0" end="0,40" time="0" condition="Skin.HasSetting(hide.votes.fanart.view.501.507)">Conditional</animation>
-                <control type="group">
-                    <top>460</top>
-                    <width>1050</width>
-                    <visible>!ListItem.IsParentFolder</visible>
-                    <visible>!Skin.HasSetting(enable.flags.rating.numeric)</visible>
-                    <include content="Def_Flag">
-                        <param name="Star" value="Flagstar1" />
-                    </include>
-                    <include content="Def_Flag">
-                        <param name="Star" value="Flagstar2" />
-                        <param name="left" value="50" />
-                    </include>
-                    <include content="Def_Flag">
-                        <param name="Star" value="Flagstar3" />
-                        <param name="left" value="100" />
-                    </include>
-                    <include content="Def_Flag">
-                        <param name="Star" value="Flagstar4" />
-                        <param name="left" value="150" />
-                    </include>
-                    <include content="Def_Flag">
-                        <param name="Star" value="Flagstar5" />
-                        <param name="left" value="200" />
-                    </include>
-                </control>
-                <control type="group">
-                    <top>460</top>
-                    <width>1050</width>
-                    <visible>Skin.HasSetting(enable.flags.rating.numeric)</visible>
-                    <visible>!ListItem.IsParentFolder</visible>
-                    <include content="Def_Flag">
-                        <param name="Star" value="Flagstar1" />
-                    </include>
-                    <control type="label">
-                        <left>45</left>
-                        <width min="48">auto</width>
-                        <centertop>50%</centertop>
-                        <height>64</height>
-                        <align>left</align>
-                        <aligny>center</aligny>
-                        <label>$VAR[Label_Rating]</label>
-                        <visible>!ListItem.IsParentFolder</visible>
-                        <font>Flag</font>
-                        <textcolor>Dark2</textcolor>
-                    </control>
-                </control>
-            </control>
-        </control>
-    </include>
-
-    <include name="View_507_Fanart2">
+    <include name="View_507_Fanart">
         <description>List View (id=507)</description>
         <control type="group">
             <visible>Control.IsVisible(507)</visible>
@@ -127,72 +13,59 @@
                 <include>Animation_Common</include>
 
                 <control type="group">
-                    <left>70</left>
-                    <control type="group">
-                        <top>185</top>
-                        <left>-26</left>
-                        <control type="image">
-                            <width>1776</width>
-                            <height>664</height>
-                            <top>23</top>
-                            <left>27</left>
-                            <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                            <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-                        </control>
-                        <control type="image">
-                            <width>1758</width>
-                            <height>646</height>
-                            <top>32</top>
-                            <left>36</left>
-                            <texture colordiffuse="InfoBackground" background="true" border="12">common/box.png</texture>
-                        </control>
-                        <control type="image">
-                            <right>SidePad</right>
-                            <width>1160</width>
-                            <height>646</height>
-                            <top>32</top>
-                            <texture colordiffuse="Fallback" border="12" background="true">common/box.png</texture>
-                        </control>
-                    </control>
+                    <top>217</top>
+                    <left>SidePad</left>
+                    <width>1760</width>
+                    <height>646</height>
 
-                    <control type="group">
-                        <control type="wraplist" id="507">
-                            <visible>$EXP[Exp_View_507]</visible>
-                            <top>217</top>
-                            <left>-20</left>
-                            <width>1980</width>
-                            <height>646</height>
-                            <include>Def_Focus_Context_Menu_On_Right</include>
-                            <onleft>1600</onleft>
-                            <onup>500</onup>
-                            <ondown>500</ondown>
-                            <preloaditems>2</preloaditems>
-                            <pagecontrol>1600</pagecontrol>
-                            <orientation>vertical</orientation>
+                    <include content="Def_Image_Background">
+                        <param name="colordiffuse" value="White70" />
+                    </include>
 
-                            <viewtype label="31193">wraplist</viewtype>
-                            <include>Animation_Scrolltime_Views_List</include>
-                            <itemlayout height="646" width="1900">
-                                <include>View_507_Layout</include>
-                            </itemlayout>
-                            <focusedlayout height="646" width="1900">
-                                <include>View_507_Layout</include>
-                            </focusedlayout>
-                        </control>
+                    <control type="wraplist" id="507">
+                        <visible>$EXP[Exp_View_507]</visible>
+                        <top>0</top>
+                        <left>0</left>
+                        <width>1760</width>
+                        <align>left</align>
+                        <include>Def_Focus_Context_Menu_On_Right</include>
+                        <onleft>1600</onleft>
+                        <onup>500</onup>
+                        <ondown>500</ondown>
+                        <preloaditems>2</preloaditems>
+                        <pagecontrol>1600</pagecontrol>
+                        <orientation>vertical</orientation>
+
+                        <viewtype label="31193">wraplist</viewtype>
+                        <include>Animation_Scrolltime_Views_List</include>
+
+                        <itemlayout height="646" width="1760">
+                            <include>507_Item_Layout</include>
+                        </itemlayout>
+                        <focusedlayout height="646" width="1760">
+                            <include>507_Item_Layout</include>
+                        </focusedlayout>
                     </control>
                 </control>
+
                 <control type="group">
                     <visible>Control.IsVisible(507)</visible>
+
+                    <!-- STATUS INDICATOR -->
+
                     <include content="Layout_Indicator_Status" condition="!Skin.HasSetting(hide.markers)">
                         <param name="right" value="71" />
                         <param name="top" value="207" />
                     </include>
+
+                    <!-- INFO -->
+
                     <control type="group">
-                        <visible>!Skin.HasSetting(507.noscrolling)</visible>
-                        <left>109</left>
                         <top>217</top>
-                        <height>650</height>
-                        <width>538</width>
+                        <left>110</left>
+                        <height>646</height>
+                        <width>540</width>
+
                         <control type="label">
                             <top>14</top>
                             <aligny>center</aligny>
@@ -230,7 +103,7 @@
                             <textcolor>Dark2</textcolor>
                             <label>$VAR[Label_Rating_And_Votes]</label>
                             <selectedcolor>Dark2</selectedcolor>
-                            <visible>!Skin.HasSetting(enable.flags.rating.numeric) + !ListItem.IsParentFolder + !Skin.HasSetting(hide.votes.fanart.view.501.507)</visible>
+                            <visible>!Skin.HasSetting(enable.flags.rating.numeric) + !ListItem.IsParentFolder</visible>
                         </control>
                         <control type="label">
                             <top>570</top>
@@ -239,14 +112,16 @@
                             <textcolor>Dark2</textcolor>
                             <label>$INFO[ListItem.Votes,, $LOCALIZE[205]]</label>
                             <selectedcolor>Dark2</selectedcolor>
-                            <visible>Skin.HasSetting(enable.flags.rating.numeric) + !ListItem.IsParentFolder + !Skin.HasSetting(hide.votes.fanart.view.501.507)</visible>
+                            <visible>Skin.HasSetting(enable.flags.rating.numeric) + !ListItem.IsParentFolder</visible>
                         </control>
+
+                        <!-- FLAG STAR RATING -->
+
                         <control type="group">
-                            <animation effect="slide" start="0" end="0,40" time="250" condition="Skin.HasSetting(hide.votes.fanart.view.501.507)">Conditional</animation>
                             <control type="group">
                                 <visible>!Skin.HasSetting(enable.flags.rating.numeric)</visible>
                                 <top>460</top>
-                                <width>1050</width>
+                                <width>450</width>
                                 <visible>!ListItem.IsParentFolder</visible>
                                 <visible>!Skin.HasSetting(enable.flags.rating.numeric)</visible>
                                 <include content="Def_Flag">
@@ -271,7 +146,7 @@
                             </control>
                             <control type="group">
                                 <top>460</top>
-                                <width>1050</width>
+                                <width>450</width>
                                 <visible>Skin.HasSetting(enable.flags.rating.numeric)</visible>
                                 <visible>!ListItem.IsParentFolder</visible>
                                 <include content="Def_Flag">
@@ -291,8 +166,17 @@
                                 </control>
                             </control>
                         </control>
+
+                        <!-- PROGRESS -->
+
+                        <include content="Def_View_Info_Circle_Progress">
+                            <param name="top" value="510"/>
+                            <param name="left" value="425"/>
+                        </include>
                     </control>
-                    <include content="PosterDiscCase"><param name="discposition" value="100" /></include>
+
+                    <!-- ARROW -->
+
                     <control type="image">
                         <include>Animation_Delay_Fade_In_200</include>
                         <top>190</top>
@@ -310,6 +194,9 @@
                         <animation effect="zoom" center="auto" pulse="true" start="100" end="170" time="200" delay="2000" condition="String.IsEqual(ListItem.Label,..)">Conditional</animation>
                     </control>
                 </control>
+
+                <!-- SCROLLBAR -->
+
                 <control type="scrollbar" id="1600">
                     <include content="Object_Scrollbar_Views_Vertical">
                         <param name="scrollid" value="1600"/>
@@ -317,6 +204,25 @@
                         <param name="idlayout" value="507"/>
                     </include>
                 </control>
+            </control>
+        </control>
+    </include>
+
+    <include name="507_Item_Layout">
+
+        <!-- FANART -->
+
+        <control type="group">
+            <right>0</right>
+            <width>1160</width>
+            <height>646</height>
+            <align>right</align>
+            <control type="image">
+                <width>100%</width>
+                <height>100%</height>
+                <aspectratio scalediffuse="false">scale</aspectratio>
+                <texture background="true" diffuse="diffuse/fanart_w1160_h646.png">$VAR[Image_Fanart_View_50x]</texture>
+                <visible>true</visible>
             </control>
         </control>
     </include>

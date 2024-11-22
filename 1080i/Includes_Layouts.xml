@@ -71,27 +71,15 @@
             <visible allowhiddenfocus="true">$PARAM[visible]</visible>
             <include>Animation_ZoomIn</include>
             <include>Animation_Fade_Out</include>
+
             <top>184</top>
-            <!-- <centertop>50%</centertop> -->
             <centerleft>50%</centerleft>
             <height>$PARAM[height]</height>
             <width>$PARAM[width]</width>
 
-            <control type="image">
-                <left>-9</left>
-                <top>-9</top>
-                <right>-9</right>
-                <bottom>-9</bottom>
-                <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-            </control>
-            <control type="image">
-                <left>0</left>
-                <top>0</top>
-                <right>0</right>
-                <bottom>0</bottom>
-                <texture colordiffuse="White100" border="12">common/box.png</texture>
-            </control>
+            <include content="Def_Image_Background">
+                <param name="colordiffuse" value="White100" />
+            </include>
         </definition>
     </include>
 

@@ -634,6 +634,10 @@
 
     <variable name="Label_Rating">
         <value condition="!String.IsEmpty(ListItem.UserRating) + Skin.HasSetting(userrating.override.kodi.rating.num)">$INFO[ListItem.UserRating,,.0]</value>
+
+        <!-- <value condition="!String.IsEmpty(ListItem.UserRating) + Skin.HasSetting(userrating.override.kodi.rating.num) + !Integer.IsEqual(ListItem.UserRating,10)">$INFO[ListItem.UserRating,,.0]</value> -->
+        <!-- <value condition="!String.IsEmpty(ListItem.UserRating) + Skin.HasSetting(userrating.override.kodi.rating.num) + Integer.IsEqual(ListItem.UserRating,10)">$INFO[ListItem.UserRating]</value> -->
+
         <value condition="Control.IsVisible(5161) + !String.IsEmpty(Container(5161).ListItem.Rating)">$INFO[Container(5161).ListItem.Rating]</value>
         <value>$INFO[ListItem.Rating]</value>
     </variable>

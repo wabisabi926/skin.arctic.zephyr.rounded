@@ -11,29 +11,21 @@
             <control type="group">
                 <top>PosterPad</top>
                 <left>SidePad</left>
-                <right>SidePad</right>
+                <width>1760</width>
                 <height>640</height>
 
-                <control type="image">
-                    <left>-9</left>
-                    <top>-9</top>
-                    <right>-9</right>
-                    <bottom>-9</bottom>
-                    <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-                </control>
-                <control type="image">
-                    <texture border="12" colordiffuse="Panel">common/box.png</texture>
-                </control>
+                <include content="Def_Image_Background">
+                    <param name="colordiffuse" value="Panel" />
+                </include>
 
                 <control type="wraplist" id="506">
                     <visible>$EXP[Exp_View_506]</visible>
+
                     <top>0</top>
                     <left>0</left>
                     <width>1760</width>
-                    <right>0</right>
-                    <top>0</top>
-                    <bottom>0</bottom>
+                    <height>640</height>
+
                     <onup condition="!Skin.HasSetting(global.kioskmode)">9000</onup>
                     <onup condition="!Skin.HasSetting(global.kioskmode) + [Player.HasMedia | Player.Playing]">AlarmClock(GoToButtonFullScreen,SetFocus(6157),00:00,silent)</onup>
                     <ondown>1641</ondown>
@@ -46,6 +38,7 @@
 
                     <viewtype label="Slider">list</viewtype>
                     <include>Animation_Scrolltime_Views_List</include>
+
                     <itemlayout height="640" width="1760">
                         <control type="image">
                             <align>center</align>
