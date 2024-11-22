@@ -288,36 +288,25 @@
                     <visible>String.IsEqual(Window.Property(moviecontent),5)</visible>
                     <include>Animation_Fade_In_DialogInfo</include>
                     <include>Animation_Fade_Out_DialogInfo</include>
+
+                    <top>217</top>
                     <left>570</left>
-                    <right>SidePad</right>
-                    <bottom>184</bottom>
-                    <top>335</top>
+                    <height>607</height>
+                    <width>1268</width>
+
+                    <include>Def_Image_Shaddow</include>
+
                     <control type="image">
-                        <left>-9</left>
-                        <top>-126</top>
-                        <height>625</height>
-                        <width>1286</width>
-                        <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                        <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-                    </control>
-                    <control type="image">
-                        <left>0</left>
-                        <top>-117</top>
-                        <width>1268</width>
-                        <height>607</height>
+                        <include content="Def_Padding"><param name="pad">0</param></include>
                         <texture colordiffuse="White100" border="12">common/box.png</texture>
                         <animation effect="fade" start="100" end="40" condition="true">Conditional</animation>
                     </control>
-                    <control type="group">
-                        <left>-8</left>
-                        <top>-125</top>
-                        <height>623</height>
-                        <width>1284</width>
-                        <control type="image">
-                            <texture border="18">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/selectbox_h.png</texture>
-                            <animation condition="Control.HasFocus(95051)" effect="fade" end="100" start="0" time="150">Conditional</animation>
-                            <animation condition="!Control.HasFocus(95051)" effect="fade" end="0" start="100" time="100">Conditional</animation>
-                        </control>
+
+                    <control type="image">
+                        <include content="Def_Padding"><param name="pad">-6</param></include>
+                        <texture border="18">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/selectbox_h.png</texture>
+                        <animation condition="Control.HasFocus(95051)" effect="fade" end="100" start="0" time="150">Conditional</animation>
+                        <animation condition="!Control.HasFocus(95051)" effect="fade" end="0" start="100" time="100">Conditional</animation>
                     </control>
 
                     <include content="Def_Dialog_Info_List_Updating">
@@ -329,18 +318,19 @@
 
                     <control type="fixedlist" id="9505">
                         <left>0</left>
-                        <top>-117</top>
-                        <width>1268</width>
+                        <top>0</top>
 
                         <ondown>9000</ondown>
                         <onback>9000</onback>
                         <onup>9000</onup>
+
                         <preloaditems>2</preloaditems>
                         <autoscroll time="5000">ControlGroup(9000).HasFocus()</autoscroll>
                         <viewtype label="31005">fixedlist</viewtype>
                         <orientation>horizontal</orientation>
                         <include>Animation_Scrolltime_Details_List</include>
                         <visible allowhiddenfocus="true">!Skin.HasSetting(showartwork.video.tmdbhelper) | [!Container(9505).IsUpdating + Skin.HasSetting(showartwork.video.tmdbhelper)]</visible>
+
                         <itemlayout width="1268" height="607">
                             <control type="image">
                                 <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
@@ -353,6 +343,7 @@
                                 <texture diffuse="diffuse/fanart_w1268_h607.png" fallback="DefaultAddonPicture.png">$VAR[Image_Thumb_Label]</texture>
                             </control>
                         </focusedlayout>
+
                         <content>
                             <item id="0">
                                 <label>$INFO[ListItem.Art(fanart)]</label>
@@ -475,25 +466,15 @@
 
                     <include>Animation_Fade_In_DialogInfo</include>
                     <include>Animation_Fade_Out_DialogInfo</include>
-                    <left>570</left>
-                    <right>SidePad</right>
-                    <bottom>184</bottom>
-                    <top>217</top>
 
-                    <control type="image">
-                        <top>-9</top>
-                        <left>-8</left>
-                        <height>625</height>
-                        <width>1286</width>
-                        <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                        <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-                    </control>
-                    <control type="image">
-                        <left>1</left>
-                        <height>607</height>
-                        <width>1268</width>
-                        <texture colordiffuse="black" border="12">common/box.png</texture>
-                    </control>
+                    <top>217</top>
+                    <left>570</left>
+                    <height>607</height>
+                    <width>1268</width>
+
+                    <include content="Def_Image_Background">
+                        <param name="colordiffuse" value="black" />
+                    </include>
 
                     <!-- VIDEO WINDOW -->
 
@@ -582,25 +563,15 @@
 
                     <include>Animation_Fade_In_DialogInfo</include>
                     <include>Animation_Fade_Out_DialogInfo</include>
-                    <left>570</left>
-                    <right>SidePad</right>
-                    <bottom>184</bottom>
-                    <top>217</top>
 
-                    <control type="image">
-                        <top>-9</top>
-                        <left>-8</left>
-                        <height>625</height>
-                        <width>1286</width>
-                        <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                        <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-                    </control>
-                    <control type="image">
-                        <left>1</left>
-                        <height>607</height>
-                        <width>1268</width>
-                        <texture colordiffuse="Panel" border="12">common/box.png</texture>
-                    </control>
+                    <top>217</top>
+                    <left>570</left>
+                    <height>607</height>
+                    <width>1268</width>
+
+                    <include content="Def_Image_Background">
+                        <param name="colordiffuse" value="Panel" />
+                    </include>
 
                     <control type="image">
                         <left>1</left>

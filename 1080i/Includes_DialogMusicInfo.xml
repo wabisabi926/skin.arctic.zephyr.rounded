@@ -612,38 +612,22 @@
                     <visible>String.IsEqual(Window.Property(musiccontent),4)</visible>
                     <include>Animation_Fade_In_DialogInfo</include>
                     <include>Animation_Fade_Out_DialogInfo</include>
-                    <left>571</left>
-                    <right>SidePad</right>
-                    <bottom>184</bottom>
-                    <top>335</top>
+
+                    <top>217</top>
+                    <left>784</left>
+                    <height>607</height>
+                    <width>1054</width>
+
+                    <include content="Def_Image_Background">
+                        <param name="colordiffuse" value="Background" />
+                    </include>
 
                     <control type="image">
-                        <left>204</left>
-                        <top>-128</top>
-                        <right>-8</right>
-                        <bottom>62</bottom>
-                        <texture border="18" background="true" infill="false">common/$VAR[shadow18]</texture>
-                        <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-                    </control>
-                    <control type="image">
-                        <height>607</height>
-                        <width>1054</width>
-                        <left>214</left>
-                        <top>-118</top>
-                        <texture border="12" colordiffuse="Background">common/box.png</texture>
-                    </control>
-
-                    <control type="group">
+                        <include content="Def_Padding"><param name="pad">-6</param></include>
+                        <texture border="18">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/selectbox_h.png</texture>
+                        <animation condition="Control.HasFocus(95031)" effect="fade" end="100" start="0" time="150">Conditional</animation>
+                        <animation condition="!Control.HasFocus(95031)" effect="fade" end="0" start="100" time="100">Conditional</animation>
                         <visible>Control.HasFocus(95031)</visible>
-                        <left>206</left>
-                        <top>-127</top>
-                        <right>-8</right>
-                        <bottom>64</bottom>
-                        <control type="image">
-                            <texture border="18">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/selectbox_h.png</texture>
-                            <animation condition="Control.HasFocus(95031)" effect="fade" end="100" start="0" time="150">Conditional</animation>
-                            <animation condition="!Control.HasFocus(95031)" effect="fade" end="0" start="100" time="100">Conditional</animation>
-                        </control>
                     </control>
 
                     <include content="Def_Dialog_Info_List_Updating">
@@ -654,8 +638,8 @@
                     </include>
 
                     <control type="fixedlist" id="9503">
-                        <top>-118</top>
-                        <left>214</left>
+                        <top>0</top>
+                        <left>0</left>
                         <ondown>9000</ondown>
                         <onback>9000</onback>
                         <onup>9000</onup>
@@ -665,6 +649,7 @@
                         <orientation>horizontal</orientation>
                         <viewtype label="31005">fixedlist</viewtype>
                         <include>Animation_Scrolltime_Details_List</include>
+
                         <itemlayout width="1054" height="607">
                             <control type="image">
                                 <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
