@@ -12,10 +12,17 @@
         <control type="group">
             <include>Animation_Fade_In_Slide</include>
             <include>Animation_Fade_Out</include>
+
             <right>64</right>
             <bottom>64</bottom>
             <width>480</width>
             <height>270</height>
+
+            <include content="Def_Image_Background">
+                <param name="colordiffuse" value="$VAR[Color_OSD_Panel]" />
+                <param name="condition_fade" value="true" />
+            </include>
+
             <control type="label" description="text">
                 <top>-64</top>
                 <left>0</left>
@@ -23,9 +30,8 @@
                 <height>64</height>
                 <aligny>center</aligny>
                 <font>Small</font>
-                <label>$ADDON[service.upnext 30008]... </label>
-                <textcolor>ffededed</textcolor>
-                <shadowcolor>bf000000</shadowcolor>
+                <label>$ADDON[service.upnext 30008]...</label>
+                <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
             </control>
             <control type="image" description="fanart">
                 <width>100%</width>
@@ -38,7 +44,7 @@
                 <width>100%</width>
                 <height>64</height>
                 <bottom>0</bottom>
-                <texture colordiffuse="OSDBack" border="4">diffuse/nextup_w542_h63.png</texture>
+                <texture colordiffuse="OSD_Black" border="12">diffuse/up_next_w480_h64.png</texture>
             </control>
             <control type="image" description="blackline">
                 <height>64</height>
@@ -46,7 +52,7 @@
                 <centertop>133</centertop>
                 <centerleft>50%</centerleft>
                 <aspectratio scalediffuse="false">keep</aspectratio>
-                <texture colordiffuse="dfffffff">common/circle.png</texture>
+                <texture colordiffuse="White70">common/circle.png</texture>
             </control>
             <control type="label">
                 <description>Remaining</description>
@@ -55,7 +61,7 @@
                 <width>885</width>
                 <font>TinyBold</font>
                 <align>center</align>
-                <textcolor>ffededed</textcolor>
+                <textcolor>Dark1</textcolor>
                 <label>$INFO[Player.TimeRemaining(ss)]</label>
             </control>
             <control type="label" description="text">
@@ -66,7 +72,7 @@
                 <aligny>center</aligny>
                 <font>Small</font>
                 <label>$INFO[Window.Property(season),S,]$INFO[Window.Property(episode),E, - ]$INFO[Window.Property(title)]</label>
-                <textcolor>PanelWhite100</textcolor>
+                <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
             </control>
             <control type="button" id="3012">
                 <description>Play</description>
@@ -81,10 +87,10 @@
                 <onleft>3013</onleft>
                 <onright>3013</onright>
                 <font>Null</font>
-                <textcolor>PanelWhite30</textcolor>
-                <focusedcolor>PanelWhite100</focusedcolor>
+                <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
+                <focusedcolor>$VAR[Color_OSD_Panel_White70]</focusedcolor>
                 <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</texturefocus>
-                <texturenofocus />
+                <texturenofocus colordiffuse="$VAR[Color_Background]" border="12">common/box.png</texturenofocus>
             </control>
             <control type="image">
                 <description>Play</description>
@@ -109,10 +115,10 @@
                 <onleft>3012</onleft>
                 <onright>3012</onright>
                 <font>Null</font>
-                <textcolor>PanelWhite30</textcolor>
-                <focusedcolor>PanelWhite100</focusedcolor>
+                <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
+                <focusedcolor>$VAR[Color_OSD_Panel_White70]</focusedcolor>
                 <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</texturefocus>
-                <texturenofocus />
+                <texturenofocus colordiffuse="$VAR[Color_Background]" border="12">common/box.png</texturenofocus>
             </control>
             <control type="image">
                 <description>Play</description>
