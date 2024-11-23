@@ -2,7 +2,9 @@
 <window id="107">
     <controls>
         <control type="group">
-            <visible>!Window.IsVisible(DialogVolumeBar.xml)</visible>
+            <visible>!Window.IsVisible(DialogVolumeBar.xml) | Player.Muted</visible>
+            <visible>!VideoPlayer.IsFullscreen + !Window.IsVisible(MusicVisualisation.xml)</visible>
+            <visible>!Window.IsVisible(DialogSeekBar.xml)</visible>
 
             <include>Animation_Fade_In</include>
             <include>Animation_Fade_Out</include>
