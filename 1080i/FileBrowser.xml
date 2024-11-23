@@ -416,10 +416,12 @@
                 <onleft>1726</onleft>
                 <left>1273</left>
                 <top>112</top>
+
                 <itemgap>3</itemgap>
                 <orientation>vertical</orientation>
                 <onright>451</onright>
                 <onleft>451</onleft>
+
                 <control type="button" id="9413">
                     <description>Ok</description>
                     <label>186</label>
@@ -438,16 +440,19 @@
                     <description>Create Folder</description>
                     <label>119</label>
                     <include>Def_Dialog_Buttons</include>
-                    <visible>Control.IsEnabled(415)</visible>
                     <onclick>SendClick(415)</onclick>
                     <visible>Control.IsEnabled(415)</visible>
                 </control>
                 <control type="radiobutton" id="9416">
                     <description>Flip picture</description>
                     <label>749</label>
+                    <align>left</align>
+                    <textoffsetx>20</textoffsetx>
+                    <radioposx>250</radioposx>
                     <textureradiofocus colordiffuse="00FFFFFF">buttons/radio-on.png</textureradiofocus>
                     <textureradionofocus colordiffuse="00FFFFFF">buttons/radio-off.png</textureradionofocus>
                     <include>Def_Dialog_Buttons</include>
+                    <onclick>SendClick(416)</onclick>
                     <visible>Control.IsEnabled(416)</visible>
                 </control>
             </control>
@@ -474,6 +479,7 @@
                 <aspectratio align="center" aligny="bottom">keep</aspectratio>
                 <visible>String.Contains(Control.GetLabel(416),*) + !String.StartsWith(ListItem.Icon,Default)</visible>
             </control>
+
             <control type="image">
                 <description>Large Icon Image</description>
                 <right>30</right>
