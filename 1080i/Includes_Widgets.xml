@@ -474,7 +474,7 @@
             <control type="group">
                 <height>$PARAM[image_height]</height>
 
-                <!-- All others -->
+                <!-- ALL OTHERS -->
 
                 <control type="image">
                     <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
@@ -486,10 +486,9 @@
                     <visible>!String.StartsWith(ListItem.Path,pvr://channels)</visible>
                     <visible>![String.IsEqual(ListItem.Path,favourites://) | Container.Content(favourites)]</visible>
                 </control>
-
                 <control type="image">
                     <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
-                    <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                    <aspectratio align="center" aligny="center" scalediffuse="false">$PARAM[aspectratio]</aspectratio>
                     <texture diffuse="diffuse/$PARAM[texture_diffuse].png" background="true" colordiffuse="Dark1">$VAR[Image_Poster]</texture>
                     <visible>$EXP[View_Icon_Black]</visible>
                 </control>
@@ -635,97 +634,141 @@
         </definition>
     </include>
 
-    <include name="Def_Widget_Square_System">
+    <include name="Def_Widget_Thumb">
+        <param name="texture_diffuse" value="$PARAM[texture_diffuse]" />
+        <param name="indicatorbackground" value="$PARAM[indicatorbackground]" default="false" />
         <param name="pad_image" value="$PARAM[pad_image]" default="10" />
-        <param name="height" value="$PARAM[height]" default="325" />
+        <param name="clearlogo" value="$PARAM[clearlogo]" default="false" />
+        <param name="small" value="$PARAM[smallthumb]" default="false" />
+        <param name="poster" value="$PARAM[poster]" default="false" />
         <definition>
-            <include content="Def_Widget_Background"><param name="condition_fade">true</param></include>
+            <include>Def_Widget_Background</include>
+
+            <control type="group">
+                <height>$PARAM[image_height]</height>
+
+                <!-- FANART -->
+
+                <control type="image">
+                    <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
+                    <aspectratio scalediffuse="false">scale</aspectratio>
+                    <texture diffuse="diffuse/$PARAM[texture_diffuse].png" background="true" fallback="DefaultMovies.png">$VAR[Image_Thumb]</texture>
+                    <visible>!String.IsEqual(ListItem.DBType,genre) + !String.IsEqual(ListItem.DBType,studio) + !String.EndsWith(Container.FolderPath,Genres) + !String.StartsWith(ListItem.Path,pvr://channels)</visible>
+                </control>
+
+                <!-- PVR -->
+
+                <control type="image">
+                    <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
+                    <aspectratio scalediffuse="false">keep</aspectratio>
+                    <texture diffuse="diffuse/$PARAM[texture_diffuse].png" background="true" fallback="DefaultMovies.png">$VAR[Image_Thumb]</texture>
+                    <visible>String.StartsWith(ListItem.Path,pvr://channels)</visible>
+                </control>
+
+                <!-- STUDIO -->
+
+                <control type="image">
+                    <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
+                    <aspectratio scalediffuse="false">keep</aspectratio>
+                    <texture diffuse="diffuse/$PARAM[texture_diffuse].png" background="true" fallback="DefaultStudios.png">$VAR[Image_Thumb_Studios]</texture>
+                    <visible>String.IsEqual(ListItem.DBType,studio)</visible>
+                </control>
+
+                <!-- GENRES -->
+
+                <control type="image">
+                    <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
+                    <aspectratio scalediffuse="false">scale</aspectratio>
+                    <texture diffuse="diffuse/$PARAM[texture_diffuse].png" background="true" fallback="DefaultGenre.png">$VAR[Image_Thumb_Genres]</texture>
+                    <visible>String.IsEqual(ListItem.DBType,genre) | String.EndsWith(Container.FolderPath,Genres)</visible>
+                </control>
+            </control>
+
+            <control type="group">
+                <visible>$PARAM[small]</visible>
+
+                <!-- PVR - PROGRESS BAR -->
+
+                <control type="progress">
+                    <left>20</left>
+                    <right>20</right>
+                    <height>8</height>
+                    <bottom>90</bottom>
+                    <info>ListItem.Progress</info>
+                    <lefttexture colordiffuse="$VAR[Color_Focus]" border="4">osd/progress-left.png</lefttexture>
+                    <midtexture colordiffuse="$VAR[Color_Focus]" border="4">osd/progress-end.png</midtexture>
+                    <righttexture colordiffuse="$VAR[Color_Focus]" border="4">osd/progress-right.png</righttexture>
+                    <visible>String.StartsWith(ListItem.Path,pvr://channels) + $PARAM[small]</visible>
+                    <visible>!String.IsEqual(ListItem.Path,pvr://channels/tv/</visible>
+                </control>
+
+                <!-- LABEL -->
+
+                <control type="label">
+                    <bottom>40</bottom>
+                    <left>35</left>
+                    <right>35</right>
+                    <align>center</align>
+                    <font>InfoNetflix</font>
+                    <textcolor>PanelWhite70</textcolor>
+                    <selectedcolor>PanelWhite70</selectedcolor>
+                    <label>$VAR[Label_Widget_Lign_1]</label>
+                </control>
+
+                <!-- LABEL - 2nd LINE -->
+
+                <control type="label">
+                    <bottom>10</bottom>
+                    <left>35</left>
+                    <right>35</right>
+                    <align>center</align>
+                    <font>Tiny</font>
+                    <textcolor>PanelWhite70</textcolor>
+                    <selectedcolor>PanelWhite70</selectedcolor>
+                    <label>$VAR[Label_Widget_Lign_2]</label>
+                </control>
+            </control>
+
+            <!-- CLEARLOGO -->
 
             <control type="image">
-                <width>150</width>
-                <height>150</height>
-                <right>10</right>
-                <bottom>10</bottom>
-                <aspectratio scalediffuse="false">keep</aspectratio>
-                <texture colordiffuse="PanelWhite100" diffuse="diffuse/square_w305_h305.png" background="true" fallback="DefaultMovies.png">$INFO[ListItem.Icon]</texture>
-            </control>
-            <control type="group">
-                <left>45</left>
-                <right>45</right>
-                <control type="label">
-                   <top>25</top>
-                   <bottom>10</bottom>
-                   <align>left</align>
-                   <textcolor>PanelWhite100</textcolor>
-                   <selectedcolor>PanelWhite100</selectedcolor>
-                   <label>$INFO[ListItem.Label]</label>
-                   <font>Medium</font>
-                </control>
-                <control type="label">
-                   <top>80</top>
-                   <bottom>10</bottom>
-                   <align>left</align>
-                   <textcolor>PanelWhite100</textcolor>
-                   <selectedcolor>PanelWhite100</selectedcolor>
-                   <label>$INFO[ListItem.Label2]</label>
-                   <font>Tiny</font>
-                </control>
-                <control type="label">
-                   <top>116</top>
-                   <bottom>10</bottom>
-                   <align>left</align>
-                   <textcolor>PanelWhite100</textcolor>
-                   <selectedcolor>PanelWhite100</selectedcolor>
-                   <label>$INFO[ListItem.Property(Label3)]</label>
-                   <animation effect="slide" end="0,-36" condition="String.IsEmpty(ListItem.Label2)" time="0">Conditional</animation>
-                   <font>Tiny</font>
-                </control>
-            </control>
-            <control type="image">
-                <width>8</width>
+                <width>200</width>
                 <height>80</height>
-                <left>45</left>
-                <bottom>45</bottom>
-                <texture colordiffuse="FF0A0A0A" border="0" background="true">common/white.png</texture>
-                <visible>String.IsEqual(ListItem.Property(Label4),cpu) | String.IsEqual(ListItem.Property(Label4),ram) | String.IsEqual(ListItem.Property(Label4),storage)</visible>
+                <right>34</right>
+                <include content="Def_Bottom" condition="$PARAM[small]">
+                   <param name="bottom" value="110" />
+                </include>
+                <bottom>30</bottom>
+                <aspectratio align="right" aligny="bottom">keep</aspectratio>
+                <texture background="true">$VAR[Image_ClearLogo]</texture>
+                <visible>$PARAM[clearlogo]</visible>
+                <visible>!String.IsEqual(ListItem.DBType,genre) + !String.EndsWith(Container.FolderPath,Genres)</visible>
             </control>
-            <control type="progress">
-                <height>8</height>
-                <width>80</width>
-                <bottom>80</bottom>
-                <left>9</left>
-                <info>System.CPUUsage</info>
-                <include>Def_Button_Settings</include>
-                <righttexture colordiffuse="$VAR[Color_Highlight]" border="0">osd/progress-right.png</righttexture>
-                <animation effect="rotate" condition="true" start="360" end="90" loop="false" time="0" center="auto">Conditional</animation>
-                <visible>String.IsEqual(ListItem.Property(Label4),cpu)</visible>
+
+            <!-- RATING -->
+
+            <control type="group">
+                <visible>Skin.HasSetting(enable.view.video.rating.num)</visible>
+                <left>7</left>
+                <include content="Def_Bottom" condition="$PARAM[small]">
+                   <param name="bottom" value="82" />
+                </include>
+                <bottom>-10</bottom>
+                <include>Def_Layout_Poster_rating_Info</include>
             </control>
-            <control type="progress">
-                <height>8</height>
-                <width>80</width>
-                <bottom>80</bottom>
-                <left>9</left>
-                <info>system.memory(used)</info>
-                <include>Def_Button_Settings</include>
-                <righttexture colordiffuse="$VAR[Color_Highlight]" border="0">osd/progress-right.png</righttexture>
-                <animation effect="rotate" condition="true" start="360" end="90" loop="false" time="0" center="auto">Conditional</animation>
-                <visible>String.IsEqual(ListItem.Property(Label4),ram)</visible>
-            </control>
-            <control type="progress">
-                <height>8</height>
-                <width>80</width>
-                <bottom>80</bottom>
-                <left>9</left>
-                <info>System.UsedSpace</info>
-                <include>Def_Button_Settings</include>
-                <righttexture colordiffuse="$VAR[Color_Highlight]" border="0">osd/progress-right.png</righttexture>
-                <animation effect="rotate" condition="true" start="360" end="90" loop="false" time="0" center="auto">Conditional</animation>
-                <visible>String.IsEqual(ListItem.Property(Label4),storage)</visible>
-            </control>
+
+            <!-- WATCHED STATUS -->
+
+            <include content="Layout_Indicator_Status" condition="!Skin.HasSetting(hide.markers)">
+                <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
+            </include>
+
+            <!-- WIDGET "MORE" -->
+
+            <include condition="Skin.HasSetting(enable.morewidget)">more</include>
         </definition>
     </include>
 
-    <!-- landscape -->
     <include name="Def_Widget_Fanart">
         <param name="texture_diffuse" value="$PARAM[texture_diffuse]" />
         <param name="indicatorbackground" value="$PARAM[indicatorbackground]" default="false" />
@@ -919,139 +962,93 @@
         </definition>
     </include>
 
-    <!-- Fanart / Small Fanart -->
-    <include name="Def_Widget_Thumb">
-        <param name="texture_diffuse" value="$PARAM[texture_diffuse]" />
-        <param name="indicatorbackground" value="$PARAM[indicatorbackground]" default="false" />
+    <include name="Def_Widget_Square_System">
         <param name="pad_image" value="$PARAM[pad_image]" default="10" />
-        <param name="clearlogo" value="$PARAM[clearlogo]" default="false" />
-        <param name="small" value="$PARAM[smallthumb]" default="false" />
-        <param name="poster" value="$PARAM[poster]" default="false" />
+        <param name="height" value="$PARAM[height]" default="325" />
         <definition>
-            <include>Def_Widget_Background</include>
-
-            <control type="group">
-                <height>$PARAM[image_height]</height>
-
-                <!-- FANART -->
-
-                <control type="image">
-                    <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
-                    <aspectratio scalediffuse="false">scale</aspectratio>
-                    <texture diffuse="diffuse/$PARAM[texture_diffuse].png" background="true" fallback="DefaultMovies.png">$VAR[Image_Thumb]</texture>
-                    <visible>!String.IsEqual(ListItem.DBType,genre) + !String.IsEqual(ListItem.DBType,studio) + !String.EndsWith(Container.FolderPath,Genres) + !String.StartsWith(ListItem.Path,pvr://channels)</visible>
-                </control>
-
-                <!-- PVR -->
-
-                <control type="image">
-                    <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
-                    <aspectratio scalediffuse="false">keep</aspectratio>
-                    <texture diffuse="diffuse/$PARAM[texture_diffuse].png" background="true" fallback="DefaultMovies.png">$VAR[Image_Thumb]</texture>
-                    <visible>String.StartsWith(ListItem.Path,pvr://channels)</visible>
-                </control>
-
-                <!-- STUDIO -->
-
-                <control type="image">
-                    <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
-                    <aspectratio scalediffuse="false">keep</aspectratio>
-                    <texture diffuse="diffuse/$PARAM[texture_diffuse].png" background="true" fallback="DefaultStudios.png">$VAR[Image_Thumb_Studios]</texture>
-                    <visible>String.IsEqual(ListItem.DBType,studio)</visible>
-                </control>
-
-                <!-- GENRES -->
-
-                <control type="image">
-                    <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
-                    <aspectratio scalediffuse="false">scale</aspectratio>
-                    <texture diffuse="diffuse/$PARAM[texture_diffuse].png" background="true" fallback="DefaultGenre.png">$VAR[Image_Thumb_Genres]</texture>
-                    <visible>String.IsEqual(ListItem.DBType,genre) | String.EndsWith(Container.FolderPath,Genres)</visible>
-                </control>
-            </control>
-
-            <control type="group">
-                <visible>$PARAM[small]</visible>
-
-                <!-- PVR - PROGRESS BAR -->
-
-                <control type="progress">
-                    <left>20</left>
-                    <right>20</right>
-                    <height>8</height>
-                    <bottom>90</bottom>
-                    <info>ListItem.Progress</info>
-                    <lefttexture colordiffuse="$VAR[Color_Focus]" border="4">osd/progress-left.png</lefttexture>
-                    <midtexture colordiffuse="$VAR[Color_Focus]" border="4">osd/progress-end.png</midtexture>
-                    <righttexture colordiffuse="$VAR[Color_Focus]" border="4">osd/progress-right.png</righttexture>
-                    <visible>String.StartsWith(ListItem.Path,pvr://channels) + $PARAM[small]</visible>
-                    <visible>!String.IsEqual(ListItem.Path,pvr://channels/tv/</visible>
-                </control>
-
-                <!-- LABEL -->
-
-                <control type="label">
-                    <bottom>40</bottom>
-                    <left>35</left>
-                    <right>35</right>
-                    <align>center</align>
-                    <font>InfoNetflix</font>
-                    <textcolor>PanelWhite70</textcolor>
-                    <selectedcolor>PanelWhite70</selectedcolor>
-                    <label>$VAR[Label_Widget_Lign_1]</label>
-                </control>
-
-                <!-- LABEL - 2nd LINE -->
-
-                <control type="label">
-                    <bottom>10</bottom>
-                    <left>35</left>
-                    <right>35</right>
-                    <align>center</align>
-                    <font>Tiny</font>
-                    <textcolor>PanelWhite70</textcolor>
-                    <selectedcolor>PanelWhite70</selectedcolor>
-                    <label>$VAR[Label_Widget_Lign_2]</label>
-                </control>
-            </control>
-
-            <!-- CLEARLOGO -->
+            <include content="Def_Widget_Background"><param name="condition_fade">true</param></include>
 
             <control type="image">
-                <width>200</width>
-                <height>80</height>
-                <right>34</right>
-                <include content="Def_Bottom" condition="$PARAM[small]">
-                   <param name="bottom" value="110" />
-                </include>
-                <bottom>30</bottom>
-                <aspectratio align="right" aligny="bottom">keep</aspectratio>
-                <texture background="true">$VAR[Image_ClearLogo]</texture>
-                <visible>$PARAM[clearlogo]</visible>
-                <visible>!String.IsEqual(ListItem.DBType,genre) + !String.EndsWith(Container.FolderPath,Genres)</visible>
+                <width>150</width>
+                <height>150</height>
+                <right>10</right>
+                <bottom>10</bottom>
+                <aspectratio scalediffuse="false">keep</aspectratio>
+                <texture colordiffuse="PanelWhite100" diffuse="diffuse/square_w305_h305.png" background="true" fallback="DefaultMovies.png">$INFO[ListItem.Icon]</texture>
             </control>
-
-            <!-- RATING -->
-
             <control type="group">
-                <visible>Skin.HasSetting(enable.view.video.rating.num)</visible>
-                <left>7</left>
-                <include content="Def_Bottom" condition="$PARAM[small]">
-                   <param name="bottom" value="82" />
-                </include>
-                <bottom>-10</bottom>
-                <include>Def_Layout_Poster_rating_Info</include>
+                <left>45</left>
+                <right>45</right>
+                <control type="label">
+                   <top>25</top>
+                   <bottom>10</bottom>
+                   <align>left</align>
+                   <textcolor>PanelWhite100</textcolor>
+                   <selectedcolor>PanelWhite100</selectedcolor>
+                   <label>$INFO[ListItem.Label]</label>
+                   <font>Medium</font>
+                </control>
+                <control type="label">
+                   <top>80</top>
+                   <bottom>10</bottom>
+                   <align>left</align>
+                   <textcolor>PanelWhite100</textcolor>
+                   <selectedcolor>PanelWhite100</selectedcolor>
+                   <label>$INFO[ListItem.Label2]</label>
+                   <font>Tiny</font>
+                </control>
+                <control type="label">
+                   <top>116</top>
+                   <bottom>10</bottom>
+                   <align>left</align>
+                   <textcolor>PanelWhite100</textcolor>
+                   <selectedcolor>PanelWhite100</selectedcolor>
+                   <label>$INFO[ListItem.Property(Label3)]</label>
+                   <animation effect="slide" end="0,-36" condition="String.IsEmpty(ListItem.Label2)" time="0">Conditional</animation>
+                   <font>Tiny</font>
+                </control>
             </control>
-
-            <!-- WATCHED STATUS -->
-
-            <include content="Layout_Indicator_Status" condition="!Skin.HasSetting(hide.markers)">
-                <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
-            </include>
-
-            <!-- WIDGET "MORE" -->
-
-            <include condition="Skin.HasSetting(enable.morewidget)">more</include>
+            <control type="image">
+                <width>8</width>
+                <height>80</height>
+                <left>45</left>
+                <bottom>45</bottom>
+                <texture colordiffuse="FF0A0A0A" border="0" background="true">common/white.png</texture>
+                <visible>String.IsEqual(ListItem.Property(Label4),cpu) | String.IsEqual(ListItem.Property(Label4),ram) | String.IsEqual(ListItem.Property(Label4),storage)</visible>
+            </control>
+            <control type="progress">
+                <height>8</height>
+                <width>80</width>
+                <bottom>80</bottom>
+                <left>9</left>
+                <info>System.CPUUsage</info>
+                <include>Def_Button_Settings</include>
+                <righttexture colordiffuse="$VAR[Color_Highlight]" border="0">osd/progress-right.png</righttexture>
+                <animation effect="rotate" condition="true" start="360" end="90" loop="false" time="0" center="auto">Conditional</animation>
+                <visible>String.IsEqual(ListItem.Property(Label4),cpu)</visible>
+            </control>
+            <control type="progress">
+                <height>8</height>
+                <width>80</width>
+                <bottom>80</bottom>
+                <left>9</left>
+                <info>system.memory(used)</info>
+                <include>Def_Button_Settings</include>
+                <righttexture colordiffuse="$VAR[Color_Highlight]" border="0">osd/progress-right.png</righttexture>
+                <animation effect="rotate" condition="true" start="360" end="90" loop="false" time="0" center="auto">Conditional</animation>
+                <visible>String.IsEqual(ListItem.Property(Label4),ram)</visible>
+            </control>
+            <control type="progress">
+                <height>8</height>
+                <width>80</width>
+                <bottom>80</bottom>
+                <left>9</left>
+                <info>System.UsedSpace</info>
+                <include>Def_Button_Settings</include>
+                <righttexture colordiffuse="$VAR[Color_Highlight]" border="0">osd/progress-right.png</righttexture>
+                <animation effect="rotate" condition="true" start="360" end="90" loop="false" time="0" center="auto">Conditional</animation>
+                <visible>String.IsEqual(ListItem.Property(Label4),storage)</visible>
+            </control>
         </definition>
     </include>
 
@@ -1193,6 +1190,7 @@
         <param name="texture_diffuse" value="$PARAM[texture_diffuse]" />
         <param name="height" value="$PARAM[height]" default="325" />
         <param name="top" value="$PARAM[top]" default="305" />
+        <param name="aspectratio" value="$PARAM[aspectratio]" />
         <definition>
             <control type="group">
                 <height>$PARAM[height]</height>
@@ -1212,6 +1210,7 @@
         <param name="texture_diffuse" value="$PARAM[texture_diffuse]" />
         <param name="height" value="$PARAM[height]" default="325" />
         <param name="top" value="$PARAM[top]" default="305" />
+        <param name="aspectratio" value="$PARAM[aspectratio]" />
         <definition>
             <control type="group">
                 <include condition="Skin.HasSetting(items.focus.zoom)">Animation_Focus_Zoom</include>
