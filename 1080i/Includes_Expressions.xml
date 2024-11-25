@@ -4,6 +4,10 @@
 
     <expression name="OSD_Video_Music_Full_Screen_Visible">[[VideoPlayer.IsFullscreen + Window.IsVisible(DialogSeekBar.xml)] | [Window.IsVisible(MusicVisualisation.xml) + Window.IsVisible(MusicOSD.xml)]]</expression>
 
+    <!-- ICON ADDONS -->
+
+    <expression name="Icon_Container_Addons">[Container.Content() | String.IsEqual(ListItem.FolderPath,addons://all/) | String.StartsWith(ListItem.Icon,DefaultFolder)]</expression>
+    
     <!-- SHOW SCRIPT SKINSHORTCUTS WIDGET MENU -->
 
     <expression name="Script_SkinShortcuts_Widget">[String.EndsWith(Window.Property(groupname),.1) | String.EndsWith(Window.Property(groupname),.3) | String.EndsWith(Window.Property(groupname),.4) | String.EndsWith(Window.Property(groupname),.5) | String.EndsWith(Window.Property(groupname),.6) | String.EndsWith(Window.Property(groupname),.7) | String.EndsWith(Window.Property(groupname),.8) | String.EndsWith(Window.Property(groupname),.9) | String.EndsWith(Window.Property(groupname),.10)]</expression>

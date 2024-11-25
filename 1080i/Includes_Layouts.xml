@@ -1,6 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 
+    <!-- VIEWS LAYOUT - LIST -->
+
+    <include name="Def_View_List_Icon">
+        <param name="left" value="$PARAM[left]" default="6" />
+        <param name="centertop" value="$PARAM[centertop]" default="32" />
+        <param name="width" value="$PARAM[width]" default="54" />
+        <param name="height" value="$PARAM[height]" default="54" />
+
+        <param name="texture_diffuse" value="$PARAM[texture_diffuse]" default="icon_w60_h60" />
+
+        <param name="texture_icon" value="$PARAM[texture_icon]" default="$VAR[Image_Poster]" />
+        <param name="visible_icon" value="$PARAM[visible_icon]" default="$EXP[View_Artwork_Condition] + $EXP[View_Artwork_Specific] + !ListItem.IsParentFolder" />
+
+        <param name="color_diffuse_background_icon_black" value="$PARAM[color_diffuse_background_icon_black]" default="Dark4" />
+        <param name="color_diffuse_icon_black" value="$PARAM[color_diffuse_icon_black]" default="Dark1" />
+        <param name="texture_icon_black" value="$PARAM[texture_icon_black]" default="$INFO[ListItem.Icon]" />
+        <param name="visible_icon_black" value="$PARAM[visible_icon_black]" default="$EXP[View_Icon_Black]" />
+
+        <definition>
+            <!-- Icon -->
+            <control type="image">
+                <centertop>$PARAM[centertop]</centertop>
+                <left>$PARAM[left]</left>
+                <width>$PARAM[width]</width>
+                <height>$PARAM[height]</height>
+                <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                <texture diffuse="diffuse/$PARAM[texture_diffuse].png" background="true">$PARAM[texture_icon]</texture>
+                <visible>$PARAM[visible_icon]</visible>
+            </control>
+
+            <!-- Icon black -->
+            <control type="image">
+                <centertop>$PARAM[centertop]</centertop>
+                <left>$PARAM[left]</left>
+                <width>$PARAM[width]</width>
+                <height>$PARAM[height]</height>
+                <texture border="8" colordiffuse="$PARAM[color_diffuse_background_icon_black]">diffuse/$PARAM[texture_diffuse].png</texture>
+                <visible>$PARAM[visible_icon_black]</visible>
+            </control>
+            <control type="image">
+                <centertop>$PARAM[centertop]</centertop>
+                <left>$PARAM[left]</left>
+                <width>$PARAM[width]</width>
+                <height>$PARAM[height]</height>
+                <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                <texture colordiffuse="$PARAM[color_diffuse_icon_black]">$PARAM[texture_icon_black]</texture>
+                <visible>$PARAM[visible_icon_black]</visible>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_View_List_Icon_Info">
+        <param name="left" value="$PARAM[left]" default="6" />
+        <param name="centertop" value="$PARAM[centertop]" default="45.7" />
+        <param name="width" value="$PARAM[width]" default="79.4" />
+        <param name="height" value="$PARAM[height]" default="79.4" />
+
+        <param name="texture_diffuse" value="$PARAM[texture_diffuse]" default="icon_w80_h80" />
+
+        <param name="texture_icon" value="$PARAM[texture_icon]" default="$VAR[Image_Poster]" />
+        <param name="visible_icon" value="$PARAM[visible_icon]" default="$EXP[View_Artwork_Condition] + $EXP[View_Artwork_Specific] + !ListItem.IsParentFolder" />
+
+        <param name="color_diffuse_background_icon_black" value="$PARAM[color_diffuse_background_icon_black]" default="Dark4" />
+        <param name="color_diffuse_icon_black" value="$PARAM[color_diffuse_icon_black]" default="Dark1" />
+        <param name="texture_icon_black" value="$PARAM[texture_icon_black]" default="$INFO[ListItem.Icon]" />
+        <param name="visible_icon_black" value="$PARAM[visible_icon_black]" default="$EXP[View_Icon_Black]" />
+
+        <definition>
+            <!-- Icon -->
+            <control type="image">
+                <centertop>$PARAM[centertop]</centertop>
+                <left>$PARAM[left]</left>
+                <width>$PARAM[width]</width>
+                <height>$PARAM[height]</height>
+                <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                <texture diffuse="diffuse/$PARAM[texture_diffuse].png" background="true">$PARAM[texture_icon]</texture>
+                <visible>$PARAM[visible_icon]</visible>
+            </control>
+
+            <!-- Icon black -->
+            <control type="image">
+                <centertop>$PARAM[centertop]</centertop>
+                <left>$PARAM[left]</left>
+                <width>$PARAM[width]</width>
+                <height>$PARAM[height]</height>
+                <texture border="8" colordiffuse="$PARAM[color_diffuse_background_icon_black]">diffuse/$PARAM[texture_diffuse].png</texture>
+                <visible>$PARAM[visible_icon_black]</visible>
+            </control>
+            <control type="image">
+                <centertop>$PARAM[centertop]</centertop>
+                <left>$PARAM[left]</left>
+                <width>$PARAM[width]</width>
+                <height>$PARAM[height]</height>
+                <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                <texture colordiffuse="$PARAM[color_diffuse_icon_black]">$PARAM[texture_icon_black]</texture>
+                <visible>$PARAM[visible_icon_black]</visible>
+            </control>
+        </definition>
+    </include>
+
     <!-- VIEWS LAYOUT - CONTEXTE MENU -->
 
     <include name="Def_Context_Menu_Label">
