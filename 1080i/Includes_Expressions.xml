@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
+    <!-- OSD VIDEO / OSD MUSIC VISIBLE -->
+
+    <expression name="OSD_Video_Music_Full_Screen_Visible">[[VideoPlayer.IsFullscreen + Window.IsVisible(DialogSeekBar.xml)] | [Window.IsVisible(MusicVisualisation.xml) + Window.IsVisible(MusicOSD.xml)]]</expression>
 
     <!-- SHOW SCRIPT SKINSHORTCUTS WIDGET MENU -->
 
@@ -166,7 +169,7 @@
     <expression name="Home_Is_Flix">Skin.HasSetting(home.style.flix) + !Skin.HasSetting(home.style.horizontal.clean)</expression>
 
     <expression name="Home_Is_Sub_Menu_Horizontal">[Skin.HasSetting(home.horizontal) + Skin.HasSetting(home.show.sub.menu.horizontal) + !Skin.HasSetting(home.show.menu.icons)]</expression>
-    
+
     <expression name="Home_Menu_Is_Focus">[Control.HasFocus(300) | Control.HasFocus(302) | Control.HasFocus(222) | Control.HasFocus(399)]</expression>
 
     <expression name="Home_Clean_Brightness_If_View_Info_Dialog">[[!Skin.HasSetting(home.style.horizontal.clean) + !$EXP[Home_Is_Flix]] | [Window.IsVisible(Home) + $EXP[View_Info_Dialog]] | !Window.IsVisible(Home)]</expression>
@@ -197,9 +200,9 @@
     <expression name="View_Poster">Control.IsVisible(55) | Control.IsVisible(509) | Control.IsVisible(517) | Control.IsVisible(519)</expression>
 
     <!-- VIEW - CONTEXT MENU -->
-    
+
     <expression name="View_Context_Menu_Visible">ControlGroup(9000).HasFocus() | ControlGroup(9001).HasFocus() | Control.HasFocus(9070) | Control.HasFocus(9071)</expression>
-    
+
     <!-- VIEW INFO DIALOG -->
 
     <expression name="Is_Person_Info">[String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(tmdb_type),person)]</expression>
