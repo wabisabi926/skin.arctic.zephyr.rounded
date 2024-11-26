@@ -2,13 +2,14 @@
 <includes>
     <include name="521_Layout">
         <visible>$EXP[Exp_View_521]</visible>
+        <include>Animation_Scrolltime_Widgets_List</include>
 
         <include>Def_On_Info</include>
 
         <top>568</top>
+        <left>72</left>
         <height>365</height>
         <Width>1848</Width>
-        <left>72</left>
 
         <include content="Def_Autoscroll" condition="String.IsEqual(Skin.String(521.autoscroll.speed),1)">
             <param name="time" value="1000" />
@@ -26,6 +27,7 @@
         <onup condition="!Skin.HasSetting(global.kioskmode) + [Player.HasMedia | Player.Playing]">AlarmClock(GoToButtonFullScreen,SetFocus(6157),00:00,silent)</onup>
         <ondown>1611</ondown>
         <!-- <onback>ClearProperty(WallMode,Home)</onback> -->
+
         <onunfocus condition="Skin.HasSetting(home.netflix.autoplay.trailer)">ClearProperty(listitem.trailer,Home)</onunfocus>
         <onfocus condition="Skin.HasSetting(home.netflix.autoplay.trailer)">ClearProperty(TrailerIsPlayingFullscreen,Home)</onfocus>
         <orientation>horizontal</orientation>
@@ -35,7 +37,7 @@
         <focusposition>0</focusposition>
 
         <viewtype label="31366">list</viewtype>
-        <include>Animation_Scrolltime_Widgets_List</include>
+
         <itemlayout height="325" width="222">
             <include content="Layout_Widget_Poster">
                 <param name="texture_diffuse" value="poster_w202_h305" />
@@ -67,9 +69,10 @@
         <description>List View (id=521)</description>
         <control type="group">
             <visible>Control.IsVisible(521)</visible>
+            <!-- <include>Animation_Common</include> -->
 
             <include condition="!Skin.HasSetting(show.clock.date.weather.home.only)">Furniture_Footer_Clock_Right</include>
-            <!-- <include>Animation_Common</include> -->
+
             <include>Animation_Fade_In_Slide_View_Flix</include>
             <include>View_Slide_For_JumpBar</include>
             <include>Def_View_Flix_Minimal_Content</include>
