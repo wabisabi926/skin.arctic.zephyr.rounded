@@ -13,6 +13,7 @@
 
             <control type="group">
                 <top>310</top>
+
                 <control type="fixedlist" id="524">
                     <visible>$EXP[Exp_View_524]</visible>
                     <include>Animation_Scrolltime_Views_List</include>
@@ -24,7 +25,7 @@
                     <right>SidePad</right>
 
                     <include content="Def_Left" condition="!Skin.HasSetting(show.view.524.poster.movies)"><param name="left" value="752" /></include>
-                    <include content="Def_Left" condition="Skin.HasSetting(show.view.524.poster.movies)"><param name="left" value="387" /></include>
+                    <include content="Def_Left" condition="Skin.HasSetting(show.view.524.poster.movies)"><param name="left" value="367" /></include>
 
                     <include>Def_Focus_Context_Menu_On_Right</include>
 
@@ -74,7 +75,7 @@
                         <param name="top" value="216" />
                         <param name="height" value="365" />
                         <param name="idlayout" value="524" />
-                        <param name="centerleft" value="367" />
+                        <param name="centerleft" value="347" />
                     </include>
                 </control>
             </control>
@@ -82,11 +83,7 @@
             <include>Def_View_Flix_Minimal_Content</include>
 
             <include condition="Skin.HasSetting(show.view.524.poster.movies)">524_Poster</include>
-
-            <include content="524_Fanart" condition="!Skin.HasSetting(show.view.524.poster.movies)">
-                <param name="top" value="522" />
-                <param name="left" value="70" />
-            </include>
+            <include condition="!Skin.HasSetting(show.view.524.poster.movies)">524_Fanart</include>
         </control>
     </include>
 
@@ -168,13 +165,8 @@
             <include content="Def_Hidden_List_Artist_Album_Count"><param name="id" value="524" /></include>
 
             <include>Def_View_Flix_Minimal_Content</include>
-
-            <include content="524_Album" condition="!Skin.HasSetting(show.view.524.fanart.artist)"></include>
-
-            <include content="524_Fanart" condition="Skin.HasSetting(show.view.524.fanart.artist)">
-                <param name="top" value="522" />
-                <param name="left" value="70" />
-            </include>
+            <include condition="!Skin.HasSetting(show.view.524.fanart.artist)">524_Album</include>
+            <include condition="Skin.HasSetting(show.view.524.fanart.artist)">524_Fanart</include>
         </control>
     </include>
 
@@ -253,23 +245,18 @@
             </control>
 
             <include>Def_View_Flix_Minimal_Content</include>
-
-            <include content="524_Album" condition="!Skin.HasSetting(show.view.524.fanart.artist)"></include>
-
-            <include content="524_Fanart" condition="Skin.HasSetting(show.view.524.fanart.artist)">
-                <param name="top" value="522" />
-                <param name="left" value="70" />
-            </include>
+            <include condition="!Skin.HasSetting(show.view.524.fanart.artist)">524_Album</include>
+            <include condition="Skin.HasSetting(show.view.524.fanart.artist)">524_Fanart</include>
         </control>
     </include>
 
     <include name="524_Fanart">
-        <param name="top" value="$PARAM[top]" default="522" />
-        <param name="left" value="$PARAM[left]" default="70" />
-        <param name="height" value="$PARAM[height]" default="370" />
-        <param name="width" value="$PARAM[width]" default="645" />
+        <param name="top" value="$PARAM[top]" default="532" />
+        <param name="left" value="$PARAM[left]" default="SidePad" />
+        <param name="height" value="$PARAM[height]" default="350" />
+        <param name="width" value="$PARAM[width]" default="625" />
+        <param name="pad_image" value="$PARAM[pad_image]" default="0" />
         <param name="visible" value="$PARAM[visible]" default="true" />
-        <param name="pad_image" value="$PARAM[pad_image]" default="10" />
         <definition>
             <control type="group">
                 <visible>$PARAM[visible]</visible>
@@ -280,7 +267,7 @@
                 <height>$PARAM[height]</height>
 
                 <control type="group">
-                    <include>Def_Widget_Background</include>
+                    <include>Def_Image_Background</include>
 
                     <!-- FANART  -->
 
@@ -322,12 +309,12 @@
     </include>
 
     <include name="524_Album">
-        <param name="top" value="$PARAM[top]" default="522" />
-        <param name="left" value="$PARAM[left]" default="70" />
-        <param name="width" value="$PARAM[width]" default="370" />
-        <param name="height" value="$PARAM[height]" default="370" />
+        <param name="top" value="$PARAM[top]" default="532" />
+        <param name="left" value="$PARAM[left]" default="SidePad" />
+        <param name="width" value="$PARAM[width]" default="350" />
+        <param name="height" value="$PARAM[height]" default="350" />
         <param name="visible" value="$PARAM[visible]" default="true" />
-        <param name="pad_image" value="$PARAM[pad_image]" default="10" />
+        <param name="pad_image" value="$PARAM[pad_image]" default="0" />
         <definition>
             <control type="group">
                 <visible>$PARAM[visible]</visible>
@@ -338,7 +325,7 @@
                 <height>$PARAM[height]</height>
 
                 <control type="group">
-                    <include>Def_Widget_Background</include>
+                    <include>Def_Image_Background</include>
 
                     <!-- SQUARE  -->
 
@@ -367,12 +354,12 @@
     </include>
 
     <include name="524_Poster">
-        <param name="top" value="$PARAM[top]" default="522" />
-        <param name="left" value="$PARAM[left]" default="70" />
+        <param name="top" value="$PARAM[top]" default="532" />
+        <param name="left" value="$PARAM[left]" default="SidePad" />
         <param name="visible" value="$PARAM[visible]" default="true" />
-        <param name="width" value="$PARAM[width]" default="280" />
-        <param name="height" value="$PARAM[height]" default="370" />
-        <param name="pad_image" value="$PARAM[pad_image]" default="10" />
+        <param name="width" value="$PARAM[width]" default="240" />
+        <param name="height" value="$PARAM[height]" default="350" />
+        <param name="pad_image" value="$PARAM[pad_image]" default="0" />
         <definition>
             <control type="group">
                 <visible>$PARAM[visible]</visible>
@@ -383,7 +370,7 @@
                 <height>$PARAM[height]</height>
 
                 <control type="group">
-                    <include>Def_Widget_Background</include>
+                    <include>Def_Image_Background</include>
 
                     <!-- POSTER -->
 
@@ -391,7 +378,7 @@
                         <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
                         <fadetime>PosterFanartFadetime</fadetime>
                         <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
-                        <texture diffuse="diffuse/poster_w202_h305.png" background="true">$VAR[Image_Poster]</texture>
+                        <texture diffuse="diffuse/poster_w240_h350.png" background="true">$VAR[Image_Poster]</texture>
                         <visible>$EXP[View_Artwork_Condition]</visible>
                         <visible>$EXP[View_Artwork_Specific]</visible>
                         <visible>!ListItem.IsParentFolder</visible>
@@ -403,7 +390,7 @@
                         <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
                         <fadetime>PosterFanartFadetime</fadetime>
                         <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
-                        <texture diffuse="diffuse/poster_w202_h305.png" background="true" colordiffuse="Dark1">$VAR[Image_Poster]</texture>
+                        <texture diffuse="diffuse/poster_w240_h350.png" background="true" colordiffuse="Dark1">$VAR[Image_Poster]</texture>
                         <visible>$EXP[View_Icon_Black]</visible>
                     </control>
                 </control>

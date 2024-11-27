@@ -903,27 +903,22 @@
     <include name="NowPlaying_VideoWindow">
         <control type="group">
             <visible>Player.HasVideo</visible>
+
             <height>305</height>
             <width>553</width>
             <top>455</top>
-            <control type="image">
-                <left>-9</left>
-                <top>-9</top>
-                <height>323</height>
-                <width>570</width>
-                <texture border="18" infill="false">common/$VAR[shadow18]</texture>
-                <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-            </control>
-            <control type="image">
-                <height>100%</height>
-                <width>100%</width>
-                <texture colordiffuse="black" border="12" background="true">common/box.png</texture>
-            </control>
+
+            <include content="Def_Image_Background">
+                <param name="colordiffuse" value="black" />
+                <param name="condition_fade" value="false" />
+            </include>
+
             <control type="videowindow">
-                <left>13</left>
                 <top>6</top>
+                <left>13</left>
                 <height>293</height>
                 <width>525</width>
+
                 <animation type="Hidden" reversible="false">
                     <effect type="fade" start="100" end="0" time="150" />
                 </animation>
@@ -933,8 +928,9 @@
                 <animation type="WindowOpen" reversible="false">
                     <effect type="zoom" center="auto" start="0" end="100" time="1" />
                 </animation>
-                <visible>Player.HasVideo + !ControlGroup(301).HasFocus()</visible>
+
                 <aspectratio aligny="center" scalediffuse="false">scale</aspectratio>
+                <visible>Player.HasVideo + !ControlGroup(301).HasFocus()</visible>
             </control>
         </control>
     </include>
@@ -943,35 +939,24 @@
 
     <include name="NowPlaying_Poster">
         <param name="visible" value="$PARAM[visible]" default="false" />
-        <param name="left" value="$PARAM[left]" default="-10" />
+        <param name="left" value="$PARAM[left]" default="0" />
         <definition>
             <control type="group">
-                <height>325</height>
-                <width>222</width>
-                <left>$PARAM[left]</left>
-                <top>445</top>
                 <visible>$PARAM[visible]</visible>
                 <visible>Player.HasVideo + !VideoPlayer.Content(files) + !VideoPlayer.Content(livetv)</visible>
+
+                <top>455</top>
+                <left>$PARAM[left]</left>
+                <height>305</height>
+                <width>222</width>
+
+                <include content="Def_Image_Background">
+                    <param name="colordiffuse" value="Fallback" />
+                    <param name="condition_fade" value="false" />
+                </include>
                 <control type="image">
-                    <left>1</left>
-                    <right>1</right>
-                    <top>1</top>
-                    <bottom>1</bottom>
-                    <texture border="18" infill="false">common/$VAR[shadow18]</texture>
-                    <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-                </control>
-                <control type="image">
-                    <left>10</left>
-                    <top>10</top>
-                    <right>10</right>
-                    <bottom>10</bottom>
-                    <texture colordiffuse="Fallback" border="12" background="true">common/box.png</texture>
-                </control>
-                <control type="image">
-                    <left>10</left>
-                    <top>10</top>
-                    <right>10</right>
-                    <bottom>10</bottom>
+                    <width>100%</width>
+                    <height>100%</height>
                     <aspectratio scalediffuse="false">scale</aspectratio>
                     <texture diffuse="diffuse/poster_w202_h305.png" background="true" fallback="DefaultMovies.png">$VAR[Image_Poster_Player]</texture>
                 </control>
@@ -992,29 +977,35 @@
 
     <include name="NowPlaying_Square">
         <param name="visible" value="$PARAM[visible]" default="false" />
-        <param name="left" value="$PARAM[left]" default="-10" />
+        <param name="left" value="$PARAM[left]" default="0" />
         <param name="fallback_image" value="$PARAM[fallback_image]" default="DefaultMovies.png" />
-        <param name="pad_image" value="$PARAM[pad_image]" default="10" />
+
         <definition>
             <control type="group">
-                <height>325</height>
-                <width>325</width>
-                <left>$PARAM[left]</left>
-                <top>445</top>
                 <visible>$PARAM[visible]</visible>
                 <visible>Player.HasAudio | !VideoPlayer.Content(files) | VideoPlayer.Content(livetv)</visible>
 
-                <include>Def_Widget_Background</include>
+                <top>455</top>
+                <left>$PARAM[left]</left>
+                <height>305</height>
+                <width>305</width>
+
+                <include content="Def_Image_Background">
+                    <param name="colordiffuse" value="Fallback" />
+                    <param name="condition_fade" value="false" />
+                </include>
 
                 <control type="image">
-                    <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
+                    <width>100%</width>
+                    <height>100%</height>
                     <aspectratio scalediffuse="false">scale</aspectratio>
                     <texture diffuse="diffuse/square_w305_h305.png" background="true" fallback="$PARAM[fallback_image]">$VAR[Image_Poster_Player]</texture>
                     <visible>!VideoPlayer.Content(livetv)</visible>
                 </control>
 
                 <control type="image">
-                    <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
+                    <width>100%</width>
+                    <height>100%</height>
                     <aspectratio scalediffuse="false">keep</aspectratio>
                     <texture diffuse="diffuse/square_w305_h305.png" background="true" fallback="$PARAM[fallback_image]">$VAR[Image_Poster_Player]</texture>
                     <visible>VideoPlayer.Content(livetv)</visible>
@@ -1247,7 +1238,7 @@
                 <param name="visible" value="!Skin.HasSetting(show.home.nowplaying.extended.video.windows)" />
             </include>
             <include content="NowPlaying_Poster">
-                <param name="left" value="563" />
+                <param name="left" value="573" />
                 <param name="visible" value="Skin.HasSetting(show.home.nowplaying.extended.video.windows)" />
             </include>
             <include content="NowPlaying_Square">
@@ -1255,11 +1246,11 @@
                 <param name="fallback_image" value="DefaultAudio.png" />
             </include>
             <include content="NowPlaying_Square">
-                <param name="left" value="563" />
+                <param name="left" value="573" />
                 <param name="visible" value="$EXP[IsPVRVideo] + Skin.HasSetting(show.home.nowplaying.extended.video.windows)" />
             </include>
             <include content="NowPlaying_Square">
-                <param name="left" value="-10" />
+                <param name="left" value="0" />
                 <param name="visible" value="$EXP[IsPVRAudio] + Skin.HasSetting(show.home.nowplaying.extended.video.windows)" />
             </include>
 
