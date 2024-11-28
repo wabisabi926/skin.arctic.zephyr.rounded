@@ -1969,13 +1969,15 @@
             </control>
 
             <control type="group">
-                <left>View_SidePad</left>
-                <right>View_SidePad</right>
-                <top>View_Top</top>
-                <height>630</height>
                 <visible>$PARAM[visible]</visible>
                 <include>Animation_Fade_In_Slide</include>
                 <include>Animation_Fade_Out</include>
+
+                <top>View_Top</top>
+                <height>630</height>
+                <left>View_SidePad</left>
+                <right>View_SidePad</right>
+
                 <control type="image" description="clearlogo">
                     <visible>[[Skin.HasSetting(show.header.clearlogo) | Skin.HasSetting(show.dialog.info.clearlogo.video)] + Window.IsVisible(DialogVideoInfo.xml)] | [[Skin.HasSetting(show.header.clearlogo) | Skin.HasSetting(show.dialog.info.clearlogo.music)] + Window.IsVisible(DialogMusicInfo.xml)]</visible>
                     <visible>$EXP[Title_Clearlogo_Available]</visible>
@@ -2108,12 +2110,14 @@
             <!-- MINI PLAYER -->
 
             <control type="group">
-                <left>20</left>
-                <right>20</right>
-                <bottom>20</bottom>
                 <visible>Player.Seeking  | Player.DisplayAfterSeek | Player.Paused | Player.Forwarding | Player.Rewinding | !String.IsEmpty(Window(Home).Property(show_mini_osd))</visible>
                 <include>Animation_Fade_In</include>
                 <include>Animation_Fade_Out</include>
+
+                <left>20</left>
+                <right>20</right>
+                <bottom>20</bottom>
+
                 <include>Object_OSD_Seekbar_Bar</include>
             </control>
 
