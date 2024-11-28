@@ -12,8 +12,6 @@
             <include>Animation_PosterSlide</include>
             <animation effect="fade" end="5" start="100" time="250" condition="[Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hide.button.video.wiki)]">Conditional</animation>
 
-            <!-- <visible>[!Window.IsVisible(DialogBusy.xml) + $EXP[IsPluginShortlist]] | !$EXP[IsPluginShortlist]</visible> -->
-
             <include content="Def_Art_Poster_Background">
                 <param name="top" value="View_Top" />
                 <param name="left" value="View_SidePad" />
@@ -22,27 +20,14 @@
                 <param name="colordiffuse" value="Fallback" />
             </include>
 
-            <!-- All others -->
+            <!-- ALL OTHERS -->
 
-            <control type="image">
-                <include content="Def_Padding"><param name="pad">0</param></include>
-                <fadetime>PosterFanartFadetime</fadetime>
-                <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
-                <texture diffuse="diffuse/poster_w428_h640.png" background="true">$VAR[Image_Poster]</texture>
-                <visible>$EXP[View_Artwork_Condition]</visible>
-                <visible>$EXP[View_Artwork_Specific]</visible>
-                <visible>!ListItem.IsParentFolder</visible>
-            </control>
-
-            <!-- icon black -->
-
-            <control type="image">
-                <include content="Def_Padding"><param name="pad">0</param></include>
-                <fadetime>PosterFanartFadetime</fadetime>
-                <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
-                <texture diffuse="diffuse/poster_w428_h640.png" background="true" colordiffuse="Dark1">$VAR[Image_Poster]</texture>
-                <visible>$EXP[View_Icon_Black]</visible>
-            </control>
+            <include content="Def_Image_Art_Default">
+                <param name="condition_fadetime" value="true" />
+                <param name="aspectratio" value="scale" />
+                <param name="texture" value="$VAR[Image_Poster]" />
+                <param name="texture_diffuse" value="poster_w428_h640" />
+            </include>
         </control>
     </include>
 
@@ -62,50 +47,35 @@
                 <param name="colordiffuse" value="Fallback" />
             </include>
 
-            <!-- All others -->
+            <!-- ALL OTHERS -->
 
-            <control type="image">
-                <include content="Def_Padding"><param name="pad">0</param></include>
-                <fadetime>PosterFanartFadetime</fadetime>
-                <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
-                <texture diffuse="diffuse/square_w640_h640.png" background="true">$VAR[Image_Square_50_List]</texture>
-                <visible>$EXP[View_Artwork_Condition]</visible>
-                <visible>$EXP[View_Artwork_Specific]</visible>
-                <visible>!ListItem.IsParentFolder</visible>
-                <visible>![Container.Content(images) | Container.Content(favourites) | $EXP[IsYoutube]]</visible>
-            </control>
+            <include content="Def_Image_Art_Default">
+                <param name="condition_fadetime" value="true" />
+                <param name="aspectratio" value="scale" />
+                <param name="texture" value="$VAR[Image_Square_50_List]" />
+                <param name="texture_diffuse" value="square_w640_h640" />
+                <param name="visible" value="![Container.Content(images) | Container.Content(favourites) | $EXP[IsYoutube]]" />
+            </include>
 
-            <!-- icon black -->
+            <!-- PICS / FAVOURITES -->
 
-            <control type="image">
-                <include content="Def_Padding"><param name="pad">0</param></include>
-                <fadetime>PosterFanartFadetime</fadetime>
-                <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
-                <texture diffuse="diffuse/square_w640_h640.png" background="true" colordiffuse="Dark1">$VAR[Image_Square_50_List]</texture>
-                <visible>$EXP[View_Icon_Black]</visible>
-            </control>
+            <include content="Def_Image_Art">
+                <param name="condition_fadetime" value="true" />
+                <param name="aspectratio" value="keep" />
+                <param name="texture" value="$VAR[Image_Square_50_List]" />
+                <param name="texture_diffuse" value="square_w640_h640" />
+                <param name="visible" value="!String.StartsWith(ListItem.Icon,Default) + ![Container.Content(images) | Container.Content(favourites)]" />
+            </include>
 
-            <!-- Pics / Favourites -->
+            <!-- YOUTUBE -->
 
-            <control type="image">
-                <include content="Def_Padding"><param name="pad">0</param></include>
-                <fadetime>PosterFanartFadetime</fadetime>
-                <aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
-                <texture diffuse="diffuse/square_w640_h640.png" background="true">$VAR[Image_Square_50_List]</texture>
-                <visible>!String.StartsWith(ListItem.Icon,Default)</visible>
-                <visible>Container.Content(images) | Container.Content(favourites)</visible>
-            </control>
-
-            <!-- Youtube -->
-
-            <control type="image">
-                <include content="Def_Padding"><param name="pad">0</param></include>
-                <fadetime>PosterFanartFadetime</fadetime>
-                <aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
-                <texture diffuse="diffuse/square_w640_h640.png" background="true">$VAR[Image_Square_50_List]</texture>
-                <visible>$EXP[IsYoutube] + !$EXP[IsYoutube_Comments]</visible>
-                <visible>!ListItem.IsParentFolder</visible>
-            </control>
+            <include content="Def_Image_Art">
+                <param name="condition_fadetime" value="true" />
+                <param name="aspectratio" value="keep" />
+                <param name="texture" value="$VAR[Image_Square_50_List]" />
+                <param name="texture_diffuse" value="square_w640_h640" />
+                <param name="visible" value="!ListItem.IsParentFolder + $EXP[IsYoutube] + !$EXP[IsYoutube_Comments]" />
+            </include>
 
             <control type="image">
                 <include content="Def_Padding"><param name="pad">0</param></include>
@@ -3141,14 +3111,6 @@
                     <param name="texture_diffuse" value="fanart_w512_h300" />
                 </include>
             </control>
-
-            <control type="image">
-                <include content="Def_Padding"><param name="pad">0</param></include>
-                <aspectratio scalediffuse="false">scale</aspectratio>
-                <texture diffuse="diffuse/fanart_w512_h300.png" colordiffuse="Dark1" background="true">$VAR[Image_Thumb]</texture>
-                <visible>String.StartsWith(ListItem.Icon,Default) + Skin.HasSetting(pics.layout.fanart)</visible>
-            </control>
-
             <control type="image">
                 <left>0</left>
                 <right>0</right>

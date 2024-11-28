@@ -1837,21 +1837,23 @@
                     <visible>Player.HasVideo</visible>
                     <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
                 </control>
-                <control type="image">
-                    <visible>!Player.HasVideo + String.IsEmpty(Listitem.EpgEventIcon)</visible>
-                    <include content="Def_Padding"><param name="pad">0</param></include>
-                    <aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
-                    <texture diffuse="diffuse/pvr_w641_h370.png" background="true">$INFO[ListItem.Icon]</texture>
-                    <fadetime>PosterFanartFadetime</fadetime>
-                </control>
-                <control type="image">
-                    <visible>!Player.HasVideo + !String.IsEmpty(Listitem.EpgEventIcon)</visible>
-                    <include content="Def_Padding"><param name="pad">0</param></include>
-                    <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
-                    <texture diffuse="diffuse/pvr_w641_h370.png" background="true">$VAR[Image_Fanart_EPG]</texture>
-                    <fadetime>PosterFanartFadetime</fadetime>
-                </control>
+
+                <include content="Def_Image_Art">
+                    <param name="condition_fadetime" value="true" />
+                    <param name="aspectratio" value="keep" />
+                    <param name="texture" value="$INFO[ListItem.Icon]" />
+                    <param name="texture_diffuse" value="pvr_w641_h370" />
+                    <param name="visible" value="!Player.HasVideo + String.IsEmpty(Listitem.EpgEventIcon)" />
+                </include>
+                <include content="Def_Image_Art">
+                    <param name="condition_fadetime" value="true" />
+                    <param name="aspectratio" value="scale" />
+                    <param name="texture" value="$VAR[Image_Fanart_EPG]" />
+                    <param name="texture_diffuse" value="pvr_w641_h370" />
+                    <param name="visible" value="!Player.HasVideo + !String.IsEmpty(Listitem.EpgEventIcon)" />
+                </include>
             </control>
+
             <control type="group">
                 <left>10</left>
                 <right>10</right>
