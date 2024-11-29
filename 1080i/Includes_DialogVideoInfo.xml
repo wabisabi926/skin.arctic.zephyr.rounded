@@ -492,6 +492,15 @@
                         <param name="centertop" value="50%" />
                     </include>
 
+                    <control type="image">
+                        <visible>Player.Seeking | Player.DisplayAfterSeek | Player.Paused | Player.Forwarding | Player.Rewinding | !String.IsEmpty(Window(Home).Property(show_mini_osd))</visible>
+                        <left>0</left>
+                        <right>0</right>
+                        <bottom>0</bottom>
+                        <height>110</height>
+                        <texture border="12" colordiffuse="OSD_Black">common/shadowbottomsmall.png</texture>
+                    </control>
+
                     <!-- LABEL INFO -->
 
                     <include>Object_OSD_Label_Info</include>
@@ -499,7 +508,7 @@
                     <!-- MINI PLAYER -->
 
                     <control type="group">
-                        <visible>Player.Seeking  | Player.DisplayAfterSeek | Player.Paused | Player.Forwarding | Player.Rewinding | !String.IsEmpty(Window(Home).Property(show_mini_osd))</visible>
+                        <visible>Player.Seeking | Player.DisplayAfterSeek | Player.Paused | Player.Forwarding | Player.Rewinding | !String.IsEmpty(Window(Home).Property(show_mini_osd))</visible>
                         <include>Animation_Fade_In</include>
                         <include>Animation_Fade_Out</include>
 
