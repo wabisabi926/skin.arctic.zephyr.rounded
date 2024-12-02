@@ -31,15 +31,54 @@
                 <height>40</height>
                 <width>660</width>
 
-                <control type="image" id="400">
+                <!-- KODI INFO -->
+
+                <control type="image">
+                    <visible>String.StartsWith(Control.GetLabel(400),DefaultIconInfo)</visible>
                     <top>4</top>
                     <left>4</left>
                     <width>72</width>
                     <height>72</height>
                     <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
-                    <!-- <texture background="false" colordiffuse="$VAR[Color_OSD_Panel_White70-Kaitoast]">DefaultIconInfo.png</texture> -->
-                    <texture diffuse="diffuse/circle_72.png" background="false" colordiffuse="$VAR[Color_OSD_Panel_White70-Kaitoast]">DefaultIconInfo.png</texture>
+                    <texture diffuse="diffuse/circle_72.png" background="false" colordiffuse="Dark2">$INFO[Control.GetLabel(400)]</texture>
                 </control>
+
+                <!-- KODI WARNING -->
+
+                <control type="image">
+                    <visible>String.StartsWith(Control.GetLabel(400),DefaultIconWarning)</visible>
+                    <top>4</top>
+                    <left>4</left>
+                    <width>72</width>
+                    <height>72</height>
+                    <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                    <texture diffuse="diffuse/circle_72.png" background="false" colordiffuse="Dark2">$INFO[Control.GetLabel(400)]</texture>
+                </control>
+
+                <!-- KODI ERROR -->
+
+                <control type="image">
+                    <visible>String.StartsWith(Control.GetLabel(400),DefaultIconError)</visible>
+                    <top>4</top>
+                    <left>4</left>
+                    <width>72</width>
+                    <height>72</height>
+                    <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                    <texture diffuse="diffuse/circle_72.png" background="false" colordiffuse="Dark2">$INFO[Control.GetLabel(400)]</texture>
+                </control>
+
+                <!-- OTHERS -->
+
+                <control type="image">
+                    <visible>!String.StartsWith(Control.GetLabel(400),Default)</visible>
+                    <top>4</top>
+                    <left>4</left>
+                    <width>72</width>
+                    <height>72</height>
+                    <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                    <texture diffuse="diffuse/circle_72.png" >$INFO[Control.GetLabel(400)]</texture>
+                </control>
+
                 <control type="label" id="401">
                     <top>12</top>
                     <left>104</left>
@@ -63,6 +102,11 @@
                     <scrollspeed>60</scrollspeed>
                 </control>
             </control>
+        </control>
+        <control type="image" id="400">
+            <visible>true</visible>
+            <height>1</height>
+            <width>1</width>
         </control>
     </controls>
 </window>
