@@ -301,8 +301,8 @@
         <value condition="!String.IsEmpty(ListItem.Art(landscape)) + Container.Content(movies) + !Skin.HasSetting(dont.use.landscape.movies)">$INFO[ListItem.Art(landscape)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(fanart)) + Container.Content(movies) + String.IsEqual(ListItem.DBType,movie)">$INFO[ListItem.Art(fanart)]</value>
 
-        <!-- addon -->
-        <value condition="!String.IsEmpty(ListItem.Icon) + Container.Content(addons)">$INFO[ListItem.Icon]</value>
+        <!-- PVR epg event-->
+        <value condition="!String.IsEmpty(ListItem.EpgEventIcon) + String.StartsWith(ListItem.FolderPath,pvr://)">$INFO[ListItem.EpgEventIcon]</value>
 
         <!-- game mode -->
         <value condition="!String.IsEmpty(ListItem.Art(title)) + $EXP[IsGameMode]">$INFO[ListItem.Art(title)]</value>
@@ -325,8 +325,8 @@
         <!-- <value condition="!String.IsEmpty(ListItem.Art(thumb))">$INFO[ListItem.Art(thumb)]</value> -->
         <value condition="!String.IsEmpty(ListItem.Thumb)">$INFO[ListItem.Thumb]</value>
 
-        <!-- PVR epg event-->
-        <value condition="!String.IsEmpty(ListItem.EpgEventIcon) + String.StartsWith(ListItem.FolderPath,pvr://)">$INFO[ListItem.EpgEventIcon]</value>
+        <!-- addon -->
+        <value condition="!String.IsEmpty(ListItem.Icon) + Container.Content(addons)">$INFO[ListItem.Icon]</value>
 
         <!-- all others -->
         <value condition="String.IsEqual(ListItem.DBType,genre) | String.EndsWith(Container.FolderPath,Genres)">$VAR[Image_Thumb_Genres]</value>

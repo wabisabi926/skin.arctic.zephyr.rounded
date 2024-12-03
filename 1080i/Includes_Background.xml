@@ -433,7 +433,7 @@
             <visible>[Window.IsVisible(Home) + $EXP[Home_Is_Flix]] | [!Window.IsVisible(Home) + $EXP[View_Flix]]</visible>
 
             <animation effect="fade" start="100" end="50" time="100" condition="Control.HasFocus(302) + $EXP[Home_Is_Horizontal] + !$EXP[Home_Is_Sub_Menu_Horizontal]">Conditional</animation>
-            
+
             <animation effect="fade" end="0" start="70" time="150" condition="$EXP[View_Info_Dialog] + Window.IsVisible(Home)">Conditional</animation>
 
             <animation effect="fade" start="0" end="70" time="350" tween="sine" easing="in" reversible="false">Visible</animation>
@@ -887,7 +887,6 @@
 
         <value condition="$EXP[Home_Background_On_Home_Clean] + !String.IsEmpty(ListItem.Art(fanart)) + $EXP[IsYoutubeItem]">$INFO[ListItem.Art(fanart)]</value>
 
-
         <!-- ALL OTHERS -->
 
         <value condition="$EXP[Home_Background_On_Home_Clean] + !String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
@@ -901,32 +900,36 @@
         <value condition="$EXP[Home_Background_On_Home_Clean] + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.fanart)) + [!Window.IsVisible(Home) | ![Window.IsVisible(Home) + Skin.HasSetting(home.enable.menu.background)]]">$INFO[Window(Home).Property(TMDbHelper.ListItem.fanart)]</value>
 
     <!-- =================================== -->
-    <!--              FALLBACK               -->
+    <!--     FALLBACK ON WIDGETS / VIEWS     -->
     <!-- =================================== -->
+
+        <!-- RADIO -->
+
+        <value condition="$EXP[Home_Background_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.radio)) + $EXP[IsPluginRadio]">$INFO[Skin.String(fanart.fallback.radio)]</value>
 
         <!-- APPLE PODCASTS -->
 
-        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.podcasts)) + [$EXP[IsItunesItem] | [Window.IsVisible(Home) + String.Contains(Container(300).ListItem.Property(path),plugin://plugin.video.itunes_podcasts)]]">$INFO[Skin.String(fanart.fallback.podcasts)]</value>
+        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.podcasts)) + $EXP[IsItunesItem]">$INFO[Skin.String(fanart.fallback.podcasts)]</value>
 
         <!-- YOUTUBE -->
 
-        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.youtube)) + [$EXP[IsYoutubeItem] | [Window.IsVisible(Home) + String.Contains(Container(300).ListItem.Property(path),plugin://plugin.video.youtube)]]">$INFO[Skin.String(fanart.fallback.youtube)]</value>
+        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.youtube)) + $EXP[IsYoutubeItem]">$INFO[Skin.String(fanart.fallback.youtube)]</value>
 
         <!-- WEATHER -->
 
-        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.weather)) + [Window.IsVisible(MyWeather.xml) | [Window.IsVisible(Home) + String.Contains(Container(300).ListItem.Property(Path),Weather)]]">$INFO[Skin.String(fanart.fallback.weather)]</value>
+        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.weather)) + Window.IsVisible(MyWeather.xml)">$INFO[Skin.String(fanart.fallback.weather)]</value>
 
         <!-- FAVOURITES -->
 
-        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.favourite)) + [Container.Content(favourites) | String.IsEqual(ListItem.Path,favourites://) | [Window.IsVisible(Home) + String.Contains(Container(300).ListItem.Property(Path),favourite)]]">$INFO[Skin.String(fanart.fallback.favourite)]</value>
+        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.favourite)) + [Container.Content(favourites) | String.IsEqual(ListItem.Path,favourites://)]">$INFO[Skin.String(fanart.fallback.favourite)]</value>
 
         <!-- IMAGES -->
 
-        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.image)) + [Container.Content(images) | Window.IsVisible(MyPics.xml) | [Window.IsVisible(Home) + String.Contains(Container(300).ListItem.Property(Path),Picture)]]">$INFO[Skin.String(fanart.fallback.image)]</value>
+        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.image)) + [Container.Content(images) | Window.IsVisible(MyPics.xml)]">$INFO[Skin.String(fanart.fallback.image)]</value>
 
         <!-- GAMES -->
 
-        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.game)) + [Container.Content(games) | Window.IsVisible(MyGames.xml) | [Window.IsVisible(Home) + String.Contains(Container(300).ListItem.Property(Path),Games)]]">$INFO[Skin.String(fanart.fallback.game)]</value>
+        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.game)) + [Container.Content(games) | Window.IsVisible(MyGames.xml)]">$INFO[Skin.String(fanart.fallback.game)]</value>
 
         <!-- PERSON (VIDEOS) -->
 
@@ -934,31 +937,92 @@
 
         <!-- LIVE TV -->
 
-        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.pvr)) + [Window.IsVisible(MyPVRRecordings.xml) | Window.IsVisible(MyPVRSearch.xml) | Window.IsVisible(MyPVRTimers.xml) | Window.IsVisible(MyPVRChannels.xml) | Window.IsVisible(MyPVRGuide.xml) | [Window.IsVisible(Home) +  String.Contains(Container(300).ListItem.Property(Path),channels)]]">$INFO[Skin.String(fanart.fallback.pvr)]</value>
+        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.pvr)) + [Window.IsVisible(MyPVRRecordings.xml) | Window.IsVisible(MyPVRSearch.xml) | Window.IsVisible(MyPVRTimers.xml) | Window.IsVisible(MyPVRChannels.xml) | Window.IsVisible(MyPVRGuide.xml)]">$INFO[Skin.String(fanart.fallback.pvr)]</value>
 
         <!-- RADIO -->
 
-        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.radio)) + [$EXP[IsPluginRadio] | [Window.IsVisible(Home) +  String.Contains(Container(300).ListItem.Property(Path),radio)]]">$INFO[Skin.String(fanart.fallback.radio)]</value>
+        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.radio)) + [$EXP[IsPluginRadio] | [Window.IsVisible(Home) + String.Contains(Container(300).ListItem.Property(Path),radio)]]">$INFO[Skin.String(fanart.fallback.radio)]</value>
 
         <!-- MUSIC -->
 
-        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.music)) + [Container.Content(songs) | Container.Content(albums) | Container.Content(artists) | Container.Content(musicvideos) | String.IsEqual(Container.FolderPath,playlistmusic://) | String.StartsWith(ListItem.FolderPath,library://music/) | String.IsEqual(Container.FolderPath,special://musicplaylists/) | [Window.IsVisible(MyMusicNav.xml) + Container.Content(files)] | String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,artist) | String.IsEqual(ListItem.DBType,song) | String.IsEqual(Container.FolderPath,sources://music/) | String.IsEqual(Container.FolderPath,addons://sources/audio) | String.StartsWith(Container.FolderPath,musicdb://) | [Window.IsVisible(Home) + String.Contains(Container(300).ListItem.Property(Path),Music)]]">$INFO[Skin.String(fanart.fallback.music)]</value>
+        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.music)) + [Container.Content(songs) | Container.Content(albums) | Container.Content(artists) | Container.Content(musicvideos) | String.IsEqual(Container.FolderPath,playlistmusic://) | String.StartsWith(ListItem.FolderPath,library://music/) | String.IsEqual(Container.FolderPath,special://musicplaylists/) | [Window.IsVisible(MyMusicNav.xml) + Container.Content(files)] | String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,artist) | String.IsEqual(ListItem.DBType,song) | String.IsEqual(Container.FolderPath,sources://music/) | String.IsEqual(Container.FolderPath,addons://sources/audio) | String.StartsWith(Container.FolderPath,musicdb://)]">$INFO[Skin.String(fanart.fallback.music)]</value>
 
         <!-- TVSHOWS -->
 
-        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.tvshow)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(Container.FolderPath,library://video/tvshows/) | [Window.IsVisible(Home) + [String.Contains(Container(300).ListItem.Property(widgetType),tvshows) | String.Contains(Container(300).ListItem.Property(path),library://video/tvshows) | String.Contains(Container(300).ListItem.Property(defaultID),tvshows)]]]">$INFO[Skin.String(fanart.fallback.tvshow)]</value>
+        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.tvshow)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(Container.FolderPath,library://video/tvshows/)]">$INFO[Skin.String(fanart.fallback.tvshow)]</value>
 
         <!-- MOVIES -->
 
-        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.movie)) + [Container.Content(movies) | Container.Content(videoversions) | [Window.IsVisible(MyVideoNav.xml) + Container.Content(files)] | [Window.IsVisible(MyVideoNav.xml) + Container.Content(playlists)] | String.IsEqual(Container.FolderPath,library://video/movies/) | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,video) | String.StartsWith(Container.FolderPath,videodb://movies/) | String.IsEqual(Container.FolderPath,sources://video/) | String.IsEqual(Container.FolderPath,addons://sources/video) | [Container.Content() + String.StartsWith(ListItem.FolderPath,library://video_flat/)] | [Window.IsVisible(Home) + String.Contains(Container(300).ListItem.Property(Path),Videos)]]">$INFO[Skin.String(fanart.fallback.movie)]</value>
+        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.movie)) + [Container.Content(movies) | Container.Content(videoversions) | [Window.IsVisible(MyVideoNav.xml) + Container.Content(files)] | [Window.IsVisible(MyVideoNav.xml) + Container.Content(playlists)] | String.IsEqual(Container.FolderPath,library://video/movies/) | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,video) | String.StartsWith(Container.FolderPath,videodb://movies/) | String.IsEqual(Container.FolderPath,sources://video/) | String.IsEqual(Container.FolderPath,addons://sources/video) | [Container.Content() + String.StartsWith(ListItem.FolderPath,library://video_flat/)]]">$INFO[Skin.String(fanart.fallback.movie)]</value>
 
         <!-- SETTINGS -->
 
-        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.settings)) + [Window.IsVisible(Settings.xml) | Window.IsVisible(skinsettings.xml) | Window.IsVisible(SettingsSystemInfo.xml) | Window.IsVisible(service-CoreELEC-Settings-mainWindow.xml) | Window.IsVisible(service-LibreELEC-Settings-mainWindow.xml) | Window.IsVisible(SettingsCategory.xml) | Window.IsVisible(SettingsProfile.xml) | Window.IsVisible(EventLog.xml) | Window.IsVisible(FileManager.xml) | [Window.IsVisible(Home) +  [String.Contains(Container(300).ListItem.Property(Path),Settings) | String.Contains(Container(300).ListItem.Property(Path),System) | String.Contains(Container(300).ListItem.Property(defaultID),settings)]]]">$INFO[Skin.String(fanart.fallback.settings)]</value>
+        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.settings)) + [Window.IsVisible(Settings.xml) | Window.IsVisible(skinsettings.xml) | Window.IsVisible(SettingsSystemInfo.xml) | Window.IsVisible(service-CoreELEC-Settings-mainWindow.xml) | Window.IsVisible(service-LibreELEC-Settings-mainWindow.xml) | Window.IsVisible(SettingsCategory.xml) | Window.IsVisible(SettingsProfile.xml) | Window.IsVisible(EventLog.xml) | Window.IsVisible(FileManager.xml)]">$INFO[Skin.String(fanart.fallback.settings)]</value>
 
         <!-- PROGRAMS -->
 
-        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.programs)) + [Window.IsVisible(AddonBrowser.xml) | Window.IsVisible(MyPrograms.xml) | $EXP[IsPluginItem] | $EXP[IsScriptItem] | [Window.IsVisible(Home) +  [String.Contains(Container(300).ListItem.Property(Path),Programs) | String.Contains(Container(300).ListItem.Property(Path),ActivateWindow(Programs)) | String.Contains(Container(300).ListItem.Property(Path),System) | String.Contains(Container(300).ListItem.Property(defaultID),programs)]] | [$EXP[IsAnPlugin] + Container.Content()]]">$INFO[Skin.String(fanart.fallback.programs)]</value>
+        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.programs)) + [Window.IsVisible(AddonBrowser.xml) | Window.IsVisible(MyPrograms.xml) | $EXP[IsPluginItem] | $EXP[IsScriptItem]]">$INFO[Skin.String(fanart.fallback.programs)]</value>
+
+        <!-- EXIT -->
+
+        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.exit)) + Window.IsVisible(DialogButtonMenu.xml)">$INFO[Skin.String(fanart.fallback.exit)]</value>
+
+    <!-- =================================== -->
+    <!--           FALLBACK ON MENU          -->
+    <!-- =================================== -->
+
+        <!-- APPLE PODCASTS -->
+
+        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.podcasts)) + [Window.IsVisible(Home) + String.Contains(Container(300).ListItem.Property(path),plugin://plugin.video.itunes_podcasts)]">$INFO[Skin.String(fanart.fallback.podcasts)]</value>
+
+        <!-- YOUTUBE -->
+
+        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.youtube)) + [Window.IsVisible(Home) + String.Contains(Container(300).ListItem.Property(path),plugin://plugin.video.youtube)]">$INFO[Skin.String(fanart.fallback.youtube)]</value>
+
+        <!-- WEATHER -->
+
+        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.weather)) + [Window.IsVisible(Home) + String.Contains(Container(300).ListItem.Property(Path),Weather)]">$INFO[Skin.String(fanart.fallback.weather)]</value>
+
+        <!-- FAVOURITES -->
+
+        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.favourite)) + [Window.IsVisible(Home) + String.Contains(Container(300).ListItem.Property(Path),favourite)]">$INFO[Skin.String(fanart.fallback.favourite)]</value>
+
+        <!-- IMAGES -->
+
+        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.image)) + [Window.IsVisible(Home) + String.Contains(Container(300).ListItem.Property(Path),Picture)]">$INFO[Skin.String(fanart.fallback.image)]</value>
+
+        <!-- GAMES -->
+
+        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.game)) + [Window.IsVisible(Home) + String.Contains(Container(300).ListItem.Property(Path),Games)]">$INFO[Skin.String(fanart.fallback.game)]</value>
+
+
+        <!-- LIVE TV -->
+
+        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.pvr)) + [Window.IsVisible(Home) + String.Contains(Container(300).ListItem.Property(Path),channels)]">$INFO[Skin.String(fanart.fallback.pvr)]</value>
+
+        <!-- RADIO -->
+
+        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.radio)) + [Window.IsVisible(Home) + String.Contains(Container(300).ListItem.Property(Path),radio)]">$INFO[Skin.String(fanart.fallback.radio)]</value>
+
+        <!-- MUSIC -->
+
+        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.music)) + [Window.IsVisible(Home) + String.Contains(Container(300).ListItem.Property(Path),Music)]">$INFO[Skin.String(fanart.fallback.music)]</value>
+
+        <!-- TVSHOWS -->
+
+        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.tvshow)) + [Window.IsVisible(Home) + [String.Contains(Container(300).ListItem.Property(widgetType),tvshows) | String.Contains(Container(300).ListItem.Property(path),library://video/tvshows) | String.Contains(Container(300).ListItem.Property(defaultID),tvshows)]]">$INFO[Skin.String(fanart.fallback.tvshow)]</value>
+
+        <!-- MOVIES -->
+
+        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.movie)) + [Window.IsVisible(Home) + String.Contains(Container(300).ListItem.Property(Path),Videos)]">$INFO[Skin.String(fanart.fallback.movie)]</value>
+
+        <!-- SETTINGS -->
+
+        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.settings)) + [Window.IsVisible(Home) +  [String.Contains(Container(300).ListItem.Property(Path),Settings) | String.Contains(Container(300).ListItem.Property(Path),System) | String.Contains(Container(300).ListItem.Property(defaultID),settings)]]">$INFO[Skin.String(fanart.fallback.settings)]</value>
+
+        <!-- PROGRAMS -->
+
+        <value condition="$EXP[Home_Fallback_On_Home_Clean] + !String.IsEmpty(Skin.String(fanart.fallback.programs)) + [Window.IsVisible(Home) +  [String.Contains(Container(300).ListItem.Property(Path),Programs) | String.Contains(Container(300).ListItem.Property(Path),ActivateWindow(Programs)) | String.Contains(Container(300).ListItem.Property(Path),System) | String.Contains(Container(300).ListItem.Property(defaultID),programs)]] | [$EXP[IsAnPlugin] + Container.Content()]]">$INFO[Skin.String(fanart.fallback.programs)]</value>
 
         <!-- EXIT -->
 
