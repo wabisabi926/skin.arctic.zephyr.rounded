@@ -278,14 +278,17 @@
 
             <control type="group">
                 <visible>$PARAM[visible] + !Window.IsVisible(DialogSelect.xml)</visible>
+                <visible>Control.HasFocus(50) + !Container(50).OnNext + !Container(50).OnPrevious + !ListItem.IsCollection</visible>
+
+                <include>Animation_Delay_Fade_In_200</include>
                 <animation type="Conditional" condition="!String.IsEmpty(Window.Property(down)) + Control.HasFocus($PARAM[controlid])" reversible="false">
                     <effect type="slide" end="0,-20" time="60" tween="sine" />
                     <effect type="slide" end="0,20" time="180" tween="sine" delay="80" />
                 </animation>
-                <left>-291</left>
+
                 <top>70</top>
-                <visible>Control.HasFocus(50) + !Container(50).OnNext + !Container(50).OnPrevious + !ListItem.IsCollection</visible>
-                <include>Animation_Delay_Fade_In_200</include>
+                <left>-291</left>
+
                 <control type="image">
                     <include>Def_Arrow_Size</include>
                     <texture colordiffuse="Dark1" flipy="true">common/arrow-small.png</texture>
