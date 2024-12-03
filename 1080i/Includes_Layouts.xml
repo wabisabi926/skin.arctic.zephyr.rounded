@@ -101,6 +101,53 @@
         </definition>
     </include>
 
+    <include name="Def_View_List_Item_IsPlaying">
+        <param name="visible" value="$PARAM[visible]" default="true" />
+        <definition>
+            <control type="image">
+                <width>100%</width>
+                <height>100%</height>
+                <texture border="12" colordiffuse="Dark3">common/box.png</texture>
+                <include>View_List_Scroll_Anim</include>
+                <visible>ListItem.IsPlaying</visible>
+                <visible>$PARAM[visible]</visible>
+            </control>
+            <control type="image">
+                <width>100%</width>
+                <height>100%</height>
+                <aspectratio aligny="top">center</aspectratio>
+                <texture border="12">common/selected_rounded.png</texture>
+                <animation effect="fade" start="100" end="15" condition="ListItem.IsPlaying">Conditional</animation>
+                <include>View_List_Scroll_Anim</include>
+                <visible>ListItem.IsPlaying</visible>
+                <visible>$PARAM[visible]</visible>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_View_List_Focus_IsPlaying">
+        <param name="visible" value="$PARAM[visible]" default="true" />
+        <definition>
+            <control type="image">
+                <width>100%</width>
+                <height>100%</height>
+                <texture border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png</texture>
+                <include>View_List_Scroll_Anim</include>
+                <visible>$PARAM[visible]</visible>
+            </control>
+            <control type="image">
+                <width>100%</width>
+                <height>100%</height>
+                <aspectratio aligny="top">center</aspectratio>
+                <texture border="12">common/selected_rounded.png</texture>
+                <animation effect="fade" start="100" end="15" condition="ListItem.IsPlaying">Conditional</animation>
+                <include>View_List_Scroll_Anim</include>
+                <visible>ListItem.IsPlaying</visible>
+                <visible>$PARAM[visible]</visible>
+            </control>
+        </definition>
+    </include>
+
     <include name="Def_View_52_Icon">
         <param name="left" value="$PARAM[left]" default="6" />
         <param name="top" value="$PARAM[top]" default="6" />

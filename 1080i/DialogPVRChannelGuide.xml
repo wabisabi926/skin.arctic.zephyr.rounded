@@ -59,11 +59,19 @@
 
                 <itemlayout height="120" width="667">
                     <control type="image">
-                        <width>667</width>
-                        <height>109</height>
-                        <texture>common/selected.png</texture>
+                        <width>100%</width>
+                        <height>100%</height>
+                        <texture border="12" colordiffuse="$VAR[Color_OSD_Panel_White100]">common/box.png</texture>
+                        <include>View_List_Scroll_Anim</include>
+                        <visible>ListItem.IsPlaying</visible>
+                        <visible>$PARAM[visible]</visible>
+                    </control>
+                    <control type="image">
+                        <width>100%</width>
+                        <height>100%</height>
+                        <texture border="12">common/selected_rounded.png</texture>
                         <aspectratio aligny="top">center</aspectratio>
-                        <animation effect="fade" start="100" end="15" condition="true">Conditional</animation>
+                        <animation effect="fade" start="100" end="30" condition="true">Conditional</animation>
                         <visible>String.IsEqual(VideoPlayer.Title,ListItem.Title) + String.IsEqual(VideoPlayer.EndTime,ListItem.EndTime)</visible>
                         <colordiffuse>$VAR[Color_OSD_Panel_White100]</colordiffuse>
                     </control>
@@ -100,14 +108,14 @@
                 </itemlayout>
                 <focusedlayout height="120" width="667">
                     <control type="image">
-                        <width>667</width>
-                        <height>120</height>
-                        <texture>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texture>
+                        <width>100%</width>
+                        <height>100%</height>
+                        <texture border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png</texture>
                     </control>
                     <control type="image">
-                        <width>667</width>
-                        <height>120</height>
-                        <texture>common/selected.png</texture>
+                        <width>100%</width>
+                        <height>100%</height>
+                        <texture border="12">common/selected_rounded.png</texture>
                         <aspectratio aligny="top">center</aspectratio>
                         <animation effect="fade" start="100" end="30" condition="true">Conditional</animation>
                         <visible>String.IsEqual(VideoPlayer.Title,ListItem.Title) + String.IsEqual(VideoPlayer.EndTime,ListItem.EndTime)</visible>
