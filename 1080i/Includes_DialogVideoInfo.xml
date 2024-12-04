@@ -12,8 +12,8 @@
             <control type="group">
                 <include>Animation_Video_Fade_Out</include>
                 <include>Animation_Wiki_Fade_Out</include>
-                <!-- <visible>!Window.IsVisible(DialogBusy.xml) | [Window.IsVisible(DialogBusy.xml) + !String.IsEmpty(Window(Home).Property(dontslide)) + !Skin.HasSetting(hide.button.video.wiki)]</visible> -->
                 <include>Animation_SidePoster</include>
+
                 <control type="group">
                     <include>Animation_Delay_Fade_In_200</include>
                     <visible>Control.HasFocus(9001) + !String.IsEqual(Window.Property(ShowDisc),1) + !String.IsEmpty(ListItem.Art(discart)) + Skin.HasSetting(Show.Discart.Video.Info)</visible>
@@ -52,7 +52,6 @@
 
             <control type="group">
                 <include>Hidden_Up_Next_Episode</include>
-                <!-- <visible>!Window.IsVisible(DialogBusy.xml) | [Window.IsVisible(DialogBusy.xml) + !String.IsEmpty(Window(Home).Property(dontslide)) + !Skin.HasSetting(hide.button.video.wiki)]</visible> -->
                 <include>Animation_RightSide</include>
 
                 <!-- CONTROL BUTTONS -->
@@ -168,20 +167,10 @@
                             <height>50</height>
                             <aligny>center</aligny>
                             <align>right</align>
-                            <!-- <centertop>40%</centertop> -->
                             <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
                             <texture flipy="true" colordiffuse="Dark3">special://skin/extras/icons/angle-up.png</texture>
-                            <!-- <visible>ControlGroup(6002).HasFocus()</visible> -->
                         </control>
-
-                        <!-- <control type="image"> -->
-                            <!-- <width>40</width> -->
-                            <!-- <height>40</height> -->
-                            <!-- <centertop>40%</centertop> -->
-                            <!-- <texture flipy="false" colordiffuse="$VAR[Color_OSD_Button_Background]">special://skin/extras/icons/angle-up.png</texture> -->
-                            <!-- <visible>Control.HasFocus(8200)</visible> -->
-                        <!-- </control> -->
-                         <control type="label">
+                        <control type="label">
                             <align>left</align>
                             <font>Mini</font>
                             <height>50</height>
@@ -199,13 +188,12 @@
                 <!-- LABEL HEADER -->
 
                 <control type="group">
-                    <include>Animation_Video_Fade_Out</include>
                     <visible>!Window.IsVisible(script-wikipedia.xml)</visible>
+                    <include>Animation_Video_Fade_Out</include>
+
                     <top>70</top>
                     <left>570</left>
-                    <!-- <include content="Def_Width" condition="Player.HasMedia"> -->
-                        <!-- <param name="width" value="550" /> -->
-                    <!-- </include> -->
+
                     <include content="Def_Width" condition="!Skin.HasSetting(show.dialog.info.clearlogo.video) | !$EXP[Title_Clearlogo_Available]">
                         <param name="width" value="1250" />
                     </include>
@@ -213,7 +201,8 @@
                         <param name="width" value="920" />
                     </include>
 
-                    <!-- icon -->
+                    <!-- ICON -->
+
                     <control type="image">
                         <top>-29</top>
                         <left>-40</left>
@@ -230,7 +219,8 @@
                         <texture colordiffuse="PanelWhite100" border="12">$VAR[Image_Header_Icon]</texture>
                     </control>
 
-                    <!-- Main header Title -->
+                    <!-- MAIN HEADER TITLE -->
+
                     <control type="label">
                         <left>104</left>
                         <font>LargeNew</font>
@@ -249,7 +239,8 @@
                         <visible>Player.HasMedia + !Skin.HasSetting(hide.furniture.nowplaying)</visible>
                     </control>
 
-                    <!-- Sub header Title -->
+                    <!-- SUB HEADER TITLE -->
+
                     <control type="label">
                         <top>55</top>
                         <left>104</left>
@@ -341,19 +332,20 @@
                     </include>
 
                     <control type="fixedlist" id="9505">
-                        <left>0</left>
+                        <visible allowhiddenfocus="true">!Skin.HasSetting(showartwork.video.tmdbhelper) | [!Container(9505).IsUpdating + Skin.HasSetting(showartwork.video.tmdbhelper)]</visible>
+                        <include>Animation_Scrolltime_Details_List</include>
+
                         <top>0</top>
+                        <left>0</left>
 
                         <ondown>9000</ondown>
                         <onback>9000</onback>
                         <onup>9000</onup>
 
-                        <preloaditems>2</preloaditems>
                         <autoscroll time="5000">ControlGroup(9000).HasFocus()</autoscroll>
                         <viewtype label="31005">fixedlist</viewtype>
                         <orientation>horizontal</orientation>
-                        <include>Animation_Scrolltime_Details_List</include>
-                        <visible allowhiddenfocus="true">!Skin.HasSetting(showartwork.video.tmdbhelper) | [!Container(9505).IsUpdating + Skin.HasSetting(showartwork.video.tmdbhelper)]</visible>
+                        <preloaditems>2</preloaditems>
 
                         <itemlayout width="1268" height="607">
                             <control type="image">
@@ -1318,7 +1310,6 @@
                         </control>
                     </control>
                 </control>
-
 <!--                                                                -->
 <!--            Sets                                                -->
 <!--            ===========================================         -->
@@ -1358,7 +1349,7 @@
 
                 <!-- MOVIE / TV SHOW  -->
 
-                <include content="Furniture_Header_DialogInfo_Extended"><param name="controlid" value="50" /></include>    <!-- Cast -->
+                <include content="Furniture_Header_DialogInfo_Extended"><param name="controlid" value="50" /></include>                                                              <!-- CAST -->
                 <include content="Furniture_Header_DialogInfo_Extended" condition="Skin.HasSetting(show.button.video.director)"><param name="controlid" value="9506" /></include>    <!-- DIRECTOR -->
                 <include content="Furniture_Header_DialogInfo_Extended" condition="Skin.HasSetting(show.button.video.writer)"><param name="controlid" value="9556" /></include>      <!-- WRITER -->
                 <include content="Furniture_Header_DialogInfo_Extended" condition="Skin.HasSetting(show.button.video.crew)"><param name="controlid" value="9557" /></include>        <!-- CREW -->
@@ -1371,8 +1362,8 @@
 
                 <!-- TVSHOW -->
 
-                <include content="Furniture_Header_DialogInfo_Extended" condition="!Skin.HasSetting(hide.button.tvshow.season)"><param name="controlid" value="9579" /></include>    <!-- seasons -->
-                <include content="Furniture_Header_DialogInfo_Extended" condition="!Skin.HasSetting(hide.button.tvshow.creator)"><param name="controlid" value="9520" /></include>   <!-- creator -->
+                <include content="Furniture_Header_DialogInfo_Extended" condition="!Skin.HasSetting(hide.button.tvshow.season)"><param name="controlid" value="9579" /></include>    <!-- SEASONS -->
+                <include content="Furniture_Header_DialogInfo_Extended" condition="!Skin.HasSetting(hide.button.tvshow.creator)"><param name="controlid" value="9520" /></include>   <!-- CREATOR -->
 
 				<!-- PERSON -->
 
@@ -1383,6 +1374,7 @@
                 <include content="Furniture_Header_DialogInfo_Extended"><param name="controlid" value="9554" /></include>                                                            <!-- PICTURES     -->
 
                 <!-- SETS -->
+
                 <include content="Furniture_Header_DialogInfo_Extended"><param name="controlid" value="9550" /></include>
 
 
@@ -1958,10 +1950,10 @@
 
                 <!-- MOVIE / TV SHOW  -->
 
-                <!-- Cast -->
+                <!-- CAST -->
                 <include content="Furniture_Footer_DialogInfo_Extended"><param name="controlid" value="50" /></include>
 
-                <!-- Director -->
+                <!-- DIRECTOR -->
                 <include content="Furniture_Footer_DialogInfo_Extended" condition="Skin.HasSetting(show.button.video.director)"><param name="controlid" value="9506" /></include>
                 <include content="Furniture_Flags_DialogInfo_Extended" condition="!Skin.HasSetting(hide.furniture.flags)"><param name="controlid" value="9506" /></include>
 
