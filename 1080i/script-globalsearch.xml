@@ -13,6 +13,9 @@
         <include>Set_Artist_Search</include>
         <include>Set_Album_Search</include>
 
+        <include content="Furniture_Header_Busy"><param name="visible" value="!Control.IsVisible(990)" /></include>
+        <include content="Def_Hidden_List_Artist_Album_Count"><param name="id" value="50" /></include>
+
         <control type="group">
             <animation type="Visible"><effect type="fade" start="0" end="100" time="450" delay="250" /></animation>
             <include>Furniture_Header</include>
@@ -22,406 +25,371 @@
             <visible>!Control.HasFocus(9000) + !Control.HasFocus(990) + Control.IsVisible(990)</visible>
         </control>
 
+        <!-- ICON HEADER -->
+
         <control type="group">
+            <top>40</top>
+            <left>40</left>
+
             <control type="group">
-                <visible>![Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml)]</visible>
+                <visible>Control.IsVisible(990) + !Window.IsVisible(DialogBusy.xml)</visible>
+                <animation type="Visible"><effect type="fade" start="0" end="100" time="450" delay="250" /></animation>
 
-                <animation condition="!Control.HasFocus(9000) + !Control.HasFocus(990)" effect="slide" end="-440,0" start="0,0" reversible="true" time="300" tween="sine">Conditional</animation>
-
-                <control type="group">
-                    <top>745</top>
-                    <left>85</left>
-
-                    <control type="grouplist">
-                        <left>20</left>
-                        <top>30</top>
-                        <width>442</width>
-                        <align>center</align>
-                        <itemgap>10</itemgap>
-                        <orientation>horizontal</orientation>
-                        <control type="label" id="991">
-                            <width>380</width>
-                            <height>55</height>
-                            <aligny>center</aligny>
-                            <font>Small33</font>
-                            <label/>
-                        </control>
-                    </control>
+                <control type="image">
+                    <width>160</width>
+                    <height>160</height>
+                    <texture colordiffuse="White70">common/circlebutton.png</texture>
+                    <visible>Control.HasFocus(990)</visible>
                 </control>
-
-                <!-- ICON HEADER -->
-
-                <control type="group">
-                    <animation condition="!Control.HasFocus(9000) + !Control.HasFocus(990)" effect="slide" end="440,0" start="0,0" reversible="true" time="300" tween="sine">Conditional</animation>
-
+                <control type="image">
                     <top>40</top>
                     <left>40</left>
-
-                    <orientation>horizontal</orientation>
-
-                    <control type="group">
-                        <visible>Control.IsVisible(990) + !Window.IsVisible(DialogBusy.xml)</visible>
-                        <animation type="Visible"><effect type="fade" start="0" end="100" time="450" delay="250" /></animation>
-
-                        <control type="image">
-                            <width>160</width>
-                            <height>160</height>
-                            <texture colordiffuse="White70">common/circlebutton.png</texture>
-                            <visible>Control.HasFocus(990)</visible>
-                        </control>
-                        <control type="image">
-                            <top>40</top>
-                            <left>40</left>
-                            <width>80</width>
-                            <height>80</height>
-                            <texture border="40">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/circle_h.png</texture>
-                            <visible>Control.HasFocus(990)</visible>
-                        </control>
-                        <control type="image">
-                            <top>36</top>
-                            <left>36</left>
-                            <width>88</width>
-                            <height>88</height>
-                            <texture colordiffuse="Selected" border="12">special://skin/extras/icons/search.png</texture>
-                            <visible>Control.HasFocus(990)</visible>
-                        </control>
-
-                        <control type="image">
-                            <width>160</width>
-                            <height>160</height>
-                            <texture colordiffuse="White70">common/circlebutton.png</texture>
-                            <animation effect="fade" start="100" end="40" condition="true">Conditional</animation>
-                            <visible>!Control.HasFocus(990)</visible>
-                        </control>
-                        <control type="image">
-                            <top>36</top>
-                            <left>36</left>
-                            <width>88</width>
-                            <height>88</height>
-                            <texture colordiffuse="PanelWhite100" border="12">special://skin/extras/icons/search.png</texture>
-                            <animation effect="fade" start="100" end="40" condition="true">Conditional</animation>
-                            <visible>!Control.HasFocus(990)</visible>
-                        </control>
-                   </control>
-
-                    <control type="button" id="990" description="Helper">
-                        <animation effect="fade" time="300" start="0" end="0">Focus</animation>
-                        <include>Def_Hidden_Button</include>
-                        <include content="Object_OnDirection_Action"><param name="ondirection" value="9000" /></include>
-                        <onclick>ClearProperty(GlobalSearchWindowOpen,Home)</onclick>
-                        <onclick condition="String.IsEmpty(Window(Home).Property(GlobalSearchWindowOpen)) ">SetFocus(9000)</onclick>
-                        <onclick condition="String.IsEmpty(Window(Home).Property(GlobalSearchWindowOpen)) ">SetProperty(GlobalSearchWindowOpen,1,Home)</onclick>
-                    </control>
+                    <width>80</width>
+                    <height>80</height>
+                    <texture border="40">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/circle_h.png</texture>
+                    <visible>Control.HasFocus(990)</visible>
+                </control>
+                <control type="image">
+                    <top>36</top>
+                    <left>36</left>
+                    <width>88</width>
+                    <height>88</height>
+                    <texture colordiffuse="Selected" border="12">special://skin/extras/icons/search.png</texture>
+                    <visible>Control.HasFocus(990)</visible>
                 </control>
 
-                <!-- LEFT LIST RESULT -->
-
-                <control type="group">
-                    <top>View_SidePad</top>
-
-                    <control type="list" id="9000">
-                        <top>135</top>
-                        <left>0</left>
-                        <width>562</width>
-                        <height>674</height>
-
-                        <onup>990</onup>
-                        <ondown>9000</ondown>
-                        <onleft>50</onleft>
-                        <onright>50</onright>
-
-                        <!-- <movement>6</movement>                         -->
-                        <scrolltime tween="cubic" easing="out">500</scrolltime>
-
-                        <itemlayout height="64" width="462">
-                            <control type="image">
-                                <left>18</left>
-                                <top>1</top>
-                                <width>62</width>
-                                <height>62</height>
-                                <texture colordiffuse="Dark2">$INFO[ListItem.Icon]</texture>
-                            </control>
-                            <control type="label">
-                                <left>98</left>
-                                <width>auto</width>
-                                <aligny>center</aligny>
-                                <height>64</height>
-                                <font>SmallNavi</font>
-                                <textcolor>Dark2</textcolor>
-                                <label>$INFO[ListItem.Label]</label>
-                            </control>
-                            <control type="label">
-                                <left>154</left>
-                                <width>340</width>
-                                <aligny>center</aligny>
-                                <height>64</height>
-                                <align>right</align>
-                                <font>SmallNavi</font>
-                                <textcolor>Dark2</textcolor>
-                                <label>$INFO[ListItem.Label2]</label>
-                            </control>
-                        </itemlayout>
-                        <focusedlayout height="64" width="462">
-                            <control type="image">
-                                <width>526</width>
-                                <height>100%</height>
-                                <texture>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texture>
-                                <include>View_List_Scroll_Anim</include>
-                                <animation effect="fade" start="100" end="33" condition="!Control.HasFocus(9000) ">Conditional</animation>
-                            </control>
-                            <control type="image">
-                                <left>18</left>
-                                <top>1</top>
-                                <width>62</width>
-                                <height>62</height>
-                                <texture colordiffuse="Selected">$INFO[ListItem.Icon]</texture>
-                            </control>
-                            <control type="label">
-                                <left>98</left>
-                                <width>300</width>
-                                <aligny>center</aligny>
-                                <height>64</height>
-                                <font>SmallNavi</font>
-                                <label>$INFO[ListItem.Label]</label>
-                                <textcolor>Selected</textcolor>
-                                <selectedcolor>Selected</selectedcolor>
-                            </control>
-                            <control type="label">
-                                <left>154</left>
-                                <width>340</width>
-                                <aligny>center</aligny>
-                                <height>64</height>
-                                <align>right</align>
-                                <font>SmallNavi</font>
-                                <textcolor>Selected</textcolor>
-                                <selectedcolor>Selected</selectedcolor>
-                                <label>$INFO[ListItem.Label2]</label>
-                            </control>
-                        </focusedlayout>
-                    </control>
+                <control type="image">
+                    <width>160</width>
+                    <height>160</height>
+                    <texture colordiffuse="White70">common/circlebutton.png</texture>
+                    <animation effect="fade" start="100" end="40" condition="true">Conditional</animation>
+                    <visible>!Control.HasFocus(990)</visible>
                 </control>
-
-                <!-- RIGHT LIST RESULT -->
-
-                <control type="panel" id="50">
-                    <top>205</top>
-                    <left>542</left>
-                    <width>1900</width>
-                    <height>674</height>
-                    <onleft>9000</onleft>
-                    <!-- <onright>50</onright> -->
-                    <!-- <onright>1645</onright> -->
-                    <pagecontrol>1645</pagecontrol>
-                    <viewtype label="536">icon</viewtype>
-                    <preloaditems>2</preloaditems>
-
-                    <include>Def_On_Info</include>
-
-                    <onfocus condition="String.IsEmpty(Window(Home).Property(GlobalSearchWindowOpen)) ">SetFocus(9000)</onfocus>
-                    <onfocus condition="String.IsEmpty(Window(Home).Property(GlobalSearchWindowOpen)) ">DOWN</onfocus>
-                    <onfocus condition="String.IsEmpty(Window(Home).Property(GlobalSearchWindowOpen)) ">UP</onfocus>
-                    <onfocus condition="String.IsEmpty(Window(Home).Property(GlobalSearchWindowOpen)) ">SetProperty(GlobalSearchWindowOpen,1,Home)</onfocus>
-                    <animation effect="fade" time="200">VisibleChange</animation>
-
-                    <include>Animation_Scrolltime_Views_List</include>
-
-                    <itemlayout height="337" width="222" condition="Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) ">
-                        <control type="group">
-                            <height>325</height>
-                            <include content="Layout_Widget_Poster">
-                                <param name="texture_diffuse" value="poster_w202_h305" />
-                                <param name="id" value="50" />
-                                <param name="indicatorbackground" value="true" />
-                            </include>
-                        </control>
-                    </itemlayout>
-                    <focusedlayout height="337" width="222" condition="Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) ">
-                        <control type="group">
-                            <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons)</visible>
-                            <height>325</height>
-                            <include content="Layout_Widget_Poster_Focus">
-                                <param name="texture_diffuse" value="poster_w202_h305" />
-                                <param name="id" value="50" />
-                                <param name="indicatorbackground" value="true" />
-                            </include>
-                        </control>
-                    </focusedlayout>
-
-                    <itemlayout height="337" width="444" condition="Container.Content(episodes) | Container.Content(musicvideos) ">
-                        <control type="group">
-                            <height>245</height>
-                            <include content="Layout_Widget_Landscape">
-                                <param name="texture_diffuse" value="fanart_w424_h225" />
-                                <param name="id" value="50" />
-                                <param name="indicatorbackground" value="true" />
-                                <param name="height" value="245" />
-                                <param name="image_height" value="245" />
-                            </include>
-                        </control>
-                        <control type="label">
-                            <font>Tiny</font>
-                            <left>15</left>
-                            <right>15</right>
-                            <bottom>40</bottom>
-                            <align>left</align>
-                            <textcolor>Dark1</textcolor>
-                            <label>$INFO[ListItem.Label]</label>
-                        </control>
-                        <control type="label">
-                            <font>Tiny</font>
-                            <left>15</left>
-                            <right>15</right>
-                            <bottom>40</bottom>
-                            <align>right</align>
-                            <textcolor>Dark2</textcolor>
-                            <label>$VAR[Label_Rating]</label>
-                        </control>
-                        <control type="label">
-                            <font>Mini</font>
-                            <left>15</left>
-                            <right>15</right>
-                            <bottom>3</bottom>
-                            <align>left</align>
-                            <textcolor>Dark2</textcolor>
-                            <label>$VAR[Label_Year]</label>
-                        </control>
-                        <control type="label">
-                            <font>Mini</font>
-                            <left>15</left>
-                            <right>15</right>
-                            <bottom>3</bottom>
-                            <align>right</align>
-                            <textcolor>Dark2</textcolor>
-                            <label>$VAR[Label_Duration]</label>
-                        </control>
-                    </itemlayout>
-                    <focusedlayout height="337" width="444" condition="Container.Content(episodes) | Container.Content(musicvideos) ">
-                        <control type="group">
-                            <height>245</height>
-                            <include content="Layout_Widget_Landscape_Focus">
-                                <param name="texture_diffuse" value="fanart_w424_h225" />
-                                <param name="id" value="50" />
-                                <param name="indicatorbackground" value="true" />
-                                <param name="height" value="245" />
-                                <param name="image_height" value="245" />
-                                <param name="glow_left" value="6" />
-                                <param name="glow_top" value="0" />
-                                <param name="glow_right" value="6" />
-                                <param name="glow_height" value="245" />
-                            </include>
-                        </control>
-                        <control type="label">
-                            <font>Tiny</font>
-                            <left>15</left>
-                            <right>15</right>
-                            <bottom>40</bottom>
-                            <align>left</align>
-                            <textcolor>Dark1</textcolor>
-                            <label>$INFO[ListItem.Label]</label>
-                        </control>
-                        <control type="label">
-                            <font>Tiny</font>
-                            <left>15</left>
-                            <right>15</right>
-                            <bottom>40</bottom>
-                            <align>right</align>
-                            <textcolor>Dark2</textcolor>
-                            <label>$VAR[Label_Rating]</label>
-                        </control>
-                        <control type="label">
-                            <font>Mini</font>
-                            <left>15</left>
-                            <right>15</right>
-                            <bottom>3</bottom>
-                            <align>left</align>
-                            <textcolor>Dark2</textcolor>
-                            <label>$VAR[Label_Year]</label>
-                        </control>
-                        <control type="label">
-                            <font>Mini</font>
-                            <left>15</left>
-                            <right>15</right>
-                            <bottom>3</bottom>
-                            <align>right</align>
-                            <textcolor>Dark2</textcolor>
-                            <label>$VAR[Label_Duration]</label>
-                        </control>
-                    </focusedlayout>
-
-
-                    <itemlayout height="337" width="299.33" condition="Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(actors) | Container.Content(directors) | Container.Content(livetv) ">
-                        <control type="group">
-                            <height>280</height>
-                            <width>280</width>
-                            <include content="Layout_Widget_Square">
-                                <param name="texture_diffuse" value="square_w260_h260" />
-                                <param name="id" value="50" />
-                                <param name="height" value="280" />
-                                <param name="image_height" value="280" />
-                            </include>
-                        </control>
-                        <control type="label">
-                            <left>15</left>
-                            <right>30</right>
-                            <bottom>20</bottom>
-                            <height>50</height>
-                            <align>center</align>
-                            <font>Tiny</font>
-                            <label>$INFO[ListItem.Label]</label>
-                            <textcolor>Dark1</textcolor>
-                        </control>
-                    </itemlayout>
-                    <focusedlayout height="337" width="299.33" condition="Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(actors) | Container.Content(directors) | Container.Content(livetv) ">
-                        <control type="group">
-                            <height>280</height>
-                            <width>280</width>
-                            <include content="Layout_Widget_Square_Focus">
-                                <param name="texture_diffuse" value="square_w260_h260" />
-                                <param name="id" value="50" />
-                                <param name="height" value="280" />
-                                <param name="image_height" value="280" />
-                                <param name="glow_height" value="278" />
-                                <param name="glow_top" value="1" />
-                            </include>
-                        </control>
-                        <control type="label">
-                            <left>15</left>
-                            <right>30</right>
-                            <bottom>20</bottom>
-                            <height>50</height>
-                            <align>center</align>
-                            <font>Tiny</font>
-                            <label>$INFO[ListItem.Label]</label>
-                            <textcolor>Dark1</textcolor>
-                        </control>
-                    </focusedlayout>
+                <control type="image">
+                    <top>36</top>
+                    <left>36</left>
+                    <width>88</width>
+                    <height>88</height>
+                    <texture colordiffuse="PanelWhite100" border="12">special://skin/extras/icons/search.png</texture>
+                    <animation effect="fade" start="100" end="40" condition="true">Conditional</animation>
+                    <visible>!Control.HasFocus(990)</visible>
                 </control>
+           </control>
 
-                <!-- <control type="group"> -->
-                    <!-- <right>-465</right> -->
-                    <!-- <control type="scrollbar" id="1645"> -->
-                        <!-- <include content="Object_Scrollbar_Views_Vertical"> -->
-                            <!-- <param name="scrollid" value="1645" /> -->
-                            <!-- <param name="idlayout" value="50" /> -->
-                        <!-- </include> -->
-                    <!-- </control> -->
-                <!-- </control> -->
+            <control type="button" id="990" description="Helper">
+                <animation effect="fade" time="300" start="0" end="0">Focus</animation>
+                <include>Def_Hidden_Button</include>
+                <include content="Object_OnDirection_Action"><param name="ondirection" value="9000" /></include>
+                <onclick>ClearProperty(GlobalSearchWindowOpen,Home)</onclick>
+                <onclick condition="String.IsEmpty(Window(Home).Property(GlobalSearchWindowOpen)) ">SetFocus(9000)</onclick>
+                <onclick condition="String.IsEmpty(Window(Home).Property(GlobalSearchWindowOpen)) ">SetProperty(GlobalSearchWindowOpen,1,Home)</onclick>
+            </control>
+        </control>
 
-                <include content="Def_Hidden_List_Artist_Album_Count"><param name="id" value="50" /></include>
+        <control type="group">
+            <visible>![Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml)]</visible>
 
-                <control type="label" id="999">
-                    <left>436</left>
-                    <top>0</top>
-                    <width>1484</width>
-                    <height>1080</height>
-                    <align>center</align>
-                    <aligny>center</aligny>
-                    <font>Small33</font>
-                    <label>$LOCALIZE[284]</label>
-                </control>
+            <animation condition="!Control.HasFocus(9000) + !Control.HasFocus(990)" effect="slide" end="-466,0" start="0,0" reversible="true" time="300" tween="sine">Conditional</animation>
+
+            <control type="label" id="999">
+                <left>436</left>
+                <top>0</top>
+                <width>1484</width>
+                <height>1080</height>
+                <align>center</align>
+                <aligny>center</aligny>
+                <font>Small33</font>
+                <label>$LOCALIZE[284]</label>
             </control>
 
-            <include content="Furniture_Header_Busy"><param name="visible" value="!Control.IsVisible(990)" /></include>
+            <control type="label" id="991">
+                <top>775</top>
+                <left>105</left>
+                <width>380</width>
+                <height>55</height>
+                <aligny>center</aligny>
+                <font>Small33</font>
+                <label/>
+            </control>
+
+            <!-- LEFT LIST RESULT -->
+
+            <control type="list" id="9000">
+                <top>214</top>
+                <left>View_SidePad</left>
+                <width>450</width>
+                <height>674</height>
+
+                <onup>990</onup>
+                <ondown>9000</ondown>
+                <onleft>50</onleft>
+                <onright>50</onright>
+
+                <!-- <movement>6</movement> -->
+                <scrolltime tween="cubic" easing="out">500</scrolltime>
+
+                <itemlayout height="64" width="450">
+                    <control type="image">
+                        <left>10</left>
+                        <top>1</top>
+                        <width>62</width>
+                        <height>62</height>
+                        <texture colordiffuse="Dark2">$INFO[ListItem.Icon]</texture>
+                    </control>
+                    <control type="label">
+                        <left>80</left>
+                        <width>auto</width>
+                        <aligny>center</aligny>
+                        <height>64</height>
+                        <font>SmallNavi</font>
+                        <textcolor>Dark2</textcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                    <control type="label">
+                        <right>10</right>
+                        <width>60</width>
+                        <aligny>center</aligny>
+                        <height>64</height>
+                        <align>right</align>
+                        <font>SmallNavi</font>
+                        <textcolor>Dark2</textcolor>
+                        <label>$INFO[ListItem.Label2]</label>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="64" width="450">
+                    <control type="image">
+                        <width>100%</width>
+                        <height>100%</height>
+                        <texture border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png</texture>
+                        <include>View_List_Scroll_Anim</include>
+                        <animation effect="fade" start="100" end="33" condition="!Control.HasFocus(9000) ">Conditional</animation>
+                    </control>
+                    <control type="image">
+                        <left>10</left>
+                        <top>1</top>
+                        <width>62</width>
+                        <height>62</height>
+                        <texture colordiffuse="Selected">$INFO[ListItem.Icon]</texture>
+                    </control>
+                    <control type="label">
+                        <left>80</left>
+                        <width>300</width>
+                        <aligny>center</aligny>
+                        <height>64</height>
+                        <font>SmallNavi</font>
+                        <textcolor>Selected</textcolor>
+                        <selectedcolor>Selected</selectedcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                    <control type="label">
+                        <right>10</right>
+                        <width>60</width>
+                        <aligny>center</aligny>
+                        <height>64</height>
+                        <align>right</align>
+                        <font>SmallNavi</font>
+                        <textcolor>Selected</textcolor>
+                        <selectedcolor>Selected</selectedcolor>
+                        <label>$INFO[ListItem.Label2]</label>
+                    </control>
+                </focusedlayout>
+            </control>
+
+            <!-- RIGHT LIST RESULT -->
+
+            <control type="panel" id="50">
+                <animation effect="fade" time="200">VisibleChange</animation>
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <include>Def_On_Info</include>
+
+                <top>205</top>
+                <left>536</left>
+                <width>1900</width>
+                <height>674</height>
+
+                <onleft>9000</onleft>
+                <onfocus condition="String.IsEmpty(Window(Home).Property(GlobalSearchWindowOpen)) ">SetFocus(9000)</onfocus>
+                <onfocus condition="String.IsEmpty(Window(Home).Property(GlobalSearchWindowOpen)) ">DOWN</onfocus>
+                <onfocus condition="String.IsEmpty(Window(Home).Property(GlobalSearchWindowOpen)) ">UP</onfocus>
+                <onfocus condition="String.IsEmpty(Window(Home).Property(GlobalSearchWindowOpen)) ">SetProperty(GlobalSearchWindowOpen,1,Home)</onfocus>
+
+                <pagecontrol>1645</pagecontrol>
+                <preloaditems>2</preloaditems>
+
+                <viewtype label="536">icon</viewtype>
+
+                <itemlayout height="337" width="222" condition="Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) ">
+                    <control type="group">
+                        <height>325</height>
+                        <include content="Layout_Widget_Poster">
+                            <param name="texture_diffuse" value="poster_w202_h305" />
+                            <param name="id" value="50" />
+                            <param name="indicatorbackground" value="true" />
+                        </include>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="337" width="222" condition="Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) ">
+                    <control type="group">
+                        <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons)</visible>
+                        <height>325</height>
+                        <include content="Layout_Widget_Poster_Focus">
+                            <param name="texture_diffuse" value="poster_w202_h305" />
+                            <param name="id" value="50" />
+                            <param name="indicatorbackground" value="true" />
+                        </include>
+                    </control>
+                </focusedlayout>
+
+                <itemlayout height="337" width="444" condition="Container.Content(episodes) | Container.Content(musicvideos) ">
+                    <control type="group">
+                        <height>245</height>
+                        <include content="Layout_Widget_Landscape">
+                            <param name="texture_diffuse" value="fanart_w424_h225" />
+                            <param name="id" value="50" />
+                            <param name="indicatorbackground" value="true" />
+                            <param name="height" value="245" />
+                            <param name="image_height" value="245" />
+                        </include>
+                    </control>
+                    <control type="label">
+                        <font>Tiny</font>
+                        <left>15</left>
+                        <right>15</right>
+                        <bottom>40</bottom>
+                        <align>left</align>
+                        <textcolor>Dark1</textcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                    <control type="label">
+                        <font>Tiny</font>
+                        <left>15</left>
+                        <right>15</right>
+                        <bottom>40</bottom>
+                        <align>right</align>
+                        <textcolor>Dark2</textcolor>
+                        <label>$VAR[Label_Rating]</label>
+                    </control>
+                    <control type="label">
+                        <font>Mini</font>
+                        <left>15</left>
+                        <right>15</right>
+                        <bottom>3</bottom>
+                        <align>left</align>
+                        <textcolor>Dark2</textcolor>
+                        <label>$VAR[Label_Year]</label>
+                    </control>
+                    <control type="label">
+                        <font>Mini</font>
+                        <left>15</left>
+                        <right>15</right>
+                        <bottom>3</bottom>
+                        <align>right</align>
+                        <textcolor>Dark2</textcolor>
+                        <label>$VAR[Label_Duration]</label>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="337" width="444" condition="Container.Content(episodes) | Container.Content(musicvideos) ">
+                    <control type="group">
+                        <height>245</height>
+                        <include content="Layout_Widget_Landscape_Focus">
+                            <param name="texture_diffuse" value="fanart_w424_h225" />
+                            <param name="id" value="50" />
+                            <param name="indicatorbackground" value="true" />
+                            <param name="height" value="245" />
+                            <param name="image_height" value="245" />
+                            <param name="glow_left" value="6" />
+                            <param name="glow_top" value="0" />
+                            <param name="glow_right" value="6" />
+                            <param name="glow_height" value="245" />
+                        </include>
+                    </control>
+                    <control type="label">
+                        <font>Tiny</font>
+                        <left>15</left>
+                        <right>15</right>
+                        <bottom>40</bottom>
+                        <align>left</align>
+                        <textcolor>Dark1</textcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                    <control type="label">
+                        <font>Tiny</font>
+                        <left>15</left>
+                        <right>15</right>
+                        <bottom>40</bottom>
+                        <align>right</align>
+                        <textcolor>Dark2</textcolor>
+                        <label>$VAR[Label_Rating]</label>
+                    </control>
+                    <control type="label">
+                        <font>Mini</font>
+                        <left>15</left>
+                        <right>15</right>
+                        <bottom>3</bottom>
+                        <align>left</align>
+                        <textcolor>Dark2</textcolor>
+                        <label>$VAR[Label_Year]</label>
+                    </control>
+                    <control type="label">
+                        <font>Mini</font>
+                        <left>15</left>
+                        <right>15</right>
+                        <bottom>3</bottom>
+                        <align>right</align>
+                        <textcolor>Dark2</textcolor>
+                        <label>$VAR[Label_Duration]</label>
+                    </control>
+                </focusedlayout>
+
+
+                <itemlayout height="337" width="299.33" condition="Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(actors) | Container.Content(directors) | Container.Content(livetv) ">
+                    <control type="group">
+                        <height>280</height>
+                        <width>280</width>
+                        <include content="Layout_Widget_Square">
+                            <param name="texture_diffuse" value="square_w260_h260" />
+                            <param name="id" value="50" />
+                            <param name="height" value="280" />
+                            <param name="image_height" value="280" />
+                        </include>
+                    </control>
+                    <control type="label">
+                        <left>15</left>
+                        <right>30</right>
+                        <bottom>20</bottom>
+                        <height>50</height>
+                        <align>center</align>
+                        <font>Tiny</font>
+                        <label>$INFO[ListItem.Label]</label>
+                        <textcolor>Dark1</textcolor>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="337" width="299.33" condition="Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(actors) | Container.Content(directors) | Container.Content(livetv) ">
+                    <control type="group">
+                        <height>280</height>
+                        <width>280</width>
+                        <include content="Layout_Widget_Square_Focus">
+                            <param name="texture_diffuse" value="square_w260_h260" />
+                            <param name="id" value="50" />
+                            <param name="height" value="280" />
+                            <param name="image_height" value="280" />
+                            <param name="glow_height" value="278" />
+                            <param name="glow_top" value="1" />
+                        </include>
+                    </control>
+                    <control type="label">
+                        <left>15</left>
+                        <right>30</right>
+                        <bottom>20</bottom>
+                        <height>50</height>
+                        <align>center</align>
+                        <font>Tiny</font>
+                        <label>$INFO[ListItem.Label]</label>
+                        <textcolor>Dark1</textcolor>
+                    </control>
+                </focusedlayout>
+            </control>
         </control>
     </controls>
 </window>
