@@ -14,8 +14,8 @@
 
         <control type="group">
             <top>280</top>
-            <height>520</height>
-            <width>1840</width>
+            <height>560</height>
+            <width>1830</width>
 
             <include>Def_OSD_Dialog_InfoPanel</include>
 
@@ -24,7 +24,7 @@
                     <param name="left" value="105" />
                     <param name="top" value="22" />
                 </include>
-                <label>$LOCALIZE[298] - ($INFO[Container(11).NumItems]) ($INFO[Container(11).CurrentPage]/$INFO[Container(11).NumPages])</label>
+                <label>$LOCALIZE[298]: $INFO[Container(11).CurrentItem] / $INFO[Container(11).NumItems]</label>
             </control>
 
             <include content="Def_Dialog_Header_Logo">
@@ -54,11 +54,12 @@
                 <width>1750</width>
                 <height>300</height>
 
-                <onleft>2</onleft>
-                <onright>3</onright>
-                <ondown>2</ondown>
+                <onleft>11</onleft>
+                <onright>11</onright>
+                <ondown>1723</ondown>
                 <onup>2</onup>
 
+                <pagecontrol>1723</pagecontrol>
                 <orientation>horizontal</orientation>
 
                 <viewtype label="536">icon</viewtype>
@@ -104,6 +105,17 @@
                     </control>
                 </focusedlayout>
             </control>
+
+            <!-- SCROLLBAR  -->
+
+            <include content="Object_Scrollbar_Dialog_Horizontal">
+                <param name="scrollid" value="1723" />
+                <param name="onup" value="11" />
+                <param name="ondown" value="2" />
+                <param name="width" value="1732" />
+                <param name="bottom" value="140" />
+                <param name="right" value="50" />
+            </include>
 
             <!-- BUTTON -->
 
