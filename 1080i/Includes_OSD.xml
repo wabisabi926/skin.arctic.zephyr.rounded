@@ -1456,7 +1456,8 @@
             <!-- AUDIO MENU SETTINGS -->
 
             <control type="group">
-                <visible allowhiddenfocus="true">ControlGroup(19500).HasFocus() | Control.HasFocus(2)</visible>
+                <!-- <visible allowhiddenfocus="true">ControlGroup(19500).HasFocus() | Control.HasFocus(2)</visible> -->
+                <visible allowhiddenfocus="true">ControlGroup(19500).HasFocus()</visible>
                 <animation effect="slide" end="290,0" time="0" condition="Player.ShowInfo">Conditional</animation>
                 <include>Animation_SlideUp</include>
                 <include>Animation_Fade_Out</include>
@@ -1478,7 +1479,8 @@
             <!-- SUBTITLE MENU SETTINGS -->
 
             <control type="group">
-                <visible allowhiddenfocus="true">ControlGroup(9500).HasFocus() | Control.HasFocus(3)</visible>
+                <visible allowhiddenfocus="true">ControlGroup(9500).HasFocus()</visible>
+                <!-- <visible allowhiddenfocus="true">ControlGroup(9500).HasFocus() | Control.HasFocus(3)</visible> -->
                 <animation effect="slide" end="290,0" time="0" condition="Player.ShowInfo">Conditional</animation>
                 <include>Animation_SlideUp</include>
                 <include>Animation_Fade_Out</include>
@@ -1527,7 +1529,8 @@
                     <param name="groupid" value="60991" />
                     <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
                     <align>left</align>
-                    <onclick>ActivateWindow(123)</onclick>
+                    <onup>ActivateWindow(123)</onup>
+                    <onclick>dialogselectvideo</onclick>
                 </include>
 
                 <include content="Def_OSD_Button">
@@ -1540,7 +1543,8 @@
                     <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
                     <param name="flag_lang_audio" value="true" />
                     <align>left</align>
-                    <onclick>AudioNextLanguage</onclick>
+                    <!-- <onclick>AudioNextLanguage</onclick> -->
+                    <onclick>dialogselectaudio</onclick>
                     <onup>9403</onup>
                     <ondown>9401</ondown>
                 </include>
