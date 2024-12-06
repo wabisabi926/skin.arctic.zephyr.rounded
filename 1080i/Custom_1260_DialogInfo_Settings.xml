@@ -6,8 +6,6 @@
     <onunload>ClearProperty(Set_Movie_TvShow_TMDb_id,Home)</onunload>
 
     <controls>
-        <!-- <include>Background_Overlay</include> -->
-
         <control type="group">
 
             <include content="Def_Dialog_Background"><param name="height" value="882" /><param name="width" value="1060" /></include>
@@ -23,14 +21,17 @@
             <!-- MENU LEFT -->
 
             <control type="grouplist" id="11">
+                <include>Animation_Scrolltime_Views_List</include>
+                
+                <top>112</top>                
+                <width>700</width>                
                 <height>726</height>
-                <width>700</width>
-                <top>112</top>
+
                 <onright>1773</onright>
+                
                 <usecontrolcoords>true</usecontrolcoords>
                 <pagecontrol>1773</pagecontrol>
                 <itemgap>0</itemgap>
-                <include>Animation_Scrolltime_Views_List</include>
 
                 <control type="button" id="100">
                     <height>66</height>
@@ -563,6 +564,8 @@
                     <visible>!String.IsEqual(ListItem.DBType,set)</visible>
                 </control>
             </control>
+
+            <!-- SCROLLBAR -->
 
             <include content="Object_Scrollbar_Dialog_Vertical">
                 <param name="scrollid" value="1773" />

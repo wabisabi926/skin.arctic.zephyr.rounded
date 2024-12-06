@@ -1685,6 +1685,20 @@
         <value condition="Control.HasFocus(8200) + String.IsEmpty(MusicPlayer.DBID)">$LOCALIZE[31557] $LOCALIZE[544]</value>
     </variable>
 
+	<variable name="Label_OSD_Video_Stream">
+		<value condition="String.IsEqual(ListItem.Property(stream.isoriginal),true)+String.IsEqual(ListItem.Property(stream.isforced),true)+String.IsEqual(ListItem.Property(stream.ishearingimpaired),true)">$LOCALIZE[39111], $LOCALIZE[39106], $LOCALIZE[39107]</value>
+		<value condition="String.IsEqual(ListItem.Property(stream.isoriginal),true)+String.IsEqual(ListItem.Property(stream.isforced),true)+String.IsEqual(ListItem.Property(stream.isvisualimpaired),true)">$LOCALIZE[39111], $LOCALIZE[39106], $LOCALIZE[39108]</value>
+		<value condition="String.IsEqual(ListItem.Property(stream.isoriginal),true)+String.IsEqual(ListItem.Property(stream.isforced),true)">$LOCALIZE[39111], $LOCALIZE[39106]</value>
+		<value condition="String.IsEqual(ListItem.Property(stream.isoriginal),true)+String.IsEqual(ListItem.Property(stream.ishearingimpaired),true)">$LOCALIZE[39111], $LOCALIZE[39107]</value>
+		<value condition="String.IsEqual(ListItem.Property(stream.isoriginal),true)+String.IsEqual(ListItem.Property(stream.isvisualimpaired),true)">$LOCALIZE[39111], $LOCALIZE[39108]</value>
+		<value condition="String.IsEqual(ListItem.Property(stream.isforced),true)+String.IsEqual(ListItem.Property(stream.ishearingimpaired),true)">$LOCALIZE[39106], $LOCALIZE[39107]</value>
+		<value condition="String.IsEqual(ListItem.Property(stream.isforced),true)+String.IsEqual(ListItem.Property(stream.isvisualimpaired),true)">$LOCALIZE[39106], $LOCALIZE[39108]</value>
+		<value condition="String.IsEqual(ListItem.Property(stream.ishearingimpaired),true)">$LOCALIZE[39107]</value>
+		<value condition="String.IsEqual(ListItem.Property(stream.isvisualimpaired),true)">$LOCALIZE[39108]</value>
+		<value condition="String.IsEqual(ListItem.Property(stream.isforced),true)">$LOCALIZE[39106]</value>
+		<value condition="String.IsEqual(ListItem.Property(stream.isoriginal),true)">$LOCALIZE[39111]</value>
+	</variable>
+
     <!-- LABEL NOWPLAYING -->
 
     <variable name="Label_NowPlaying_Plot">
@@ -2052,6 +2066,7 @@
         <value condition="Window.IsVisible(Custom_1150_Set_Size_Fanart_Square.xml)">$INFO[Container(11).CurrentItem]$INFO[Container(11).NumItems, / ,]</value>
         <value condition="Window.IsVisible(Custom_1151_Set_Background.xml)">$INFO[Container(11).CurrentItem]$INFO[Container(11).NumItems, / ,]</value>
         <value condition="Window.IsVisible(Custom_1152_Set_Viewtype_Home.xml)">$INFO[Container(11).CurrentItem]$INFO[Container(11).NumItems, / ,]</value>
+        <value condition="Window.IsVisible(DialogSubtitles.xml)">$INFO[Container(120).CurrentItem]$INFO[Container(120).NumItems, / ,]</value>
         <value condition="Window.IsVisible(Custom_1154_Set_Viewtype_PVR_Channel.xml)">$INFO[Container(11).CurrentItem]$INFO[Container(11).NumItems, / ,]</value>
         <value condition="Window.IsVisible(DialogTextViewer.xml)">$INFO[Container(5).CurrentItem]$INFO[Container(5).NumItems, / ,]</value>
         <value condition="Window.IsVisible(Custom_1248_Dialog_Custom_Settings.xml)">$INFO[Container(11).CurrentItem]$INFO[Container(11).NumItems, / ,]</value>

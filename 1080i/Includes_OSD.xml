@@ -400,8 +400,17 @@
 
     <!-- OSD - COLOR -->
 
+    <variable name="Color_OSD_Background_Overlay">
+        <value>B3000000</value>
+    </variable>
+
     <variable name="Color_OSD_Button_Background">
         <value>33ffffff</value>
+    </variable>
+
+    <variable name="Color_OSD_Panel">
+        <!-- <value>FF2D2E2E</value> -->
+        <value>B3333333</value>
     </variable>
 
     <variable name="Color_OSD_Progress_Bar_Background">
@@ -427,14 +436,6 @@
     <variable name="Color_OSD_NowPlaying_Progress_Bar_Background">
         <value condition="!String.Contains(Skin.CurrentColourTheme,Light)">1Fbbbbbb</value>
         <value>1F000000</value>
-    </variable>
-
-    <variable name="Color_OSD_Background_Overlay">
-        <value>B3000000</value>
-    </variable>
-
-    <variable name="Color_OSD_Panel">
-        <value>FF2D2E2E</value>
     </variable>
 
     <variable name="Color_OSD_Panel_PVR">
@@ -1554,7 +1555,8 @@
                     <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
                     <param name="flag_lang_subtitle" value="true" />
                     <align>left</align>
-                    <onclick>NextSubtitle</onclick>
+                    <!-- <onclick>NextSubtitle</onclick> -->
+                    <onclick>DialogSelectSubtitle</onclick>
                     <onup>9303</onup>
                     <ondown>9301</ondown>
                 </include>
