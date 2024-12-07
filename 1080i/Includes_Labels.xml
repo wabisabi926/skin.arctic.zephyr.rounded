@@ -1675,6 +1675,7 @@
     </variable>
 
     <variable name="Label_OSD_Footer_Tip_Video">
+        <value condition="ControlGroup(100).HasFocus()">$LOCALIZE[31557] $LOCALIZE[31053]</value>
         <value condition="ControlGroup(101).HasFocus() + !String.IsEmpty(VideoPlayer.DBID)">$LOCALIZE[31516] $LOCALIZE[31021]</value>
         <value condition="ControlGroup(102).HasFocus()">$LOCALIZE[31516] $LOCALIZE[31477]</value>
     </variable>
@@ -1699,6 +1700,10 @@
 		<value condition="String.IsEqual(ListItem.Property(stream.isoriginal),true)">$LOCALIZE[39111]</value>
 	</variable>
 
+	<variable name="Label_OSD_Video_Bitrate">
+		<value condition="!String.IsEqual(ListItem.Property(stream.bitrate),0)">$INFO[ListItem.Property(stream.bitrate)]</value>
+	</variable>
+    
     <!-- LABEL NOWPLAYING -->
 
     <variable name="Label_NowPlaying_Plot">
