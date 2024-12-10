@@ -12,7 +12,22 @@
         <include>Background_Overlay</include>
 
         <control type="group">
-            <include content="Def_Dialog_Background"><param name="height" value="692" /><param name="width" value="1295" /></include>
+            <include>Animation_ZoomIn</include>
+            <include>Animation_Fade_Out</include>
+
+            <top>200</top>
+            <centerleft>50%</centerleft>
+            <width>1295</width>
+
+            <include content="Def_Dialog_Background_PowerMenu">
+                <param name="height">590</param>
+                <param name="visible">![Control.HasFocus(9099) | Control.HasFocus(340)]</param>
+            </include>
+
+            <include content="Def_Dialog_Background_PowerMenu">
+                <param name="height">692</param>
+                <param name="visible">[Control.HasFocus(9099) | Control.HasFocus(340)]</param>
+            </include>
 
             <control type="label">
                 <include>Def_Dialog_Header_Title</include>
@@ -23,7 +38,7 @@
             <include>Def_Dialog_Header_Line</include>
 
             <control type="Panel" id="9000">
-                <top>101</top>
+                <top>112</top>
                 <left>10</left>
                 <right>8</right>
                 <height>462</height>
@@ -31,14 +46,14 @@
                 <orientation>horizontal</orientation>
                 <itemlayout width="302" height="214">
                     <control type="image">
+                        <top>0</top>
                         <left>10</left>
-                        <top>11</top>
-                        <bottom>0</bottom>
+                        <bottom>10</bottom>
                         <width>290</width>
                         <texture colordiffuse="$VAR[Value_Color_Settings]" border="12">common/box.png</texture>
                     </control>
                     <control type="label">
-                        <top>129</top>
+                        <top>118</top>
                         <left>30</left>
                         <right>25</right>
                         <height>50</height>
@@ -49,7 +64,7 @@
                         <label>$INFO[ListItem.Label]</label>
                     </control>
                     <control type="image">
-                        <top>42</top>
+                        <top>31</top>
                         <left>100</left>
                         <width>106.7</width>
                         <height>106.7</height>
@@ -58,14 +73,14 @@
                 </itemlayout>
                 <focusedlayout width="302" height="214">
                     <control type="image">
+                        <top>0</top>
                         <left>10</left>
-                        <top>11</top>
-                        <bottom>0</bottom>
+                        <bottom>10</bottom>
                         <width>290</width>
                         <texture border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png</texture>
                     </control>
                     <control type="label">
-                        <top>129</top>
+                        <top>118</top>
                         <left>30</left>
                         <right>25</right>
                         <height>50</height>
@@ -76,7 +91,7 @@
                         <label>$INFO[ListItem.Label]</label>
                     </control>
                     <control type="image">
-                        <top>42</top>
+                        <top>31</top>
                         <left>100</left>
                         <width>106.7</width>
                         <height>106.7</height>
@@ -158,7 +173,18 @@
 
             <!-- LINES VERTICAL -->
 
-            <include content="Def_Dialog_Line_Vertical"><param name="right" value="360" /></include>
+            <include content="Def_Dialog_Line_Vertical">
+                <param name="right" value="360" />
+                <param name="height" value="563" />
+                <param name="bottom" value="" />
+                <param name="visible" value="Control.HasFocus(9099) | Control.HasFocus(340)" />
+            </include>
+            <include content="Def_Dialog_Line_Vertical">
+                <param name="right" value="360" />
+                <param name="height" value="461" />
+                <param name="bottom" value="" />
+                <param name="visible" value="![Control.HasFocus(9099) | Control.HasFocus(340)]" />
+            </include>
 
             <!-- BUTTON -->
 
@@ -184,6 +210,7 @@
             <!-- SEARCH BAR WIKIPEDIA -->
 
             <control type="group">
+                <visible>[Control.HasFocus(9099) | Control.HasFocus(340) | Window.IsVisible(DialogSelect.xml)]</visible>
                 <top>550</top>
                 <left>30</left>
                 <width>80</width>
@@ -191,7 +218,6 @@
                 <control type="image">
                     <width>879</width>
                     <height>80</height>
-                    <visible>Control.HasFocus(9099)</visible>
                     <texture border="40">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/menu_h.png</texture>
                 </control>
                 <control type="image">
@@ -200,8 +226,6 @@
                     <width>88</width>
                     <height>88</height>
                     <texture colordiffuse="Selected" border="12">special://skin/extras/icons/search.png</texture>
-                    <visible>Control.HasFocus(9099)</visible>
-                    <visible>!Window.IsVisible(DialogBusy.xml)</visible>
                 </control>
                 <!-- <control type="image"> -->
                     <!-- <top>6</top> -->
@@ -253,7 +277,7 @@
             <!-- FOOTER TIP -->
 
             <control type="label">
-                <bottom>20</bottom>
+                <top>622</top>
                 <right>387</right>
                 <height>50</height>
                 <font>Mini</font>
@@ -264,7 +288,7 @@
                 <label>31540</label>
                 <aligny>center</aligny>
                 <align>right</align>
-                <visible>Control.HasFocus(9099)</visible>
+                <visible>[Control.HasFocus(9099) | Control.HasFocus(340)]</visible>
             </control>
         </control>
     </controls>
