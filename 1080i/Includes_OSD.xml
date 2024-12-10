@@ -809,7 +809,8 @@
         <param name="itemgap" default="35" />
         <param name="visible" default="true" />
         <param name="flipx" default="false" />
-        <param name="icon_colordiffuse" default="Dark1" />
+        <param name="icon_colordiffuse" default="Selected" />
+        <param name="icon_colordiffuse_focus" default="Selected" />
         <param name="back_colordiffuse" default="$VAR[Color_Background]" />
         <param name="vertical" default="false" />
         <param name="flag_lang_audio" default="false" />
@@ -842,14 +843,14 @@
                         <bordersize>$PARAM[bordersize]</bordersize>
                         <height>$PARAM[size]</height>
                         <width>$PARAM[size]</width>
-                        <texture colordiffuse="Selected" flipx="$PARAM[flipx]">$PARAM[icon]</texture>
+                        <texture colordiffuse="$PARAM[icon_colordiffuse]" flipx="$PARAM[flipx]">$PARAM[icon]</texture>
                         <visible>!Control.HasFocus($PARAM[id])</visible>
                     </control>
                     <control type="image">
                         <bordersize>$PARAM[bordersize]</bordersize>
                         <height>$PARAM[size]</height>
                         <width>$PARAM[size]</width>
-                        <texture colordiffuse="Selected" flipx="$PARAM[flipx]">$PARAM[icon]</texture>
+                        <texture colordiffuse="$PARAM[icon_colordiffuse_focus]" flipx="$PARAM[flipx]">$PARAM[icon]</texture>
                         <visible>Control.HasFocus($PARAM[id])</visible>
                     </control>
                     <control type="image">
