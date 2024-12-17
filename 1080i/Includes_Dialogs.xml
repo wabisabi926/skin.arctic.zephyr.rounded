@@ -502,40 +502,10 @@
         <radiowidth>48</radiowidth>
     </include>
 
-    <include name="Def_Button_Confirm">
-        <control type="button" id="12">
-            <description>Yes</description>
-            <width>270</width>
-            <label>107</label>
-            <font>Button</font>
-            <include>Texture_Button_confirm</include>
-        </control>
-        <control type="button" id="11">
-            <description>Yes</description>
-            <width>270</width>
-            <label>107</label>
-            <font>Button</font>
-            <include>Texture_Button_confirm</include>
-        </control>
-        <control type="button" id="10">
-            <description>No</description>
-            <width>270</width>
-            <label>106</label>
-            <font>Button</font>
-            <include>Texture_Button_confirm</include>
-        </control>
-    </include>
-
-    <include name="Def_Dialog_Buttons">
-        <width>300</width>
-        <font>Button</font>
-        <textcolor>Black70</textcolor>
-        <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</texturefocus>
-    </include>
-
-    <include name="Def_Dialog_Button_Video_Manager">
+    <include name="Def_Dialog_Button_Action">
         <param name="width" value="$PARAM[width]" default="300" />
         <param name="height" value="$PARAM[height]" default="66" />
+        <param name="onclick1" value="$PARAM[onclick1]" default="" />
         <definition>
             <control type="button" id="$PARAM[id]">
                 <width>$PARAM[width]</width>
@@ -545,23 +515,35 @@
                 <textoffsety>78</textoffsety>
                 <font>Button</font>
                 <label>$PARAM[label]</label>
+                <altlabel>$PARAM[altlabel]</altlabel>
                 <visible>$PARAM[visible]</visible>
                 <texturenofocus colordiffuse="Black12" border="12">common/box.png</texturenofocus>
                 <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</texturefocus>
+                <onclick>$PARAM[onclick1]</onclick>
             </control>
         </definition>
     </include>
 
-    <include name="Def_Dialog_ButtonsDefault">
-        <align>left</align>
-        <font>Small</font>
-        <textcolor>PanelWhite100</textcolor>
-        <disabledcolor>PanelWhite12</disabledcolor>
-        <height>70</height>
-        <width>450</width>
-        <alttexturefocus colordiffuse="$VAR[Color_Highlight]">common/white.png</alttexturefocus>
-        <texturefocus colordiffuse="$VAR[Color_Highlight]">common/white.png</texturefocus>
-
+    <include name="Def_Dialog_Radio_Button_Action">
+        <param name="width" value="$PARAM[width]" default="300" />
+        <param name="height" value="$PARAM[height]" default="66" />
+        <param name="onclick1" value="$PARAM[onclick1]" default="" />
+        <definition>
+            <control type="radiobutton" id="$PARAM[id]">
+                <width>$PARAM[width]</width>
+                <height>$PARAM[height]</height>
+                <align>left</align>
+                <textoffsetx>20</textoffsetx>
+                <radioposx>250</radioposx>
+                <textoffsety>78</textoffsety>
+                <font>Button</font>
+                <label>$PARAM[label]</label>
+                <visible>$PARAM[visible]</visible>
+                <texturenofocus colordiffuse="Black12" border="12">common/box.png</texturenofocus>
+                <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</texturefocus>
+                <onclick>$PARAM[onclick1]</onclick>
+            </control>
+        </definition>
     </include>
 
     <include name="Def_Buttons_Info">

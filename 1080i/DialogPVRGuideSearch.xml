@@ -5,7 +5,7 @@
     <controls>
         <include>Background_Overlay</include>
         <control type="group">
-            <include content="Def_Dialog_InfoPanel"><param name="height" value="1006" /><param name="width" value="1260" /><param name="colordiffuse" value="Panel" /></include>
+            <include content="Def_Dialog_InfoPanel"><param name="height" value="1006" /><param name="width" value="1302" /><param name="colordiffuse" value="Panel" /></include>
 
             <control type="label">
                 <include>Def_Dialog_Header_Title</include>
@@ -17,7 +17,7 @@
 
             <control type="group" id="8000">
                 <top>112</top>
-                <width>1260</width>
+                <width>1302</width>
 
                 <control type="edit" id="9">
                     <description>Search</description>
@@ -43,17 +43,20 @@
                 </control>
 
                 <control type="grouplist" id="8001">
-                    <left>0</left>
                     <top>190</top>
-                    <width>630</width>
+                    <left>30</left>
+                    <width>621</width>
                     <height>590</height>
+
                     <onup>9</onup>
                     <onleft>8003</onleft>
                     <onright>8002</onright>
                     <ondown>8003</ondown>
+
+                    <itemgap>0</itemgap>
                     <orientation>vertical</orientation>
-                    <itemgap>3</itemgap>
                     <usecontrolcoords>true</usecontrolcoords>
+
                     <control type="radiobutton" id="10" description="Include Description">
                         <include>Def_Dialog_Buttons_PVR</include>
                         <label>19134</label>
@@ -91,7 +94,7 @@
                 <!-- LINE VERTICAL -->
 
                 <control type="image">
-                    <left>630</left>
+                    <left>651</left>
                     <top>190</top>
                     <bottom>154</bottom>
                     <width>1</width>
@@ -99,17 +102,20 @@
                 </control>
 
                 <control type="grouplist" id="8002">
-                    <right>0</right>
                     <top>190</top>
-                    <width>630</width>
+                    <right>30</right>
+                    <width>621</width>
                     <height>590</height>
+
                     <onup>9</onup>
                     <onleft>8001</onleft>
                     <onright>8003</onright>
                     <ondown>8003</ondown>
+
+                    <itemgap>0</itemgap>
                     <orientation>vertical</orientation>
-                    <itemgap>3</itemgap>
                     <usecontrolcoords>true</usecontrolcoords>
+
                     <control type="spincontrolex" id="12" description="minduration">
                         <include>Def_Dialog_Buttons_PVR</include>
                         <label>19130</label>
@@ -145,38 +151,38 @@
                 </control>
             </control>
 
+            <!-- BUTTON ON BOTTOM -->
+
             <control type="grouplist" id="8003">
-                <centerleft>50%</centerleft>
                 <bottom>30</bottom>
+                <height>66</height>
                 <width>100%</width>
-                <height>70</height>
                 <align>center</align>
-                <itemgap>14</itemgap>
-                <orientation>horizontal</orientation>
+                <centerleft>50%</centerleft>
+
+                <onup>8001</onup>
                 <onleft>8001</onleft>
                 <onright>8002</onright>
-                <onup>8001</onup>
-                <control type="button" id="26">
-                    <description>Search</description>
-                    <label>137</label>
-                    <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</texturefocus>
-                    <texturenofocus colordiffuse="Black12" border="12">common/box.png</texturenofocus>
-                    <include>Def_Dialog_Buttons</include>
-                </control>
-                <control type="button" id="25">
-                    <description>Cancel</description>
-                    <label>$LOCALIZE[222]</label>
-                    <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</texturefocus>
-                    <texturenofocus colordiffuse="Black12" border="12">common/box.png</texturenofocus>
-                    <include>Def_Dialog_Buttons</include>
-                </control>
-                <control type="button" id="28">
-                    <description>Defaults</description>
-                    <label>$LOCALIZE[409]</label>
-                    <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</texturefocus>
-                    <texturenofocus colordiffuse="Black12" border="12">common/box.png</texturenofocus>
-                    <include>Def_Dialog_Buttons</include>
-                </control>
+
+                <itemgap>14</itemgap>
+                <orientation>horizontal</orientation>
+
+				<include content="Def_Dialog_Button_Action">
+					<param name="id" value="26" />
+					<param name="label" value="$LOCALIZE[137]" />
+				</include>
+				<include content="Def_Dialog_Button_Action">
+					<param name="id" value="29" />
+					<param name="label" value="$LOCALIZE[190]" />
+				</include>
+				<include content="Def_Dialog_Button_Action">
+					<param name="id" value="28" />
+					<param name="label" value="$LOCALIZE[13007]" />
+				</include>
+				<include content="Def_Dialog_Button_Action">
+					<param name="id" value="25" />
+					<param name="label" value="$LOCALIZE[222]" />
+				</include>
             </control>
         </control>
     </controls>

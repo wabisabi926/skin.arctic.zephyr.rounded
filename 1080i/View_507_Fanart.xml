@@ -100,80 +100,46 @@
                             <autoscroll>false</autoscroll>
                         </control>
 
-                        <!-- RATING / VOTES -->
-
-                        <control type="label">
-                            <top>570</top>
-                            <width>450</width>
-                            <font>Small333</font>
-                            <textcolor>Dark2</textcolor>
-                            <label>$VAR[Label_Rating_And_Votes]</label>
-                            <selectedcolor>Dark2</selectedcolor>
-                            <visible>!Skin.HasSetting(enable.flags.rating.numeric) + !ListItem.IsParentFolder</visible>
-                            <visible>!Skin.HasSetting(hide.501.507.flags.numeric.rating)</visible>
-                        </control>
-                        <control type="label">
-                            <top>570</top>
-                            <width>450</width>
-                            <font>Small333</font>
-                            <textcolor>Dark2</textcolor>
-                            <label>$INFO[ListItem.Votes,, $LOCALIZE[205]]</label>
-                            <selectedcolor>Dark2</selectedcolor>
-                            <visible>Skin.HasSetting(enable.flags.rating.numeric) + !ListItem.IsParentFolder</visible>
-                            <visible>!Skin.HasSetting(hide.501.507.flags.numeric.rating)</visible>
-                        </control>
-
                         <!-- FLAG STAR RATING -->
 
                         <control type="group">
                             <visible>!Skin.HasSetting(hide.501.507.flags.numeric.rating)</visible>
+                            <visible>!ListItem.IsParentFolder</visible>
 
                             <control type="group">
-                                <visible>!Skin.HasSetting(enable.flags.rating.numeric)</visible>
-                                <top>460</top>
+                                <top>480</top>
                                 <width>450</width>
-                                <visible>!ListItem.IsParentFolder</visible>
-                                <visible>!Skin.HasSetting(enable.flags.rating.numeric)</visible>
+
                                 <include content="Def_Flag">
                                     <param name="Star" value="Flagstar1" />
                                 </include>
                                 <include content="Def_Flag">
                                     <param name="Star" value="Flagstar2" />
-                                    <param name="left" value="50" />
+                                    <param name="left" value="40" />
                                 </include>
                                 <include content="Def_Flag">
                                     <param name="Star" value="Flagstar3" />
-                                    <param name="left" value="100" />
+                                    <param name="left" value="80" />
                                 </include>
                                 <include content="Def_Flag">
                                     <param name="Star" value="Flagstar4" />
-                                    <param name="left" value="150" />
+                                    <param name="left" value="120" />
                                 </include>
                                 <include content="Def_Flag">
                                     <param name="Star" value="Flagstar5" />
-                                    <param name="left" value="200" />
+                                    <param name="left" value="160" />
                                 </include>
                             </control>
-                            <control type="group">
-                                <top>460</top>
+
+                            <!-- RATING / VOTES -->
+
+                            <control type="label">
+                                <top>570</top>
                                 <width>450</width>
-                                <visible>Skin.HasSetting(enable.flags.rating.numeric)</visible>
-                                <visible>!ListItem.IsParentFolder</visible>
-                                <include content="Def_Flag">
-                                    <param name="Star" value="Flagstar1" />
-                                </include>
-                                <control type="label">
-                                    <left>45</left>
-                                    <width min="48">auto</width>
-                                    <centertop>50%</centertop>
-                                    <height>64</height>
-                                    <align>left</align>
-                                    <aligny>center</aligny>
-                                    <label>$VAR[Label_Rating]</label>
-                                    <visible>!ListItem.IsParentFolder</visible>
-                                    <font>Flag</font>
-                                    <textcolor>Dark2</textcolor>
-                                </control>
+                                <font>Small333</font>
+                                <textcolor>Dark2</textcolor>
+                                <label>$VAR[Label_Rating_Imdb_Votes_Top250]</label>
+                                <selectedcolor>Dark2</selectedcolor>
                             </control>
                         </control>
 

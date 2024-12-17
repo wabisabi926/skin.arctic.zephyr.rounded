@@ -50,8 +50,8 @@
                 <onback>3100</onback>
                 <control type="panel" id="6">
                     <pagecontrol>61</pagecontrol>
-                    <onleft>9100</onleft>
-                    <onback>9100</onback>
+                    <onleft>9002</onleft>
+                    <onback>9002</onback>
                     <itemlayout height="60" width="60">
                         <include content="Object_Control">
                             <param name="control" value="image" />
@@ -127,7 +127,7 @@
 
                 <include content="Dialog_Scrollbar">
                     <onright>6</onright>
-                    <onleft>9100</onleft>
+                    <onleft>9002</onleft>
                 </include>
             </control>
 
@@ -146,7 +146,14 @@
                 <control type="button" id="3300">
                     <disabledcolor>PanelWhite100</disabledcolor>
                     <width>600</width>
-                    <include>Def_Dialog_ButtonsDefault</include>
+                    <align>left</align>
+                    <font>Small</font>
+                    <textcolor>PanelWhite100</textcolor>
+                    <disabledcolor>PanelWhite12</disabledcolor>
+                    <height>70</height>
+                    <width>450</width>
+                    <alttexturefocus colordiffuse="$VAR[Color_Highlight]">common/white.png</alttexturefocus>
+                    <texturefocus colordiffuse="$VAR[Color_Highlight]">common/white.png</texturefocus>
                     <label>$LOCALIZE[737]:</label>
                     <label2>$INFO[Container(6).ListItem.Label2,#,]</label2>
                     <enable>false</enable>
@@ -154,7 +161,14 @@
                 <control type="button" id="3500">
                     <disabledcolor>PanelWhite100</disabledcolor>
                     <width>600</width>
-                    <include>Def_Dialog_ButtonsDefault</include>
+                    <align>left</align>
+                    <font>Small</font>
+                    <textcolor>PanelWhite100</textcolor>
+                    <disabledcolor>PanelWhite12</disabledcolor>
+                    <height>70</height>
+                    <width>450</width>
+                    <alttexturefocus colordiffuse="$VAR[Color_Highlight]">common/white.png</alttexturefocus>
+                    <texturefocus colordiffuse="$VAR[Color_Highlight]">common/white.png</texturefocus>
                     <label>$LOCALIZE[551]:</label>
                     <label2>$INFO[Container(6).ListItem.Label]</label2>
                     <visible>!String.IsEmpty(Container(6).ListItem.Label)</visible>
@@ -162,24 +176,26 @@
                 </control>
             </control>
 
-            <!-- BUTTON CLOSE -->
+            <!-- BUTTON ON BOTTOM -->
 
-            <control type="button" id="9100">
-                <description>Manual</description>
-                <left>150</left>
+            <control type="grouplist" id="9002">
                 <bottom>30</bottom>
-                <width>300</width>
                 <height>66</height>
-                <align>center</align>
-                <label>15067</label>
+                <left>150</left>
+
                 <onright>6</onright>
                 <onleft>6</onleft>
                 <onup>6</onup>
                 <ondown>6</ondown>
                 <onclick>close</onclick>
-                <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</texturefocus>
-                <texturenofocus colordiffuse="Black12" border="12">common/box.png</texturenofocus>
-                <include>Def_Dialog_Buttons</include>
+
+                <itemgap>14</itemgap>
+                <orientation>horizontal</orientation>
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="18" />
+                    <param name="label" value="$LOCALIZE[15067]" />
+                </include>
             </control>
         </control>
     </controls>

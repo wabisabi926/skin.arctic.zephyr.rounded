@@ -20,14 +20,17 @@
             <include>Def_Dialog_Header_Line</include>
 
             <control type="grouplist" id="9001">
+                <include>Animation_Scrolltime_Views_List</include>
                 <top>112</top>
-                <pagecontrol>9071</pagecontrol>
+
+                <include content="Def_View_ContextMenu_GroupList_scrollbar"><param name="height" value="560" /><param name="scrollid" value="9071" /></include>
+
                 <onleft>SetFocus(9035)</onleft>
                 <onleft>Close</onleft>
-                <itemgap>0</itemgap>
-                <include>Animation_Scrolltime_Views_List</include>
+
                 <usecontrolcoords>true</usecontrolcoords>
-                <include content="Def_View_ContextMenu_GroupList_scrollbar"><param name="height" value="560" /><param name="scrollid" value="9071" /></include>
+                <pagecontrol>9071</pagecontrol>
+                <itemgap>0</itemgap>
 
                 <!-- VIEW -->
 
@@ -66,6 +69,13 @@
                     <onclick>Skin.ToggleSetting(show.furniture.footer)</onclick>
                     <onclick>ReloadSkin()</onclick>
                 </control>
+                <control type="radiobutton" id="9585">
+                    <include>Def_Button_Gradient_Context</include>
+                    <label>31163</label>
+                    <align>left</align>
+                    <selected>Skin.HasSetting(enable.view.video.rating.num)</selected>
+                    <onclick>Skin.ToggleSetting(enable.view.video.rating.num)</onclick>
+                </control>
                 <control type="radiobutton" id="9088" description="Enable Extra Fanart">
                     <include>Def_Button_Gradient_Context</include>
                     <align>left</align>
@@ -93,7 +103,6 @@
                     <label>31355</label>
                     <selected>!Skin.HasSetting(hide.view.flix.preview)</selected>
                     <onclick>Skin.ToggleSetting(hide.view.flix.preview)</onclick>
-                    <!-- <visible>Control.IsVisible(522) | Control.IsVisible(523) | Control.IsVisible(524)</visible> -->
                 </control>
                 <control type="button" id="90681">
                     <include>Def_Button_Gradient_Context</include>
@@ -102,7 +111,6 @@
                     <label2>$VAR[Label_Setting_Background_Brightness_Flix]</label2>
                     <onclick>SetProperty(includesetting,Value_Brightness_Flix,Home)</onclick>
                     <onclick>ActivateWindow(1248)</onclick>
-                    <!-- <visible>Control.IsVisible(522) | Control.IsVisible(523) | Control.IsVisible(524)</visible> -->
                     <enable>!Skin.HasSetting(hide.view.flix.preview)</enable>
                     <onclick>ReloadSkin()</onclick>
                 </control>

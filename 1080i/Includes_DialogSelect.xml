@@ -353,7 +353,7 @@
             <include content="Object_Scrollbar_Dialog_Vertical">
                 <param name="scrollid" value="1723" />
                 <param name="onleft" value="6" />
-                <param name="onright" value="1888" />
+                <param name="onright" value="9001" />
                 <param name="centerright" value="360" />
                 <param name="height" value="682" />
             </include>
@@ -472,38 +472,25 @@
 
             <!-- BUTTON ON RIGHT -->
 
-            <control type="group" id="1888">
-                <control type="button" id="5">
-                    <description>Manual</description>
-                    <right>30</right>
-                    <top>112</top>
-                    <width>300</width>
-                    <height>66</height>
-                    <align>center</align>
-                    <label>368</label>
-                    <onleft>1723</onleft>
-                    <onup>3</onup>
-                    <ondown>7</ondown>
-                    <font>Button</font>
-                    <textcolor>Black70</textcolor>
-                    <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</texturefocus>
-                </control>
-                <control type="button" id="7">
-                    <description>Cancel</description>
-                    <right>30</right>
-                    <top>195</top>
-                    <width>300</width>
-                    <height>66</height>
-                    <align>center</align>
-                    <label>222</label>
-                    <onleft>1723</onleft>
-                    <onup>5</onup>
-                    <ondown>3</ondown>
-                    <font>Button</font>
-                    <textcolor>Black70</textcolor>
-                    <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</texturefocus>
-                    <animation effect="slide" start="0" end="0,-83" condition="!Control.IsVisible(5)">Conditional</animation>
-                </control>
+            <control type="grouplist" id="9001">
+                <top>112</top>
+                <right>30</right>
+                <width>300</width>
+                <height>490</height>
+
+                <onleft>1723</onleft>
+                <onright>6</onright>
+
+                <itemgap>14</itemgap>
+                <scrolltime tween="quadratic">200</scrolltime>
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="5" />
+                </include>
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="7" />
+                </include>
             </control>
 
             <!-- PICTURE ON RIGHT -->
@@ -587,19 +574,21 @@
 
             <!-- BUTTON ON RIGHT -->
 
-            <control type="button" id="7">
-                <description>Cancel</description>
-                <right>30</right>
+            <control type="grouplist" id="9001">
                 <top>112</top>
+                <right>30</right>
                 <width>300</width>
-                <height>66</height>
-                <align>center</align>
-                <label>222</label>
+                <height>490</height>
+
                 <onleft>1723</onleft>
                 <onright>6</onright>
-                <font>Button</font>
-                <textcolor>Black70</textcolor>
-                <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</texturefocus>
+
+                <itemgap>14</itemgap>
+                <scrolltime tween="quadratic">200</scrolltime>
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="7" />
+                </include>
             </control>
 
             <!-- CAST PICTURE -->
@@ -687,7 +676,7 @@
             <include content="Object_Scrollbar_Dialog_Vertical">
                 <param name="scrollid" value="1723" />
                 <param name="onleft" value="3" />
-                <param name="onright" value="1888" />
+                <param name="onright" value="9001" />
                 <param name="centerright" value="360" />
                 <param name="visible" value="Control.IsVisible(3) + !Control.IsVisible(6)" />
             </include>
@@ -695,7 +684,7 @@
             <include content="Object_Scrollbar_Dialog_Vertical">
                 <param name="scrollid" value="1723" />
                 <param name="onleft" value="6" />
-                <param name="onright" value="1888" />
+                <param name="onright" value="9001" />
                 <param name="centerright" value="360" />
                 <param name="visible" value="Control.IsVisible(6) + !Control.IsVisible(3)" />
             </include>
@@ -894,62 +883,49 @@
 
             <!-- BUTTON ON RIGHT -->
 
-            <control type="group" id="1888">
-                <control type="button" id="5">
-                    <description>Manual</description>
-                    <right>30</right>
-                    <top>112</top>
-                    <width>300</width>
-                    <height>66</height>
-                    <align>center</align>
-                    <label>368</label>
-                    <onleft>1723</onleft>
-                    <onup>3</onup>
-                    <ondown>7</ondown>
-                    <font>Button</font>
-                    <textcolor>Black70</textcolor>
-                    <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</texturefocus>
-                </control>
-                <control type="button" id="7">
-                    <description>Cancel</description>
-                    <right>30</right>
-                    <top>195</top>
-                    <width>300</width>
-                    <height>66</height>
-                    <align>center</align>
-                    <label>222</label>
-                    <onleft>1723</onleft>
-                    <onup>5</onup>
-                    <ondown>3</ondown>
-                    <font>Button</font>
-                    <textcolor>Black70</textcolor>
-                    <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</texturefocus>
-                    <visible>!Control.IsVisible(21)</visible>
-                    <animation effect="slide" start="0" end="0,-80" condition="!Control.IsVisible(5)">Conditional</animation>
-                </control>
+            <control type="grouplist" id="9001">
+                <top>112</top>
+                <right>30</right>
+                <width>300</width>
+                <height>490</height>
+
+                <onleft>1723</onleft>
+                <onright>6</onright>
+
+                <itemgap>14</itemgap>
+                <scrolltime tween="quadratic">200</scrolltime>
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="5" />
+                </include>
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="7" />
+                </include>
             </control>
 
             <!-- PICTURE ON RIGHT -->
 
-            <control type="image">
-                <description>Large Icon Image</description>
-                <right>34</right>
+            <control type="group">
                 <top>357</top>
+                <right>30</right>
                 <width>300</width>
                 <height>450</height>
-                <texture fallback="DefaultPicture.png">$VAR[Image_Dialog_Select_Big]</texture>
-                <aspectratio align="center" aligny="bottom">keep</aspectratio>
-                <visible>!$EXP[View_Icon_Black_Dialog_Select]</visible>
-            </control>
-            <control type="image">
-                <description>Large Icon Image</description>
-                <right>34</right>
-                <top>357</top>
-                <width>300</width>
-                <height>450</height>
-                <texture fallback="DefaultPicture.png" colordiffuse="PanelWhite100">$VAR[Image_Dialog_Select_Big]</texture>
-                <aspectratio align="center" aligny="bottom">keep</aspectratio>
-                <visible>$EXP[View_Icon_Black_Dialog_Select]</visible>
+
+                <control type="image">
+                    <width>100%</width>
+                    <height>100%</height>
+                    <texture fallback="DefaultPicture.png">$VAR[Image_Dialog_Select_Big]</texture>
+                    <aspectratio align="center" aligny="bottom">keep</aspectratio>
+                    <visible>!$EXP[View_Icon_Black_Dialog_Select]</visible>
+                </control>
+                <control type="image">
+                    <width>100%</width>
+                    <height>100%</height>
+                    <texture fallback="DefaultPicture.png" colordiffuse="PanelWhite100">$VAR[Image_Dialog_Select_Big]</texture>
+                    <aspectratio align="center" aligny="bottom">keep</aspectratio>
+                    <visible>$EXP[View_Icon_Black_Dialog_Select]</visible>
+                </control>
+
             </control>
 
             <!-- LINE VERTICAL -->
@@ -1076,17 +1052,24 @@
                 </focusedlayout>
             </control>
 
+            <!-- BUTTON ON RIGHT -->
+
             <control type="grouplist" id="9001">
-                <description>Buttons on the right</description>
-                <left>1302</left>
-                <top>-20</top>
+                <top>112</top>
+                <right>30</right>
+                <width>300</width>
+                <height>490</height>
+
                 <onleft>3</onleft>
-                <itemgap>dialogbuttons_itemgap</itemgap>
-                <include content="DefaultDialogButton">
+
+                <itemgap>14</itemgap>
+                <scrolltime tween="quadratic">200</scrolltime>
+
+                <include content="Def_Dialog_Button_Action">
                     <param name="id" value="10825" />
                     <param name="label" value="$LOCALIZE[35261]" />
                 </include>
-                <include content="DefaultDialogButton">
+                <include content="Def_Dialog_Button_Action">
                     <param name="id" value="10826" />
                     <param name="label" value="$LOCALIZE[222]" />
                 </include>
@@ -1283,24 +1266,26 @@
 
             <!-- BUTTON ON RIGHT -->
 
-            <control type="button" id="7">
-                <description>Cancel</description>
-                <right>30</right>
+            <control type="grouplist" id="9001">
                 <top>112</top>
+                <right>30</right>
                 <width>300</width>
-                <height>66</height>
-                <align>center</align>
-                <label>222</label>
+                <height>490</height>
+
                 <onleft>61</onleft>
                 <onright>10811</onright>
-                <font>Button</font>
-                <textcolor>Black70</textcolor>
-                <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</texturefocus>
-                <onclick>Action(close)</onclick>
+
+                <itemgap>14</itemgap>
+                <scrolltime tween="quadratic">200</scrolltime>
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="7" />
+                </include>
             </control>
 
+            <!-- INFO -->
+
             <control type="textbox" id="10812">
-                <description>Description Area</description>
                 <top>190</top>
                 <right>30</right>
                 <width>300</width>
@@ -1426,20 +1411,21 @@
 
             <!-- BUTTON ON RIGHT -->
 
-            <control type="button" id="7">
-                <description>Cancel</description>
-                <right>30</right>
+            <control type="grouplist" id="9001">
                 <top>112</top>
+                <right>30</right>
                 <width>300</width>
-                <height>66</height>
-                <align>center</align>
-                <label>222</label>
+                <height>490</height>
+
                 <onleft>10811</onleft>
                 <onright>10811</onright>
-                <font>Button</font>
-                <textcolor>Black70</textcolor>
-                <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</texturefocus>
-                <onclick>Action(close)</onclick>
+
+                <itemgap>14</itemgap>
+                <scrolltime tween="quadratic">200</scrolltime>
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="7" />
+                </include>
             </control>
         </control>
     </include>
@@ -1594,23 +1580,27 @@
                 <animation effect="fade" start="0" end="100" time="100" condition="!Control.HasFocus(61) + !Container.Scrolling">Conditional</animation>
             </control>
 
+
             <!-- BUTTON ON RIGHT -->
 
-            <control type="button" id="7">
-                <description>Cancel</description>
-                <right>30</right>
+            <control type="grouplist" id="9001">
                 <top>112</top>
+                <right>30</right>
                 <width>300</width>
-                <height>66</height>
-                <align>center</align>
-                <label>222</label>
+                <height>490</height>
+
                 <onleft>61</onleft>
                 <onright>10811</onright>
-                <font>Button</font>
-                <textcolor>Black70</textcolor>
-                <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</texturefocus>
-                <onclick>Action(close)</onclick>
+
+                <itemgap>14</itemgap>
+                <scrolltime tween="quadratic">200</scrolltime>
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="7" />
+                </include>
             </control>
+
+            <!-- INFOS -->
 
             <control type="textbox" id="10812">
                 <description>Description Area</description>
@@ -2022,7 +2012,7 @@
 
             <top>200</top>
             <centerleft>50%</centerleft>
-            <width>880</width>
+            <width>1280</width>
 
             <include content="Def_Dialog_Background_PowerMenu">
                 <param name="height">199</param>
@@ -2081,7 +2071,7 @@
             <control type="list" id="6">
                 <top>112</top>
                 <left>0</left>
-                <width>880</width>
+                <width>1280</width>
                 <height min="100" max="560">auto</height>
 
                 <onup>6</onup>
@@ -2092,7 +2082,7 @@
                 <pagecontrol>1723</pagecontrol>
                 <scrolltime>200</scrolltime>
 
-                <itemlayout height="70" width="880">
+                <itemlayout height="70" width="1280">
                     <control type="image">
                         <top>15</top>
                         <left>30</left>
@@ -2114,7 +2104,7 @@
                     </control>
 
                     <control type="label">
-                        <left>400</left>
+                        <left>600</left>
                         <align>left</align>
                         <aligny>center</aligny>
                         <width>100%</width>
@@ -2140,7 +2130,7 @@
                         <param name="visible">ListItem.IsSelected</param>
                     </include>
                 </itemlayout>
-                <focusedlayout height="70" width="880">
+                <focusedlayout height="70" width="1280">
                     <control type="image">
                         <width>100%</width>
                         <height>100%</height>
@@ -2168,7 +2158,7 @@
                     </control>
 
                     <control type="label">
-                        <left>400</left>
+                        <left>600</left>
                         <aligny>center</aligny>
                         <width>100%</width>
                         <height>100%</height>

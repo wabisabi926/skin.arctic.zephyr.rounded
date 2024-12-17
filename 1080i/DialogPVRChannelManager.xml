@@ -196,39 +196,37 @@
                     <texture colordiffuse="Black12">common/white.png</texture>
                 </control>
             </control>
+
+            <!-- BUTTON ON BOTTOM -->
+
             <control type="grouplist" id="8003">
-                <centerleft>50%</centerleft>
                 <bottom>30</bottom>
+                <height>66</height>
                 <width>100%</width>
-                <height>70</height>
                 <align>center</align>
+                <centerleft>50%</centerleft>
+
+                <onup>13</onup>
+                <ondown>13</ondown>
+
                 <itemgap>14</itemgap>
                 <orientation>horizontal</orientation>
-                <onleft>20</onleft>
-                <onright>13</onright>
-                <onup>13</onup>
-                <control type="button" id="4">
-                    <description>OK</description>
-                    <label>186</label>
-                    <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</texturefocus>
-                    <texturenofocus colordiffuse="Black12" border="12">common/box.png</texturenofocus>
-                    <include>Def_Dialog_Buttons</include>
-                </control>
-                <control type="button" id="5">
-                    <description>Apply</description>
-                    <label>$LOCALIZE[118]</label>
-                    <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</texturefocus>
-                    <texturenofocus colordiffuse="Black12" border="12">common/box.png</texturenofocus>
-                    <include>Def_Dialog_Buttons</include>
-                </control>
-                <control type="button" id="6">
-                    <description>Cancel</description>
-                    <label>$LOCALIZE[117]</label>
-                    <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</texturefocus>
-                    <texturenofocus colordiffuse="Black12" border="12">common/box.png</texturenofocus>
-                    <include>Def_Dialog_Buttons</include>
-                </control>
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="4" />
+                    <param name="label" value="$LOCALIZE[186]" />
+                </include>
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="5" />
+                    <param name="label" value="$LOCALIZE[14070]" />
+                </include>
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="6" />
+                    <param name="label" value="$LOCALIZE[222]" />
+                </include>
             </control>
+
+            <!-- SCROLLBAR -->
 
             <include content="Object_Scrollbar_Dialog_Vertical">
                 <param name="scrollid" value="60" />

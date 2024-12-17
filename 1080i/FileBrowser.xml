@@ -29,7 +29,7 @@
             <include content="Object_Scrollbar_Dialog_Vertical">
                 <param name="scrollid" value="1724" />
                 <param name="onleft" value="450" />
-                <param name="onright" value="9000" />
+                <param name="onright" value="9001" />
                 <param name="centerright" value="360" />
             </include>
 
@@ -44,7 +44,7 @@
 
                 <onup>450</onup>
                 <ondown>450</ondown>
-                <onleft>9000</onleft>
+                <onleft>9001</onleft>
                 <onright>1724</onright>
 
                 <pagecontrol>1724</pagecontrol>
@@ -185,36 +185,39 @@
 
             <!-- BUTTON ON RIGHT -->
 
-            <control type="grouplist" id="9000">
-                <onleft>1724</onleft>
-                <left>989</left>
+            <control type="grouplist" id="9001">
                 <top>112</top>
-                <itemgap>3</itemgap>
-                <orientation>vertical</orientation>
+                <right>30</right>
+                <width>300</width>
+                <height>490</height>
+
+                <onleft>1724</onleft>
                 <onright>450</onright>
-                <onleft>450</onleft>
-                <control type="button" id="413">
-                    <description>Ok</description>
-                    <label>186</label>
-                    <include>Def_Dialog_Buttons</include>
-                </control>
-                <control type="button" id="414">
-                    <description>Cancel</description>
-                    <label>222</label>
-                    <include>Def_Dialog_Buttons</include>
-                </control>
-                <control type="button" id="415">
-                    <description>Create Folder</description>
-                    <label>119</label>
-                    <include>Def_Dialog_Buttons</include>
-                    <visible>Control.IsEnabled(415)</visible>
-                </control>
-                <control type="radiobutton" id="416">
-                    <description>Create Folder</description>
-                    <label>749</label>
-                    <include>Def_Dialog_Buttons</include>
-                    <visible>Control.IsEnabled(416)</visible>
-                </control>
+
+                <itemgap>14</itemgap>
+                <scrolltime tween="quadratic">200</scrolltime>
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="413" />
+                    <param name="label" value="$LOCALIZE[186]" />
+                </include>
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="414" />
+                    <param name="label" value="$LOCALIZE[222]" />
+                </include>
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="415" />
+                    <param name="label" value="$LOCALIZE[119]" />
+                    <param name="visible">Control.IsEnabled(415)</param>
+                </include>
+
+                <include content="Def_Dialog_Radio_Button_Action">
+                    <param name="id" value="416" />
+                    <param name="label" value="$LOCALIZE[749]" />
+                    <param name="visible">Control.IsEnabled(416)</param>
+                </include>
             </control>
 
             <!-- PICTURE ON RIGHT -->
@@ -324,7 +327,7 @@
             <include content="Object_Scrollbar_Dialog_Vertical">
                 <param name="scrollid" value="1726" />
                 <param name="onleft" value="451" />
-                <param name="onright" value="9000" />
+                <param name="onright" value="9001" />
                 <param name="centerright" value="360" />
             </include>
 
@@ -338,7 +341,7 @@
 
                 <onup>451</onup>
                 <ondown>451</ondown>
-                <onleft>9000</onleft>
+                <onleft>9001</onleft>
                 <onright>1726</onright>
                 <!-- <onback>Dialog.Close(all)</onback> -->
 
@@ -400,91 +403,84 @@
 
             <!-- BUTTON ON RIGHT -->
 
-            <control type="grouplist" id="9000">
-                <onleft>1726</onleft>
-                <left>1273</left>
+            <control type="grouplist" id="9001">
                 <top>112</top>
+                <right>30</right>
+                <width>300</width>
+                <height>306</height>
 
-                <itemgap>3</itemgap>
-                <orientation>vertical</orientation>
+                <onleft>1726</onleft>
                 <onright>451</onright>
-                <onleft>451</onleft>
 
-                <control type="button" id="9413">
-                    <description>Ok</description>
-                    <label>186</label>
-                    <include>Def_Dialog_Buttons</include>
-                    <onclick>SendClick(413)</onclick>
-                    <visible>Control.IsEnabled(413)</visible>
-                </control>
-                <control type="button" id="9414">
-                    <description>Cancel</description>
-                    <label>222</label>
-                    <include>Def_Dialog_Buttons</include>
-                    <onclick>SendClick(414)</onclick>
-                    <visible>Control.IsEnabled(414)</visible>
-                </control>
-                <control type="button" id="9415">
-                    <description>Create Folder</description>
-                    <label>119</label>
-                    <include>Def_Dialog_Buttons</include>
-                    <onclick>SendClick(415)</onclick>
-                    <visible>Control.IsEnabled(415)</visible>
-                </control>
-                <control type="radiobutton" id="9416">
-                    <description>Flip picture</description>
-                    <label>749</label>
-                    <align>left</align>
-                    <textoffsetx>20</textoffsetx>
-                    <radioposx>250</radioposx>
-                    <include>Def_Dialog_Buttons</include>
-                    <onclick>SendClick(416)</onclick>
-                    <visible>Control.IsEnabled(416)</visible>
-                </control>
+                <itemgap>14</itemgap>
+                <scrolltime tween="quadratic">200</scrolltime>
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="9413" />
+                    <param name="label" value="$LOCALIZE[186]" />
+                    <param name="visible">Control.IsEnabled(413)</param>
+                    <param name="onclick1">SendClick(413)</param>
+                </include>
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="9414" />
+                    <param name="label" value="$LOCALIZE[222]" />
+                    <param name="visible">Control.IsEnabled(414)</param>
+                    <param name="onclick1">SendClick(414)</param>
+                </include>
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="9415" />
+                    <param name="label" value="$LOCALIZE[119]" />
+                    <param name="visible">Control.IsEnabled(415)</param>
+                    <param name="onclick1">SendClick(415)</param>
+                </include>
+
+                <include content="Def_Dialog_Radio_Button_Action">
+                    <param name="id" value="9416" />
+                    <param name="label" value="$LOCALIZE[749]" />
+                    <param name="visible">Control.IsEnabled(416) + !String.StartsWith(ListItem.Icon,Default)</param>
+                    <param name="onclick1">SendClick(416)</param>
+                </include>
             </control>
 
             <!-- PICTURE ON RIGHT -->
 
-            <control type="image">
-                <description>Large Icon Image</description>
-                <right>30</right>
+            <control type="group">
                 <top>357</top>
+                <right>30</right>
                 <width>300</width>
                 <height>450</height>
-                <texture fallback="DefaultAddonNone.png">$INFO[Container(451).ListItem.Icon]</texture>
-                <aspectratio align="center" aligny="bottom">keep</aspectratio>
-                <visible>!String.Contains(Control.GetLabel(416),*) + !String.StartsWith(ListItem.Icon,Default)</visible>
-            </control>
-            <control type="image">
-                <description>Large Icon Image</description>
-                <right>30</right>
-                <top>357</top>
-                <width>300</width>
-                <height>450</height>
-                <texture fallback="DefaultAddonNone.png" flipx="true">$INFO[Container(451).ListItem.Icon]</texture>
-                <aspectratio align="center" aligny="bottom">keep</aspectratio>
-                <visible>String.Contains(Control.GetLabel(416),*) + !String.StartsWith(ListItem.Icon,Default)</visible>
-            </control>
 
-            <control type="image">
-                <description>Large Icon Image</description>
-                <right>30</right>
-                <top>357</top>
-                <width>300</width>
-                <height>450</height>
-                <texture fallback="DefaultAddonNone.png" colordiffuse="Dark1">$INFO[Container(451).ListItem.Icon]</texture>
-                <aspectratio align="center" aligny="bottom">keep</aspectratio>
-                <visible>!String.Contains(Control.GetLabel(416),*) + String.StartsWith(ListItem.Icon,Default)</visible>
-            </control>
-            <control type="image">
-                <description>Large Icon Image</description>
-                <right>30</right>
-                <top>357</top>
-                <width>300</width>
-                <height>450</height>
-                <texture fallback="DefaultAddonNone.png" flipx="true" colordiffuse="Dark1">$INFO[Container(451).ListItem.Icon]</texture>
-                <aspectratio align="center" aligny="bottom">keep</aspectratio>
-                <visible>String.Contains(Control.GetLabel(416),*) + String.StartsWith(ListItem.Icon,Default)</visible>
+                <control type="image">
+                    <width>100%</width>
+                    <height>100%</height>
+                    <texture fallback="DefaultAddonNone.png">$INFO[Container(451).ListItem.Icon]</texture>
+                    <aspectratio align="center" aligny="bottom">keep</aspectratio>
+                    <visible>!String.Contains(Control.GetLabel(416),*) + !String.StartsWith(ListItem.Icon,Default)</visible>
+                </control>
+                <control type="image">
+                    <width>100%</width>
+                    <height>100%</height>
+                    <texture fallback="DefaultAddonNone.png" flipx="true">$INFO[Container(451).ListItem.Icon]</texture>
+                    <aspectratio align="center" aligny="bottom">keep</aspectratio>
+                    <visible>String.Contains(Control.GetLabel(416),*) + !String.StartsWith(ListItem.Icon,Default)</visible>
+                </control>
+
+                <control type="image">
+                    <width>100%</width>
+                    <height>100%</height>
+                    <texture fallback="DefaultAddonNone.png" colordiffuse="PanelWhite100">$INFO[Container(451).ListItem.Icon]</texture>
+                    <aspectratio align="center" aligny="bottom">keep</aspectratio>
+                    <visible>!String.Contains(Control.GetLabel(416),*) + String.StartsWith(ListItem.Icon,Default)</visible>
+                </control>
+                <control type="image">
+                    <width>100%</width>
+                    <height>100%</height>
+                    <texture fallback="DefaultAddonNone.png" flipx="true" colordiffuse="PanelWhite100">$INFO[Container(451).ListItem.Icon]</texture>
+                    <aspectratio align="center" aligny="bottom">keep</aspectratio>
+                    <visible>String.Contains(Control.GetLabel(416),*) + String.StartsWith(ListItem.Icon,Default)</visible>
+                </control>
             </control>
 
             <!-- LINE VERTICAL -->

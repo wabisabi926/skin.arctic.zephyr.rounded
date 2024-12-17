@@ -4,129 +4,56 @@
     <onload condition="Skin.HasSetting(osd.open.auto.pause) + Player.HasMedia + Player.HasVideo + !Player.Paused + !String.IsEmpty(VideoPlayer.DBID)">PlayerControl(Play)</onload>
     <onunload condition="Skin.HasSetting(osd.open.auto.pause) + Player.HasMedia + Player.HasVideo + Player.Paused + !Window.IsVisible(VideoOSD.xml) + !Window.IsVisible(DialogSubtitles.xml)">AlarmClock(delay_dialog_settings,PlayerControl(Play),00:00,silent)</onunload>
 
-    <onunload condition="!Player.PauseEnabled">setfocus(15)</onunload>
-    <onunload condition="Player.PauseEnabled">setfocus(14)</onunload>
+    <onunload condition="Player.HasMedia + Player.HasVideo + !Player.PauseEnabled">setfocus(15)</onunload>
+    <onunload condition="Player.HasMedia + Player.HasVideo + Player.PauseEnabled">setfocus(14)</onunload>
 
     <controls>
         <control type="group">
-            <animation effect="fade" start="100" end="0" time="400" condition="Window.IsVisible(SliderDialog)">Conditional</animation>
+            <animation effect="fade" start="100" end="0" time="400" condition="Window.IsVisible(SliderDialog) | Window.IsVisible(VideoOSD.xml) | Window.IsVisible(VideoFullScreen.xml)">Conditional</animation>
             <include>Background_Overlay</include>
         </control>
 
-        <control type="group">
-            <animation effect="fade" start="100" end="0" time="400" condition="Window.IsVisible(SliderDialog) | Window.IsVisible(DialogSubtitles.xml)">Conditional</animation>
-            <include content="Def_Dialog_InfoPanel"><param name="height" value="789" /><param name="width" value="1100" /><param name="colordiffuse" value="Panel" /></include>
+        <include condition="![Window.IsVisible(VideoOSD.xml) | Window.IsVisible(VideoFullScreen.xml)]">Def_Dialog_Settings_standard</include>
+        <include condition="Window.IsVisible(VideoOSD.xml) | Window.IsVisible(VideoFullScreen.xml)">Def_Dialog_Settings_video_OSD</include>
 
-            <control type="label" id="2">
-                <include>Def_Dialog_Header_Title</include>
-            </control>
 
-            <include>Def_Dialog_Header_Logo</include>
-            <include>Def_Dialog_Header_Line</include>
+        <!-- DEF CONTROL TYPE -->
 
-            <control type="grouplist" id="5">
-                <include>Animation_Scrolltime_Views_List</include>
-
-                <top>112</top>
-                <height>660</height>
-                <left>0</left>
-                <right>0</right>
-
-                <onleft>close</onleft>
-                <onright>1799</onright>
-                <onright condition="!Control.IsVisible(1799)">close</onright>
-                <onup>5</onup>
-                <ondown>5</ondown>
-
-                <usecontrolcoords>true</usecontrolcoords>
-                <orientation>vertical</orientation>
-                <pagecontrol>1799</pagecontrol>
-                <itemgap>0</itemgap>
-            </control>
-
-            <!-- SCROLLBAR -->
-
-            <include content="Object_Scrollbar_Dialog_Vertical">
-                <param name="scrollid" value="1799" />
-                <param name="onleft" value="5" />
-                <param name="onright" value="5" />
-                <param name="height" value="660" />
-                <param name="centerright" value="4" />
-            </include>
-
-            <!-- <control type="grouplist" id="8000"> -->
-                <!-- <bottom>30</bottom> -->
-                <!-- <width>100%</width> -->
-                <!-- <height>66</height> -->
-                <!-- <align>center</align> -->
-
-                <!-- <onup>5</onup> -->
-                <!-- <ondown>5</ondown> -->
-
-                <!-- <itemgap>14</itemgap> -->
-                <!-- <orientation>horizontal</orientation> -->
-
-                <!-- <control type="button" id="28"> -->
-                    <!-- <description>OK</description> -->
-                    <!-- <width>270</width> -->
-                    <!-- <font>Button</font> -->
-                    <!-- <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</texturefocus> -->
-                    <!-- <texturenofocus colordiffuse="Black12" border="12">common/box.png</texturenofocus> -->
-                <!-- </control> -->
-                <!-- <control type="button" id="29"> -->
-                    <!-- <description>Defaults</description> -->
-                    <!-- <width>270</width> -->
-                    <!-- <font>Button</font> -->
-                    <!-- <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</texturefocus> -->
-                    <!-- <texturenofocus colordiffuse="Black12" border="12">common/box.png</texturenofocus> -->
-                <!-- </control> -->
-                <!-- <control type="button" id="30"> -->
-                    <!-- <description>Defaults</description> -->
-                    <!-- <width>270</width> -->
-                    <!-- <font>Button</font> -->
-                    <!-- <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</texturefocus> -->
-                    <!-- <texturenofocus colordiffuse="Black12" border="12">common/box.png</texturenofocus> -->
-                <!-- </control> -->
-            <!-- </control> -->
-
-            <!-- DEF CONTROL TYPE -->
-
-            <control type="button" id="7">
-                <description>Default Button</description>
-                <align>left</align>
-                <texturefocus>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texturefocus>
-            </control>
-            <control type="radiobutton" id="8">
-                <description>Default RadioButton</description>
-                <align>left</align>
-                <radioposx>1040</radioposx>
-                <texturefocus>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texturefocus>
-            </control>
-            <control type="spincontrolex" id="9">
-                <description>Default spincontrolex</description>
-                <align>left</align>
-                <reverse>yes</reverse>
-                <texturefocus>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texturefocus>
-            </control>
-            <control type="image" id="11">
-                <visible>false</visible>
-            </control>
-            <control type="edit" id="12">
-                <description>Default Button</description>
-                <align>left</align>
-                <texturefocus>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texturefocus>
-            </control>
-            <control type="sliderex" id="13">
-                <description>Default Slider</description>
-                <texturefocus>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texturefocus>
-            </control>
-            <control type="label" id="14">
-                <description>Default Button</description>
-                <font>Button</font>
-                <textoffsetx>30</textoffsetx>
-                <textcolor>$VAR[Color_Highlight]</textcolor>
-                <height>66</height>
-            </control>
+        <control type="button" id="7">
+            <description>Default Button</description>
+            <align>left</align>
+            <texturefocus>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texturefocus>
+        </control>
+        <control type="radiobutton" id="8">
+            <description>Default RadioButton</description>
+            <align>left</align>
+            <radioposx>1040</radioposx>
+            <texturefocus>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texturefocus>
+        </control>
+        <control type="spincontrolex" id="9">
+            <description>Default spincontrolex</description>
+            <align>left</align>
+            <reverse>yes</reverse>
+            <texturefocus>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texturefocus>
+        </control>
+        <control type="image" id="11">
+            <visible>false</visible>
+        </control>
+        <control type="edit" id="12">
+            <description>Default Button</description>
+            <align>left</align>
+            <texturefocus>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texturefocus>
+        </control>
+        <control type="sliderex" id="13">
+            <description>Default Slider</description>
+            <texturefocus>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texturefocus>
+        </control>
+        <control type="label" id="14">
+            <description>Default Button</description>
+            <font>Button</font>
+            <textoffsetx>30</textoffsetx>
+            <textcolor>$VAR[Color_Highlight]</textcolor>
+            <height>66</height>
         </control>
     </controls>
 </window>
