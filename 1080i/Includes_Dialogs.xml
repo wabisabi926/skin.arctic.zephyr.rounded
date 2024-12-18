@@ -7,16 +7,17 @@
     </include>
 
     <include name="Def_Dialog_Header_Title">
-        <param name="left" value="$PARAM[left]" default="LabelLeft" />
         <param name="top" value="$PARAM[top]" default="24" />
         <param name="width" value="$PARAM[width]" default="1070" />
+        <param name="left" value="$PARAM[left]" default="LabelLeft" />
+        <param name="textcolor" value="$PARAM[textcolor]" default="Dark2" />
         <definition>
             <description>header label</description>
             <left>$PARAM[left]</left>
             <top>$PARAM[top]</top>
             <width>$PARAM[width]</width>
             <include>Def_Dialog_Header_Font</include>
-            <textcolor>Dark2</textcolor>
+            <textcolor>$PARAM[textcolor]</textcolor>
         </definition>
     </include>
 
@@ -38,9 +39,11 @@
 
     <include name="Def_Dialog_Header_Line">
         <param name="top" value="$PARAM[top]" default="95" />
-        <param name="bottom" value="$PARAM[bottom]" default="10" />
-        <param name="right" value="$PARAM[right]" default="30" />
         <param name="left" value="$PARAM[left]" default="30" />
+        <param name="right" value="$PARAM[right]" default="30" />
+        <param name="bottom" value="$PARAM[bottom]" default="10" />
+        <param name="colordiffuse" value="$PARAM[colordiffuse]" default="Black12" />
+
         <param name="visible" default="true" />
         <definition>
             <control type="image">
@@ -48,7 +51,7 @@
                <right>$PARAM[right]</right>
                <left>$PARAM[left]</left>
                <height>1</height>
-               <texture colordiffuse="Black12">common/white.png</texture>
+               <texture colordiffuse="$PARAM[colordiffuse]">common/white.png</texture>
                <visible>$PARAM[visible]</visible>
             </control>
         </definition>
@@ -80,8 +83,8 @@
     <!-- DEF - DIALOG - BACKGROUND -->
 
     <include name="Def_Dialog_InfoPanel">
-        <param name="height" default="840" />
         <param name="width" default="1320" />
+        <param name="height" default="840" />
         <param name="colordiffuse" default="White100" />
         <param name="pad_shadow" value="$PARAM[pad_shadow]" default="-9" />
         <param name="pad_image" value="$PARAM[pad_image]" default="0" />
