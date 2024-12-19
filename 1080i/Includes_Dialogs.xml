@@ -2247,30 +2247,37 @@
                 <!-- <onunfocus>ClearProperty(VideoYoutubeIsPlaying,Home)</onunfocus> -->
                 <!-- <onunfocus condition="Player.HasVideo">Stop</onunfocus> -->
 
-                <onback>9000</onback>
                 <onback>ClearProperty(VideoYoutubeIsPlaying,Home)</onback>
                 <onback>ClearProperty(show_mini_osd,Home)</onback>
                 <onback condition="Player.HasVideo">Stop</onback>
 
-                <onleft condition="!Player.HasVideo">SetFocus(9000)</onleft>
                 <onleft condition="!Player.HasVideo">ClearProperty(VideoYoutubeIsPlaying,Home)</onleft>
                 <onleft condition="!Player.HasVideo">ClearProperty(show_mini_osd,Home)</onleft>
                 <onleft condition="Player.HasVideo">StepBack</onleft>
 
-                <onright condition="!Player.HasVideo">SetFocus(9000)</onright>
+
                 <onright condition="!Player.HasVideo">ClearProperty(VideoYoutubeIsPlaying,Home)</onright>
                 <onright condition="!Player.HasVideo">ClearProperty(show_mini_osd,Home)</onright>
                 <onright condition="Player.HasVideo">StepForward</onright>
 
-                <onup>SetFocus(9000)</onup>
+
                 <onup>ClearProperty(VideoYoutubeIsPlaying,Home)</onup>
                 <onup>ClearProperty(show_mini_osd,Home)</onup>
                 <onup condition="Player.HasVideo">Stop</onup>
 
-                <ondown>SetFocus(9000)</ondown>
                 <ondown>ClearProperty(VideoYoutubeIsPlaying,Home)</ondown>
                 <ondown>ClearProperty(show_mini_osd,Home)</ondown>
                 <ondown condition="Player.HasVideo">Stop</ondown>
+
+                <onback condition="Window.IsVisible(DialogVideoInfo.xml)">9000</onback>
+                <onup condition="Window.IsVisible(DialogVideoInfo.xml)">SetFocus(9000)</onup>
+                <ondown condition="Window.IsVisible(DialogVideoInfo.xml)">SetFocus(9000)</ondown>
+                <onright condition="!Player.HasVideo + Window.IsVisible(DialogVideoInfo.xml)">SetFocus(9000)</onright>
+                <onleft condition="!Player.HasVideo + Window.IsVisible(DialogVideoInfo.xml)">SetFocus(9000)</onleft>
+
+                <onback condition="!Window.IsVisible(DialogVideoInfo.xml)">50</onback>
+                <onup condition="!Window.IsVisible(DialogVideoInfo.xml)">SetFocus(50)</onup>
+                <ondown condition="!Window.IsVisible(DialogVideoInfo.xml)">SetFocus(50)</ondown>
            </control>
         </control>
     </include>

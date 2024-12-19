@@ -108,7 +108,7 @@
             <left>10</left>
             <bottom>26</bottom>
             <height>40</height>
-            <texture background="true" colordiffuse="black">diffuse/circle_64.png</texture>
+            <texture background="true" colordiffuse="FF6ACEDB">diffuse/circle_64.png</texture>
         </control>
         <control type="label">
             <visible>!Window.IsVisible(DialogVideoInfo.xml)</visible>
@@ -121,8 +121,8 @@
             <bottom>28</bottom>
             <height>40</height>
             <font>Tiny</font>
-            <textcolor>FF6ACEDB</textcolor>
-            <selectedcolor>FF6ACEDB</selectedcolor>
+            <textcolor>black</textcolor>
+            <selectedcolor>black</selectedcolor>
             <label>$VAR[Value_Item_Rating]</label>
         </control>
 
@@ -404,6 +404,8 @@
 
                 <onup condition="Control.HasFocus(50) + !ListItem.IsCollection">SetProperty(down,1)</onup>
                 <onup>RunScript(plugin.video.themoviedb.helper,add_query=$INFO[Container(50).ListItem.Label],type=person,call_auto=1190)</onup>
+
+                <!-- <onup>RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=person&amp;tmdb_id=$INFO[Window(Home).Property(TMDbHelper.ListItem.tmdb_id)],call_auto=1190)</onup> -->
 
                 <!-- Cast Navigation -->
                 <onleft>$PARAM[controlid]</onleft>
