@@ -648,19 +648,29 @@
 
     <variable name="Label_Rating_And_Votes_Info">
         <value condition="!String.IsEmpty(ListItem.UserRating) + Skin.HasSetting(userrating.override.kodi.rating.num)">$INFO[ListItem.UserRating,,.0] ($LOCALIZE[38018])</value>
-        <value>$INFO[ListItem.RatingAndVotes]</value>
+        <value>$INFO[ListItem.Rating]$INFO[ListItem.Votes,  •  , $LOCALIZE[205]]</value>
     </variable>
 
     <variable name="Label_Rating_Imdb_Votes_Top250">
         <value condition="!String.IsEmpty(ListItem.Rating(imdb)) + !String.IsEmpty(ListItem.Top250)">$INFO[ListItem.Rating(imdb)]$INFO[ListItem.Votes(imdb),  •  , $LOCALIZE[205]]$INFO[ListItem.Top250,  •  Top , / 250]</value>
-
         <value condition="!String.IsEmpty(ListItem.Rating(imdb)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Top250))">$INFO[ListItem.Rating(imdb)]$INFO[ListItem.Votes(imdb),  •  , $LOCALIZE[205]]$INFO[Window(Home).Property(TMDbHelper.ListItem.Top250),  •  Top , / 250]</value>
 
         <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Top250))">$INFO[Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating)]$INFO[Window(Home).Property(TMDbHelper.ListItem.IMDb_Votes),  •  , $LOCALIZE[205]]$INFO[Window(Home).Property(TMDbHelper.ListItem.Top250),  •  Top , / 250]</value>
 
         <value condition="!String.IsEmpty(ListItem.Rating(imdb))">$INFO[ListItem.Rating(imdb)]$INFO[ListItem.Votes(imdb),  •  , $LOCALIZE[205]]</value>
-
         <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Votes))">$INFO[Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating)]$INFO[Window(Home).Property(TMDbHelper.ListItem.IMDb_Votes),  •  , $LOCALIZE[205]]</value>
+    </variable>
+
+    <variable name="Label_Rating_TMDb_Votes">
+        <value condition="!String.IsEmpty(ListItem.Rating)">$INFO[ListItem.Rating]$INFO[ListItem.Votes,  •  , $LOCALIZE[205]]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Rating)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Votes))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Rating)]$INFO[Window(Home).Property(TMDbHelper.ListItem.Votes),  •  , $LOCALIZE[205]]</value>
+    </variable>
+
+    <variable name="Label_Rating_Context_Menu">
+        <value condition="!String.IsEmpty(ListItem.Rating(imdb))">$VAR[Label_Rating_Imdb_Votes_Top250,IMDb ,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating))">$VAR[Label_Rating_Imdb_Votes_Top250,IMDb ,]</value>
+        <value condition="!String.IsEmpty(ListItem.Rating)">$VAR[Label_Rating_TMDb_Votes,TMDb ,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Rating))">$VAR[Label_Rating_TMDb_Votes,TMDb ,]</value>
     </variable>
 
     <!-- =================================== -->
