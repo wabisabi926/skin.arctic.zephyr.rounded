@@ -173,7 +173,9 @@
         </definition>
     </include>
 
+    <!-- ======================================================== -->
     <!-- DEF - DIALOG SETTINGS MOVIE / TVSHOW / MUSIC DIALOG INFO -->
+    <!-- ======================================================== -->
 
     <include name="Def_Dialog_Custom_Settings">
         <control type="group" id="9800">
@@ -341,6 +343,7 @@
                             <label>$LOCALIZE[184]</label>
                             <icon>special://skin/extras/icons/update.png</icon>
                             <onclick>SendClick(6)</onclick>
+                            <visible>!String.IsEmpty(ListItem.DBID) | !String.IsEmpty(ListItem.TvShowDBID)</visible>
                         </item>
 
                         <!-- Change Artwork -->
@@ -356,6 +359,7 @@
                             <icon>special://skin/extras/icons/filebox.png</icon>
                             <onclick>Dialog.Close(all)</onclick>
                             <onclick>ActivateWindow(filemanager,"$INFO[ListItem.Path]",return)</onclick>
+                            <visible>!String.IsEmpty(ListItem.DBID) | !String.IsEmpty(ListItem.TvShowDBID)</visible>
                             <visible>!$EXP[IsPluginItem] + !String.IsEqual(ListItem.DBType,set)</visible>
                         </item>
 
@@ -364,6 +368,7 @@
                             <label>$ADDON[script.metadata.editor 32000]</label>
                             <icon>special://skin/extras/icons/bookmarks.png</icon>
                             <onclick>RunScript(script.metadata.editor,dbid=$INFO[ListItem.DBID],type=$INFO[ListItem.DBType])</onclick>
+                            <visible>!String.IsEmpty(ListItem.DBID) | !String.IsEmpty(ListItem.TvShowDBID)</visible>
                             <visible>System.AddonIsEnabled(script.metadata.editor)</visible>
                         </item>
 
