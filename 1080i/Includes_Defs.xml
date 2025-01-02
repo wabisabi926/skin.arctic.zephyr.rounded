@@ -1922,6 +1922,10 @@
 
         <oninfo condition="Container.Content(actors) + String.IsEmpty(ListItem.Property(tmdb_id)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.tmdb_id))">$VAR[Path_Actor_On_Info]</oninfo>
 
+        <oninfo condition="Container.Content(actors) + String.IsEmpty(ListItem.Property(tmdb_id)) + String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.tmdb_id))">SetProperty(isoninfo_actor,1,Home)</oninfo>
+
+        <oninfo condition="Container.Content(actors) + String.IsEmpty(ListItem.Property(tmdb_id)) + String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.tmdb_id))">$VAR[Path_Director_On_Info]</oninfo>
+
         <oninfo condition="Container.Content(directors) + String.IsEmpty(ListItem.Property(tmdb_id)) + !String.IsEmpty(ListItem.Label)">SetProperty(isoninfo_director,1,Home)</oninfo>
 
         <oninfo condition="Container.Content(directors) + String.IsEmpty(ListItem.Property(tmdb_id)) + !String.IsEmpty(ListItem.Label)">$VAR[Path_Director_On_Info]</oninfo>
