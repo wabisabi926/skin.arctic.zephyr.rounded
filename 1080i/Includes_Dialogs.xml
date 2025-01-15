@@ -338,22 +338,27 @@
 
                     <content>
 
-                        <!-- Actualise info -->
+                        <!-- ACTUALISE INFO -->
+
                         <item>
                             <label>$LOCALIZE[184]</label>
                             <icon>special://skin/extras/icons/update.png</icon>
                             <onclick>SendClick(6)</onclick>
                             <visible>!String.IsEmpty(ListItem.DBID) | !String.IsEmpty(ListItem.TvShowDBID)</visible>
+                            <visible>Control.IsEnabled(6)</visible>
                         </item>
 
-                        <!-- Change Artwork -->
+                        <!-- CHANGE ARTWORK -->
+
                         <item>
                             <label>$LOCALIZE[31209]</label>
                             <icon>special://skin/extras/icons/images.png</icon>
                             <onclick>SendClick(10)</onclick>
+                            <visible>Control.IsEnabled(10)</visible>
                         </item>
 
-                        <!-- Files manager -->
+                        <!-- FILES MANAGER -->
+
                         <item>
                             <label>7</label>
                             <icon>special://skin/extras/icons/filebox.png</icon>
@@ -363,7 +368,8 @@
                             <visible>!$EXP[IsPluginItem] + !String.IsEqual(ListItem.DBType,set)</visible>
                         </item>
 
-                        <!-- Metadata editor -->
+                        <!-- METADATA EDITOR -->
+
                         <item>
                             <label>$ADDON[script.metadata.editor 32000]</label>
                             <icon>special://skin/extras/icons/bookmarks.png</icon>
@@ -372,13 +378,26 @@
                             <visible>System.AddonIsEnabled(script.metadata.editor)</visible>
                         </item>
 
-                        <!-- Settings -->
+                        <!-- SETTINGS -->
+
                         <item>
                             <label>5</label>
                             <icon>special://skin/extras/icons/addons.png</icon>
                             <onclick>ActivateWindow(1260)</onclick>
                         </item>
                     </content>
+                </control>
+
+                <!-- BUTTON ACTUALISE INFO -->
+
+                <control type="button" id="6">
+                    <visible allowhiddenfocus="true">false</visible>
+                </control>
+
+                <!-- BUTTON CHANGE ARTWORK -->
+
+                <control type="button" id="10">
+                    <visible allowhiddenfocus="true">false</visible>
                 </control>
             </control>
         </control>
