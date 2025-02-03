@@ -1853,9 +1853,10 @@
         <control type="group">
             <include>Animation_Fade_In</include>
             <include>Animation_Fade_Out</include>
-            <visible>ControlGroup(9000).HasFocus()</visible>
+            <visible>ControlGroup(9000).HasFocus() | Control.HasFocus(9070)</visible>
             <include>Background_Overlay</include>
         </control>
+
         <control type="group">
             <include content="Def_View_ContextMenu_Background"><param name="height" value="689" /></include>
             <include content="Def_View_ContextMenu_Arrows"><param name="arrow_bottom" value="699" /></include>
@@ -1870,8 +1871,9 @@
 
             <control type="grouplist" id="9000">
                 <top>112</top>
+                <pagecontrol>9070</pagecontrol>
                 <usecontrolcoords>true</usecontrolcoords>
-                <include content="Def_View_ContextMenu_GroupList"><param name="height" value="560" /></include>
+                <include content="Def_View_ContextMenu_GroupList_scrollbar"><param name="height" value="560" /><param name="scrollid" value="9070" /></include>
                 <include>Animation_Scrolltime_Views_List</include>
 
                 <!-- NOW PLAYING -->
@@ -1894,7 +1896,11 @@
                     <include>Def_Context_Menu_Label</include>
                     <label>16106</label>
                 </control>
-
+                <control type="button" id="28">
+                    <description>Group</description>
+                    <include>Def_Button_Gradient_Context</include>
+                    <align>left</align>
+                </control>
                 <control type="button" id="9001">
                     <description>Channels</description>
                     <label>19019</label>
@@ -1934,11 +1940,6 @@
                     <description>Search</description>
                     <label>137</label>
                     <onclick>ActivateWindow(TVSearch)</onclick>
-                    <include>Def_Button_Gradient_Context</include>
-                    <align>left</align>
-                </control>
-                <control type="button" id="28">
-                    <description>Group</description>
                     <include>Def_Button_Gradient_Context</include>
                     <align>left</align>
                 </control>
@@ -2010,6 +2011,18 @@
                     <visible>Window.IsVisible(MyPVRChannels.xml)</visible>
                 </control>
             </control>
+
+            <!-- SCROLLBAR -->
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="9070" />
+                <param name="top" value="112" />
+                <param name="onleft" value="9000" />
+                <param name="onright" value="9000" />
+                <param name="onback" value="9000" />
+                <param name="height" value="560" />
+                <param name="centerright" value="4" />
+            </include>
         </control>
     </include>
 
