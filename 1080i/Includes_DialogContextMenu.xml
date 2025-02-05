@@ -22,6 +22,8 @@
             <orientation>horizontal</orientation>
             <usecontrolcoords>true</usecontrolcoords>
 
+            <!-- INFO -->
+
             <include content="Def_OSD_Button">
                 <param name="autoclose" value="true" />
                 <param name="visible" value="true" />
@@ -38,6 +40,8 @@
                 <!-- <onclick>SetProperty(isoninfo_actor,1,Home)</onclick> -->
                 <!-- <onclick>RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=$VAR[Path_ContextParams_TMDbType]&amp;tmdb_id=$VAR[Path_ContextParams_TMDbID],call_auto=1190)</onclick> -->
             </include>
+
+            <!-- TRAILER -->
 
             <include content="Def_OSD_Button">
                 <param name="autoclose" value="true" />
@@ -60,6 +64,8 @@
                 <!-- <onclick condition="!String.IsEmpty(ListItem.Trailer)">PlayMedia($INFO[ListItem.Trailer],1)</onclick> -->
             </include>
 
+            <!-- WIKIPEDIA -->
+
             <include content="Def_OSD_Button">
                 <param name="autoclose" value="true" />
                 <param name="visible" value="true" />
@@ -75,6 +81,8 @@
                 <!-- <onclick>runscript(script.wikipedia,wikipedia=$VAR[Path_ContextParams_Query],tmdb_type=movie,language=$VAR[Path_Wikipedia_Language])</onclick> -->
             </include>
 
+            <!-- YOUTUBE -->
+
             <include content="Def_OSD_Button">
                 <param name="autoclose" value="true" />
                 <param name="visible" value="true" />
@@ -85,11 +93,10 @@
                 <param name="id" value="6154" />
                 <param name="groupid" value="6499" />
                 <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
-                <!-- <onclick condition="System.AddonIsEnabled(plugin.video.youtube)">ActivateWindow(videos,"plugin://plugin.video.youtube/kodion/search/list/",return)</onclick> -->
-                <onclick condition="System.AddonIsEnabled(plugin.video.youtube)">plugin://plugin.video.youtube/kodion/search/query/?q=heat</onclick>
+                <onclick condition="System.AddonIsEnabled(plugin.video.youtube)">ActivateWindow(Videos,"plugin://plugin.video.youtube/kodion/search/query/?q=$VAR[Path_ContextParams_Query]",return)</onclick>
             </include>
 
-<!-- plugin://plugin.video.youtube/kodion/search/query/?q=heat+movie -->
+            <!-- MOVIES FROM DIRECTOR -->
 
             <include content="Def_OSD_Button">
                 <param name="autoclose" value="true" />
@@ -104,6 +111,8 @@
                 <onclick>runscript(script.globalsearch,directors=true)</onclick>
             </include>
 
+            <!-- TMDB HELPER -->
+
             <include content="Def_OSD_Button">
                 <param name="autoclose" value="true" />
                 <param name="visible" value="true" />
@@ -117,6 +126,8 @@
                 <onclick>Dialog.Close(contextmenu,true)</onclick>
                 <onclick>RunScript(plugin.video.themoviedb.helper,related_lists,query=$VAR[Path_ContextParams_Query],tmdb_type=$VAR[Path_ContextParams_TMDbType])</onclick>
             </include>
+
+            <!-- FILES MANAGERS -->
 
             <include content="Def_OSD_Button">
                 <param name="autoclose" value="true" />
