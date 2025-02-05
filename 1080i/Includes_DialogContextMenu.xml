@@ -36,16 +36,13 @@
                 <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
                 <onclick>Dialog.Close(contextmenu,true)</onclick>
                 <onclick>Action(Info)</onclick>
-
-                <!-- <onclick>SetProperty(isoninfo_actor,1,Home)</onclick> -->
-                <!-- <onclick>RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=$VAR[Path_ContextParams_TMDbType]&amp;tmdb_id=$VAR[Path_ContextParams_TMDbID],call_auto=1190)</onclick> -->
             </include>
 
             <!-- TRAILER -->
 
             <include content="Def_OSD_Button">
                 <param name="autoclose" value="true" />
-                <param name="visible" value="true" />
+                <param name="visible" value="[!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Trailer))]" />
                 <param name="size" value="44" />
                 <param name="left" value="-37" />
                 <param name="icon" value="special://skin/extras/icons/video.png" />
@@ -53,7 +50,6 @@
                 <param name="id" value="6152" />
                 <param name="groupid" value="6299" />
                 <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
-
                 <onclick>Dialog.Close(contextmenu,true)</onclick>
                 <onclick condition="Player.HasMedia">PlayerControl(Stop)</onclick>
                 <onclick>$VAR[Path_Trailer]</onclick>
@@ -100,7 +96,7 @@
 
             <include content="Def_OSD_Button">
                 <param name="autoclose" value="true" />
-                <param name="visible" value="true" />
+                <param name="visible" value="[String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),episode) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),movie)]" />
                 <param name="size" value="44" />
                 <param name="left" value="-37" />
                 <param name="icon" value="special://skin/extras/icons/user.png" />
@@ -108,7 +104,6 @@
                 <param name="id" value="6155" />
                 <param name="groupid" value="6599" />
                 <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
-                <!-- <onclick>runscript(script.globalsearch,directors=true)</onclick> -->
                 <onclick>SetProperty(isoninfo_director,1,Home)</onclick>
                 <onclick>RunScript(plugin.video.themoviedb.helper,add_query=$VAR[Path_ContextDirector_Query],type=person,call_auto=1190)</onclick>
             </include>
@@ -117,7 +112,7 @@
 
             <include content="Def_OSD_Button">
                 <param name="autoclose" value="true" />
-                <param name="visible" value="true" />
+                <param name="visible" value="[String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),tvshow) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),season) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),episode) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),movie)]" />
                 <param name="size" value="44" />
                 <param name="left" value="-37" />
                 <param name="icon" value="special://skin/extras/icons/tmdb.png" />
