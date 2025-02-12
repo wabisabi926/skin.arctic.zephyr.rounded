@@ -1041,7 +1041,7 @@
         <!-- second line - Label -->
 
         <control type="label">
-            <visible>!Skin.HasSetting(list.show.filename) + !ListItem.IsParentFolder</visible>
+            <visible>[!Skin.HasSetting(list.show.filename) | [Skin.HasSetting(list.show.filename) + ![Container.Content(movies) | Container.Content(tvshows)]]] + !ListItem.IsParentFolder</visible>
             <top>30</top>
             <left>120</left>
             <width>800</width>
