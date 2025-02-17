@@ -375,14 +375,15 @@
                 <bottom>$PARAM[bottom]</bottom>
                 <height>8</height>
                 <onup>$PARAM[onup]</onup>
-                <ondown>$PARAM[ondown]</ondown>
+                <ondown condition="!String.IsEqual(ListItem.Property(item.type),person)">$PARAM[ondown]</ondown>
                 <ondown>$PARAM[ondown1]</ondown>
                 <ondown>$PARAM[ondown2]</ondown>
-                <ondown>$PARAM[ondown3]</ondown>
+                <ondown condition="String.IsEqual(ListItem.Property(item.type),person)">$PARAM[ondown3]</ondown>
                 <ondown>$PARAM[ondown4]</ondown>
                 <ondown>$PARAM[ondown5]</ondown>
-                <onback>$PARAM[onback]</onback>
+                <onback condition="!String.IsEqual(ListItem.Property(item.type),person)">$PARAM[onback]</onback>
                 <onback>$PARAM[onback1]</onback>
+                <onback condition="String.IsEqual(ListItem.Property(item.type),person)">$PARAM[onback2]</onback>
                 <orientation>horizontal</orientation>
                 <!-- <showonepage>false</showonepage> -->
 
