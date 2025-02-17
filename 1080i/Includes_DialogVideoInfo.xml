@@ -123,7 +123,7 @@
                         <aspectratio>keep</aspectratio>
                         <include>Animation_Vertical_Widgets_Title_Loading</include>
                         <visible>$EXP[DialogVideoInfo_IsUpadttingInfo]</visible>
-                        <visible>!String.IsEqual(ListItem.DBType,set) + [!String.IsEqual(ListItem.DBType,video) | String.IsEqual(ListItem.Property(item.type),person)]</visible>
+                        <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.Property(item.type),person)</visible>
                         <visible>ControlGroup(9000).HasFocus() | ControlGroup(9090).HasFocus()</visible>
                         <animation effect="fade" start="0" end="100" time="400" delay="100" reversible="false" condition="ControlGroup(9090).HasFocus()">Conditional</animation>
                         <animation effect="fade" start="0" end="100" time="400" delay="100" reversible="false" condition="ControlGroup(9000).HasFocus()">Conditional</animation>
@@ -141,7 +141,7 @@
                         <visible>ControlGroup(9000).HasFocus() | ControlGroup(9090).HasFocus()</visible>
                         <include>Animation_Button_Label_Video</include>
                         <visible>$EXP[DialogVideoInfo_IsUpadttingInfo]</visible>
-                        <visible>!String.IsEqual(ListItem.DBType,set) + [!String.IsEqual(ListItem.DBType,video) | String.IsEqual(ListItem.Property(item.type),person)]</visible>
+                        <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.Property(item.type),person)</visible>
                         <animation effect="fade" start="0" end="100" time="400" delay="100" reversible="false" condition="ControlGroup(9090).HasFocus()">Conditional</animation>
                         <animation effect="fade" start="0" end="100" time="400" delay="100" reversible="false" condition="ControlGroup(9000).HasFocus()">Conditional</animation>
                     </control>
@@ -1598,7 +1598,7 @@
                         <param name="centerleft" value="430" />
                     </include>
 
-                    <!-- MOVIES LIST BY DIRECTOR - LOCAL ONLY -->
+                    <!-- MOVIES LIST BY DIRECTOR (PERSON) -->
 
                     <include content="Def_Layout_Dialog_Info_Video_Wall_Poster" condition="String.IsEqual(ListItem.Property(item.type),person)">
                         <param name="arrowleft" value="-598" />

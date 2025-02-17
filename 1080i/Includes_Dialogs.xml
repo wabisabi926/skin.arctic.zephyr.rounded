@@ -1463,7 +1463,7 @@
 
         <!-- PERSONS -->
 
-            <!-- MOVIES LIST BY DIRECTOR - LOCAL ONLY -->
+            <!-- MOVIES LIST BY DIRECTOR -->
 
             <control type="radiobutton" id="9060">
                 <onfocus condition="!String.IsEqual(Window(Home).Property(moviecontent),20)">ClearProperty(moviecontent,Home)</onfocus>
@@ -1479,10 +1479,10 @@
                 </include>
                 <visible>String.IsEqual(ListItem.Property(item.type),person)</visible>
                 <!-- <visible>!String.IsEmpty(Window(Home).Property(isoninfo_director))</visible> -->
-                <visible>!Integer.IsEqual(Container(9560).NumItems,0)</visible>
+                <visible>!Integer.IsEqual(Container(9560).NumItems,0) + !Container(9560).IsUpdating</visible>
                 <!-- <visible>[!Integer.IsEqual(Container(9560).NumItems,0) + !Container(9560).IsUpdating] | !String.IsEmpty(Window(Home).Property(isoninfo_director))</visible> -->
-                <!-- <visible>String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating)) + !String.IsEmpty(Window(Home).Property(Init_Value_TMDb))</visible> -->
-                <!-- <visible>!String.IsEmpty(Window(Home).Property(SetDirectorSelected))</visible> -->
+                <visible>String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating)) + !String.IsEmpty(Window(Home).Property(Init_Value_TMDb))</visible>
+                <visible>[Skin.HasSetting(filter.video.only.local) + !String.IsEmpty(Window(Home).Property(SetDirectorSelected))] | [!Skin.HasSetting(filter.video.only.local) + !String.IsEmpty(Window(Home).Property(Director_Person_Query))]</visible>
             </control>
 
             <!-- MOVIES LIST BY CAST -->
@@ -1807,9 +1807,10 @@
                 <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/storageinfo.png</textureradioofffocus>
                 <textureradiooffnofocus colordiffuse="Dark2">buttonsdialogs/storageinfo.png</textureradiooffnofocus>
                 <usealttexture>Skin.HasSetting(filter.video.only.local)</usealttexture>
-                <visible>![String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.DBType,set)]</visible>
+                <!-- <visible>![String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.DBType,set)]</visible> -->
                 <visible>System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)</visible>
-                <visible>!String.IsEqual(ListItem.DBType,video)</visible>
+                <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)</visible>
+                <visible>!$EXP[IsAnPlugin] | $EXP[IsTMDbHelper]</visible>
             </control>
 
             <!-- LOCAL ONLY IF TMDB HELPER DISABLE -->
