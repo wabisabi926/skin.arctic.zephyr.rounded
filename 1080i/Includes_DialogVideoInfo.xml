@@ -253,11 +253,13 @@
                 <!-- CLEARLOGO -->
 
                 <control type="image" description="clearlogo">
+                    <include>Animation_Wiki_Fade_Out</include>
                     <include>Animation_Video_Fade_Out_Clearlogo</include>
+
                     <visible>!String.IsEqual(ListItem.Property(item.type),person) + !Window.IsActive(DialogNotification.xml)</visible>
                     <visible>Skin.HasSetting(show.dialog.info.clearlogo.video) + [!Player.HasMedia | Skin.HasSetting(hide.furniture.nowplaying)]</visible>
                     <visible>![Control.HasFocus(9501) | Control.HasFocus(9506) | Control.HasFocus(95067) | Control.HasFocus(9514) | Control.HasFocus(9515) | Control.HasFocus(9560) | Control.HasFocus(9018) | Control.HasFocus(9507) | Control.HasFocus(9503) | Control.HasFocus(9504) | Control.HasFocus(9552) | Control.HasFocus(9553)]</visible>
-                    <include>Animation_Wiki_Fade_Out</include>
+
                     <centertop>120</centertop>
                     <right>View_SidePad</right>
                     <height>ClearLogoMaxHeight</height>
@@ -272,11 +274,13 @@
                 <!-- CLEARLOGO EXTENDED VIEW -->
 
                 <control type="image" description="clearlogo">
+                    <include>Animation_Wiki_Fade_Out</include>
                     <include>Animation_Video_Fade_In_Clearlogo</include>
-                    <visible>!Container($PARAM[controlid]).IsUpdating</visible>
+
+                    <!-- <visible>!Container($PARAM[controlid]).IsUpdating</visible> -->
                     <visible>Skin.HasSetting(show.dialog.info.clearlogo.video) + [!Player.HasMedia | Skin.HasSetting(hide.furniture.nowplaying)]</visible>
                     <visible>Control.HasFocus(9501) | Control.HasFocus(9506) | Control.HasFocus(95067) | Control.HasFocus(9514) | Control.HasFocus(9515) | Control.HasFocus(9560) | Control.HasFocus(9018) | Control.HasFocus(9507) | Control.HasFocus(9503) | Control.HasFocus(9504) | Control.HasFocus(9517) | Control.HasFocus(9520) | Control.HasFocus(9552) | Control.HasFocus(9553) | Control.HasFocus(9556) | Control.HasFocus(9558) | Control.HasFocus(9559) | Control.HasFocus(9579) | Control.HasFocus(9550)</visible>
-                    <include>Animation_Wiki_Fade_Out</include>
+
                     <centertop>120</centertop>
                     <right>View_SidePad</right>
                     <height>ClearLogoMaxHeight</height>
@@ -1175,7 +1179,7 @@
                                     <height>36</height>
                                     <font>Tiny</font>
                                     <textcolor>Dark2</textcolor>
-                                    <label fallback="19055">$VAR[Label_Age] $LOCALIZE[31530]</label>
+                                    <label fallback="19055">$VAR[Label_Age,, $LOCALIZE[31530]]</label>
                                     <aligny>center</aligny>
                                 </control>
                             </control>

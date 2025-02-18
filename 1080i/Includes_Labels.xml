@@ -708,19 +708,6 @@
         <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Rating)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Votes))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Rating)]$INFO[Window(Home).Property(TMDbHelper.ListItem.Votes),  •  , $LOCALIZE[205]]</value>
     </variable>
 
-<!-- <value condition="!String.IsEmpty(ListItem.UserRating) + Skin.HasSetting(userrating.override.kodi.rating.num)">$INFO[ListItem.UserRating,,.0]</value> -->
-
-    <variable name="Label_Rating_Context_Menu">
-        <value condition="!String.IsEmpty(ListItem.UserRating) + Skin.HasSetting(userrating.override.kodi.rating.num)">$INFO[ListItem.UserRating,$LOCALIZE[38018] ,.0]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.UserRating) + Skin.HasSetting(userrating.override.kodi.rating.num)">$INFO[Window(Home).Property(TMDbHelper.ListItem.UserRating),$LOCALIZE[38018] ,.0]</value>
-
-        <value condition="!String.IsEmpty(ListItem.Rating(imdb))">$VAR[Label_Rating_Imdb_Votes_Top250,IMDb ,]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating))">$VAR[Label_Rating_Imdb_Votes_Top250,IMDb ,]</value>
-
-        <value condition="!String.IsEmpty(ListItem.Rating)">$VAR[Label_Rating_TMDb_Votes,TMDb ,]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Rating))">$VAR[Label_Rating_TMDb_Votes,TMDb ,]</value>
-    </variable>
-
     <!-- =================================== -->
     <!--         LABEL - VIEWS FLIX          -->
     <!-- =================================== -->
@@ -1121,6 +1108,7 @@
     </variable>
 
     <variable name="Label_Context_Menu_Plot">
+        <value condition="String.IsEqual(ListItem.Property(item.type),person)">$VAR[Label_Actors_Context_Menu,[B],[/B][CR][CR]]$INFO[Window(Home).Property(TMDbHelper.ListItem.Plot)]</value>
         <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_artist_description))">$INFO[Window(Home).Property(TMDbHelper.ListItem.base_artist_description)]</value>
         <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_album_description))">$INFO[Window(Home).Property(TMDbHelper.ListItem.base_album_description)]</value>
         <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_AddonDescription))">$INFO[Window(Home).Property(TMDbHelper.ListItem.base_AddonDescription)]</value>
@@ -1131,6 +1119,7 @@
         <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Album_Description))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Album_Description)]</value>
         <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.AddonDescription))">$INFO[Window(Home).Property(TMDbHelper.ListItem.AddonDescription)]</value>
         <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Tagline))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Tagline),[B],[/B][CR][CR]]$INFO[Window(Home).Property(TMDbHelper.ListItem.Plot)]</value>
+
         <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Plot))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Plot)]</value>
 
         <value condition="Window.IsVisible(DialogMusicInfo.xml) + !String.IsEmpty(Container(9501).ListItem.Property(Artist_Description))">$INFO[Container(9501).ListItem.Property(Artist_Description)]</value>
@@ -1142,6 +1131,22 @@
         <value condition="!String.IsEmpty(ListItem.AddonDescription)">$INFO[ListItem.AddonDescription]</value>
         <value condition="!String.IsEmpty(ListItem.Tagline)">$VAR[Label_Tagline,[B],[/B][CR][CR]]$INFO[ListItem.Plot]</value>
         <value condition="!String.IsEmpty(ListItem.Plot)">$INFO[ListItem.Plot]</value>
+    </variable>
+
+    <variable name="Label_Rating_Context_Menu">
+        <value condition="!String.IsEmpty(ListItem.UserRating) + Skin.HasSetting(userrating.override.kodi.rating.num)">$INFO[ListItem.UserRating,$LOCALIZE[38018] ,.0]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.UserRating) + Skin.HasSetting(userrating.override.kodi.rating.num)">$INFO[Window(Home).Property(TMDbHelper.ListItem.UserRating),$LOCALIZE[38018] ,.0]</value>
+
+        <value condition="!String.IsEmpty(ListItem.Rating(imdb))">$VAR[Label_Rating_Imdb_Votes_Top250,IMDb ,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating))">$VAR[Label_Rating_Imdb_Votes_Top250,IMDb ,]</value>
+
+        <value condition="!String.IsEmpty(ListItem.Rating)">$VAR[Label_Rating_TMDb_Votes,TMDb ,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Rating))">$VAR[Label_Rating_TMDb_Votes,TMDb ,]</value>
+    </variable>
+
+    <variable name="Label_Actors_Context_Menu">
+        <value condition="!String.IsEmpty(ListItem.Property(Gender))">$VAR[Label_Gender]$VAR[Label_Age,  •  , $LOCALIZE[31530]]$VAR[Label_Department,  •  ,]</value>
+        <value condition="!String.IsEmpty(ListItem.Property(Department))">$VAR[Label_Department]</value>
     </variable>
 
     <!-- LABEL - INFO DIALOG -->
