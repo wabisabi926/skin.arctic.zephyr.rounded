@@ -48,7 +48,7 @@
         </control>
     </include>
 
-    <include name="TrailerWindow">
+    <include name="WindowsVideoFlix">
         <control type="videowindow">
             <visible>[[$EXP[TrailerWindowIsActive] | $EXP[Video_Window_Home_Flix_Is_Active] | $EXP[Video_Window_Views_Flix_Is_Active]] + !$EXP[Extended_Now_Playing_Is_Visible]]</visible>
             <include condition="![$EXP[Home_Is_Horizontal_Clean] + Window.IsVisible(Home)]">Def_Trailer_Video_Window_Small</include>
@@ -315,7 +315,7 @@
 
         <!-- TRAILER WINDOW HOME -->
 
-        <include condition="Skin.HasSetting(home.netflix.autoplay.trailer) | Skin.HasSetting(show.nowplaying.video.home.flix)">TrailerWindow</include>
+        <include condition="Skin.HasSetting(home.netflix.autoplay.trailer) | Skin.HasSetting(show.nowplaying.video.home.flix) | Skin.HasSetting(show.nowplaying.video.view.flix)">WindowsVideoFlix</include>
 
         <!-- GLOBAL FANART -->
 
