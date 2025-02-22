@@ -14,142 +14,6 @@
         <control type="group">
             <include>Animation_Common</include>
 
-            <!-- LEFT PANEL -->
-
-            <control type="group">
-                <include content="Def_Dialog_Settings"><param name="width" value="850" /></include>
-
-                <!-- HEADER -->
-
-                <control type="label" id="101">
-                    <description>Header Label</description>
-                    <visible>false</visible>
-                </control>
-
-                <control type="label">
-                    <include>Def_Dialog_Header_Title</include>
-                    <label>$LOCALIZE[10003]</label>
-                </control>
-
-                <include>Def_Dialog_Header_Logo</include>
-                <include>Def_Dialog_Header_Line</include>
-
-                <include content="Object_Scrollbar_Filemanager">
-                    <param name="scrollid" value="1824" />
-                    <param name="onleft" value="21" />
-                    <param name="onright" value="20" />
-                    <param name="left" value="-20" />
-                </include>
-
-                <include content="Object_Scrollbar_Filemanager">
-                    <param name="scrollid" value="1825" />
-                    <param name="onleft" value="21" />
-                    <param name="onright" value="20" />
-                    <param name="left" value="1770" />
-                </include>
-
-                <control type="list" id="20">
-                    <description>Left File List</description>
-                    <left>0</left>
-                    <top>112</top>
-                    <right>0</right>
-                    <height>490</height>
-                    <onleft>1824</onleft>
-                    <onright>21</onright>
-                    <pagecontrol>1824</pagecontrol>
-                    <onup>20</onup>
-                    <ondown>20</ondown>
-                    <include>Animation_Scrolltime_Views_List</include>
-                    <itemlayout height="70" width="850">
-                        <control type="image">
-                            <left>22</left>
-                            <top>6</top>
-                            <width>58</width>
-                            <height>58</height>
-                            <aspectratio scalediffuse="false">keep</aspectratio>
-                            <texture fallback="DefaultAddonNone.png" colordiffuse="PanelWhite70">$INFO[Listitem.Icon]</texture>
-                            <visible>!ListItem.IsSelected</visible>
-                        </control>
-                        <control type="image">
-                            <left>22</left>
-                            <top>6</top>
-                            <width>58</width>
-                            <height>58</height>
-                            <aspectratio scalediffuse="false">keep</aspectratio>
-                            <texture fallback="DefaultAddonNone.png" colordiffuse="$VAR[Color_Highlight]">$INFO[Listitem.Icon]</texture>
-                            <visible>ListItem.IsSelected</visible>
-                        </control>
-                        <control type="label">
-                            <left>90</left>
-                            <width>640</width>
-                            <align>left</align>
-                            <textcolor>PanelWhite70</textcolor>
-                            <label>$INFO[ListItem.Label]</label>
-                        </control>
-                        <control type="label">
-                            <right>80</right>
-                            <width>200</width>
-                            <align>right</align>
-                            <font>Tiny</font>
-                            <textcolor>PanelWhite70</textcolor>
-                            <label>$INFO[ListItem.Label2]</label>
-                        </control>
-                        <include content="Def_Button_Radio">
-                            <param name="color_diffuse_off">PanelWhite70</param>
-                            <param name="color_diffuse_on">$VAR[Color_Highlight]</param>
-                            <param name="visible">ListItem.IsSelected</param>
-                        </include>
-                    </itemlayout>
-                    <focusedlayout height="70" width="850">
-                        <control type="image">
-                            <width>850</width>
-                            <height>70</height>
-                            <texture>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texture>
-                            <animation effect="fade" start="100" end="33" condition="!Control.HasFocus(20) + !Control.HasFocus(1824)">Conditional</animation>
-                        </control>
-                        <control type="image">
-                            <left>22</left>
-                            <top>6</top>
-                            <width>58</width>
-                            <height>58</height>
-                            <aspectratio scalediffuse="false">keep</aspectratio>
-                            <texture fallback="DefaultAddonNone.png" colordiffuse="Selected">$INFO[Listitem.Icon]</texture>
-                        </control>
-                        <control type="label">
-                            <left>90</left>
-                            <width>640</width>
-                            <align>left</align>
-                            <textcolor>Selected</textcolor>
-                            <selectedcolor>Selected</selectedcolor>
-                            <label>$INFO[ListItem.Label]</label>
-                        </control>
-                        <control type="label">
-                            <right>80</right>
-                            <width>200</width>
-                            <align>right</align>
-                            <textcolor>Selected</textcolor>
-                            <selectedcolor>Selected</selectedcolor>
-                            <font>Tiny</font>
-                            <label>$INFO[ListItem.Label2]</label>
-                        </control>
-                        <include content="Def_Button_Radio">
-                            <param name="color_diffuse_off">Selected</param>
-                            <param name="color_diffuse_on">Selected</param>
-                            <param name="visible">ListItem.IsSelected</param>
-                        </include>
-                    </focusedlayout>
-                </control>
-
-                <control type="label" id="12">
-                    <description>Header Label</description>
-                    <left>23</left>
-                    <top>882</top>
-                    <width>480</width>
-                    <align>left</align>
-                    <label />
-                </control>
-            </control>
-
             <!-- RIGHT PANEL -->
 
             <control type="group">
@@ -169,7 +33,7 @@
 
                 <control type="list" id="21">
                     <description>Left File List</description>
-                    <left>0</left>
+                    <left>16</left>
                     <top>112</top>
                     <right>0</right>
                     <height>490</height>
@@ -180,9 +44,9 @@
                     <ondown>21</ondown>
                     <include>Animation_Scrolltime_Views_List</include>
 
-                    <itemlayout height="70" width="850">
+                    <itemlayout height="70" width="818">
                         <control type="image">
-                            <left>22</left>
+                            <left>16</left>
                             <top>6</top>
                             <width>58</width>
                             <height>58</height>
@@ -191,7 +55,7 @@
                             <visible>!ListItem.IsSelected</visible>
                         </control>
                         <control type="image">
-                            <left>22</left>
+                            <left>16</left>
                             <top>6</top>
                             <width>58</width>
                             <height>58</height>
@@ -220,15 +84,15 @@
                             <param name="visible">ListItem.IsSelected</param>
                         </include>
                     </itemlayout>
-                    <focusedlayout height="70" width="850">
+                    <focusedlayout height="70" width="818">
                         <control type="image">
-                            <width>850</width>
-                            <height>70</height>
-                            <texture>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texture>
+                            <width>100%</width>
+                            <height>100%</height>
+                            <texture border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png</texture>
                             <animation effect="fade" start="100" end="33" condition="!Control.HasFocus(21) + !Control.HasFocus(1825)">Conditional</animation>
                         </control>
                         <control type="image">
-                            <left>22</left>
+                            <left>16</left>
                             <top>6</top>
                             <width>58</width>
                             <height>58</height>
@@ -261,6 +125,143 @@
                 </control>
 
                 <control type="label" id="22">
+                    <description>Header Label</description>
+                    <left>23</left>
+                    <top>882</top>
+                    <width>480</width>
+                    <align>left</align>
+                    <label />
+                </control>
+            </control>
+
+            <!-- LEFT PANEL -->
+
+            <control type="group">
+                <include content="Def_Dialog_Settings"><param name="width" value="850" /></include>
+
+                <!-- HEADER -->
+
+                <control type="label" id="101">
+                    <description>Header Label</description>
+                    <visible>false</visible>
+                </control>
+
+                <control type="label">
+                    <include>Def_Dialog_Header_Title</include>
+                    <label>$LOCALIZE[10003]</label>
+                </control>
+
+                <include>Def_Dialog_Header_Logo</include>
+                <include>Def_Dialog_Header_Line</include>
+
+                <control type="list" id="20">
+                    <description>Left File List</description>
+                    <left>16</left>
+                    <top>112</top>
+                    <right>0</right>
+                    <height>490</height>
+                    <onleft>1824</onleft>
+                    <onright>21</onright>
+                    <pagecontrol>1824</pagecontrol>
+                    <onup>20</onup>
+                    <ondown>20</ondown>
+                    <include>Animation_Scrolltime_Views_List</include>
+
+                    <itemlayout height="70" width="818">
+                        <control type="image">
+                            <left>16</left>
+                            <top>6</top>
+                            <width>58</width>
+                            <height>58</height>
+                            <aspectratio scalediffuse="false">keep</aspectratio>
+                            <texture fallback="DefaultAddonNone.png" colordiffuse="PanelWhite70">$INFO[Listitem.Icon]</texture>
+                            <visible>!ListItem.IsSelected</visible>
+                        </control>
+                        <control type="image">
+                            <left>16</left>
+                            <top>6</top>
+                            <width>58</width>
+                            <height>58</height>
+                            <aspectratio scalediffuse="false">keep</aspectratio>
+                            <texture fallback="DefaultAddonNone.png" colordiffuse="$VAR[Color_Highlight]">$INFO[Listitem.Icon]</texture>
+                            <visible>ListItem.IsSelected</visible>
+                        </control>
+                        <control type="label">
+                            <left>90</left>
+                            <width>640</width>
+                            <align>left</align>
+                            <textcolor>PanelWhite70</textcolor>
+                            <label>$INFO[ListItem.Label]</label>
+                        </control>
+                        <control type="label">
+                            <right>80</right>
+                            <width>200</width>
+                            <align>right</align>
+                            <font>Tiny</font>
+                            <textcolor>PanelWhite70</textcolor>
+                            <label>$INFO[ListItem.Label2]</label>
+                        </control>
+                        <include content="Def_Button_Radio">
+                            <param name="color_diffuse_off">PanelWhite70</param>
+                            <param name="color_diffuse_on">$VAR[Color_Highlight]</param>
+                            <param name="visible">ListItem.IsSelected</param>
+                        </include>
+                    </itemlayout>
+                    <focusedlayout height="70" width="818">
+                        <control type="image">
+                            <width>100%</width>
+                            <height>100%</height>
+                            <texture border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png</texture>
+                            <animation effect="fade" start="100" end="33" condition="!Control.HasFocus(20) + !Control.HasFocus(1824)">Conditional</animation>
+                        </control>
+                        <control type="image">
+                            <left>16</left>
+                            <top>6</top>
+                            <width>58</width>
+                            <height>58</height>
+                            <aspectratio scalediffuse="false">keep</aspectratio>
+                            <texture fallback="DefaultAddonNone.png" colordiffuse="Selected">$INFO[Listitem.Icon]</texture>
+                        </control>
+                        <control type="label">
+                            <left>90</left>
+                            <width>640</width>
+                            <align>left</align>
+                            <textcolor>Selected</textcolor>
+                            <selectedcolor>Selected</selectedcolor>
+                            <label>$INFO[ListItem.Label]</label>
+                        </control>
+                        <control type="label">
+                            <right>80</right>
+                            <width>200</width>
+                            <align>right</align>
+                            <textcolor>Selected</textcolor>
+                            <selectedcolor>Selected</selectedcolor>
+                            <font>Tiny</font>
+                            <label>$INFO[ListItem.Label2]</label>
+                        </control>
+                        <include content="Def_Button_Radio">
+                            <param name="color_diffuse_off">Selected</param>
+                            <param name="color_diffuse_on">Selected</param>
+                            <param name="visible">ListItem.IsSelected</param>
+                        </include>
+                    </focusedlayout>
+                </control>
+
+                <include content="Object_Scrollbar_Filemanager">
+                    <param name="scrollid" value="1824" />
+                    <param name="onleft" value="21" />
+                    <param name="onright" value="20" />
+                    <param name="left" value="-20" />
+                </include>
+
+                <include content="Object_Scrollbar_Filemanager">
+                    <param name="scrollid" value="1825" />
+                    <param name="onleft" value="21" />
+                    <param name="onright" value="20" />
+                    <param name="left" value="1770" />
+                </include>
+
+                <control type="label" id="12">
                     <description>Header Label</description>
                     <left>23</left>
                     <top>882</top>

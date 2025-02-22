@@ -23,8 +23,20 @@
         <value>shadow18.png</value>
     </variable>
 
+    <variable name="shadow24">
+        <value>shadow24.png</value>
+    </variable>
+
     <variable name="shadow40">
         <value>shadow40.png</value>
+    </variable>
+
+    <variable name="border18">
+        <value>border18.png</value>
+    </variable>
+
+    <variable name="border24">
+        <value>border24.png</value>
     </variable>
 
     <!-- BACKGROUND / BLUR -->
@@ -106,7 +118,7 @@
         <param name="pad_shadow" value="$PARAM[pad_shadow]" default="1" />
         <param name="pad_image" value="$PARAM[pad_image]" default="10" />
         <definition>
-            <include content="Def_Image_Background">
+            <include content="Def_Widget_Image_Background">
                 <param name="colordiffuse" value="$PARAM[colordiffuse]" />
                 <param name="pad_shadow" value="$PARAM[pad_shadow]" />
                 <param name="pad_image" value="$PARAM[pad_image]" />
@@ -115,10 +127,11 @@
         </definition>
     </include>
 
-    <include name="Def_Image_Background">
+    <include name="Def_Widget_Image_Background">
         <param name="pad_shadow" value="$PARAM[pad_shadow]" default="-9" />
         <param name="Texture_Shadow" value="$PARAM[Texture_Shadow]" default="$VAR[shadow18]" />
         <param name="Border_Shadow" value="$PARAM[Border_Shadow]" default="18" />
+        <param name="Texture_Border" value="$PARAM[Texture_Border]" default="$VAR[boder18]" />
 
         <param name="pad_image" value="$PARAM[pad_image]" default="0" />
         <param name="colordiffuse" value="$PARAM[colordiffuse]" default="White70" />
@@ -134,8 +147,49 @@
                 <visible>$PARAM[visible]</visible>
             </control>
             <control type="image">
+                <include content="Def_Padding"><param name="pad">$PARAM[pad_shadow]</param></include>
+                <texture border="$PARAM[Border_Shadow]" infill="false">common/border18.png</texture>
+                <visible>Skin.HasSetting(global.hide.shadows)</visible>
+                <visible>$PARAM[visible]</visible>
+            </control>
+            <control type="image">
                 <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
                 <texture border="12" colordiffuse="$PARAM[colordiffuse]">common/box.png</texture>
+                <animation effect="fade" start="100" end="90" condition="$PARAM[condition_fade]">Conditional</animation>
+                <visible>$PARAM[visible]</visible>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_Image_Background">
+        <param name="pad_shadow" value="$PARAM[pad_shadow]" default="-9" />
+        <param name="Texture_Shadow" value="$PARAM[Texture_Shadow]" default="$VAR[shadow24]" />
+        <param name="Border_Shadow" value="$PARAM[Border_Shadow]" default="40" />
+
+        <param name="Texture_Border" value="$PARAM[Texture_Border]" default="$VAR[border24]" />
+
+        <param name="pad_image" value="$PARAM[pad_image]" default="0" />
+        <param name="colordiffuse" value="$PARAM[colordiffuse]" default="White70" />
+        <param name="condition_fade" value="$PARAM[condition_fade]" default="false" />
+
+        <param name="visible" value="$PARAM[visible]" default="true" />
+
+        <definition>
+            <control type="image">
+                <include content="Def_Padding"><param name="pad">$PARAM[pad_shadow]</param></include>
+                <texture border="$PARAM[Border_Shadow]" infill="false">common/$PARAM[Texture_Shadow]</texture>
+                <visible>!Skin.HasSetting(global.hide.shadows)</visible>
+                <visible>$PARAM[visible]</visible>
+            </control>
+            <control type="image">
+                <include content="Def_Padding"><param name="pad">$PARAM[pad_shadow]</param></include>
+                <texture border="$PARAM[Border_Shadow]" infill="false">common/$PARAM[Texture_Border]</texture>
+                <visible>Skin.HasSetting(global.hide.shadows)</visible>
+                <visible>$PARAM[visible]</visible>
+            </control>
+            <control type="image">
+                <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
+                <texture border="24" colordiffuse="$PARAM[colordiffuse]">common/box24.png</texture>
                 <animation effect="fade" start="100" end="90" condition="$PARAM[condition_fade]">Conditional</animation>
                 <visible>$PARAM[visible]</visible>
             </control>

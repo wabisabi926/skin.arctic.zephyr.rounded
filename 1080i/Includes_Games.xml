@@ -192,7 +192,7 @@
 
             <control type="label">
                 <left>30</left>
-                <width>390</width>
+                <width>3</width>
                 <top>98</top>
                 <height>66</height>
                 <align>center</align>
@@ -324,7 +324,7 @@
             <align>center</align>
             <width>390</width>
             <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</texturefocus>
-            <texturenofocus colordiffuse="Black12" border="12">common/box.png</texturenofocus>
+            <texturenofocus border="12" colordiffuse="Black12">common/box.png</texturenofocus>
             <font>Button</font>
             <textcolor>Black70</textcolor>
         </control>
@@ -332,7 +332,7 @@
             <align>center</align>
             <width>390</width>
             <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</texturefocus>
-            <texturenofocus colordiffuse="Black12" border="12">common/box.png</texturenofocus>
+            <texturenofocus border="12" colordiffuse="Black12">common/box.png</texturenofocus>
             <font>Button</font>
             <textcolor>Black70</textcolor>
         </control>
@@ -360,6 +360,10 @@
             <control type="button" id="3">
                 <description>Ports button</description>
                 <top>112</top>
+                <left>16</left>
+                <width>1088</width>
+                <height>100</height>
+
                 <ondown>7</ondown>
                 <onright>61</onright>
                 <label>$LOCALIZE[35110]</label>
@@ -369,10 +373,9 @@
                 <textoffsetx>36</textoffsetx>
                 <align>left</align>
                 <aligny>center</aligny>
-                <width>1120</width>
-                <height>100</height>
-                <texturefocus>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texturefocus>
-                <texturenofocus colordiffuse="Black12" border="12">common/white.png</texturenofocus>
+
+                <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png</texturefocus>
+                <texturenofocus border="12" colordiffuse="Black12">common/box.png</texturenofocus>
                 <onclick>ActivateWindow(GamePorts)</onclick>
             </control>
 
@@ -458,14 +461,18 @@
             <control type="list" id="7">
                 <description>Area of the dialog for player controllers</description>
                 <top>208</top>
+                <left>16</left>
+                <width>1088</width>
                 <height>600</height>
+
                 <onright>61</onright>
                 <onup>3</onup>
                 <ondown>10</ondown>
                 <pagecontrol>61</pagecontrol>
                 <scrolltime tween="sine">200</scrolltime>
                 <orientation>vertical</orientation>
-                <itemlayout width="1120" height="100">
+
+                <itemlayout width="1088" height="100">
                     <control type="label">
                         <description>Controller name as reported by the driver</description>
                         <top>20</top>
@@ -478,9 +485,9 @@
                     </control>
                     <include>Def_Agents_Controller_List</include>
                 </itemlayout>
-                <focusedlayout width="1120" height="100">
+                <focusedlayout width="1088" height="100">
                     <control type="image">
-                        <texture>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texture>
+                        <texture border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png</texture>
                         <visible>Control.HasFocus(7)</visible>
                     </control>
                     <control type="label">
@@ -590,19 +597,12 @@
             <include>Def_Dialog_Header_Logo</include>
             <include>Def_Dialog_Header_Line</include>
 
-            <include content="Object_Scrollbar_Dialog_Vertical">
-                <param name="scrollid" value="62" />
-                <param name="onleft" value="3" />
-                <param name="onright" value="9001" />
-                <param name="centerright" value="360" />
-            </include>
-
 			<control type="list" id="3">
 				<description>Port item list</description>
 				<top>112</top>
-				<left>0</left>
-				<width>1120</width>
-				<height>700</height>
+				<left>16</left>
+				<width>1088</width>
+				<height>600</height>
 				<onright>62</onright>
 				<onup>3</onup>
 				<ondown>3</ondown>
@@ -611,7 +611,7 @@
 
 				<orientation>vertical</orientation>
 
-				<itemlayout width="1120" height="100">
+				<itemlayout width="1088" height="100">
 					<control type="group">
 						<control type="label">
 							<top>20</top>
@@ -640,11 +640,11 @@
 						</control>
 					</control>
 				</itemlayout>
-				<focusedlayout width="1120" height="100">
+				<focusedlayout width="1088" height="100">
 					<control type="group">
                         <visible>Control.HasFocus(3)</visible>
                         <control type="image">
-                            <texture>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texture>
+                            <texture border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png</texture>
                             <visible>Control.HasFocus(3)</visible>
                         </control>
 						<control type="label">
@@ -703,15 +703,24 @@
 				</focusedlayout>
 			</control>
 
-			<control type="scrollbar" id="62">
-				<left>1120</left>
-				<width>12</width>
-				<orientation>vertical</orientation>
-			</control>
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="62" />
+                <param name="onleft" value="3" />
+                <param name="onright" value="9001" />
+                <param name="centerright" value="360" />
+                <param name="height" value="600" />
+            </include>
 
             <!-- LINES VERTICAL -->
 
-            <include content="Def_Dialog_Line_Vertical"><param name="right" value="360" /><param name="bottom" value="17" /></include>
+            <control type="image">
+                <right>360</right>
+                <top>112</top>
+                <bottom>17</bottom>
+                <width>1</width>
+                <texture colordiffuse="Black12">common/white.png</texture>
+                <animation effect="fade" start="0" end="100" time="100" condition="!Control.HasFocus(62) + !Container.Scrolling">Conditional</animation>
+            </control>
 
             <!-- BUTTON ON RIGHT -->
 
