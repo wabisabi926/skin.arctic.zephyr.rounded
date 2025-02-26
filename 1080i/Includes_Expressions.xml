@@ -414,6 +414,19 @@
         | Container.Content(games) ]
     </expression>
 
+    <expression name="IsGameMode_Item">
+        [ String.Contains(ListItem.FolderPath,plugin://plugin.program.ael)
+        | String.Contains(ListItem.FolderPath,plugin://plugin.program.advanced.launcher)
+        | String.Contains(ListItem.FolderPath,plugin://plugin.program.advanced.emulator.launcher)
+        | String.Contains(ListItem.FolderPath,plugin://plugin.program.akl)
+        | String.Contains(ListItem.FolderPath,plugin://plugin.program.advanced.MAME.launcher)
+        | String.Contains(ListItem.FolderPath,plugin://plugin.program.iagl)
+        | String.Contains(ListItem.FolderPath,addons://sources/game)
+        | String.Contains(ListItem.FolderPath,game://)
+        | Window.IsActive(games)
+        | Container.Content(games) ]
+    </expression>
+
     <!-- IS PVR DIALOG ? -->
 
     <expression name="IsPvrDialog">

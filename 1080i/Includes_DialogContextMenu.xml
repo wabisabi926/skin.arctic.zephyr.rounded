@@ -10,9 +10,8 @@
 
             <top>108</top>
             <left>534</left>
-            <right>24</right>
-            <!-- <width>470</width> -->
-            <!-- <height max="560">auto</height> -->
+            <width>470</width>
+            <height>64</height>
 
             <onup>2000</onup>
             <ondown>2002</ondown>
@@ -36,6 +35,23 @@
                 <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
                 <onclick>Dialog.Close(contextmenu,true)</onclick>
                 <onclick>Action(Info)</onclick>
+            </include>
+
+            <!-- BACK FULLSCREEN NOW PLAYING -->
+
+            <include content="Def_OSD_Button">
+                <param name="visible" value="Player.HasMedia + String.IsEmpty(Window(Home).Property(TrailerWindowedIsPlaying))" />
+                <param name="size" value="44" />
+                <param name="left" value="-38" />
+                <param name="icon" value="special://skin/extras/icons/expand.png" />
+                <param name="icon_colordiffuse" value="Dark2" />
+                <param name="id" value="6158" />
+                <param name="groupid" value="6899" />
+                <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <onclick condition="Player.HasVideo">Dialog.Close(contextmenu,true)</onclick>
+                <onclick condition="Player.HasAudio">Dialog.Close(contextmenu,true)</onclick>
+                <onclick condition="Player.HasVideo">ActivateWindow(fullscreenvideo)</onclick>
+                <onclick condition="Player.HasAudio">ActivateWindow(visualisation)</onclick>
             </include>
 
             <!-- TRAILER -->
@@ -152,23 +168,6 @@
                 <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
                 <onclick>Dialog.Close(contextmenu,true)</onclick>
                 <onclick>ActivateWindow(filemanager,"$VAR[Path_ContextParams_Path_Item]",return)</onclick>
-            </include>
-
-            <!-- BACK FULLSCREEN NOW PLAYING -->
-
-            <include content="Def_OSD_Button">
-                <param name="visible" value="Player.HasMedia + String.IsEmpty(Window(Home).Property(TrailerWindowedIsPlaying))" />
-                <param name="size" value="44" />
-                <param name="left" value="-38" />
-                <param name="icon" value="special://skin/extras/icons/expand.png" />
-                <param name="icon_colordiffuse" value="Dark2" />
-                <param name="id" value="6158" />
-                <param name="groupid" value="6899" />
-                <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
-                <onclick condition="Player.HasVideo">Dialog.Close(contextmenu,true)</onclick>
-                <onclick condition="Player.HasAudio">Dialog.Close(contextmenu,true)</onclick>
-                <onclick condition="Player.HasVideo">ActivateWindow(fullscreenvideo)</onclick>
-                <onclick condition="Player.HasAudio">ActivateWindow(visualisation)</onclick>
             </include>
         </control>
     </include>
