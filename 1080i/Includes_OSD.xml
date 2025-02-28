@@ -234,7 +234,7 @@
         <control type="group">
 
             <visible>Player.Seeking | Player.HasPerformedSeek(3) | Player.Paused | Player.Forwarding | Player.Rewinding | Player.ShowInfo | Window.IsVisible(fullscreeninfo) | Window.IsVisible(videoosd) | !String.IsEmpty(Player.SeekNumeric)</visible>
-            <visible>!Window.IsVisible(DialogNotification.xml) + !Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml) + !Window.IsVisible(DialogSlider.xml) + !Window.IsVisible(DialogSettings.xml) + !Window.IsVisible(DialogVolumeBar.xml) + !Window.IsVisible(GameOSD.xml)</visible>
+            <visible>!Window.IsVisible(DialogBusy.xml) + !Window.IsVisible(DialogNotification.xml) + !Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml) + !Window.IsVisible(DialogSlider.xml) + !Window.IsVisible(DialogSettings.xml) + !Window.IsVisible(DialogVolumeBar.xml) + !Window.IsVisible(GameOSD.xml)</visible>
             <visible>VideoPlayer.IsFullscreen</visible>
             <visible>String.IsEmpty(Window(Home).Property(OSDVideoDetails))</visible>
 
@@ -335,7 +335,7 @@
         <!-- SPINNER PAUSE -->
 
         <include content="Object_Spinner_Pause">
-            <param name="visible" value="Player.Paused + !Skin.HasSetting(hide.play.pause.info) + String.IsEmpty(Window(Home).Property(OSDArtistDetails)) + !Skin.HasSetting(show.osd.artist.infos) + String.IsEmpty(Window(Home).Property(OSDVideoDetails))" />
+            <param name="visible" value="Player.Paused + !Skin.HasSetting(hide.play.pause.info) + String.IsEmpty(Window(Home).Property(OSDArtistDetails)) + !Skin.HasSetting(show.osd.artist.infos) + String.IsEmpty(Window(Home).Property(OSDVideoDetails)) + !Window.IsVisible(DialogBusy.xml)" />
             <param name="centerleft" value="50%" />
             <param name="centertop" value="50%" />
         </include>
