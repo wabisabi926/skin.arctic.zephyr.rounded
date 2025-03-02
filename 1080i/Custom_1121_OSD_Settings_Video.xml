@@ -79,7 +79,8 @@
                     <align>left</align>
                     <selected>Skin.HasSetting(hide.osd.video.on.pause)</selected>
                     <onclick>Skin.ToggleSetting(hide.osd.video.on.pause)</onclick>
-                    <enable>!Skin.HasSetting(show.osd.info.on.pause)</enable>
+                    <onclick condition="!Skin.HasSetting(hide.osd.video.on.pause)">Skin.Reset(show.osd.info.on.pause)</onclick>
+                    <!-- <enable>!Skin.HasSetting(show.osd.info.on.pause)</enable> -->
                 </control>
                 <control type="radiobutton" id="821">
                     <description>Filter</description>
@@ -88,7 +89,8 @@
                     <align>left</align>
                     <selected>Skin.HasSetting(show.osd.info.on.pause)</selected>
                     <onclick>Skin.ToggleSetting(show.osd.info.on.pause)</onclick>
-                    <enable>!Skin.HasSetting(hide.osd.video.on.pause)</enable>
+                    <onclick condition="!Skin.HasSetting(show.osd.info.on.pause)">Skin.Reset(hide.osd.video.on.pause)</onclick>
+                    <!-- <enable>!Skin.HasSetting(hide.osd.video.on.pause)</enable> -->
                 </control>
                 <control type="radiobutton" id="100">
                     <description>Filter</description>
