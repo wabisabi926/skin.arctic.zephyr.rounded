@@ -1366,15 +1366,19 @@
         <!-- INFORMATION - LEFT -->
 
         <control type="group">
-            <include>Animation_FurnitureVisible_footer</include>
             <visible>Skin.HasSetting(show.furniture.footer) | Control.IsVisible(5048) | Control.IsVisible(5218) | Control.IsVisible(5238) | Window.IsVisible(FileManager.xml)</visible>
+
             <visible>[!Skin.HasSetting(55wall.showinfo) + Control.IsVisible(55)] | Control.IsVisible(506) | Control.IsVisible(52) | Control.IsVisible(515) | Control.IsVisible(512) | Control.IsVisible(517) | Control.IsVisible(547) | Control.IsVisible(557) | Control.IsVisible(5048) | Control.IsVisible(5218) | [Control.IsVisible(5228) + String.IsEqual(Skin.String(522.landscape.size),2)] | [Control.IsVisible(5228) + Container.Content(files)] | Control.IsVisible(503) | Control.IsVisible(508) | Control.IsVisible(547) | [Control.IsVisible(5238) + String.IsEqual(Skin.String(523.square.size),2)] | Window.IsVisible(FileManager.xml) | Window.IsVisible(script-globalsearch.xml)</visible>
-            <left>View_SidePad</left>
+
+            <include>Animation_FurnitureVisible_footer</include>
+
             <centerbottom>100</centerbottom>
-            <orientation>horizontal</orientation>
+            <left>View_SidePad</left>
             <align>left</align>
-            <itemgap>0</itemgap>
+
             <usecontrolcoords>true</usecontrolcoords>
+            <orientation>horizontal</orientation>
+            <itemgap>0</itemgap>
 
             <include content="Def_Right" condition="!Skin.HasSetting(show.furniture.clock.date.weather)">
                 <param name="right" value="View_SidePad" />
@@ -1546,48 +1550,23 @@
                 <visible>Container.Content(songs) | Container.Content(albums) | Container.Content(artists)</visible>
                 <visible>Control.IsVisible(515) | Control.IsVisible(50) | Control.IsVisible(52) | Control.IsVisible(503) | Control.IsVisible(508) | Control.IsVisible(547) | Control.IsVisible(557) | [Control.IsVisible(5238) + String.IsEqual(Skin.String(523.square.size),2)] | [Control.IsVisible(5228) + String.IsEqual(Skin.String(522.landscape.size),2)]</visible>
             </control>
-
-            <!-- FILES MANAGER -->
-
-            <control type="textbox">
-                <width min="128" max="1200">auto</width>
-                <top>18</top>
-                <left>12</left>
-                <height min="64" max="80">auto</height>
-                <align>left</align>
-                <font>Mini</font>
-                <textcolor>Dark2</textcolor>
-                <selectedcolor>Dark2</selectedcolor>
-                <label>[B][UPPERCASE]$LOCALIZE[535] $LOCALIZE[39162][/UPPERCASE][/B] :    $INFO[Control.GetLabel(101)]</label>
-                <visible>Window.IsVisible(FileManager.xml)</visible>
-                <visible>Control.HasFocus(20) | Control.HasFocus(1824)</visible>
-            </control>
-            <control type="textbox">
-                <width min="128" max="1200">auto</width>
-                <top>18</top>
-                <left>12</left>
-                <height min="64" max="128">auto</height>
-                <align>left</align>
-                <font>Mini</font>
-                <textcolor>Dark2</textcolor>
-                <selectedcolor>Dark2</selectedcolor>
-                <label>[B][UPPERCASE]$LOCALIZE[535] $LOCALIZE[39164][/UPPERCASE][/B] :    $INFO[Control.GetLabel(102)]</label>
-                <visible>Window.IsVisible(FileManager.xml)</visible>
-                <visible>Control.HasFocus(21) | Control.HasFocus(1825)</visible>
-            </control>
         </control>
 
         <!-- INFORMATION - RIGHT -->
 
         <control type="group">
-            <include>Animation_FurnitureVisible_footer</include>
             <visible>Skin.HasSetting(show.furniture.footer) | Control.IsVisible(5048) | Control.IsVisible(5218) | Window.IsVisible(FileManager.xml)</visible>
+
             <visible>[!Skin.HasSetting(55wall.showinfo) + Control.IsVisible(55)] | Control.IsVisible(506) | Control.IsVisible(550) | Control.IsVisible(50) | Control.IsVisible(56) | Control.IsVisible(57) | Control.IsVisible(500) | Control.IsVisible(511) | Control.IsVisible(52) | Control.IsVisible(512) | Control.IsVisible(515) | Control.IsVisible(517) | Control.IsVisible(547) | Control.IsVisible(555) | Control.IsVisible(557) | Control.IsVisible(5048) | Control.IsVisible(5218) | [Control.IsVisible(5228) + String.IsEqual(Skin.String(522.landscape.size),2)] | [Control.IsVisible(5228) + Container.Content(artists)] | [Control.IsVisible(5228) + Container.Content(files)] | Control.IsVisible(500) | Control.IsVisible(503) | Control.IsVisible(507) | Control.IsVisible(508) | [Control.IsVisible(5238) + String.IsEqual(Skin.String(523.square.size),2)] | [Control.IsVisible(5238) + Container.Content(artists)] | Window.IsVisible(script-globalsearch.xml) | Window.IsVisible(FileManager.xml) | Window.IsVisible(MyFavourites.xml)</visible>
+
+            <include>Animation_FurnitureVisible_footer</include>
+
             <centerbottom>100</centerbottom>
-            <orientation>horizontal</orientation>
             <align>right</align>
-            <itemgap>0</itemgap>
+
             <usecontrolcoords>true</usecontrolcoords>
+            <orientation>horizontal</orientation>
+            <itemgap>0</itemgap>
 
             <!-- MOVIES / VIDEOS -->
 
@@ -1863,7 +1842,6 @@
                 <label>$VAR[Label_Dialog_Select_Num_Item_Footer]</label>
             </control>
         </control>
-
     </include>
 
     <!-- MEDIA FLAG - VIDEO -->
