@@ -936,34 +936,25 @@
 
     <include name="Def_OSD_UpDown_Video_Info">
 
-        <!-- SCENARIO - DISPLAY INFO ON PAUSE - ENABLE -->
+        <!-- SCENARIO 1 - DISPLAY INFO ON PAUSE - ENABLE -->
 
         <!-- UP - 1 - Displaying info + plot -->
         <onup condition="[Player.Paused + Skin.HasSetting(show.osd.info.on.pause)] + String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO))">SetProperty(OSDVideo_Show_INFO,1,Home)</onup>
         <onup condition="[Player.Paused + Skin.HasSetting(show.osd.info.on.pause)] + String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO))">SetProperty(OSDVideo_Show_PLOT,1,Home)</onup>
 
-        <!-- <onup condition="![Player.Paused + Skin.HasSetting(show.osd.info.on.pause)] + String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO))">ClearProperty(OSDVideo_DIALOG_FULL_SCREEN_INFO,Home)</onup> -->
-
+        <onup condition="[Player.Paused + Skin.HasSetting(show.osd.info.on.pause)] + String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO))">ClearProperty(OSDVideo_DIALOG_FULL_SCREEN_INFO,Home)</onup>
         <onup condition="[Player.Paused + Skin.HasSetting(show.osd.info.on.pause)] + String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO)) + Control.IsVisible(9805)">SetFocus(9805)</onup>
 
         <!-- <onup condition="!String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO)) + !Control.IsVisible(9805)">SetFocus(556)</onup> -->
 
-
-
-
-
-
-
-        <!-- SCENARIO - DISPLAY INFO ON PAUSE - DISABLE -->
+        <!-- SCENARIO 2 - DISPLAY INFO ON PAUSE - DISABLE -->
 
         <!-- UP - 1 - Displaying info -->
         <onup condition="![Player.Paused + Skin.HasSetting(show.osd.info.on.pause)] + String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO))">SetProperty(OSDVideo_Show_INFO,1,Home)</onup>
-
         <onup condition="![Player.Paused + Skin.HasSetting(show.osd.info.on.pause)] + String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO))">ClearProperty(OSDVideo_DIALOG_FULL_SCREEN_INFO,Home)</onup>
 
         <!-- UP - 2 - Displaying info + plot -->
         <onup condition="![Player.Paused + Skin.HasSetting(show.osd.info.on.pause)] + !String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO))">SetProperty(OSDVideo_Show_PLOT,1,Home)</onup>
-
         <onup condition="![Player.Paused + Skin.HasSetting(show.osd.info.on.pause)] + !String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO)) + Control.IsVisible(9805)">SetFocus(9805)</onup>
         <!-- <onup condition="!String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO)) + !Control.IsVisible(9805)">SetFocus(556)</onup> -->
 
@@ -971,11 +962,12 @@
 
         <!-- Close info + plot -->
         <onup condition="!String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO)) + !String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">ClearProperty(OSDVideo_Show_INFO,Home)</onup>
-
         <onup condition="!String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO)) + !String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">ClearProperty(OSDVideo_Show_PLOT,Home)</onup>
 
-        <!-- Close plot -->
+        <!-- Close plot - SCENARIO 2 - DISPLAY INFO ON PAUSE - DISABLE -->
         <ondown condition="!String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">ClearProperty(OSDVideo_Show_PLOT,Home)</ondown>
+
+        <!-- Close plot  - SCENARIO 1 - DISPLAY INFO ON PAUSE - ENABLE -->
         <ondown condition="Skin.HasSetting(show.osd.info.on.pause) + !String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO))">ClearProperty(OSDVideo_Show_INFO,Home)</ondown>
 
         <!-- Close info -->
