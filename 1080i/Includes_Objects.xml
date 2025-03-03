@@ -35,6 +35,73 @@
         <onback>$PARAM[ondirection]</onback>
     </include>
 
+    <!-- ARROWS -->
+
+    <include name="Object_Arrows_Fixe">
+        <param name="arrow_top" default="-24" />
+        <param name="arrow_bottom" default="699" />
+        <param name="arrow_centerleft" default="50%" />
+
+        <param name="colordiffuse" default="White100" />
+        <param name="texture" default="common/arrow-small.png" />
+
+        <definition>
+            <control type="group">
+                <control type="image">
+                    <top>$PARAM[arrow_top]</top>
+                    <centerleft>$PARAM[arrow_centerleft]</centerleft>
+                    <include>Def_Arrow_Size</include>
+                    <texture colordiffuse="$PARAM[colordiffuse]" flipy="true">$PARAM[texture]</texture>
+                </control>
+                <control type="image">
+                    <top>$PARAM[arrow_bottom]</top>
+                    <centerleft>$PARAM[arrow_centerleft]</centerleft>
+                    <include>Def_Arrow_Size</include>
+                    <texture colordiffuse="$PARAM[colordiffuse]" flipy="false">$PARAM[texture]</texture>
+                </control>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Object_Arrows_Multi_Row">
+        <param name="arrow_top" default="-24" />
+        <param name="arrow_bottom" default="699" />
+        <param name="arrow_centerleft" default="50%" />
+
+        <param name="colordiffuse" default="White100" />
+        <param name="texture" default="common/arrow-small.png" />
+        <param name="container_id" default="$PARAM[container_id]" />
+
+        <param name="visible" default="true" />
+
+        <definition>
+            <control type="group">
+                <visible>Integer.IsGreater(Container($PARAM[container_id]).NumItems,0)</visible>
+
+                <control type="image">
+                    <top>$PARAM[arrow_top]</top>
+                    <centerleft>$PARAM[arrow_centerleft]</centerleft>
+                    <include>Def_Arrow_Size</include>
+                    <texture colordiffuse="$PARAM[colordiffuse]" flipy="true">$PARAM[texture]</texture>
+                </control>
+                <control type="image">
+                    <top>$PARAM[arrow_bottom]</top>
+                    <centerleft>$PARAM[arrow_centerleft]</centerleft>
+                    <include>Def_Arrow_Size</include>
+                    <texture colordiffuse="$PARAM[colordiffuse]" flipy="false">$PARAM[texture]</texture>
+
+                    <animation effect="slide" end="0,-70" time="0" condition="Integer.IsEqual(Container($PARAM[container_id]).NumItems,7)">Conditional</animation>
+                    <animation effect="slide" end="0,-140" time="0" condition="Integer.IsEqual(Container($PARAM[container_id]).NumItems,6)">Conditional</animation>
+                    <animation effect="slide" end="0,-210" time="0" condition="Integer.IsEqual(Container($PARAM[container_id]).NumItems,5)">Conditional</animation>
+                    <animation effect="slide" end="0,-280" time="0" condition="Integer.IsEqual(Container($PARAM[container_id]).NumItems,4)">Conditional</animation>
+                    <animation effect="slide" end="0,-350" time="0" condition="Integer.IsEqual(Container($PARAM[container_id]).NumItems,3)">Conditional</animation>
+                    <animation effect="slide" end="0,-420" time="0" condition="Integer.IsEqual(Container($PARAM[container_id]).NumItems,2)">Conditional</animation>
+                    <animation effect="slide" end="0,-490" time="0" condition="Integer.IsEqual(Container($PARAM[container_id]).NumItems,1)">Conditional</animation>
+                </control>
+            </control>
+        </definition>
+    </include>
+
     <!-- SPINNER -->
 
     <include name="Object_Spinner_Busy">

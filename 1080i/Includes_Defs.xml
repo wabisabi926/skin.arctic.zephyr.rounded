@@ -113,16 +113,18 @@
     <!-- ======================================================== -->
 
     <include name="Def_Widget_Weather_Background">
+        <param name="colordiffuse" value="$PARAM[colordiffuse]" default="White100" />
         <param name="bordertopbottom" value="$PARAM[bordertopbottom]" default="10" />
         <param name="borderleftright" value="$PARAM[borderleftright]" default="10" />
         <param name="FanartCode" value="$PARAM[FanartCode]" default="" />
+
         <definition>
             <control type="image">
                <top>$PARAM[bordertopbottom]</top>
                <left>$PARAM[borderleftright]</left>
                <right>$PARAM[borderleftright]</right>
                <bottom>$PARAM[bordertopbottom]</bottom>
-               <texture border="12" colordiffuse="White70">common/box12.png</texture>
+               <texture border="12" colordiffuse="$PARAM[colordiffuse]">common/box12.png</texture>
                <animation effect="fade" start="100" end="90" condition="true">Conditional</animation>
             </control>
             <control type="multiimage" description="Fanart">
