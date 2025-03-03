@@ -37,7 +37,7 @@
 
     <!-- ARROWS -->
 
-    <include name="Object_Arrows_Fixe">
+    <include name="Object_Arrows_View_ContextMenu">
         <param name="arrow_top" default="-24" />
         <param name="arrow_bottom" default="699" />
         <param name="arrow_centerleft" default="50%" />
@@ -63,7 +63,7 @@
         </definition>
     </include>
 
-    <include name="Object_Arrows_Multi_Row">
+    <include name="Object_Arrows_Dialog_Multi_Row">
         <param name="arrow_top" default="-24" />
         <param name="arrow_bottom" default="699" />
         <param name="arrow_centerleft" default="50%" />
@@ -99,6 +99,30 @@
                     <animation effect="slide" end="0,-490" time="0" condition="Integer.IsEqual(Container($PARAM[container_id]).NumItems,1)">Conditional</animation>
                 </control>
             </control>
+        </definition>
+    </include>
+
+    <include name="Object_Arrows_DialogInfo_Navigation">
+        <param name="centerbottom" value="$PARAM[centerbottom]" default="257" />
+        <param name="centerleft" value="$PARAM[centerleft]" default="550" />
+        <param name="visible" value="$PARAM[visible]" default="false" />
+        <definition>
+        <control type="group">
+            <include>Animation_Delay_Fade_In_200</include>
+            <visible>$PARAM[visible]</visible>
+            <centerbottom>$PARAM[centerbottom]</centerbottom>
+            <height>16</height>
+            <control type="image">
+               <centerleft>$PARAM[centerleft]</centerleft>
+               <include>Def_Arrow_Size</include>
+               <texture colordiffuse="Dark1" flipx="true">common/arrow-small-right.png</texture>
+            </control>
+            <control type="image">
+               <centerright>61</centerright>
+               <include>Def_Arrow_Size</include>
+               <texture colordiffuse="Dark1" flipx="false">common/arrow-small-right.png</texture>
+            </control>
+        </control>
         </definition>
     </include>
 
