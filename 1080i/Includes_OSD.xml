@@ -1669,7 +1669,7 @@
 
         <control type="group">
             <animation effect="slide" start="0,0" end="-318,0" time="150" condition="!String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">Conditional</animation>
-            <animation effect="slide" end="0,0" start="-318,0" time="150" condition="!String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO)) + String.IsEmpty(Window(Home).Property(OSDVideo_DIALOG_FULL_SCREEN_INFO)) + ![Player.Paused + Skin.HasSetting(show.osd.info.on.pause)]">Conditional</animation>
+            <animation effect="slide" end="0,0" start="-318,0" time="150" condition="!String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO)) + String.IsEmpty(Window(Home).Property(OSDVideo_DIALOG_FULL_SCREEN_INFO)) + ![Player.Paused + Skin.HasSetting(show.osd.info.on.pause)] + String.IsEmpty(Window(Home).Property(OSDVideo_Show_AT_START_INFO))">Conditional</animation>
 
             <left>0</left>
 
@@ -2189,7 +2189,7 @@
                 <!-- SEEKBAR - INFOS / ARTWORKS - WITH "SHOW INFO" -->
 
                 <control type="group">
-                    <visible>Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(Home).Property(OSDVideo_Show_AT_START_INFO)) | Player.ShowInfo | !String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO)) | [Player.Paused + Skin.HasSetting(show.osd.info.on.pause)]</visible>
+                    <visible>Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(Home).Property(OSDVideo_Show_AT_START_INFO)) | Player.ShowInfo | !String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO)) | [Player.Paused + Skin.HasSetting(show.osd.info.on.pause)] | !String.IsEmpty(Window(Home).Property(OSDVideo_Show_AT_START_INFO))</visible>
 
                     <animation effect="fade" start="0" end="100" time="250">Visible</animation>
                     <animation effect="fade" start="0" end="100" time="250">WindowOpen</animation>
@@ -2204,7 +2204,7 @@
                     <!-- ARTWORK -->
 
                     <control type="group">
-                        <animation effect="slide" end="0,0" start="-318,0" time="150" condition="!String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO)) + String.IsEmpty(Window(Home).Property(OSDVideo_DIALOG_FULL_SCREEN_INFO)) + ![Player.Paused + Skin.HasSetting(show.osd.info.on.pause)]">Conditional</animation>
+                        <animation effect="slide" end="0,0" start="-318,0" time="150" condition="!String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO)) + String.IsEmpty(Window(Home).Property(OSDVideo_DIALOG_FULL_SCREEN_INFO)) + ![Player.Paused + Skin.HasSetting(show.osd.info.on.pause)] + String.IsEmpty(Window(Home).Property(OSDVideo_Show_AT_START_INFO))">Conditional</animation>
 
                         <left>OSD_SidePad</left>
                         <right>OSD_SidePad</right>
