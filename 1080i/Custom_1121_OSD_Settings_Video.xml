@@ -19,8 +19,8 @@
         <control type="group">
             <include>Animation_RightSide</include>
 
-            <include content="Def_View_ContextMenu_Background"><param name="height" value="619" /><param name="visible" value="ControlGroup(9000).HasFocus() | control.hasfocus(1799)" /></include>
-            <include content="Object_Arrows_View_ContextMenu"><param name="arrow_bottom" value="629" /></include>
+            <include content="Def_View_ContextMenu_Background"><param name="height" value="689" /><param name="visible" value="ControlGroup(9000).HasFocus() | control.hasfocus(1799)" /></include>
+            <include content="Object_Arrows_View_ContextMenu"><param name="arrow_bottom" value="699" /></include>
 
             <control type="label">
                 <include>Def_Dialog_Header_Title</include>
@@ -34,7 +34,7 @@
                 <include>Animation_Scrolltime_Views_List</include>
 
                 <top>112</top>
-                <height>490</height>
+                <height>560</height>
 
                 <onup>9000</onup>
                 <ondown>9000</ondown>
@@ -91,6 +91,15 @@
                     <onclick>Skin.ToggleSetting(show.osd.info.on.pause)</onclick>
                     <onclick condition="!Skin.HasSetting(show.osd.info.on.pause)">Skin.Reset(hide.osd.video.on.pause)</onclick>
                     <!-- <enable>!Skin.HasSetting(hide.osd.video.on.pause)</enable> -->
+                </control>
+                <control type="radiobutton" id="823">
+                    <description>Filter</description>
+                    <include>Def_Button_Gradient_Context</include>
+                    <label>31161</label>
+                    <align>left</align>
+                    <selected>Skin.HasSetting(show.osd.info.with.plot)</selected>
+                    <onclick>Skin.ToggleSetting(show.osd.info.with.plot)</onclick>
+                    <!-- <onclick condition="!Skin.HasSetting(show.osd.info.on.pause)">Skin.Reset(hide.osd.video.on.pause)</onclick> -->
                 </control>
                 <control type="radiobutton" id="100">
                     <description>Filter</description>
@@ -234,7 +243,7 @@
                 <param name="scrollid" value="1799" />
                 <param name="onleft" value="9000" />
                 <param name="onright" value="Dialog.Close(1121)" />
-                <param name="height" value="490" />
+                <param name="height" value="560" />
                 <param name="centerright" value="4" />
             </include>
         </control>

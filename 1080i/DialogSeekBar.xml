@@ -21,6 +21,9 @@
 
     <onload condition="[!String.IsEmpty(Window(Home).Property(OSDVideo_DIALOG_VIDEO_INFO)) | !String.IsEmpty(Window(Home).Property(wikipedia))] + Skin.HasSetting(osd.open.auto.pause) + Player.Paused + VideoPlayer.IsFullscreen + !Window.IsVisible(DialogFullScreenInfo.xml) + !String.IsEmpty(VideoPlayer.DBID)">AlarmClock(cleanup,ClearProperty(OSDVideo_DIALOG_VIDEO_INFO,Home),00:01,silent)</onload>
 
+    <onunload>ClearProperty(OSDVideo_Show_INFO,Home)</onunload>
+    <onunload>ClearProperty(OSDVideo_Show_PLOT,Home)</onunload>
+
     <zorder>0</zorder>
 
     <controls>
@@ -45,5 +48,14 @@
 
         <include>Object_OSD_Clock</include>
 
+        <!-- PLOT -->
+
+        <include content="Object_OSD_Player_Plot">
+            <param name="visible" value="!String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT)) + !Window.IsVisible(videoosd) + String.IsEmpty(Window(Home).Property(OSDVideo_DIALOG_FULL_SCREEN_INFO))" />
+            <param name="onleft" value="SetFocus(555)" />
+            <param name="onright" value="SetFocus(555)" />
+            <param name="onback" value="SetFocus(555)" />
+            <param name="scrollid" value="9804" />
+        </include>
     </controls>
 </window>

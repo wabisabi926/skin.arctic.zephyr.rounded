@@ -419,12 +419,12 @@
                     <top>40</top>
                     <left>40</left>
 
-                    <control type="image">
-                        <width>160</width>
-                        <height>160</height>
-                        <texture colordiffuse="Panel">common/circlebutton.png</texture>
-                        <animation effect="fade" start="100" end="40" condition="!Skin.HasSetting(show.home.header.clock.left)">Conditional</animation>
-                    </control>
+                    <!-- <control type="image"> -->
+                        <!-- <width>160</width> -->
+                        <!-- <height>160</height> -->
+                        <!-- <texture colordiffuse="Panel">common/circlebutton.png</texture> -->
+                        <!-- <animation effect="fade" start="100" end="40" condition="!Skin.HasSetting(show.home.header.clock.left)">Conditional</animation> -->
+                    <!-- </control> -->
 
                     <include content="Object_Spinner_Busy">
                         <param name="show_label_spinner" value="false" />
@@ -468,6 +468,12 @@
         <param name="height" value="$PARAM[height]" default="700" />
         <param name="top" value="$PARAM[top]" default="112" />
         <param name="centerright" value="$PARAM[centerright]" default="360" />
+        <param name="texturesliderbackground_colordiffuse" value="$PARAM[texturesliderbackground_colordiffuse]" default="Dark4" />
+
+        <param name="animation_fade_hide" value="$PARAM[animation_fade_hide]" default="true" />
+        <param name="texturesliderbarfocus" value="$PARAM[texturesliderbarfocus]" default="special://profile/addon_data/script.texturemaker/ArcticZephirRounded/scrollv_h.png" />
+        <param name="texturesliderbarfocus_colordiffuse" value="$PARAM[texturesliderbarfocus_colordiffuse]" default="" />
+
         <definition>
             <control type="scrollbar" id="$PARAM[scrollid]">
                 <visible>$PARAM[visible]</visible>
@@ -478,13 +484,13 @@
                 <onleft>$PARAM[onleft]</onleft>
                 <onright>$PARAM[onright]</onright>
                 <onback>$PARAM[onback]</onback>
-                <texturesliderbackground border="4" colordiffuse="Dark4">scrollbar/scrollv.png</texturesliderbackground>
+                <texturesliderbackground border="4" colordiffuse="$PARAM[texturesliderbackground_colordiffuse]">scrollbar/scrollv.png</texturesliderbackground>
                 <texturesliderbar border="4" colordiffuse="Dark3">scrollbar/scrollv.png</texturesliderbar>
-                <texturesliderbarfocus border="4">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/scrollv_h.png</texturesliderbarfocus>
+                <texturesliderbarfocus border="4" colordiffuse="$PARAM[texturesliderbarfocus_colordiffuse]">$PARAM[texturesliderbarfocus]</texturesliderbarfocus>
                 <orientation>vertical</orientation>
                 <showonepage>false</showonepage>
                 <!-- <animation effect="fade" start="0" end="100" time="400" condition="Container.Scrolling | Control.HasFocus($PARAM[scrollid])">Conditional</animation> -->
-                <animation effect="fade" start="100" end="0" time="400" condition="!Control.HasFocus($PARAM[scrollid]) + !Container.Scrolling">Conditional</animation>
+                <animation effect="fade" start="100" end="0" time="400" condition="!Control.HasFocus($PARAM[scrollid]) + !Container.Scrolling + $PARAM[animation_fade_hide]">Conditional</animation>
             </control>
         </definition>
     </include>

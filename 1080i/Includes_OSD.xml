@@ -373,6 +373,11 @@
                 </control>
 
                 <include content="Object_Scrollbar_Dialog_Vertical">
+                    <param name="texturesliderbackground_colordiffuse" value="E62D2E2E" />
+                    <!-- <param name="texturesliderbackground" value="$VAR[Color_OSD_Panel_White70]" /> -->
+                    <param name="texturesliderbarfocus" value="scrollbar/scrollv.png" />
+                    <param name="texturesliderbarfocus_colordiffuse" value="4ddddddd" />
+                    <param name="animation_fade_hide" value="false" />
                     <param name="scrollid" value="$PARAM[scrollid]" />
                     <param name="onleft" value="$PARAM[onleft]" />
                     <param name="onright" value="$PARAM[onright])" />
@@ -936,7 +941,20 @@
 
     <include name="Def_OSD_UpDown_Video_Info">
 
-        <!-- SCENARIO 1 - DISPLAY INFO ON PAUSE - ENABLE -->
+        <!-- ========== -->
+        <!--     UP     -->
+        <!-- ========== -->
+
+        <!-- SCENARIO 1 - DISPLAY PLOT WITH INFO - ENABLE -->
+
+        <!-- UP - 1 - Displaying info + plot -->
+        <onup condition="Skin.HasSetting(show.osd.info.with.plot) + String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO))">SetProperty(OSDVideo_Show_INFO,1,Home)</onup>
+        <onup condition="Skin.HasSetting(show.osd.info.with.plot) + String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO))">SetProperty(OSDVideo_Show_PLOT,1,Home)</onup>
+
+        <onup condition="Skin.HasSetting(show.osd.info.with.plot) + String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO))">ClearProperty(OSDVideo_DIALOG_FULL_SCREEN_INFO,Home)</onup>
+        <onup condition="Skin.HasSetting(show.osd.info.with.plot) + String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO)) + Control.IsVisible(9805)">SetFocus(9805)</onup>
+
+        <!-- SCENARIO 2 - DISPLAY INFO ON PAUSE - ENABLE -->
 
         <!-- UP - 1 - Displaying info + plot -->
         <onup condition="[Player.Paused + Skin.HasSetting(show.osd.info.on.pause)] + String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO))">SetProperty(OSDVideo_Show_INFO,1,Home)</onup>
@@ -947,7 +965,7 @@
 
         <!-- <onup condition="!String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO)) + !Control.IsVisible(9805)">SetFocus(556)</onup> -->
 
-        <!-- SCENARIO 2 - DISPLAY INFO ON PAUSE - DISABLE -->
+        <!-- SCENARIO 3 - DISPLAY INFO ON PAUSE - DISABLE -->
 
         <!-- UP - 1 - Displaying info -->
         <onup condition="![Player.Paused + Skin.HasSetting(show.osd.info.on.pause)] + String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO))">SetProperty(OSDVideo_Show_INFO,1,Home)</onup>
@@ -964,10 +982,17 @@
         <onup condition="!String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO)) + !String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">ClearProperty(OSDVideo_Show_INFO,Home)</onup>
         <onup condition="!String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO)) + !String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">ClearProperty(OSDVideo_Show_PLOT,Home)</onup>
 
-        <!-- Close plot - SCENARIO 2 - DISPLAY INFO ON PAUSE - DISABLE -->
+        <!-- ========== -->
+        <!--    DOWN    -->
+        <!-- ========== -->
+
+        <!-- Close plot - SCENARIO 3 - DISPLAY INFO ON PAUSE - DISABLE -->
         <ondown condition="!String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">ClearProperty(OSDVideo_Show_PLOT,Home)</ondown>
 
         <!-- Close plot  - SCENARIO 1 - DISPLAY INFO ON PAUSE - ENABLE -->
+        <ondown condition="Skin.HasSetting(show.osd.info.with.plot) + !String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO))">ClearProperty(OSDVideo_Show_INFO,Home)</ondown>
+
+        <!-- Close plot  - SCENARIO 2 - DISPLAY INFO ON PAUSE - ENABLE -->
         <ondown condition="Skin.HasSetting(show.osd.info.on.pause) + !String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO))">ClearProperty(OSDVideo_Show_INFO,Home)</ondown>
 
         <!-- Close info -->
@@ -1058,6 +1083,7 @@
             <include>Def_OSD_UpDown_Video_Info</include>
             <onclick>PlayerControl(Rewind)</onclick>
             <onfocus>ClearProperty(OSDVideo_Show_PLOT,Home)</onfocus>
+            <onfocus condition="Skin.HasSetting(show.osd.info.with.plot) + !String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">ClearProperty(OSDVideo_Show_INFO,Home)</onfocus>
             <onfocus condition="Skin.HasSetting(show.osd.info.on.pause) + !String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">ClearProperty(OSDVideo_Show_INFO,Home)</onfocus>
             <enable>Player.SeekEnabled</enable>
             <animation effect="fade" start="100" end="33" time="100" condition="!Player.PauseEnabled">Conditional</animation>
@@ -1084,6 +1110,7 @@
             <include>Def_OSD_UpDown_Video_Info</include>
             <onclick>PlayerControl(Stop)</onclick>
             <onfocus>ClearProperty(OSDVideo_Show_PLOT,Home)</onfocus>
+            <onfocus condition="Skin.HasSetting(show.osd.info.with.plot) + !String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">ClearProperty(OSDVideo_Show_INFO,Home)</onfocus>
             <onfocus condition="Skin.HasSetting(show.osd.info.on.pause) + !String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">ClearProperty(OSDVideo_Show_INFO,Home)</onfocus>
         </include>
 
@@ -1440,15 +1467,20 @@
 
     <include name="OSD_Video">
         <control type="group">
-            <height>74</height>
-            <bottom>110</bottom>
+            <animation effect="fade" start="100" end="0" time="150" condition="[Window.IsVisible(DialogSlider.xml) | [Skin.HasSetting(hide.osd.video.on.pause) + Player.Paused] + String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))] + !Player.Seeking + !Player.Forwarding + !Player.Rewinding + !Window.IsVisible(videoosd)">Conditional</animation>
+
+            <animation effect="fade" start="100" end="0" time="150" condition="Window.IsVisible(DialogPlayerProcessInfo.xml) | Window.IsVisible(DialogSlider.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(DialogSettings.xml) | Window.IsVisible(VideoOSDBookmarks.xml) | Window.IsVisible(Custom_1121_OSD_Settings_Video.xml) | Window.IsVisible(DialogSubtitles.xml) | Window.IsVisible(DialogPVRChannelsOSD.xml) | Window.IsVisible(DialogPVRChannelGuide.xml)">Conditional</animation>
+
             <animation type="WindowOpen">
                 <effect type="fade" start="0" end="100" time="150" delay="150" />
             </animation>
             <animation type="WindowClose">
                 <effect type="fade" end="0" start="100" time="150" />
             </animation>
-            <animation effect="fade" start="100" end="0" time="150" condition="Window.IsVisible(DialogPlayerProcessInfo.xml) | Window.IsVisible(DialogSlider.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(DialogSettings.xml) | Window.IsVisible(VideoOSDBookmarks.xml) | Window.IsVisible(Custom_1121_OSD_Settings_Video.xml) | Window.IsVisible(DialogSubtitles.xml) | Window.IsVisible(DialogPVRChannelsOSD.xml) | Window.IsVisible(DialogPVRChannelGuide.xml)">Conditional</animation>
+
+            <height>74</height>
+            <bottom>110</bottom>
+
 
             <!-- VIDEO TEMPO SPEED -->
 
@@ -1681,7 +1713,7 @@
                 <width>ClearLogoTitleMaxWidth</width>
                 <texture>$VAR[Image_Crop_ClearLogo_Player]</texture>
                 <aspectratio align="left" aligny="bottom">keep</aspectratio>
-                <visible>Skin.HasSetting(show.osd.video.clearlogo)</visible>
+                <visible>Skin.HasSetting(show.osd.video.clearlogo) + $EXP[Title_Clearlogo_Player_Available]</visible>
             </control>
 
             <!-- LEFT - MAIN TITLE - MOVIES INFO -->
@@ -2153,12 +2185,13 @@
         <control type="group">
             <visible>!Window.IsVisible(GameOSD.xml)</visible>
 
-            <animation effect="fade" start="100" end="0" time="250" condition="[Window.IsVisible(DialogSlider.xml) | [Skin.HasSetting(hide.osd.video.on.pause) + Player.Paused + String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))]] + !Player.Seeking + !Player.Forwarding + !Player.Rewinding + !Window.IsVisible(videoosd)">Conditional</animation>
+            <animation effect="fade" start="100" end="0" time="150" condition="[Window.IsVisible(DialogSlider.xml) | [Skin.HasSetting(hide.osd.video.on.pause) + Player.Paused + String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))] + !Window.IsVisible(DialogFullScreenInfo.xml)] + !Player.Seeking + !Player.Forwarding + !Player.Rewinding + !Window.IsVisible(videoosd)">Conditional</animation>
+
+            <animation effect="fade" start="100" end="0" time="150" condition="Window.IsVisible(DialogPlayerProcessInfo.xml)">Conditional</animation>
 
             <!-- OSD - SEEKBAR - BACKGROUND -->
 
             <control type="group">
-                <animation effect="fade" start="100" end="0" time="150" condition="Window.IsVisible(DialogPlayerProcessInfo.xml)">Conditional</animation>
                 <animation effect="fade" start="0" end="100" time="250">WindowOpen</animation>
                 <animation effect="fade" end="0" start="100" time="250">WindowClose</animation>
 
@@ -2180,16 +2213,15 @@
             <!-- OSD - SEEKBAR - VIDEO -->
 
             <control type="group">
-                <animation effect="fade" start="100" end="0" time="150" condition="Window.IsVisible(DialogPlayerProcessInfo.xml)">Conditional</animation>
                 <animation effect="slide" start="0" end="0,-74" time="150" condition="Window.IsVisible(videoosd)">Conditional</animation>
                 <animation effect="slide" start="0" end="0,-39" time="150" condition="[VideoPlayer.Content(livetv) | VideoPlayer.Content(files)] + Skin.HasSetting(pvr.showtechnicalinfo)">Conditional</animation>
 
                 <bottom>80</bottom>
 
-                <!-- SEEKBAR - INFOS / ARTWORKS - WITH "SHOW INFO" -->
+                <!-- INFOS - WITH "SHOW INFO" - CLEARLOGO / INFOS / ARTWORKS / MEDIA FLAG -->
 
                 <control type="group">
-                    <visible>Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(Home).Property(OSDVideo_Show_AT_START_INFO)) | Player.ShowInfo | !String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO)) | [Player.Paused + Skin.HasSetting(show.osd.info.on.pause)] | !String.IsEmpty(Window(Home).Property(OSDVideo_Show_AT_START_INFO))</visible>
+                    <visible>[Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(Home).Property(OSDVideo_Show_AT_START_INFO)) | Player.ShowInfo | !String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO)) | [Player.Paused + Skin.HasSetting(show.osd.info.on.pause)]]</visible>
 
                     <animation effect="fade" start="0" end="100" time="250">Visible</animation>
                     <animation effect="fade" start="0" end="100" time="250">WindowOpen</animation>
@@ -2367,14 +2399,14 @@
                     </control>
                 </control>
 
-                <!-- SEEKBAR - INFOS ONLY - WITHOUT "SHOW INFO" -->
+                <!-- INFOS - WITHOUT "SHOW INFO" -->
 
                 <control type="group">
-                    <visible>!Player.Paused | !Skin.HasSetting(show.osd.info.on.pause)</visible>
-
-                    <visible>!Window.IsVisible(fullscreeninfo) + String.IsEmpty(Window(Home).Property(OSDVideo_Show_AT_START_INFO)) + !Player.ShowInfo + String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO))</visible>
+                    <visible>![Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(Home).Property(OSDVideo_Show_AT_START_INFO)) | Player.ShowInfo | !String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO)) | [Player.Paused + Skin.HasSetting(show.osd.info.on.pause)]]</visible>
 
                     <visible>Player.Seeking | Player.HasPerformedSeek(3) | Player.Paused | Player.Forwarding | Player.Rewinding | !String.IsEmpty(Player.SeekNumeric) | !String.IsEmpty(PVR.ChannelNumberInput) | Window.IsVisible(videoosd)</visible>
+
+                    <visible>!Player.Paused | !Skin.HasSetting(show.osd.info.on.pause)</visible>
 
                     <animation effect="fade" start="0" end="100" delay="150" time="250">Visible</animation>
                     <animation effect="fade" start="0" end="100" delay="150" time="250">WindowOpen</animation>
@@ -2397,18 +2429,19 @@
                         <!-- CLEARLOGO -->
 
                         <control type="image">
-                            <bottom>110</bottom>
+                            <bottom>90</bottom>
                             <height>ClearLogoTitleMaxHeight</height>
                             <width>ClearLogoTitleMaxWidth</width>
                             <texture>$VAR[Image_Crop_ClearLogo_Player]</texture>
                             <aspectratio align="left" aligny="bottom">keep</aspectratio>
-                            <visible>Skin.HasSetting(show.osd.video.clearlogo)</visible>
+                            <visible>Skin.HasSetting(show.osd.video.clearlogo) + $EXP[Title_Clearlogo_Player_Available]</visible>
                         </control>
 
                         <!-- MAIN TITLE -->
 
                         <control type="group">
                             <visible>!Skin.HasSetting(show.osd.video.clearlogo) | [Skin.HasSetting(show.osd.video.clearlogo) + !$EXP[Title_Clearlogo_Player_Available]] </visible>
+
                             <include>Animation_OSD_Fade</include>
 
                             <align>left</align>
@@ -2653,16 +2686,16 @@
                     <animation effect="fade" end="0" start="100" time="250">Hidden</animation>
                     <visible>!Window.IsVisible(script-cu-lrclyrics-main.xml) | [Window.IsVisible(script-cu-lrclyrics-main.xml) + !Skin.HasSetting(hideseekbaronlyrics)]</visible>
                 </control>
-                <control type="image">
-                    <top>830r</top>
-                    <width>100%</width>
-                    <height>870</height>
-                    <texture>common/fsinfoscreen.png</texture>
-                    <animation effect="fade" start="80" end="80" condition="true">Conditional</animation>
-                    <animation effect="fade" start="0" end="100" time="250">Visible</animation>
-                    <animation effect="fade" end="0" start="100" time="250">Hidden</animation>
-                    <visible>!Window.IsVisible(script-cu-lrclyrics-main.xml) | [Window.IsVisible(script-cu-lrclyrics-main.xml) + !Skin.HasSetting(hideseekbaronlyrics)]</visible>
-                </control>
+                <!-- <control type="image"> -->
+                    <!-- <top>830r</top> -->
+                    <!-- <width>100%</width> -->
+                    <!-- <height>870</height> -->
+                    <!-- <texture>common/fsinfoscreen.png</texture> -->
+                    <!-- <animation effect="fade" start="80" end="80" condition="true">Conditional</animation> -->
+                    <!-- <animation effect="fade" start="0" end="100" time="250">Visible</animation> -->
+                    <!-- <animation effect="fade" end="0" start="100" time="250">Hidden</animation> -->
+                    <!-- <visible>!Window.IsVisible(script-cu-lrclyrics-main.xml) | [Window.IsVisible(script-cu-lrclyrics-main.xml) + !Skin.HasSetting(hideseekbaronlyrics)]</visible> -->
+                <!-- </control> -->
             </control>
 
             <!-- OSD MUSIC INFO -->
@@ -2759,7 +2792,7 @@
                         <!-- <visible>!String.IsEmpty(MusicPlayer.BitsPerSample)</visible> -->
                     <!-- </control> -->
 
-                    <include>MusicVisualisation_RatingStars</include>
+                    <include>Feature_Music_OSD_Rating_Stars</include>
 
                     <control type="label">
                         <width>auto</width>
