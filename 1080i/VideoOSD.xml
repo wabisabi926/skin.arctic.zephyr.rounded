@@ -49,5 +49,40 @@
             <ondown condition="Skin.HasSetting(show.osd.info.with.plot) + !String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO))">ClearProperty(OSDVideo_Show_INFO,Home)</ondown>
             <ondown condition="!String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">SetFocus(14)</ondown>
         </control>
+
+        <!-- SLIDER VIDEO  -->
+        
+        <control type="button" id="8207">
+            <include>Def_Hidden_Button</include>
+            <onup>14</onup>
+            <ondown>SetFocus(14)</ondown>
+            <onleft>StepBack</onleft>
+            <onright>StepForward</onright>
+            <!-- <onright condition="!Player.Paused">StepForward</onright> -->
+            <!-- <onright condition="Player.Paused">PlayerControl(FrameAdvance(1))</onright> -->
+        </control>
+
+        <control type="group" id="600">
+            <visible>Control.HasFocus(8207)</visible>
+            <left>130</left>
+            <right>130</right>
+            <bottom>184</bottom>
+
+            <control type="slider">
+                <visible>Player.HasMedia</visible>
+                <animation effect="fade" start="100" end="0" condition="Player.Seeking" reversible="false" delay="300" time="0">Conditional</animation>
+                <animation effect="fade" start="0" end="100" condition="!Player.Seeking" reversible="false" time="0">Conditional</animation>
+                <width>100%</width>
+                <bottom>-18</bottom>
+                <height>64</height>
+                <info>Player.Progress</info>
+                <action>seek</action>
+                <texturesliderbar colordiffuse="$VAR[Color_OSD_Progress_Bar_Background]">osd/slider_bg.png</texturesliderbar>
+                <textureslidernib colordiffuse="ffededed">osd/slider_nib.png</textureslidernib>
+
+                <textureslidernibfocus />
+                <!-- <textureslidernibfocus colordiffuse="ffededed">osd/slider_nib.png</textureslidernibfocus> -->
+            </control>
+        </control>
     </controls>
 </window>

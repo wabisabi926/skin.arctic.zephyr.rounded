@@ -3,14 +3,11 @@
     <defaultcontrol always="true">555</defaultcontrol>
 
     <onload>SetProperty(OSDVideo_Show_INFO,1,Home)</onload>
+    <onload>SetProperty(OSDVideo_Show_PLOT,1,Home)</onload>
+
     <onload>SetProperty(OSDVideo_DIALOG_FULL_SCREEN_INFO,1,Home)</onload>
 
     <onload condition="String.IsEmpty(Window(Home).Property(OSDVideo_DIALOG_VIDEO_INFO)) + Skin.HasSetting(osd.open.auto.pause) + Player.HasMedia + Player.HasVideo + !Player.Paused + !String.IsEmpty(VideoPlayer.DBID)">PlayerControl(Play)</onload>
-
-    <onload condition="String.IsEmpty(Window(Home).Property(OSDVideo_DIALOG_VIDEO_INFO)) + Skin.HasSetting(show.osd.info.with.plot) + VideoPlayer.IsFullscreen">SetProperty(OSDVideo_Show_PLOT,1,Home)</onload>
-    <onload condition="String.IsEmpty(Window(Home).Property(OSDVideo_DIALOG_VIDEO_INFO)) + Skin.HasSetting(show.osd.info.with.plot) + VideoPlayer.IsFullscreen + !Control.IsVisible(9804)">SetFocus(555)</onload>
-    <onload condition="String.IsEmpty(Window(Home).Property(OSDVideo_DIALOG_VIDEO_INFO)) + Skin.HasSetting(show.osd.info.with.plot) + VideoPlayer.IsFullscreen + Control.IsVisible(9804)">SetFocus(9804)</onload>
-    <onload condition="String.IsEmpty(Window(Home).Property(OSDVideo_DIALOG_VIDEO_INFO)) + Skin.HasSetting(show.osd.info.with.plot) + VideoPlayer.IsFullscreen + Control.IsVisible(9804)">AlarmClock(Check2,SetProperty(OSDVideo_Show_SCROLLBAR_FOCUS_PLOT,1,Home),00:01,silent)</onload>
 
     <onunload>ClearProperty(OSDVideo_Show_INFO,Home)</onunload>
     <onunload>ClearProperty(OSDVideo_Show_PLOT,Home)</onunload>
@@ -24,46 +21,24 @@
         <control type="button" id="555">
             <include>Def_Hidden_Button</include>
 
-            <!-- ON LEFT -->
+            <!-- SELECT SCROLLBAR -->
+
+            <onup condition="String.IsEmpty(Window(Home).Property(OSDVideo_DIALOG_VIDEO_INFO)) + Control.IsVisible(9804)">SetFocus(9804)</onup>
+            <onup condition="String.IsEmpty(Window(Home).Property(OSDVideo_DIALOG_VIDEO_INFO)) + Control.IsVisible(9804)">AlarmClock(Check2,SetProperty(OSDVideo_Show_SCROLLBAR_FOCUS_PLOT,1,Home),00:01,silent)</onup>
+
+            <!-- CLOSE -->
 
             <onleft>Close</onleft>
-            <onleft condition="Skin.HasSetting(osd.open.auto.pause) + Player.HasMedia + Player.HasVideo + !Player.Paused + !String.IsEmpty(VideoPlayer.DBID)">PlayerControl(Play)</onleft>
-
-            <!-- ON RIGHT -->
-
             <onright>Close</onright>
-            <onright condition="Skin.HasSetting(osd.open.auto.pause) + Player.HasMedia + Player.HasVideo + !Player.Paused + !String.IsEmpty(VideoPlayer.DBID)">PlayerControl(Play)</onright>
-
-            <!-- ON UP - Show plot disable -->
-
-            <onup condition="String.IsEmpty(Window(Home).Property(OSDVideo_DIALOG_VIDEO_INFO)) + String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">SetProperty(OSDVideo_Show_PLOT,1,Home)</onup>
-            <onup condition="String.IsEmpty(Window(Home).Property(OSDVideo_DIALOG_VIDEO_INFO)) + String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT)) + Control.IsVisible(9804)">SetFocus(9804)</onup>
-            <onup condition="String.IsEmpty(Window(Home).Property(OSDVideo_DIALOG_VIDEO_INFO)) + String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT)) + Control.IsVisible(9804)">AlarmClock(Check2,SetProperty(OSDVideo_Show_SCROLLBAR_FOCUS_PLOT,1,Home),00:01,silent)</onup>
-
-
-            <onfocus condition="!Skin.HasSetting(show.osd.info.with.plot) + !String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">ClearProperty(OSDVideo_Show_PLOT,Home)</onfocus>
-            <onfocus condition="Skin.HasSetting(show.osd.info.with.plot) + !String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT)) + !String.IsEmpty(Window(Home).Property(OSDVideo_Show_SCROLLBAR_FOCUS_PLOT))">ClearProperty(OSDVideo_Show_PLOT,Home)</onfocus>
-
-            <!-- ON DOWN - 1 - Hide plot + auto playing -->
-
-            <ondown condition="!String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">ClearProperty(OSDVideo_Show_PLOT,Home)</ondown>
-            <ondown condition="!String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT)) + Skin.HasSetting(osd.open.auto.pause) + Player.Paused + VideoPlayer.IsFullscreen + !String.IsEmpty(VideoPlayer.DBID)">PlayerControl(Play)</ondown>
-
-            <ondown condition="String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">Close</ondown>
-
-            <!-- ON CLICK -->
-
-            <onclick>Close</onclick>
-            <!-- <onclick>SetProperty(OSDVideo_Show_INFO,1,Home)</onclick> -->
-            <onclick>ActivateWindow(videoosd)</onclick>
-
-            <!-- ON FOCUS -->
+            <ondown>Close</ondown>
 
             <onfocus condition="!String.IsEmpty(Window(Home).Property(OSDVideo_DIALOG_VIDEO_INFO))">Close</onfocus>
-
-            <onfocus condition="!String.IsEmpty(Window(Home).Property(OSDVideo_DIALOG_VIDEO_INFO)) + Player.Paused + Skin.HasSetting(osd.open.auto.pause)">PlayerControl(Play)</onfocus>
-
             <onfocus condition="!String.IsEmpty(Window(Home).Property(OSDVideo_DIALOG_VIDEO_INFO)) + Player.Paused + Skin.HasSetting(osd.open.auto.pause)">ClearProperty(OSDVideo_DIALOG_VIDEO_INFO,Home)</onfocus>
+
+            <!-- CLOSE and OPEN VIDEO OSD -->
+
+            <onclick>Close</onclick>
+            <onclick>ActivateWindow(videoosd)</onclick>
         </control>
 
         <!-- PLOT -->
