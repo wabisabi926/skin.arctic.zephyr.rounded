@@ -836,17 +836,20 @@
 
             <align>left</align>
 
-            <include content="Def_Width" condition="Skin.HasSetting(show.osd.video.numeric.rating) + !Skin.HasSetting(show.osd.video.flags.icons)">
-                <param name="width" value="1220" />
+            <include content="Def_Width" condition="!Skin.HasSetting(show.osd.video.rating) + !Skin.HasSetting(show.osd.video.flags.icons)">
+                <param name="width" value="1270" />
             </include>
-            <include content="Def_Width" condition="!Skin.HasSetting(show.osd.video.numeric.rating) + !Skin.HasSetting(show.osd.video.flags.icons)">
-                <param name="width" value="1080" />
+
+            <include content="Def_Width" condition="Skin.HasSetting(show.osd.video.rating) + !Skin.HasSetting(show.osd.video.numeric.rating) + !Skin.HasSetting(show.osd.video.flags.icons)">
+                <param name="width" value="1210" />
             </include>
-            <include content="Def_Width" condition="Skin.HasSetting(show.osd.video.numeric.rating) + Skin.HasSetting(show.osd.video.flags.icons)">
-                <param name="width" value="770" />
+
+            <include content="Def_Width" condition="!Skin.HasSetting(show.osd.video.rating) + Skin.HasSetting(show.osd.video.flags.icons)">
+                <param name="width" value="1100" />
             </include>
-            <include content="Def_Width" condition="!Skin.HasSetting(show.osd.video.numeric.rating) + Skin.HasSetting(show.osd.video.flags.icons)">
-                <param name="width" value="630" />
+
+            <include content="Def_Width" condition="Skin.HasSetting(show.osd.video.rating) + !Skin.HasSetting(show.osd.video.numeric.rating) + Skin.HasSetting(show.osd.video.flags.icons)">
+                <param name="width" value="940" />
             </include>
 
             <control type="label" description="Show">
