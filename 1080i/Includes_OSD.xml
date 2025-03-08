@@ -816,6 +816,50 @@
 
     <!-- OSD - DEF -->
 
+    <include name="Def_OSD_Video_Main_Title_Clearlogo">
+
+        <!-- LEFT - CLEARLOGO -->
+
+        <control type="image">
+            <bottom>90</bottom>
+            <height>ClearLogoTitleMaxHeight</height>
+            <width>ClearLogoTitleMaxWidth</width>
+            <texture>$VAR[Image_Crop_ClearLogo_Player]</texture>
+            <aspectratio align="left" aligny="bottom">keep</aspectratio>
+            <visible>Skin.HasSetting(show.osd.video.clearlogo) + $EXP[Title_Clearlogo_Player_Available]</visible>
+        </control>
+
+        <!-- LEFT - MAIN TITLE - MOVIES INFO -->
+
+        <control type="group">
+            <visible>!Skin.HasSetting(show.osd.video.clearlogo) | [Skin.HasSetting(show.osd.video.clearlogo) + !$EXP[Title_Clearlogo_Player_Available]] </visible>
+
+            <align>left</align>
+
+            <include content="Def_Width" condition="Skin.HasSetting(show.osd.video.numeric.rating) + !Skin.HasSetting(show.osd.video.flags.icons)">
+                <param name="width" value="1220" />
+            </include>
+            <include content="Def_Width" condition="!Skin.HasSetting(show.osd.video.numeric.rating) + !Skin.HasSetting(show.osd.video.flags.icons)">
+                <param name="width" value="1080" />
+            </include>
+            <include content="Def_Width" condition="Skin.HasSetting(show.osd.video.numeric.rating) + Skin.HasSetting(show.osd.video.flags.icons)">
+                <param name="width" value="770" />
+            </include>
+            <include content="Def_Width" condition="!Skin.HasSetting(show.osd.video.numeric.rating) + Skin.HasSetting(show.osd.video.flags.icons)">
+                <param name="width" value="630" />
+            </include>
+
+            <control type="label" description="Show">
+                <bottom>85</bottom>
+                <height>40</height>
+                <font>LargeNew</font>
+                <textcolor>$VAR[Color_OSD_Panel_White100]</textcolor>
+                <label>$VAR[Label_OSD_Title_Big]</label>
+                <include condition="Skin.HasSetting(labels.autoscroll)">LabelScroll</include>
+            </control>
+        </control>
+    </include>
+
     <include name="Def_OSD_DiscArt">
         <control type="image">
             <visible>!Window.IsVisible(DialogBusy.xml)</visible>
@@ -945,6 +989,12 @@
 
     <include name="Def_OSD_UpDown_Video_Info">
 
+        <!-- CLOSE INFO  -->
+
+        <onfocus>ClearProperty(OSDVideo_Show_PLOT,Home)</onfocus>
+        <onfocus>ClearProperty(OSDVideo_Show_INFO,Home)</onfocus>
+        <onfocus>ClearProperty(OSDVideo_Show_INFO,Home)</onfocus>
+
         <!-- SELECT BUTTON SLIDER VIDEO -->
 
         <onup>8207</onup>
@@ -1030,9 +1080,6 @@
             <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
             <include>Def_OSD_UpDown_Video_Info</include>
             <onclick>PlayerControl(Rewind)</onclick>
-            <onfocus>ClearProperty(OSDVideo_Show_PLOT,Home)</onfocus>
-            <onfocus condition="Skin.HasSetting(show.osd.info.with.plot) + !String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">ClearProperty(OSDVideo_Show_INFO,Home)</onfocus>
-            <onfocus condition="Skin.HasSetting(show.osd.info.on.pause) + !String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">ClearProperty(OSDVideo_Show_INFO,Home)</onfocus>
             <enable>Player.SeekEnabled</enable>
             <animation effect="fade" start="100" end="33" time="100" condition="!Player.PauseEnabled">Conditional</animation>
         </include>
@@ -1057,9 +1104,6 @@
             <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
             <include>Def_OSD_UpDown_Video_Info</include>
             <onclick>PlayerControl(Stop)</onclick>
-            <onfocus>ClearProperty(OSDVideo_Show_PLOT,Home)</onfocus>
-            <onfocus condition="Skin.HasSetting(show.osd.info.with.plot) + !String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">ClearProperty(OSDVideo_Show_INFO,Home)</onfocus>
-            <onfocus condition="Skin.HasSetting(show.osd.info.on.pause) + !String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">ClearProperty(OSDVideo_Show_INFO,Home)</onfocus>
         </include>
 
         <include content="Def_OSD_Button">
@@ -1415,7 +1459,7 @@
 
     <include name="OSD_Video">
         <control type="group">
-            <animation effect="fade" start="100" end="0" time="150" condition="[Window.IsVisible(DialogSlider.xml) | [Skin.HasSetting(hide.osd.video.on.pause) + Player.Paused] + String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))] + !Player.Seeking + !Player.Forwarding + !Player.Rewinding + !Window.IsVisible(videoosd)">Conditional</animation>
+            <animation effect="fade" start="100" end="0" time="150" condition="[Window.IsVisible(DialogSlider.xml) | [Skin.HasSetting(hide.osd.video.on.pause) + Player.Paused]] + !Player.Seeking + !Player.Forwarding + !Player.Rewinding + !Window.IsVisible(videoosd)">Conditional</animation>
 
             <animation effect="fade" start="100" end="0" time="150" condition="Player.HasGame | Window.IsVisible(DialogPlayerProcessInfo.xml) | Window.IsVisible(DialogSlider.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(DialogSettings.xml) | Window.IsVisible(VideoOSDBookmarks.xml) | Window.IsVisible(Custom_1121_OSD_Settings_Video.xml) | Window.IsVisible(DialogSubtitles.xml) | Window.IsVisible(DialogPVRChannelsOSD.xml) | Window.IsVisible(DialogPVRChannelGuide.xml)">Conditional</animation>
 
@@ -1648,51 +1692,11 @@
         <!-- LEFT SIDE -->
 
         <control type="group">
-            <animation effect="slide" start="0,0" end="-318,0" time="150" condition="!String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">Conditional</animation>
-            <animation effect="slide" end="0,0" start="-318,0" time="150" condition="!String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO)) + String.IsEmpty(Window(Home).Property(OSDVideo_DIALOG_FULL_SCREEN_INFO)) + ![Player.Paused + Skin.HasSetting(show.osd.info.on.pause) + !Window.IsVisible(videoosd)] + String.IsEmpty(Window(Home).Property(OSDVideo_Show_AT_START_INFO))">Conditional</animation>
-
             <left>0</left>
 
-            <!-- LEFT - CLEARLOGO -->
+            <!-- LEFT - MAIN TITLE / CLEARLOGO -->
 
-            <control type="image">
-                <bottom>90</bottom>
-                <height>ClearLogoTitleMaxHeight</height>
-                <width>ClearLogoTitleMaxWidth</width>
-                <texture>$VAR[Image_Crop_ClearLogo_Player]</texture>
-                <aspectratio align="left" aligny="bottom">keep</aspectratio>
-                <visible>Skin.HasSetting(show.osd.video.clearlogo) + $EXP[Title_Clearlogo_Player_Available]</visible>
-            </control>
-
-            <!-- LEFT - MAIN TITLE - MOVIES INFO -->
-
-            <control type="group">
-                <visible>!Skin.HasSetting(show.osd.video.clearlogo) | [Skin.HasSetting(show.osd.video.clearlogo) + !$EXP[Title_Clearlogo_Player_Available]] </visible>
-
-                <align>left</align>
-
-                <include content="Def_Width" condition="Skin.HasSetting(show.osd.video.numeric.rating) + !Skin.HasSetting(show.osd.video.flags.icons)">
-                    <param name="width" value="1220" />
-                </include>
-                <include content="Def_Width" condition="!Skin.HasSetting(show.osd.video.numeric.rating) + !Skin.HasSetting(show.osd.video.flags.icons)">
-                    <param name="width" value="1080" />
-                </include>
-                <include content="Def_Width" condition="Skin.HasSetting(show.osd.video.numeric.rating) + Skin.HasSetting(show.osd.video.flags.icons)">
-                    <param name="width" value="770" />
-                </include>
-                <include content="Def_Width" condition="!Skin.HasSetting(show.osd.video.numeric.rating) + Skin.HasSetting(show.osd.video.flags.icons)">
-                    <param name="width" value="630" />
-                </include>
-
-                <control type="label" description="Show">
-                    <bottom>85</bottom>
-                    <height>40</height>
-                    <font>LargeNew</font>
-                    <textcolor>$VAR[Color_OSD_Panel_White100]</textcolor>
-                    <label>$VAR[Label_OSD_Title_Big]</label>
-                    <include condition="Skin.HasSetting(labels.autoscroll)">LabelScroll</include>
-                </control>
-            </control>
+            <include>Def_OSD_Video_Main_Title_Clearlogo</include>
 
             <!-- LEFT - SUB TITLE - INFO - MOVIES / TVSHOWS  -->
 
@@ -2078,12 +2082,13 @@
             <!-- RIGHT - INFO -->
 
             <control type="grouplist">
-                <right>0</right>
                 <centertop>122</centertop>
+                <align>right</align>
+                <right>0</right>
                 <width>100%</width>
                 <height>64</height>
+
                 <orientation>horizontal</orientation>
-                <align>right</align>
 
                 <!-- <control type="label" description="Chapter-OSD"> -->
                     <!-- <left>380</left> -->
@@ -2095,15 +2100,12 @@
                     <!-- <label>$INFO[Player.Chapter]$INFO[Player.ChapterCount, / ,  •  ]</label> -->
                     <!-- <visible>!VideoPlayer.Content(livetv) + Player.HasVideo + !String.IsEqual(Player.ChapterCount,0) + !String.IsEqual(Player.ChapterCount,00)</visible> -->
                 <!-- </control> -->
-
-                <control type="label" description="Total Time">
+                <control type="label" description="Status">
                     <width>auto</width>
-                    <align>right</align>
                     <height>40</height>
                     <font>InfoNetflix</font>
                     <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
-                    <label>$INFO[Player.Time]$INFO[Player.Duration,  /  ]</label>
-                    <visible>!VideoPlayer.Content(livetv) + String.IsEmpty(Player.SeekNumeric)</visible>
+                    <label>$VAR[Label_OSD_Player_Video_Status,,  •  ]</label>
                 </control>
                 <control type="label" description="Total Time">
                     <width>auto</width>
@@ -2111,17 +2113,7 @@
                     <height>40</height>
                     <font>InfoNetflix</font>
                     <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
-                    <label>$INFO[Player.SeekNumeric(hh:mm:ss)]$INFO[Player.Duration,  /  ]</label>
-                    <visible>!VideoPlayer.Content(livetv) + !String.IsEmpty(Player.SeekNumeric)</visible>
-                </control>
-                <control type="label" description="Total Time">
-                    <width>auto</width>
-                    <align>right</align>
-                    <height>40</height>
-                    <font>InfoNetflix</font>
-                    <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
-                    <label>$INFO[PVR.EpgEventElapsedTime]$INFO[PVR.EpgEventDuration,  /  ]</label>
-                    <visible>VideoPlayer.Content(livetv)</visible>
+                    <label>$VAR[Label_OSD_Time]</label>
                 </control>
             </control>
         </control>
@@ -2131,7 +2123,7 @@
 
     <include name="OSD_Video_SeekBar">
         <control type="group">
-            <animation effect="fade" start="100" end="0" time="150" condition="[Window.IsVisible(DialogSlider.xml) | [Skin.HasSetting(hide.osd.video.on.pause) + Player.Paused + String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT)) | [!Player.Paused + !Window.IsVisible(videoosd)]] + !Window.IsVisible(DialogFullScreenInfo.xml)] + !Player.Seeking + !Player.Forwarding + !Player.Rewinding + !Window.IsVisible(videoosd)">Conditional</animation>
+            <animation effect="fade" start="100" end="0" time="150" condition="[Window.IsVisible(DialogSlider.xml) | [Skin.HasSetting(hide.osd.video.on.pause) + Player.Paused + String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT)) | [!Player.Paused + !Window.IsVisible(videoosd) + String.IsEmpty(Window(Home).Property(OSDVideo_Show_AT_START_INFO))]] + !Window.IsVisible(DialogFullScreenInfo.xml)] + !Player.Seeking + !Player.Forwarding + !Player.Rewinding + !Window.IsVisible(videoosd)">Conditional</animation>
 
             <animation effect="fade" start="100" end="0" time="150" condition="Window.IsVisible(DialogPlayerProcessInfo.xml)">Conditional</animation>
 
@@ -2179,12 +2171,12 @@
                     <!-- ARTWORK -->
 
                     <control type="group">
-                        <animation effect="slide" end="0,0" start="-318,0" time="150" condition="!String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO)) + String.IsEmpty(Window(Home).Property(OSDVideo_DIALOG_FULL_SCREEN_INFO)) + ![Player.Paused + Skin.HasSetting(show.osd.info.on.pause) + !Window.IsVisible(videoosd)] + String.IsEmpty(Window(Home).Property(OSDVideo_Show_AT_START_INFO))">Conditional</animation>
+                        <visible>!String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))</visible>
 
-                        <left>OSD_SidePad</left>
-                        <right>OSD_SidePad</right>
                         <top>-10</top>
                         <bottom>50</bottom>
+                        <left>OSD_SidePad</left>
+                        <right>OSD_SidePad</right>
 
                         <!-- POSTER -->
 
@@ -2211,7 +2203,6 @@
                                 <texture diffuse="diffuse/poster_w270_h390.png">$VAR[Image_Poster_Player]</texture>
                                 <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
                             </control>
-
                         </control>
 
                         <!-- FANART -->
@@ -2280,23 +2271,8 @@
                         <top>-10</top>
                         <bottom>50</bottom>
 
-                        <!-- WITH POSTER / THUMB -->
+                        <include>OSD_Video_Info</include>
 
-                        <control type="group">
-                            <left>318</left>
-                            <control type="group">
-                                <visible>!String.IsEmpty(Player.Art(tvshow.poster)) | !String.IsEmpty(Player.Art(poster)) | !String.IsEmpty(Player.Art(thumb))</visible>
-                                <include>OSD_Video_Info</include>
-                            </control>
-                        </control>
-
-                        <!-- WITHOUT POSTER / THUMB -->
-
-                        <control type="group">
-                            <left>0</left>
-                            <visible>String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster)) + String.IsEmpty(Player.Art(thumb))</visible>
-                            <include>OSD_Video_Info</include>
-                        </control>
                     </control>
                 </control>
 
@@ -2324,48 +2300,9 @@
                         <bottom>20</bottom>
                         <left>OSD_SidePad</left>
 
-                        <!-- CLEARLOGO -->
+                        <!-- MAIN TITLE / CLEARLOGO -->
 
-                        <control type="image">
-                            <bottom>90</bottom>
-                            <height>ClearLogoTitleMaxHeight</height>
-                            <width>ClearLogoTitleMaxWidth</width>
-                            <texture>$VAR[Image_Crop_ClearLogo_Player]</texture>
-                            <aspectratio align="left" aligny="bottom">keep</aspectratio>
-                            <visible>Skin.HasSetting(show.osd.video.clearlogo) + $EXP[Title_Clearlogo_Player_Available]</visible>
-                        </control>
-
-                        <!-- MAIN TITLE -->
-
-                        <control type="group">
-                            <visible>!Skin.HasSetting(show.osd.video.clearlogo) | [Skin.HasSetting(show.osd.video.clearlogo) + !$EXP[Title_Clearlogo_Player_Available]] </visible>
-
-                            <include>Animation_OSD_Fade_Label</include>
-
-                            <align>left</align>
-
-                            <include content="Def_Width" condition="Skin.HasSetting(show.osd.video.numeric.rating) + !Skin.HasSetting(show.osd.video.flags.icons)">
-                                <param name="width" value="1420" />
-                            </include>
-                            <include content="Def_Width" condition="!Skin.HasSetting(show.osd.video.numeric.rating) + !Skin.HasSetting(show.osd.video.flags.icons)">
-                                <param name="width" value="1280" />
-                            </include>
-                            <include content="Def_Width" condition="Skin.HasSetting(show.osd.video.numeric.rating) + Skin.HasSetting(show.osd.video.flags.icons)">
-                                <param name="width" value="970" />
-                            </include>
-                            <include content="Def_Width" condition="!Skin.HasSetting(show.osd.video.numeric.rating) + Skin.HasSetting(show.osd.video.flags.icons)">
-                                <param name="width" value="830" />
-                            </include>
-
-                            <control type="label" description="Show">
-                                <bottom>85</bottom>
-                                <height>40</height>
-                                <font>LargeNew</font>
-                                <textcolor>$VAR[Color_OSD_Panel_White100]</textcolor>
-                                <label>$VAR[Label_OSD_Title_Big]</label>
-                                <include condition="Skin.HasSetting(labels.autoscroll)">LabelScroll</include>
-                            </control>
-                        </control>
+                        <include>Def_OSD_Video_Main_Title_Clearlogo</include>
 
                         <!-- SUB TITLE -->
 
@@ -2444,15 +2381,6 @@
                             <orientation>horizontal</orientation>
                             <align>right</align>
 
-                            <!-- <control type="label" description="Chapter-OSD"> -->
-                                <!-- <width>auto</width> -->
-                                <!-- <height>40</height> -->
-                                <!-- <font>Tiny</font> -->
-                                <!-- <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor> -->
-                                <!-- <label>$INFO[Player.Chapter]$INFO[Player.ChapterCount, / ,  •  ]</label> -->
-                                <!-- <visible>!VideoPlayer.Content(livetv) + Player.HasVideo + !String.IsEqual(Player.ChapterCount,0) + !String.IsEqual(Player.ChapterCount,00)</visible> -->
-                            <!-- </control> -->
-
                             <control type="label" description="Duration Total Time">
                                 <width>auto</width>
                                 <bottom>30</bottom>
@@ -2461,38 +2389,15 @@
                                 <font>InfoNetflix</font>
                                 <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
                                 <label>$VAR[Label_OSD_Time]</label>
-                                <visible>String.IsEmpty(Player.SeekNumeric) + !VideoPlayer.Content(livetv)</visible>
                             </control>
-                            <control type="label" description="Duration Total Time">
-                                <width>auto</width>
-                                <bottom>30</bottom>
-                                <height>40</height>
-                                <align>right</align>
-                                <font>InfoNetflix</font>
-                                <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
-                                <label>$INFO[Player.SeekNumeric(hh:mm:ss)]$INFO[Player.Duration,  /  ,]</label>
-                                <visible>!String.IsEmpty(Player.SeekNumeric) + !VideoPlayer.Content(livetv)</visible>
-                            </control>
-                            <!-- <control type="label" description="Duration Total Time"> -->
+                            <!-- <control type="label" description="Chapter-OSD"> -->
                                 <!-- <width>auto</width> -->
-                                <!-- <bottom>30</bottom> -->
-                                <!-- <align>right</align> -->
                                 <!-- <height>40</height> -->
-                                <!-- <font>InfoNetflix</font> -->
+                                <!-- <font>Tiny</font> -->
                                 <!-- <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor> -->
-                                <!-- <label>$INFO[PVR.EpgEventFinishTime]</label> -->
-                                <!-- <visible>VideoPlayer.Content(livetv)</visible> -->
+                                <!-- <label>$INFO[Player.Chapter]$INFO[Player.ChapterCount, / ,  •  ]</label> -->
+                                <!-- <visible>!VideoPlayer.Content(livetv) + Player.HasVideo + !String.IsEqual(Player.ChapterCount,0) + !String.IsEqual(Player.ChapterCount,00)</visible> -->
                             <!-- </control> -->
-                            <control type="label" description="Total Time">
-                                <width>auto</width>
-                                <bottom>30</bottom>
-                                <align>right</align>
-                                <height>40</height>
-                                <font>InfoNetflix</font>
-                                <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
-                                <label>$INFO[PVR.EpgEventElapsedTime]$INFO[PVR.EpgEventDuration,  /  ,]</label>
-                                <visible>VideoPlayer.Content(livetv)</visible>
-                            </control>
                         </control>
                     </control>
                 </control>
@@ -2563,10 +2468,11 @@
             <!-- OSD MUSIC BACKGROUND -->
 
             <control type="group">
-                <!-- <visible>!Window.IsVisible(musicosd)</visible> -->
 
                 <!-- <visible>Player.ShowInfo | Player.Seeking | Player.HasPerformedSeek(3) | Player.Paused | Player.Forwarding | Player.Rewinding</visible> -->
+
                 <visible>!Window.IsVisible(script-cu-lrclyrics-main.xml) | [Window.IsVisible(script-cu-lrclyrics-main.xml) + !Skin.HasSetting(hideseekbaronlyrics)]</visible>
+
                 <visible>Window.IsVisible(script-cu-lrclyrics-main.xml) | Player.Seeking | Player.HasPerformedSeek(3) | Player.Paused | Player.Forwarding | Player.Rewinding | Player.ShowInfo | Window.IsVisible(MusicOSD.xml)</visible>
 
                 <animation effect="fade" start="0" end="100" time="250">Visible</animation>

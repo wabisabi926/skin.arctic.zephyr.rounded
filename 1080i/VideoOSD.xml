@@ -10,9 +10,6 @@
     <onload>ClearProperty(OSDVideo_DIALOG_VIDEO_INFO,Home)</onload>
     <onload>ClearProperty(wikipedia,Home)</onload>
 
-    <!-- <onload condition="Skin.HasSetting(show.osd.info.with.plot) + VideoPlayer.IsFullscreen">SetProperty(OSDVideo_Show_PLOT,1,Home)</onload> -->
-    <!-- <onload condition="Skin.HasSetting(show.osd.info.with.plot) + VideoPlayer.IsFullscreen + Control.IsVisible(9805)">SetFocus(9805)</onload> -->
-
     <onunload>ClearProperty(OSDVideo_DONT_AUTO_CLOSE,Home)</onunload>
     <onunload>ClearProperty(OSDVideo_Show_INFO,Home)</onunload>
     <onunload>ClearProperty(OSDVideo_Show_PLOT,Home)</onunload>
@@ -42,19 +39,20 @@
         <control type="button" id="556">
             <include>Def_Hidden_Button</include>
             <onfocus condition="!String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">ClearProperty(OSDVideo_Show_PLOT,Home)</onfocus>
-            <onfocus condition="Skin.HasSetting(show.osd.info.with.plot) + !String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO))">ClearProperty(OSDVideo_Show_INFO,Home)</onfocus>
+            <onfocus condition="!String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO))">ClearProperty(OSDVideo_Show_INFO,Home)</onfocus>
             <onfocus condition="!String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">SetFocus(14)</onfocus>
 
             <ondown condition="!String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">ClearProperty(OSDVideo_Show_PLOT,Home)</ondown>
-            <ondown condition="Skin.HasSetting(show.osd.info.with.plot) + !String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO))">ClearProperty(OSDVideo_Show_INFO,Home)</ondown>
+            <ondown condition="!String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO))">ClearProperty(OSDVideo_Show_INFO,Home)</ondown>
             <ondown condition="!String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">SetFocus(14)</ondown>
         </control>
 
         <!-- SLIDER VIDEO  -->
-        
+
         <control type="button" id="8207">
             <include>Def_Hidden_Button</include>
-            <onup>14</onup>
+            <onup>SetProperty(OSDVideo_Show_INFO,1,Home)</onup>
+            <onup>SetProperty(OSDVideo_Show_PLOT,1,Home)</onup>
             <ondown>SetFocus(14)</ondown>
             <onleft>StepBack</onleft>
             <onright>StepForward</onright>
