@@ -235,6 +235,7 @@
         <value condition="String.IsEqual(ListItem.DBType,tag)">DefaultTags.png</value>
         <value condition="String.IsEqual(ListItem.DBType,set)">DefaultSets.png</value>
         <value condition="Container.Content(years) + !ListItem.IsParentFolder">DefaultYear.png</value>
+        <value condition="Container.Content(events) + ListItem.IsParentFolder">defaultpvrtimerrules.png</value>
 
         <value condition="!String.IsEmpty(ListItem.EpgEventIcon) + String.StartsWith(ListItem.FolderPath,pvr://timers)">$INFO[ListItem.EpgEventIcon]</value>
         <value>$INFO[ListItem.Icon]</value>
@@ -424,10 +425,9 @@
     </variable>
 
     <variable name="Image_OSD_Art_Music_Player">
-        <value condition="!String.IsEmpty(Player.Art(clearlogo)) + Skin.HasSetting(show.osd.music.clearlogo)">$INFO[Player.Art(clearlogo)]</value>
-        <value condition="!String.IsEmpty(Player.Art(artist.clearlogo)) + Skin.HasSetting(show.osd.music.clearlogo)">$INFO[Player.Art(artist.clearlogo)]</value>
-        <value condition="!String.IsEmpty(Player.Art(clearart)) + Skin.HasSetting(show.osd.music.clearart)">$INFO[Player.Art(clearart)]</value>
-        <value condition="!String.IsEmpty(Player.Art(artist.clearart)) + Skin.HasSetting(show.osd.music.clearart)">$INFO[Player.Art(artist.clearart)]</value>
+        <value condition="Skin.HasSetting(enabled.tmdb.helper.crop) + !String.IsEmpty(Window(Home).Property(TMDBHelper.Player.CropImage))">$INFO[Window(Home).Property(TMDBHelper.Player.CropImage)]</value>
+        <value condition="!String.IsEmpty(Player.Art(artist.clearlogo))">$INFO[Player.Art(artist.clearlogo)]</value>
+        <value condition="!String.IsEmpty(Player.Art(clearlogo))">$INFO[Player.Art(clearlogo)]</value>
     </variable>
 
     <variable name="Image_Music">

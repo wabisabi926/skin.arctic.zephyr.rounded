@@ -92,15 +92,13 @@
                     <include>Def_Context_Menu_Label</include>
                     <label>31052</label>
                 </control>
-                <control type="button" id="122" description="SELECT ART">
+                <control type="radiobutton" id="120">
+                    <description>Filter</description>
                     <include>Def_Button_Gradient_Context</include>
+                    <label>31248</label>
                     <align>left</align>
-                    <label>$LOCALIZE[31413]:</label>
-                    <label2>$VAR[Label_Setting_OSD_Music_Art]</label2>
-                    <onclick condition="!Skin.HasSetting(show.osd.music.clearlogo) + !Skin.HasSetting(show.osd.music.clearart)">Skin.ToggleSetting(show.osd.music.clearlogo)</onclick>
-                    <onclick condition="Skin.HasSetting(show.osd.music.clearlogo)">Skin.ToggleSetting(show.osd.music.clearart)</onclick>
-                    <onclick condition="Skin.HasSetting(show.osd.music.clearlogo)">Skin.Reset(show.osd.music.clearlogo)</onclick>
-                    <onclick condition="Skin.HasSetting(show.osd.music.clearart)">Skin.Reset(show.osd.music.clearart)</onclick>
+                    <selected>Skin.HasSetting(show.osd.music.clearlogo)</selected>
+                    <onclick>Skin.ToggleSetting(show.osd.music.clearlogo)</onclick>
                 </control>
                 <control type="radiobutton" id="107" description="Match theme">
                     <include>Def_Button_Gradient_Context</include>
