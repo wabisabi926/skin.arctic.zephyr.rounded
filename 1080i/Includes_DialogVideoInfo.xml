@@ -1407,7 +1407,7 @@
                         <param name="arrowtop" value="342" />
                         <param name="arrowright" value="155" />
                         <param name="fallbackpicture" value="DefaultActor.png" />
-                        <param name="visible" value="String.IsEmpty(Window(Home).Property(moviecontent)) + ![Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hide.button.video.wiki)]" />
+                        <param name="visible" value="!Skin.HasSetting(filter.video.cast.on.line) + String.IsEmpty(Window(Home).Property(moviecontent)) + ![Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hide.button.video.wiki)]" />
                         <param name="visible.layouts" value="[Control.HasFocus(50) | Control.HasFocus(507) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Container(9999).IsUpdating ]]] + !Window.IsVisible(DialogVideoManager.xml) + !Window.IsVisible(DialogSelect.xml) + !Window.IsVisible(FileBrowser.xml)" />
                         <param name="storageicon.backgroundlist" value="false" />
                         <param name="animation" value="Animation_cast" />
@@ -1444,13 +1444,13 @@
 
                     <!-- CAST TMDB ON LINE / SEASON ONLY -->
 
-                    <include content="Def_Layout_Dialog_Info_Video_List_Cast_9050" condition="[String.IsEmpty(ListItem.DBID) | String.IsEqual(ListItem.DBType,season)] + !String.IsEqual(ListItem.DBType,set)">
+                    <include content="Def_Layout_Dialog_Info_Video_List_Cast_9050" condition="!String.IsEqual(ListItem.DBType,set)">
                         <param name="arrowleft" value="-598" />
                         <param name="arrowtop" value="342" />
                         <param name="arrowright" value="155" />
                         <param name="condition.includecontent" value="true" />
                         <param name="fallbackpicture" value="pbtmdb.png" />
-                        <param name="visible" value="String.IsEmpty(Window(Home).Property(moviecontent)) + ![Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hide.button.video.wiki)]" />
+                        <param name="visible" value="Skin.HasSetting(filter.video.cast.on.line) + String.IsEmpty(Window(Home).Property(moviecontent)) + ![Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hide.button.video.wiki)]" />
                         <param name="animation" value="Animation_cast" />
                         <param name="controlid" value="9550" />
                         <param name="ContentToLoad" value="$VAR[Def_List_Cast]" />
@@ -1464,7 +1464,7 @@
                         <param name="thumb" value="false" />
                     </include>
                     <include content="Def_Dialog_Info_List_Updating">
-                        <param name="visible" value="String.IsEmpty(Window(Home).Property(moviecontent)) + [String.IsEmpty(ListItem.DBID) | String.IsEqual(ListItem.DBType,season)] + [Control.HasFocus(8008) | Control.HasFocus(9201) | Control.HasFocus(9078)]" />
+                        <param name="visible" value="String.IsEmpty(Window(Home).Property(moviecontent)) + [Skin.HasSetting(filter.video.cast.on.line) | String.IsEmpty(ListItem.DBID) | String.IsEqual(ListItem.DBType,season)] + [Control.HasFocus(8008) | Control.HasFocus(9201) | Control.HasFocus(9078)]" />
                         <param name="controlid" value="9550" />
                         <param name="centerleft" value="430" />
                     </include>
@@ -1995,6 +1995,9 @@
                 <!-- CAST -->
                 <include content="Furniture_Footer_DialogInfo_Extended"><param name="controlid" value="50" /></include>
 
+                <!-- CAST - ON LINE TMDb  / SEASON -->
+                <include content="Furniture_Footer_DialogInfo_Extended"><param name="controlid" value="9550" /></include>
+
                 <!-- DIRECTOR -->
                 <include content="Furniture_Footer_DialogInfo_Extended" condition="Skin.HasSetting(show.button.video.director)"><param name="controlid" value="9506" /></include>
                 <include content="Furniture_Flags_DialogInfo_Extended" condition="!Skin.HasSetting(hide.furniture.flags)"><param name="controlid" value="9506" /></include>
@@ -2068,14 +2071,6 @@
 
                 <include content="Furniture_Footer_DialogInfo_Extended" condition="String.IsEqual(ListItem.DBType,set)"><param name="controlid" value="9550" /></include>
                 <include content="Furniture_Flags_DialogInfo_Extended" condition="String.IsEqual(ListItem.DBType,set) + !Skin.HasSetting(hide.furniture.flags)"><param name="controlid" value="9550" /></include>
-
-                <!-- CAST - SEASON -->
-
-                <include content="Furniture_Footer_DialogInfo_Extended" condition="String.IsEqual(ListItem.DBType,season)"><param name="controlid" value="9550" /></include>
-
-                <!-- CAST - ON LINE TMDb -->
-
-                <include content="Furniture_Footer_DialogInfo_Extended" condition="String.IsEmpty(ListItem.DBID)"><param name="controlid" value="9550" /></include>
             </control>
         </control>
 

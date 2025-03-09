@@ -1222,6 +1222,10 @@
         <!-- <value condition="String.IsEqual(ListItem.DBType,set)">$INFO[Container(50).NumItems]$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.NumItems),/,] $LOCALIZE[31014]</value> -->
 
         <value condition="Control.HasFocus(50) | Control.HasFocus(507)">$INFO[Container(50).NumItems] $LOCALIZE[344]</value>
+        <value condition="[Control.HasFocus(9550) | Control.HasFocus(95507)] + !String.IsEqual(ListItem.DBType,set)">$INFO[Container(9550).NumItems] $LOCALIZE[344]</value>
+
+        <value condition="String.IsEqual(ListItem.DBType,set) + !Skin.HasSetting(filter.video.only.local)">$INFO[Container(9550).NumItems] $LOCALIZE[342]</value>
+        <value condition="String.IsEqual(ListItem.DBType,set) + Skin.HasSetting(filter.video.only.local)">$INFO[Container(44023).NumItems]$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.NumItems),/,] $LOCALIZE[342]</value>
 
         <!-- <value condition="Container.Content(addons)">$INFO[Container(50).NumItems] $LOCALIZE[344]</value> -->
         <value condition="Control.HasFocus(9013)">$VAR[Path_Wikipedia_Query]</value>
@@ -1268,9 +1272,6 @@
 
 
         <value condition="String.IsEqual(ListItem.Property(item.type),person)">$INFO[ListItem.Property(Gender)] $INFO[ListItem.Property(Department),  •  ,]</value>
-
-        <value condition="String.IsEqual(ListItem.DBType,set) + !Skin.HasSetting(filter.video.only.local)">$INFO[Container(9550).NumItems] $LOCALIZE[342]</value>
-        <value condition="String.IsEqual(ListItem.DBType,set) + Skin.HasSetting(filter.video.only.local)">$INFO[Container(44023).NumItems]$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.NumItems),/,] $LOCALIZE[342]</value>
 
         <!-- 9079 - button season -->
 
