@@ -638,11 +638,6 @@
         <value condition="!String.IsEmpty(ListItem.Genre)">$INFO[ListItem.Genre]</value>
     </variable>
 
-    <variable name="Label_Genre_Dialog_Info">
-        <value condition="!String.IsEmpty(ListItem.Genre)">$INFO[ListItem.Genre]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Genre))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Genre)]</value>
-    </variable>
-
     <variable name="Label_Studio">
         <value condition="$EXP[IsGameMode]">$VAR[Label_Game_Studio]</value>
         <value condition="!String.IsEmpty(ListItem.Studio)">$INFO[ListItem.Studio]</value>
@@ -701,7 +696,7 @@
         <value condition="!String.IsEmpty(ListItem.Rating(imdb))">$INFO[ListItem.Rating(imdb),IMDb ,]$INFO[ListItem.Votes(imdb),  •  , $LOCALIZE[205]]</value>
 
         <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating))">$INFO[Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating),IMDb ,]$INFO[Window(Home).Property(TMDbHelper.ListItem.IMDb_Votes),  •  , $LOCALIZE[205]]</value>
-        <value>$INFO[ListItem.Rating,TMDb ,]$INFO[ListItem.Votes,  •  , $LOCALIZE[205]]</value>
+        <value condition="!String.IsEmpty(ListItem.Rating)">$INFO[ListItem.Rating,TMDb ,]$INFO[ListItem.Votes,  •  , $LOCALIZE[205]]</value>
     </variable>
 
     <variable name="Label_Rating_Imdb_Votes_Top250">
@@ -1506,13 +1501,19 @@
         <!-- <value>$INFO[ListItem.Label2,$LOCALIZE[20347] ,]</value> -->
     </variable>
 
-    <variable name="Label_Dialog_Info_Video_Rating_Tags">
-        <value condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)]">$LOCALIZE[31485]</value>
+    <variable name="Label_Dialog_Info_Video_Genre">
+        <value condition="!String.IsEmpty(ListItem.Genre)">$INFO[ListItem.Genre]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Genre))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Genre)]</value>
+        <value condition="$EXP[IsYoutubeItem]">$LOCALIZE[13280] Youtube</value>
+    </variable>
+
+    <variable name="Label_Dialog_Info_Video_Rating_Label">
+        <value condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,video)]">$LOCALIZE[31485]</value>
         <value>$LOCALIZE[563]</value>
     </variable>
 
-    <variable name="Label_Dialog_Info_Video_Rating_Info">
-        <value condition="String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)">$INFO[ListItem.EndTime]</value>
+    <variable name="Label_Dialog_Info_Video_Rating_Value">
+        <value condition="String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,video)">$INFO[ListItem.EndTime]</value>
         <value condition="ListItem.IsCollection + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Set.Rating))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Rating)] $INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Votes),(, $LOCALIZE[205])]</value>
         <value>$VAR[Label_Rating_And_Votes_Info]</value>
     </variable>
