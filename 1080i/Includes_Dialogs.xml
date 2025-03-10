@@ -1234,8 +1234,8 @@
             <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + String.IsEqual(ListItem.DBType,season)">SetProperty(TMDbHelper.WidgetContainer,9550,Home)</onup>
 
             <!-- Cast list - on line - with TMDb online -->
-            <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + [Skin.HasSetting(filter.video.cast.on.line) | String.IsEmpty(ListItem.DBID)] + [!$EXP[IsAnPlugin] | $EXP[IsTMDbHelper] | $EXP[IsPluginShortlist]]">9550</onup>
-            <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + [Skin.HasSetting(filter.video.cast.on.line) | String.IsEmpty(ListItem.DBID)] + [!$EXP[IsAnPlugin] | $EXP[IsTMDbHelper] | $EXP[IsPluginShortlist]]">SetProperty(TMDbHelper.WidgetContainer,9550,Home)</onup>
+            <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + [Skin.HasSetting(filter.video.cast.on.line) | String.IsEmpty(ListItem.DBID)] + [!$EXP[IsPluginItem] | $EXP[IsTMDbHelperItem] | $EXP[IsPluginShortlist]]">9550</onup>
+            <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + [Skin.HasSetting(filter.video.cast.on.line) | String.IsEmpty(ListItem.DBID)] + [!$EXP[IsPluginItem] | $EXP[IsTMDbHelperItem] | $EXP[IsPluginShortlist]]">SetProperty(TMDbHelper.WidgetContainer,9550,Home)</onup>
 
             <!-- Cast Picture -->
             <onup condition="String.IsEqual(Window(Home).Property(moviecontent),13)">9554</onup>
