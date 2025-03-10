@@ -509,15 +509,21 @@
                 <bottom>$PARAM[bottom]</bottom>
                 <height>8</height>
                 <onup>$PARAM[onup]</onup>
-                <ondown condition="!String.IsEqual(ListItem.Property(item.type),person)">$PARAM[ondown]</ondown>
+
+                <ondown>$PARAM[ondown]</ondown>
                 <ondown>$PARAM[ondown1]</ondown>
                 <ondown>$PARAM[ondown2]</ondown>
-                <ondown condition="String.IsEqual(ListItem.Property(item.type),person)">$PARAM[ondown3]</ondown>
-                <ondown>$PARAM[ondown4]</ondown>
+                <ondown condition="Control.IsVisible(50) | Control.IsVisible(9550)">$PARAM[ondown3]</ondown>
+                <ondown condition="Control.IsVisible(9557)">$PARAM[ondown4]</ondown>
                 <ondown>$PARAM[ondown5]</ondown>
-                <onback condition="!String.IsEqual(ListItem.Property(item.type),person)">$PARAM[onback]</onback>
+
+                <onback>$PARAM[onback]</onback>
                 <onback>$PARAM[onback1]</onback>
-                <onback condition="String.IsEqual(ListItem.Property(item.type),person)">$PARAM[onback2]</onback>
+                <onback>$PARAM[onback2]</onback>
+                <onback condition="Control.IsVisible(50) | Control.IsVisible(9550)">$PARAM[onback3]</onback>
+                <onback condition="Control.IsVisible(9557)">$PARAM[onback4]</onback>
+                <onback>$PARAM[onback5]</onback>
+
                 <orientation>horizontal</orientation>
                 <!-- <showonepage>false</showonepage> -->
 
