@@ -421,21 +421,19 @@
                 <width>2288</width>
                 <height>670</height>
 
-                <!-- Info On line with TMDb  -->
+                <!-- INFO ON LINE WITH TMDB  -->
 
                 <onup condition="Control.HasFocus(50) + !ListItem.IsCollection">SetProperty(down,1)</onup>
                 <onup>$VAR[Path_Actor_Dialog_Info]</onup>
 
-                <!-- Cast Navigation -->
+                <!-- CAST NAVIGATION -->
+
                 <onleft>$PARAM[controlid]</onleft>
                 <onright>$PARAM[controlid]</onright>
 
                 <ondown condition="Control.IsVisible(50)">$PARAM[controlid]7</ondown>
                 <ondown condition="!Control.IsVisible(50)">9000</ondown>
                 <ondown condition="!Control.IsVisible(50)">ClearProperty(view_extended,Home)</ondown>
-
-                <!-- <ondown>9000</ondown> -->
-                <!-- <ondown>SetFocus(50,0,absolute)</ondown> -->
 
                 <onback>9000</onback>
                 <onback>SetFocus(50,0,absolute)</onback>
@@ -656,13 +654,14 @@
                 <width>2288</width>
                 <height>670</height>
 
-                <!-- Info On line with TMDb  -->
+                <!-- INFO ON LINE WITH TMDB  -->
 
                 <include>Def_Cleanup_On_Up</include>
                 <onup condition="Control.HasFocus(9550) + !ListItem.IsCollection">SetProperty(down,1)</onup>
                 <onup condition="!Control.HasFocus(9554)">$VAR[Path_Actor_Dialog_Info_TMDb]</onup>
 
-                <!-- Cast Navigation -->
+                <!-- CAST NAVIGATION -->
+
                 <onleft>$PARAM[controlid]</onleft>
                 <onright>$PARAM[controlid]</onright>
 
@@ -879,7 +878,6 @@
                 <include>Animation_Fade_Out_DialogInfo</include>
                 <include>Animation_Fade_In_Dialog_350</include>
 
-                <include>Def_Dialog_Info_On_Back_Video</include>
                 <right>48</right>
                 <width>1800</width>
                 <height>670</height>
@@ -891,6 +889,8 @@
                 <onleft>$PARAM[controlid]7</onleft>
 
                 <ondown>ClearProperty(down)</ondown>
+
+                <include>Def_Dialog_Info_On_Back_Video</include>
 
                 <onback condition="Control.IsVisible(9556) | Control.IsVisible(9514) | Control.IsVisible(9515) | Control.IsVisible(9502) | Control.IsVisible(9517) | Control.IsVisible(9518) | Control.IsVisible(9503) | Control.IsVisible(9557) | Control.IsVisible(9506) | Control.IsVisible(9579) | Control.IsVisible(9520)">9012</onback>
                 <onback condition="![Control.IsVisible(9556) | Control.IsVisible(9514) | Control.IsVisible(9515) | Control.IsVisible(9502) | Control.IsVisible(9517) | Control.IsVisible(9518) | Control.IsVisible(9503) | Control.IsVisible(9557) | Control.IsVisible(9506) | Control.IsVisible(9579) | Control.IsVisible(9520)]">9000</onback>
@@ -980,12 +980,18 @@
             <include content="Object_Scrollbar_Dialog_Vertical">
                 <param name="visible" value="!Control.IsVisible(50) + !Control.IsVisible(9550) + !Control.IsVisible(9504) + !Control.IsVisible(9554) + !Control.IsVisible(9557)" />
                 <param name="scrollid" value="$PARAM[controlid]7" />
+
                 <param name="onleft" value="$PARAM[controlid]" />
                 <param name="onright" value="$PARAM[controlid]" />
+
                 <param name="onup" value="$PARAM[controlid]7" />
                 <param name="ondown" value="$PARAM[controlid]7" />
-                <param name="onback" value="9012" />
-                <param name="onback1" value="ClearProperty(view_extended,Home)" />
+
+                <param name="onback" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" />
+                <param name="onback1" value="SetFocus($PARAM[controlid],0,absolute)" />
+                <param name="onback2" value="ClearProperty(view_extended,Home)" />
+                <param name="onback3" value="9012" />
+
                 <param name="centerright" value="1860" />
                 <param name="height" value="649" />
                 <param name="top" value="10" />
@@ -1097,6 +1103,7 @@
                 <onright>$PARAM[controlid]</onright>
 
                 <onback>ClearProperty(view_extended,Home)</onback>
+
                 <onback>SetFocus(9501,0,absolute)</onback>
                 <onback>SetFocus(9502,3,absolute)</onback>
                 <onback>SetFocus(9508,0,absolute)</onback>
