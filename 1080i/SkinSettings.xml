@@ -1617,27 +1617,43 @@
                     <include>Def_Button_Settings_Gradient</include>
                     <label>$LOCALIZE[31219]$LOCALIZE[31219]$LOCALIZE[31374]</label>
                     <align>left</align>
-                    <visible>!Skin.HasSetting(hide.markers) + Skin.HasSetting(furniture.markers.alternative) + !Skin.HasSetting(hide.markers.inprogress)</visible>
                     <selected>Skin.HasSetting(markers.inprogress.percentage)</selected>
                     <onclick>Skin.ToggleSetting(markers.inprogress.percentage)</onclick>
+                    <visible>!Skin.HasSetting(hide.markers) + Skin.HasSetting(furniture.markers.alternative) + !Skin.HasSetting(hide.markers.inprogress)</visible>
                 </control>
                 <control type="radiobutton" id="95862">
                     <visible>Container(3000).HasFocus(4)</visible>
                     <include>Def_Button_Settings_Gradient</include>
                     <label>$LOCALIZE[31219]$LOCALIZE[31219]$LOCALIZE[21457]</label>
                     <align>left</align>
-                    <visible>!Skin.HasSetting(hide.markers) + Skin.HasSetting(furniture.markers.alternative) + !Skin.HasSetting(hide.markers.inprogress)</visible>
                     <selected>!Skin.HasSetting(hide.markers.inprogress.tvshow.label)</selected>
                     <onclick>Skin.ToggleSetting(hide.markers.inprogress.tvshow.label)</onclick>
+                    <visible>!Skin.HasSetting(hide.markers) + Skin.HasSetting(furniture.markers.alternative) + !Skin.HasSetting(hide.markers.inprogress)</visible>
                 </control>
+
+                <!-- FLAG UNWATCHED ICON -->
+
                 <control type="radiobutton" id="9587">
                     <visible>Container(3000).HasFocus(4)</visible>
                     <include>Def_Button_Settings_Gradient</include>
                     <label>$LOCALIZE[31219]$LOCALIZE[16101]</label>
                     <align>left</align>
-                    <enable>!Skin.HasSetting(hide.markers) + !Skin.HasSetting(furniture.markers.alternative)</enable>
                     <selected>!Skin.HasSetting(hide.markers.unwatched)</selected>
                     <onclick>Skin.ToggleSetting(hide.markers.unwatched)</onclick>
+                    <visible>!Skin.HasSetting(furniture.markers.alternative)</visible>
+                    <enable>!Skin.HasSetting(hide.markers)</enable>
+                </control>
+
+                <!-- FLAG UNWATCHED BANNER -->
+
+                <control type="radiobutton" id="95882">
+                    <visible>Container(3000).HasFocus(4)</visible>
+                    <include>Def_Button_Settings_Gradient</include>
+                    <label>$LOCALIZE[31219]$LOCALIZE[16101]</label>
+                    <align>left</align>
+                    <selected>Skin.HasSetting(show.markers.unwatched.banner)</selected>
+                    <onclick>Skin.ToggleSetting(show.markers.unwatched.banner)</onclick>
+                    <visible>!Skin.HasSetting(hide.markers) + Skin.HasSetting(furniture.markers.alternative)</visible>
                 </control>
 
                 <!-- FLAG WATCHED -->
