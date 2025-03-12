@@ -49,8 +49,13 @@
 
     <!-- SET -->
 
-    <!-- Encode label set -->
-    <onload condition="Skin.HasSetting(show.button.video.set) + Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,movie)">RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;unencoded_paths=true&amp;window_id=Home&amp;window_prop=Encoded.ListItem.Set&amp;&amp;$INFO[ListItem.Set]")</onload>
+    <!-- ENCODE LABEL SET - FROM LOCAL -->
+
+    <onload condition="Skin.HasSetting(show.button.video.set) + Skin.HasSetting(filter.video.only.local) + !String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.Set)">RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;unencoded_paths=true&amp;window_id=Home&amp;window_prop=Encoded.ListItem.Set&amp;&amp;$INFO[ListItem.Set]")</onload>
+
+    <!-- ENCODE LABEL SET - FROM TMDB HELPER -->
+
+    <onload condition="Skin.HasSetting(show.button.video.set) + Skin.HasSetting(filter.video.only.local) + String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Set))">RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;unencoded_paths=true&amp;window_id=Home&amp;window_prop=Encoded.ListItem.Set&amp;&amp;$INFO[Window(Home).Property(TMDbHelper.ListItem.Set)]")</onload>
 
     <!-- ============ -->
     <!-- TMDB ON LINE -->
