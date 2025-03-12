@@ -58,19 +58,19 @@
 
     <!-- DIRECTOR -->
 
-    <onload condition="Skin.HasSetting(show.button.video.director) + !Skin.HasSetting(filter.video.only.local) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)] + String.IsEmpty(Window(Home).Property(SetDirectorSelected))">SetProperty(SetDirectorSelected,$VAR[Path_Director_Name],Home)</onload>
+    <onload condition="Skin.HasSetting(show.button.video.director) + [!Skin.HasSetting(filter.video.only.local) | String.IsEmpty(ListItem.DBID)] + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)] + String.IsEmpty(Window(Home).Property(SetDirectorSelected))">SetProperty(SetDirectorSelected,$VAR[Path_Director_Name],Home)</onload>
 
-    <onload condition="Skin.HasSetting(show.button.video.director) + !Skin.HasSetting(filter.video.only.local) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)] + String.IsEmpty(Window(Home).Property(Director_Query))">SetProperty(Director_Query,$VAR[Path_Director_TMDb_ID],Home)</onload>
+    <onload condition="Skin.HasSetting(show.button.video.director) + [!Skin.HasSetting(filter.video.only.local) | String.IsEmpty(ListItem.DBID)] + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)] + String.IsEmpty(Window(Home).Property(Director_Query))">SetProperty(Director_Query,$VAR[Path_Director_TMDb_ID],Home)</onload>
 
     <!-- DIRECTOR - PERSON -->
 
-    <onload condition="!Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.Property(item.type),person) + String.IsEmpty(Window(Home).Property(Director_Person_Query))">SetProperty(Director_Person_Query,$VAR[Path_Director_Person_TMDb_ID],Home)</onload>
+    <onload condition="[!Skin.HasSetting(filter.video.only.local) | String.IsEmpty(ListItem.DBID)] + String.IsEqual(ListItem.Property(item.type),person) + String.IsEmpty(Window(Home).Property(Director_Person_Query))">SetProperty(Director_Person_Query,$VAR[Path_Director_Person_TMDb_ID],Home)</onload>
 
     <!-- WRITER -->
 
-    <onload condition="Skin.HasSetting(show.button.video.writer) + !Skin.HasSetting(filter.video.only.local) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)] + String.IsEmpty(Window(Home).Property(SetWriterSelected))">SetProperty(SetWriterSelected,$VAR[Path_Writer_Name],Home)</onload>
+    <onload condition="Skin.HasSetting(show.button.video.writer) + [!Skin.HasSetting(filter.video.only.local) | String.IsEmpty(ListItem.DBID)] + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)] + String.IsEmpty(Window(Home).Property(SetWriterSelected))">SetProperty(SetWriterSelected,$VAR[Path_Writer_Name],Home)</onload>
 
-    <onload condition="Skin.HasSetting(show.button.video.writer) + !Skin.HasSetting(filter.video.only.local) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)] + String.IsEmpty(Window(Home).Property(Writer_Query))">SetProperty(Writer_Query,$VAR[Path_Writer_TMDb_ID],Home)</onload>
+    <onload condition="Skin.HasSetting(show.button.video.writer) + [!Skin.HasSetting(filter.video.only.local) | String.IsEmpty(ListItem.DBID)] + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)] + String.IsEmpty(Window(Home).Property(Writer_Query))">SetProperty(Writer_Query,$VAR[Path_Writer_TMDb_ID],Home)</onload>
 
     <!-- CREATOR -->
 
