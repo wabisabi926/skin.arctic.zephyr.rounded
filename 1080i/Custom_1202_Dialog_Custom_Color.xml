@@ -563,7 +563,7 @@
                 <include>Animation_Scrolltime_Views_List</include>
 
                 <top>112</top>
-                <right>926</right>
+                <right>916</right>
                 <width>60</width>
 
                 <itemgap>0</itemgap>
@@ -751,6 +751,7 @@
             <control type="group">
                 <visible>String.IsEqual(Window(Home).Property(colorfilter),3)</visible>
                 <top>434</top>
+                <left>16</left>
 
                 <control type="grouplist">
                     <orientation>vertical</orientation>
@@ -943,14 +944,14 @@
                     <control type="image">
                         <width>280</width>
                         <height>66</height>
-                        <texture colordiffuse="$VAR[Color_FocusGradient]" border="12">common/gradient-box-wide-cut.png</texture>
+                        <texture colordiffuse="$VAR[Color_FocusGradient]" border="9">diffuse/gradient_w280_h66.png</texture>
                         <visible>!String.IsEqual(Window(Home).Property(gradient),ColorFocusGradient) | !Control.HasFocus(3000)</visible>
                         <visible>!Skin.HasSetting(Enable_Color_Gradient_Same_Focus)</visible>
                     </control>
                     <control type="image">
                         <width>280</width>
                         <height>66</height>
-                        <texture colordiffuse="$INFO[Container(3000).ListItem.Label]" border="12">common/gradient-box-wide-cut.png</texture>
+                        <texture colordiffuse="$INFO[Container(3000).ListItem.Label]" border="9">diffuse/gradient_w280_h66.png</texture>
                         <visible>String.IsEqual(Window(Home).Property(gradient),ColorFocusGradient) + Control.HasFocus(3000)</visible>
                         <visible>!Skin.HasSetting(Enable_Color_Gradient_Same_Focus)</visible>
                     </control>
@@ -1068,7 +1069,7 @@
                 <height>162</height>
 
                 <onleft>9100</onleft>
-                <!-- <onright>3000</onright> -->
+                <onright>3000</onright>
 
                 <onup>2002</onup>
                 <ondown>3100</ondown>
@@ -1081,24 +1082,22 @@
                 <control type="radiobutton" id="3210">
                     <width>568</width>
                     <textoffsetx>30</textoffsetx>
-                    <radioposx>508</radioposx>
+                    <radioposx>518</radioposx>
                     <include>Def_Button_Settings_Gradient</include>
-                    <label>Pas de dégradé</label>
-
+                    <label>31567</label>
                     <selected>Skin.HasSetting(Enable_Color_Gradient_Same_Focus)</selected>
                     <onclick>Skin.ToggleSetting(Enable_Color_Gradient_Same_Focus)</onclick>
-
                     <onclick condition="String.IsEqual(Window(Home).Property(gradient),ColorFocusGradient)">SetProperty(gradient,ColorFocus,Home)</onclick>
+                    <onclick condition="String.IsEqual(Window(Home).Property(gradient),ColorFocus) | String.IsEqual(Window(Home).Property(gradient),ColorFocusGradient)">SetProperty(dialog_color_reload,1,Home)</onclick>
                     <include>Action_BuildTextures_Onclick_Reload_1202</include>
                 </control>
 
                 <control type="radiobutton" id="3220">
                     <width>568</width>
                     <textoffsetx>30</textoffsetx>
-                    <radioposx>508</radioposx>
+                    <radioposx>518</radioposx>
                     <include>Def_Button_Settings_Gradient</include>
-                    <label>Couleur unique</label>
-
+                    <label>31568</label>
                     <selected>Skin.HasSetting(Enable_Color_HighLight_Same_Focus)</selected>
                     <onclick>Skin.ToggleSetting(Enable_Color_HighLight_Same_Focus)</onclick>
                 </control>
@@ -1111,6 +1110,55 @@
                 <param name="top" value="600" />
             </include>
 
+            <!-- BUTTON VALID / ACTUAL COLOR / PREVIEW COLOR -->
+
+            <control type="grouplist" id="9100">
+                <left>16</left>
+                <bottom>20</bottom>
+
+                <onright>3600</onright>
+                <onleft>3600</onleft>
+
+                <onup condition="String.IsEqual(Window(Home).Property(colorfilter),1) + !Control.IsVisible(3220)">9100</onup>
+                <onup condition="String.IsEqual(Window(Home).Property(colorfilter),1) + Control.IsVisible(3220)">3220</onup>
+
+                <onup condition="String.IsEqual(Window(Home).Property(colorfilter),2) | String.IsEqual(Window(Home).Property(colorfilter),3)">2002</onup>
+
+                <ondown>2001</ondown>
+
+                <orientation>horizontal</orientation>
+                <include>Def_List_Dimension</include>
+
+                <control type="radiobutton" id="3100">
+                    <label/>
+                    <onclick>Skin.Reset(colorpresent)</onclick>
+                    <onclick>ClearProperty(dialog_color_reload,Home)</onclick>
+                    <onclick>Close</onclick>
+
+                    <include>Def_Button_Dimensions_Square_Blur</include>
+                    <include content="Def_Button_Textures">
+                        <param name="icon" value="buttonsdialogs/enabled.png" />
+                        <param name="color" value="Black12" />
+                    </include>
+                </control>
+
+                <control type="image" id="3101">
+                    <bottom>17</bottom>
+                    <width>76</width>
+                    <height>66</height>
+                    <texture border="12">common/box12.png</texture>
+                    <colordiffuse>$INFO[Window(Home).Property(colorstring)]</colordiffuse>
+                </control>
+
+                <control type="image" id="3102">
+                    <bottom>17</bottom>
+                    <width>76</width>
+                    <height>66</height>
+                    <texture border="12">common/box12.png</texture>
+                    <colordiffuse>$INFO[Container(3000).ListItem.Label2]</colordiffuse>
+                </control>
+            </control>
+
             <!-- CODE COLOR MANUAL -->
 
             <control type="button" id="3600">
@@ -1118,7 +1166,7 @@
                 <!-- <visible>!String.IsEqual(Window(Home).Property(colorfilter),2)</visible> -->
                 <left>330</left>
                 <bottom>20</bottom>
-                <width>240</width>
+                <width>254</width>
 
                 <onup condition="!Control.IsVisible(3220)">2002</onup>
                 <onup condition="Control.IsVisible(3220)">3220</onup>
@@ -1174,55 +1222,6 @@
                 <onclick condition="String.IsEqual(Window(Home).Property(gradient),IndicatorColorBackgroundIsPlayingIcon)">SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundIsPlayingicon.name)],Home)</onclick>
 
                 <include>Action_BuildTextures_Onclick_Reload_1202</include>
-            </control>
-
-            <!-- BUTTON VALID / ACTUAL COLOR / PREVIEW COLOR -->
-
-            <control type="grouplist" id="9100">
-                <left>20</left>
-                <bottom>20</bottom>
-
-                <onright>3600</onright>
-                <onleft>3600</onleft>
-
-                <onup condition="String.IsEqual(Window(Home).Property(colorfilter),1) + !Control.IsVisible(3220)">9100</onup>
-                <onup condition="String.IsEqual(Window(Home).Property(colorfilter),1) + Control.IsVisible(3220)">3220</onup>
-
-                <onup condition="String.IsEqual(Window(Home).Property(colorfilter),2) | String.IsEqual(Window(Home).Property(colorfilter),3)">2002</onup>
-
-                <ondown>2001</ondown>
-
-                <orientation>horizontal</orientation>
-                <include>Def_List_Dimension</include>
-
-                <control type="radiobutton" id="3100">
-                    <label/>
-                    <onclick>Skin.Reset(colorpresent)</onclick>
-                    <onclick>ClearProperty(dialog_color_reload,Home)</onclick>
-                    <onclick>Close</onclick>
-
-                    <include>Def_Button_Dimensions_Square_Blur</include>
-                    <include content="Def_Button_Textures">
-                        <param name="icon" value="buttonsdialogs/enabled.png" />
-                        <param name="color" value="Black12" />
-                    </include>
-                </control>
-
-                <control type="image" id="3101">
-                    <bottom>17</bottom>
-                    <width>76</width>
-                    <height>66</height>
-                    <texture border="12">common/box12.png</texture>
-                    <colordiffuse>$INFO[Window(Home).Property(colorstring)]</colordiffuse>
-                </control>
-
-                <control type="image" id="3102">
-                    <bottom>17</bottom>
-                    <width>76</width>
-                    <height>66</height>
-                    <texture border="12">common/box12.png</texture>
-                    <colordiffuse>$INFO[Container(3000).ListItem.Label2]</colordiffuse>
-                </control>
             </control>
         </control>
     </controls>
