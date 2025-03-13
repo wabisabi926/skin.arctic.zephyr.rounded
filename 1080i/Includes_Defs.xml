@@ -458,23 +458,24 @@
 
     <!-- Highlight Color -->
     <variable name="Color_Highlight">
-        <value condition="String.IsEqual(Skin.String(ColorHighlight.name),none)">fffe0000</value>
-        <value condition="!String.IsEmpty(Skin.String(ColorHighlight.name))">$INFO[Skin.String(ColorHighlight.name)]</value>
-        <value>fffe0000</value>
+        <value condition="!Skin.HasSetting(EnableOnlyHighlight) + String.IsEqual(Skin.String(ColorHighlight.name),none)">fffe0000</value>
+        <value condition="!Skin.HasSetting(EnableOnlyHighlight) + !String.IsEmpty(Skin.String(ColorHighlight.name))">$INFO[Skin.String(ColorHighlight.name)]</value>
+        <value>$VAR[Color_Focus]</value>
     </variable>
 
     <!-- Focus Color  -->
     <variable name="Color_Focus">
-        <value condition="String.IsEqual(Skin.String(ColorFocus.name),none)">$VAR[Color_Highlight]</value>
+        <value condition="String.IsEqual(Skin.String(ColorFocus.name),none)">fffe0000</value>
         <value condition="!String.IsEmpty(Skin.String(ColorFocus.name))">$INFO[Skin.String(ColorFocus.name)]</value>
-        <value>$VAR[Color_Highlight]</value>
+        <value>ffff751a</value>
     </variable>
 
     <!-- Focus Color Gradient -->
     <variable name="Color_FocusGradient">
-        <value condition="String.IsEqual(Skin.String(ColorFocusGradient.name),none) | String.IsEmpty(Skin.String(ColorFocusGradient.name))">ffff751a</value>
-        <value condition="!String.IsEmpty(Skin.String(ColorFocusGradient.name))">$INFO[Skin.String(ColorFocusGradient.name)]</value>
-        <value>ffff751a</value>
+        <value condition="!Skin.HasSetting(EnableMonochromeHighlight) + [String.IsEqual(Skin.String(ColorFocusGradient.name),none) | String.IsEmpty(Skin.String(ColorFocusGradient.name))]">ffff751a</value>
+        <value condition="!Skin.HasSetting(EnableMonochromeHighlight) + !String.IsEmpty(Skin.String(ColorFocusGradient.name))">$INFO[Skin.String(ColorFocusGradient.name)]</value>
+        <value>$VAR[Color_Focus]</value>
+        <!-- <value>ffff751a</value> -->
     </variable>
 
     <variable name="Color_Background">
@@ -1451,7 +1452,7 @@
                 <!-- watched -->
                 <control type="group">
                     <align>right</align>
-                    <width>120</width>
+                    <width>110</width>
                     <top>0</top>
                     <control type="image">
                         <right>8</right>
@@ -1476,7 +1477,7 @@
                 <!-- new -->
                 <control type="group">
                     <align>right</align>
-                    <width>120</width>
+                    <width>110</width>
                     <top>0</top>
                     <control type="image">
                         <right>8</right>
@@ -1501,7 +1502,7 @@
                 <!-- is resumable -->
                 <control type="group">
                     <align>right</align>
-                    <width>120</width>
+                    <width>110</width>
                     <top>0</top>
                     <control type="image">
                         <right>8</right>
@@ -1526,7 +1527,7 @@
                 <!-- is playing -->
                 <control type="group">
                     <align>right</align>
-                    <width>120</width>
+                    <width>110</width>
                     <top>0</top>
                     <control type="image">
                         <right>8</right>
@@ -1547,6 +1548,30 @@
                     </control>
                 </control>
 
+                <!-- Unwatched -->
+                <control type="group">
+                    <align>right</align>
+                    <width>110</width>
+                    <top>0</top>
+                    <control type="image">
+                        <right>8</right>
+                        <top>8</top>
+                        <width>100</width>
+                        <height>100</height>
+                        <texture colordiffuse="$VAR[Color_Indicator_Background_UnWatched]" background="true">misc/overlaywatched.png</texture>
+                    </control>
+                    <control type="label">
+                        <right>-9</right>
+                        <top>8</top>
+                        <align>center</align>
+                        <label>$VAR[Label_Flag_UnWatched_Poster]</label>
+                        <width>100</width>
+                        <font>WatchedStates</font>
+                        <textcolor>$VAR[Color_Indicator_Background_Label]</textcolor>
+                        <selectedcolor>$VAR[Color_Indicator_Background_Label]</selectedcolor>
+                        <animation effect="rotate" center="auto" time="0" end="-45" condition="true" loop="false">Conditional</animation>
+                    </control>
+                </control>
             </control>
         </definition>
     </include>
