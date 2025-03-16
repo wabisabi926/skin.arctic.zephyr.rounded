@@ -237,13 +237,13 @@
                     <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!$EXP[Home_Menu_Is_Focus] + !Skin.HasSetting(home.vertical)">Conditional</animation>
                 </control>
                 <control type="image">
+                    <visible>Control.HasFocus(399)</visible>
+                    <visible>Integer.IsGreater(Container(302).NumItems,0) + [!Skin.HasSetting(show.submenu.on.click.main.menu) | [Skin.HasSetting(show.submenu.on.click.main.menu) + !String.StartsWith(Container(300).ListItem.Property(path),SetFocus(302,0))]]</visible>
+                    <animation effect="fade" end="100" start="0" delay="300" time="400" reversible="false" condition="Control.HasFocus(399)">Conditional</animation>
                     <top>50</top>
                     <centerleft>45.7%</centerleft>
                     <include>Def_Arrow_Size</include>
                     <texture colordiffuse="$VAR[Color_Focus]">common/arrow-small.png</texture>
-                    <visible>Control.HasFocus(300)</visible>
-                    <visible>Integer.IsGreater(Container(302).NumItems,0) + [!Skin.HasSetting(show.submenu.on.click.main.menu) | [Skin.HasSetting(show.submenu.on.click.main.menu) + !String.StartsWith(Container(300).ListItem.Property(path),SetFocus(302,0))]]</visible>
-                    <animation effect="fade" end="100" start="0" delay="300" time="400" reversible="false">Focus</animation>
                 </control>
             </control>
             <control type="group">
@@ -270,9 +270,9 @@
                     </control>
                 </control>
                 <control type="image">
-                    <visible>Integer.IsGreater(Container(302).NumItems,0) + [!Skin.HasSetting(show.submenu.on.click.main.menu) | [Skin.HasSetting(show.submenu.on.click.main.menu) + !String.StartsWith(Container(300).ListItem.Property(path),SetFocus(302,0))]]</visible>
                     <visible>Control.HasFocus(399)</visible>
-                    <animation effect="fade" end="100" start="0" delay="300" time="400" reversible="false" condition="String.IsEqual(Window(Home).Property(AnimationDirection),Left) | String.IsEqual(Window(Home).Property(AnimationDirection),Right)">Conditional</animation>
+                    <visible>Integer.IsGreater(Container(302).NumItems,0) + [!Skin.HasSetting(show.submenu.on.click.main.menu) | [Skin.HasSetting(show.submenu.on.click.main.menu) + !String.StartsWith(Container(300).ListItem.Property(path),SetFocus(302,0))]]</visible>
+                    <animation effect="fade" end="100" start="0" delay="300" time="400" reversible="false" condition="Control.HasFocus(399)">Conditional</animation>
                     <top>66</top>
                     <centerleft>45.7%</centerleft>
                     <include>Def_Arrow_Size</include>
@@ -837,10 +837,13 @@
 
             <onfocus condition="$EXP[TMDbHelper_Is_Needed] + String.IsEqual(Window(Home).Property(AnimationDirection),Left)">$VAR[Set_TMDB_Helper_Widget_Container_left_up]</onfocus>
             <onfocus condition="$EXP[TMDbHelper_Is_Needed] + String.IsEqual(Window(Home).Property(AnimationDirection),Right)">$VAR[Set_TMDB_Helper_Widget_Container_right_down]</onfocus>
+
             <onfocus condition="$EXP[TMDbHelper_Is_Needed]">Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onfocus>
 
-            <onright condition="$EXP[TMDbHelper_Is_Needed] + !String.IsEmpty(Container(300).ListItemNoWrap(1).Label)">AlarmClock(slide_out,SetFocus(222),00:00,silent)</onright>
-            <onleft condition="$EXP[TMDbHelper_Is_Needed] + !String.IsEmpty(Container(300).ListItemNoWrap(-1).Label)">AlarmClock(slide_out,SetFocus(222),00:00,silent)</onleft>
+            <!-- SET FOCUS BUTTON 222 -->
+
+            <onright condition="[$EXP[TMDbHelper_Is_Needed] | [Skin.HasSetting(home.show.menu.icons) + Skin.HasSetting(home.show.menu.label.onfocus.icon)]] + !String.IsEmpty(Container(300).ListItemNoWrap(1).Label)">AlarmClock(slide_out,SetFocus(222),00:00,silent)</onright>
+            <onleft condition="[$EXP[TMDbHelper_Is_Needed] | [Skin.HasSetting(home.show.menu.icons) + Skin.HasSetting(home.show.menu.label.onfocus.icon)]] + !String.IsEmpty(Container(300).ListItemNoWrap(-1).Label)">AlarmClock(slide_out,SetFocus(222),00:00,silent)</onleft>
 
             <onfocus>SetProperty(WindowTitle,$INFO[Container(300).ListItem.Label],Home)</onfocus>
             <onleft>SetProperty(WindowTitle,$INFO[Container(300).ListItem.Label],Home)</onleft>
@@ -1027,14 +1030,13 @@
                             <visible>!Skin.HasSetting(home.show.menu.icons) + Skin.HasSetting(home.show.menu.onfocus.underlined)</visible>
                         </control>
 
+                        <!-- AUTO HIDE LABEL ITEM MENU -->
+
+                        <!-- <include condition="$EXP[Exp_Show_Label_Item_Menu]">Button_Show_Home_Label_Menu_Item</include> -->
 
                         <!-- SET TMDBHELPER WIDGETCONTAINER -->
 
                         <!-- <include condition="$EXP[TMDbHelper_Is_Needed]">Def_TMDB_Helper_Widget_Container</include> -->
-
-                        <!-- AUTO HIDE LABEL ITEM MENU -->
-
-                        <!-- <include condition="$EXP[Exp_Show_Label_Item_Menu]">Show_Label_Menu_Item_Button</include> -->
 
                         <!-- AUTO SLIDE MENU -->
 
@@ -1196,7 +1198,7 @@
 
                         <!-- AUTO HIDE LABEL ITEM MENU -->
 
-                        <include condition="$EXP[Exp_Show_Label_Item_Menu]">Show_Label_Menu_Item_Button</include>
+                        <include condition="$EXP[Exp_Show_Label_Item_Menu]">Button_Show_Home_Label_Menu_Item</include>
 
                         <!-- AUTO SLIDE MENU -->
 
@@ -1348,21 +1350,23 @@
 
                 <onfocus condition="$EXP[TMDbHelper_Is_Needed]">Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onfocus>
 
-                <ondown condition="$EXP[TMDbHelper_Is_Needed] + !String.IsEmpty(Container(300).ListItemNoWrap(1).Label)">AlarmClock(slide_out,SetFocus(222),00:00,silent)</ondown>
-                <onup condition="$EXP[TMDbHelper_Is_Needed] + !String.IsEmpty(Container(300).ListItemNoWrap(-1).Label)">AlarmClock(slide_out,SetFocus(222),00:00,silent)</onup>
+                <!-- SET FOCUS BUTTON 222 -->
+
+                <ondown condition="[$EXP[TMDbHelper_Is_Needed] | [Skin.HasSetting(home.show.menu.icons) + Skin.HasSetting(home.show.menu.label.onfocus.icon)]] + !String.IsEmpty(Container(300).ListItemNoWrap(1).Label)">AlarmClock(slide_out,SetFocus(222),00:00,silent)</ondown>
+                <onup condition="[$EXP[TMDbHelper_Is_Needed] | [Skin.HasSetting(home.show.menu.icons) + Skin.HasSetting(home.show.menu.label.onfocus.icon)]] + !String.IsEmpty(Container(300).ListItemNoWrap(-1).Label)">AlarmClock(slide_out,SetFocus(222),00:00,silent)</onup>
 
                 <onfocus>SetProperty(WindowTitle,$INFO[Container(300).ListItem.Label],Home)</onfocus>
                 <ondown>SetProperty(WindowTitle,$INFO[Container(300).ListItem.Label],Home)</ondown>
                 <onup>SetProperty(WindowTitle,$INFO[Container(300).ListItem.Label],Home)</onup>
 
+                <!-- AUTO HIDE LABEL ITEM MENU -->
+
+                <onfocus condition="$EXP[Exp_Show_Label_Item_Menu]">SetProperty(ShowMenuLabel,1,Home)</onfocus>
+
                 <!-- OTHERS -->
 
                 <onfocus>ClearProperty(LaunchSearch,Home)</onfocus>
                 <onfocus>ClearProperty(listitem.trailer,Home)</onfocus>
-
-                <!-- AUTO HIDE LABEL ITEM MENU -->
-
-                <onfocus condition="$EXP[Exp_Show_Label_Item_Menu]">SetProperty(ShowMenuLabel,1,Home)</onfocus>
             </control>
 
             <control type="button" id="222">
@@ -1372,20 +1376,22 @@
         </control>
     </include>
 
-    <!-- HOME - LABEL TIP MENU/ SUBMENU - ONLY ICON -->
+    <!-- HOME - SHOW LABEL MENU/ SUBMENU - ONLY ICON -->
 
     <include name="Home_Vertical_Menu_Icon_Label">
 
         <!-- HOME - HORIZONTAL - MAIN MENU 300 -->
 
         <control type="group">
-            <visible>!String.IsEmpty(Window(Home).Property(ShowMenuLabel)) + $EXP[Home_Is_Horizontal] + !String.IsEmpty(Container(300).ListItem.Label)</visible>
+            <visible>!String.IsEmpty(Window(Home).Property(ShowMenuLabel)) + !String.IsEmpty(Container(300).ListItem.Label) + $EXP[Home_Is_Horizontal]</visible>
 
             <animation type="Conditional" condition="Control.HasFocus(300) | Control.HasFocus(399) | Control.HasFocus(222)" reversible="false">
                 <effect type="fade" start="0" end="100" time="250" delay="0" tween="cubic" easing="inout" />
                 <effect type="slide" start="0,48" end="0" center="auto" tween="back" easing="out" time="400" delay="0" />
             </animation>
+
             <animation effect="fade" end="0" start="100" time="350" condition="!Control.HasFocus(300) + !Control.HasFocus(399) + !Control.HasFocus(222)" reversible="false">Conditional</animation>
+
             <animation effect="fade" start="0" end="100" time="350" tween="sine" easing="out" reversible="false">Visible</animation>
             <animation effect="fade" start="100" end="0" tween="cubic" easing="out" time="350" reversible="false">Hidden</animation>
 
@@ -1445,13 +1451,15 @@
         <!-- HOME - VERTICAL - MAIN MENU 300 -->
 
         <control type="group">
-            <visible>!String.IsEmpty(Window(Home).Property(ShowMenuLabel)) + $EXP[Home_Is_Vertical] + !String.IsEmpty(Container(300).ListItem.Label)</visible>
+            <visible>!String.IsEmpty(Window(Home).Property(ShowMenuLabel)) + !String.IsEmpty(Container(300).ListItem.Label) + $EXP[Home_Is_Vertical]</visible>
 
             <animation type="Conditional" condition="Control.HasFocus(300) | Control.HasFocus(399) | Control.HasFocus(222)" reversible="false">
                 <effect type="fade" start="0" end="100" time="250" delay="0" tween="cubic" easing="inout" />
                 <effect type="slide" start="0,48" end="0" center="auto" tween="back" easing="out" time="400" delay="0" />
             </animation>
+
             <animation effect="fade" end="0" start="100" time="350" condition="!Control.HasFocus(300) + !Control.HasFocus(399) + !Control.HasFocus(222)" reversible="false">Conditional</animation>
+
             <animation effect="fade" start="0" end="100" time="350" tween="sine" easing="out" reversible="false">Visible</animation>
             <animation effect="fade" start="100" end="0" tween="cubic" easing="out" time="350" reversible="false">Hidden</animation>
 
@@ -1508,12 +1516,14 @@
 
         <control type="group">
             <visible>!String.IsEmpty(Window(Home).Property(ShowMenuLabel)) + $EXP[Home_Is_Vertical] + !String.IsEmpty(Container(302).ListItem.Label)</visible>
+
             <animation type="Conditional" condition="Control.HasFocus(302)" reversible="false">
                 <effect type="fade" start="0" end="100" time="250" delay="0" tween="cubic" easing="inout" />
                 <effect type="slide" start="0,48" end="0" center="auto" tween="back" easing="out" time="400" delay="0" />
             </animation>
 
             <animation effect="fade" end="0" start="100" time="350" condition="!Control.HasFocus(302)" reversible="false">Conditional</animation>
+
             <animation effect="fade" start="0" end="100" time="350" tween="sine" easing="out" reversible="false">Visible</animation>
             <animation effect="fade" start="100" end="0" tween="cubic" easing="out" time="350" reversible="false">Hidden</animation>
 

@@ -1980,11 +1980,15 @@
 
     <include name="Hidden_Button_Search">
         <control type="button" id="9099" description="Helper">
+            <visible allowhiddenfocus="true">Control.HasFocus(9099)</visible>
+            <animation effect="fade" time="300" start="0" end="0">Focus</animation>
+
             <include>Def_Hidden_Button</include>
 
             <!-- MAIN MENU : FOCUS IF INACTIVITY -->
             <onfocus condition="String.IsEmpty(Window(Home).Property(LaunchSearch))">SetProperty(focus_main_menu_timer_from_search_bar,1,Home)</onfocus>
             <onfocus condition="!String.IsEmpty(Window(Home).Property(LaunchSearch))">SetFocus(300)</onfocus>
+
             <onunfocus>ClearProperty(focus_main_menu_timer_from_search_bar,Home)</onunfocus>
             <onclick>ClearProperty(focus_main_menu_timer_from_search_bar,Home)</onclick>
 
@@ -2012,9 +2016,6 @@
             <onclick>SetProperty(LaunchSearch,1,Home)</onclick>
             <onclick>ActivateWindow(1107)</onclick>
             <onclick>ClearProperty(AnimationDirection,Home)</onclick>
-
-            <visible allowhiddenfocus="true">Control.HasFocus(9099)</visible>
-            <animation effect="fade" time="300" start="0" end="0">Focus</animation>
         </control>
     </include>
 
