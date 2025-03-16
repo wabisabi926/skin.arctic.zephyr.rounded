@@ -1778,8 +1778,14 @@
             <control type="group">
                 <height>350</height>
 
-                <include content="Def_Widget_Image_Background">
-                    <param name="colordiffuse" value="Fallback" />
+                <include content="Def_Art_Poster_Background">
+                    <param name="colordiffuse" value="black" />
+                    <param name="visible" value="Player.HasVideo" />
+                </include>
+
+                <include content="Def_Art_Poster_Background">
+                    <param name="colordiffuse" value="White100" />
+                    <param name="visible" value="!Player.HasVideo" />
                 </include>
 
                 <control type="videowindow">
@@ -1791,18 +1797,21 @@
                     <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
                 </control>
 
+                    <!-- FANART  -->
+
                 <include content="Def_Image_Art">
                     <param name="condition_fadetime" value="true" />
                     <param name="aspectratio" value="keep" />
                     <param name="texture" value="$INFO[ListItem.Icon]" />
-                    <param name="texture_diffuse" value="pvr_w641_h370" />
+                    <param name="texture_diffuse" value="fanart_w645_h370" />
                     <param name="visible" value="!Player.HasVideo + String.IsEmpty(Listitem.EpgEventIcon)" />
                 </include>
+
                 <include content="Def_Image_Art">
                     <param name="condition_fadetime" value="true" />
                     <param name="aspectratio" value="scale" />
                     <param name="texture" value="$VAR[Image_Fanart_EPG]" />
-                    <param name="texture_diffuse" value="pvr_w641_h370" />
+                    <param name="texture_diffuse" value="fanart_w645_h370" />
                     <param name="visible" value="!Player.HasVideo + !String.IsEmpty(Listitem.EpgEventIcon)" />
                 </include>
             </control>
