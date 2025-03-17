@@ -575,6 +575,7 @@
                     <visible>!String.IsEqual(ListItem.Property(LabelMore),more)</visible>
                     <visible>![String.IsEqual(ListItem.Overlay,OverlayUnwatched.png) + [$EXP[IsNewMovie] | $EXP[IsNewTVShow] | $EXP[IsNewEpisode]]]</visible>
                     <visible>![Control.IsVisible(9550) | Control.IsVisible(9557)]</visible>
+                    <visible>[Container.Content(actors) + Window.IsVisible(DialogVideoInfo.xml)] | !Container.Content(actors)</visible>
                     <!-- <visible>$EXP[Exp_View_Flag_Watched_Album_Song]</visible> -->
                 </control>
 
@@ -673,6 +674,7 @@
                     <visible>![String.IsEqual(ListItem.Overlay,OverlayUnwatched.png) + [$EXP[IsNewMovie] | $EXP[IsNewTVShow] | $EXP[IsNewEpisode]]]</visible>
                     <visible>!ListItem.IsPlaying</visible>
                     <visible>![Control.IsVisible(9550) | Control.IsVisible(9557)]</visible>
+                    <visible>[Container.Content(actors) + Window.IsVisible(DialogVideoInfo.xml)] | !Container.Content(actors)</visible>
                     <!-- <visible>$EXP[Exp_View_Flag_Watched_Album_Song] + !$EXP[IsAlbumIsPlaying]</visible> -->
                 </control>
 
@@ -2255,11 +2257,11 @@
                 <right>105</right>
                 <bottom>148</bottom>
                 <align>right</align>
-                <width>700</width>
+                <width>880</width>
                 <height>42</height>
                 <font>InfoNetflix</font>
                 <textcolor>Dark2</textcolor>
-                <label>$INFO[ListItem.Genre]$INFO[ListItem.Property(UnWatchedEpisodes),  •  ]$INFO[ListItem.Property(TotalEpisodes), / ]$INFO[ListItem.Rating,  •  ]</label>
+                <label>$VAR[Label_Genre]$INFO[ListItem.Property(UnWatchedEpisodes),  •  ]$VAR[Label_Episodes_Number, / ]$INFO[ListItem.Rating,  •  ]</label>
                 <visible>![Control.IsVisible(50) | Control.IsVisible(550) | Control.IsVisible(56) | Control.IsVisible(57) | Control.IsVisible(555)] | Window.IsVisible(script-globalsearch.xml)</visible>
                 <visible>String.IsEqual(ListItem.DBtype,tvshow) | String.IsEqual(ListItem.DBtype,season)</visible>
                 <visible>!String.IsEmpty(ListItem.Property(UnWatchedEpisodes))</visible>
@@ -2268,11 +2270,11 @@
                 <right>105</right>
                 <bottom>148</bottom>
                 <align>right</align>
-                <width>700</width>
+                <width>880</width>
                 <height>42</height>
                 <font>InfoNetflix</font>
                 <textcolor>Dark2</textcolor>
-                <label>$INFO[ListItem.Genre]$INFO[ListItem.Property(TotalEpisodes),  •  , $LOCALIZE[20453]]$INFO[ListItem.Rating,  •  ]</label>
+                <label>$VAR[Label_Genre]$VAR[Label_Episodes_Number,  •  , $LOCALIZE[20453]]$INFO[ListItem.Rating,  •  ]</label>
                 <visible>![Control.IsVisible(50) | Control.IsVisible(550) | Control.IsVisible(56) | Control.IsVisible(57)] | Window.IsVisible(script-globalsearch.xml)</visible>
                 <visible>String.IsEqual(ListItem.DBtype,tvshow) | String.IsEqual(ListItem.DBtype,season)</visible>
                 <visible>String.IsEmpty(ListItem.Property(UnWatchedEpisodes))</visible>

@@ -89,7 +89,7 @@
                     </control>
                     <control type="label">
                         <left>104</left>
-                        <width>300</width>
+                        <width>280</width>
                         <font>LargeNew</font>
                         <description>Header Label</description>
                         <textcolor>Dark1</textcolor>
@@ -108,6 +108,19 @@
                         <width>78%</width>
                         <label fallback="19055">$VAR[Label_Dialog_Info_Header_Tagline_Music]</label>
                         <aligny>center</aligny>
+                        <visible>!Player.HasMedia | Skin.HasSetting(hide.furniture.nowplaying)</visible>
+                    </control>
+                    <control type="label">
+                        <top>55</top>
+                        <left>104</left>
+                        <width>280</width>
+                        <height>36</height>
+                        <font>Tiny</font>
+                        <textcolor>Dark1</textcolor>
+                        <width>78%</width>
+                        <label fallback="19055">$VAR[Label_Dialog_Info_Header_Tagline_Music]</label>
+                        <aligny>center</aligny>
+                        <visible>Player.HasMedia + !Skin.HasSetting(hide.furniture.nowplaying)</visible>
                     </control>
                 </control>
 
