@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
-    <include name="weatherlist">
+
+    <!-- DEF -->
+
+    <include name="def_weather_list">
         <control type="group">
             <height>106</height>
             <top>$PARAM[top]</top>
@@ -74,7 +77,7 @@
         </control>
     </include>
 
-    <include name="weatherlisttop">
+    <include name="def_weather_list_stop">
         <width>$PARAM[weatherwidth]</width>
         <height>PosterH</height>
         <top>View_Top</top>
@@ -94,12 +97,14 @@
         </control>
     </include>
 
-    <include name="weatherlistinput">
+    <include name="def_weather_list_input">
+        <include>Animation_Weather</include>
+
         <top>View_Top</top>
         <left>View_SidePad</left>
         <right>View_SidePad</right>
         <height>PosterH</height>
-        <include>Animation_Weather</include>
+
         <control type="image">
             <left>1</left>
             <top>1</top>
@@ -107,7 +112,7 @@
             <bottom>1</bottom>
             <width>1758</width>
             <height>638</height>
-            <texture border="12" colordiffuse="White100">common/box12.png</texture>
+            <texture border="24" colordiffuse="White100">common/box24.png</texture>
         </control>
         <control type="image">
             <left>1</left>
@@ -153,7 +158,7 @@
         </control>
     </include>
 
-    <include name="weatherlistinputpagetwo">
+    <include name="def_weather_list_input_page_two">
         <control type="group">
             <width>275</width>
             <height>PosterH</height>
@@ -238,49 +243,53 @@
         </control>
     </include>
 
-    <variable name="Weather_Sunrise">
+    <!-- LABEL -->
+
+    <variable name="Label_Weather_Sunrise">
         <value condition="!String.IsEmpty(Window(Weather).Property(Current.Sunrise))">$INFO[Window(Weather).Property(Current.Sunrise),$LOCALIZE[31306] ,]</value>
         <value condition="!String.IsEmpty(Window(Weather).Property(Today.Sunrise))">$INFO[Window(Weather).Property(Today.Sunrise),$LOCALIZE[31306] ,]</value>
     </variable>
 
-    <variable name="Weather_Sunset">
+    <variable name="Label_Weather_Sunset">
         <value condition="!String.IsEmpty(Window(Weather).Property(Current.Sunset))">$INFO[Window(Weather).Property(Current.Sunset),$LOCALIZE[31307] ,]</value>
         <value condition="!String.IsEmpty(Window(Weather).Property(Today.Sunset))">$INFO[Window(Weather).Property(Today.Sunset),$LOCALIZE[31307] ,]</value>
     </variable>
 
-    <variable name="Weather_LowTemp">
+    <variable name="Label_Weather_Low_Temp">
         <value condition="!String.IsEmpty(Window(Weather).Property(Current.LowTemp))">$INFO[Window(Weather).Property(Current.LowTemp),,°]</value>
         <value condition="!String.IsEmpty(Window(Weather).Property(Day0.LowTemp))">$INFO[Window(Weather).Property(Day0.LowTemp),,°]</value>
     </variable>
 
-    <variable name="Weather_HighTemp">
+    <variable name="Label_Weather_High_Temp">
         <value condition="!String.IsEmpty(Window(Weather).Property(Current.HighTemp))">$INFO[Window(Weather).Property(Current.HighTemp),,°]</value>
         <value condition="!String.IsEmpty(Window(Weather).Property(Day0.HighTemp))">$INFO[Window(Weather).Property(Day0.HighTemp),,°]</value>
     </variable>
 
-    <variable name="Weather_UVIndex_Label">
+    <variable name="Label_Weather_UVIndex">
         <value condition="!String.IsEmpty(Window(Weather).Property(Current.UVIndex))">$LOCALIZE[403]</value>
         <value condition="!String.IsEmpty(Window(Weather).Property(Current.Precipitation))">$INFO[Window(Weather).Property(Current.Precipitation),$LOCALIZE[1448] ,]</value>
     </variable>
 
-    <variable name="Weather_UVIndex_Info">
+    <variable name="Label_Weather_UVIndex_Info">
         <value condition="!String.IsEmpty(Window(Weather).Property(Current.UVIndex))">$INFO[Window(Weather).Property(Current.UVIndex)]</value>
         <value condition="!String.IsEmpty(Window(Weather).Property(Current.Cloudiness))">$INFO[Window(Weather).Property(Current.Cloudiness),$LOCALIZE[31048] ,]</value>
     </variable>
 
-    <include name="weatherlayoutwidgetsvertical.poster">
+    <!-- WIDGET - LAYOUT -->
+
+    <include name="Weather_Layout_Widgets_Poster">
         <include>Def_Weather_Poster</include>
     </include>
 
-    <include name="weatherlayoutwidgetsvertical.square">
+    <include name="Weather_Layout_Widgets_Square">
         <include>Def_Weather_Square</include>
     </include>
 
-    <include name="weatherlayoutwidgetsvertical.fanart">
+    <include name="Weather_Layout_Widgets_Fanart">
         <include>Def_Weather_Fanart</include>
     </include>
 
-    <include name="weatherlayoutwidgetsvertical.poster.focus">
+    <include name="Weather_Layout_Widgets_Poster_Focus">
         <param name="zoom_condition" value="$PARAM[zoom_condition]" default="Skin.HasSetting(items.focus.zoom)" />
         <definition>
         <control type="group">
@@ -298,7 +307,7 @@
         </definition>
     </include>
 
-    <include name="weatherlayoutwidgetsvertical.square.focus">
+    <include name="Weather_Layout_Widgets_Square_Focus">
         <param name="zoom_condition" value="$PARAM[zoom_condition]" default="Skin.HasSetting(items.focus.zoom)" />
         <definition>
         <control type="group">
@@ -316,7 +325,7 @@
         </definition>
     </include>
 
-    <include name="weatherlayoutwidgetsvertical.fanart.focus">
+    <include name="Weather_Layout_Widgets_Fanart_Focus">
         <param name="zoom_condition" value="$PARAM[zoom_condition]" default="Skin.HasSetting(items.focus.zoom)" />
         <definition>
         <control type="group">
@@ -333,486 +342,4 @@
         </control>
         </definition>
     </include>
-
-    <include name="layoutweather">
-        <itemlayout height="344" width="256" condition="String.IsEqual(Container(300).ListItem.Property(widgetaspect),Poster) | String.IsEmpty(Container(300).ListItem.Property(widgetaspect))">
-            <control type="image">
-                <left>17</left>
-                <top>10</top>
-                <right>17</right>
-                <bottom>10</bottom>
-                <texture colordiffuse="Light4">common/black-back.png</texture>
-            </control>
-            <include content="Def_Widget_Weather_Background">
-                <param name="bordertopbottom" value="10" />
-                <param name="borderleftright" value="17" />
-            </include>
-            <control type="image">
-                <top>90</top>
-                <centerleft>50%</centerleft>
-                <height>160</height>
-                <width>160</width>
-                <aspectratio align="center" aligny="center">keep</aspectratio>
-                <texture>$INFO[ListItem.Property(FanartTexture)]</texture>
-                <visible>!String.IsEmpty(Skin.String(weather.icons.path)) + !String.Contains(Skin.String(weather.icons.path),animated)</visible>
-            </control>
-            <control type="multiimage">
-                <top>90</top>
-                <centerleft>50%</centerleft>
-                <height>160</height>
-                <width>160</width>
-                <aspectratio align="center" aligny="center">keep</aspectratio>
-                <imagepath>$INFO[ListItem.Property(Imagepath.Fanart.Animated)]</imagepath>
-                <visible>!String.IsEmpty(Skin.String(weather.icons.path)) + String.Contains(Skin.String(weather.icons.path),animated)</visible>
-            </control>
-            <control type="image">
-                <top>90</top>
-                <centerleft>50%</centerleft>
-                <height>160</height>
-                <width>160</width>
-                <aspectratio align="center" aligny="center">keep</aspectratio>
-                <texture>$INFO[ListItem.Property(OutlookTexture)]</texture>
-                <visible>String.IsEmpty(Skin.String(weather.icons.path))</visible>
-            </control>
-            <control type="label">
-                <top>30</top>
-                <height>50</height>
-                <font>NotificationBold</font>
-                <align>center</align>
-                <aligny>center</aligny>
-                <textcolor>PanelWhite100</textcolor>
-                <label fallback="10006">$INFO[ListItem.Property(Title)]</label>
-            </control>
-            <control type="label">
-                <bottom>30</bottom>
-                <aligny>center</aligny>
-                <scroll>false</scroll>
-                <align>center</align>
-                <font>Home</font>
-                <textcolor>PanelWhite100</textcolor>
-                <label>$VAR[Label_Weather_Property]</label>
-                <visible>String.IsEmpty(ListItem.Property(Today))</visible>
-            </control>
-            <control type="label">
-                <bottom>30</bottom>
-                <aligny>center</aligny>
-                <scroll>false</scroll>
-                <align>center</align>
-                <font>Large</font>
-                <textcolor>PanelWhite100</textcolor>
-                <label>$INFO[ListItem.Property(HighTemp)]</label>
-                <visible>!String.IsEmpty(ListItem.Property(Today))</visible>
-            </control>
-        </itemlayout>
-        <itemlayout height="344" width="359" condition="!String.IsEqual(Container(300).ListItem.Property(widgetaspect),Fanart) + !String.IsEqual(Container(300).ListItem.Property(widgetaspect),Thumbnail) + !String.IsEqual(Container(300).ListItem.Property(widgetaspect),Poster) + !String.IsEmpty(Container(300).ListItem.Property(widgetaspect))">
-            <control type="image">
-                <left>17</left>
-                <top>10</top>
-                <right>17</right>
-                <bottom>10</bottom>
-                <texture colordiffuse="Light4">common/black-back.png</texture>
-            </control>
-            <include content="Def_Widget_Weather_Background">
-                <param name="bordertopbottom" value="10" />
-                <param name="borderleftright" value="17" />
-            </include>
-            <control type="image">
-                <top>100</top>
-                <left>35</left>
-                <height>140</height>
-                <width>140</width>
-                <aspectratio align="center" aligny="center">keep</aspectratio>
-                <texture>$INFO[ListItem.Property(FanartTexture)]</texture>
-                <visible>!String.IsEmpty(Skin.String(weather.icons.path)) + !String.Contains(Skin.String(weather.icons.path),animated)</visible>
-            </control>
-            <control type="multiimage">
-                <top>100</top>
-                <left>35</left>
-                <height>140</height>
-                <width>140</width>
-                <aspectratio align="center" aligny="center">keep</aspectratio>
-                <imagepath>$INFO[ListItem.Property(Imagepath.Fanart.Animated)]</imagepath>
-                <visible>!String.IsEmpty(Skin.String(weather.icons.path)) + String.Contains(Skin.String(weather.icons.path),animated)</visible>
-            </control>
-            <control type="image">
-                <top>100</top>
-                <left>35</left>
-                <height>140</height>
-                <width>140</width>
-                <aspectratio align="center" aligny="center">keep</aspectratio>
-                <texture>$INFO[ListItem.Property(OutlookTexture)]</texture>
-                <visible>String.IsEmpty(Skin.String(weather.icons.path))</visible>
-            </control>
-            <control type="label">
-                <left>45</left>
-                <right>50</right>
-                <top>60</top>
-                <height>50</height>
-                <font>NotificationBold</font>
-                <align>right</align>
-                <aligny>center</aligny>
-                <textcolor>PanelWhite100</textcolor>
-                <label fallback="10006">$INFO[ListItem.Property(Title)]</label>
-            </control>
-            <control type="label">
-                <bottom>130</bottom>
-                <right>50</right>
-                <aligny>center</aligny>
-                <scroll>false</scroll>
-                <align>right</align>
-                <font>Home</font>
-                <textcolor>PanelWhite100</textcolor>
-                <label>$VAR[Label_Weather_Property]</label>
-                <visible>String.IsEmpty(ListItem.Property(Today))</visible>
-            </control>
-            <control type="label">
-                <bottom>130</bottom>
-                <right>50</right>
-                <aligny>center</aligny>
-                <scroll>false</scroll>
-                <align>right</align>
-                <font>Large</font>
-                <textcolor>PanelWhite100</textcolor>
-                <label>$INFO[ListItem.Property(HighTemp)]</label>
-                <visible>!String.IsEmpty(ListItem.Property(Today))</visible>
-            </control>
-            <control type="label">
-                <left>42</left>
-                <right>50</right>
-                <bottom>50</bottom>
-                <height>50</height>
-                <font>Tiny</font>
-                <align>right</align>
-                <aligny>center</aligny>
-                <textcolor>PanelWhite100</textcolor>
-                <label>$INFO[ListItem.Label]</label>
-            </control>
-        </itemlayout>
-        <itemlayout height="344" width="598.33" condition="String.IsEqual(Container(300).ListItem.Property(widgetaspect),Fanart) | String.IsEqual(Container(300).ListItem.Property(widgetaspect),Thumbnail)">
-            <control type="image">
-                <left>17</left>
-                <top>10</top>
-                <right>17</right>
-                <bottom>10</bottom>
-                <texture colordiffuse="Light4">common/black-back.png</texture>
-            </control>
-            <include content="Def_Widget_Weather_Background">
-                <param name="bordertopbottom" value="10" />
-                <param name="borderleftright" value="17" />
-            </include>
-            <control type="image">
-                <top>80</top>
-                <left>30</left>
-                <height>192</height>
-                <width>192</width>
-                <aspectratio align="center" aligny="center">keep</aspectratio>
-                <texture>$INFO[ListItem.Property(FanartTexture)]</texture>
-                <visible>!String.IsEmpty(Skin.String(weather.icons.path)) + !String.Contains(Skin.String(weather.icons.path),animated)</visible>
-            </control>
-            <control type="multiimage">
-                <top>80</top>
-                <left>30</left>
-                <height>192</height>
-                <width>192</width>
-                <aspectratio align="center" aligny="center">keep</aspectratio>
-                <imagepath>$INFO[ListItem.Property(Imagepath.Fanart.Animated)]</imagepath>
-                <visible>!String.IsEmpty(Skin.String(weather.icons.path)) + String.Contains(Skin.String(weather.icons.path),animated)</visible>
-            </control>
-            <control type="image">
-                <top>80</top>
-                <left>50</left>
-                <height>192</height>
-                <width>192</width>
-                <aspectratio align="center" aligny="center">keep</aspectratio>
-                <texture>$INFO[ListItem.Property(OutlookTexture)]</texture>
-                <visible>String.IsEmpty(Skin.String(weather.icons.path))</visible>
-            </control>
-            <control type="label">
-                <left>292</left>
-                <right>57</right>
-                <top>70</top>
-                <height>50</height>
-                <font>NotificationBold</font>
-                <align>right</align>
-                <aligny>center</aligny>
-                <textcolor>PanelWhite100</textcolor>
-                <label fallback="10006">$INFO[ListItem.Property(Title)]</label>
-            </control>
-            <control type="label">
-                <left>292</left>
-                <right>57</right>
-                <height>100%</height>
-                <aligny>center</aligny>
-                <scroll>false</scroll>
-                <align>right</align>
-                <font>Large</font>
-                <textcolor>PanelWhite100</textcolor>
-                <label>$VAR[Label_Weather_Property]</label>
-                <visible>String.IsEmpty(ListItem.Property(Today))</visible>
-            </control>
-            <control type="label">
-                <left>292</left>
-                <right>57</right>
-                <height>100%</height>
-                <aligny>center</aligny>
-                <scroll>false</scroll>
-                <align>right</align>
-                <font>LargeX2</font>
-                <textcolor>PanelWhite100</textcolor>
-                <label>$INFO[ListItem.Property(HighTemp)]</label>
-                <visible>!String.IsEmpty(ListItem.Property(Today))</visible>
-            </control>
-            <control type="label">
-                <left>242</left>
-                <right>57</right>
-                <bottom>70</bottom>
-                <height>50</height>
-                <font>Tiny</font>
-                <align>right</align>
-                <aligny>center</aligny>
-                <textcolor>PanelWhite100</textcolor>
-                <label>$INFO[ListItem.Label]</label>
-            </control>
-        </itemlayout>
-        <focusedlayout height="344" width="256" condition="String.IsEqual(Container(300).ListItem.Property(widgetaspect),Poster) | String.IsEmpty(Container(300).ListItem.Property(widgetaspect))">
-            <control type="image">
-                <left>17</left>
-                <top>10</top>
-                <right>17</right>
-                <bottom>10</bottom>
-                <texture colordiffuse="Light4">common/black-back.png</texture>
-            </control>
-            <include content="Def_Widget_Weather_Background">
-                <param name="bordertopbottom" value="10" />
-                <param name="borderleftright" value="17" />
-            </include>
-            <control type="image">
-                <top>90</top>
-                <centerleft>50%</centerleft>
-                <height>160</height>
-                <width>160</width>
-                <aspectratio align="center" aligny="center">keep</aspectratio>
-                <texture>$INFO[ListItem.Property(FanartTexture)]</texture>
-                <visible>!String.IsEmpty(Skin.String(weather.icons.path)) + !String.Contains(Skin.String(weather.icons.path),animated)</visible>
-            </control>
-            <control type="multiimage">
-                <top>90</top>
-                <centerleft>50%</centerleft>
-                <height>160</height>
-                <width>160</width>
-                <aspectratio align="center" aligny="center">keep</aspectratio>
-                <imagepath>$INFO[ListItem.Property(Imagepath.Fanart.Animated)]</imagepath>
-                <visible>!String.IsEmpty(Skin.String(weather.icons.path)) + String.Contains(Skin.String(weather.icons.path),animated)</visible>
-            </control>
-            <control type="image">
-                <top>90</top>
-                <centerleft>50%</centerleft>
-                <height>160</height>
-                <width>160</width>
-                <aspectratio align="center" aligny="center">keep</aspectratio>
-                <texture>$INFO[ListItem.Property(OutlookTexture)]</texture>
-                <visible>String.IsEmpty(Skin.String(weather.icons.path))</visible>
-            </control>
-            <control type="label">
-                <top>30</top>
-                <height>50</height>
-                <font>NotificationBold</font>
-                <align>center</align>
-                <aligny>center</aligny>
-                <textcolor>PanelWhite100</textcolor>
-                <label fallback="10006">$INFO[ListItem.Property(Title)]</label>
-            </control>
-            <control type="label">
-                <bottom>30</bottom>
-                <aligny>center</aligny>
-                <scroll>false</scroll>
-                <align>center</align>
-                <font>Home</font>
-                <textcolor>PanelWhite100</textcolor>
-                <label>$VAR[Label_Weather_Property]</label>
-                <visible>String.IsEmpty(ListItem.Property(Today))</visible>
-            </control>
-            <control type="label">
-                <bottom>30</bottom>
-                <aligny>center</aligny>
-                <scroll>false</scroll>
-                <align>center</align>
-                <font>Large</font>
-                <textcolor>PanelWhite100</textcolor>
-                <label>$INFO[ListItem.Property(HighTemp)]</label>
-                <visible>!String.IsEmpty(ListItem.Property(Today))</visible>
-            </control>
-        </focusedlayout>
-        <focusedlayout height="344" width="359" condition="!String.IsEqual(Container(300).ListItem.Property(widgetaspect),Fanart) + !String.IsEqual(Container(300).ListItem.Property(widgetaspect),Thumbnail) + !String.IsEqual(Container(300).ListItem.Property(widgetaspect),Poster) + !String.IsEmpty(Container(300).ListItem.Property(widgetaspect))">
-            <control type="image">
-                <left>17</left>
-                <top>10</top>
-                <right>17</right>
-                <bottom>10</bottom>
-                <texture colordiffuse="Light4">common/black-back.png</texture>
-            </control>
-            <include content="Def_Widget_Weather_Background">
-                <param name="bordertopbottom" value="10" />
-                <param name="borderleftright" value="17" />
-            </include>
-            <control type="image">
-                <top>100</top>
-                <left>35</left>
-                <height>140</height>
-                <width>140</width>
-                <aspectratio align="center" aligny="center">keep</aspectratio>
-                <texture>$INFO[ListItem.Property(FanartTexture)]</texture>
-                <visible>!String.IsEmpty(Skin.String(weather.icons.path)) + !String.Contains(Skin.String(weather.icons.path),animated)</visible>
-            </control>
-            <control type="multiimage">
-                <top>100</top>
-                <left>35</left>
-                <height>140</height>
-                <width>140</width>
-                <aspectratio align="center" aligny="center">keep</aspectratio>
-                <imagepath>$INFO[ListItem.Property(Imagepath.Fanart.Animated)]</imagepath>
-                <visible>!String.IsEmpty(Skin.String(weather.icons.path)) + String.Contains(Skin.String(weather.icons.path),animated)</visible>
-            </control>
-            <control type="image">
-                <top>100</top>
-                <left>35</left>
-                <height>140</height>
-                <width>140</width>
-                <aspectratio align="center" aligny="center">keep</aspectratio>
-                <texture>$INFO[ListItem.Property(OutlookTexture)]</texture>
-                <visible>String.IsEmpty(Skin.String(weather.icons.path))</visible>
-            </control>
-            <control type="label">
-                <left>45</left>
-                <right>50</right>
-                <top>60</top>
-                <height>50</height>
-                <font>NotificationBold</font>
-                <align>right</align>
-                <aligny>center</aligny>
-                <textcolor>PanelWhite100</textcolor>
-                <label fallback="10006">$INFO[ListItem.Property(Title)]</label>
-            </control>
-            <control type="label">
-                <bottom>130</bottom>
-                <right>50</right>
-                <aligny>center</aligny>
-                <scroll>false</scroll>
-                <align>right</align>
-                <font>Home</font>
-                <textcolor>PanelWhite100</textcolor>
-                <label>$VAR[Label_Weather_Property]</label>
-                <visible>String.IsEmpty(ListItem.Property(Today))</visible>
-            </control>
-            <control type="label">
-                <bottom>130</bottom>
-                <right>50</right>
-                <aligny>center</aligny>
-                <scroll>false</scroll>
-                <align>right</align>
-                <font>Large</font>
-                <textcolor>PanelWhite100</textcolor>
-                <label>$INFO[ListItem.Property(HighTemp)]</label>
-                <visible>!String.IsEmpty(ListItem.Property(Today))</visible>
-            </control>
-            <control type="label">
-                <left>42</left>
-                <right>50</right>
-                <bottom>50</bottom>
-                <height>50</height>
-                <font>Tiny</font>
-                <align>right</align>
-                <aligny>center</aligny>
-                <textcolor>PanelWhite100</textcolor>
-                <label>$INFO[ListItem.Label]</label>
-            </control>
-        </focusedlayout>
-        <focusedlayout height="344" width="598.33" condition="String.IsEqual(Container(300).ListItem.Property(widgetaspect),Fanart) | String.IsEqual(Container(300).ListItem.Property(widgetaspect),Thumbnail)">
-            <control type="image">
-                <left>17</left>
-                <top>10</top>
-                <right>17</right>
-                <bottom>10</bottom>
-                <texture colordiffuse="Light4">common/black-back.png</texture>
-            </control>
-            <include content="Def_Widget_Weather_Background">
-                <param name="bordertopbottom" value="10" />
-                <param name="borderleftright" value="17" />
-            </include>
-            <control type="image">
-                <top>80</top>
-                <left>30</left>
-                <height>192</height>
-                <width>192</width>
-                <aspectratio align="center" aligny="center">keep</aspectratio>
-                <texture>$INFO[ListItem.Property(FanartTexture)]</texture>
-                <visible>!String.IsEmpty(Skin.String(weather.icons.path)) + !String.Contains(Skin.String(weather.icons.path),animated)</visible>
-            </control>
-            <control type="multiimage">
-                <top>80</top>
-                <left>30</left>
-                <height>192</height>
-                <width>192</width>
-                <aspectratio align="center" aligny="center">keep</aspectratio>
-                <imagepath>$INFO[ListItem.Property(Imagepath.Fanart.Animated)]</imagepath>
-                <visible>!String.IsEmpty(Skin.String(weather.icons.path)) + String.Contains(Skin.String(weather.icons.path),animated)</visible>
-            </control>
-            <control type="image">
-                <top>80</top>
-                <left>50</left>
-                <height>192</height>
-                <width>192</width>
-                <aspectratio align="center" aligny="center">keep</aspectratio>
-                <texture>$INFO[ListItem.Property(OutlookTexture)]</texture>
-                <visible>String.IsEmpty(Skin.String(weather.icons.path))</visible>
-            </control>
-            <control type="label">
-                <left>292</left>
-                <right>57</right>
-                <top>70</top>
-                <height>50</height>
-                <font>NotificationBold</font>
-                <align>right</align>
-                <aligny>center</aligny>
-                <textcolor>PanelWhite100</textcolor>
-                <label fallback="10006">$INFO[ListItem.Property(Title)]</label>
-            </control>
-            <control type="label">
-                <left>292</left>
-                <right>57</right>
-                <height>100%</height>
-                <aligny>center</aligny>
-                <scroll>false</scroll>
-                <align>right</align>
-                <font>Large</font>
-                <textcolor>PanelWhite100</textcolor>
-                <label>$VAR[Label_Weather_Property]</label>
-                <visible>String.IsEmpty(ListItem.Property(Today))</visible>
-            </control>
-            <control type="label">
-                <left>292</left>
-                <right>57</right>
-                <height>100%</height>
-                <aligny>center</aligny>
-                <scroll>false</scroll>
-                <align>right</align>
-                <font>LargeX2</font>
-                <textcolor>PanelWhite100</textcolor>
-                <label>$INFO[ListItem.Property(HighTemp)]</label>
-                <visible>!String.IsEmpty(ListItem.Property(Today))</visible>
-            </control>
-            <control type="label">
-                <left>242</left>
-                <right>57</right>
-                <bottom>70</bottom>
-                <height>50</height>
-                <font>Tiny</font>
-                <align>right</align>
-                <aligny>center</aligny>
-                <textcolor>PanelWhite100</textcolor>
-                <label>$INFO[ListItem.Label]</label>
-            </control>
-        </focusedlayout>
-    </include>
-
 </includes>

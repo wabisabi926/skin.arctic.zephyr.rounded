@@ -14,42 +14,49 @@
 
         <control type="group">
             <include>Animation_Common</include>
+
             <control type="group">
                 <visible>Container(9100).HasFocus(3)</visible>
-                <include content="weatherlistinput">
+                <include content="def_weather_list_input">
                     <param name="InputId" value="1" />
                 </include>
             </control>
             <control type="group">
                 <visible>Container(9100).HasFocus(4)</visible>
-                <include content="weatherlistinput">
+                <include content="def_weather_list_input">
                     <param name="InputId" value="2" />
                 </include>
             </control>
             <control type="group">
                 <visible>Container(9100).HasFocus(5)</visible>
-                <include content="weatherlistinput">
+                <include content="def_weather_list_input">
                     <param name="InputId" value="3" />
                 </include>
             </control>
             <control type="group">
                 <visible>Container(9100).HasFocus(6)</visible>
-                <include content="weatherlistinput">
+                <include content="def_weather_list_input">
                     <param name="InputId" value="4" />
                 </include>
             </control>
             <control type="group">
                 <visible>Container(9100).HasFocus(7)</visible>
-                <include content="weatherlistinput">
+                <include content="def_weather_list_input">
                     <param name="InputId" value="5" />
                 </include>
             </control>
+
+            <!-- SCROLLBAR -->
+
             <control type="scrollbar" id="1675">
                 <include content="Object_Scrollbar_Views_Horizontal">
                     <param name="scrollid" value="1675" />
                     <param name="jumpbar" value="false" />
                 </include>
             </control>
+
+            <!-- ARROWS -->
+
             <control type="image">
                 <visible>!Container(9100).OnNext + !Container(9100).OnPrevious</visible>
                 <left>1860</left>
@@ -66,17 +73,24 @@
                 <texture colordiffuse="Dark1" flipx="true">common/arrow-small-right.png</texture>
                 <include>Animation_Delay_Fade_In_600</include>
             </control>
+
+            <!-- WRAPLIST -->
+
             <control type="wraplist" id="9100">
-                <pagecontrol>1675</pagecontrol>
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <left>70</left>
                 <width>1780</width>
                 <height>900</height>
-                <left>70</left>
-                <orientation>horizontal</orientation>
+
                 <onup>9000</onup>
                 <ondown>9000</ondown>
-                <include>Animation_Scrolltime_Views_List</include>
+
                 <scroll>false</scroll>
                 <preloaditems>0</preloaditems>
+                <pagecontrol>1675</pagecontrol>
+                <orientation>horizontal</orientation>
+
                 <itemlayout height="810" width="1840">
                     <control type="group">
                         <visible>String.IsEqual(ListItem.Label2,Eins)</visible>
@@ -577,27 +591,27 @@
                     </control>
                     <control type="group">
                         <visible>String.IsEqual(ListItem.Label2,Vier)</visible>
-                        <include content="weatherlistinputpagetwo">
+                        <include content="def_weather_list_input_page_two">
                             <param name="Daily" value="6" />
                             <param name="weatherlistinputpagetwoleft" value="10" />
                         </include>
-                        <include content="weatherlistinputpagetwo">
+                        <include content="def_weather_list_input_page_two">
                             <param name="Daily" value="7" />
                             <param name="weatherlistinputpagetwoleft" value="305" />
                         </include>
-                        <include content="weatherlistinputpagetwo">
+                        <include content="def_weather_list_input_page_two">
                             <param name="Daily" value="8" />
                             <param name="weatherlistinputpagetwoleft" value="600" />
                         </include>
-                        <include content="weatherlistinputpagetwo">
+                        <include content="def_weather_list_input_page_two">
                             <param name="Daily" value="9" />
                             <param name="weatherlistinputpagetwoleft" value="895" />
                         </include>
-                        <include content="weatherlistinputpagetwo">
+                        <include content="def_weather_list_input_page_two">
                             <param name="Daily" value="10" />
                             <param name="weatherlistinputpagetwoleft" value="1190" />
                         </include>
-                        <include content="weatherlistinputpagetwo">
+                        <include content="def_weather_list_input_page_two">
                             <param name="Daily" value="11" />
                             <param name="weatherlistinputpagetwoleft" value="1485" />
                         </include>
@@ -605,7 +619,7 @@
                     <control type="group">
                         <visible>String.IsEqual(ListItem.Label2,Zwei)</visible>
                         <control type="group">
-                            <include content="weatherlisttop">
+                            <include content="def_weather_list_stop">
                                 <param name="weatherwidth" value="413" />
                                 <param name="weatherleft" value="10" />
                                 <param name="weatherfanartcode" value="1" />
@@ -621,120 +635,120 @@
                                 <animation effect="fade" start="100" end="WeatherFanartTransparency" condition="true">Conditional</animation>
                                 <imagepath background="true">$INFO[Skin.String(weather.fanart.path)]$INFO[Window(Weather).Property(Hourly.1.FanartCode)]/</imagepath>
                             </control>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="1" />
                                 <param name="top" value="0" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="2" />
                                 <param name="top" value="106" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="3" />
                                 <param name="top" value="212" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="4" />
                                 <param name="top" value="318" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="5" />
                                 <param name="top" value="424" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="6" />
                                 <param name="top" value="530" />
                             </include>
                         </control>
                         <control type="group">
-                            <include content="weatherlisttop">
+                            <include content="def_weather_list_stop">
                                 <param name="weatherwidth" value="422" />
                                 <param name="weatherleft" value="453" />
                                 <param name="weatherfanartcode" value="7" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="7" />
                                 <param name="top" value="0" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="8" />
                                 <param name="top" value="106" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="9" />
                                 <param name="top" value="212" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="10" />
                                 <param name="top" value="318" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="11" />
                                 <param name="top" value="424" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="12" />
                                 <param name="top" value="530" />
                             </include>
                         </control>
                         <control type="group">
-                            <include content="weatherlisttop">
+                            <include content="def_weather_list_stop">
                                 <param name="weatherwidth" value="422" />
                                 <param name="weatherleft" value="894" />
                                 <param name="weatherfanartcode" value="13" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="13" />
                                 <param name="top" value="0" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="14" />
                                 <param name="top" value="106" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="15" />
                                 <param name="top" value="212" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="16" />
                                 <param name="top" value="318" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="17" />
                                 <param name="top" value="424" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="18" />
                                 <param name="top" value="530" />
                             </include>
                         </control>
                         <control type="group">
-                            <include content="weatherlisttop">
+                            <include content="def_weather_list_stop">
                                 <param name="weatherwidth" value="422" />
                                 <param name="weatherleft" value="1336" />
                                 <param name="weatherfanartcode" value="19" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="19" />
                                 <param name="top" value="0" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="20" />
                                 <param name="top" value="106" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="21" />
                                 <param name="top" value="212" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="22" />
                                 <param name="top" value="318" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="23" />
                                 <param name="top" value="424" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="24" />
                                 <param name="top" value="530" />
                             </include>
@@ -750,7 +764,7 @@
                             <bottom>1</bottom>
                             <width>1758</width>
                             <height>638</height>
-                            <texture border="12" colordiffuse="White100">common/box12.png</texture>
+                            <texture border="24" colordiffuse="White100">common/box24.png</texture>
                         </control>
                         <control type="image">
                             <left>1</left>
@@ -800,10 +814,11 @@
                     <control type="group">
                         <visible>String.IsEqual(ListItem.Label2,Eins)</visible>
                         <control type="group">
-                            <width>275</width>
-                            <height>PosterH</height>
                             <top>View_Top</top>
                             <left>10</left>
+                            <width>275</width>
+                            <height>PosterH</height>
+
                             <include>Def_Dialog_Background_Image</include>
 
                             <control type="multiimage" description="Fanart">
@@ -881,6 +896,7 @@
                                 <label fallback="10006">$INFO[Window(Weather).Property(Current.Condition),,[CR]]$INFO[Window(Weather).Property(Current.FeelsLike),$LOCALIZE[402] ,°[CR]]$INFO[Window(Weather).Property(Current.Humidity),, $LOCALIZE[406][CR]]$INFO[Window(Weather).Property(Current.Wind)]</label>
                             </control>
                         </control>
+
                         <control type="group">
                             <width>275</width>
                             <height>PosterH</height>
@@ -963,6 +979,7 @@
                                 <label fallback="10006">$INFO[Window(Weather).Property(Day0.Outlook)]</label>
                             </control>
                         </control>
+
                         <control type="group">
                             <width>275</width>
                             <height>PosterH</height>
@@ -1045,6 +1062,7 @@
                                 <label fallback="10006">$INFO[Window(Weather).Property(Day1.Outlook)]</label>
                             </control>
                         </control>
+
                         <control type="group">
                             <width>275</width>
                             <height>PosterH</height>
@@ -1127,6 +1145,7 @@
                                 <label fallback="10006">$INFO[Window(Weather).Property(Day2.Outlook)]</label>
                             </control>
                         </control>
+
                         <control type="group">
                             <width>275</width>
                             <height>PosterH</height>
@@ -1209,6 +1228,7 @@
                                 <label fallback="10006">$INFO[Window(Weather).Property(Day3.Outlook)]</label>
                             </control>
                         </control>
+
                         <control type="group">
                             <width>275</width>
                             <height>PosterH</height>
@@ -1292,155 +1312,157 @@
                             </control>
                         </control>
                     </control>
+
                     <control type="group">
                         <visible>String.IsEqual(ListItem.Label2,Vier)</visible>
-                        <include content="weatherlistinputpagetwo">
+                        <include content="def_weather_list_input_page_two">
                             <param name="Daily" value="6" />
                             <param name="weatherlistinputpagetwoleft" value="10" />
                         </include>
-                        <include content="weatherlistinputpagetwo">
+                        <include content="def_weather_list_input_page_two">
                             <param name="Daily" value="7" />
                             <param name="weatherlistinputpagetwoleft" value="305" />
                         </include>
-                        <include content="weatherlistinputpagetwo">
+                        <include content="def_weather_list_input_page_two">
                             <param name="Daily" value="8" />
                             <param name="weatherlistinputpagetwoleft" value="600" />
                         </include>
-                        <include content="weatherlistinputpagetwo">
+                        <include content="def_weather_list_input_page_two">
                             <param name="Daily" value="9" />
                             <param name="weatherlistinputpagetwoleft" value="895" />
                         </include>
-                        <include content="weatherlistinputpagetwo">
+                        <include content="def_weather_list_input_page_two">
                             <param name="Daily" value="10" />
                             <param name="weatherlistinputpagetwoleft" value="1190" />
                         </include>
-                        <include content="weatherlistinputpagetwo">
+                        <include content="def_weather_list_input_page_two">
                             <param name="Daily" value="11" />
                             <param name="weatherlistinputpagetwoleft" value="1485" />
                         </include>
                     </control>
+
                     <control type="group">
                         <visible>String.IsEqual(ListItem.Label2,Zwei)</visible>
                         <control type="group">
-                            <include content="weatherlisttop">
+                            <include content="def_weather_list_stop">
                                 <param name="weatherwidth" value="423" />
                                 <param name="weatherleft" value="10" />
                                 <param name="weatherfanartcode" value="1" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="1" />
                                 <param name="top" value="0" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="2" />
                                 <param name="top" value="106" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="3" />
                                 <param name="top" value="212" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="4" />
                                 <param name="top" value="318" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="5" />
                                 <param name="top" value="424" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="6" />
                                 <param name="top" value="530" />
                             </include>
                         </control>
                         <control type="group">
-                            <include content="weatherlisttop">
+                            <include content="def_weather_list_stop">
                                 <param name="weatherwidth" value="422" />
                                 <param name="weatherleft" value="453" />
                                 <param name="weatherfanartcode" value="7" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="7" />
                                 <param name="top" value="0" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="8" />
                                 <param name="top" value="106" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="9" />
                                 <param name="top" value="212" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="10" />
                                 <param name="top" value="318" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="11" />
                                 <param name="top" value="424" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="12" />
                                 <param name="top" value="530" />
                             </include>
                         </control>
                         <control type="group">
-                            <include content="weatherlisttop">
+                            <include content="def_weather_list_stop">
                                 <param name="weatherwidth" value="422" />
                                 <param name="weatherleft" value="894" />
                                 <param name="weatherfanartcode" value="13" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="13" />
                                 <param name="top" value="0" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="14" />
                                 <param name="top" value="106" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="15" />
                                 <param name="top" value="212" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="16" />
                                 <param name="top" value="318" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="17" />
                                 <param name="top" value="424" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="18" />
                                 <param name="top" value="530" />
                             </include>
                         </control>
                         <control type="group">
-                            <include content="weatherlisttop">
+                            <include content="def_weather_list_stop">
                                 <param name="weatherwidth" value="422" />
                                 <param name="weatherleft" value="1336" />
                                 <param name="weatherfanartcode" value="19" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="19" />
                                 <param name="top" value="0" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="20" />
                                 <param name="top" value="106" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="21" />
                                 <param name="top" value="212" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="22" />
                                 <param name="top" value="318" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="23" />
                                 <param name="top" value="424" />
                             </include>
-                            <include content="weatherlist">
+                            <include content="def_weather_list">
                                 <param name="DayId" value="24" />
                                 <param name="top" value="530" />
                             </include>
@@ -1456,7 +1478,7 @@
                             <bottom>1</bottom>
                             <width>1758</width>
                             <height>638</height>
-                            <texture border="12" colordiffuse="White100">common/box12.png</texture>
+                            <texture border="24" colordiffuse="White100">common/box24.png</texture>
                         </control>
                         <control type="image">
                             <left>1</left>
@@ -1502,6 +1524,7 @@
                         </control>
                     </control>
                 </focusedlayout>
+
                 <content>
                     <item id="0">
                         <label/>
