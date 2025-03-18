@@ -72,6 +72,21 @@
         </definition>
     </include>
 
+    <include name="Def_Widget_Square_System_Image">
+        <param name="pad_image" value="$PARAM[pad_image]" default="10" />
+        <param name="texture_diffuse" value="$PARAM[texture_diffuse]"  default="square_w305_h305"/>
+        <param name="texture" value="$PARAM[texture]" />
+
+        <definition>
+            <control type="image" description="Fanart">
+                <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
+                <animation effect="fade" start="100" end="10" condition="true">Conditional</animation>
+                <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                <texture diffuse="diffuse/$PARAM[texture_diffuse].png">$PARAM[texture]</texture>
+            </control>
+        </definition>
+    </include>
+
     <include name="Def_Widget_Background">
         <param name="colordiffuse" value="$PARAM[colordiffuse]" default="White100" />
         <param name="condition_fade" value="$PARAM[condition_fade]" default="false" />

@@ -1300,6 +1300,7 @@
             <label2>$INFO[Window(Home).Property(Movies.Count)] $LOCALIZE[20342]</label2>
             <icon>special://skin/extras/icons/tv.png</icon>
             <property name="Label3">$INFO[Window(Home).Property(TVShows.Count)] $LOCALIZE[20343]</property>
+            <property name="WidgetType">Widget_Type_Info_System</property>
             <visible>Library.HasContent(Movies) | Library.HasContent(TVShows)</visible>
             <onclick>ActivateWindow(systeminfo)</onclick>
         </item>
@@ -1308,6 +1309,7 @@
             <label2>$INFO[Window(Home).Property(Music.AlbumsCount)] $LOCALIZE[132]</label2>
             <icon>special://skin/extras/icons/songs.png</icon>
             <property name="Label3">$INFO[Window(Home).Property(Music.SongsCount)] $LOCALIZE[134]</property>
+            <property name="WidgetType">Widget_Type_Info_System</property>
             <visible>Library.HasContent(Music)</visible>
             <onclick>ActivateWindow(systeminfo)</onclick>
         </item>
@@ -1316,6 +1318,7 @@
             <label2>$INFO[Pvr.BackendName]</label2>
             <icon>special://skin/extras/icons/pvrinfo.png</icon>
             <property name="Label3">$INFO[Pvr.BackendChannels] $LOCALIZE[19019]</property>
+            <property name="WidgetType">Widget_Type_Info_System</property>
             <visible>PVR.HasTVChannels</visible>
             <onclick>ActivateWindowAndFocus(systeminfo,99,0)</onclick>
         </item>
@@ -1324,6 +1327,7 @@
             <label2>$INFO[System.BuildVersion]</label2>
             <icon>special://skin/extras/icons/kodi.png</icon>
             <property name="Label3">$INFO[System.BuildDate]</property>
+            <property name="WidgetType">Widget_Type_Info_System</property>
             <onclick>ActivateWindow(systeminfo)</onclick>
         </item>
         <item>
@@ -1331,6 +1335,7 @@
             <label2>$INFO[Network.LinkState]</label2>
             <icon>special://skin/extras/icons/networkinfo.png</icon>
             <property name="Label3">$INFO[Network.IPAddress,IP: ]</property>
+            <property name="WidgetType">Widget_Type_Info_System</property>
             <visible>!String.IsEmpty(Network.IPAddress)</visible>
             <onclick>ActivateWindowAndFocus(systeminfo,96,0)</onclick>
         </item>
@@ -1339,6 +1344,7 @@
             <label2>$INFO[Network.LinkState]</label2>
             <icon>special://skin/extras/icons/network.png</icon>
             <property name="Label3">$INFO[Network.IPAddress,IP: ]</property>
+            <property name="WidgetType">Widget_Type_Info_System</property>
             <visible>String.IsEmpty(Network.IPAddress)</visible>
             <onclick>ActivateWindowAndFocus(systeminfo,96,0)</onclick>
         </item>
@@ -1347,6 +1353,7 @@
             <label2>$INFO[System.ScreenWidth]x$INFO[System.ScreenHeight]</label2>
             <icon>special://skin/extras/icons/graphicinfo.png</icon>
             <property name="Label3">$INFO[System.fps,, FPS]</property>
+            <property name="WidgetType">Widget_Type_Info_System</property>
             <onclick>ActivateWindowAndFocus(systeminfo,97,0)</onclick>
         </item>
         <item>
@@ -1355,6 +1362,7 @@
             <icon>special://skin/extras/icons/sysinfo.png</icon>
             <property name="Label3">$INFO[System.CpuFrequency]</property>
             <property name="Label4">cpu</property>
+            <property name="WidgetType">Widget_Type_Info_System</property>
             <onclick>ActivateWindowAndFocus(systeminfo,98,0)</onclick>
         </item>
         <item>
@@ -1363,6 +1371,7 @@
             <icon>special://skin/extras/icons/raminfo.png</icon>
             <property name="Label3">$INFO[System.Memory(total)] $LOCALIZE[20161]</property>
             <property name="Label4">ram</property>
+            <property name="WidgetType">Widget_Type_Info_System</property>
             <onclick>ActivateWindowAndFocus(systeminfo,98,0)</onclick>
         </item>
         <item>
@@ -1371,6 +1380,7 @@
             <icon>special://skin/extras/icons/storageinfo.png</icon>
             <property name="Label3">$INFO[System.TotalSpace]</property>
             <property name="Label4">storage</property>
+            <property name="WidgetType">Widget_Type_Info_System</property>
             <onclick>ActivateWindowAndFocus(systeminfo,94,0)</onclick>
         </item>
     </include>
@@ -1381,66 +1391,77 @@
         <item id="1">
             <label>14206</label>
             <label2>31202</label2>
+            <property name="WidgetType">Widget_Type_Settings</property>
             <icon>special://skin/extras/icons/paintbrush.png</icon>
             <onclick>ActivateWindow(InterfaceSettings)</onclick>
         </item>
         <item id="2">
             <label>14202</label>
             <label2>31203</label2>
+            <property name="WidgetType">Widget_Type_Settings</property>
             <icon>special://skin/extras/icons/database.png</icon>
             <onclick>ActivateWindow(MediaSettings)</onclick>
         </item>
         <item id="3">
             <label>14200</label>
             <label2>31204</label2>
+            <property name="WidgetType">Widget_Type_Settings</property>
             <icon>special://skin/extras/icons/equalizer.png</icon>
             <onclick>ActivateWindow(PlayerSettings)</onclick>
         </item>
         <item id="12">
             <label>20077</label>
             <label2>31123</label2>
+            <property name="WidgetType">Widget_Type_Settings</property>
             <icon>special://skin/extras/icons/graphicinfo.png</icon>
             <onclick>ActivateWindow(SkinSettings)</onclick>
         </item>
         <item id="8">
             <label>13000</label>
             <label2>31118</label2>
+            <property name="WidgetType">Widget_Type_Settings</property>
             <icon>special://skin/extras/icons/sysinfo.png</icon>
             <onclick>ActivateWindow(SystemSettings)</onclick>
         </item>
         <item id="7">
             <label>14036</label>
             <label2>31121</label2>
+            <property name="WidgetType">Widget_Type_Settings</property>
             <icon>special://skin/extras/icons/networkinfo.png</icon>
             <onclick>ActivateWindow(servicesettings)</onclick>
         </item>
         <item id="9">
             <label>13200</label>
             <label2>31122</label2>
+            <property name="WidgetType">Widget_Type_Settings</property>
             <icon>special://skin/extras/icons/actor.png</icon>
             <onclick>ActivateWindow(Profiles)</onclick>
         </item>
         <item id="4">
             <label>24001</label>
             <label2>31119</label2>
+            <property name="WidgetType">Widget_Type_Settings</property>
             <icon>special://skin/extras/icons/network.png</icon>
             <onclick>ActivateWindow(AddonBrowser)</onclick>
         </item>
         <item id="10">
             <label>130</label>
             <label2>31124</label2>
+            <property name="WidgetType">Widget_Type_Settings</property>
             <icon>special://skin/extras/icons/info.png</icon>
             <onclick>ActivateWindow(7)</onclick>
         </item>
         <item id="11">
             <label>19191</label>
             <label2>31120</label2>
+            <property name="WidgetType">Widget_Type_Settings</property>
             <icon>special://skin/extras/icons/livetv.png</icon>
             <onclick>ActivateWindow(pvrsettings)</onclick>
         </item>
         <item id="5">
             <label>LibreELEC $LOCALIZE[5]</label>
             <label2>31279</label2>
+            <property name="WidgetType">Widget_Type_Settings</property>
             <icon>special://skin/extras/icons/libreelec.png</icon>
             <onclick>RunScript(service.libreelec.settings)</onclick>
             <visible>System.HasAddon(service.libreelec.settings)</visible>
@@ -1448,6 +1469,7 @@
         <item id="6">
             <label>CoreELEC $LOCALIZE[5]</label>
             <label2>31280</label2>
+            <property name="WidgetType">Widget_Type_Settings</property>
             <icon>special://skin/extras/icons/coreelec.png</icon>
             <onclick>RunScript(service.coreelec.settings)</onclick>
             <visible>System.HasAddon(service.coreelec.settings)</visible>
@@ -1455,6 +1477,7 @@
         <item id="14">
             <label>$LOCALIZE[7]</label>
             <label2>31487</label2>
+            <property name="WidgetType">Widget_Type_Settings</property>
             <icon>special://skin/extras/icons/filebox.png</icon>
             <onclick>ActivateWindow(filemanager)</onclick>
         </item>

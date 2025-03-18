@@ -113,6 +113,13 @@
         <value>videos</value>
     </variable>
 
+    <!-- DEF - WIDGET - BACKGROUND -->
+
+    <variable name="Def_Widget_Texture">
+        <value condition="!String.IsEmpty(Skin.String(fanart.fallback.settings)) + String.IsEqual(ListItem.Property(WidgetType),Widget_Type_Settings)">$INFO[Skin.String(fanart.fallback.settings)]</value>
+        <value condition="!String.IsEmpty(Skin.String(fanart.fallback.programs)) + String.IsEqual(ListItem.Property(WidgetType),Widget_Type_Info_System)">$INFO[Skin.String(fanart.fallback.programs)]</value>
+    </variable>
+
     <!-- =================================== -->
     <!--           WIDGETS                   -->
     <!-- =================================== -->
@@ -988,8 +995,14 @@
     <include name="Def_Widget_Square_System">
         <param name="pad_image" value="$PARAM[pad_image]" default="10" />
         <param name="height" value="$PARAM[height]" default="325" />
+
         <definition>
             <include content="Def_Widget_Background"><param name="condition_fade">true</param></include>
+
+            <include content="Def_Widget_Square_System_Image">
+                <param name="texture_diffuse" value="$PARAM[texture_diffuse]" />
+                <param name="texture" value="$VAR[Def_Widget_Texture]" />
+            </include>
 
             <control type="image">
                 <width>150</width>
@@ -999,6 +1012,7 @@
                 <aspectratio scalediffuse="false">keep</aspectratio>
                 <texture colordiffuse="PanelWhite100" diffuse="diffuse/square_w305_h305.png" background="true" fallback="DefaultMovies.png">$INFO[ListItem.Icon]</texture>
             </control>
+
             <control type="group">
                 <left>45</left>
                 <right>45</right>
