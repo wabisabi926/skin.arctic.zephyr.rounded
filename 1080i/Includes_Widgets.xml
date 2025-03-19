@@ -1467,6 +1467,7 @@
                     <param name="texture_diffuse" value="$PARAM[texture_diffuse]" />
                     <param name="fallback" value="defaultpvrchannels" />
                     <param name="condition_fadetime" value="false" />
+                    <param name="visible_background" value="true" />
                     <param name="visible" value="String.StartsWith(ListItem.Path,pvr://channels)" />
                 </include>
             </control>
@@ -1488,15 +1489,26 @@
 
                 <!-- PVR - PROGRESS BAR -->
 
+                <control type="image">
+                    <left>10</left>
+                    <right>10</right>
+                    <bottom>75</bottom>
+                    <height>50</height>
+                    <texture border="12" colordiffuse="White30">common/shadowbottomsmall_light.png</texture>
+                    <visible>String.StartsWith(ListItem.Path,pvr://channels)</visible>
+                    <visible>!String.IsEqual(ListItem.Path,pvr://channels/tv/)</visible>
+                    <visible>Integer.IsGreater(ListItem.Progress,1) + !Integer.IsGreater(ListItem.Progress,99)</visible>
+                </control>
                 <control type="progress">
                     <left>20</left>
                     <right>20</right>
                     <height>8</height>
-                    <bottom>71</bottom>
+                    <bottom>85</bottom>
                     <info>ListItem.Progress</info>
                     <texturebg colordiffuse="Black12" border="8,0,8,0">progress/progress-nib.png</texturebg>
                     <visible>String.StartsWith(ListItem.Path,pvr://channels)</visible>
                     <visible>!String.IsEqual(ListItem.Path,pvr://channels/tv/)</visible>
+                    <visible>Integer.IsGreater(ListItem.Progress,1) + !Integer.IsGreater(ListItem.Progress,99)</visible>
                 </control>
 
                 <!-- LABEL -->
@@ -1518,21 +1530,32 @@
 
                 <!-- PVR - PROGRESS BAR -->
 
+                <control type="image">
+                    <left>10</left>
+                    <right>10</right>
+                    <bottom>113</bottom>
+                    <height>50</height>
+                    <texture border="12" colordiffuse="White30">common/shadowbottomsmall_light.png</texture>
+                    <visible>String.StartsWith(ListItem.Path,pvr://channels)</visible>
+                    <visible>!String.IsEqual(ListItem.Path,pvr://channels/tv/)</visible>
+                    <visible>Integer.IsGreater(ListItem.Progress,1) + !Integer.IsGreater(ListItem.Progress,99)</visible>
+                </control>
                 <control type="progress">
                     <left>20</left>
                     <right>20</right>
                     <height>8</height>
-                    <bottom>102</bottom>
+                    <bottom>123</bottom>
                     <info>ListItem.Progress</info>
                     <texturebg colordiffuse="Black12" border="8,0,8,0">progress/progress-nib.png</texturebg>
                     <visible>String.StartsWith(ListItem.Path,pvr://channels)</visible>
                     <visible>!String.IsEqual(ListItem.Path,pvr://channels/tv/)</visible>
+                    <visible>Integer.IsGreater(ListItem.Progress,1) + !Integer.IsGreater(ListItem.Progress,99)</visible>
                 </control>
 
                 <!-- PVR - LABEL -->
 
                 <control type="label">
-                    <bottom>40</bottom>
+                    <bottom>50</bottom>
                     <left>35</left>
                     <right>35</right>
                     <align>center</align>
@@ -1546,7 +1569,7 @@
                 <!-- PVR - LABEL - 2nd LINE -->
 
                 <control type="label">
-                    <bottom>10</bottom>
+                    <bottom>20</bottom>
                     <left>35</left>
                     <right>35</right>
                     <align>center</align>
@@ -1611,6 +1634,7 @@
                     <param name="texture_diffuse" value="$PARAM[texture_diffuse]" />
                     <param name="fallback" value="defaultpvrchannels" />
                     <param name="condition_fadetime" value="false" />
+                    <param name="visible_background" value="true" />
                     <param name="visible" value="String.StartsWith(ListItem.Path,pvr://channels)" />
                 </include>
 
@@ -1644,6 +1668,19 @@
 
                 <!-- PVR - PROGRESS BAR -->
 
+                <control type="image">
+                    <left>10</left>
+                    <right>10</right>
+                    <include content="Def_Bottom" condition="$PARAM[small]">
+                       <param name="bottom" value="100" />
+                    </include>
+                    <bottom>10</bottom>
+                    <height>50</height>
+                    <texture border="12" colordiffuse="White30">common/shadowbottomsmall_light.png</texture>
+                    <visible>String.StartsWith(ListItem.Path,pvr://channels) + $PARAM[small]</visible>
+                    <visible>!String.IsEqual(ListItem.Path,pvr://channels/tv/)</visible>
+                    <visible>Integer.IsGreater(ListItem.Progress,1) + !Integer.IsGreater(ListItem.Progress,99)</visible>
+                </control>
                 <control type="progress">
                     <left>20</left>
                     <right>20</right>
@@ -1656,6 +1693,7 @@
                     <texturebg colordiffuse="Black12" border="8,0,8,0">progress/progress-nib.png</texturebg>
                     <visible>String.StartsWith(ListItem.Path,pvr://channels) + $PARAM[small]</visible>
                     <visible>!String.IsEqual(ListItem.Path,pvr://channels/tv/)</visible>
+                    <visible>Integer.IsGreater(ListItem.Progress,1) + !Integer.IsGreater(ListItem.Progress,99)</visible>
                 </control>
 
                 <!-- LABEL - 1st LINE -->
@@ -1757,6 +1795,7 @@
                     <param name="texture_diffuse" value="$PARAM[texture_diffuse]" />
                     <param name="fallback" value="defaultpvrchannels" />
                     <param name="condition_fadetime" value="false" />
+                    <param name="visible_background" value="true" />
                     <param name="visible" value="String.StartsWith(ListItem.Path,pvr://channels)" />
                 </include>
 
@@ -1803,6 +1842,19 @@
 
             <!-- PVR - PROGRESS BAR -->
 
+            <control type="image">
+                <left>10</left>
+                <right>10</right>
+                <include content="Def_Bottom" condition="$PARAM[small]">
+                   <param name="bottom" value="100" />
+                </include>
+                <bottom>10</bottom>
+                <height>50</height>
+                <texture border="12" colordiffuse="White30">common/shadowbottomsmall_light.png</texture>
+                <visible>String.StartsWith(ListItem.Path,pvr://channels)</visible>
+                <visible>!String.IsEqual(ListItem.Path,pvr://channels/tv/)</visible>
+                <visible>Integer.IsGreater(ListItem.Progress,1) + !Integer.IsGreater(ListItem.Progress,99)</visible>
+            </control>
             <control type="progress">
                 <left>20</left>
                 <right>20</right>
@@ -1815,6 +1867,7 @@
                 <texturebg colordiffuse="Black12" border="8,0,8,0">progress/progress-nib.png</texturebg>
                 <visible>String.StartsWith(ListItem.Path,pvr://channels)</visible>
                 <visible>!String.IsEqual(ListItem.Path,pvr://channels/tv/)</visible>
+                <visible>Integer.IsGreater(ListItem.Progress,1) + !Integer.IsGreater(ListItem.Progress,99)</visible>
             </control>
 
             <!-- LABEL - 1st LINE -->

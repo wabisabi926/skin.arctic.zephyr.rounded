@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
-    <include name="Slide_Out_Items_Button">
+
+    <!-- DEF - BUTTON -->
+
+    <include name="Button_Home_Clean_Set_Widget_Container_Position">
+        <control type="button">
+            <visible>false</visible>
+            <onfocus>SetProperty(ContainerPosition,$INFO[Container($PARAM[id]).CurrentItem]$INFO[Container($PARAM[id]).NumItems, / ,],Home)</onfocus>
+        </control>
+    </include>
+
+    <include name="Button_Auto_Trailer_Control">
+        <control type="button">
+            <visible>false</visible>
+
+            <!-- Set Property / Skin String -->
+            <onfocus>SetProperty(listitem.trailer,$INFO[ListItem.Trailer],Home)</onfocus>
+
+            <!-- Reset / Stop On Unfocus -->
+            <onunfocus condition="String.IsEmpty(Window(Home).Property(TrailerIsPlayingFullscreen))">ClearProperty(TrailerPath,Home)</onunfocus>
+            <onunfocus condition="$EXP[TrailerIsPlaying] + !Skin.HasSetting(enable.trailer.playing.on.unfocus) + String.IsEmpty(Window(Home).Property(TrailerIsPlayingFullscreen))">Stop</onunfocus>
+
+            <!-- Reset Fullscreen Property -->
+            <onunfocus condition="!String.IsEmpty(Window(Home).Property(TrailerIsPlayingFullscreen))">ClearProperty(TrailerIsPlayingFullscreen,Home)</onunfocus>
+        </control>
+    </include>
+
+    <include name="Button_Intent">
+        <control type="button">
+            <width>1</width>
+            <height>1</height>
+            <label />
+            <enable>false</enable>
+        </control>
+    </include>
+
+    <include name="Button_Slide_Out_Items">
         <control type="button">
             <include>Def_Hidden_Button</include>
             <onfocus condition="$EXP[Has_Home_Menu_Auto_Slide_Out_Animation]">AlarmClock(slide_out,SetFocus(2011),00:05,silent)</onfocus>
@@ -269,6 +304,7 @@
 
     <include name="Def_Image_Art">
         <param name="pad_image" value="$PARAM[pad_image]" default="0" />
+        <param name="colordiffuse" value="$PARAM[colordiffuse]" default="$VAR[Value_Color_Settings]" />
         <param name="texture" value="$PARAM[texture]" default="$VAR[Image_Poster]" />
         <param name="texture_diffuse" value="$PARAM[texture_diffuse]" default="poster_w428_h640" />
         <param name="fallback" value="$PARAM[fallback]" default="DefaultMovies" />
@@ -276,7 +312,15 @@
         <param name="fadetime" value="$PARAM[fadetime]" default="PosterFanartFadetime" />
         <param name="condition_fadetime" value="$PARAM[condition_fadetime]" default="true" />
         <param name="visible" value="$PARAM[visible]" default="true" />
+        <param name="visible_background" value="$PARAM[visible_background]" default="false" />
         <definition>
+            <control type="image">
+                <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
+                <texture border="12" colordiffuse="$PARAM[colordiffuse]">common/box12.png</texture>
+                <animation effect="fade" start="100" end="90" condition="$PARAM[condition_fade]">Conditional</animation>
+                <visible>$PARAM[visible_background]</visible>
+                <visible>$PARAM[visible]</visible>
+            </control>
             <control type="image">
                 <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
                 <include content="Def_Fadetime" condition="$PARAM[condition_fadetime]"><param name="fadetime">$PARAM[fadetime]</param></include>
@@ -830,33 +874,6 @@
         </content>
     </include>
 
-    <!-- HOME - CLEAN -->
-
-    <include name="SetWidgetContainerPosition">
-        <control type="button">
-            <visible>false</visible>
-            <onfocus>SetProperty(ContainerPosition,$INFO[Container($PARAM[id]).CurrentItem]$INFO[Container($PARAM[id]).NumItems, / ,],Home)</onfocus>
-        </control>
-    </include>
-
-    <!-- HOME - TRAILER -->
-
-    <include name="SetAutoTrailerControl">
-        <control type="button">
-            <visible>false</visible>
-
-            <!-- Set Property / Skin String -->
-            <onfocus>SetProperty(listitem.trailer,$INFO[ListItem.Trailer],Home)</onfocus>
-
-            <!-- Reset / Stop On Unfocus -->
-            <onunfocus condition="String.IsEmpty(Window(Home).Property(TrailerIsPlayingFullscreen))">ClearProperty(TrailerPath,Home)</onunfocus>
-            <onunfocus condition="$EXP[TrailerIsPlaying] + !Skin.HasSetting(enable.trailer.playing.on.unfocus) + String.IsEmpty(Window(Home).Property(TrailerIsPlayingFullscreen))">Stop</onunfocus>
-
-            <!-- Reset Fullscreen Property -->
-            <onunfocus condition="!String.IsEmpty(Window(Home).Property(TrailerIsPlayingFullscreen))">ClearProperty(TrailerIsPlayingFullscreen,Home)</onunfocus>
-        </control>
-    </include>
-
     <!-- OTHERS / MISC -->
 
     <include name="OverlayEnableAddons">
@@ -881,15 +898,6 @@
     <include name="OnClickInclude2">
         <onclick>Dialog.Close(all,true)</onclick>
         <onclick>ActivateWindow(music,$INFO[ListItem.FolderPath],return)</onclick>
-    </include>
-
-    <include name="Button_Intent">
-        <control type="button">
-            <width>1</width>
-            <height>1</height>
-            <label />
-            <enable>false</enable>
-        </control>
     </include>
 
     <variable name="DB_type">
