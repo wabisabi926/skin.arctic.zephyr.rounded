@@ -323,6 +323,7 @@
                 <param name="pad_image" value="$PARAM[pad_image]" />
                 <param name="colordiffuse_background" value="$PARAM[colordiffuse_background]" />
                 <param name="condition_fadetime_background" value="$PARAM[condition_fadetime_background]" />
+                <param name="visible" value="$PARAM[visible]" />
             </include>
 
             <control type="image">
@@ -357,6 +358,7 @@
                 <param name="pad_image" value="$PARAM[pad_image]" />
                 <param name="colordiffuse_background" value="$PARAM[colordiffuse_background]" />
                 <param name="condition_fadetime_background" value="$PARAM[condition_fadetime_background]" />
+                <param name="visible" value="$PARAM[visible]" />
             </include>
 
             <control type="image">
@@ -375,6 +377,7 @@
                 <aspectratio align="center" aligny="center" scalediffuse="false">$PARAM[aspectratio]</aspectratio>
                 <texture diffuse="diffuse/$PARAM[texture_diffuse].png" background="true" colordiffuse="$PARAM[colordiffuse]">$PARAM[texture]</texture>
                 <visible>$EXP[View_Icon_Black]</visible>
+                <visible>$PARAM[visible]</visible>
             </control>
         </definition>
     </include>
@@ -405,12 +408,14 @@
         <param name="pad_image" value="$PARAM[pad_image]" default="0" />
         <param name="colordiffuse_background" value="$PARAM[colordiffuse_background]" default="$VAR[Value_Color_Settings]" />
         <param name="condition_fadetime_background" value="$PARAM[condition_fadetime_background]" default="true" />
+        <param name="visible" value="$PARAM[visible]" default="true" />
 
         <definition>
             <control type="image">
                 <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
                 <texture border="12" colordiffuse="$PARAM[colordiffuse_background]">common/box12.png</texture>
-                <animation effect="fade" start="100" end="50" condition="$PARAM[condition_fadetime_background]">Conditional</animation>
+                <animation effect="fade" start="100" end="80" condition="$PARAM[condition_fadetime_background]">Conditional</animation>
+                <visible>$PARAM[visible]</visible>
             </control>
         </definition>
     </include>
