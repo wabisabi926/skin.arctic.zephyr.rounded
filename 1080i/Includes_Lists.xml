@@ -1950,9 +1950,10 @@
 
     <include name="Hidden_Album_Track_Count">
         <control type="list" id="5014">
+            <visible>ListItem.IsFolder</visible>
             <visible>Container.Content(albums) | String.IsEqual(ListItem.DBType,album)</visible>
             <include>Def_Hidden_ListControl</include>
-            <content>$VAR[Path_Album]</content>
+            <content>$INFO[ListItem.FolderPath]</content>
         </control>
     </include>
 
@@ -1966,25 +1967,27 @@
 
     <include name="Hidden_List_Home_Album_Song_Count">
         <control type="list" id="44022">
+            <visible>ListItem.IsFolder</visible>
             <visible>String.IsEqual(ListItem.DBType,album)</visible>
             <include>Def_Hidden_ListControl</include>
-            <content>$VAR[Path_Album]</content>
+            <content>$INFO[ListItem.FolderPath]</content>
         </control>
     </include>
 
     <include name="Hidden_Album_Track_Count_Dialog_Music_Info_Ext">
-        <control type="list" id="95017">
+        <control type="list" id="95098">
             <visible>Control.HasFocus(9501)</visible>
             <include>Def_Hidden_ListControl</include>
-            <content>$VAR[Path_Album_9501_Ext]</content>
+            <content>$INFO[Container(9501).ListItem.DBID,musicdb://albums/,/]</content>
         </control>
     </include>
 
     <include name="Hidden_List_Home_Channel_Count">
         <control type="list" id="44028">
+            <!-- <visible>ListItem.IsFolder + String.StartsWith(ListItem.Path,pvr://channels)</visible> -->
             <visible>String.IsEqual(ListItem.Path,pvr://channels/tv/)</visible>
             <include>Def_Hidden_ListControl</include>
-            <content>$VAR[Path_Group_Channel]</content>
+            <content>$INFO[ListItem.FolderPath]</content>
         </control>
     </include>
 
@@ -2043,9 +2046,9 @@
 
     <include name="Hidden_Set_Count">
         <control type="list" id="44023">
-            <visible>String.IsEqual(ListItem.DBType,set) + !String.IsEmpty(ListItem.DBID)</visible>
+            <visible>ListItem.IsCollection + !String.IsEmpty(ListItem.DBID)</visible>
             <include>Def_Hidden_ListControl</include>
-            <content>$VAR[Path_Sets]</content>
+            <content>videodb://movies/sets/$INFO[ListItem.DBID]/?setid=$INFO[ListItem.DBID]</content>
         </control>
     </include>
 
