@@ -905,9 +905,11 @@
                 </include>
             </control>
 
-            <!-- PICTURE ON RIGHT -->
+            <!-- PICTURE -->
 
             <control type="group">
+                <visible>!String.IsEqual(Control.GetLabel(1),$LOCALIZE[166])</visible>
+
                 <top>357</top>
                 <right>30</right>
                 <width>300</width>
@@ -929,7 +931,23 @@
                 </control>
             </control>
 
-            <!-- PICTURE ON RIGHT -->
+            <!-- LOGO SKIN -->
+
+            <control type="group">
+                <visible>String.IsEqual(Control.GetLabel(1),$LOCALIZE[166])</visible>
+
+                <top>507</top>
+                <right>30</right>
+                <width>300</width>
+                <height>300</height>
+
+                <control type="image">
+                    <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                    <texture diffuse="diffuse/square_w300_h300_b24.png" background="true">$VAR[Image_Dialog_Select_Big]</texture>
+                </control>
+            </control>
+
+            <!-- LOGO WIKIPEDIA -->
 
             <control type="grouplist">
                 <visible>$EXP[View_Icon_Black_Dialog_Select] + [String.IsEqual(Control.GetLabel(1),Wikipedia) | Window.IsVisible(script-wikipedia.xml)]</visible>
@@ -938,7 +956,7 @@
                 <right>30</right>
                 <width>300</width>
 
-                <itemgap>-20</itemgap>
+                <itemgap>-10</itemgap>
                 <usecontrolcoords>true</usecontrolcoords>
 
                 <control type="image">
