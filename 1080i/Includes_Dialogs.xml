@@ -2198,6 +2198,7 @@
     <include name="Def_Dialog_Info_Overlay_Wiki">
         <control type="group">
             <visible>Window.IsVisible(script-wikipedia.xml) + !Window.IsVisible(DialogMusicInfo.xml) + !Window.IsVisible(DialogVideoInfo.xml)</visible>
+
             <include>Animation_Fade_In</include>
             <include>Animation_Fade_Out</include>
 
@@ -2207,17 +2208,31 @@
                <texture colordiffuse="Background">background/bg.jpg</texture>
                <animation effect="fade" start="100" end="95" condition="true">Conditional</animation>
             </control>
-            <!-- <control type="image" description="Background"> -->
-               <!-- <visible>!String.IsEmpty(Skin.String(fanart.fallback))</visible> -->
-               <!-- <include>Def_Dimensions_Fullscreen</include> -->
-               <!-- <texture colordiffuse="Background">$INFO[Skin.String(fanart.fallback.search)]</texture> -->
-               <!-- <animation effect="fade" start="100" end="50" condition="true">Conditional</animation> -->
-            <!-- </control> -->
-            <!-- <control type="image" description="FanartOverlay"> -->
-                <!-- <visible>!String.IsEmpty(Skin.String(fanart.fallback))</visible> -->
-                <!-- <include>Def_Dimensions_Fullscreen</include> -->
-                <!-- <texture colordiffuse="FloorFade">background/combined_flixart_dialog.png</texture> -->
-            <!-- </control> -->
+
+            <!-- FANART VIDEO FULLSCREEN -->
+
+            <control type="image" description="Background">
+               <visible>!String.IsEmpty(Player.Art(fanart)) + Window.IsVisible(fullscreenvideo)</visible>
+               <include>Def_Dimensions_Fullscreen</include>
+               <texture>$INFO[Player.Art(fanart)]</texture>
+               <animation effect="fade" start="100" end="30" condition="true">Conditional</animation>
+            </control>
+
+            <!-- FALLBACK -->
+
+            <control type="image" description="Background">
+               <visible>!String.IsEmpty(Skin.String(fanart.fallback)) + [[String.IsEmpty(Player.Art(fanart)) + Window.IsVisible(fullscreenvideo)] | !Window.IsVisible(fullscreenvideo)]</visible>
+               <include>Def_Dimensions_Fullscreen</include>
+               <texture>$INFO[Skin.String(fanart.fallback)]</texture>
+               <animation effect="fade" start="100" end="70" condition="true">Conditional</animation>
+            </control>
+
+            <!-- OVERLAY -->
+
+            <control type="image" description="FanartOverlay">
+                <include>Def_Dimensions_Fullscreen</include>
+                <texture colordiffuse="FloorFade">background/combined_flixart_dialog.png</texture>
+            </control>
         </control>
     </include>
 
