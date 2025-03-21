@@ -1758,7 +1758,7 @@
                     <label>$PARAM[label]</label>
                     <include condition="Skin.HasSetting(labels.autoscroll)">LabelScroll</include>
 
-                    <visible>$PARAM[visible] + !String.IsEqual(Container($PARAM[id]).ListItem.DBType,album)</visible>
+                    <visible>$PARAM[visible] + !String.IsEqual(Container($PARAM[id]).ListItem.DBType,album) + $PARAM[visible] + !String.IsEqual(Container($PARAM[id]).ListItem.DBType,song)</visible>
                     <visible>[Skin.HasSetting(show.home.netflix.title.clearlogo) + !$EXP[Title_Clearlogo_Home_Crop] + String.IsEmpty(Container($PARAM[id]).ListItem.Art(tvshow.clearlogo)) + String.IsEmpty(Container($PARAM[id]).ListItem.Art(clearlogo))] | !Skin.HasSetting(show.home.netflix.title.clearlogo)</visible>
                 </control>
 
@@ -1786,7 +1786,7 @@
                     <label>$INFO[Container($PARAM[id]).ListItem.Artist]</label>
                     <include condition="Skin.HasSetting(labels.autoscroll)">LabelScroll</include>
 
-                    <visible>$PARAM[visible] + String.IsEqual(Container($PARAM[id]).ListItem.DBType,album)</visible>
+                    <visible>$PARAM[visible] + String.IsEqual(Container($PARAM[id]).ListItem.DBType,album) | $PARAM[visible] + String.IsEqual(Container($PARAM[id]).ListItem.DBType,song)</visible>
                     <visible>[Skin.HasSetting(show.home.netflix.title.clearlogo) + !$EXP[Title_Clearlogo_Home_Crop] + String.IsEmpty(Container($PARAM[id]).ListItem.Art(artist.clearlogo))] | !Skin.HasSetting(show.home.netflix.title.clearlogo)</visible>
                 </control>
 
@@ -1845,7 +1845,7 @@
                     <!-- <animation effect="fade" start="100" end="0" delay="100" time="200" reversible="true">Hidden</animation> -->
                     <visible>$PARAM[visible] + !$EXP[Title_Clearlogo_Home_Crop]</visible>
                     <visible>Skin.HasSetting(show.home.netflix.title.clearlogo) + !String.IsEmpty(Container($PARAM[id]).ListItem.Art(artist.clearlogo))</visible>
-                    <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,album)</visible>
+                    <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,album) | $PARAM[visible] + String.IsEqual(Container($PARAM[id]).ListItem.DBType,song)</visible>
                     <!-- <fadetime>ClearArtFadetime</fadetime> -->
                 </control>
             </control>
@@ -2122,7 +2122,7 @@
 
             <control type="label">
                 <include>Widgets_Sub_Title_Definition</include>
-                <label>$INFO[Container($PARAM[id]).ListItem.Artist]$INFO[Container($PARAM[id]).ListItem.Year,  •  ,]</label>
+                <label>$INFO[Container($PARAM[id]).ListItem.Album]$INFO[Container($PARAM[id]).ListItem.Year,  •  ,]$INFO[Container($PARAM[id]).ListItem.TrackNumber,  •  ,.  ]$INFO[Container($PARAM[id]).ListItem.Title]</label>
                 <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,song)</visible>
             </control>
 
