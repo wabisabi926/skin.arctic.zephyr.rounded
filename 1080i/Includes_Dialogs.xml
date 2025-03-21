@@ -733,7 +733,7 @@
             <right>View_SidePad</right>
             <include>Def_List_Dimension</include>
 
-            <ondown>9601</ondown>
+            <ondown>9669</ondown>
             <onup condition="Control.IsVisible(50)">50</onup>
 
             <orientation>horizontal</orientation>
@@ -841,7 +841,7 @@
             <right>View_SidePad</right>
             <include>Def_List_Dimension</include>
             <onup>50</onup>
-            <ondown>9601</ondown>
+            <ondown>9669</ondown>
             <orientation>horizontal</orientation>
             <control type="radiobutton" id="5">
                 <include>Def_Button_Dimensions_Square</include>
@@ -925,7 +925,7 @@
             <ondown condition="Control.HasFocus(12) + String.IsEqual(Window.Property(ShowDisc),1) + !String.IsEmpty(ListItem.Art(discart)) + String.IsEmpty(Window.Property(RotateCover))">ClearProperty(ShowDisc)</ondown>
             <ondown condition="Control.HasFocus(12) + String.IsEqual(Window.Property(ShowDisc),1) + !String.IsEmpty(ListItem.Art(discart))">ClearProperty(RotateCover)</ondown>
 
-            <ondown condition="!String.IsEqual(Window.Property(ShowDisc),1) + !String.IsEqual(Window.Property(RotateCover),1)">9601</ondown>
+            <ondown condition="!String.IsEqual(Window.Property(ShowDisc),1) + !String.IsEqual(Window.Property(RotateCover),1)">9669</ondown>
 
             <onup condition="String.IsEqual(Window(Home).Property(musiccontent),2)">9501</onup>
             <onup condition="String.IsEqual(Window(Home).Property(musiccontent),2)">SetProperty(TMDbHelper.WidgetContainer,9501)</onup>
@@ -1159,7 +1159,7 @@
 
     <include name="Def_Dialog_Info_Navigation_Video">
         <control type="grouplist" id="9000">
-            <visible allowhiddenfocus="true">ControlGroup(9000).HasFocus() | Control.HasFocus(95051) | Control.HasFocus(9504) | Control.HasFocus(9554) | Control.HasFocus(9750) | Control.HasFocus(50) | Control.HasFocus(9550) | [Control.HasFocus(9601) + ![String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)]] | String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.Property(item.type),person) | ControlGroup(9800).HasFocus() | Window.IsVisible(Custom_1260_DialogInfo_Settings.xml) | Control.HasFocus(7011) | Control.HasFocus(7012) | Control.HasFocus(290) | Control.HasFocus(291) | Control.HasFocus(292) | Control.HasFocus(293) | Control.HasFocus(294)</visible>
+            <visible allowhiddenfocus="true">ControlGroup(9000).HasFocus() | Control.HasFocus(95051) | Control.HasFocus(9504) | Control.HasFocus(9554) | Control.HasFocus(9750) | Control.HasFocus(50) | Control.HasFocus(9550) | [Control.HasFocus(9669) + ![String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)]] | String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.Property(item.type),person) | ControlGroup(9800).HasFocus() | Window.IsVisible(Custom_1260_DialogInfo_Settings.xml) | Control.HasFocus(7011) | Control.HasFocus(7012) | Control.HasFocus(290) | Control.HasFocus(291) | Control.HasFocus(292) | Control.HasFocus(293) | Control.HasFocus(294)</visible>
 
             <include>Animation_Scrolltime_Widgets_List</include>
 
@@ -1185,7 +1185,7 @@
             <!-- focus second row button navigation -->
             <ondown condition="!String.IsEqual(ListItem.Property(item.type),person) + !String.IsEqual(ListItem.DBType,set) + String.IsEmpty(Window.Property(ShowDisc)) + !String.IsEqual(ListItem.DBType,video)">9090</ondown>
             <!-- show resume overlay -->
-            <ondown condition="String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.DBType,video)">9601</ondown>
+            <ondown condition="String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.DBType,video)">9669</ondown>
 
             <orientation>horizontal</orientation>
 
@@ -1763,7 +1763,7 @@
 
     <include name="Def_Dialog_Info_Navigation_Video_2">
         <control type="grouplist" id="9090">
-            <visible allowhiddenfocus="true">ControlGroup(9090).HasFocus() | Control.HasFocus(9601) | Control.HasFocus(190) | Control.HasFocus(191) | Control.HasFocus(192)</visible>
+            <visible allowhiddenfocus="true">ControlGroup(9090).HasFocus() | Control.HasFocus(9669) | Control.HasFocus(190) | Control.HasFocus(191) | Control.HasFocus(192)</visible>
             <visible>!String.IsEqual(ListItem.Property(item.type),person) + !String.IsEqual(ListItem.DBType,set)</visible>
 
             <include>Animation_Scrolltime_Widgets_List</include>
@@ -1783,7 +1783,7 @@
             <include>Def_List_Dimension</include>
 
             <ondown condition="String.IsEqual(Window(Home).Property(moviecontent),1) + String.IsEqual(Window.Property(ShowDisc),1) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.Art(discart))">ClearProperty(ShowDisc)</ondown>
-            <ondown condition="!String.IsEqual(Window.Property(ShowDisc),1)">9601</ondown>
+            <ondown condition="!String.IsEqual(Window.Property(ShowDisc),1)">9669</ondown>
 
             <orientation>horizontal</orientation>
 
@@ -2062,9 +2062,9 @@
     <include name="Def_Dialog_Info_Overlay">
         <param name="ondirection" value="$PARAM[ondirection]" default="9000" />
         <param name="ondirection2" value="$PARAM[ondirection2]" default="9012" />
-        <param name="visible" value="$PARAM[visible]" default="Control.HasFocus(9601)" />
+        <param name="visible" value="$PARAM[visible]" default="Control.HasFocus(9669)" />
         <definition>
-            <control type="scrollbar" id="9601">
+            <control type="scrollbar" id="9669">
                 <width>1</width>
                 <height>1</height>
                 <visible allowhiddenfocus="true">false</visible>
@@ -2155,7 +2155,7 @@
                     <align>justify</align>
                     <font>Medium</font>
                     <textcolor>Dark1</textcolor>
-                    <pagecontrol>9601</pagecontrol>
+                    <pagecontrol>9669</pagecontrol>
                     <autoscroll>false</autoscroll>
                     <label fallback="19055">$PARAM[plotinfo]</label>
                 </control>
