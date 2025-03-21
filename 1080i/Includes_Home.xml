@@ -2146,13 +2146,25 @@
                 <control type="label">
                     <include>Widgets_Sub_Title_Definition</include>
                     <label>$INFO[Container($PARAM[id]).ListItem.Label]$INFO[Container($PARAM[id]).ListItem.Genre,  •  ,]$INFO[Container($PARAM[id]).ListItem.StartTime,  •  ,]$INFO[Container($PARAM[id]).ListItem.EndTime, - ]$INFO[Container($PARAM[id]).ListItem.Duration(mins),  •  , $LOCALIZE[31074]]</label>
-                    <visible>!String.IsEqual(ListItem.Path,pvr://channels/tv/)</visible>
+                    <visible>![String.IsEmpty(ListItem.StartTime) | String.IsEmpty(ListItem.EndTime)]</visible>
+                    <visible>!String.IsEqual(Container($PARAM[id]).ListItem.Path,pvr://channels/tv/)</visible>
                 </control>
-
                 <control type="label">
                     <include>Widgets_Sub_Title_Definition</include>
-                    <label>$INFO[Control.GetLabel(9971)]</label>
-                    <visible>String.IsEqual(ListItem.Path,pvr://channels/tv/)</visible>
+                    <label>$INFO[Container($PARAM[id]).ListItem.PVRClientName]$INFO[Container($PARAM[id]).ListItem.PVRInstanceName,  •  ,]</label>
+                    <visible>[String.IsEmpty(ListItem.StartTime) | String.IsEmpty(ListItem.EndTime)]</visible>
+                    <visible>!String.IsEqual(Container($PARAM[id]).ListItem.Path,pvr://channels/tv/)</visible>
+                </control>
+                <control type="label">
+                    <include>Widgets_Sub_Title_Definition</include>
+                    <label>$LOCALIZE[19173]</label>
+                    <visible>String.IsEqual(Container($PARAM[id]).ListItem.Path,pvr://channels/tv/) + Integer.IsEqual(Container(44028).NumItems,) | $EXP[Home_Menu_Is_Focus]</visible>
+                </control>
+                <control type="label">
+                    <include>Widgets_Sub_Title_Definition</include>
+                    <label>$INFO[Control.GetLabel(9972)]</label>
+                    <visible>String.IsEqual(Container($PARAM[id]).ListItem.Path,pvr://channels/tv/) + Integer.IsGreater(Container(44028).NumItems,1)</visible>
+                    <visible>!$EXP[Home_Menu_Is_Focus]</visible>
                 </control>
             </control>
 
@@ -2615,7 +2627,7 @@
 
         <!-- PVR - COUNT CHANNEL IN GROUP -->
 
-        <control type="label" id="9971">
+        <control type="label" id="9972">
             <align>left</align>
             <height>38</height>
             <font>SmallNavi</font>
