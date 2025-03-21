@@ -28,6 +28,7 @@
                 <animation effect="fade" start="100" end="WeatherFanartTransparency" condition="true">Conditional</animation>
                 <imagepath diffuse="diffuse/weather_w1040_640.png">$INFO[Skin.String(weather.fanart.path)]$INFO[Window(Weather).Property(Current.FanartCode)]/</imagepath>
             </control>
+
             <control type="image" description="Fanart">
                 <visible>!Skin.HasSetting(hide.weather.fanart) + !String.Contains(Skin.String(weather.fanart.path),multi) + !String.IsEmpty(Skin.String(weather.fanart.path))</visible>
                 <width>100%</width>
@@ -216,10 +217,10 @@
 
         <definition>
             <control type="group">
-                <width>320</width>
-                <height>PosterH</height>
                 <top>View_Top</top>
                 <left>$PARAM[Def_Weather_List_Daily_Left]</left>
+                <width>320</width>
+                <height>PosterH</height>
 
                 <!-- BACKGROUND -->
 
@@ -320,10 +321,11 @@
     </include>
 
     <include name="Def_Weather_List_Hourly_Background">
-        <width>$PARAM[weather_width]</width>
-        <height>PosterH</height>
         <top>View_Top</top>
         <left>$PARAM[weather_left]</left>
+        <width>$PARAM[weather_width]</width>
+        <height>PosterH</height>
+
         <include>Def_Dialog_Background_Image</include>
 
         <control type="image" description="Fanart">
@@ -350,8 +352,9 @@
 
     <include name="Def_Weather_List_Hourly_Item">
         <control type="group">
-            <height>106</height>
             <top>$PARAM[top]</top>
+            <height>106</height>
+
             <control type="image">
                 <centertop>50%</centertop>
                 <centerleft>17%</centerleft>
@@ -422,7 +425,7 @@
         </control>
     </include>
 
-    <!-- LABEL -->
+    <!-- LABEL - WIDGETS -->
 
     <variable name="Label_Weather_Sunrise">
         <value condition="!String.IsEmpty(Window(Weather).Property(Current.Sunrise))">$INFO[Window(Weather).Property(Current.Sunrise),$LOCALIZE[31306] ,]</value>

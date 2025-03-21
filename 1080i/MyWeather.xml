@@ -69,7 +69,7 @@
 
                     <control type="group">
                         <visible>String.IsEqual(ListItem.Label2,View_Today)</visible>
-                        <visible>!String.IsEmpty(Window(weather).Property(Daily.IsFetched))</visible>
+                        <!-- <visible>!String.IsEmpty(Window(weather).Property(Daily.IsFetched))</visible> -->
 
                         <include>Def_Weather_List_Today</include>
 
@@ -94,7 +94,7 @@
 
                     <control type="group">
                         <visible>String.IsEqual(ListItem.Label2,View_Daily)</visible>
-                        <visible>!String.IsEmpty(Window(weather).Property(Daily.IsFetched))</visible>
+                        <!-- <visible>!String.IsEmpty(Window(weather).Property(Daily.IsFetched))</visible> -->
 
                         <include content="Def_Weather_List_Daily">
                             <param name="Daily" value="3" />
@@ -127,7 +127,7 @@
 
                     <control type="group">
                         <visible>String.IsEqual(ListItem.Label2,View_Hourly)</visible>
-                        <visible>!String.IsEmpty(Window(weather).Property(Hourly.IsFetched))</visible>
+                        <!-- <visible>!String.IsEmpty(Window(weather).Property(Hourly.IsFetched))</visible> -->
 
                         <control type="group">
                             <include content="Def_Weather_List_Hourly_Background">
@@ -220,7 +220,7 @@
 
                     <control type="group">
                         <visible>String.IsEqual(ListItem.Label2,View_Today)</visible>
-                        <visible>!String.IsEmpty(Window(weather).Property(Daily.IsFetched))</visible>
+                        <!-- <visible>!String.IsEmpty(Window(weather).Property(Daily.IsFetched))</visible> -->
 
                         <include>Def_Weather_List_Today</include>
 
@@ -240,13 +240,18 @@
                             <param name="Def_Weather_List_Daily_Label" value="$LOCALIZE[33007]" />
                         </include>
 
+                        <control type="button" id="604">
+                            <include>Def_Hidden_Button</include>
+                            <onfocus>AlarmClock(delay,SetFocus(9100),00:00,silent)</onfocus>
+                            <include content="Object_OnDirection_Action"><param name="ondirection" value="9100" /></include>
+                        </control>
                     </control>
 
                     <!-- PAGE 2 - NEXT DAYS -->
 
                     <control type="group">
                         <visible>String.IsEqual(ListItem.Label2,View_Daily)</visible>
-                        <visible>!String.IsEmpty(Window(weather).Property(Daily.IsFetched))</visible>
+                        <!-- <visible>!String.IsEmpty(Window(weather).Property(Daily.IsFetched))</visible> -->
 
                         <include content="Def_Weather_List_Daily">
                             <param name="Daily" value="3" />
@@ -279,7 +284,7 @@
 
                     <control type="group">
                         <visible>String.IsEqual(ListItem.Label2,View_Hourly)</visible>
-                        <visible>!String.IsEmpty(Window(weather).Property(Hourly.IsFetched))</visible>
+                        <!-- <visible>!String.IsEmpty(Window(weather).Property(Hourly.IsFetched))</visible> -->
 
                         <control type="group">
                             <include content="Def_Weather_List_Hourly_Background">
@@ -383,7 +388,6 @@
                         <label>31067</label>
                         <icon/>
                         <label2>View_Daily</label2>
-                        <visible>!String.IsEmpty(Window.Property(Daily.IsFetched))</visible>
                     </item>
 
                     <!-- PAGE 3 - HOUR -->
@@ -561,7 +565,7 @@
         <control type="button" id="603">
             <include>Def_Hidden_Button</include>
             <onfocus>Weather.LocationNext</onfocus>
-            <onfocus>AlarmClock(delay,SetFocus(9100),00:01,silent)</onfocus>
+            <onfocus>AlarmClock(delay,SetFocus(604),00:01,silent)</onfocus>
             <include content="Object_OnDirection_Action"><param name="ondirection" value="9100" /></include>
         </control>
     </controls>
