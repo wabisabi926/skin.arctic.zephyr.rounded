@@ -3,8 +3,10 @@
     <defaultcontrol always="true">9902</defaultcontrol>
 
     <onload>SetProperty(TMDbHelper.ServicePause,1)</onload>
+
     <onunload>ClearProperty(dontslide,Home)</onunload>
-    <onunload condition="Integer.IsEqual(Window(Home).Property(wikipedia),1)">SetProperty(wikipedia,2,Home)</onunload>
+    <onunload condition="Integer.IsEqual(Window(Home).Property(wikipedia),1)">ClearProperty(wikipedia,Home)</onunload>
+    <onunload condition="Skin.HasSetting(osd.open.auto.pause) + Player.HasMedia + Player.HasVideo + Player.Paused + ![Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml)]">PlayerControl(Play)</onunload>
 
     <controls>
         <include>Def_Dialog_Info_Overlay_Wiki</include>

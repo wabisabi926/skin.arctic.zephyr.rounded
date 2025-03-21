@@ -8,7 +8,6 @@
 
     <onload>ClearProperty(OSDVideo_DONT_AUTO_CLOSE,Home)</onload>
     <onload>ClearProperty(OSDVideo_DIALOG_VIDEO_INFO,Home)</onload>
-    <onload>ClearProperty(wikipedia,Home)</onload>
 
     <onunload>ClearProperty(OSDVideo_DONT_AUTO_CLOSE,Home)</onunload>
     <onunload>ClearProperty(OSDVideo_Show_INFO,Home)</onunload>
@@ -17,7 +16,7 @@
 
     <onunload>ClearProperty(OSDVideo_Show_SCROLLBAR_FOCUS_PLOT,Home)</onunload>
 
-    <onload condition="Skin.HasSetting(osd.open.auto.pause) + Player.HasMedia + Player.HasVideo + !Player.Paused + !String.IsEmpty(VideoPlayer.DBID)">PlayerControl(Play)</onload>
+    <onload condition="Skin.HasSetting(osd.open.auto.pause) + Player.HasMedia + Player.HasVideo + !Player.Paused + !String.IsEmpty(VideoPlayer.DBID) + !Integer.IsEqual(Window(Home).Property(wikipedia),1)">PlayerControl(Play)</onload>
 
     <onunload condition="Skin.HasSetting(osd.open.auto.pause) + Player.HasMedia + Player.HasVideo + Player.Paused + !Integer.IsEqual(Window(Home).Property(OSDVideo_DIALOG_VIDEO_INFO),1) + !Integer.IsEqual(Window(Home).Property(wikipedia),1)">PlayerControl(Play)</onunload>
 
