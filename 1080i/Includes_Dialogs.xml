@@ -1263,10 +1263,15 @@
                 <onfocus condition="String.IsEqual(ListItem.Property(item.type),person)">SetProperty(moviecontent,13,Home)</onfocus>
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
                 <include>Def_Button_Dimensions</include>
+
                 <onclick condition="Player.HasVideo">close</onclick>
                 <onclick condition="Player.HasAudio">close</onclick>
-                <onclick condition="Player.HasVideo">ActivateWindow(fullscreenvideo)</onclick>
+
+                <onclick condition="Window.IsVisible(1190) + Player.HasVideo">RunScript(plugin.video.themoviedb.helper,close_dialog=1190)</onclick>
+                <onclick condition="Player.HasVideo">AlarmClock(DelayFullSreen,ActivateWindow(fullscreenvideo),00:01,silent)</onclick>
+
                 <onclick condition="Player.HasAudio">ActivateWindow(visualisation)</onclick>
+
                 <texturenofocus colordiffuse="Dark4" border="12">common/boxsquare.png</texturenofocus>
                 <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</texturefocus>
                 <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/expand.png</textureradioonfocus>
@@ -1981,7 +1986,7 @@
                 </include>
                 <visible>Skin.HasSetting(show.button.video.set)</visible>
 
-                <!-- <visible>[Skin.HasSetting(filter.video.only.local) + !String.IsEmpty(ListItem.SetId)] | [!Skin.HasSetting(filter.video.only.local) + !String.IsEmpty(Window(Home).Property(Set_Query))]</visible> -->
+                <visible>[Skin.HasSetting(filter.video.only.local) + !String.IsEmpty(ListItem.SetId)] | [!Skin.HasSetting(filter.video.only.local) + !String.IsEmpty(Window(Home).Property(Set_Query))]</visible>
 
                 <visible>!Integer.IsEqual(Container(9515).NumItems,0) + !Container(9515).IsUpdating</visible>
                 <visible>String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating)) + !String.IsEmpty(Window(Home).Property(Init_Value_TMDb))</visible>
