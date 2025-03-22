@@ -226,6 +226,20 @@
         <value>$INFO[ListItem.Icon]</value>
     </variable>
 
+    <!-- IMAGE - PVR - ICON -->
+
+    <variable name="Image_PVR_Icon">
+        <value condition="String.Empty(ListItem.Icon) + Window.IsVisible(TVRecordings)">defaultpvrrecordings.png</value>
+
+        <value condition="String.StartsWith(ListItem.Icon,Default) + Window.IsVisible(TVRecordings)">defaultpvrrecordings.png</value>
+        <value condition="String.StartsWith(ListItem.Icon,Default) + Window.IsVisible(TVTimers)">defaultpvrtimers.png</value>
+        <value condition="String.StartsWith(ListItem.Icon,Default) + Window.IsVisible(TvTimerRules)">defaultpvrtimerrules.png</value>
+
+        <value condition="String.IsEqual(ListItem.Icon,defaultpvrsearch.png) + Window.IsVisible(TVSearch)">defaultpvrsearch.png</value>
+        <value condition="String.IsEqual(ListItem.Icon,DefaultFolder.png) + Window.IsVisible(TVSearch)">DefaultFolder.png</value>
+        <value>$INFO[ListItem.Icon]</value>
+    </variable>
+
     <!-- IMAGE - POSTER -->
 
     <variable name="Image_Poster">
