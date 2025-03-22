@@ -109,13 +109,18 @@
 
             <!-- ADDON ICON -->
 
-            <control type="image">
+            <control type="group">
                 <left>40</left>
                 <bottom>40</bottom>
                 <width>153</width>
                 <height>153</height>
-                <texture fallback="DefaultAddon.png">$INFO[Window(addonsettings).Property(Addon.Icon)]</texture>
-                <aspectratio align="center" aligny="bottom">keep</aspectratio>
+
+                <include>Def_Image_Shadow</include>
+
+                <control type="image">
+                    <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                    <texture diffuse="diffuse/square_w154_h154.png" background="true">$INFO[Window(addonsettings).Property(Addon.Icon)]</texture>
+                </control>
             </control>
 
             <!-- LINE -->
