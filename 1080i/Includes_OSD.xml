@@ -408,6 +408,79 @@
         </control>
     </include>
 
+    <include name="Object_OSD_Button">
+        <param name="size" default="48" />
+        <param name="left" default="-64" />
+        <param name="bordersize" default="6" />
+        <param name="itemgap" default="35" />
+        <param name="visible" default="true" />
+        <param name="flipx" default="false" />
+        <param name="icon_colordiffuse" default="$VAR[Color_OSD_Panel_White100]" />
+        <param name="icon_colordiffuse_focus" default="Selected" />
+        <param name="back_colordiffuse" default="$VAR[Color_Background]" />
+        <param name="vertical" default="false" />
+        <param name="flag_lang_audio" default="false" />
+        <param name="flag_lang_subtitle" default="false" />
+        <definition>
+            <control type="button" id="$PARAM[id]">
+                <height>$PARAM[size]</height>
+                <width>$PARAM[size]</width>
+                <texturefocus flipy="true">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/circle_v.png</texturefocus>
+                <texturenofocus colordiffuse="$PARAM[back_colordiffuse]">common/circle.png</texturenofocus>
+                <visible>$PARAM[visible]</visible>
+                <nested />
+            </control>
+            <control type="group" id="$PARAM[groupid]">
+                <include content="Def_Left" condition="!$PARAM[vertical]">
+                    <param name="left">-$PARAM[itemgap]</param>
+                </include>
+                <include content="Def_Width" condition="!$PARAM[vertical]">
+                    <param name="width">0</param>
+                </include>
+                <include content="Def_Height" condition="$PARAM[vertical]">
+                    <param name="height">0</param>
+                </include>
+                <control type="group">
+                    <include content="Def_Left" condition="!$PARAM[vertical]">
+                        <param name="left">$PARAM[left]</param>
+                    </include>
+                    <visible>$PARAM[visible]</visible>
+                    <control type="image">
+                        <bordersize>$PARAM[bordersize]</bordersize>
+                        <height>$PARAM[size]</height>
+                        <width>$PARAM[size]</width>
+                        <texture colordiffuse="$PARAM[icon_colordiffuse]" flipx="$PARAM[flipx]">$PARAM[icon]</texture>
+                        <visible>!Control.HasFocus($PARAM[id])</visible>
+                    </control>
+                    <control type="image">
+                        <bordersize>$PARAM[bordersize]</bordersize>
+                        <height>$PARAM[size]</height>
+                        <width>$PARAM[size]</width>
+                        <texture colordiffuse="$PARAM[icon_colordiffuse_focus]" flipx="$PARAM[flipx]">$PARAM[icon]</texture>
+                        <visible>Control.HasFocus($PARAM[id])</visible>
+                    </control>
+                    <control type="image">
+                       <bottom>-3</bottom>
+                       <right>-6</right>
+                       <width>24</width>
+                       <height>21</height>
+                       <texture>$INFO[VideoPlayer.SubtitlesLanguage,flags/lang/32x32/,.png]</texture>
+                       <visible>VideoPlayer.SubtitlesEnabled</visible>
+                       <visible>$PARAM[flag_lang_subtitle]</visible>
+                    </control>
+                    <control type="image">
+                       <bottom>-3</bottom>
+                       <right>-6</right>
+                       <width>24</width>
+                       <height>21</height>
+                       <texture>$INFO[VideoPlayer.AudioLanguage,flags/lang/32x32/,.png]</texture>
+                       <visible>$PARAM[flag_lang_audio]</visible>
+                    </control>
+                </control>
+            </control>
+        </definition>
+    </include>
+
     <!-- OSD - COLOR - DIALOG -->
 
     <include name="Def_OSD_Dialog_InfoPanel">
@@ -511,7 +584,7 @@
             <control type="button" id="9401">
                <width>100%</width>
                <height>60</height>
-               <include>Def_OSD_Button_Gradient_Menu</include>
+               <include>Object_OSD_Button_Gradient_Menu</include>
                <align>left</align>
                <label>$LOCALIZE[10004]</label>
                <onclick>ActivateWindow(osdaudiosettings)</onclick>
@@ -521,7 +594,7 @@
             <control type="button" id="9404">
                <width>100%</width>
                <height>60</height>
-               <include>Def_OSD_Button_Gradient_Menu</include>
+               <include>Object_OSD_Button_Gradient_Menu</include>
                <align>left</align>
                <label>$LOCALIZE[297]</label>
                <onclick>AudioDelay</onclick>
@@ -596,7 +669,7 @@
                <width>100%</width>
                <height>60</height>
                <left>10</left>
-               <include>Def_OSD_Button_Gradient_Menu</include>
+               <include>Object_OSD_Button_Gradient_Menu</include>
                <align>left</align>
                <label>33003</label>
                <onclick>ActivateWindow(SubtitleSearch)</onclick>
@@ -606,7 +679,7 @@
             <control type="button" id="9302">
                <width>100%</width>
                <height>60</height>
-               <include>Def_OSD_Button_Gradient_Menu</include>
+               <include>Object_OSD_Button_Gradient_Menu</include>
                <align>left</align>
                <label>$LOCALIZE[10004]</label>
                <onclick>ActivateWindow(osdsubtitlesettings)</onclick>
@@ -616,7 +689,7 @@
             <control type="button" id="9304">
                <width>100%</width>
                <height>60</height>
-               <include>Def_OSD_Button_Gradient_Menu</include>
+               <include>Object_OSD_Button_Gradient_Menu</include>
                <align>left</align>
                <label>$LOCALIZE[22006]</label>
                <onclick>SubtitleDelay</onclick>
@@ -690,7 +763,7 @@
             <!-- <control type="button" id="9901"> -->
                <!-- <width>100%</width> -->
                <!-- <height>60</height> -->
-               <!-- <include>Def_OSD_Button_Gradient_Menu</include> -->
+               <!-- <include>Object_OSD_Button_Gradient_Menu</include> -->
                <!-- <label>1.50</label> -->
                <!-- <onclick condition="Player.Paused">PlayerControl(Play)</onclick> -->
                <!-- <onclick>PlayerControl(Tempo(1.5))</onclick> -->
@@ -698,7 +771,7 @@
             <!-- <control type="button" id="9902"> -->
                <!-- <width>100%</width> -->
                <!-- <height>60</height> -->
-               <!-- <include>Def_OSD_Button_Gradient_Menu</include> -->
+               <!-- <include>Object_OSD_Button_Gradient_Menu</include> -->
                <!-- <label>1.40</label> -->
                <!-- <onclick condition="Player.Paused">PlayerControl(Play)</onclick> -->
                <!-- <onclick>PlayerControl(Tempo(1.4))</onclick> -->
@@ -706,7 +779,7 @@
             <!-- <control type="button" id="9903"> -->
                <!-- <width>100%</width> -->
                <!-- <height>60</height> -->
-               <!-- <include>Def_OSD_Button_Gradient_Menu</include> -->
+               <!-- <include>Object_OSD_Button_Gradient_Menu</include> -->
                <!-- <label>1.30</label> -->
                <!-- <onclick condition="Player.Paused">PlayerControl(Play)</onclick> -->
                <!-- <onclick>PlayerControl(Tempo(1.3))</onclick> -->
@@ -714,7 +787,7 @@
             <!-- <control type="button" id="9904"> -->
                <!-- <width>100%</width> -->
                <!-- <height>60</height> -->
-               <!-- <include>Def_OSD_Button_Gradient_Menu</include> -->
+               <!-- <include>Object_OSD_Button_Gradient_Menu</include> -->
                <!-- <label>1.20</label> -->
                <!-- <onclick condition="Player.Paused">PlayerControl(Play)</onclick> -->
                <!-- <onclick>PlayerControl(Tempo(1.2))</onclick> -->
@@ -722,7 +795,7 @@
             <!-- <control type="button" id="9905"> -->
                <!-- <width>100%</width> -->
                <!-- <height>60</height> -->
-               <!-- <include>Def_OSD_Button_Gradient_Menu</include> -->
+               <!-- <include>Object_OSD_Button_Gradient_Menu</include> -->
                <!-- <label>Up</label> -->
                <!-- <onclick condition="Player.Paused">PlayerControl(Play)</onclick> -->
                <!-- <onclick>PlayerControl(TempoDown)</onclick> -->
@@ -730,7 +803,7 @@
             <!-- <control type="button" id="9906"> -->
                <!-- <width>100%</width> -->
                <!-- <height>60</height> -->
-               <!-- <include>Def_OSD_Button_Gradient_Menu</include> -->
+               <!-- <include>Object_OSD_Button_Gradient_Menu</include> -->
                <!-- <label>630</label> -->
                <!-- <onclick condition="Player.Paused">PlayerControl(Play)</onclick> -->
                <!-- <onclick>PlayerControl(Tempo(1.0))</onclick> -->
@@ -738,7 +811,7 @@
             <!-- <control type="button" id="9907"> -->
                <!-- <width>100%</width> -->
                <!-- <height>60</height> -->
-               <!-- <include>Def_OSD_Button_Gradient_Menu</include> -->
+               <!-- <include>Object_OSD_Button_Gradient_Menu</include> -->
                <!-- <label>Down</label> -->
                <!-- <onclick condition="Player.Paused">PlayerControl(Play)</onclick> -->
                <!-- <onclick>PlayerControl(TempoDown)</onclick> -->
@@ -746,7 +819,7 @@
             <!-- <control type="button" id="9908"> -->
                <!-- <width>100%</width> -->
                <!-- <height>60</height> -->
-               <!-- <include>Def_OSD_Button_Gradient_Menu</include> -->
+               <!-- <include>Object_OSD_Button_Gradient_Menu</include> -->
                <!-- <label>0.80</label> -->
                <!-- <onclick condition="Player.Paused">PlayerControl(Play)</onclick> -->
                <!-- <onclick>PlayerControl(Tempo(0.8))</onclick> -->
@@ -840,80 +913,7 @@
         </control>
     </include>
 
-    <include name="Def_OSD_Button">
-        <param name="size" default="48" />
-        <param name="left" default="-64" />
-        <param name="bordersize" default="6" />
-        <param name="itemgap" default="35" />
-        <param name="visible" default="true" />
-        <param name="flipx" default="false" />
-        <param name="icon_colordiffuse" default="$VAR[Color_OSD_Panel_White100]" />
-        <param name="icon_colordiffuse_focus" default="Selected" />
-        <param name="back_colordiffuse" default="$VAR[Color_Background]" />
-        <param name="vertical" default="false" />
-        <param name="flag_lang_audio" default="false" />
-        <param name="flag_lang_subtitle" default="false" />
-        <definition>
-            <control type="button" id="$PARAM[id]">
-                <height>$PARAM[size]</height>
-                <width>$PARAM[size]</width>
-                <texturefocus flipy="true">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/circle_v.png</texturefocus>
-                <texturenofocus colordiffuse="$PARAM[back_colordiffuse]">common/circle.png</texturenofocus>
-                <visible>$PARAM[visible]</visible>
-                <nested />
-            </control>
-            <control type="group" id="$PARAM[groupid]">
-                <include content="Def_Left" condition="!$PARAM[vertical]">
-                    <param name="left">-$PARAM[itemgap]</param>
-                </include>
-                <include content="Def_Width" condition="!$PARAM[vertical]">
-                    <param name="width">0</param>
-                </include>
-                <include content="Def_Height" condition="$PARAM[vertical]">
-                    <param name="height">0</param>
-                </include>
-                <control type="group">
-                    <include content="Def_Left" condition="!$PARAM[vertical]">
-                        <param name="left">$PARAM[left]</param>
-                    </include>
-                    <visible>$PARAM[visible]</visible>
-                    <control type="image">
-                        <bordersize>$PARAM[bordersize]</bordersize>
-                        <height>$PARAM[size]</height>
-                        <width>$PARAM[size]</width>
-                        <texture colordiffuse="$PARAM[icon_colordiffuse]" flipx="$PARAM[flipx]">$PARAM[icon]</texture>
-                        <visible>!Control.HasFocus($PARAM[id])</visible>
-                    </control>
-                    <control type="image">
-                        <bordersize>$PARAM[bordersize]</bordersize>
-                        <height>$PARAM[size]</height>
-                        <width>$PARAM[size]</width>
-                        <texture colordiffuse="$PARAM[icon_colordiffuse_focus]" flipx="$PARAM[flipx]">$PARAM[icon]</texture>
-                        <visible>Control.HasFocus($PARAM[id])</visible>
-                    </control>
-                    <control type="image">
-                       <bottom>-3</bottom>
-                       <right>-6</right>
-                       <width>24</width>
-                       <height>21</height>
-                       <texture>$INFO[VideoPlayer.SubtitlesLanguage,flags/lang/32x32/,.png]</texture>
-                       <visible>VideoPlayer.SubtitlesEnabled</visible>
-                       <visible>$PARAM[flag_lang_subtitle]</visible>
-                    </control>
-                    <control type="image">
-                       <bottom>-3</bottom>
-                       <right>-6</right>
-                       <width>24</width>
-                       <height>21</height>
-                       <texture>$INFO[VideoPlayer.AudioLanguage,flags/lang/32x32/,.png]</texture>
-                       <visible>$PARAM[flag_lang_audio]</visible>
-                    </control>
-                </control>
-            </control>
-        </definition>
-    </include>
-
-    <include name="Def_OSD_Button_Gradient_Menu">
+    <include name="Object_OSD_Button_Gradient_Menu">
         <textoffsetx>20</textoffsetx>
         <radioposx>393</radioposx>
         <textwidth>340</textwidth>
@@ -1001,7 +1001,7 @@
     <!-- OSD - BUTTON - CENTER - VIDEO -->
 
     <include name="OSD_Video_Controls">
-        <include content="Def_OSD_Button" condition="VideoPlayer.Content(livetv)">
+        <include content="Object_OSD_Button" condition="VideoPlayer.Content(livetv)">
             <param name="visible" value="true" />
             <param name="icon" value="$VAR[Image_OSD_Record]" />
             <param name="flipx" value="false" />
@@ -1013,7 +1013,7 @@
             <animation effect="fade" start="100" end="33" time="100" condition="!PVR.CanRecordPlayingChannel">Conditional</animation>
         </include>
 
-        <include content="Def_OSD_Button">
+        <include content="Object_OSD_Button">
             <param name="visible" value="true" />
             <param name="icon" value="osd/next.png" />
             <param name="flipx" value="true" />
@@ -1024,7 +1024,7 @@
             <onclick>PlayerControl(Previous)</onclick>
         </include>
 
-        <include content="Def_OSD_Button">
+        <include content="Object_OSD_Button">
             <param name="visible" value="true" />
             <param name="icon" value="osd/ff.png" />
             <param name="flipx" value="true" />
@@ -1037,7 +1037,7 @@
             <animation effect="fade" start="100" end="33" time="100" condition="!Player.PauseEnabled">Conditional</animation>
         </include>
 
-        <include content="Def_OSD_Button">
+        <include content="Object_OSD_Button">
             <param name="visible" value="true" />
             <param name="icon" value="$VAR[Image_OSD_PlayPause]" />
             <param name="id" value="14" />
@@ -1049,7 +1049,7 @@
             <animation effect="fade" start="100" end="33" time="100" condition="!Player.PauseEnabled">Conditional</animation>
         </include>
 
-        <include content="Def_OSD_Button">
+        <include content="Object_OSD_Button">
             <param name="visible" value="true" />
             <param name="icon" value="osd/stop.png" />
             <param name="id" value="15" />
@@ -1059,7 +1059,7 @@
             <onclick>PlayerControl(Stop)</onclick>
         </include>
 
-        <include content="Def_OSD_Button">
+        <include content="Object_OSD_Button">
             <param name="visible" value="true" />
             <param name="icon" value="osd/ff.png" />
             <param name="id" value="16" />
@@ -1072,7 +1072,7 @@
             <animation effect="fade" start="100" end="33" time="100" condition="!Player.SeekEnabled">Conditional</animation>
         </include>
 
-        <include content="Def_OSD_Button">
+        <include content="Object_OSD_Button">
             <param name="visible" value="true" />
             <param name="icon" value="osd/next.png" />
             <param name="id" value="17" />
@@ -1082,7 +1082,7 @@
             <onclick>PlayerControl(Next)</onclick>
         </include>
 
-        <include content="Def_OSD_Button" condition="System.HasMediadvd">
+        <include content="Object_OSD_Button" condition="System.HasMediadvd">
             <param name="visible" value="true" />
             <param name="icon" value="osd/eject.png" />
             <param name="id" value="9002" />
@@ -1103,7 +1103,7 @@
             <!-- <visible>System.HasMediadvd</visible> -->
         <!-- </control> -->
 
-        <include content="Def_OSD_Button" condition="Player.TempoEnabled">
+        <include content="Object_OSD_Button" condition="Player.TempoEnabled">
             <param name="visible" value="true" />
             <param name="icon" value="osd/tempo.png" />
             <param name="id" value="20" />
@@ -1127,7 +1127,7 @@
 
         <!-- PLOT -->
 
-        <!-- <include content="Def_OSD_Button"> -->
+        <!-- <include content="Object_OSD_Button"> -->
             <!-- <param name="visible" value="true" /> -->
             <!-- <param name="icon" value="osd/plot.png" /> -->
             <!-- <param name="id" value="18" /> -->
@@ -1163,7 +1163,7 @@
             <!-- <visible>VideoPlayer.HasTeletext</visible> -->
         <!-- </control> -->
 
-        <include content="Def_OSD_Button">
+        <include content="Object_OSD_Button">
             <param name="visible" value="Integer.IsGreater(Playlist.Length(video),1) + !Pvr.IsPlayingTv" />
             <param name="icon" value="osd/playlist2.png" />
             <param name="id" value="33" />
@@ -1174,7 +1174,7 @@
             <onclick>ActivateWindow(videoplaylist)</onclick>
         </include>
 
-        <include content="Def_OSD_Button">
+        <include content="Object_OSD_Button">
             <param name="visible" value="true" />
             <param name="icon" value="osd/preset.png" />
             <param name="id" value="19" />
@@ -1191,7 +1191,7 @@
 
     <include name="OSD_Right_Bookmark">
 
-         <include content="Def_OSD_Button" condition="VideoPlayer.IsStereoscopic">
+         <include content="Object_OSD_Button" condition="VideoPlayer.IsStereoscopic">
             <param name="visible" value="true" />
             <param name="left" value="-47" />
             <param name="icon" value="osd/3d.png" />
@@ -1204,7 +1204,7 @@
             <disabledcolor>PanelWhite12</disabledcolor>
         </include>
 
-         <include content="Def_OSD_Button" condition="System.HasAddon(script.audio.profiles) + System.AddonIsEnabled(script.audio.profiles)">
+         <include content="Object_OSD_Button" condition="System.HasAddon(script.audio.profiles) + System.AddonIsEnabled(script.audio.profiles)">
             <param name="visible" value="true" />
             <param name="left" value="-47" />
             <param name="icon" value="osd/headphones.png" />
@@ -1232,7 +1232,7 @@
             <!-- <disabledcolor>PanelWhite12</disabledcolor> -->
         <!-- </control> -->
 
-         <include content="Def_OSD_Button">
+         <include content="Object_OSD_Button">
             <param name="visible" value="true" />
             <param name="left" value="-47" />
             <param name="icon" value="osd/bookmarks2.png" />
@@ -1247,7 +1247,7 @@
 
     <include name="OSD_Right_PVR">
 
-         <include content="Def_OSD_Button" condition="System.HasAddon(script.audio.profiles) + System.AddonIsEnabled(script.audio.profiles)">
+         <include content="Object_OSD_Button" condition="System.HasAddon(script.audio.profiles) + System.AddonIsEnabled(script.audio.profiles)">
             <param name="visible" value="true" />
             <param name="left" value="-47" />
             <param name="icon" value="osd/headphones.png" />
@@ -1260,7 +1260,7 @@
             <disabledcolor>PanelWhite12</disabledcolor>
         </include>
 
-         <include content="Def_OSD_Button">
+         <include content="Object_OSD_Button">
             <param name="visible" value="true" />
             <param name="left" value="-47" />
             <param name="icon" value="osd/channels.png" />
@@ -1286,7 +1286,7 @@
             <!-- <onclick>ActivateWindow(pvrosdchannels)</onclick> -->
         <!-- </control> -->
 
-         <include content="Def_OSD_Button">
+         <include content="Object_OSD_Button">
             <param name="visible" value="true" />
             <param name="left" value="-47" />
             <param name="icon" value="osd/timeline.png" />
@@ -1312,7 +1312,7 @@
             <!-- <onclick>ActivateWindow(pvrchannelguide)</onclick> -->
         <!-- </control> -->
 
-         <include content="Def_OSD_Button">
+         <include content="Object_OSD_Button">
             <param name="visible" value="true" />
             <param name="left" value="-47" />
             <param name="icon" value="osd/guide.png" />
@@ -1343,7 +1343,7 @@
 
     <include name="OSD_Right_DVD_Menu">
 
-         <include content="Def_OSD_Button" condition="VideoPlayer.HasMenu">
+         <include content="Object_OSD_Button" condition="VideoPlayer.HasMenu">
             <param name="visible" value="true" />
             <param name="left" value="-47" />
             <param name="icon" value="osd/dvdmenu.png" />
@@ -1368,7 +1368,7 @@
     </include>
 
     <include name="OSD_Right_ExtraInfo_TvShows">
-         <include content="Def_OSD_Button">
+         <include content="Object_OSD_Button">
             <param name="visible" value="true" />
             <param name="left" value="-47" />
             <param name="icon" value="osd/info.png" />
@@ -1390,7 +1390,7 @@
 
     <include name="OSD_Right_ExtraInfo_Movies">
 
-         <include content="Def_OSD_Button">
+         <include content="Object_OSD_Button">
             <param name="visible" value="true" />
             <param name="left" value="-47" />
             <param name="icon" value="osd/info.png" />
@@ -1513,7 +1513,7 @@
 
                 <usecontrolcoords>true</usecontrolcoords>
 
-                <include content="Def_OSD_Button">
+                <include content="Object_OSD_Button">
                     <param name="visible" value="true" />
                     <param name="left" value="-47" />
                     <param name="icon" value="osd/video-settings.png" />
@@ -1525,7 +1525,7 @@
                     <onup>ActivateWindow(123)</onup>
                 </include>
 
-                <include content="Def_OSD_Button">
+                <include content="Object_OSD_Button">
                     <param name="visible" value="true" />
                     <param name="left" value="-47" />
                     <param name="icon" value="osd/audio-settings.png" />
@@ -1541,7 +1541,7 @@
                     <!-- <onclick>AudioNextLanguage</onclick> -->
                 </include>
 
-                <include content="Def_OSD_Button">
+                <include content="Object_OSD_Button">
                     <param name="visible" value="true" />
                     <param name="left" value="-47" />
                     <param name="icon" value="osd/subs.png" />

@@ -18,7 +18,7 @@
                     <bottom>0</bottom>
                     <onup>50</onup>
                     <ondown>50</ondown>
-                    <include content="Def_Focus_Context_Menu_On_Right"><param name="id">28</param></include>
+                    <include content="Def_Focus_Context_Menu_On_Right"><param name="id">9000</param></include>
                     <onleft>1693</onleft>
                     <pagecontrol>1693</pagecontrol>
                     <viewtype label="535">list</viewtype>
@@ -1864,9 +1864,58 @@
 
         <control type="group">
             <include>Animation_RightSide</include>
+            <visible allowhiddenfocus="true">$EXP[View_Context_Menu_Visible]</visible>
 
-            <include content="Def_View_ContextMenu_Background"><param name="height" value="549" /></include>
-            <include content="Object_Arrows_View_ContextMenu"><param name="arrow_bottom" value="559" /></include>
+            <include>Animation_RightSide</include>
+
+            <include>Animation_ZoomIn</include>
+            <include>Animation_Fade_Out</include>
+
+            <top>184</top>
+            <centerleft>50%</centerleft>
+            <width>470</width>
+
+            <!-- CONTEXT BACKGROUND -->
+
+            <include content="Def_Dialog_Background_PowerMenu">
+                <param name="height">409</param>
+                <param name="visible">Window.IsActive(MyPVRSearch.xml)</param>
+            </include>
+
+            <include content="Def_Dialog_Background_PowerMenu">
+                <param name="height">549</param>
+                <param name="visible">Window.IsActive(MyPVRTimers.xml)</param>
+            </include>
+
+            <include content="Def_Dialog_Background_PowerMenu">
+                <param name="height">619</param>
+                <param name="visible">[Window.IsActive(MyPVRGuide.xml) | Window.IsActive(MyPVRRecordings.xml)]</param>
+            </include>
+
+            <include content="Def_Dialog_Background_PowerMenu">
+                <param name="height">689</param>
+                <param name="visible">Window.IsActive(MyPVRChannels.xml)</param>
+            </include>
+
+            <!-- ARROWS -->
+
+            <control type="group">
+                <control type="image">
+                    <centerleft>50%</centerleft>
+                    <top>-24</top>
+                    <include>Def_Arrow_Size</include>
+                    <texture colordiffuse="White100" flipy="true">common/arrow-small.png</texture>
+                </control>
+                <control type="image">
+                    <centerleft>50%</centerleft>
+                    <top>699</top>
+                    <include>Def_Arrow_Size</include>
+                    <texture colordiffuse="White100" flipy="false">common/arrow-small.png</texture>
+                    <animation effect="slide" end="0,-280" time="0" condition="Window.IsActive(MyPVRSearch.xml)">Conditional</animation>
+                    <animation effect="slide" end="0,-140" time="0" condition="Window.IsActive(MyPVRTimers.xml)">Conditional</animation>
+                    <animation effect="slide" end="0,-70" time="0" condition="[Window.IsActive(MyPVRGuide.xml) | Window.IsActive(MyPVRRecordings.xml)]">Conditional</animation>
+                </control>
+            </control>
 
             <control type="label">
                 <include>Def_Dialog_Header_Title</include>
@@ -1897,7 +1946,7 @@
 
                     <pagecontrol>9070</pagecontrol>
                     <usecontrolcoords>true</usecontrolcoords>
-                    <include content="Def_View_ContextMenu_GroupList_scrollbar"><param name="height" value="350" /><param name="scrollid" value="9070" /></include>
+                    <include content="Def_View_ContextMenu_GroupList_scrollbar"><param name="height" value="490" /><param name="scrollid" value="9070" /></include>
                     <include>Animation_Scrolltime_Views_List</include>
 
                 <!-- NOW PLAYING -->
