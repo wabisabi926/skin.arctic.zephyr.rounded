@@ -337,7 +337,7 @@
             <orientation>horizontal</orientation>
             <usecontrolcoords>true</usecontrolcoords>
 
-            <!-- INFO -->
+            <!-- TV CHANNELS -->
 
             <include content="Object_OSD_Button">
                 <param name="visible" value="true" />
@@ -348,12 +348,13 @@
                 <param name="id" value="8151" />
                 <param name="groupid" value="8951" />
                 <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <param name="show_not_enabled" value="true" />
                 <include>Def_View_Menu_PVR_Control_Buttons_UpDown_PVR</include>
                 <onclick>ActivateWindow(TVChannels)</onclick>
                 <enable>!Window.IsActive(TVChannels)</enable>
             </include>
 
-            <!-- BACK FULLSCREEN NOW PLAYING -->
+            <!-- TV GUIDE -->
 
             <include content="Object_OSD_Button">
                 <param name="visible" value="true" />
@@ -364,12 +365,13 @@
                 <param name="id" value="8152" />
                 <param name="groupid" value="8952" />
                 <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <param name="show_not_enabled" value="true" />
                 <include>Def_View_Menu_PVR_Control_Buttons_UpDown_PVR</include>
                 <onclick>ActivateWindow(TvGuide)</onclick>
                 <enable>!Window.IsActive(TvGuide)</enable>
             </include>
 
-            <!-- TRAILER -->
+            <!-- TV RECORDING -->
 
             <include content="Object_OSD_Button">
                 <param name="visible" value="true" />
@@ -380,12 +382,13 @@
                 <param name="id" value="8153" />
                 <param name="groupid" value="8953" />
                 <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <param name="show_not_enabled" value="true" />
                 <include>Def_View_Menu_PVR_Control_Buttons_UpDown_PVR</include>
                 <onclick>ActivateWindow(TVRecordings)</onclick>
                 <enable>!Window.IsActive(TVRecordings)</enable>
             </include>
 
-            <!-- WIKIPEDIA -->
+            <!-- TV TIMERS -->
 
             <include content="Object_OSD_Button">
                 <param name="visible" value="true" />
@@ -396,12 +399,13 @@
                 <param name="id" value="8154" />
                 <param name="groupid" value="8954" />
                 <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <param name="show_not_enabled" value="true" />
                 <include>Def_View_Menu_PVR_Control_Buttons_UpDown_PVR</include>
                 <onclick>ActivateWindow(TVTimers)</onclick>
                 <enable>!Window.IsActive(TVTimers)</enable>
             </include>
 
-            <!-- YOUTUBE -->
+            <!-- TV TIMERS RULES -->
 
             <include content="Object_OSD_Button">
                 <param name="visible" value="true" />
@@ -412,12 +416,13 @@
                 <param name="id" value="8155" />
                 <param name="groupid" value="8955" />
                 <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <param name="show_not_enabled" value="true" />
                 <include>Def_View_Menu_PVR_Control_Buttons_UpDown_PVR</include>
                 <onclick>ActivateWindow(TvTimerRules)</onclick>
                 <enable>!Window.IsActive(TvTimerRules)</enable>
             </include>
 
-            <!-- MOVIES FROM DIRECTOR -->
+            <!-- TV SEARCH -->
 
             <include content="Object_OSD_Button">
                 <param name="visible" value="true" />
@@ -428,6 +433,7 @@
                 <param name="id" value="8156" />
                 <param name="groupid" value="8956" />
                 <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <param name="show_not_enabled" value="true" />
                 <include>Def_View_Menu_PVR_Control_Buttons_UpDown_PVR</include>
                 <onclick>ActivateWindow(TVSearch)</onclick>
                 <enable>!Window.IsActive(TVSearch)</enable>
@@ -499,7 +505,8 @@
 
     <include name="Def_View_Menu_Control_Buttons">
         <control type="grouplist" id="6150">
-            <visible>Player.HasMedia | Player.Playing | Player.Paused</visible>
+            <visible>$EXP[Display_Views_Menu_Mini_Player]</visible>
+
             <include>Animation_Scrolltime_Views_List</include>
 
             <top>16</top>
@@ -651,14 +658,14 @@
             <textcolor>Dark2</textcolor>
             <scroll>true</scroll>
             <label fallback="19055">$VAR[Label_Layout_Context_Menu_OSD_Player]</label>
-            <visible>Player.HasMedia | Player.Playing | Player.Paused</visible>
+            <visible>$EXP[Display_Views_Menu_Mini_Player]</visible>
         </control>
         <control type="group" id="7878">
             <left>20</left>
             <right>20</right>
             <height>10</height>
             <include>Object_OSD_Progress_Bar_Info</include>
-            <visible>Player.HasMedia | Player.Playing | Player.Paused</visible>
+            <visible>$EXP[Display_Views_Menu_Mini_Player]</visible>
         </control>
         <include>Def_View_Menu_Control_Buttons</include>
     </include>

@@ -421,6 +421,8 @@
         <param name="vertical" default="false" />
         <param name="flag_lang_audio" default="false" />
         <param name="flag_lang_subtitle" default="false" />
+        <param name="show_not_enabled" default="false" />
+
         <definition>
             <control type="button" id="$PARAM[id]">
                 <height>$PARAM[size]</height>
@@ -458,6 +460,13 @@
                         <width>$PARAM[size]</width>
                         <texture colordiffuse="$PARAM[icon_colordiffuse_focus]" flipx="$PARAM[flipx]">$PARAM[icon]</texture>
                         <visible>Control.HasFocus($PARAM[id])</visible>
+                    </control>
+                    <control type="image">
+                        <bordersize>$PARAM[bordersize]</bordersize>
+                        <height>$PARAM[size]</height>
+                        <width>$PARAM[size]</width>
+                        <texture colordiffuse="$VAR[Color_Focus]" flipx="$PARAM[flipx]">$PARAM[icon]</texture>
+                        <visible>!Control.IsEnabled($PARAM[id]) + $PARAM[show_not_enabled]</visible>
                     </control>
                     <control type="image">
                        <bottom>-3</bottom>
