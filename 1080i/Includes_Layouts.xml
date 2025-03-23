@@ -454,8 +454,8 @@
         <ondown condition="Window.IsVisible(MyPVRSearch.xml)">SetFocus(3)</ondown>
 
         <!-- mini player -->
-        <ondown condition="Control.IsEnabled(6154)">SetFocus(6154)</ondown>
-        <ondown condition="Control.IsEnabled(6153)">SetFocus(6153)</ondown>
+        <ondown condition="[Player.HasMedia | Player.Playing | Player.Paused] + Control.IsEnabled(6154)">SetFocus(6154)</ondown>
+        <ondown condition="[Player.HasMedia | Player.Playing | Player.Paused] + Control.IsEnabled(6153)">SetFocus(6153)</ondown>
     </include>
 
     <!-- OSD - CONTEXTE MENU PLAYER -->
