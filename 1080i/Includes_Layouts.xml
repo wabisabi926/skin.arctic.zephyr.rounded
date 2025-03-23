@@ -330,8 +330,6 @@
             <width>470</width>
             <height>64</height>
 
-            <onup>SetFocus(4)</onup>
-            <!-- <ondown>28</ondown> -->
             <onleft>995</onleft>
             <onright>995</onright>
 
@@ -438,11 +436,16 @@
     </include>
 
     <include name="Def_View_Menu_PVR_Control_Buttons_UpDown_PVR">
+
+        <!-- menu list bottom -->
+
         <onup condition="Window.IsVisible(MyPVRChannels.xml)">SetFocus(4)</onup>
         <onup condition="Window.IsVisible(MyPVRGuide.xml)">SetFocus(4)</onup>
         <onup condition="Window.IsVisible(MyPVRRecordings.xml)">SetFocus(4)</onup>
         <onup condition="Window.IsVisible(MyPVRTimers.xml)">SetFocus(4)</onup>
         <onup condition="Window.IsVisible(MyPVRSearch.xml)">SetFocus(4)</onup>
+
+        <!-- menu list top -->
 
         <ondown condition="Window.IsVisible(MyPVRChannels.xml)">SetFocus(28)</ondown>
         <ondown condition="Window.IsVisible(MyPVRGuide.xml)">SetFocus(28)</ondown>
@@ -451,7 +454,8 @@
         <ondown condition="Window.IsVisible(MyPVRSearch.xml)">SetFocus(3)</ondown>
 
         <!-- mini player -->
-        <ondown condition="Control.IsEnable(6153)">SetFocus(6153)</ondown>
+        <ondown condition="Control.IsEnabled(6154)">SetFocus(6154)</ondown>
+        <ondown condition="Control.IsEnabled(6153)">SetFocus(6153)</ondown>
     </include>
 
     <!-- OSD - CONTEXTE MENU PLAYER -->
