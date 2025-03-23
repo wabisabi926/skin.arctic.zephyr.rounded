@@ -27,9 +27,11 @@
 
                     <itemlayout height="128">
 
-                        <!-- Is Playing -->
+                        <!-- IS PLAYING -->
 
                         <include>Def_View_List_Item_IsPlaying</include>
+
+                        <!-- ILLUSTRATIONS -->
 
                         <control type="image">
                             <animation effect="slide" end="10,-12" time="0" condition="ListItem.IsRecording + Window.IsVisible(MyPVRChannels.xml)">Conditional</animation>
@@ -59,6 +61,9 @@
                             <aspectratio align="left">keep</aspectratio>
                             <texture fallback="DefaultAddonNone.png">$VAR[Image_PVR_Icon]</texture>
                         </control>
+
+                        <!-- PVR - INFOS - CHANNEL -->
+
                         <control type="group">
                             <visible>Window.IsVisible(MyPVRChannels.xml)</visible>
                             <control type="progress">
@@ -132,8 +137,11 @@
                                 <label>$INFO[ListItem.NextTitle, $LOCALIZE[19031]: ]</label>
                             </control>
                         </control>
+
+                        <!-- PVR - INFOS - OTHERS -->
+
                         <control type="group">
-                            <visible>Window.IsVisible(MyPVRRecordings.xml) | Window.IsVisible(MyPVRTimers.xml) | Window.IsVisible(MyPVRSearch.xml)</visible>
+                            <visible>Window.IsVisible(MyPVRRecordings.xml) | Window.IsVisible(MyPVRTimers.xml) | Window.IsVisible(MyPVRSearch.xml) | Window.IsVisible(MyPVRProviders.xml)</visible>
                             <control type="label">
                                 <left>140</left>
                                 <right>100</right>
@@ -182,9 +190,11 @@
                     <focusedlayout height="128">
                         <control type="group">
 
-                            <!-- Is Playing -->
+                            <!-- IS PLAYING -->
 
                             <include>Def_View_List_Focus_IsPlaying</include>
+
+                            <!-- ILLUSTRATIONS -->
 
                             <control type="image">
                                 <animation effect="slide" end="10,-12" time="0" condition="ListItem.IsRecording + Window.IsVisible(MyPVRChannels.xml)">Conditional</animation>
@@ -214,6 +224,9 @@
                                 <aspectratio align="left">keep</aspectratio>
                                 <texture fallback="DefaultAddonNone.png">$VAR[Image_PVR_Icon]</texture>
                             </control>
+
+                            <!-- PVR - INFOS - CHANNEL -->
+
                             <control type="group">
                                 <visible>Window.IsVisible(MyPVRChannels.xml)</visible>
                                 <control type="progress">
@@ -287,8 +300,11 @@
                                     <label>$INFO[ListItem.NextTitle, $LOCALIZE[19031]: ]</label>
                                 </control>
                             </control>
+
+                            <!-- PVR - INFOS - OTHERS -->
+
                             <control type="group">
-                                <visible>Window.IsVisible(MyPVRRecordings.xml) | Window.IsVisible(MyPVRTimers.xml) | Window.IsVisible(MyPVRSearch.xml)</visible>
+                                <visible>Window.IsVisible(MyPVRRecordings.xml) | Window.IsVisible(MyPVRTimers.xml) | Window.IsVisible(MyPVRSearch.xml) | Window.IsVisible(MyPVRProviders.xml)</visible>
                                 <control type="label">
                                     <left>140</left>
                                     <right>100</right>
@@ -1280,7 +1296,7 @@
                             </control>
                         </control>
                         <control type="group">
-                            <visible>Window.IsVisible(MyPVRRecordings.xml) | Window.IsVisible(MyPVRTimers.xml) | Window.IsVisible(MyPVRSearch.xml)</visible>
+                            <visible>Window.IsVisible(MyPVRRecordings.xml) | Window.IsVisible(MyPVRTimers.xml) | Window.IsVisible(MyPVRSearch.xml) | Window.IsVisible(MyPVRProviders.xml)</visible>
                             <control type="label">
                                 <left>140</left>
                                 <right>100</right>
@@ -1435,7 +1451,7 @@
                                 </control>
                             </control>
                             <control type="group">
-                                <visible>Window.IsVisible(MyPVRRecordings.xml) | Window.IsVisible(MyPVRTimers.xml) | Window.IsVisible(MyPVRSearch.xml)</visible>
+                                <visible>Window.IsVisible(MyPVRRecordings.xml) | Window.IsVisible(MyPVRTimers.xml) | Window.IsVisible(MyPVRSearch.xml) | Window.IsVisible(MyPVRProviders.xml)</visible>
                                 <control type="label">
                                     <left>140</left>
                                     <right>100</right>
@@ -1879,11 +1895,11 @@
 
             <include content="Def_Dialog_Background_PowerMenu">
                 <param name="height">479</param>
-                <param name="visible">Window.IsActive(MyPVRSearch.xml) + !$EXP[Display_Views_Menu_Mini_Player]</param>
+                <param name="visible">[Window.IsActive(MyPVRSearch.xml) | Window.IsActive(MyPVRProviders.xml)] + !$EXP[Display_Views_Menu_Mini_Player]</param>
             </include>
             <include content="Def_Dialog_Background_PowerMenu">
                 <param name="height">619</param>
-                <param name="visible">Window.IsActive(MyPVRSearch.xml) + $EXP[Display_Views_Menu_Mini_Player]</param>
+                <param name="visible">[Window.IsActive(MyPVRSearch.xml) | Window.IsActive(MyPVRProviders.xml)] + $EXP[Display_Views_Menu_Mini_Player]</param>
             </include>
 
             <include content="Def_Dialog_Background_PowerMenu">
@@ -1919,8 +1935,8 @@
                     <include>Def_Arrow_Size</include>
                     <texture colordiffuse="White100" flipy="false">common/arrow-small.png</texture>
 
-                    <animation effect="slide" end="0,-210" time="0" condition="Window.IsActive(MyPVRSearch.xml) + !$EXP[Display_Views_Menu_Mini_Player]">Conditional</animation>
-                    <animation effect="slide" end="0,-70" time="0" condition="Window.IsActive(MyPVRSearch.xml) + $EXP[Display_Views_Menu_Mini_Player]">Conditional</animation>
+                    <animation effect="slide" end="0,-210" time="0" condition="[Window.IsActive(MyPVRSearch.xml) | Window.IsActive(MyPVRProviders.xml)] + !$EXP[Display_Views_Menu_Mini_Player]">Conditional</animation>
+                    <animation effect="slide" end="0,-70" time="0" condition="[Window.IsActive(MyPVRSearch.xml) | Window.IsActive(MyPVRProviders.xml)] + $EXP[Display_Views_Menu_Mini_Player]">Conditional</animation>
 
                     <animation effect="slide" end="0,-70" time="0" condition="Window.IsActive(MyPVRTimers.xml) + !$EXP[Display_Views_Menu_Mini_Player]">Conditional</animation>
                     <animation effect="slide" end="0,70" time="0" condition="Window.IsActive(MyPVRTimers.xml) + $EXP[Display_Views_Menu_Mini_Player]">Conditional</animation>
@@ -1946,7 +1962,7 @@
                 <!-- CONTEXT MENU ICON -->
 
                 <control type="group" id="9011">
-                    <left>40</left>
+                    <left>10</left>
                     <height>64</height>
                     <include>Def_Context_Menu_PVR_Icon</include>
                 </control>
@@ -1967,8 +1983,8 @@
                     <include content="Def_View_ContextMenu_GroupList_scrollbar" condition="Window.IsActive(MyPVRTimers.xml) + $EXP[Display_Views_Menu_Mini_Player]"><param name="height" value="560" /><param name="scrollid" value="9070" /></include>
 
 
-                    <include content="Def_View_ContextMenu_GroupList_scrollbar" condition="Window.IsActive(MyPVRSearch.xml) + !$EXP[Display_Views_Menu_Mini_Player]"><param name="height" value="280" /><param name="scrollid" value="9070" /></include>
-                    <include content="Def_View_ContextMenu_GroupList_scrollbar" condition="Window.IsActive(MyPVRSearch.xml) + $EXP[Display_Views_Menu_Mini_Player]"><param name="height" value="420" /><param name="scrollid" value="9070" /></include>
+                    <include content="Def_View_ContextMenu_GroupList_scrollbar" condition="[Window.IsActive(MyPVRSearch.xml) | Window.IsActive(MyPVRProviders.xml)] + !$EXP[Display_Views_Menu_Mini_Player]"><param name="height" value="280" /><param name="scrollid" value="9070" /></include>
+                    <include content="Def_View_ContextMenu_GroupList_scrollbar" condition="[Window.IsActive(MyPVRSearch.xml) | Window.IsActive(MyPVRProviders.xml)] + $EXP[Display_Views_Menu_Mini_Player]"><param name="height" value="420" /><param name="scrollid" value="9070" /></include>
 
                     <include>Animation_Scrolltime_Views_List</include>
 
@@ -1991,7 +2007,7 @@
                     <control type="button" id="55554">
                         <include>Def_Context_Menu_Label</include>
                         <label>33063</label>
-                        <visible>!Window.IsActive(TVSearch)</visible>
+                        <visible>!Window.IsActive(TVSearch) + !Window.IsActive(TVProviders)</visible>
                     </control>
 
                     <control type="button" id="28">

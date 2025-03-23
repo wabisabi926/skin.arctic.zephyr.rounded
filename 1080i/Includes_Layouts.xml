@@ -326,14 +326,14 @@
         <control type="grouplist" id="995">
             <include>Animation_Scrolltime_Views_List</include>
 
-            <left>40</left>
+            <left>30</left>
             <width>470</width>
             <height>64</height>
 
             <onleft>995</onleft>
             <onright>995</onright>
 
-            <itemgap>30</itemgap>
+            <itemgap>28</itemgap>
             <orientation>horizontal</orientation>
             <usecontrolcoords>true</usecontrolcoords>
 
@@ -341,8 +341,8 @@
 
             <include content="Object_OSD_Button">
                 <param name="visible" value="true" />
-                <param name="size" value="44" />
-                <param name="left" value="-38" />
+                <param name="size" value="40" />
+                <param name="left" value="-33" />
                 <param name="icon" value="special://skin/extras/icons/livetv.png" />
                 <param name="icon_colordiffuse" value="Dark2" />
                 <param name="id" value="8151" />
@@ -358,8 +358,8 @@
 
             <include content="Object_OSD_Button">
                 <param name="visible" value="true" />
-                <param name="size" value="44" />
-                <param name="left" value="-38" />
+                <param name="size" value="40" />
+                <param name="left" value="-33" />
                 <param name="icon" value="special://skin/extras/icons/tvguide.png" />
                 <param name="icon_colordiffuse" value="Dark2" />
                 <param name="id" value="8152" />
@@ -375,8 +375,8 @@
 
             <include content="Object_OSD_Button">
                 <param name="visible" value="true" />
-                <param name="size" value="44" />
-                <param name="left" value="-38" />
+                <param name="size" value="40" />
+                <param name="left" value="-33" />
                 <param name="icon" value="special://skin/extras/icons/folder-closed.png" />
                 <param name="icon_colordiffuse" value="Dark2" />
                 <param name="id" value="8153" />
@@ -392,8 +392,8 @@
 
             <include content="Object_OSD_Button">
                 <param name="visible" value="true" />
-                <param name="size" value="44" />
-                <param name="left" value="-38" />
+                <param name="size" value="40" />
+                <param name="left" value="-33" />
                 <param name="icon" value="special://skin/extras/icons/timer.png" />
                 <param name="icon_colordiffuse" value="Dark2" />
                 <param name="id" value="8154" />
@@ -409,8 +409,8 @@
 
             <include content="Object_OSD_Button">
                 <param name="visible" value="true" />
-                <param name="size" value="44" />
-                <param name="left" value="-38" />
+                <param name="size" value="40" />
+                <param name="left" value="-33" />
                 <param name="icon" value="special://skin/extras/icons/recent.png" />
                 <param name="icon_colordiffuse" value="Dark2" />
                 <param name="id" value="8155" />
@@ -426,8 +426,8 @@
 
             <include content="Object_OSD_Button">
                 <param name="visible" value="true" />
-                <param name="size" value="44" />
-                <param name="left" value="-38" />
+                <param name="size" value="40" />
+                <param name="left" value="-33" />
                 <param name="icon" value="special://skin/extras/icons/search.png" />
                 <param name="icon_colordiffuse" value="Dark2" />
                 <param name="id" value="8156" />
@@ -437,6 +437,23 @@
                 <include>Def_View_Menu_PVR_Control_Buttons_UpDown_PVR</include>
                 <onclick>ActivateWindow(TVSearch)</onclick>
                 <enable>!Window.IsActive(TVSearch)</enable>
+            </include>
+
+            <!-- TV PROVIDER -->
+
+            <include content="Object_OSD_Button">
+                <param name="visible" value="true" />
+                <param name="size" value="40" />
+                <param name="left" value="-33" />
+                <param name="icon" value="special://skin/extras/icons/wifi.png" />
+                <param name="icon_colordiffuse" value="Dark2" />
+                <param name="id" value="8166" />
+                <param name="groupid" value="8966" />
+                <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <param name="show_not_enabled" value="true" />
+                <include>Def_View_Menu_PVR_Control_Buttons_UpDown_PVR</include>
+                <onclick>ActivateWindow(TVProviders)</onclick>
+                <enable>!Window.IsActive(TVProviders)</enable>
             </include>
         </control>
     </include>
@@ -450,6 +467,7 @@
         <onup condition="Window.IsVisible(MyPVRRecordings.xml)">SetFocus(4)</onup>
         <onup condition="Window.IsVisible(MyPVRTimers.xml)">SetFocus(4)</onup>
         <onup condition="Window.IsVisible(MyPVRSearch.xml)">SetFocus(4)</onup>
+        <onup condition="Window.IsVisible(MyPVRProviders.xml)">SetFocus(4)</onup>
 
         <!-- menu list top -->
 
@@ -458,6 +476,7 @@
         <ondown condition="Window.IsVisible(MyPVRRecordings.xml)">SetFocus(10)</ondown>
         <ondown condition="Window.IsVisible(MyPVRTimers.xml)">SetFocus(8)</ondown>
         <ondown condition="Window.IsVisible(MyPVRSearch.xml)">SetFocus(3)</ondown>
+        <ondown condition="Window.IsVisible(MyPVRProviders.xml)">SetFocus(3)</ondown>
 
         <!-- mini player -->
         <ondown condition="[Player.HasMedia | Player.Playing | Player.Paused] + Control.IsEnabled(6157)">SetFocus(6157)</ondown>
