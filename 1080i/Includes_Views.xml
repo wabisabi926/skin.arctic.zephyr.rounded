@@ -84,6 +84,7 @@
     <include name="Def_Label_View_Flix_Main_Title">
         <param name="height" value="$PARAM[height]" default="46" />
         <param name="width" value="$PARAM[width]" default="100%" />
+        <param name="show_clearlogo" value="$PARAM[show_clearlogo]" default="true" />
         <param name="visible" value="$PARAM[visible]" default="true" />
 
         <definition>
@@ -106,22 +107,23 @@
                     <!-- <fadetime>ClearArtFadetime</fadetime> -->
                     <visible>$EXP[View_Flix_Show_Clearlogo_Enable]</visible>
                     <visible>$EXP[Title_Clearlogo_Available]</visible>
+                    <visible>$PARAM[show_clearlogo]</visible>
                 </control>
 
                 <!-- MAIN TITLE - TEXT -->
 
                 <control type="label">
-                    <include content="Def_Height" condition="$EXP[View_Flix_Show_Clearlogo_Enable]">
+                    <include content="Def_Height" condition="$EXP[View_Flix_Show_Clearlogo_Enable] + $PARAM[show_clearlogo]">
                         <param name="height">ClearLogoTitleMaxHeight</param>
                     </include>
-                    <include content="Def_Height" condition="!$EXP[View_Flix_Show_Clearlogo_Enable]">
+                    <include content="Def_Height" condition="!$EXP[View_Flix_Show_Clearlogo_Enable] | !$PARAM[show_clearlogo]">
                         <param name="height">40</param>
                     </include>
                     <textcolor>Dark1</textcolor>
                     <font>LargeNetflix</font>
                     <label fallback="19055">$VAR[Label_View_Flix_Main_Title]</label>
                     <include condition="Skin.HasSetting(labels.autoscroll)">LabelScroll</include>
-                    <visible>[$EXP[View_Flix_Show_Clearlogo_Enable] + !$EXP[Title_Clearlogo_Available]] | !$EXP[View_Flix_Show_Clearlogo_Enable]</visible>
+                    <visible>[$EXP[View_Flix_Show_Clearlogo_Enable] + !$EXP[Title_Clearlogo_Available]] | !$EXP[View_Flix_Show_Clearlogo_Enable] | !$PARAM[show_clearlogo]</visible>
                 </control>
             </control>
         </definition>
@@ -339,7 +341,7 @@
 
     <include name="Def_Dialog_View_Type">
         <param name="texture" value="$PARAM[texture]" />
-        <param name="texture_diffuse" value="$PARAM[texture_diffuse]" default="viewtype_w1210_h680" />
+        <param name="texture_diffuse" value="$PARAM[texture_diffuse]" default="viewtype_w1210_h680_b24" />
         <definition>
             <control type="group">
                 <right>30</right>
@@ -347,7 +349,9 @@
                 <width>1210</width>
                 <height>680</height>
 
-                <include>Def_Image_Shadow</include>
+                <control type="group">
+                    <include>Def_Art_Poster_Background</include>
+                </control>
 
                 <control type="image">
                     <width>100%</width>
@@ -424,12 +428,14 @@
                 <!-- FANART -->
 
                 <control type="group">
-                    <include>Def_Widget_Image_Background</include>
+                    <include content="Def_Art_Poster_Background">
+                        <param name="colordiffuse" value="White100" />
+                    </include>
 
                     <control type="image">
                         <width>100%</width>
                         <height>100%</height>
-                        <texture background="true" diffuse="diffuse/fanart_w1122_h640.png">background/bg_fallback.jpg</texture>
+                        <texture background="true" diffuse="diffuse/fanart_w1122_h640_b24.png">background/bg_fallback.jpg</texture>
                         <visible>!Integer.IsGreater(Container(9500).NumItems,0)</visible>
                     </control>
 
@@ -455,14 +461,14 @@
                             <control type="image">
                                 <width>100%</width>
                                 <height>100%</height>
-                                <texture background="true" diffuse="diffuse/fanart_w1122_h640.png">$VAR[Image_Fanart]</texture>
+                                <texture background="true" diffuse="diffuse/fanart_w1122_h640_b24.png">$VAR[Image_Fanart]</texture>
                             </control>
                         </itemlayout>
                         <focusedlayout>
                             <control type="image">
                                 <width>100%</width>
                                 <height>100%</height>
-                                <texture background="true" diffuse="diffuse/fanart_w1122_h640.png">$VAR[Image_Fanart]</texture>
+                                <texture background="true" diffuse="diffuse/fanart_w1122_h640_b24.png">$VAR[Image_Fanart]</texture>
                             </control>
                         </focusedlayout>
 
@@ -571,7 +577,7 @@
                             <right>0</right>
                             <bottom>0</bottom>
                             <height>90</height>
-                            <texture border="12" colordiffuse="OSD_Black">common/shadowbottomsmall.png</texture>
+                            <texture border="24" colordiffuse="OSD_Black">common/shadowbottomsmall_b24.png</texture>
                         </control>
                         <control type="label">
                             <left>30</left>
