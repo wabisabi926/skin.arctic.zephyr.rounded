@@ -298,12 +298,10 @@
     </variable>
 
     <variable name="Image_Icon_Context_Menu">
-        <value condition="Container.Content(addons) + !String.IsEmpty(ListItem.Icon)">$INFO[ListItem.Icon]</value>
         <value condition="Window.IsActive(filemanager) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_icon))">$INFO[Window(Home).Property(TMDbHelper.ListItem.base_icon)]</value>
-        <value condition="!String.IsEmpty(ListItem.Icon)">$INFO[ListItem.Icon]</value>
+        <value condition="String.StartsWith(ListItem.Icon,Default) + !String.IsEmpty(ListItem.Icon)">$INFO[ListItem.Icon]</value>
         <value condition="Window.IsVisible(DialogPVRChannelsOSD.xml)">special://skin/extras/icons/livetv.png</value>
         <value condition="Window.IsVisible(GameOSD.xml)">DefaultAddonGame.png</value>
-        <value>common/kodi-logo.png</value>
     </variable>
 
     <!-- IMAGE - FANART -->
