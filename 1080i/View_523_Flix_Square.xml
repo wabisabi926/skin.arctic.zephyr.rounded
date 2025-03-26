@@ -38,7 +38,7 @@
 
         <viewtype label="31315">list</viewtype>
 
-        <!-- BIG SQUARE -->
+        <!-- SQUARE BIG -->
 
         <itemlayout condition="String.IsEmpty(Skin.String(523.square.size))" height="325" width="325">
             <include content="Layout_Widget_Square">
@@ -57,7 +57,7 @@
             </include>
         </focusedlayout>
 
-        <!-- MIDDLE SQUARE -->
+        <!-- SQUARE MIDDLE -->
 
         <itemlayout condition="String.IsEqual(Skin.String(523.square.size),1)" height="337" width="280">
             <control type="group">
@@ -110,7 +110,7 @@
             </control>
         </focusedlayout>
 
-        <!-- SMALL SQUARE -->
+        <!-- SQUARE SMALL -->
 
         <itemlayout condition="String.IsEqual(Skin.String(523.square.size),2)" height="337" width="222">
             <control type="group">
@@ -215,13 +215,28 @@
             <include>Animation_Fade_In_Slide_Wall</include>
             <include condition="!Skin.HasSetting(show.clock.date.weather.home.only)">Furniture_Footer_Clock_Right</include>
 
-            <include content="Layout_Viewtype_Wall_Switch" condition="!String.IsEqual(Skin.String(523.square.size),2)">
+            <!-- SQUARE BIG -->
+
+            <include content="Layout_Viewtype_Wall_Switch" condition="String.IsEmpty(Skin.String(523.square.size))">
+                <param name="id" value="5238" />
+                <param name="include" value="Layout_Music_Wall_Square_Big" />
+                <param name="viewtype-label" value="$LOCALIZE[31366] $LOCALIZE[2]" />
+                <param name="onbackid" value="523" />
+                <visible>!Window.IsVisible(MyPlaylist.xml)</visible>
+            </include>
+
+            <!-- SQUARE MIDDLE -->
+
+            <include content="Layout_Viewtype_Wall_Switch" condition="String.IsEqual(Skin.String(523.square.size),1)">
                 <param name="id" value="5238" />
                 <param name="include" value="Layout_Music_Wall_Square" />
                 <param name="viewtype-label" value="$LOCALIZE[31366] $LOCALIZE[2]" />
                 <param name="onbackid" value="523" />
                 <visible>!Window.IsVisible(MyPlaylist.xml)</visible>
             </include>
+
+            <!-- SQUARE SMALL -->
+
             <include content="Layout_Viewtype_Wall_Switch" condition="String.IsEqual(Skin.String(523.square.size),2)">
                 <param name="id" value="5238" />
                 <param name="include" value="Layout_Music_Wall_Square_Small" />
