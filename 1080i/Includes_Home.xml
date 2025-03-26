@@ -2042,10 +2042,23 @@
 
             <!-- SETS -->
 
-            <control type="label">
-                <include>Widgets_Sub_Title_Definition</include>
-                <label>$INFO[Container($PARAM[id]).ListItem.Year]$INFO[Container($PARAM[id]).ListItem.Rating,  •  ,] $INFO[Control.GetLabel(9966)]</label>
+            <control type="grouplist">
                 <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,set)</visible>
+
+                <itemgap>0</itemgap>
+                <orientation>horizontal</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
+
+                <control type="label">
+                    <include>Widgets_Sub_Title_Definition</include>
+                    <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Years),,  •  ]$INFO[Container(44023).NumItems]$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.NumItems),/, $LOCALIZE[31014]]$INFO[Container($PARAM[id]).ListItem.Rating,  •  ,]</label>
+                    <visible>Integer.IsGreater(Container(44023).NumItems,0)</visible>
+                </control>
+                <control type="label">
+                    <include>Widgets_Sub_Title_Definition</include>
+                    <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Years),,  •  ]$INFO[Container($PARAM[id]).ListItem.Rating]</label>
+                    <visible>!Integer.IsGreater(Container(44023).NumItems,0)</visible>
+                </control>
             </control>
 
             <!-- ALBUMS -->
@@ -2481,7 +2494,7 @@
             <font>SmallNavi</font>
             <width>auto</width>
             <textcolor>Dark2</textcolor>
-            <label>$INFO[Container(44023).NumItems,  •  , $LOCALIZE[342]]</label>
+            <label>$INFO[Container(44023).NumItems]</label>
             <include>Animation_Vertical_Widgets_Title</include>
             <visible>Control.HasFocus($PARAM[focusid])</visible>
             <visible>ListItem.IsCollection</visible>

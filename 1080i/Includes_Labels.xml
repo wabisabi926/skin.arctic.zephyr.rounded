@@ -783,7 +783,9 @@
 
         <!-- COLLECTION -->
 
-        <value condition="ListItem.IsCollection">$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Years),,  •  ]$INFO[Container(44023).NumItems]$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.NumItems),/,] $LOCALIZE[31014]$INFO[ListItem.Rating,  •  ,]</value>
+        <value condition="ListItem.IsCollection + Integer.IsGreater(Container(44023).NumItems,0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Years),,  •  ]$INFO[Container(44023).NumItems]$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.NumItems),/, $LOCALIZE[31014]] $INFO[ListItem.Rating,  •  ,]</value>
+
+        <value condition="ListItem.IsCollection + !Integer.IsGreater(Container(44023).NumItems,0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Years),,  •  ]$INFO[ListItem.Rating]</value>
 
         <!-- TVSHOWS -->
 
@@ -860,9 +862,9 @@
 
         <!-- SONGS -->
 
-        <value condition="Container.Content(songs) + Control.IsVisible(57)">$INFO[ListItem.Album]$INFO[ListItem.Year,  •  ,]</value>
-        <value condition="Container.Content(songs) + Control.IsVisible(523)">$INFO[ListItem.Album]$INFO[ListItem.Year,  •  ,]</value>
-        <value condition="Container.Content(songs)">$INFO[ListItem.Album]$INFO[ListItem.Year,  •  ,]</value>
+        <value condition="Container.Content(songs) + Control.IsVisible(57)">$INFO[ListItem.Album]$INFO[ListItem.Year,  •  ,]$INFO[Container.NumItems,  •  , $LOCALIZE[134]]</value>
+        <value condition="Container.Content(songs) + Control.IsVisible(523)">$INFO[ListItem.Album]$INFO[ListItem.Year,  •  ,]$INFO[Container.NumItems,  •  , $LOCALIZE[134]]</value>
+        <value condition="Container.Content(songs)">$INFO[ListItem.Album]$INFO[ListItem.Year,  •  ,]$INFO[Container.NumItems,  •  , $LOCALIZE[134]]</value>
         <!-- <value condition="Container.Content(songs)">$INFO[ListItem.Album]$INFO[ListItem.Year,  •  ,]$INFO[ListItem.TrackNumber ,  •  ,]. $INFO[ListItem.Title]</value> -->
 
         <value condition="!String.IsEmpty(ListItem.Year)">$INFO[ListItem.Year]$VAR[Label_Duration_Time_Check,  •  ,]$VAR[Label_Rating,  •  ,]</value>

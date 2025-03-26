@@ -2758,10 +2758,25 @@
                     <label>Enable mode perf</label>
                     <selected>Skin.HasSetting(set.skin.config.perf)</selected>
                     <onclick>Skin.ToggleSetting(set.skin.config.perf)</onclick>
-                    <onclick condition="Skin.HasSetting(set.skin.config.perf)">Skin.SetBool(TMDbHelper.Service)</onclick>
-                    <onclick condition="Skin.HasSetting(set.skin.config.perf)">Skin.SetBool(TMDbHelper.EnableCrop)</onclick>
-                    <onclick condition="Skin.HasSetting(set.skin.config.perf)">Skin.SetBool(TMDbHelper.EnableBlur)</onclick>
-                    <onclick condition="Skin.HasSetting(set.skin.config.perf)">Skin.Reset(TMDbHelper.DisableArtwork)</onclick>
+                    <onclick condition="Skin.HasSetting(set.skin.config.perf)">Skin.SetBool(enabled.tmdb.helper.service)</onclick>
+                    <onclick condition="Skin.HasSetting(set.skin.config.perf)">Skin.SetBool(enabled.tmdb.helper.crop)</onclick>
+                    <!-- <onclick condition="Skin.HasSetting(set.skin.config.perf)">Skin.SetBool(enabled.tmdb.helper.blur)</onclick> -->
+                    <!-- <onclick condition="Skin.HasSetting(set.skin.config.perf)">Skin.Reset(TMDbHelper.DisableArtwork)</onclick> -->
+                    <onclick condition="Skin.HasSetting(set.skin.config.perf)">Skin.Reset(disable.all.hidden.list)</onclick>
+
+                    <onclick condition="!Skin.HasSetting(set.skin.config.perf)">Skin.Reset(enabled.tmdb.helper.service)</onclick>
+                    <onclick condition="!Skin.HasSetting(set.skin.config.perf)">Skin.Reset(enabled.tmdb.helper.crop)</onclick>
+                    <!-- <onclick condition="!Skin.HasSetting(set.skin.config.perf)">Skin.Reset(enabled.tmdb.helper.blur)</onclick> -->
+                    <!-- <onclick condition="!Skin.HasSetting(set.skin.config.perf)">Skin.SetBool(TMDbHelper.DisableArtwork)</onclick> -->
+                    <onclick condition="!Skin.HasSetting(set.skin.config.perf)">Skin.SetBool(disable.all.hidden.list)</onclick>
+                </control>
+                <control type="radiobutton" id="94421" description="Settings best performance">
+                    <width>1278</width>
+                    <visible>Container(3000).HasFocus(12)</visible>
+                    <include>Def_Button_Settings_Gradient</include>
+                    <label>Disable - all hidden list</label>
+                    <selected>Skin.HasSetting(disable.all.hidden.list)</selected>
+                    <onclick>Skin.ToggleSetting(disable.all.hidden.list)</onclick>
                 </control>
             </control>
 
