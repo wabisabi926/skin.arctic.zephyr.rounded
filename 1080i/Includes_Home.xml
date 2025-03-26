@@ -2081,6 +2081,7 @@
                     <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Label)</visible>
                     <visible>ControlGroup(301).HasFocus()</visible>
                     <visible>!Integer.IsGreater(Container($PARAM[id]).ListItem.Property(Album_Totaldiscs),1)</visible>
+                    <visible>Integer.IsGreater(Container(44022).NumItems,0)</visible>
                 </control>
                 <control type="label">
                     <include>Widgets_Sub_Title_Definition</include>
@@ -2088,6 +2089,7 @@
                     <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Label)</visible>
                     <visible>ControlGroup(301).HasFocus()</visible>
                     <visible>Integer.IsGreater(Container($PARAM[id]).ListItem.Property(Album_Totaldiscs),1)</visible>
+                    <visible>Integer.IsGreater(Container(44022).NumItems,0)</visible>
                 </control>
                 <control type="label">
                     <include>Widgets_Sub_Title_Definition</include>
@@ -2283,7 +2285,7 @@
             <animation effect="fade" start="0" end="100" time="200" delay="100" reversible="true">Visible</animation>
             <animation effect="fade" start="100" end="0" delay="100" time="200" reversible="true">Hidden</animation>
 
-            <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Property(Album_Description)) | !String.IsEmpty(Container($PARAM[id]).ListItem.Plot) | !String.IsEmpty(Container($PARAM[id]).ListItem.Property(Artist_Description)) | !String.IsEmpty(Container($PARAM[id]).ListItem.AddonDescription) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,actor) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,file)</visible>
+            <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Property(Album_Description)) | !String.IsEmpty(Container($PARAM[id]).ListItem.Plot) | !String.IsEmpty(Container($PARAM[id]).ListItem.Property(Artist_Description)) | !String.IsEmpty(Container($PARAM[id]).ListItem.AddonDescription) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,actor) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,file) | [Integer.IsGreater(Container(44025).NumItems,0) + String.IsEqual(Container($PARAM[id]).ListItem.DBType,album)]</visible>
 
             <top>$PARAM[top]</top>
             <height>$PARAM[height]</height>
@@ -2321,6 +2323,11 @@
                 <include>Def_Widgets_Textbox</include>
                 <label>$INFO[Container($PARAM[id]).ListItem.Property(Album_Description)]</label>
                 <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,album) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(Album_Description))</visible>
+            </control>
+            <control type="textbox">
+                <include>Def_Widgets_Textbox</include>
+                <label>$INFO[Container(44025).ListItemAbsolute(0).Artist,, - ]$INFO[Container(44025).ListItemAbsolute(0).TrackNumber,,. ]$INFO[Container(44025).ListItemAbsolute(0).Label][CR]$INFO[Container(44025).ListItemAbsolute(1).Artist,, - ]$INFO[Container(44025).ListItemAbsolute(1).TrackNumber,,. ]$INFO[Container(44025).ListItemAbsolute(1).Label][CR]$INFO[Container(44025).ListItemAbsolute(2).Artist,, - ]$INFO[Container(44025).ListItemAbsolute(2).TrackNumber,,. ]$INFO[Container(44025).ListItemAbsolute(2).Label][CR]$INFO[Container(44025).ListItemAbsolute(3).Artist,, - ]$INFO[Container(44025).ListItemAbsolute(3).TrackNumber,,. ]$INFO[Container(44025).ListItemAbsolute(3).Label][CR]$INFO[Container(44025).ListItemAbsolute(4).Artist,, - ]$INFO[Container(44025).ListItemAbsolute(4).TrackNumber,,. ]$INFO[Container(44025).ListItemAbsolute(4).Label][CR]$INFO[Container(44025).ListItemAbsolute(5).Artist,, - ]$INFO[Container(44025).ListItemAbsolute(5).TrackNumber,,. ]$INFO[Container(44025).ListItemAbsolute(5).Label][CR]</label>
+                <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,album) + String.IsEmpty(Container($PARAM[id]).ListItem.Property(Album_Description))</visible>
             </control>
 
             <!-- Artists -->
@@ -2526,9 +2533,10 @@
             <label>$INFO[Container(44022).NumItems,  •  , $LOCALIZE[134]]</label>
             <include>Animation_Vertical_Widgets_Title</include>
             <visible>Control.HasFocus($PARAM[focusid])</visible>
+            <visible>!Integer.IsGreater(Container($PARAM[id]).ListItem.Property(Album_Totaldiscs),1)</visible>
+            <visible>Integer.IsGreater(Container(44022).NumItems,0)</visible>
             <visible>String.IsEqual(ListItem.DBType,album)</visible>
             <visible>!Skin.HasSetting(home.style.flix)</visible>
-            <visible>![Integer.IsEqual(Container(44022).NumItems,2) | Integer.IsEqual(Container(44022).NumItems,3) | Integer.IsEqual(Container(44022).NumItems,4)]</visible>
         </control>
 
         <!-- ALBUMS - DISC COUNT -->
@@ -2541,8 +2549,9 @@
             <textcolor>Dark2</textcolor>
             <label>$INFO[Container(44022).NumItems,  •  , $LOCALIZE[14087]]</label>
             <include>Animation_Vertical_Widgets_Title</include>
-            <visible>Integer.IsEqual(Container(44022).NumItems,2) | Integer.IsEqual(Container(44022).NumItems,3) | Integer.IsEqual(Container(44022).NumItems,4)</visible>
             <visible>Control.HasFocus($PARAM[focusid])</visible>
+            <visible>Integer.IsGreater(Container($PARAM[id]).ListItem.Property(Album_Totaldiscs),1)</visible>
+            <visible>Integer.IsGreater(Container(44022).NumItems,0)</visible>
             <visible>String.IsEqual(ListItem.DBType,album)</visible>
             <visible>!Skin.HasSetting(home.style.flix)</visible>
         </control>
