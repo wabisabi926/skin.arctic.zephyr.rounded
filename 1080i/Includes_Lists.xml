@@ -1124,6 +1124,7 @@
                 <onleft>$PARAM[controlid]</onleft>
                 <onright>$PARAM[controlid]</onright>
 
+                <onback>Skin.Reset(TMDbHelper.ForceWidgetContainer)</onback>
                 <onback>ClearProperty(view_extended,Home)</onback>
 
                 <onback>SetFocus(9501,0,absolute)</onback>
@@ -1132,8 +1133,8 @@
                 <onback>SetFocus(9504,3,absolute)</onback>
                 <onback>9000</onback>
 
-                <ondown condition="Control.IsVisible(9508) | Control.IsVisible(9501) | Control.IsVisible(9502) | Control.IsVisible(9504)">$PARAM[controlid]7</ondown>
-                <ondown condition="![Control.IsVisible(9508) | Control.IsVisible(9501) | Control.IsVisible(9502) | Control.IsVisible(9504)]">9000</ondown>
+                <ondown condition="Control.IsVisible(9508) | Control.IsVisible(9501) | Control.IsVisible(9502) | Control.IsVisible(9504) | Control.IsVisible(9511)">$PARAM[controlid]7</ondown>
+                <ondown condition="![Control.IsVisible(9508) | Control.IsVisible(9501) | Control.IsVisible(9502) | Control.IsVisible(9504) | Control.IsVisible(9511)]">9000</ondown>
 
                 <onclick condition="!Control.IsVisible(9501) + Player.HasMedia">PlayerControl(Stop)</onclick>
 
@@ -1987,8 +1988,7 @@
     </include>
 
     <include name="Hidden_List_Album_Track_Count_Dialog_Music_Info_Ext">
-        <control type="list" id="95098">
-            <visible>Control.HasFocus(9501)</visible>
+        <control type="list" id="$PARAM[controlid]81">
             <include>Def_Hidden_ListControl</include>
             <content>$VAR[Path_Album_Track_Count_Dialog_Music_Info_Ext]</content>
         </control>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
-
     <include name="Dialog_Music_Info">
         <control type="group">
             <animation type="Conditional" reversible="true" condition="Window.IsVisible(FileBrowser.xml) | Window.IsVisible(DialogConfirm.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml)">
@@ -153,9 +152,10 @@
                 <!-- CLEARLOGO -->
 
                 <control type="image" description="clearlogo">
-                    <visible>Skin.HasSetting(show.dialog.info.music.clearlogo)</visible>
-                    <visible>[[Control.HasFocus(9501) | Control.HasFocus(9502) | Control.HasFocus(9508) | Control.HasFocus(95087) | Control.HasFocus(95027) | Control.HasFocus(95017)] + [!Player.HasMedia | Skin.HasSetting(hide.furniture.nowplaying)]] | ![Control.HasFocus(9501) | Control.HasFocus(9502) | Control.HasFocus(9508) | Control.HasFocus(95087) | Control.HasFocus(95027) | Control.HasFocus(95017)]</visible>
                     <include>Animation_Wiki_Fade_Out</include>
+                    <visible>Skin.HasSetting(show.dialog.info.music.clearlogo)</visible>
+
+                    <visible>[[Control.HasFocus(9501) | Control.HasFocus(9502) | Control.HasFocus(9508) | Control.HasFocus(95087) | Control.HasFocus(95027) | Control.HasFocus(95017)] + [!Player.HasMedia | Skin.HasSetting(hide.furniture.nowplaying)]] | ![Control.HasFocus(9501) | Control.HasFocus(9502) | Control.HasFocus(9508) | Control.HasFocus(95087) | Control.HasFocus(95027) | Control.HasFocus(95017) | Control.HasFocus(9511) | Control.HasFocus(95117)]</visible>
 
                     <centertop>262</centertop>
                     <right>View_SidePad</right>
@@ -164,12 +164,13 @@
 
                     <fadetime>ClearArtFadetime</fadetime>
                     <aspectratio align="right" aligny="top">keep</aspectratio>
-                    <texture background="true">$VAR[Image_Crop_ClearLogo_Music_Ext]</texture>
+                    <texture background="true">$VAR[Image_Crop_ClearLogo_Music]</texture>
 
                     <animation effect="fade" start="0" end="100" time="200" delay="0" reversible="true">Visible</animation>
                     <animation effect="fade" start="100" end="0" delay="0" time="200" reversible="true">Hidden</animation>
+
                     <animation type="Conditional" reversible="true" condition="![Control.HasFocus(9501) | Control.HasFocus(160) | Control.HasFocus(9502) | Control.HasFocus(9508) | Control.HasFocus(95087) | Control.HasFocus(95027) | Control.HasFocus(95017)]">
-                        <effect type="slide" end="0,0" start="0,-160" time="300" tween="cubic" easing="out" />
+                        <effect type="slide" end="0,0" start="0,-120" time="300" tween="cubic" easing="out" />
                     </animation>
                 </control>
 
@@ -935,6 +936,12 @@
                     <param name="controlid" value="9508" />
                 </include>
 
+                <!-- albums this year -->
+                <include content="Furniture_Header_DialogInfo_Extended">
+                    <param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),5)" />
+                    <param name="controlid" value="9511" />
+                </include>
+
                 <!-- youtube -->
                  <include content="Furniture_Header_DialogInfo_Extended">
                     <param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),3)" />
@@ -961,10 +968,31 @@
                         <!-- <param name="centerleft" value="500" /> -->
                     <!-- </include> -->
 
+
+                    <!-- Albums this year -->
+
+                    <include content="Def_Layout_Dialog_Info_Video_Music_List_Square" condition="[String.IsEqual(ListItem.DBType,song) | String.IsEqual(ListItem.DBType,album)] + !Skin.HasSetting(hide.button.music.year)">
+                        <param name="fallbackpicture" value="DefaultMusicAlbums.png" />
+                        <param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),5)" />
+                        <param name="music_info_onclick" value="false" />
+                        <param name="music_info_album" value="true" />
+                        <param name="controlid" value="9511" />
+                        <param name="visible.layouts" value="Control.HasFocus(9511) | Control.HasFocus(95117) | Control.HasFocus(160) | Control.HasFocus(6) | Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml)" />
+                        <param name="ContentToLoad" value="$VAR[Def_List_Albums_Year]" />
+                        <param name="sortby" value="year" />
+                        <param name="onclick1" value="Dialog.Close(musicinformation)" />
+                        <param name="onclick2" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" />
+                    </include>
+                    <include content="Def_Dialog_Info_List_Updating">
+                        <param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),5) + Control.HasFocus(9011)" />
+                        <param name="controlid" value="9511" />
+                        <param name="centerleft" value="526" />
+                    </include>
+
                     <!-- Albums List -->
 
                     <include content="Def_Layout_Dialog_Info_Video_Music_List_Square">
-                        <param name="fallbackpicture" value="DefaultAddonPicture.png" />
+                        <param name="fallbackpicture" value="DefaultMusicAlbums.png" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),2)" />
                         <param name="music_info_onclick" value="false" />
                         <param name="music_info_album" value="true" />
@@ -1028,13 +1056,20 @@
                 <!-- EXTENDED VIEW - FURNITURE FOOTER / FLAG -->
 
                 <!-- list albums -->
-                <include content="Furniture_Footer_DialogInfo_Extended"><param name="controlid" value="9501" /></include>
-                <include content="Furniture_Flags_DialogInfo_Extended_Audio" condition="!Skin.HasSetting(hide.furniture.flags)"><param name="controlid" value="9501" /></include>
-                <include content="Hidden_List_Album_Track_Count_Dialog_Music_Info_Ext" condition="!Skin.HasSetting(hide.furniture.flags) + !Skin.HasSetting(disable.all.hidden.list)"></include>
+                <include content="Furniture_Footer_DialogInfo_Extended"><param name="controlid" value="9501" /><param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),2)" /></include>
+                <include content="Furniture_Flags_DialogInfo_Extended_Audio"><param name="controlid" value="9501" /><param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),2)" /></include>
+                <include content="Hidden_List_Album_Track_Count_Dialog_Music_Info_Ext" condition="!Skin.HasSetting(disable.all.hidden.list)"><param name="controlid" value="9501" /><param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),2)" /></include>
 
                 <!-- list songs -->
-                <include content="Furniture_Footer_DialogInfo_Extended"><param name="controlid" value="9508" /></include>
-                <include content="Furniture_Flags_DialogInfo_Extended_Audio" condition="!Skin.HasSetting(hide.furniture.flags)"><param name="controlid" value="9508" /></include>
+                <include content="Furniture_Footer_DialogInfo_Extended"><param name="controlid" value="9508" /><param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),8)" /></include>
+                <include content="Furniture_Flags_DialogInfo_Extended_Audio"><param name="controlid" value="9508" /><param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),8)" /></include>
+
+                <!-- albums this year -->
+                <include content="Furniture_Footer_DialogInfo_Extended"><param name="controlid" value="9511" /><param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),5)" /></include>
+                <include content="Furniture_Flags_DialogInfo_Extended_Audio"><param name="controlid" value="9511" /><param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),5)" /></include>
+                <include content="Hidden_List_Album_Track_Count_Dialog_Music_Info_Ext" condition="!Skin.HasSetting(disable.all.hidden.list)"><param name="controlid" value="9511" /><param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),5)" /></include>
+
+                <include content="Dialog_Music_Clearlogo_Ext"><param name="controlid" value="9511" /><param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),5)" /></include>
 
                 <!-- youtube -->
                 <include content="Furniture_Footer_DialogInfo_Extended"><param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),3)" /><param name="controlid" value="9502" /></include>
@@ -1128,5 +1163,28 @@
 
         <include>Def_Dialog_Custom_Settings</include>
         <include>Def_Dialog_Info_Video_Fullscreen</include>
+    </include>
+
+    <!-- CLEARLOGO EXTENDED -->
+
+    <include name="Dialog_Music_Clearlogo_Ext">
+        <control type="image" description="clearlogo">
+            <include>Animation_Wiki_Fade_Out</include>
+            <visible>Skin.HasSetting(show.dialog.info.music.clearlogo)</visible>
+
+            <visible>[Control.HasFocus(9511) | Control.HasFocus(95117)] + [!Player.HasMedia | Skin.HasSetting(hide.furniture.nowplaying)]</visible>
+
+            <centertop>142</centertop>
+            <right>View_SidePad</right>
+            <height>ClearLogoMaxHeight</height>
+            <width>ClearLogoMaxWidth</width>
+
+            <fadetime>ClearArtFadetime</fadetime>
+            <aspectratio align="right" aligny="top">keep</aspectratio>
+            <texture background="true">$INFO[Container($PARAM[controlid]).ListItem.Art(artist.clearlogo)]</texture>
+
+            <animation effect="fade" start="0" end="100" time="200" delay="0" reversible="true">Visible</animation>
+            <animation effect="fade" start="100" end="0" delay="0" time="200" reversible="true">Hidden</animation>
+        </control>
     </include>
 </includes>

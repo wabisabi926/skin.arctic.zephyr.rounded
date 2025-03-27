@@ -928,15 +928,15 @@
             <ondown condition="!String.IsEqual(Window.Property(ShowDisc),1) + !String.IsEqual(Window.Property(RotateCover),1)">9669</ondown>
 
             <onup condition="String.IsEqual(Window(Home).Property(musiccontent),2)">9501</onup>
-            <onup condition="String.IsEqual(Window(Home).Property(musiccontent),2)">SetProperty(TMDbHelper.WidgetContainer,9501)</onup>
             <onup condition="String.IsEqual(Window(Home).Property(musiccontent),8)">9508</onup>
-            <onup condition="String.IsEqual(Window(Home).Property(musiccontent),8)">SetProperty(TMDbHelper.WidgetContainer,9508)</onup>
             <onup condition="String.IsEqual(Window(Home).Property(musiccontent),3)">9502</onup>
             <onup condition="String.IsEqual(Window(Home).Property(musiccontent),4) + Integer.IsGreater(Container(9503).NumItems,0)">95031</onup>
             <onup condition="String.IsEqual(Window(Home).Property(musiccontent),1)">9009</onup>
+            <onup condition="String.IsEqual(Window(Home).Property(musiccontent),5)">9511</onup>
             <onup condition="String.IsEmpty(Window(Home).Property(musiccontent))">50</onup>
 
             <!-- <onup condition="String.IsEqual(Window(Home).Property(musiccontent),8) + Integer.IsGreater(Container(9508).NumItems,1)">9508</onup> -->
+
             <onup condition="Control.HasFocus(12) + !String.IsEqual(Window.Property(ShowDisc),1) + !String.IsEmpty(ListItem.Art(discart))">SetProperty(ShowDisc,1)</onup>
             <onup condition="Control.HasFocus(12) + String.IsEqual(Window.Property(ShowDisc),1) + !String.IsEmpty(ListItem.Art(discart)) + !String.IsEmpty(ListItem.Art(back))">SetProperty(RotateCover,1)</onup>
             <onup condition="Control.HasFocus(12) + String.IsEqual(Window.Property(ShowDisc),1) + !String.IsEmpty(ListItem.Art(discart)) + String.IsEmpty(ListItem.Art(back))">ClearProperty(ShowDisc)</onup>
@@ -1077,8 +1077,6 @@
                 <onfocus condition="!String.IsEqual(Window(Home).Property(musiccontent),2)">ClearProperty(musiccontent,Home)</onfocus>
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
                 <onfocus>SetProperty(musiccontent,2,Home)</onfocus>
-                <onclick>SetProperty(TMDbHelper.WidgetContainer,9501)</onclick>
-                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
                 <onclick>SetFocus(9501)</onclick>
                 <include>Def_Button_Dimensions_Square</include>
                 <include content="Def_Button_Textures">
@@ -1094,8 +1092,6 @@
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
                 <onfocus condition="!String.IsEqual(Window(Home).Property(musiccontent),8)">ClearProperty(musiccontent,Home)</onfocus>
                 <onfocus>SetProperty(musiccontent,8,Home)</onfocus>
-                <onclick>SetProperty(TMDbHelper.WidgetContainer,9508)</onclick>
-                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
                 <onclick condition="String.IsEqual(Window(Home).Property(musiccontent),8) + Integer.IsGreater(Container(9508).NumItems,1)">SetFocus(9508)</onclick>
                 <font>Button</font>
                 <textcolor>Dark2</textcolor>
@@ -1107,6 +1103,21 @@
                 </include>
                 <visible>!Skin.HasSetting(hide.button.music.more)</visible>
                 <visible>!String.IsEmpty(Window(Home).Property(Encoded.ListItem.Artist))</visible>
+            </control>
+
+            <!-- ALBUMS THIS YEAR  -->
+
+            <control type="radiobutton" id="9011">
+                <onfocus condition="!String.IsEqual(Window(Home).Property(musiccontent),5)">ClearProperty(musiccontent,Home)</onfocus>
+                <onfocus>ClearProperty(ShowDisc)</onfocus>
+                <onfocus>SetProperty(musiccontent,5,Home)</onfocus>
+                <onclick>SetFocus(9511)</onclick>
+                <include>Def_Button_Dimensions_Square</include>
+                <include content="Def_Button_Textures">
+                    <param name="icon" value="buttonsdialogs/more.png" />
+                </include>
+                <visible>!Skin.HasSetting(hide.button.music.year)</visible>
+                <visible>String.IsEqual(ListItem.DBType,song) | String.IsEqual(ListItem.DBType,album)</visible>
             </control>
 
             <!-- FANART -->

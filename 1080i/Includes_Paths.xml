@@ -352,7 +352,7 @@
     </variable>
 
     <variable name="Path_Album_Track_Count_Dialog_Music_Info_Ext">
-        <value condition="Control.HasFocus(9501) | Control.HasFocus(95017)">musicdb://albums/$INFO[Container(9501).ListItem.DBID]/</value>
+        <value>musicdb://albums/$INFO[Container($PARAM[controlid]).ListItem.DBID]/</value>
     </variable>
 
     <variable name="Path_Set_Count">
@@ -398,6 +398,10 @@
 
     <variable name="Def_Music_Dialog_Most_Played_Song">
         <value condition="!String.IsEmpty(Window(Home).Property(Encoded.ListItem.Artist))">musicdb://songs/?xsp=%7B%22order%22%3A%7B%22direction%22%3A%22ascending%22%2C%22ignorefolders%22%3A0%2C%22method%22%3A%22songs%22%7D%2C%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22artist%22%2C%22operator%22%3A%22contains%22%2C%22value%22%3A%5B%22$INFO[Window(Home).Property(Encoded.ListItem.Artist)]%22%5D%7D%5D%7D%2C%22type%22%3A%22songs%22%7D</value>
+    </variable>
+
+    <variable name="Def_List_Albums_Year">
+        <value condition="!String.IsEmpty(ListItem.Year)">musicdb://albums/?xsp={"rules":{"and":[{"field":"year","operator":"contains","value":["$INFO[ListItem.Year]"]}]},"type":"albums"}</value>
     </variable>
 
     <variable name="Def_List_Artist_Albums">

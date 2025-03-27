@@ -57,7 +57,7 @@
     <include name="Number_Album_Disc_Count_Ext">
         <control type="group">
             <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,album)</visible>
-            <visible>Integer.IsGreater(Container(95098).NumItems,0)</visible>
+            <visible>Integer.IsGreater(Container($PARAM[controlid]81).NumItems,0)</visible>
 
             <centertop>50%</centertop>
             <width>180</width>
@@ -76,7 +76,7 @@
                 <align>center</align>
                 <left>10</left>
                 <centertop>53%</centertop>
-                <label>$INFO[Container(95098).NumItems]</label>
+                <label>$INFO[Container($PARAM[controlid]81).NumItems]</label>
                 <font>Flag</font>
                 <textcolor>Dark1</textcolor>
             </control>
@@ -89,7 +89,7 @@
                 <label>$LOCALIZE[134]</label>
                 <font>Flag</font>
                 <textcolor>Dark1</textcolor>
-                <visible>![Integer.IsEqual(Container(95098).NumItems,2) | Integer.IsEqual(Container(95098).NumItems,3) | Integer.IsEqual(Container(95098).NumItems,4)]</visible>
+                <visible>!Integer.IsGreater(Container($PARAM[controlid]).ListItem.Property(Album_Totaldiscs),1)</visible>
             </control>
             <control type="label">
                 <width>auto</width>
@@ -100,7 +100,7 @@
                 <label>$LOCALIZE[14087]</label>
                 <font>Flag</font>
                 <textcolor>Dark1</textcolor>
-                <visible>[Integer.IsEqual(Container(95098).NumItems,2) | Integer.IsEqual(Container(95098).NumItems,3) | Integer.IsEqual(Container(95098).NumItems,4)]</visible>
+                <visible>Integer.IsGreater(Container($PARAM[controlid]).ListItem.Property(Album_Totaldiscs),1)</visible>
             </control>
         </control>
     </include>
@@ -806,6 +806,7 @@
 
         <value condition="Window.IsVisible(DialogMusicInfo.xml) + Control.HasFocus(9202)">special://skin/extras/icons/expand.png</value>
         <value condition="Window.IsVisible(DialogMusicInfo.xml) + Control.HasFocus(9001)">special://skin/extras/icons/play2.png</value>
+        <value condition="Window.IsVisible(DialogMusicInfo.xml) + Control.HasFocus(9011)">special://skin/extras/icons/years.png</value>
         <value condition="Window.IsVisible(DialogMusicInfo.xml) + Control.HasFocus(12)">special://skin/extras/icons/info2.png</value>
         <value condition="Window.IsVisible(DialogMusicInfo.xml) + Control.HasFocus(9002)">special://skin/extras/icons/info2.png</value>
         <value condition="Window.IsVisible(DialogMusicInfo.xml) + Control.HasFocus(9030)">special://skin/extras/icons/world.png</value>
@@ -820,6 +821,7 @@
         <!-- MUSIC DIALOG INFO - HEADER ICON - FOCUS EXTENDED VIEW -->
 
         <value condition="Window.IsVisible(DialogMusicInfo.xml) + Control.HasFocus(9501)">special://skin/extras/icons/compact-disc.png</value>
+        <value condition="Window.IsVisible(DialogMusicInfo.xml) + Control.HasFocus(9511)">special://skin/extras/icons/years.png</value>
         <value condition="Window.IsVisible(DialogMusicInfo.xml) + Control.HasFocus(9508)">special://skin/extras/icons/songs.png</value>
         <value condition="Window.IsVisible(DialogMusicInfo.xml) + [Control.HasFocus(9502) | Control.HasFocus(95027)]">special://skin/extras/icons/youtube.png</value>
 
@@ -5238,7 +5240,7 @@
                     <itemgap>0</itemgap>
                     <usecontrolcoords>true</usecontrolcoords>
 
-                    <include>Number_Album_Disc_Count_Ext</include>
+                    <include content="Number_Album_Disc_Count_Ext"><param name="controlid" value="$PARAM[controlid]" /></include>
 
                     <control type="image">
                         <width min="20" max="100">auto</width>
@@ -5383,7 +5385,7 @@
                     <itemgap>0</itemgap>
                     <usecontrolcoords>true</usecontrolcoords>
 
-                    <include>Number_Album_Disc_Count_Ext</include>
+                    <include content="Number_Album_Disc_Count_Ext"><param name="controlid" value="$PARAM[controlid]" /></include>
 
                     <control type="image">
                         <width min="20" max="100">auto</width>
