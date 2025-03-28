@@ -378,59 +378,6 @@
         </control>
     </include>
 
-    <!-- VIEW 50 - EVENTLOG -->
-
-    <include name="View_50_List_Square_Event">
-        <description>List View (id=50)</description>
-        <control type="group">
-            <visible>Control.IsVisible(50)</visible>
-            <include>Animation_Common</include>
-
-            <include condition="!Skin.HasSetting(show.clock.date.weather.home.only) + !Skin.HasSetting(show.furniture.footer)">Furniture_Footer_Clock_Right</include>
-
-            <include>View_Slide_For_JumpBar</include>
-
-            <control type="group">
-                <control type="panel" id="50">
-                    <visible>$EXP[Exp_View_50]</visible>
-                    <include>Animation_Scrolltime_Views_List</include>
-
-                    <top>View_Top</top>
-                    <height>PosterH</height>
-                    <left>ListSquareX</left>
-                    <right>View_SidePad</right>
-
-                    <include>Def_Focus_Context_Menu_On_Right</include>
-                    <onleft>1779</onleft>
-                    <onup>50</onup>
-                    <ondown>50</ondown>
-
-                    <pagecontrol>1779</pagecontrol>
-
-                    <viewtype label="535">list</viewtype>
-
-                    <itemlayout width="ListSquareW" height="91.4">
-                        <include>layout_list_item_events</include>
-                    </itemlayout>
-                    <focusedlayout width="ListSquareW" height="91.4">
-                        <include>layout_list_focus_events</include>
-                    </focusedlayout>
-                </control>
-
-                <!-- SCROLLBAR -->
-
-                <control type="scrollbar" id="1779">
-                    <include content="Object_Scrollbar_Views_Vertical">
-                        <param name="scrollid" value="1779" />
-                        <param name="centerleft" value="742" />
-                    </include>
-                </control>
-            </control>
-
-            <include>View_50_SidePoster_Square</include>
-        </control>
-    </include>
-
     <!-- VIEW 50 - PLAYLIST -->
 
     <include name="View_50_List_Square_Playlist">

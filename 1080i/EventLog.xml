@@ -4,8 +4,6 @@
     <views>50</views>
     <menucontrol>9000</menucontrol>
 
-    <onload>RunScript(script.skinvariables,action=buildviews)</onload>
-
     <controls>
         <include condition="!Skin.HasSetting(show.global.visualisation.background.video)">Hidden_Video_Window</include>
         <include>Background_Global</include>
@@ -15,58 +13,152 @@
         <include condition="Skin.HasSetting(show.furniture.footer)">Furniture_Footer</include>
         <include condition="!Skin.HasSetting(show.clock.date.weather.home.only)">Furniture_Footer_Clock_Right</include>
 
-        <include condition="$EXP[Exp_View_50_Include]">View_50_List_Square_Event</include>
-
-        <!-- CONTEXT MENU -->
-
         <control type="group">
-            <include>Animation_Fade_In</include>
-            <include>Animation_Fade_Out</include>
-            <visible>ControlGroup(9000).HasFocus()</visible>
-            <include>Background_Overlay</include>
-        </control>
+            <include>Animation_Common</include>
+            <include>Def_Dialog_Settings</include>
 
-        <control type="group">
-            <include>Animation_RightSide</include>
-
-            <include content="Def_View_ContextMenu_Background"><param name="height" value="476" /></include>
-            <include content="Object_Arrows_View_ContextMenu"><param name="arrow_bottom" value="486" /></include>
+            <!-- LEFT - HEADER  -->
 
             <control type="label">
-                <include>Def_Dialog_Header_Title</include>
-                <label>$LOCALIZE[33063]</label>
+                <top>18</top>
+                <left>30</left>
+                <width>390</width>
+                <font>MediumBold</font>
+                <label>5</label>
+                <textcolor>PanelWhite100</textcolor>
             </control>
-            <include>Def_Dialog_Header_Logo</include>
-            <include>Def_Dialog_Header_Line</include>
+            <control type="label">
+                <top>77</top>
+                <left>30</left>
+                <right>30</right>
+                <height>30</height>
+                <font>Tiny</font>
+                <textcolor>PanelWhite70</textcolor>
+                <label>$INFO[System.ProfileName]</label>
+                <align>left</align>
+                <scroll>true</scroll>
+                <textoffsetx>0</textoffsetx>
+            </control>
+
+            <!-- LEFT - GROUP -->
 
             <control type="grouplist" id="9000">
-                <top>112</top>
-                <usecontrolcoords>true</usecontrolcoords>
-                <include content="Def_View_ContextMenu_GroupList"><param name="height" value="486" /></include>
                 <include>Animation_Scrolltime_Views_List</include>
 
+                <top>140</top>
+                <left>16</left>
+                <width>418</width>
+                <height>490</height>
+
+                <onup>9000</onup>
+                <ondown>9000</ondown>
+                <onright>50</onright>
+
+                <itemgap>0</itemgap>
+                <orientation>vertical</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
+
                 <control type="button" id="21">
-                    <include>Def_Button_Gradient_Context</include>
+                    <include>Def_Button_Settings_Gradient</include>
                 </control>
                 <control type="button" id="4">
                     <description>Order Toggle</description>
-                    <include>Def_Button_Gradient_Context</include>
+                    <include>Def_Button_Settings_Gradient</include>
                     <label>$LOCALIZE[31512]:</label>
                     <label2>$INFO[Container.SortOrder]</label2>
                 </control>
                 <control type="radiobutton" id="22">
-                    <include>Def_Button_Gradient_Context</include>
+                    <include>Def_Button_Settings_Gradient</include>
                 </control>
                 <control type="button" id="20">
-                    <include>Def_Button_Gradient_Context</include>
+                    <include>Def_Button_Settings_Gradient</include>
                     <label>192</label>
                 </control>
                 <control type="button" id="501">
-                    <include>Def_Button_Gradient_Context</include>
+                    <include>Def_Button_Settings_Gradient</include>
                     <label>5</label>
                     <onclick>ActivateWindow(systemsettings,logging)</onclick>
                 </control>
             </control>
+
+            <!-- LINES - VERTICAL -->
+
+            <include content="Def_Dialog_Line_Vertical"><param name="top" value="17" /><param name="right" value="1310" /></include>
+
+            <!-- RIGHT - HEADER -->
+
+            <control type="group">
+                <visible>!Container(3000).HasFocus(1)</visible>
+                <control type="label">
+                    <left>480</left>
+                    <width>390</width>
+                    <top>18</top>
+                    <font>MediumBold</font>
+                    <label>$VAR[Label_Header_Settings]</label>
+                    <textcolor>PanelWhite100</textcolor>
+                </control>
+                <control type="label">
+                    <left>480</left>
+                    <right>30</right>
+                    <top>77</top>
+                    <height>30</height>
+                    <font>Tiny</font>
+                    <textcolor>PanelWhite70</textcolor>
+                    <scroll>true</scroll>
+                    <label>19055</label>
+                </control>
+            </control>
+
+            <!-- RIGHT - LINE -->
+
+            <include content="Def_Dialog_Header_Line">
+                <param name="top" value="123" />
+                <param name="left" value="480" />
+            </include>
+
+            <!-- RIGHT - GROUP -->
+
+            <control type="group">
+                <visible>Control.IsVisible(50)</visible>
+
+                <control type="group">
+                    <control type="panel" id="50">
+                        <include>Animation_Scrolltime_Views_List</include>
+
+                        <top>140</top>
+                        <left>466</left>
+                        <right>16</right>
+                        <height>490</height>
+
+                        <onright>1779</onright>
+                        <onleft>9000</onleft>
+                        <onup>50</onup>
+                        <ondown>50</ondown>
+
+                        <pagecontrol>1779</pagecontrol>
+
+                        <viewtype label="535">list</viewtype>
+
+                        <itemlayout height="91.4">
+                            <include>layout_list_item_events</include>
+                        </itemlayout>
+                        <focusedlayout height="91.4">
+                            <include>layout_list_focus_events</include>
+                        </focusedlayout>
+                    </control>
+                </control>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="1779" />
+                <param name="top" value="140" />
+                <param name="onleft" value="50" />
+                <param name="onright" value="50" />
+                <param name="height" value="490" />
+                <param name="centerright" value="4" />
+            </include>
         </control>
     </controls>
 </window>
