@@ -231,22 +231,14 @@
 
                     <viewtype label="535">list</viewtype>
 
-                    <itemlayout condition="Skin.HasSetting(disable.view.50.extended.list.addons)" height="64">
-                        <include>layout_list_item_addons</include>
-                    </itemlayout>
-                    <focusedlayout condition="Skin.HasSetting(disable.view.50.extended.list.addons)" height="64">
-                        <include>layout_list_focus_addons</include>
-                    </focusedlayout>
-
-                    <itemlayout condition="!Skin.HasSetting(disable.view.50.extended.list.addons)" height="91.4">
+                    <itemlayout height="98">
                         <include>layout_list_item_addons_info</include>
                     </itemlayout>
-                    <focusedlayout condition="!Skin.HasSetting(disable.view.50.extended.list.addons)" height="91.4">
+                    <focusedlayout height="98">
                         <include>layout_list_focus_addons_info</include>
                     </focusedlayout>
                 </control>
             </control>
-
 
             <!-- SCROLLBAR -->
 
@@ -268,10 +260,10 @@
         </control>
 
         <control type="group">
-            <include>Animation_RightSide</include>
+            <include>Animation_LeftSide</include>
 
-            <include content="Def_View_ContextMenu_Background"><param name="height" value="619" /></include>
-            <include content="Object_Arrows_View_ContextMenu"><param name="arrow_bottom" value="629" /></include>
+            <include content="Def_View_ContextMenu_Background"><param name="height" value="339" /></include>
+            <include content="Object_Arrows_View_ContextMenu"><param name="arrow_bottom" value="349" /></include>
 
             <control type="label">
                 <include>Def_Dialog_Header_Title</include>
@@ -286,7 +278,7 @@
                 <usecontrolcoords>true</usecontrolcoords>
 
                 <include content="Def_View_ContextMenu_GroupList_scrollbar">
-                    <param name="height" value="490" />
+                    <param name="height" value="210" />
                     <param name="scrollid" value="9070" />
                     <param name="idlayout" value="6000" />
                 </include>
@@ -326,75 +318,14 @@
                     <label>5</label>
                     <include>Def_Button_Gradient_Context</include>
                 </control>
-                <control type="button" id="104">
-                    <description>Update settings</description>
-                    <label>24041</label>
-                    <include>Def_Button_Gradient_Context</include>
-                    <onclick>SetFocus(50)</onclick>
-                    <onclick>Container.Update(addons://install/,replace)</onclick>
-                    <onclick>Action(Select)</onclick>
-                </control>
-
-                <!-- OUTDATED -->
-
-                <!-- <control type="button" id="103"> -->
-                    <!-- <description>No notifications</description> -->
-                    <!-- <label>24043</label> -->
-                    <!-- <align>left</align> -->
+                <!-- <control type="button" id="104"> -->
+                    <!-- <description>Update settings</description> -->
+                    <!-- <label>24041</label> -->
                     <!-- <include>Def_Button_Gradient_Context</include> -->
-                    <!-- <onclick>Container.Update(addons://outdated/,replace)</onclick> -->
                     <!-- <onclick>SetFocus(50)</onclick> -->
-                    <!-- <visible>!Integer.IsEqual(Container(6301).NumItems,0)</visible> -->
+                    <!-- <onclick>Container.Update(addons://install/,replace)</onclick> -->
+                    <!-- <onclick>Action(Select)</onclick> -->
                 <!-- </control> -->
-
-                <!-- ALL VIEWS -->
-
-                <control type="button" id="55550">
-                    <include>Def_Context_Menu_Label</include>
-                    <label>31226</label>
-                </control>
-
-                <!-- <control type="button" id="2"> -->
-                    <!-- <description>View</description> -->
-                    <!-- <include>Def_Button_Gradient_Context</include> -->
-                    <!-- <align>left</align> -->
-                <!-- </control> -->
-
-                <!-- <control type="button" id="9001"> -->
-                    <!-- <include>Def_Button_Gradient_Context</include> -->
-                    <!-- <label>$LOCALIZE[582]:</label> -->
-                    <!-- <label2>$INFO[Container.Viewmode]</label2> -->
-                    <!-- <onclick>Runscript(script.skinvariables,action=buildviews,contentid=$VAR[Items_ViewMode_Switch],pluginname=$INFO[Container.PluginName])</onclick> -->
-                <!-- </control> -->
-
-                <!-- <control type="button" id="3"> -->
-                    <!-- <description>Sort</description> -->
-                    <!-- <include>Def_Button_Gradient_Context</include> -->
-                <!-- </control> -->
-                <!-- <control type="togglebutton" id="4"> -->
-                    <!-- <description>Ascending/Descending</description> -->
-                    <!-- <include>Def_Button_Gradient_Context</include> -->
-                    <!-- <label>584</label> -->
-                    <!-- <altlabel>585</altlabel> -->
-                <!-- </control> -->
-
-                <!-- THIS VIEW  -->
-
-                <control type="button" id="55551">
-                    <include>Def_Context_Menu_Label</include>
-                    <label>31051</label>
-                    <visible>Control.IsVisible(50)</visible>
-                    <visible>Container.Content(addons)</visible>
-                </control>
-
-                <!-- list extended -->
-                <control type="radiobutton" id="90281">
-                    <include>Def_Button_Gradient_Context</include>
-                    <label>31192</label>
-                    <selected>!Skin.HasSetting(disable.view.50.extended.list.addons)</selected>
-                    <onclick>Skin.ToggleSetting(disable.view.50.extended.list.addons)</onclick>
-                    <visible>Control.IsVisible(50) | Control.IsVisible(550)</visible>
-                </control>
             </control>
 
             <!-- SCROLLBAR -->
@@ -405,18 +336,9 @@
                 <param name="onleft" value="9000" />
                 <param name="onright" value="9000" />
                 <param name="onback" value="9000" />
-                <param name="height" value="490" />
+                <param name="height" value="210" />
                 <param name="centerright" value="4" />
             </include>
         </control>
-
-        <!-- <control type="list" id="6301"> -->
-            <!-- <width>1</width> -->
-            <!-- <height>1</height> -->
-            <!-- <left>-1000</left> -->
-            <!-- <itemlayout width="1" height="1" /> -->
-            <!-- <focusedlayout width="1" height="1" /> -->
-            <!-- <content>addons://outdated/</content> -->
-        <!-- </control> -->
     </controls>
 </window>

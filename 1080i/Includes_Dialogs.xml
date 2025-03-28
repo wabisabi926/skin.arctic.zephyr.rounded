@@ -675,6 +675,8 @@
         <texturefocus>special://profile/addon_data/script.texturemaker/ArcticZephirRounded/main_h.png</texturefocus>
     </include>
 
+    <!-- DEF - BUTTON - SETTINGS -->
+
     <include name="Def_Label_Settings_System_Info">
         <align>left</align>
         <font>Small</font>
@@ -721,6 +723,54 @@
         <font>Button</font>
         <textcolor>$VAR[Color_Label_Settings_Title]</textcolor>
         <disabledcolor>$VAR[Color_Label_Settings_Title]</disabledcolor>
+        <height>70</height>
+    </include>
+
+    <include name="Def_SkinSettings_Addons">
+        <control type="radiobutton" id="$PARAM[id]1">
+            <width>1278</width>
+            <textoffsetx>30</textoffsetx>
+            <visible>$PARAM[visible]</visible>
+            <visible>System.HasAddon($PARAM[addonname]) + System.AddonIsEnabled($PARAM[addonname])</visible>
+            <include>Def_Button_Settings_Gradient</include>
+            <label>$PARAM[addonname]</label>
+            <label2>$INFO[System.AddonVersion($PARAM[addonname]),(,)]        </label2>
+            <selected>true</selected>
+            <onclick>Addon.OpenSettings($PARAM[addonname])</onclick>
+        </control>
+        <control type="radiobutton" id="$PARAM[id]2">
+            <width>1278</width>
+            <textoffsetx>30</textoffsetx>
+            <visible>$PARAM[visible]</visible>
+            <textcolor>Dark3</textcolor>
+            <visible>System.HasAddon($PARAM[addonname]) + !System.AddonIsEnabled($PARAM[addonname])</visible>
+            <include>Def_Button_Settings_Category_Gradient_Disabled</include>
+            <label>$PARAM[addonname]</label>
+            <label2>($LOCALIZE[31350])    $INFO[System.AddonVersion($PARAM[addonname]),(,)]        </label2>
+            <selected>true</selected>
+            <!-- <onclick>RunScript(script.embuary.helper,action=toggleaddons,addonid=$PARAM[addonname],enable=true)</onclick> -->
+            <onclick>Setproperty(DialogBusy,1,Home)</onclick>
+            <onclick>AlarmClock(Busy1,SetFocus(9608),00:01,silent)</onclick>
+            <onclick>AlarmClock(Busy2,ClearProperty(DialogBusy,Home),00:02,silent)</onclick>
+        </control>
+        <control type="radiobutton" id="$PARAM[id]3">
+            <width>1278</width>
+            <visible>$PARAM[visible]</visible>
+            <visible>!System.HasAddon($PARAM[addonname])</visible>
+            <include>Def_Button_Settings_Gradient</include>
+            <label>$PARAM[addonname]</label>
+            <label2>$INFO[System.AddonVersion($PARAM[addonname]),(,)]        </label2>
+            <selected>false</selected>
+            <onclick>InstallAddon($PARAM[addonname])</onclick>
+        </control>
+    </include>
+
+    <include name="Def_SkinSettings_Label_Title_Right_Side">
+        <textoffsetx>14</textoffsetx>
+        <font>Button</font>
+        <align>left</align>
+        <width>1278</width>
+        <textcolor>$VAR[Color_Label_Settings_Title]</textcolor>
         <height>70</height>
     </include>
 

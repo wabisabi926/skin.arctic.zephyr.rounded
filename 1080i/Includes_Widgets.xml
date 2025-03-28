@@ -1353,46 +1353,7 @@
         <textcolor>Dark2</textcolor>
     </include>
 
-    <include name="Def_SkinSettings_Addons">
-        <control type="radiobutton" id="$PARAM[id]1">
-            <width>1278</width>
-            <textoffsetx>30</textoffsetx>
-            <visible>$PARAM[visible]</visible>
-            <visible>System.HasAddon($PARAM[addonname]) + System.AddonIsEnabled($PARAM[addonname])</visible>
-            <include>Def_Button_Settings_Gradient</include>
-            <label>$PARAM[addonname]</label>
-            <label2>$INFO[System.AddonVersion($PARAM[addonname]),(,)]        </label2>
-            <selected>true</selected>
-            <onclick>Addon.OpenSettings($PARAM[addonname])</onclick>
-        </control>
-        <control type="radiobutton" id="$PARAM[id]2">
-            <width>1278</width>
-            <textoffsetx>30</textoffsetx>
-            <visible>$PARAM[visible]</visible>
-            <textcolor>Dark3</textcolor>
-            <visible>System.HasAddon($PARAM[addonname]) + !System.AddonIsEnabled($PARAM[addonname])</visible>
-            <include>Def_Button_Settings_Category_Gradient_Disabled</include>
-            <label>$PARAM[addonname]</label>
-            <label2>($LOCALIZE[31350])    $INFO[System.AddonVersion($PARAM[addonname]),(,)]        </label2>
-            <selected>true</selected>
-            <!-- <onclick>RunScript(script.embuary.helper,action=toggleaddons,addonid=$PARAM[addonname],enable=true)</onclick> -->
-            <onclick>Setproperty(DialogBusy,1,Home)</onclick>
-            <onclick>AlarmClock(Busy1,SetFocus(9608),00:01,silent)</onclick>
-            <onclick>AlarmClock(Busy2,ClearProperty(DialogBusy,Home),00:02,silent)</onclick>
-        </control>
-        <control type="radiobutton" id="$PARAM[id]3">
-            <width>1278</width>
-            <visible>$PARAM[visible]</visible>
-            <visible>!System.HasAddon($PARAM[addonname])</visible>
-            <include>Def_Button_Settings_Gradient</include>
-            <label>$PARAM[addonname]</label>
-            <label2>$INFO[System.AddonVersion($PARAM[addonname]),(,)]        </label2>
-            <selected>false</selected>
-            <onclick>InstallAddon($PARAM[addonname])</onclick>
-        </control>
-    </include>
-
-    <include name="Image_Clear_Logo_Dim">
+    <include name="Def_Widget_Image_Clearlogo_Dim">
         <control type="image">
             <width>$PARAM[width]</width>
             <right>$PARAM[right]</right>
@@ -2050,7 +2011,7 @@
                 <include>Def_Layout_Poster_rating_Info</include>
             </control>
 
-            <!-- <include content="Image_Clear_Logo_Dim" condition="$PARAM[clearlogo]"> -->
+            <!-- <include content="Def_Widget_Image_Clearlogo_Dim" condition="$PARAM[clearlogo]"> -->
                 <!-- <param name="width" value="250" /> -->
                 <!-- <param name="right" value="30" /> -->
                 <!-- <param name="bottom" value="20" /> -->
