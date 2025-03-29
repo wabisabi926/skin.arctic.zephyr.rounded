@@ -5,7 +5,7 @@
         <include>Background_Overlay</include>
         <control type="group">
 
-            <include content="Def_Dialog_Background"><param name="height" value="882" /><param name="width" value="1320" /></include>
+            <include content="Def_Dialog_Background"><param name="height" value="420" /><param name="width" value="700" /></include>
 
             <control type="label">
                 <include>Def_Dialog_Header_Title</include>
@@ -16,12 +16,16 @@
             <include>Def_Dialog_Header_Line</include>
 
             <control type="list" id="9000">
-                <width>1064</width>
-                <top>110</top>
-                <height>726</height>
+                <top>112</top>
+                <left>16</left>
+                <width>668</width>
+
+                <height>264</height>
+
                 <onup>9000</onup>
                 <ondown>9000</ondown>
-                <itemlayout height="66" width="1064">
+
+                <itemlayout height="66" width="668">
                     <control type="label">
                         <left>30</left>
                         <right>30</right>
@@ -41,13 +45,18 @@
                         <font>Small</font>
                         <label>$INFO[ListItem.Label2]</label>
                     </control>
+                    <include content="Def_Button_Radio">
+                        <param name="colordiffuse_off">Black70</param>
+                        <param name="colordiffuse_on">$VAR[Color_List_Item_Selected]</param>
+                        <param name="visible">String.IsEqual(Window(Home).property(SetViewSizeSelected),ListItem.Label)</param>
+                    </include>
                 </itemlayout>
-                <focusedlayout height="66" width="1064">
-                    <control type="image">
-                        <width>1062</width>
-                        <height>64</height>
-                        <texture border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png</texture>
-                    </control>
+                <focusedlayout height="66" width="668">
+
+                    <!-- Item Focus Gradient -->
+
+                    <include>Def_Focus_Item_Gradient</include>
+
                     <control type="label">
                         <left>30</left>
                         <right>30</right>
@@ -67,6 +76,11 @@
                         <font>Small</font>
                         <label>$INFO[ListItem.Label2]</label>
                     </control>
+                    <include content="Def_Button_Radio">
+                        <param name="colordiffuse_off">Selected</param>
+                        <param name="colordiffuse_on">Selected</param>
+                        <param name="visible">String.IsEqual(Window(Home).property(SetViewSizeSelected),ListItem.Label)</param>
+                    </include>
                 </focusedlayout>
                 <content>
                     <item>

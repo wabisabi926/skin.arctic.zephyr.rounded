@@ -242,6 +242,22 @@
         </definition>
     </include>
 
+    <include name="Def_Focus_Item_Gradient">
+        <param name="pad_image" value="$PARAM[pad_image]" default="0" />
+        <param name="texture" value="$PARAM[texture]" default="special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png" />
+        <param name="condition_scroll_anim" value="$PARAM[condition_scroll_anim]" default="false" />
+        <param name="visible" value="$PARAM[visible]" default="true" />
+
+        <definition>
+            <control type="image">
+                <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
+                <texture border="12">$PARAM[texture]</texture>
+                <include condition="$PARAM[condition_scroll_anim]">View_List_Scroll_Anim</include>
+                <visible>$PARAM[visible]</visible>
+            </control>
+        </definition>
+    </include>
+
     <!-- VIEWS LAYOUT - CONTEXTE MENU -->
 
     <include name="Def_Context_Menu_Label">

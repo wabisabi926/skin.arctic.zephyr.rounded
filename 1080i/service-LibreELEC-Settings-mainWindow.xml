@@ -63,11 +63,10 @@
                     </control>
                 </itemlayout>
                 <focusedlayout width="418" height="70">
-                    <control type="image">
-                        <width>100%</width>
-                        <height>100%</height>
-                        <texture border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png</texture>
-                    </control>
+
+                    <!-- Item Focus Gradient -->
+                    <include>Def_Focus_Item_Gradient</include>
+
                     <control type="label">
                         <left>30</left>
                         <height>70</height>
@@ -225,16 +224,19 @@
                 <!-- SIMPLE LIST CONTENT -->
 
                 <control type="list" id="1100">
-                    <left>0</left>
+                    <visible>String.IsEqual(Container(1000).ListItem.Property(listTyp),1100)</visible>
+                    <include>Animation_Scrolltime_Views_List</include>
+
                     <top>140</top>
+                    <left>0</left>
                     <width>1278</width>
                     <height>490</height>
+
                     <onleft>1000</onleft>
                     <onright condition="Control.IsVisible(1500)">1500</onright>
                     <onright condition="!Control.IsVisible(1500)">1097</onright>
-                    <include>Animation_Scrolltime_Views_List</include>
+
                     <pagecontrol>1097</pagecontrol>
-                    <visible>String.IsEqual(Container(1000).ListItem.Property(listTyp),1100)</visible>
 
                     <itemlayout height="70">
 
@@ -313,12 +315,13 @@
                             <visible>Control.HasFocus(1100)</visible>
                             <control type="group">
                                 <visible>!String.IsEqual(ListItem.Property(Typ), separator)</visible>
-                                <control type="image">
-                                    <height>70</height>
-                                    <width>1278</width>
-                                    <texture border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png</texture>
-                                    <visible>Control.HasFocus(1100)</visible>
-                                </control>
+
+                                <!-- Item Focus Gradient -->
+
+                                <include content="Def_Focus_Item_Gradient">
+                                    <param name="visible" value="Control.HasFocus(1100)" />
+                                </include>
+
                                 <control type="label">
                                     <aligny>center</aligny>
                                     <textoffsetx>30</textoffsetx>
@@ -629,11 +632,10 @@
                     <focusedlayout height="100">
                         <control type="group">
                             <visible>Control.HasFocus(1200)</visible>
-                            <control type="image">
-                                <height>100</height>
-                                <width>1278</width>
-                                <texture border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png</texture>
-                            </control>
+
+                        <!-- Item Focus Gradient -->
+                        <include>Def_Focus_Item_Gradient</include>
+
 
                             <!-- ICON ETHERNET -->
 
@@ -1408,15 +1410,11 @@
                                 <texture colordiffuse="PanelWhite100">elec/key.png</texture>
                             </control>
                         </control>
-
-
                         <control type="group">
                             <visible>Control.HasFocus(1300)</visible>
-                            <control type="image">
-                                <height>100</height>
-                                <width>1278</width>
-                                <texture border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png</texture>
-                            </control>
+
+                            <!-- Item Focus Gradient -->
+                            <include>Def_Focus_Item_Gradient</include>
 
                             <!-- DEFAULT -->
 

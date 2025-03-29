@@ -160,12 +160,13 @@
                 </include>
             </itemlayout>
             <focusedlayout height="70" width="926">
-                <control type="image">
-                    <width>100%</width>
-                    <height>100%</height>
-                    <texture border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png</texture>
-                    <animation effect="fade" start="100" end="0" condition="!Control.HasFocus(3)">Conditional</animation>
-                </control>
+
+                <!-- Item Focus Gradient -->
+
+                <include content="Def_Focus_Item_Gradient">
+                    <param name="visible" value="Control.HasFocus(3)" />
+                </include>
+
                 <control type="group">
                     <visible>Control.HasFocus(3)</visible>
                     <control type="label">
@@ -291,11 +292,9 @@
                     </include>
                 </itemlayout>
                 <focusedlayout width="418" height="70">
-                    <control type="image">
-                        <width>100%</width>
-                        <height>100%</height>
-                        <texture border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png</texture>
-                    </control>
+                    <!-- Item Focus Gradient -->
+                    <include>Def_Focus_Item_Gradient</include>
+
                     <control type="label">
                         <left>30</left>
                         <width>310</width>
@@ -1392,11 +1391,11 @@
                     </control>
                 </itemlayout>
                 <focusedlayout width="408" height="354">
-                    <control type="image">
-                        <width>100%</width>
-                        <texture border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png</texture>
-                        <visible>Control.HasFocus(3)</visible>
-                    </control>
+                    <!-- Item Focus Gradient -->
+                    <include content="Def_Focus_Item_Gradient">
+                        <param name="visible" value="Control.HasFocus(3)" />
+                    </include>
+                
                     <control type="image">
                         <top>10</top>
                         <left>10</left>

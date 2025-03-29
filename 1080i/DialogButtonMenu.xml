@@ -78,10 +78,11 @@
                 <include>Animation_Scrolltime_Views_List</include>
 
                 <top>112</top>
+                <left>16</left>
                 <height min="100" max="560">auto</height>
+                <width>534</width>
                 <bottom>17</bottom>
-                <left>0</left>
-                <right>0</right>
+
 
                 <onup>3110</onup>
                 <ondown>3110</ondown>
@@ -92,16 +93,16 @@
                 <orientation>vertical</orientation>
                 <pagecontrol>1799</pagecontrol>
 
-                <itemlayout width="566" height="70">
+                <itemlayout width="534" height="70">
                     <control type="image">
                         <top>8</top>
-                        <left>32</left>
+                        <left>16</left>
                         <width>56</width>
                         <height>56</height>
                         <texture colordiffuse="Dark2">$INFO[Container(300).ListItem.Icon]</texture>
                     </control>
                     <control type="label">
-                        <left>100</left>
+                        <left>84</left>
                         <align>left</align>
                         <aligny>center</aligny>
                         <width>74%</width>
@@ -112,24 +113,24 @@
                         <label>$INFO[ListItem.Label]</label>
                     </control>
                 </itemlayout>
-                <focusedlayout width="566" height="70">
-                    <control type="image">
-                        <left>16</left>
-                        <right>16</right>
-                        <height>100%</height>
-                        <texture border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png</texture>
-                        <animation effect="fade" start="100" end="0" condition="!Control.HasFocus(3110)">Conditional</animation>
-                    </control>
+                <focusedlayout width="534" height="70">
+                
+                    <!-- Item Focus Gradient -->
+
+                    <include content="Def_Focus_Item_Gradient">
+                        <param name="visible" value="Control.HasFocus(3110)" />
+                    </include>
+
                     <control type="image">
                         <top>8</top>
-                        <left>32</left>
+                        <left>16</left>
                         <width>56</width>
                         <height>56</height>
                         <texture colordiffuse="Selected">$INFO[Container(300).ListItem.Icon]</texture>
                         <visible>Control.HasFocus(3110)</visible>
                     </control>
                     <control type="label">
-                        <left>100</left>
+                        <left>84</left>
                         <align>left</align>
                         <aligny>center</aligny>
                         <width>74%</width>
@@ -142,14 +143,14 @@
                     </control>
                     <control type="image">
                         <top>8</top>
-                        <left>32</left>
+                        <left>16</left>
                         <width>56</width>
                         <height>56</height>
                         <texture colordiffuse="Dark2">$INFO[Container(300).ListItem.Icon]</texture>
                         <visible>!Control.HasFocus(3110)</visible>
                     </control>
                     <control type="label">
-                        <left>100</left>
+                        <left>84</left>
                         <align>left</align>
                         <aligny>center</aligny>
                         <width>74%</width>
