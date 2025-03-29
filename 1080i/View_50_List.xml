@@ -2721,123 +2721,129 @@
     </include>
 
     <include name="layout_list_item_addons_info">
-        <control type="group">
-            <include content="Def_Top" condition="Window.IsVisible(AddonBrowser.xml)">
-               <param name="top" value="3.3" />
-            </include>
-            <include content="Def_Left" condition="Window.IsVisible(AddonBrowser.xml)">
-               <param name="left" value="3.3" />
-            </include>
-            <top>0</top>
-            <left>0</left>
+        <param name="textcolor_line_1" value="$PARAM[textcolor_line_1]" default="Dark1" />
+        <param name="textcolor_line_2" value="$PARAM[textcolor_line_2]" default="Dark2" />
+        <param name="colordiffuse_icon_black" value="$PARAM[colordiffuse_icon_black]" default="Dark1" />
 
-            <!-- Icon -->
+        <definition>
+            <control type="group">
+                <include content="Def_Top" condition="Window.IsVisible(AddonBrowser.xml)">
+                   <param name="top" value="3.3" />
+                </include>
+                <include content="Def_Left" condition="Window.IsVisible(AddonBrowser.xml)">
+                   <param name="left" value="3.3" />
+                </include>
+                <top>0</top>
+                <left>0</left>
 
-            <include content="Def_View_List_Icon_Info">
-                <param name="colordiffuse_icon_black">Dark1</param>
-                <param name="colordiffuse_background_icon_black">Black12</param>
-                <param name="visible_icon">!$EXP[Icon_Container_Addons]</param>
-                <param name="visible_icon_black">$EXP[Icon_Container_Addons]</param>
-            </include>
+                <!-- Icon -->
 
-            <!-- Label Addon -->
+                <include content="Def_View_List_Icon_Info">
+                    <param name="colordiffuse_icon_black">$PARAM[colordiffuse_icon_black]</param>
+                    <param name="colordiffuse_background_icon_black">Black12</param>
+                    <param name="visible_icon">!$EXP[Icon_Container_Addons]</param>
+                    <param name="visible_icon_black">$EXP[Icon_Container_Addons]</param>
+                </include>
 
-            <control type="label">
-                <left>120</left>
-                <top>-5</top>
-                <width max="700">auto</width>
-                <aligny>center</aligny>
-                <height>64</height>
-                <font>InfoNetflix</font>
-                <label>$INFO[ListItem.Label]</label>
-                <textcolor>Dark1</textcolor>
-                <selectedcolor>Dark1</selectedcolor>
+                <!-- Label Addon -->
+
+                <control type="label">
+                    <left>120</left>
+                    <top>-5</top>
+                    <width max="700">auto</width>
+                    <aligny>center</aligny>
+                    <height>64</height>
+                    <font>InfoNetflix</font>
+                    <label>$INFO[ListItem.Label]</label>
+                    <textcolor>$PARAM[textcolor_line_1]</textcolor>
+                    <selectedcolor>$PARAM[textcolor_line_1]</selectedcolor>
+                </control>
+
+                <!-- Version -->
+
+                <control type="label">
+                    <right>140</right>
+                    <top>-5</top>
+                    <width>500</width>
+                    <aligny>center</aligny>
+                    <height>64</height>
+                    <align>right</align>
+                    <font>SmallNavi</font>
+                    <textcolor>$PARAM[textcolor_line_1]</textcolor>
+                    <selectedcolor>$PARAM[textcolor_line_1]</selectedcolor>
+                    <label>$VAR[Label_Addons_Info]</label>
+                    <animation effect="slide" start="0" end="115" time="0" condition="String.Contains(Container.FolderPath,addons://repos/)">Conditional</animation>
+                    <animation effect="slide" start="0" end="57" time="0" condition="Window.IsVisible(MyPrograms.xml)">Conditional</animation>
+                </control>
+
+                <!-- origin -->
+
+                <control type="image">
+                    <right>80</right>
+                    <centertop>33</centertop>
+                    <width>32</width>
+                    <height>32</height>
+                    <aspectratio aligny="top">keep</aspectratio>
+                    <texture colordiffuse="$PARAM[colordiffuse_icon_black]">$VAR[Image_Addons_Origin_Icon]</texture>
+                    <animation effect="slide" start="0" end="57" time="0" condition="Window.IsVisible(MyPrograms.xml)">Conditional</animation>
+                    <visible>!ListItem.IsFolder + Container.Content(addons)</visible>
+                </control>
+
+                <!-- status -->
+
+                <control type="image">
+                    <right>25</right>
+                    <centertop>33</centertop>
+                    <width>32</width>
+                    <height>32</height>
+                    <aspectratio aligny="top">keep</aspectratio>
+                    <texture colordiffuse="FF00D273">$VAR[Image_Addons_Status_Icon]</texture>
+                    <visible>!ListItem.IsFolder + Container.Content(addons)</visible>
+                    <visible>ListItem.Property(addon.isenabled)</visible>
+                </control>
+                <control type="image">
+                    <right>25</right>
+                    <centertop>33</centertop>
+                    <width>32</width>
+                    <height>32</height>
+                    <aspectratio aligny="top">keep</aspectratio>
+                    <texture colordiffuse="FFFF0000">$VAR[Image_Addons_Status_Icon_Disable]</texture>
+                    <visible>!ListItem.IsFolder + Container.Content(addons)</visible>
+                </control>
+
+                <!-- second line - left - Type / Origin -->
+
+                <control type="label">
+                    <top>28</top>
+                    <left>120</left>
+                    <width max="700">auto</width>
+                    <aligny>center</aligny>
+                    <height>64</height>
+                    <align>left</align>
+                    <font>Small24</font>
+                    <textcolor>Dark2</textcolor>
+                    <selectedcolor>Dark2</selectedcolor>
+                    <label>$VAR[label_addon_list]</label>
+                </control>
+
+                <!-- second line - right - version -->
+
+                <control type="label">
+                    <right>140</right>
+                    <top>28</top>
+                    <width>500</width>
+                    <aligny>center</aligny>
+                    <height>64</height>
+                    <align>right</align>
+                    <font>Small24</font>
+                    <textcolor>$PARAM[textcolor_line_1]</textcolor>
+                    <selectedcolor>$PARAM[textcolor_line_1]</selectedcolor>
+                    <label>$VAR[Label_Addons_Info_2]</label>
+                    <animation effect="slide" start="0" end="115" time="0" condition="String.Contains(Container.FolderPath,addons://repos/)">Conditional</animation>
+                    <animation effect="slide" start="0" end="57" time="0" condition="Window.IsVisible(MyPrograms.xml)">Conditional</animation>
+                </control>
             </control>
-
-            <!-- Version -->
-
-            <control type="label">
-                <right>140</right>
-                <top>-5</top>
-                <width>500</width>
-                <aligny>center</aligny>
-                <height>64</height>
-                <align>right</align>
-                <font>SmallNavi</font>
-                <textcolor>Dark1</textcolor>
-                <selectedcolor>Dark1</selectedcolor>
-                <label>$VAR[Label_Addons_Info]</label>
-                <animation effect="slide" start="0" end="115" time="0" condition="String.Contains(Container.FolderPath,addons://repos/)">Conditional</animation>
-                <animation effect="slide" start="0" end="57" time="0" condition="Window.IsVisible(MyPrograms.xml)">Conditional</animation>
-            </control>
-
-            <!-- origin -->
-
-            <control type="image">
-                <right>80</right>
-                <centertop>33</centertop>
-                <width>32</width>
-                <height>32</height>
-                <aspectratio aligny="top">keep</aspectratio>
-                <texture colordiffuse="Dark1">$VAR[Image_Addons_Origin_Icon]</texture>
-                <animation effect="slide" start="0" end="57" time="0" condition="Window.IsVisible(MyPrograms.xml)">Conditional</animation>
-                <visible>!ListItem.IsFolder + Container.Content(addons)</visible>
-            </control>
-
-            <!-- status -->
-
-            <control type="image">
-                <right>25</right>
-                <centertop>33</centertop>
-                <width>32</width>
-                <height>32</height>
-                <aspectratio aligny="top">keep</aspectratio>
-                <texture colordiffuse="FF00D273">$VAR[Image_Addons_Status_Icon]</texture>
-                <visible>!ListItem.IsFolder + Container.Content(addons)</visible>
-                <visible>ListItem.Property(addon.isenabled)</visible>
-            </control>
-            <control type="image">
-                <right>25</right>
-                <centertop>33</centertop>
-                <width>32</width>
-                <height>32</height>
-                <aspectratio aligny="top">keep</aspectratio>
-                <texture colordiffuse="FFFF0000">$VAR[Image_Addons_Status_Icon_Disable]</texture>
-                <visible>!ListItem.IsFolder + Container.Content(addons)</visible>
-            </control>
-
-            <!-- second line - left - Type / Origin -->
-
-            <control type="label">
-                <top>28</top>
-                <left>120</left>
-                <width max="700">auto</width>
-                <aligny>center</aligny>
-                <height>64</height>
-                <align>left</align>
-                <font>Small24</font>
-                <textcolor>Dark2</textcolor>
-                <selectedcolor>Dark2</selectedcolor>
-                <label>$VAR[label_addon_list]</label>
-            </control>
-
-            <!-- second line - right - version -->
-
-            <control type="label">
-                <right>140</right>
-                <top>28</top>
-                <width>500</width>
-                <aligny>center</aligny>
-                <height>64</height>
-                <align>right</align>
-                <font>Small24</font>
-                <textcolor>Dark1</textcolor>
-                <selectedcolor>Dark1</selectedcolor>
-                <label>$VAR[Label_Addons_Info_2]</label>
-                <animation effect="slide" start="0" end="115" time="0" condition="String.Contains(Container.FolderPath,addons://repos/)">Conditional</animation>
-                <animation effect="slide" start="0" end="57" time="0" condition="Window.IsVisible(MyPrograms.xml)">Conditional</animation>
-            </control>
-        </control>
+        </definition>
     </include>
 
     <include name="layout_list_focus_addons_info">
@@ -2977,7 +2983,7 @@
             <!-- Icon -->
 
             <include content="Def_View_List_Icon_Info">
-                <param name="colordiffuse_icon_black">Dark1</param>
+                <param name="colordiffuse_icon_black">PanelWhite100</param>
                 <param name="colordiffuse_background_icon_black">Black12</param>
                 <param name="visible_icon">!String.StartsWith(ListItem.Icon,Default)</param>
                 <param name="visible_icon_black">String.StartsWith(ListItem.Icon,Default)</param>
@@ -2992,8 +2998,8 @@
                 <height>64</height>
                 <font>InfoNetflix</font>
                 <label>$INFO[ListItem.Label]</label>
-                <textcolor>Dark1</textcolor>
-                <selectedcolor>Dark1</selectedcolor>
+                <textcolor>PanelWhite100</textcolor>
+                <selectedcolor>PanelWhite100</selectedcolor>
             </control>
 
             <control type="label">
@@ -3004,8 +3010,8 @@
                 <height>64</height>
                 <align>right</align>
                 <font>SmallNavi</font>
-                <textcolor>Dark1</textcolor>
-                <selectedcolor>Dark1</selectedcolor>
+                <textcolor>PanelWhite100</textcolor>
+                <selectedcolor>PanelWhite100</selectedcolor>
                 <label>$INFO[ListItem.Label2]</label>
             </control>
 

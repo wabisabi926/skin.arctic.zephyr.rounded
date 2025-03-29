@@ -60,7 +60,8 @@
                 <include>Animation_Scrolltime_Views_List</include>
 
                 <top>140</top>
-                <width>450</width>
+                <left>16</left>
+                <width>418</width>
                 <height>490</height>
 
                 <onup>6000</onup>
@@ -78,9 +79,9 @@
                 <pagecontrol>61</pagecontrol>
                 <orientation>vertical</orientation>
 
-                <itemlayout width="450" height="70">
+                <itemlayout width="418" height="70">
                     <control type="label">
-                        <left>46</left>
+                        <left>30</left>
                         <right>25</right>
                         <height>70</height>
                         <aligny>center</aligny>
@@ -90,14 +91,14 @@
                         <label>$INFO[ListItem.Label]</label>
                     </control>
                 </itemlayout>
-                <focusedlayout width="450" height="70">
+                <focusedlayout width="418" height="70">
                     <control type="image">
-                        <left>16</left>
-                        <right>16</right>
+                        <width>100%</width>
+                        <height>100%</height>
                         <texture border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png</texture>
                     </control>
                     <control type="label">
-                        <left>46</left>
+                        <left>30</left>
                         <height>70</height>
                         <aligny>center</aligny>
                         <align>left</align>
@@ -232,7 +233,11 @@
                     <viewtype label="535">list</viewtype>
 
                     <itemlayout height="98">
-                        <include>layout_list_item_addons_info</include>
+                        <include content="layout_list_item_addons_info" >
+                            <param name="textcolor_line_1" value="PanelWhite100" />
+                            <param name="textcolor_line_2" value="Dark2" />
+                            <param name="colordiffuse_icon_black" value="PanelWhite100" />
+                        </include>
                     </itemlayout>
                     <focusedlayout height="98">
                         <include>layout_list_focus_addons_info</include>
@@ -252,12 +257,16 @@
             </include>
         </control>
 
+        <!-- OVERLAY -->
+
         <control type="group">
             <include>Animation_Fade_In</include>
             <include>Animation_Fade_Out</include>
             <visible>$EXP[View_Context_Menu_Visible]</visible>
             <include>Background_Overlay</include>
         </control>
+
+        <!-- CONTEXT MENU -->
 
         <control type="group">
             <visible allowhiddenfocus="true">$EXP[View_Context_Menu_Visible]</visible>
