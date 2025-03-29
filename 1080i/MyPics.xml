@@ -29,15 +29,15 @@
         <control type="group">
             <include>Animation_Fade_In</include>
             <include>Animation_Fade_Out</include>
-            <visible>ControlGroup(9000).HasFocus()</visible>
+            <visible>$EXP[View_Context_Menu_Visible]</visible>
             <include>Background_Overlay</include>
         </control>
 
         <control type="group">
             <include>Animation_RightSide</include>
 
-            <include content="Def_View_ContextMenu_Background"><param name="height" value="479" /></include>
-            <include content="Object_Arrows_View_ContextMenu"><param name="arrow_bottom" value="489" /></include>
+            <include content="Def_View_ContextMenu_Background"><param name="height" value="689" /></include>
+            <include content="Object_Arrows_View_ContextMenu"><param name="arrow_bottom" value="699" /></include>
 
             <control type="label">
                 <include>Def_Dialog_Header_Title</include>
@@ -49,8 +49,9 @@
 
             <control type="grouplist" id="9000">
                 <top>112</top>
+                <pagecontrol>9070</pagecontrol>
                 <usecontrolcoords>true</usecontrolcoords>
-                <include content="Def_View_ContextMenu_GroupList"><param name="height" value="350" /></include>
+                <include content="Def_View_ContextMenu_GroupList_scrollbar"><param name="height" value="560" /><param name="scrollid" value="9070" /></include>
                 <include>Animation_Scrolltime_Views_List</include>
 
                 <!-- NOW PLAYING -->
@@ -148,6 +149,18 @@
                     <visible>Control.IsVisible(50)</visible>
                 </control>
             </control>
+
+            <!-- SCROLLBAR -->
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="9070" />
+                <param name="top" value="112" />
+                <param name="onleft" value="9000" />
+                <param name="onright" value="9000" />
+                <param name="onback" value="9000" />
+                <param name="height" value="560" />
+                <param name="centerright" value="4" />
+            </include>
         </control>
     </controls>
 </window>

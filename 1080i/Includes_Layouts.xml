@@ -547,6 +547,7 @@
         <ondown condition="Window.IsVisible(MyPrograms.xml)">SetFocus(9001)</ondown>
         <ondown condition="Window.IsVisible(MyVideoNav.xml)">SetFocus(14)</ondown>
         <ondown condition="Window.IsVisible(MyWeather.xml)">SetFocus(9008)</ondown>
+        <ondown condition="Window.IsVisible(MyMusicPlaylistEditor.xml)">SetFocus(6)</ondown>
     </include>
 
     <include name="Def_View_Menu_Control_Buttons_OnClick">
@@ -566,6 +567,7 @@
         <onclick condition="Window.IsVisible(MyPrograms.xml)">SetFocus(9001)</onclick>
         <onclick condition="Window.IsVisible(MyVideoNav.xml)">SetFocus(14)</onclick>
         <onclick condition="Window.IsVisible(MyWeather.xml)">SetFocus(9008)</onclick>
+        <onclick condition="Window.IsVisible(MyMusicPlaylistEditor.xml)">SetFocus(6)</onclick>
     </include>
 
     <include name="Def_View_Menu_Control_Buttons">
@@ -1987,6 +1989,14 @@
         <definition>
             <onright condition="!Skin.HasSetting(global.kioskmode)">$PARAM[id]</onright>
             <onright condition="!Skin.HasSetting(global.kioskmode) + [Player.HasMedia | Player.Playing]">AlarmClock(GoToButtonFullScreen,SetFocus(6157),00:00,silent)</onright>
+        </definition>
+    </include>
+
+    <include name="Def_Focus_Context_Menu_On_Left">
+        <param name="id" value="$PARAM[id]" default="9000" />
+        <definition>
+            <onleft condition="!Skin.HasSetting(global.kioskmode)">$PARAM[id]</onleft>
+            <onleft condition="!Skin.HasSetting(global.kioskmode) + [Player.HasMedia | Player.Playing]">AlarmClock(GoToButtonFullScreen,SetFocus(6157),00:00,silent)</onleft>
         </definition>
     </include>
 </includes>

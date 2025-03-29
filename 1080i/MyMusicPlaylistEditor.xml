@@ -52,11 +52,14 @@
                     <right>16</right>
                     <height>483</height>
 
-                    <onleft>9000</onleft>
+                    <include>Def_Focus_Context_Menu_On_Left</include>
+
                     <onup>50</onup>
                     <ondown>50</ondown>
                     <onright>1824</onright>
+
                     <pagecontrol>1824</pagecontrol>
+
                     <include>Animation_Scrolltime_Views_List</include>
 
                     <itemlayout height="69" width="818">
@@ -116,6 +119,8 @@
 
                 <control type="list" id="100">
                     <description>Left File List</description>
+                    <include>Animation_Scrolltime_Views_List</include>
+
                     <top>112</top>
                     <left>16</left>
                     <right>16</right>
@@ -123,10 +128,11 @@
 
                     <onleft>50</onleft>
                     <onright>1825</onright>
+                    <!-- <include>Def_Focus_Context_Menu_On_Right</include> -->
                     <onup>100</onup>
                     <ondown>100</ondown>
+
                     <pagecontrol>1825</pagecontrol>
-                    <include>Animation_Scrolltime_Views_List</include>
 
                     <itemlayout height="69" width="818">
                         <control type="label">
@@ -177,13 +183,50 @@
         <control type="group">
             <include>Animation_Fade_In</include>
             <include>Animation_Fade_Out</include>
-            <visible>ControlGroup(9000).HasFocus()</visible>
+            <visible>$EXP[View_Context_Menu_Visible]</visible>
             <include>Background_Overlay</include>
         </control>
 
         <control type="group">
-            <include content="Def_View_ContextMenu_Background"><param name="height" value="340" /></include>
-            <include content="Object_Arrows_View_ContextMenu"><param name="arrow_bottom" value="350" /></include>
+            <include>Animation_RightSide</include>
+
+            <visible allowhiddenfocus="true">$EXP[View_Context_Menu_Visible]</visible>
+
+            <top>184</top>
+            <centerleft>50%</centerleft>
+            <height>689</height>
+            <width>470</width>
+
+            <!-- CONTEXT BACKGROUND -->
+
+            <include content="Def_Dialog_Background_PowerMenu">
+                <param name="height">409</param>
+                <param name="visible">!Player.HasMedia</param>
+            </include>
+
+            <include content="Def_Dialog_Background_PowerMenu">
+                <param name="height">619</param>
+                <param name="visible">Player.HasMedia</param>
+            </include>
+
+            <!-- ARROWS -->
+
+            <control type="group">
+                <visible>Integer.IsGreater(Container(9000).NumItems,0)</visible>
+                <control type="image">
+                    <centerleft>50%</centerleft>
+                    <top>-24</top>
+                    <include>Def_Arrow_Size</include>
+                    <texture colordiffuse="White100" flipy="true">common/arrow-small.png</texture>
+                </control>
+                <control type="image">
+                    <centerleft>50%</centerleft>
+                    <top>629</top>
+                    <include>Def_Arrow_Size</include>
+                    <texture colordiffuse="White100" flipy="false">common/arrow-small.png</texture>
+                    <animation effect="slide" end="0,-210" time="0" condition="!Player.HasMedia">Conditional</animation>
+                </control>
+            </control>
 
             <control type="label">
                 <include>Def_Dialog_Header_Title</include>
@@ -194,9 +237,29 @@
 
             <control type="grouplist" id="9000">
                 <top>112</top>
+                <pagecontrol>9070</pagecontrol>
                 <usecontrolcoords>true</usecontrolcoords>
-                <include content="Def_View_ContextMenu_GroupList"><param name="height" value="350" /></include>
+                <include content="Def_View_ContextMenu_GroupList_scrollbar"><param name="height" value="560" /><param name="scrollid" value="560" /></include>
                 <include>Animation_Scrolltime_Views_List</include>
+
+                <!-- NOW PLAYING -->
+
+                <control type="button" id="55555">
+                    <include>Def_Context_Menu_Label</include>
+                    <label>31448</label>
+                    <visible>$EXP[Display_Views_Menu_Mini_Player]</visible>
+                </control>
+
+                <include>Def_View_ContextMenu_Button_Playlist</include>
+
+                <!-- MINI PLAYER -->
+
+                <include>Def_View_ContextMenu_Player</include>
+
+                <control type="button" id="90200">
+                    <include>Def_Context_Menu_Label</include>
+                    <label>16106</label>
+                </control>
 
                 <control type="button" id="6">
                     <label>21478</label>
@@ -214,7 +277,18 @@
                     <include>Def_Button_Gradient_Context</include>
                 </control>
             </control>
-        </control>
 
+            <!-- SCROLLBAR -->
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="9070" />
+                <param name="top" value="112" />
+                <param name="onleft" value="9000" />
+                <param name="onright" value="9000" />
+                <param name="onback" value="9000" />
+                <param name="height" value="560" />
+                <param name="centerright" value="4" />
+            </include>
+        </control>
     </controls>
 </window>

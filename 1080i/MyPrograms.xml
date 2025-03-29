@@ -28,15 +28,49 @@
         <control type="group">
             <include>Animation_Fade_In</include>
             <include>Animation_Fade_Out</include>
-            <visible>ControlGroup(9000).HasFocus()</visible>
+            <visible>$EXP[View_Context_Menu_Visible]</visible>
             <include>Background_Overlay</include>
         </control>
 
         <control type="group">
+            <visible allowhiddenfocus="true">$EXP[View_Context_Menu_Visible]</visible>
             <include>Animation_RightSide</include>
 
-            <include content="Def_View_ContextMenu_Background"><param name="height" value="689" /></include>
-            <include content="Object_Arrows_View_ContextMenu"><param name="arrow_bottom" value="699" /></include>
+            <top>184</top>
+            <centerleft>50%</centerleft>
+            <height>689</height>
+            <width>470</width>
+
+            <!-- CONTEXT BACKGROUND -->
+
+            <include content="Def_Dialog_Background_PowerMenu">
+                <param name="height">409</param>
+                <param name="visible">!Player.HasMedia</param>
+            </include>
+
+            <include content="Def_Dialog_Background_PowerMenu">
+                <param name="height">619</param>
+                <param name="visible">Player.HasMedia</param>
+            </include>
+
+            <!-- ARROWS -->
+
+            <control type="group">
+                <visible>Integer.IsGreater(Container(9000).NumItems,0)</visible>
+                <control type="image">
+                    <centerleft>50%</centerleft>
+                    <top>-24</top>
+                    <include>Def_Arrow_Size</include>
+                    <texture colordiffuse="White100" flipy="true">common/arrow-small.png</texture>
+                </control>
+                <control type="image">
+                    <centerleft>50%</centerleft>
+                    <top>629</top>
+                    <include>Def_Arrow_Size</include>
+                    <texture colordiffuse="White100" flipy="false">common/arrow-small.png</texture>
+                    <animation effect="slide" end="0,-210" time="0" condition="!Player.HasMedia">Conditional</animation>
+                </control>
+            </control>
 
             <control type="label">
                 <include>Def_Dialog_Header_Title</include>
@@ -47,8 +81,9 @@
 
             <control type="grouplist" id="9000">
                 <top>112</top>
+                <pagecontrol>9070</pagecontrol>
                 <usecontrolcoords>true</usecontrolcoords>
-                <include content="Def_View_ContextMenu_GroupList"><param name="height" value="560" /></include>
+                <include content="Def_View_ContextMenu_GroupList_scrollbar"><param name="height" value="560" /><param name="scrollid" value="9070" /></include>
                 <include>Animation_Scrolltime_Views_List</include>
 
                 <!-- NOW PLAYING -->
@@ -96,34 +131,6 @@
                     <altlabel>585</altlabel>
                 </control>
 
-                <!-- GLOBAL -->
-
-                <control type="button" id="55552">
-                    <include>Def_Context_Menu_Label</include>
-                    <label>31381</label>
-                </control>
-                <control type="radiobutton" id="90872">
-                    <include>Def_Button_Gradient_Context</include>
-                    <label>$LOCALIZE[31504]</label>
-                    <selected>Skin.HasSetting(show.furniture.footer)</selected>
-                    <onclick>Skin.ToggleSetting(show.furniture.footer)</onclick>
-                    <visible>Control.IsVisible(555) | Control.IsVisible(547) | Control.IsVisible(557) | Control.IsVisible(500)</visible>
-                    <onclick>ReloadSkin()</onclick>
-                </control>
-                <control type="radiobutton" id="9082">
-                    <include>Def_Button_Gradient_Context</include>
-                    <label>31421</label>
-                    <selected>Skin.HasSetting(items.focus.zoom)</selected>
-                    <onclick>Skin.ToggleSetting(items.focus.zoom)</onclick>
-                    <onclick>ReloadSkin()</onclick>
-                </control>
-                <control type="radiobutton" id="9083">
-                    <include>Def_Button_Gradient_Context</include>
-                    <label>$LOCALIZE[31423]:</label>
-                    <selected>Skin.HasSetting(enable.items.focus.glow)</selected>
-                    <onclick>Skin.ToggleSetting(enable.items.focus.glow)</onclick>
-                </control>
-
                 <!-- THIS VIEW  -->
 
                 <control type="button" id="55551">
@@ -141,21 +148,19 @@
                     <onclick>Skin.ToggleSetting(disable.view.50.extended.list.addons)</onclick>
                     <visible>Control.IsVisible(50) | Control.IsVisible(550)</visible>
                 </control>
-
-                <!-- OTHER OPTIONS -->
-
-                <control type="button" id="55554">
-                    <include>Def_Context_Menu_Label</include>
-                    <label>31052</label>
-                </control>
-                <control type="button" id="9091">
-                    <description>Global Search</description>
-                    <include>Def_Button_Gradient_Context</include>
-                    <label>137</label>
-                    <onclick>SetFocus(50)</onclick>
-                    <onclick>ActivateWindow(1107)</onclick>
-                </control>
             </control>
+
+            <!-- SCROLLBAR -->
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="9070" />
+                <param name="top" value="112" />
+                <param name="onleft" value="9000" />
+                <param name="onright" value="9000" />
+                <param name="onback" value="9000" />
+                <param name="height" value="560" />
+                <param name="centerright" value="4" />
+            </include>
         </control>
     </controls>
 </window>
