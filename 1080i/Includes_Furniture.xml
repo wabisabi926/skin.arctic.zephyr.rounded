@@ -1108,7 +1108,7 @@
 
             <control type="grouplist">
                 <visible>Window.IsVisible(MyWeather.xml)</visible>
-                <visible>!String.IsEmpty(Window(Weather).Property(Location))</visible>
+                <!-- <visible>!String.IsEmpty(Window(Weather).Property(Location))</visible> -->
                 <itemgap>0</itemgap>
                 <orientation>horizontal</orientation>
                 <usecontrolcoords>true</usecontrolcoords>
@@ -1123,10 +1123,12 @@
                 </control>
 
                 <control type="label">
+                    <visible>![String.Contains(Weather.Temperature,$LOCALIZE[503]) | String.IsEmpty(Window(Weather).Property(Updated))]</visible>
                     <include>Def_Header_Sub_Info_Definition</include>
                     <label>$INFO[Window(Weather).Property(Location),  •  ,]</label>
                 </control>
                 <control type="label">
+                    <visible>![String.Contains(Weather.Temperature,$LOCALIZE[503]) | String.IsEmpty(Window(Weather).Property(Updated))]</visible>
                     <include>Def_Label_Header_Sub_Icon_Definition</include>
                     <label>   &#61984;</label>
                 </control>
@@ -1207,7 +1209,7 @@
             <control type="grouplist">
                 <visible>![Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | $EXP[IsPvrDialog] | Window.IsVisible(AddonBrowser.xml) | Window.IsVisible(LoginScreen.xml) | Window.IsActive(videoplaylist)]</visible>
                 <visible>![Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
-                <visible>![Window.IsVisible(MyWeather.xml) + !String.IsEmpty(Window(Weather).Property(Location))]</visible>
+                <visible>!Window.IsVisible(MyWeather.xml)</visible>
 
                 <itemgap>0</itemgap>
                 <orientation>horizontal</orientation>
@@ -1929,6 +1931,7 @@
                     <usecontrolcoords>true</usecontrolcoords>
 
                     <control type="label">
+                        <visible>![String.Contains(Weather.Temperature,$LOCALIZE[503]) | String.IsEmpty(Window(Weather).Property(Updated))]</visible>
                         <centertop>34</centertop>
                         <width>auto</width>
                         <font>Name1</font>
@@ -1940,6 +1943,7 @@
                     <!-- WEATHER ICON -->
 
                     <control type="group">
+                        <visible>![String.Contains(Weather.Temperature,$LOCALIZE[503]) | String.IsEmpty(Window(Weather).Property(Updated))]</visible>
                         <width min="20" max="60">auto</width>
                         <height>60</height>
                         <bottom>39</bottom>
