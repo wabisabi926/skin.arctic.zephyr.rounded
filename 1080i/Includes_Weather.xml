@@ -44,6 +44,8 @@
                 <width>320</width>
                 <left>0</left>
 
+                <!-- INFOS - ICONS -->
+
                 <control type="image">
                     <centertop>42%</centertop>
                     <centerleft>50%</centerleft>
@@ -71,6 +73,8 @@
                     <texture>$INFO[Window(weather).Property(Current.ConditionIcon)]</texture>
                     <visible>String.IsEmpty(Skin.String(weather.icons.path))</visible>
                 </control>
+
+                <!-- INFOS - TITLE -->
 
                 <control type="label">
                     <top>20</top>
@@ -353,38 +357,45 @@
     <include name="Def_Weather_List_Hourly_Item">
         <control type="group">
             <top>$PARAM[top]</top>
-            <height>106</height>
+            <height>216</height>
+
+            <!-- INFOS - ICONS -->
 
             <control type="image">
-                <centertop>50%</centertop>
-                <centerleft>17%</centerleft>
-                <width>90</width>
-                <height>90</height>
+                <centertop>60%</centertop>
+                <centerleft>24%</centerleft>
+                <width>140</width>
+                <height>140</height>
                 <aspectratio align="center" aligny="center">keep</aspectratio>
                 <texture>resource://resource.images.weathericons.default/$INFO[Window(weather).Property(Hourly.$PARAM[Day_Hour_ID].FanartCode),,.png]</texture>
                 <visible>String.IsEmpty(Skin.String(weather.icons.path))</visible>
             </control>
             <control type="image">
-                <centertop>50%</centertop>
-                <centerleft>17%</centerleft>
-                <width>90</width>
-                <height>90</height>
+                <centertop>60%</centertop>
+                <centerleft>26%</centerleft>
+                <width>140</width>
+                <height>140</height>
                 <aspectratio align="center" aligny="center">keep</aspectratio>
                 <texture>$INFO[Skin.String(weather.icons.path)]$INFO[Window(weather).Property(Hourly.$PARAM[Day_Hour_ID].FanartCode),,.png]</texture>
                 <visible>!String.IsEmpty(Skin.String(weather.icons.path)) + !String.Contains(Skin.String(weather.icons.path),animated)</visible>
             </control>
             <control type="multiimage">
-                <centertop>50%</centertop>
-                <centerleft>17%</centerleft>
-                <width>90</width>
-                <height>90</height>
+                <centertop>60%</centertop>
+                <centerleft>24%</centerleft>
+                <width>140</width>
+                <height>140</height>
                 <aspectratio align="center" aligny="center">keep</aspectratio>
                 <imagepath>$INFO[Skin.String(weather.icons.path)]$INFO[Window(weather).Property(Hourly.$PARAM[Day_Hour_ID].FanartCode)]</imagepath>
                 <visible>!String.IsEmpty(Skin.String(weather.icons.path)) + String.Contains(Skin.String(weather.icons.path),animated) + !String.IsEmpty(Window(weather).Property(Hourly.$PARAM[Day_Hour_ID].FanartCode))</visible>
             </control>
+
+            <!-- INFOS - LABEL -->
+
+            <!-- Hour -->
+
             <control type="label">
-                <top>5</top>
-                <left>150</left>
+                <top>10</top>
+                <left>72</left>
                 <right>20</right>
                 <align>left</align>
                 <width>150</width>
@@ -392,35 +403,60 @@
                 <textcolor>PanelWhite100</textcolor>
                 <label>$INFO[Window.Property(Hourly.$PARAM[Day_Hour_ID].Time),[B],[/B]]</label>
             </control>
+
+            <!-- Short date -->
+
             <control type="label">
-                <top>35</top>
-                <left>150</left>
+                <top>10</top>
+                <left>180</left>
                 <right>20</right>
-                <align>left</align>
-                <width>160</width>
+                <align>center</align>
                 <font>Tiny</font>
                 <scroll>false</scroll>
                 <textcolor>PanelWhite100</textcolor>
-                <label>$INFO[Window.Property(Hourly.$PARAM[Day_Hour_ID].Outlook)]</label>
+                <label>$INFO[Window.Property(Hourly.$PARAM[Day_Hour_ID].ShortDate)]</label>
             </control>
+
+            <!-- Temperature -->
+
             <control type="label">
-                <top>8</top>
-                <left>20</left>
-                <right>30</right>
-                <align>right</align>
+                <top>78</top>
+                <left>180</left>
+                <right>20</right>
+                <align>center</align>
                 <font>Medium</font>
                 <textcolor>PanelWhite100</textcolor>
                 <label>$INFO[Window.Property(Hourly.$PARAM[Day_Hour_ID].Temperature),[B],[/B]]</label>
             </control>
             <control type="label">
-                <top>8</top>
-                <left>20</left>
-                <right>40%</right>
-                <align>right</align>
+                <top>78</top>
+                <left>180</left>
+                <right>20</right>
+                <align>center</align>
                 <font>Tiny</font>
                 <textcolor>PanelWhite100</textcolor>
                 <visible>String.IsEmpty(Window.Property(Hourly.$PARAM[Day_Hour_ID].Temperature))</visible>
                 <label> - $LOCALIZE[10006] - </label>
+            </control>
+
+            <control type="label">
+                <top>120</top>
+                <left>180</left>
+                <right>20</right>
+                <align>center</align>
+                <font>Tiny</font>
+                <scroll>false</scroll>
+                <textcolor>PanelWhite100</textcolor>
+                <label>$INFO[Window.Property(Hourly.$PARAM[Day_Hour_ID].Outlook)]</label>
+            </control>
+
+            <control type="image">
+               <bottom>$PARAM[bottom_lign]</bottom>
+               <right>30</right>
+               <left>30</left>
+               <height>1</height>
+               <texture colordiffuse="Black12">common/white.png</texture>
+               <visible></visible>
             </control>
         </control>
     </include>

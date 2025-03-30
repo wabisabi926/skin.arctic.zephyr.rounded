@@ -356,11 +356,11 @@
     </variable>
 
     <variable name="Path_Set_Count">
-        <value condition="ListItem.IsCollection + !String.IsEmpty(ListItem.DBID)">videodb://movies/sets/$INFO[ListItem.DBID]/?setid=$INFO[ListItem.DBID]</value>
+        <value condition="$EXP[Condition_List_Set_Count]">videodb://movies/sets/$INFO[ListItem.DBID]/?setid=$INFO[ListItem.DBID]</value>
     </variable>
 
     <variable name="Path_List_Item_Name_In_Folder">
-        <value condition="ListItem.IsFolder + [!$EXP[IsAnPlugin] | $EXP[IsPluginShortlist]]">$INFO[ListItem.FolderPath]</value>
+        <value condition="$EXP[Condition_List_Item_Name_In_Folder]">$INFO[ListItem.FolderPath]</value>
     </variable>
 
     <variable name="Path_Auto_Completion">
