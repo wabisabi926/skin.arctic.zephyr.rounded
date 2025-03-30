@@ -1037,8 +1037,8 @@
                         <width>111</width>
                         <height>111</height>
                         <aspectratio scalediffuse="false">keep</aspectratio>
-                        <texture diffuse="diffuse/square_w111_h111.png" background="true" fallback="DefaultAddon.png" colordiffuse="PanelWhite100">$VAR[Image_Dialog_Select_List]</texture>
-                        <visible>!$EXP[Ressource_Images_Selected]</visible>
+                        <texture  background="true" fallback="DefaultAddon.png" colordiffuse="PanelWhite100">$VAR[Image_Dialog_Select_List]</texture>
+                        <visible>!$EXP[Ressource_Images_Selected] + !String.StartsWith(ListItem.Icon,image://)</visible>
                     </control>
                    <control type="image">
                         <top>12</top>
@@ -1046,8 +1046,17 @@
                         <width>111</width>
                         <height>111</height>
                         <aspectratio scalediffuse="false">keep</aspectratio>
-                        <texture diffuse="diffuse/square_w111_h111.png" background="true" fallback="DefaultAddon.png" colordiffuse="$VAR[Color_List_Item_Selected]">$VAR[Image_Dialog_Select_List]</texture>
-                        <visible>$EXP[Ressource_Images_Selected]</visible>
+                        <texture  background="true" fallback="DefaultAddon.png">$VAR[Image_Dialog_Select_List]</texture>
+                        <visible>String.StartsWith(ListItem.Icon,image://)</visible>
+                    </control>
+                    <control type="image">
+                        <top>12</top>
+                        <left>12</left>
+                        <width>111</width>
+                        <height>111</height>
+                        <aspectratio scalediffuse="false">keep</aspectratio>
+                        <texture background="true" fallback="DefaultAddon.png" colordiffuse="$VAR[Color_List_Item_Selected]">$VAR[Image_Dialog_Select_List]</texture>
+                        <visible>$EXP[Ressource_Images_Selected] + !String.StartsWith(ListItem.Icon,image://)</visible>
                     </control>
 
                     <control type="label">
@@ -1395,7 +1404,7 @@
                     <include content="Def_Focus_Item_Gradient">
                         <param name="visible" value="Control.HasFocus(3)" />
                     </include>
-                
+
                     <control type="image">
                         <top>10</top>
                         <left>10</left>
