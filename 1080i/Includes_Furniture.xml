@@ -565,6 +565,7 @@
                     <height>100</height>
                     <texture colordiffuse="$VAR[Color_Indicator_Background_Watched]" background="true">misc/overlaywatched.png</texture>
                     <visible>!ListItem.IsResumable + !$EXP[IsTVShowInProgress] + !ListItem.IsPlaying + !$EXP[IsAlbumIsPlaying] + Integer.IsGreater(ListItem.Playcount,0) + !Skin.HasSetting(hide.markers.watched)</visible>
+                    <visible>[Container.Content(actors) + Window.IsVisible(DialogVideoInfo.xml)] | !Container.Content(actors)</visible>
                     <visible>$EXP[Exp_View_Flag_Watched_Album_Song]</visible>
                 </control>
 
@@ -660,6 +661,7 @@
                     <visible>!ListItem.IsPlaying</visible>
                     <visible>!Skin.HasSetting(hide.markers.isplaying)</visible>
                     <visible>$EXP[Exp_View_Flag_Watched_Album_Song] + !$EXP[IsAlbumIsPlaying]</visible>
+                    <visible>[Container.Content(actors) + Window.IsVisible(DialogVideoInfo.xml)] | !Container.Content(actors)</visible>
                 </control>
 
                 <!-- LABEL IS UNWATCHED  -->
