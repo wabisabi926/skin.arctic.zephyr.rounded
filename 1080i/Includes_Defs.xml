@@ -161,6 +161,7 @@
 
         <param name="Border_Shadow" value="$PARAM[Border_Shadow]" default="40" />
         <param name="Texture_Border" value="$PARAM[Texture_Border]" default="$VAR[border24]" />
+        <param name="visible_border" value="$PARAM[visible_border]" default="true" />
 
         <param name="pad_image" value="$PARAM[pad_image]" default="0" />
         <param name="colordiffuse" value="$PARAM[colordiffuse]" default="Fallback" />
@@ -174,7 +175,7 @@
                 <texture border="40" infill="false">$PARAM[Texture_Shadow]</texture>
                 <animation effect="fade" end="80" start="100" time="0" condition="true">Conditional</animation>
                 <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-                <visible>$PARAM[visible]</visible>
+                <visible>$PARAM[visible] + $PARAM[visible]</visible>
             </control>
             <control type="image">
                 <include content="Def_Padding"><param name="pad">$PARAM[pad_shadow]</param></include>

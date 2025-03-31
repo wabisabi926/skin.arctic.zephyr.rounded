@@ -119,6 +119,7 @@
         <item>
             <label>$INFO[Weather.Conditions]</label>
             <property name="WidgetType">Widget_Type_Weather_Daily</property>
+            <property name="Date">$INFO[Window(Weather).Property(Current.FeelsLike),$LOCALIZE[402] ,°]</property>
             <property name="HighTemp">$INFO[Window(Weather).Property(Current.Temperature),[B],[/B]°]</property>
             <property name="Title">[B]$LOCALIZE[19030][/B]</property>
             <property name="FanartTexture">$INFO[Skin.String(weather.icons.path)]$INFO[Weather.FanartCode,,.png]</property>
@@ -133,6 +134,7 @@
         <item>
             <label>$INFO[Window(Weather).Property(Day0.Outlook)]</label>
             <property name="WidgetType">Widget_Type_Weather_Daily</property>
+            <property name="Date">$INFO[Window(weather).Property(Daily.1.ShortDate)]</property>
             <property name="LowTemp">$INFO[Window(Weather).Property(Day0.LowTemp)]</property>
             <property name="HighTemp">$INFO[Window(Weather).Property(Day0.HighTemp),[B],[/B]]</property>
             <property name="Title">$LOCALIZE[33006]</property>
@@ -147,6 +149,7 @@
         <item>
             <label>$INFO[Window(Weather).Property(Day1.Outlook)]</label>
             <property name="WidgetType">Widget_Type_Weather_Daily</property>
+            <property name="Date">$INFO[Window(weather).Property(Daily.2.ShortDate)]</property>
             <property name="LowTemp">$INFO[Window(Weather).Property(Day1.LowTemp)]</property>
             <property name="HighTemp">$INFO[Window(Weather).Property(Day1.HighTemp),[B],[/B]]</property>
             <property name="Title">$INFO[Window(Weather).Property(Day1.Title)]</property>
@@ -161,6 +164,7 @@
         <item>
             <label>$INFO[Window(Weather).Property(Day2.Outlook)]</label>
             <property name="WidgetType">Widget_Type_Weather_Daily</property>
+            <property name="Date">$INFO[Window(weather).Property(Daily.3.ShortDate)]</property>
             <property name="LowTemp">$INFO[Window(Weather).Property(Day2.LowTemp)]</property>
             <property name="HighTemp">$INFO[Window(Weather).Property(Day2.HighTemp),[B],[/B]]</property>
             <property name="Title">$INFO[Window(Weather).Property(Day2.Title)]</property>
@@ -175,6 +179,7 @@
         <item>
             <label>$INFO[Window(Weather).Property(Day3.Outlook)]</label>
             <property name="WidgetType">Widget_Type_Weather_Daily</property>
+            <property name="Date">$INFO[Window(weather).Property(Daily.4.ShortDate)]</property>
             <property name="LowTemp">$INFO[Window(Weather).Property(Day3.LowTemp)]</property>
             <property name="HighTemp">$INFO[Window(Weather).Property(Day3.HighTemp),[B],[/B]]</property>
             <property name="Title">$INFO[Window(Weather).Property(Day3.Title)]</property>
@@ -189,6 +194,7 @@
         <item>
             <label>$INFO[Window(Weather).Property(Day4.Outlook)]</label>
             <property name="WidgetType">Widget_Type_Weather_Daily</property>
+            <property name="Date">$INFO[Window(weather).Property(Daily.5.ShortDate)]</property>
             <property name="LowTemp">$INFO[Window(Weather).Property(Day4.LowTemp)]</property>
             <property name="HighTemp">$INFO[Window(Weather).Property(Day4.HighTemp),[B],[/B]]</property>
             <property name="Title">$INFO[Window(Weather).Property(Day4.Title)]</property>
@@ -203,6 +209,7 @@
         <item>
             <label>$INFO[Window(Weather).Property(Day5.Outlook)]</label>
             <property name="WidgetType">Widget_Type_Weather_Daily</property>
+            <property name="Date">$INFO[Window(weather).Property(Daily.6.ShortDate)]</property>
             <property name="LowTemp">$INFO[Window(Weather).Property(Day5.LowTemp)]</property>
             <property name="HighTemp">$INFO[Window(Weather).Property(Day5.HighTemp),[B],[/B]]</property>
             <property name="Title">$INFO[Window(Weather).Property(Day5.Title)]</property>
@@ -216,6 +223,8 @@
         </item>
         <item>
             <label>$INFO[Window(Weather).Property(Day6.Outlook)]</label>
+            <property name="WidgetType">Widget_Type_Weather_Daily</property>
+            <property name="Date">$INFO[Window(weather).Property(Daily.7.ShortDate)]</property>
             <property name="LowTemp">$INFO[Window(Weather).Property(Day6.LowTemp)]</property>
             <property name="HighTemp">$INFO[Window(Weather).Property(Day6.HighTemp),[B],[/B]]</property>
             <property name="Title">$INFO[Window(Weather).Property(Day6.Title)]</property>
@@ -227,54 +236,13 @@
             <onclick>ActivateWindow(Weather)</onclick>
             <onclick>SetFocus(9100,0,absolute)</onclick>
         </item>
-        <item>
-            <label>$INFO[Window(Weather).Property(Daily.8.Outlook)]</label>
-            <property name="WidgetType">Widget_Type_Weather_Daily</property>
-            <property name="LowTemp">$INFO[Window(Weather).Property(Daily.8.LowTemperature)]</property>
-            <property name="HighTemp">$INFO[Window(Weather).Property(Daily.8.HighTemperature),[B],[/B]]</property>
-            <property name="Title">$INFO[Window(Weather).Property(Daily.8.LongDay)]</property>
-            <property name="FanartTexture">$INFO[Skin.String(weather.icons.path)]$INFO[Window(Weather).Property(Daily.8.FanartCode),,.png]</property>
-            <property name="Imagepath.Fanart.Animated">$INFO[Skin.String(weather.icons.path)]$INFO[Window(Weather).Property(Daily.8.FanartCode)]/</property>
-            <property name="OutlookTexture">resource://resource.images.weathericons.default/$INFO[Window(Weather).Property(Daily.8.FanartCode),,.png]</property>
-            <property name="FanartCode">$INFO[Window(Weather).Property(Daily8.FanartCode)]</property>
-            <visible>[String.IsEqual(Container(300).ListItem.Property(widgetaspect),Poster) | String.IsEmpty(Container(300).ListItem.Property(widgetaspect)) | String.IsEqual(Container(300).ListItem.Property(widgetaspect),Fanart) | String.IsEqual(Container(300).ListItem.Property(widgetaspect),Thumbnail)] + !String.IsEmpty(Window(Weather).Property(Daily.8.LongDay))</visible>
-            <onclick>ActivateWindow(Weather)</onclick>
-            <onclick>SetFocus(9100,0,absolute)</onclick>
-        </item>
-        <item>
-            <label>$INFO[Window(Weather).Property(Daily.9.Outlook)]</label>
-            <property name="WidgetType">Widget_Type_Weather_Daily</property>
-            <property name="LowTemp">$INFO[Window(Weather).Property(Daily.9.LowTemperature)]</property>
-            <property name="HighTemp">$INFO[Window(Weather).Property(Daily.9.HighTemperature),[B],[/B]]</property>
-            <property name="Title">$INFO[Window(Weather).Property(Daily.9.LongDay)]</property>
-            <property name="FanartTexture">$INFO[Skin.String(weather.icons.path)]$INFO[Window(Weather).Property(Daily.9.FanartCode),,.png]</property>
-            <property name="OutlookTexture">resource://resource.images.weathericons.default/$INFO[Window(Weather).Property(Daily.9.FanartCode),,.png]</property>
-            <property name="Imagepath.Fanart.Animated">$INFO[Skin.String(weather.icons.path)]$INFO[Window(Weather).Property(Daily.9.FanartCode)]/</property>
-            <property name="FanartCode">$INFO[Window(Weather).Property(Daily9.FanartCode)]</property>
-            <visible>[String.IsEqual(Container(300).ListItem.Property(widgetaspect),Poster) | String.IsEmpty(Container(300).ListItem.Property(widgetaspect)) | String.IsEqual(Container(300).ListItem.Property(widgetaspect),Fanart) | String.IsEqual(Container(300).ListItem.Property(widgetaspect),Thumbnail)] + !String.IsEmpty(Window(Weather).Property(Daily.9.LongDay))</visible>
-            <onclick>ActivateWindow(Weather)</onclick>
-            <onclick>SetFocus(9100,0,absolute)</onclick>
-        </item>
-        <item>
-            <label>$INFO[Window(Weather).Property(Daily.10.Outlook)]</label>
-            <property name="WidgetType">Widget_Type_Weather_Daily</property>
-            <property name="LowTemp">$INFO[Window(Weather).Property(Daily.10.LowTemperature)]</property>
-            <property name="HighTemp">$INFO[Window(Weather).Property(Daily.10.HighTemperature),[B],[/B]]</property>
-            <property name="Title">$INFO[Window(Weather).Property(Daily.10.LongDay)]</property>
-            <property name="FanartTexture">$INFO[Skin.String(weather.icons.path)]$INFO[Window(Weather).Property(Daily.10.FanartCode),,.png]</property>
-            <property name="OutlookTexture">resource://resource.images.weathericons.default/$INFO[Window(Weather).Property(Daily.10.FanartCode),,.png]</property>
-            <property name="Imagepath.Fanart.Animated">$INFO[Skin.String(weather.icons.path)]$INFO[Window(Weather).Property(Daily.10.FanartCode)]/</property>
-            <property name="FanartCode">$INFO[Window(Weather).Property(Daily10.FanartCode)]</property>
-            <visible>[String.IsEqual(Container(300).ListItem.Property(widgetaspect),Poster) | String.IsEmpty(Container(300).ListItem.Property(widgetaspect)) | String.IsEqual(Container(300).ListItem.Property(widgetaspect),Fanart) | String.IsEqual(Container(300).ListItem.Property(widgetaspect),Thumbnail)] + !String.IsEmpty(Window(Weather).Property(Daily.10.LongDay))</visible>
-            <onclick>ActivateWindow(Weather)</onclick>
-            <onclick>SetFocus(9100,0,absolute)</onclick>
-        </item>
     </include>
 
     <include name="Def_Content_Widget_Weather_Hourly_Items">
         <item>
             <label>$INFO[Window(Weather).Property(Hourly.1.Outlook)]</label>
             <property name="WidgetType">Widget_Type_Weather_Hourly</property>
+            <property name="Date">$INFO[Window(Weather).Property(Current.FeelsLike),$LOCALIZE[402] ,°]</property>
             <property name="HighTemp">$INFO[Window(Weather).Property(Hourly.1.Temperature),[B],[/B]]</property>
             <property name="Title">[B]$LOCALIZE[19030][/B]</property>
             <property name="FanartTexture">$INFO[Skin.String(weather.icons.path)]$INFO[Window(Weather).Property(Hourly.1.FanartCode),,.png]</property>
@@ -288,6 +256,7 @@
         <item>
             <label>$INFO[Window(Weather).Property(Hourly.2.Outlook)]</label>
             <property name="WidgetType">Widget_Type_Weather_Hourly</property>
+            <property name="Date">$INFO[Window(weather).Property(Hourly.2.ShortDate)]</property>
             <property name="HighTemp">$INFO[Window(Weather).Property(Hourly.2.Temperature)]</property>
             <property name="Title">$INFO[Window(Weather).Property(Hourly.2.Time)]</property>
             <property name="FanartTexture">$INFO[Skin.String(weather.icons.path)]$INFO[Window(Weather).Property(Hourly.2.FanartCode),,.png]</property>
@@ -300,6 +269,7 @@
         <item>
             <label>$INFO[Window(Weather).Property(Hourly.3.Outlook)]</label>
             <property name="WidgetType">Widget_Type_Weather_Hourly</property>
+            <property name="Date">$INFO[Window(weather).Property(Hourly.3.ShortDate)]</property>
             <property name="HighTemp">$INFO[Window(Weather).Property(Hourly.3.Temperature)]</property>
             <property name="Title">$INFO[Window(Weather).Property(Hourly.3.Time)]</property>
             <property name="FanartTexture">$INFO[Skin.String(weather.icons.path)]$INFO[Window(Weather).Property(Hourly.3.FanartCode),,.png]</property>
@@ -312,6 +282,7 @@
         <item>
             <label>$INFO[Window(Weather).Property(Hourly.4.Outlook)]</label>
             <property name="WidgetType">Widget_Type_Weather_Hourly</property>
+            <property name="Date">$INFO[Window(weather).Property(Hourly.4.ShortDate)]</property>
             <property name="HighTemp">$INFO[Window(Weather).Property(Hourly.4.Temperature)]</property>
             <property name="Title">$INFO[Window(Weather).Property(Hourly.4.Time)]</property>
             <property name="FanartTexture">$INFO[Skin.String(weather.icons.path)]$INFO[Window(Weather).Property(Hourly.4.FanartCode),,.png]</property>
@@ -324,6 +295,7 @@
         <item>
             <label>$INFO[Window(Weather).Property(Hourly.5.Outlook)]</label>
             <property name="WidgetType">Widget_Type_Weather_Hourly</property>
+            <property name="Date">$INFO[Window(weather).Property(Hourly.5.ShortDate)]</property>
             <property name="HighTemp">$INFO[Window(Weather).Property(Hourly.5.Temperature)]</property>
             <property name="Title">$INFO[Window(Weather).Property(Hourly.5.Time)]</property>
             <property name="FanartTexture">$INFO[Skin.String(weather.icons.path)]$INFO[Window(Weather).Property(Hourly.5.FanartCode),,.png]</property>
@@ -336,6 +308,7 @@
         <item>
             <label>$INFO[Window(Weather).Property(Hourly.6.Outlook)]</label>
             <property name="WidgetType">Widget_Type_Weather_Hourly</property>
+            <property name="Date">$INFO[Window(weather).Property(Hourly.6.ShortDate)]</property>
             <property name="HighTemp">$INFO[Window(Weather).Property(Hourly.6.Temperature)]</property>
             <property name="Title">$INFO[Window(Weather).Property(Hourly.6.Time)]</property>
             <property name="FanartTexture">$INFO[Skin.String(weather.icons.path)]$INFO[Window(Weather).Property(Hourly.6.FanartCode),,.png]</property>
@@ -348,6 +321,7 @@
         <item>
             <label>$INFO[Window(Weather).Property(Hourly.7.Outlook)]</label>
             <property name="WidgetType">Widget_Type_Weather_Hourly</property>
+            <property name="Date">$INFO[Window(weather).Property(Hourly.7.ShortDate)]</property>
             <property name="HighTemp">$INFO[Window(Weather).Property(Hourly.7.Temperature)]</property>
             <property name="Title">$INFO[Window(Weather).Property(Hourly.7.Time)]</property>
             <property name="FanartTexture">$INFO[Skin.String(weather.icons.path)]$INFO[Window(Weather).Property(Hourly.7.FanartCode),,.png]</property>
@@ -360,6 +334,7 @@
         <item>
             <label>$INFO[Window(Weather).Property(Hourly.8.Outlook)]</label>
             <property name="WidgetType">Widget_Type_Weather_Hourly</property>
+            <property name="Date">$INFO[Window(weather).Property(Hourly.8.ShortDate)]</property>
             <property name="HighTemp">$INFO[Window(Weather).Property(Hourly.8.Temperature)]</property>
             <property name="Title">$INFO[Window(Weather).Property(Hourly.8.Time)]</property>
             <property name="FanartTexture">$INFO[Skin.String(weather.icons.path)]$INFO[Window(Weather).Property(Hourly.8.FanartCode),,.png]</property>
@@ -372,6 +347,7 @@
         <item>
             <label>$INFO[Window(Weather).Property(Hourly.9.Outlook)]</label>
             <property name="WidgetType">Widget_Type_Weather_Hourly</property>
+            <property name="Date">$INFO[Window(weather).Property(Hourly.9.ShortDate)]</property>
             <property name="HighTemp">$INFO[Window(Weather).Property(Hourly.9.Temperature)]</property>
             <property name="Title">$INFO[Window(Weather).Property(Hourly.9.Time)]</property>
             <property name="FanartTexture">$INFO[Skin.String(weather.icons.path)]$INFO[Window(Weather).Property(Hourly.9.FanartCode),,.png]</property>
@@ -384,6 +360,7 @@
         <item>
             <label>$INFO[Window(Weather).Property(Hourly.10.Outlook)]</label>
             <property name="WidgetType">Widget_Type_Weather_Hourly</property>
+            <property name="Date">$INFO[Window(weather).Property(Hourly.10.ShortDate)]</property>
             <property name="HighTemp">$INFO[Window(Weather).Property(Hourly.10.Temperature)]</property>
             <property name="Title">$INFO[Window(Weather).Property(Hourly.10.Time)]</property>
             <property name="FanartTexture">$INFO[Skin.String(weather.icons.path)]$INFO[Window(Weather).Property(Hourly.10.FanartCode),,.png]</property>
@@ -396,6 +373,7 @@
         <item>
             <label>$INFO[Window(Weather).Property(Hourly.11.Outlook)]</label>
             <property name="WidgetType">Widget_Type_Weather_Hourly</property>
+            <property name="Date">$INFO[Window(weather).Property(Hourly.11.ShortDate)]</property>
             <property name="HighTemp">$INFO[Window(Weather).Property(Hourly.11.Temperature)]</property>
             <property name="Title">$INFO[Window(Weather).Property(Hourly.11.Time)]</property>
             <property name="FanartTexture">$INFO[Skin.String(weather.icons.path)]$INFO[Window(Weather).Property(Hourly.11.FanartCode),,.png]</property>
@@ -408,60 +386,13 @@
         <item>
             <label>$INFO[Window(Weather).Property(Hourly.12.Outlook)]</label>
             <property name="WidgetType">Widget_Type_Weather_Hourly</property>
+            <property name="Date">$INFO[Window(weather).Property(Hourly.12.ShortDate)]</property>
             <property name="HighTemp">$INFO[Window(Weather).Property(Hourly.12.Temperature)]</property>
             <property name="Title">$INFO[Window(Weather).Property(Hourly.12.Time)]</property>
             <property name="FanartTexture">$INFO[Skin.String(weather.icons.path)]$INFO[Window(Weather).Property(Hourly.12.FanartCode),,.png]</property>
             <property name="OutlookTexture">resource://resource.images.weathericons.default/$INFO[Window(Weather).Property(Hourly.12.FanartCode),,.png]</property>
             <property name="FanartCode">$INFO[Window(Weather).Property(Hourly.12.FanartCode)]</property>
             <visible>!String.IsEmpty(Window(Weather).Property(Hourly.12.Outlook))</visible>
-            <onclick>ActivateWindow(Weather)</onclick>
-            <onclick>SetFocus(9100,2,absolute)</onclick>
-        </item>
-        <item>
-            <label>$INFO[Window(Weather).Property(Hourly.13.Outlook)]</label>
-            <property name="WidgetType">Widget_Type_Weather_Hourly</property>
-            <property name="HighTemp">$INFO[Window(Weather).Property(Hourly.13.Temperature)]</property>
-            <property name="Title">$INFO[Window(Weather).Property(Hourly.13.Time)]</property>
-            <property name="FanartTexture">$INFO[Skin.String(weather.icons.path)]$INFO[Window(Weather).Property(Hourly.13.FanartCode),,.png]</property>
-            <property name="OutlookTexture">resource://resource.images.weathericons.default/$INFO[Window(Weather).Property(Hourly.13.FanartCode),,.png]</property>
-            <property name="FanartCode">$INFO[Window(Weather).Property(Hourly.13.FanartCode)]</property>
-            <visible>!String.IsEmpty(Window(Weather).Property(Hourly.13.Outlook))</visible>
-            <onclick>ActivateWindow(Weather)</onclick>
-            <onclick>SetFocus(9100,2,absolute)</onclick>
-        </item>
-        <item>
-            <label>$INFO[Window(Weather).Property(Hourly.14.Outlook)]</label>
-            <property name="WidgetType">Widget_Type_Weather_Hourly</property>
-            <property name="HighTemp">$INFO[Window(Weather).Property(Hourly.14.Temperature)]</property>
-            <property name="Title">$INFO[Window(Weather).Property(Hourly.14.Time)]</property>
-            <property name="FanartTexture">$INFO[Skin.String(weather.icons.path)]$INFO[Window(Weather).Property(Hourly.14.FanartCode),,.png]</property>
-            <property name="OutlookTexture">resource://resource.images.weathericons.default/$INFO[Window(Weather).Property(Hourly.14.FanartCode),,.png]</property>
-            <property name="FanartCode">$INFO[Window(Weather).Property(Hourly.14.FanartCode)]</property>
-            <visible>!String.IsEmpty(Window(Weather).Property(Hourly.14.Outlook))</visible>
-            <onclick>ActivateWindow(Weather)</onclick>
-            <onclick>SetFocus(9100,2,absolute)</onclick>
-        </item>
-        <item>
-            <label>$INFO[Window(Weather).Property(Hourly.15.Outlook)]</label>
-            <property name="WidgetType">Widget_Type_Weather_Hourly</property>
-            <property name="HighTemp">$INFO[Window(Weather).Property(Hourly.15.Temperature)]</property>
-            <property name="Title">$INFO[Window(Weather).Property(Hourly.15.Time)]</property>
-            <property name="FanartTexture">$INFO[Skin.String(weather.icons.path)]$INFO[Window(Weather).Property(Hourly.15.FanartCode),,.png]</property>
-            <property name="OutlookTexture">resource://resource.images.weathericons.default/$INFO[Window(Weather).Property(Hourly.15.FanartCode),,.png]</property>
-            <property name="FanartCode">$INFO[Window(Weather).Property(Hourly.15.FanartCode)]</property>
-            <visible>!String.IsEmpty(Window(Weather).Property(Hourly.15.Outlook))</visible>
-            <onclick>ActivateWindow(Weather)</onclick>
-            <onclick>SetFocus(9100,2,absolute)</onclick>
-        </item>
-        <item>
-            <label>$INFO[Window(Weather).Property(Hourly.16.Outlook)]</label>
-            <property name="WidgetType">Widget_Type_Weather_Hourly</property>
-            <property name="HighTemp">$INFO[Window(Weather).Property(Hourly.16.Temperature)]</property>
-            <property name="Title">$INFO[Window(Weather).Property(Hourly.16.Time)]</property>
-            <property name="FanartTexture">$INFO[Skin.String(weather.icons.path)]$INFO[Window(Weather).Property(Hourly.16.FanartCode),,.png]</property>
-            <property name="OutlookTexture">resource://resource.images.weathericons.default/$INFO[Window(Weather).Property(Hourly.16.FanartCode),,.png]</property>
-            <property name="FanartCode">$INFO[Window(Weather).Property(Hourly.16.FanartCode)]</property>
-            <visible>!String.IsEmpty(Window(Weather).Property(Hourly.16.Outlook))</visible>
             <onclick>ActivateWindow(Weather)</onclick>
             <onclick>SetFocus(9100,2,absolute)</onclick>
         </item>
@@ -2290,10 +2221,10 @@
             <!-- WEATHER ICON -->
 
             <control type="group">
-                <top>90</top>
+                <top>120</top>
                 <centerleft>50%</centerleft>
-                <height>160</height>
-                <width>160</width>
+                <height>120</height>
+                <width>120</width>
                 <include>Def_Widget_Weather_Icon</include>
             </control>
 
@@ -2306,6 +2237,18 @@
                 <textcolor>PanelWhite100</textcolor>
                 <label fallback="10006">$INFO[ListItem.Property(Title)]</label>
             </control>
+            <control type="label">
+                <top>60</top>
+                <height>50</height>
+                <left>30</left>
+                <right>30</right>
+                <font>Tiny</font>
+                <align>center</align>
+                <aligny>center</aligny>
+                <textcolor>PanelWhite100</textcolor>
+                <label fallback="10006">$INFO[ListItem.Property(Date)]</label>
+            </control>
+
             <control type="label">
                 <bottom>30</bottom>
                 <aligny>center</aligny>
@@ -2349,7 +2292,7 @@
             <!-- WEATHER ICON -->
 
             <control type="group">
-                <top>90</top>
+                <top>100</top>
                 <left>25</left>
                 <height>135</height>
                 <width>135</width>
@@ -2359,7 +2302,7 @@
             <control type="label">
                 <left>45</left>
                 <right>45</right>
-                <top>60</top>
+                <top>30</top>
                 <height>50</height>
                 <font>NotificationBold</font>
                 <align>right</align>
@@ -2367,6 +2310,18 @@
                 <textcolor>PanelWhite100</textcolor>
                 <label fallback="10006">$INFO[ListItem.Property(Title)]</label>
             </control>
+            <control type="label">
+                <left>45</left>
+                <right>45</right>
+                <top>60</top>
+                <height>50</height>
+                <font>Tiny</font>
+                <align>right</align>
+                <aligny>center</aligny>
+                <textcolor>PanelWhite100</textcolor>
+                <label fallback="10006">$INFO[ListItem.Property(Date)]</label>
+            </control>
+
             <control type="label">
                 <bottom>130</bottom>
                 <right>45</right>
@@ -2389,14 +2344,14 @@
                 <label>$INFO[ListItem.Property(HighTemp)]</label>
                 <visible>!String.IsEmpty(ListItem.Property(Today))</visible>
             </control>
-            <control type="label">
+            <control type="textbox">
                 <left>45</left>
                 <right>45</right>
-                <bottom>50</bottom>
-                <height>50</height>
+                <bottom>20</bottom>
+                <height>80</height>
                 <font>Tiny</font>
                 <align>right</align>
-                <aligny>center</aligny>
+                <aligny>bottom</aligny>
                 <textcolor>PanelWhite100</textcolor>
                 <label>$INFO[ListItem.Label]</label>
             </control>
@@ -2433,7 +2388,7 @@
             <control type="label">
                 <left>292</left>
                 <right>57</right>
-                <top>70</top>
+                <top>30</top>
                 <height>50</height>
                 <font>NotificationBold</font>
                 <align>right</align>
@@ -2441,6 +2396,18 @@
                 <textcolor>PanelWhite100</textcolor>
                 <label fallback="10006">$INFO[ListItem.Property(Title)]</label>
             </control>
+            <control type="label">
+                <left>292</left>
+                <right>57</right>
+                <top>60</top>
+                <height>50</height>
+                <font>Tiny</font>
+                <align>right</align>
+                <aligny>center</aligny>
+                <textcolor>PanelWhite100</textcolor>
+                <label fallback="10006">$INFO[ListItem.Property(Date)]</label>
+            </control>
+
             <control type="label">
                 <left>292</left>
                 <right>57</right>
@@ -2466,13 +2433,13 @@
                 <visible>!String.IsEmpty(ListItem.Property(Today))</visible>
             </control>
             <control type="label">
-                <left>242</left>
+                <left>120</left>
                 <right>57</right>
-                <bottom>70</bottom>
-                <height>50</height>
+                <bottom>30</bottom>
+                <height>60</height>
                 <font>Tiny</font>
                 <align>right</align>
-                <aligny>center</aligny>
+                <aligny>bottom</aligny>
                 <textcolor>PanelWhite100</textcolor>
                 <label>$INFO[ListItem.Label]</label>
             </control>
