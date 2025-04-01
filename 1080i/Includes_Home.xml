@@ -120,7 +120,7 @@
                         <top>962</top>
                         <left>52</left>
                         <include>Def_Arrow_Size</include>
-                        <texture colordiffuse="Dark2" flipx="true">common/arrow-small-right.png</texture>
+                        <texture colordiffuse="Dark2" flipx="true">common/arrow_small_right.png</texture>
                     </control>
                     <control type="image">
                         <visible>Integer.IsGreater(Container(300).NumItems,12)</visible>
@@ -128,7 +128,7 @@
                         <top>962</top>
                         <right>480</right>
                         <include>Def_Arrow_Size</include>
-                        <texture colordiffuse="Dark2" flipx="false">common/arrow-small-right.png</texture>
+                        <texture colordiffuse="Dark2" flipx="false">common/arrow_small_right.png</texture>
                     </control>
                     <control type="image">
                         <visible>Integer.IsGreater(Container(300).NumItems,16)</visible>
@@ -136,7 +136,7 @@
                         <top>962</top>
                         <right>42</right>
                         <include>Def_Arrow_Size</include>
-                        <texture colordiffuse="Dark2" flipx="false">common/arrow-small-right.png</texture>
+                        <texture colordiffuse="Dark2" flipx="false">common/arrow_small_right.png</texture>
                     </control>
                 </control>
 
@@ -149,7 +149,7 @@
                         <top>962</top>
                         <left>52</left>
                         <include>Def_Arrow_Size</include>
-                        <texture colordiffuse="Dark2" flipx="true">common/arrow-small-right.png</texture>
+                        <texture colordiffuse="Dark2" flipx="true">common/arrow_small_right.png</texture>
                     </control>
                     <control type="image">
                         <visible>Integer.IsGreater(Container(300).NumItems,6)</visible>
@@ -157,7 +157,7 @@
                         <top>962</top>
                         <right>480</right>
                         <include>Def_Arrow_Size</include>
-                        <texture colordiffuse="Dark2" flipx="false">common/arrow-small-right.png</texture>
+                        <texture colordiffuse="Dark2" flipx="false">common/arrow_small_right.png</texture>
                     </control>
                     <control type="image">
                         <visible>Integer.IsGreater(Container(300).NumItems,8)</visible>
@@ -165,7 +165,7 @@
                         <top>962</top>
                         <right>42</right>
                         <include>Def_Arrow_Size</include>
-                        <texture colordiffuse="Dark2" flipx="false">common/arrow-small-right.png</texture>
+                        <texture colordiffuse="Dark2" flipx="false">common/arrow_small_right.png</texture>
                     </control>
                 </control>
 
@@ -243,7 +243,7 @@
                     <top>50</top>
                     <centerleft>45.7%</centerleft>
                     <include>Def_Arrow_Size</include>
-                    <texture colordiffuse="$VAR[Color_Focus]">common/arrow-small.png</texture>
+                    <texture colordiffuse="$VAR[Color_Focus]">common/arrow_small_down.png</texture>
                 </control>
             </control>
             <control type="group">
@@ -279,7 +279,7 @@
                     <top>66</top>
                     <centerleft>45.7%</centerleft>
                     <include>Def_Arrow_Size</include>
-                    <texture colordiffuse="Dark3">common/arrow-small.png</texture>
+                    <texture colordiffuse="Dark3">common/arrow_small_down.png</texture>
                 </control>
             </control>
         </focusedlayout>
@@ -363,7 +363,7 @@
                 <!-- <bottom>40</bottom> -->
                 <!-- <centerleft>45.7%</centerleft> -->
                 <!-- <include>Def_Arrow_Size</include> -->
-                <!-- <texture colordiffuse="Dark3">common/arrow-small.png</texture> -->
+                <!-- <texture colordiffuse="Dark3">common/arrow_small_down.png</texture> -->
             <!-- </control> -->
         </focusedlayout>
         <content>
@@ -653,7 +653,7 @@
                             <top>10</top>
                             <centerleft>45.7%</centerleft>
                             <include>Def_Arrow_Size</include>
-                            <texture colordiffuse="$VAR[Color_FocusGradient]" flipy="true">common/arrow-small.png</texture>
+                            <texture colordiffuse="$VAR[Color_FocusGradient]" flipy="true">common/arrow_small_down.png</texture>
                             <animation effect="fade" end="100" start="0" delay="300" time="400" reversible="false">Focus</animation>
                         </control>
                     </control>
@@ -685,7 +685,7 @@
                             <top>10</top>
                             <centerleft>45.7%</centerleft>
                             <include>Def_Arrow_Size</include>
-                            <texture colordiffuse="Dark3" flipy="true">common/arrow-small.png</texture>
+                            <texture colordiffuse="Dark3" flipy="true">common/arrow_small_down.png</texture>
                             <animation effect="fade" end="100" start="0" delay="300" time="400" reversible="false">Focus</animation>
                         </control>
                     </control>
@@ -705,8 +705,7 @@
     <!-- HORIZONTAL - WIDGETS - BEHAVIOUR -->
 
     <include name="Home_Horizontal_Widget_Info_Widgets">
-        <include>Widget_Navigation_Arrows</include>
-        <include>Home_Widgets_Items_Count</include>
+        <include condition="Skin.HasSetting(home.style.horizontal.clean)">Home_Widgets_Item_Position</include>
 
         <control type="group">
             <left>0</left>
@@ -881,7 +880,6 @@
         </control>
 
         <include>Furniture_Footer_Clock_Right</include>
-        <include>Widget_Navigation_Arrows</include>
 
         <control type="group">
             <animation effect="slide" start="0" end="-100" time="0" delay="0" condition="true">Conditional</animation>
@@ -898,7 +896,7 @@
                 <!-- ARROWS (UP / DOWN) - MAIN MENU - 300 -->
 
                 <control type="group">
-                    <visible>[Control.HasFocus(300) | Control.HasFocus(222) | Control.HasFocus(399)]</visible>
+                    <visible>[Control.HasFocus(300) | Control.HasFocus(222) | Control.HasFocus(399) | Control.HasFocus(9099)]</visible>
                     <include content="Def_Left" condition="!Skin.HasSetting(home.show.menu.icons)">
                         <param name="left" value="190" />
                     </include>
@@ -907,13 +905,13 @@
                         <visible>Integer.IsGreater(Container(300).NumItems,9)</visible>
                         <top>160</top>
                         <include>Def_Arrow_Size</include>
-                        <texture colordiffuse="Dark2" flipy="true">common/arrow-small.png</texture>
+                        <texture colordiffuse="Dark2" flipy="true">common/arrow_small_down.png</texture>
                     </control>
                     <control type="image">
                         <visible>Integer.IsGreater(Container(300).NumItems,9)</visible>
                         <top>912</top>
                         <include>Def_Arrow_Size</include>
-                        <texture colordiffuse="Dark2" flipx="false">common/arrow-small.png</texture>
+                        <texture colordiffuse="Dark2" flipx="false">common/arrow_small_down.png</texture>
                     </control>
                 </control>
 
@@ -929,13 +927,13 @@
                         <visible>Integer.IsGreater(Container(302).NumItems,9)</visible>
                         <top>160</top>
                         <include>Def_Arrow_Size</include>
-                        <texture colordiffuse="Dark2" flipy="true">common/arrow-small.png</texture>
+                        <texture colordiffuse="Dark2" flipy="true">common/arrow_small_down.png</texture>
                     </control>
                     <control type="image">
                         <visible>Integer.IsGreater(Container(302).NumItems,9)</visible>
                         <top>912</top>
                         <include>Def_Arrow_Size</include>
-                        <texture colordiffuse="Dark2" flipx="false">common/arrow-small.png</texture>
+                        <texture colordiffuse="Dark2" flipx="false">common/arrow_small_down.png</texture>
                     </control>
                 </control>
 
@@ -2245,7 +2243,6 @@
 
         <include>Animation_Vertical_Widgets_Label_Focus_Search</include>
 
-        <usecontrolcoords>true</usecontrolcoords>
         <height>40</height>
         <left>View_SidePad</left>
 
@@ -2528,59 +2525,96 @@
 
     <include name="Widget_Navigation_Arrows">
         <control type="group">
-            <include>Animation_Delay_Fade_In_600</include>
+            <visible>!String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId)) + ControlGroup(301).HasFocus()</visible>
+            <visible>Control.HasFocus($PARAM[focusid])</visible>
+            <visible>!$EXP[View_Info_Dialog]</visible>
+
+            <include>Animation_Delay_Fade_In_300</include>
             <include>Animation_Fade_Out</include>
             <include>Animation_Vertical_Widgets_Label_Focus_Search</include>
-            <animation effect="slide" start="0" end="0,286" time="0" condition="Skin.HasSetting(home.style.horizontal.clean) + !Skin.HasSetting(hide.home.menu)">Conditional</animation>
-            <animation effect="slide" start="0" end="0,448" time="0" condition="Skin.HasSetting(home.style.horizontal.clean) + Skin.HasSetting(hide.home.menu)">Conditional</animation>
-            <visible>String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId)) + ControlGroup(301).HasFocus()</visible>
-            <visible>!$EXP[View_Info_Dialog]</visible>
-            <control type="group">
-                <top>538</top>
-                <visible>Container(301).HasNext</visible>
-                <include>Animation_Delay_Fade_In_300</include>
-                <include>Animation_Fade_Out</include>
-                <control type="image">
-                    <top>0</top>
-                    <right>View_SidePad</right>
-                    <include>Def_Arrow_Size</include>
-                    <texture colordiffuse="Dark2">common/arrow-small.png</texture>
-                </control>
+
+            <!-- <animation effect="slide" start="0" end="0,286" time="0" condition="Skin.HasSetting(home.style.horizontal.clean) + !Skin.HasSetting(hide.home.menu)">Conditional</animation> -->
+            <!-- <animation effect="slide" start="0" end="0,448" time="0" condition="Skin.HasSetting(home.style.horizontal.clean) + Skin.HasSetting(hide.home.menu)">Conditional</animation> -->
+            <!-- <animation effect="slide" start="0" end="0,-380" time="0" condition="String.IsEqual(System.CurrentControlID,Window(Home).Property(BackToId)) + !$EXP[Home_Is_Flix]">Conditional</animation> -->
+
+            <include content="Def_Top" condition="Skin.HasSetting(home.style.horizontal.clean) + !Skin.HasSetting(hide.widget.title)">
+                <param name="top" value="-40" />
+            </include>
+            <include content="Def_Top" condition="Skin.HasSetting(home.style.flix)">
+                <param name="top" value="-380" />
+            </include>
+            <include content="Def_Top" condition="!Skin.HasSetting(home.style.flix)">
+                <param name="top" value="-370" />
+            </include>
+
+            <align>right</align>
+            <aligny>top</aligny>
+            <right>10</right>
+            <height>450</height>
+            <width>40</width>
+
+            <control type="image" description="button back">
+                <top>-4</top>
+                <right>80</right>
+                <height>40</height>
+                <width>40</width>
+                <texture border="0" colordiffuse="White70">common/circle.png</texture>
             </control>
+
+            <!-- FIRST WIDGET -->
+
             <control type="group">
-                <top>538</top>
-                <visible>!Container(301).HasNext</visible>
-                <include>Animation_Delay_Fade_In_300</include>
-                <include>Animation_Fade_Out</include>
-                <control type="image">
-                    <top>0</top>
-                    <right>View_SidePad</right>
-                    <include>Def_Arrow_Size</include>
-                    <texture colordiffuse="Dark2" flipy="true">common/arrow-small.png</texture>
-                </control>
-            </control>
-            <control type="group">
-                <top>512</top>
-                <visible>Container(301).HasPrevious</visible>
+                <top>-10</top>
+                <visible>String.IsEqual(System.CurrentControlID,Window(Home).Property(BackToId))</visible>
                 <include>Animation_Delay_Fade_In_300</include>
                 <include>Animation_Fade_Out</include>
                 <control type="image">
                     <top>13</top>
-                    <right>View_SidePad</right>
+                    <right>92</right>
                     <include>Def_Arrow_Size</include>
-                    <texture colordiffuse="Dark2" flipy="true">common/arrow-small.png</texture>
+                    <texture colordiffuse="Dark2" flipy="false">common/arrow_small_down.png</texture>
                 </control>
             </control>
+
+            <!-- MIDDLE WIDGET -->
+
             <control type="group">
-                <top>512</top>
-                <visible>!Container(301).HasPrevious</visible>
+                <top>-10</top>
+                <visible>[!String.IsEqual(System.CurrentControlID,Window(Home).Property(BackToId)) + !String.IsEqual(System.CurrentControlID,Window(Home).Property(LastId))] | String.IsEqual(System.CurrentControlID,Window(Home).Property(LastId))</visible>
                 <include>Animation_Delay_Fade_In_300</include>
                 <include>Animation_Fade_Out</include>
                 <control type="image">
                     <top>13</top>
-                    <right>View_SidePad</right>
+                    <right>92</right>
                     <include>Def_Arrow_Size</include>
-                    <texture colordiffuse="Dark2" flipy="false">common/arrow-small.png</texture>
+                    <texture colordiffuse="Dark2" flipy="true">common/arrow_small_down.png</texture>
+                </control>
+            </control>
+            <control type="group">
+                <top>16</top>
+                <visible>[!String.IsEqual(System.CurrentControlID,Window(Home).Property(BackToId)) + !String.IsEqual(System.CurrentControlID,Window(Home).Property(LastId))] | String.IsEqual(System.CurrentControlID,Window(Home).Property(BackToId))</visible>
+                <include>Animation_Delay_Fade_In_300</include>
+                <include>Animation_Fade_Out</include>
+                <control type="image">
+                    <top>0</top>
+                    <right>92</right>
+                    <include>Def_Arrow_Size</include>
+                    <texture colordiffuse="Dark2" flipy="false">common/arrow_small_down.png</texture>
+                </control>
+            </control>
+
+            <!-- LAST WIDGET -->
+
+            <control type="group">
+                <top>16</top>
+                <visible>String.IsEqual(System.CurrentControlID,Window(Home).Property(LastId))</visible>
+                <include>Animation_Delay_Fade_In_300</include>
+                <include>Animation_Fade_Out</include>
+                <control type="image">
+                    <top>0</top>
+                    <right>92</right>
+                    <include>Def_Arrow_Size</include>
+                    <texture colordiffuse="Dark2" flipy="true">common/arrow_small_down.png</texture>
                 </control>
             </control>
         </control>
@@ -2853,24 +2887,27 @@
         </control>
     </include>
 
-    <!-- HORIZONTAL CLEAN - ITEM COUNT -->
+    <!-- HORIZONTAL CLEAN - ITEM POSITION / TOTAL -->
 
-    <include name="Home_Widgets_Items_Count">
+    <include name="Home_Widgets_Item_Position">
         <control type="group">
             <visible>!$EXP[Extended_Now_Playing_Is_Visible]</visible>
-            <include>Animation_Delay_Fade_In_600</include>
+            <visible>Skin.HasSetting(home.style.horizontal.clean)</visible>
+            <visible>!$EXP[View_Info_Dialog] + !$EXP[Home_Menu_Is_Focus]</visible>
+            <!-- <visible>String.IsEmpty(Window(Home).Property(ShowHomeCleanItemPosition))</visible> -->
+
             <include>Animation_Fade_Out</include>
+            <include>Animation_Delay_Fade_In_300</include>
             <include>Animation_Vertical_Widgets_Label_Focus_Search</include>
+
             <animation effect="slide" start="0" end="0,286" time="0" condition="!Skin.HasSetting(hide.home.menu)">Conditional</animation>
             <animation effect="slide" start="0" end="0,448" time="0" condition="Skin.HasSetting(hide.home.menu)">Conditional</animation>
             <animation effect="slide" start="0" end="30,0" time="0" condition="String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId))">Conditional</animation>
-            <visible>Skin.HasSetting(home.style.horizontal.clean)</visible>
-            <visible>!$EXP[View_Info_Dialog] + !$EXP[Home_Menu_Is_Focus]</visible>
+
             <control type="label">
-                <include>Animation_Delay_Fade_In_300</include>
                 <align>right</align>
-                <right>110</right>
-                <top>503</top>
+                <right>170</right>
+                <top>500</top>
                 <font>SmallNavi</font>
                 <width>250</width>
                 <textcolor>Dark2</textcolor>

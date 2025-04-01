@@ -50,6 +50,7 @@
                 <include>Animation_Scrolltime_Widgets_Container</include>
 
                 <itemgap>0</itemgap>
+                <pagecontrol>301</pagecontrol>
                 <orientation>vertical</orientation>
                 <usecontrolcoords>true</usecontrolcoords>
 
@@ -235,6 +236,23 @@
             <property name="widgetaspectsubcheck">Square</property>
 
             <controls>
+
+                <!-- WIDGET - DIRECTION INFORMATION -->
+
+                <control type="group"  id="$PYTHON[int(mainmenuid) * 1000 + 500 + int(id)]">
+                    <visible>[String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility]) + [Integer.IsGreater(Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).IsUpdating]]</visible>
+
+                    <control type="group"  id="$PYTHON[int(mainmenuid) * 1000 + 400 + int(id)]">
+                        <include content="Widget_Navigation_Arrows">
+                            <param name="id" value="$PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]"/>
+                            <param name="focusid" value="$PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]"/>
+                            <param name="idshort" value="$PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]"/>
+                            <param name="animation_condition" value="!Control.HasFocus($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)])" />
+                            <param name="submenuVisibility">$SKINSHORTCUTS[submenuVisibility]</param>
+                            <param name="isfullscreenwidget">$SKINSHORTCUTS[isfullscreenwidget]</param>
+                        </include>
+                    </control>
+                </control>
 
                 <!-- WIDGET - LABEL - TITLE -->
 
