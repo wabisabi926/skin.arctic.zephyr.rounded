@@ -269,6 +269,9 @@
                         <texture border="4">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/scrollh_h.png</texture>
                     </control>
                 </control>
+
+                <!-- ARROWS - IF SUB MENU 302 CONTENT -->
+
                 <control type="image">
                     <visible>Control.HasFocus(399)</visible>
                     <visible>Integer.IsGreater(Container(302).NumItems,0) + [!Skin.HasSetting(show.submenu.on.click.main.menu) | [Skin.HasSetting(show.submenu.on.click.main.menu) + !String.StartsWith(Container(300).ListItem.Property(path),SetFocus(302,0))]]</visible>
@@ -351,7 +354,7 @@
                 <visible>Skin.HasSetting(home.show.menu.onfocus.underlined)</visible>
             </control>
 
-            <!-- ARROWS -->
+            <!-- ARROWS - IF SUB MENU 302 CONTENT -->
 
             <!-- <control type="image"> -->
                 <!-- <visible>Integer.IsGreater(Container(302).NumItems,0) + [!Skin.HasSetting(show.submenu.on.click.main.menu) | [Skin.HasSetting(show.submenu.on.click.main.menu) + !String.StartsWith(Container(300).ListItem.Property(path),SetFocus(302,0))]]</visible> -->
@@ -891,7 +894,52 @@
                 <include>Animation_LeftSide_Vertical_Menu</include>
                 <left>70</left>
 
-                <!-- MAIN MENU -->
+
+                <!-- ARROWS (UP / DOWN) - MAIN MENU - 300 -->
+
+                <control type="group">
+                    <visible>[Control.HasFocus(300) | Control.HasFocus(222) | Control.HasFocus(399)]</visible>
+                    <include content="Def_Left" condition="!Skin.HasSetting(home.show.menu.icons)">
+                        <param name="left" value="190" />
+                    </include>
+                    <left>80</left>
+                    <control type="image">
+                        <visible>Integer.IsGreater(Container(300).NumItems,9)</visible>
+                        <top>160</top>
+                        <include>Def_Arrow_Size</include>
+                        <texture colordiffuse="Dark2" flipy="true">common/arrow-small.png</texture>
+                    </control>
+                    <control type="image">
+                        <visible>Integer.IsGreater(Container(300).NumItems,9)</visible>
+                        <top>912</top>
+                        <include>Def_Arrow_Size</include>
+                        <texture colordiffuse="Dark2" flipx="false">common/arrow-small.png</texture>
+                    </control>
+                </control>
+
+                <!-- ARROWS (UP / DOWN) - SUB MENU - 302 -->
+
+                <control type="group">
+                    <visible>Control.HasFocus(302)</visible>
+                    <include content="Def_Left" condition="!Skin.HasSetting(home.show.menu.icons)">
+                        <param name="left" value="190" />
+                    </include>
+                    <left>80</left>
+                    <control type="image">
+                        <visible>Integer.IsGreater(Container(302).NumItems,9)</visible>
+                        <top>160</top>
+                        <include>Def_Arrow_Size</include>
+                        <texture colordiffuse="Dark2" flipy="true">common/arrow-small.png</texture>
+                    </control>
+                    <control type="image">
+                        <visible>Integer.IsGreater(Container(302).NumItems,9)</visible>
+                        <top>912</top>
+                        <include>Def_Arrow_Size</include>
+                        <texture colordiffuse="Dark2" flipx="false">common/arrow-small.png</texture>
+                    </control>
+                </control>
+
+                <!-- MAIN MENU 300 -->
 
                 <control type="list" id="300">
 
