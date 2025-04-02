@@ -925,7 +925,7 @@
                     <height>100%</height>
                     <texture fallback="DefaultPicture.png" colordiffuse="PanelWhite100">$VAR[Image_Dialog_Select_Big]</texture>
                     <aspectratio align="center" aligny="bottom">keep</aspectratio>
-                    <visible>$EXP[View_Icon_Black_Dialog_Select] + ![String.IsEqual(Control.GetLabel(1),Wikipedia) | Window.IsVisible(script-wikipedia.xml)]</visible>
+                    <visible>$EXP[View_Icon_Black_Dialog_Select] + ![String.IsEqual(Control.GetLabel(1),Wikipedia) | String.IsEqual(Control.GetLabel(1),Light IMDb Ratings Update) | Window.IsVisible(script-wikipedia.xml)]</visible>
                 </control>
             </control>
 
@@ -940,11 +940,42 @@
                 <height>300</height>
 
                 <control type="group">
-                    <include>Def_Art_Full_Background_b24</include>
+                    <include content="Def_Art_Full_Background_b24">
+                        <param name="pad_image" value="0" />
+                        <param name="colordiffuse" value="Fallback" />
+                        <param name="condition_fade" value="false" />
+                        <param name="visible_Shadow" value="false" />
+                    </include>
 
                     <control type="image">
                         <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
                         <texture diffuse="diffuse/square_w300_h300_b24.png" background="true">$VAR[Image_Dialog_Select_Big]</texture>
+                    </control>
+                </control>
+            </control>
+
+            <!-- LOGO LIGHT IMDB RATINGS UPDATE -->
+
+            <control type="group">
+                <visible>String.IsEqual(Control.GetLabel(1),Light IMDb Ratings Update)</visible>
+
+                <top>507</top>
+                <right>30</right>
+                <width>300</width>
+                <height>300</height>
+
+                <control type="group">
+                    <include content="Def_Art_Full_Background_b24">
+                        <param name="pad_image" value="0" />
+                        <param name="colordiffuse" value="Fallback" />
+                        <param name="condition_fade" value="false" />
+                        <param name="visible_Shadow" value="false" />
+                    </include>
+
+
+                    <control type="image">
+                        <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                        <texture diffuse="diffuse/square_w300_h300_b24.png" background="true">logo/light_imdb_ratings_update/icon.png</texture>
                     </control>
                 </control>
             </control>
