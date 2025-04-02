@@ -292,18 +292,6 @@
         <top>848</top>
         <itemlayout width="111" height="220">
 
-            <!-- LIGN VERTICAL -->
-
-            <!-- <control type="image" description="BottomBG"> -->
-                <!-- <width>1</width> -->
-                <!-- <height>50</height> -->
-                <!-- <bottom>75</bottom> -->
-                <!-- <left>10</left> -->
-                <!-- <animation effect="fade" start="100" end="30" time="0" condition="true">Conditional</animation> -->
-                <!-- <texture colordiffuse="Dark1">common/white.png</texture> -->
-                <!-- <visible>Control.HasFocus(300,0)</visible> -->
-            <!-- </control> -->
-
             <!-- MAIN MENU - ONLY ICON - UNDERLINED / NOT UNDERLINED -->
 
             <control type="image">
@@ -1043,7 +1031,6 @@
 
                         <control type="label">
                             <left>30</left>
-                            <!-- <left>0</left> -->
                             <align>left</align>
                             <aligny>center</aligny>
                             <height>100%</height>
@@ -2143,28 +2130,32 @@
                 <param name="width" value="1242" />
             </include>
 
-            <!-- Sets Movies Episodes No Netflix -->
+            <!-- SETS MOVIES EPISODES NO NETFLIX -->
+
             <control type="textbox">
                 <include>Def_Widgets_Textbox</include>
                 <label>$INFO[Container($PARAM[id]).ListItem.Plot]</label>
                 <visible>[[String.IsEqual(Container($PARAM[id]).ListItem.DBType,set) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,movie) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,tvshow)] + !String.IsEmpty(Container($PARAM[id]).ListItem.Plot)] + !Skin.HasSetting(home.style.flix)</visible>
             </control>
 
-            <!-- Sets Movie Episode Netflix No ClearArt Or Empty -->
+            <!-- SETS MOVIE EPISODE NETFLIX NO CLEARART OR EMPTY -->
+
             <control type="textbox">
                 <include>Def_Widgets_Textbox</include>
                 <label>$INFO[Container($PARAM[id]).ListItem.Plot]</label>
                 <visible>[[String.IsEqual(Container($PARAM[id]).ListItem.DBType,set) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,movie) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,tvshow)] + !String.IsEmpty(Container($PARAM[id]).ListItem.Plot)] + Skin.HasSetting(home.style.flix) + [!Skin.HasSetting(show.home.netflix.title.clearlogo) | [Skin.HasSetting(show.home.netflix.title.clearlogo) + String.IsEmpty(Container($PARAM[id]).ListItem.Art(clearlogo))]]</visible>
             </control>
 
-            <!-- Sets Movies Episodes Netflix ClearArt -->
+            <!-- SETS MOVIES EPISODES NETFLIX CLEARART -->
+
             <control type="textbox">
                 <include>Def_Widgets_Textbox</include>
                 <label>$INFO[Container($PARAM[id]).ListItem.Plot]</label>
                 <visible>[[String.IsEqual(Container($PARAM[id]).ListItem.DBType,set) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,movie) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,tvshow)] + !String.IsEmpty(Container($PARAM[id]).ListItem.Plot)] + Skin.HasSetting(home.style.flix) + Skin.HasSetting(show.home.netflix.title.clearlogo) + !String.IsEmpty(Container($PARAM[id]).ListItem.Art(clearlogo))</visible>
             </control>
 
-            <!-- Albums -->
+            <!-- ALBUMS -->
+
             <control type="textbox">
                 <include>Def_Widgets_Textbox</include>
                 <label>$INFO[Container($PARAM[id]).ListItem.Property(Album_Description)]</label>
@@ -2176,21 +2167,24 @@
                 <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,album) + String.IsEmpty(Container($PARAM[id]).ListItem.Property(Album_Description))</visible>
             </control>
 
-            <!-- Artists -->
+            <!-- ARTISTS -->
+
             <control type="textbox">
                 <include>Def_Widgets_Textbox</include>
                 <label>$INFO[Container($PARAM[id]).ListItem.Property(Artist_Description)]</label>
                 <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,artist) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(Artist_Description))</visible>
             </control>
 
-            <!-- Songs -->
+            <!-- SONGS -->
+
             <control type="textbox">
                 <include>Def_Widgets_Textbox</include>
                 <label fallback="19055">$INFO[Container($PARAM[id]).ListItem.Property(Artist_Description)]</label>
                 <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,song) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(Artist_Description))</visible>
             </control>
 
-            <!-- Addons -->
+            <!-- ADDONS -->
+
             <control type="textbox">
                 <include>Def_Widgets_Textbox</include>
                 <label>$INFO[Container($PARAM[id]).ListItem.AddonDescription]</label>
@@ -2198,13 +2192,15 @@
             </control>
 
             <!-- PVR -->
+
             <control type="textbox">
                 <include>Def_Widgets_Textbox</include>
                 <label fallback="19055">$INFO[Container($PARAM[id]).ListItem.Plot]</label>
                 <visible>String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://)</visible>
             </control>
 
-            <!-- Actor -->
+            <!-- ACTOR -->
+
             <control type="textbox">
                 <include>Def_Widgets_Textbox</include>
                 <label fallback="19055">$INFO[Window(Home).Property(TMDbHelper.ListItem.Plot)]</label>
@@ -2212,14 +2208,16 @@
                 <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,actor)</visible>
             </control>
 
-            <!-- Files -->
+            <!-- FILES -->
+
             <control type="textbox">
                 <include>Def_Widgets_Textbox</include>
                 <label>19055</label>
                 <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,file)</visible>
             </control>
 
-            <!-- Misc -->
+            <!-- MISC -->
+
             <control type="textbox">
                 <include>Def_Widgets_Textbox</include>
                 <label>$INFO[Container($PARAM[id]).ListItem.Plot]</label>
@@ -2532,10 +2530,6 @@
             <include>Animation_Delay_Fade_In_300</include>
             <include>Animation_Fade_Out</include>
             <include>Animation_Vertical_Widgets_Label_Focus_Search</include>
-
-            <!-- <animation effect="slide" start="0" end="0,286" time="0" condition="Skin.HasSetting(home.style.horizontal.clean) + !Skin.HasSetting(hide.home.menu)">Conditional</animation> -->
-            <!-- <animation effect="slide" start="0" end="0,448" time="0" condition="Skin.HasSetting(home.style.horizontal.clean) + Skin.HasSetting(hide.home.menu)">Conditional</animation> -->
-            <!-- <animation effect="slide" start="0" end="0,-380" time="0" condition="String.IsEqual(System.CurrentControlID,Window(Home).Property(BackToId)) + !$EXP[Home_Is_Flix]">Conditional</animation> -->
 
             <include content="Def_Top" condition="Skin.HasSetting(home.style.horizontal.clean) + !Skin.HasSetting(hide.widget.title)">
                 <param name="top" value="-40" />
