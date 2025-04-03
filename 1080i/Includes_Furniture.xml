@@ -1277,7 +1277,7 @@
         <visible>Skin.HasSetting(show.home.header.clearlogo)</visible>
         <visible>Window.IsVisible(Home) + !Skin.HasSetting(home.style.flix)</visible>
         <visible>![Window.IsVisible(DialogMusicInfo.xml) + Window.IsVisible(DialogVideoInfo.xml)]</visible>
-        <visible>Skin.HasSetting(home.hide.nowplaying) | [!Skin.HasSetting(home.hide.nowplaying) + !Player.HasAudio] | [$EXP[Extended_Now_Playing_Is_Enable] + !$EXP[Extended_Now_Playing_Is_Visible] + Player.HasAudio]</visible>
+        <visible>Skin.HasSetting(hide.furniture.nowplaying.home) | [!Skin.HasSetting(hide.furniture.nowplaying.home) + !Player.HasAudio] | [$EXP[Extended_Now_Playing_Is_Enable] + !$EXP[Extended_Now_Playing_Is_Visible] + Player.HasAudio]</visible>
         <visible>ControlGroup(301).HasFocus()</visible>
 
         <animation effect="slide" start="0" end="0,60" time="0" condition="[$EXP[Home_Is_Vertical] | $EXP[Home_Is_Horizontal]] + Window.IsVisible(Home.xml)">Conditional</animation>
@@ -1638,7 +1638,7 @@
             <visible>!Window.IsActive(DialogNotification.xml)</visible>
             <visible>String.IsEmpty(Window(Home).Property(VideoYoutubeIsPlaying))</visible>
             <visible>String.IsEmpty(Window(Home).Property(TrailerWindowedIsPlaying))</visible>
-            <visible>Player.HasMedia + !Skin.HasSetting(hide.furniture.nowplaying)</visible>
+            <visible>Player.HasMedia + !Skin.HasSetting(hide.furniture.nowplaying.views)</visible>
             <visible>!Control.HasFocus(161) + !Control.HasFocus(166)</visible>
             <visible>![$EXP[Video_Window_Home_Flix_Is_Active] + Player.HasMedia + Player.HasVideo]</visible>
             <visible>![$EXP[Video_Window_Views_Flix_Is_Active] + Player.HasMedia + Player.HasVideo]</visible>
@@ -1750,7 +1750,7 @@
             <visible>!Window.IsVisible(DialogNotification.xml)</visible>
             <visible>!Window.IsVisible(DialogExtendedProgressBar.xml)</visible>
             <visible>!Window.IsActive(DialogNotification.xml)</visible>
-            <visible>[Window.IsActive(Home) + $EXP[Extended_Now_Playing_Is_Enable]] | [!Skin.HasSetting(hide.furniture.nowplaying) + !Player.HasMedia] | Skin.HasSetting(hide.furniture.nowplaying)</visible>
+            <visible>[Window.IsActive(Home) + $EXP[Extended_Now_Playing_Is_Enable]] | [!Skin.HasSetting(hide.furniture.nowplaying.views) + !Player.HasMedia] | Skin.HasSetting(hide.furniture.nowplaying.views)</visible>
 
             <!-- Hide with NowPlaying -->
             <animation type="Conditional" condition="Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + $EXP[Extended_Now_Playing_Is_Enable] + [ControlGroup(777).HasFocus() | !$EXP[Extended_Now_Playing_Helper_AutoShow]] + !$EXP[Home_Menu_Is_Focus] + !ControlGroup(301).HasFocus() + Window.IsVisible(Home) + !$EXP[View_Info_Dialog] + !Window.IsVisible(DialogContextMenu.xml) + !Control.HasFocus(9099)" reversible="true">

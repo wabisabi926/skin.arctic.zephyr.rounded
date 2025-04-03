@@ -1200,7 +1200,7 @@
                 <param name="left" value="70" /></include>
             <left>0</left>
 
-            <include content="Def_Right" condition="$EXP[Home_Is_Vertical] + !Skin.HasSetting(hide.home.menu) + [[Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + !Player.HasMedia] | !Skin.HasSetting(hide.home.menu.with.nowplaying.extended) | !Skin.HasSetting(enable.furniture.home.nowplaying.extended)] + !Skin.HasSetting(home.show.menu.icons)"><param name="right" value="230" /></include>
+            <include content="Def_Right" condition="$EXP[Home_Is_Vertical] + !Skin.HasSetting(hide.home.menu) + [[Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + !Player.HasMedia] | !Skin.HasSetting(hide.home.menu.with.nowplaying.extended) | !Skin.HasSetting(show.furniture.nowplaying.extended.home)] + !Skin.HasSetting(home.show.menu.icons)"><param name="right" value="230" /></include>
             <right>0</right>
 
             <autoscroll time="$PARAM[AutoTime]" delay="1000">$PARAM[AutoScrollCondition]</autoscroll>
@@ -1213,7 +1213,7 @@
             <onfocus condition="$EXP[Has_Home_Menu_Auto_Slide_Out_Animation]">CancelAlarm(slide_out,true)</onfocus>
 
             <!-- NowPlaying : Auto slide / Display  if Widget is focus -->
-            <onfocus condition="Skin.HasSetting(enable.furniture.home.nowplaying.extended) + Window.IsVisible(Home) + Skin.HasSetting(enable.home.auto.show.nowplaying.extended)">SetProperty(nowplaying.auto.show.timer,1,Home)</onfocus>
+            <onfocus condition="Skin.HasSetting(show.furniture.nowplaying.extended.home) + Window.IsVisible(Home) + Skin.HasSetting(enable.home.auto.show.nowplaying.extended)">SetProperty(nowplaying.auto.show.timer,1,Home)</onfocus>
 
             <onunfocus>ClearProperty(nowplaying.auto.show.timer,Home)</onunfocus>
 

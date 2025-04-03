@@ -221,7 +221,7 @@
                         <description>Header Label</description>
                         <textcolor>Dark1</textcolor>
                         <label>$VAR[Label_Dialog_Info_Header_Video]</label>
-                        <visible>!Player.HasMedia | Skin.HasSetting(hide.furniture.nowplaying)</visible>
+                        <visible>!Player.HasMedia | Skin.HasSetting(hide.furniture.nowplaying.views)</visible>
                     </control>
                     <control type="label">
                         <left>104</left>
@@ -230,7 +230,7 @@
                         <description>Header Label</description>
                         <textcolor>Dark1</textcolor>
                         <label>$VAR[Label_Dialog_Info_Header_Video]</label>
-                        <visible>Player.HasMedia + !Skin.HasSetting(hide.furniture.nowplaying)</visible>
+                        <visible>Player.HasMedia + !Skin.HasSetting(hide.furniture.nowplaying.views)</visible>
                     </control>
 
                     <!-- SUB HEADER TITLE -->
@@ -253,7 +253,7 @@
                     <include>Animation_Video_Fade_Out_Clearlogo</include>
 
                     <visible>!String.IsEqual(ListItem.Property(item.type),person) + !Window.IsActive(DialogNotification.xml)</visible>
-                    <visible>Skin.HasSetting(show.dialog.info.clearlogo.video) + [!Player.HasMedia | Skin.HasSetting(hide.furniture.nowplaying)]</visible>
+                    <visible>Skin.HasSetting(show.dialog.info.clearlogo.video) + [!Player.HasMedia | Skin.HasSetting(hide.furniture.nowplaying.views)]</visible>
                     <visible>![Control.HasFocus(9501) | Control.HasFocus(9506) | Control.HasFocus(95067) | Control.HasFocus(9514) | Control.HasFocus(9515) | Control.HasFocus(9560) | Control.HasFocus(9518) | Control.HasFocus(9507) | Control.HasFocus(9503) | Control.HasFocus(9504) | Control.HasFocus(9552) | Control.HasFocus(9553)]</visible>
 
                     <centertop>120</centertop>
@@ -274,7 +274,7 @@
                     <include>Animation_Video_Fade_In_Clearlogo</include>
 
                     <visible>!Container($PARAM[controlid]).IsUpdating</visible>
-                    <visible>Skin.HasSetting(show.dialog.info.clearlogo.video) + [!Player.HasMedia | Skin.HasSetting(hide.furniture.nowplaying)]</visible>
+                    <visible>Skin.HasSetting(show.dialog.info.clearlogo.video) + [!Player.HasMedia | Skin.HasSetting(hide.furniture.nowplaying.views)]</visible>
                     <visible>Control.HasFocus(9501) | Control.HasFocus(9506) | Control.HasFocus(95067) | Control.HasFocus(9514) | Control.HasFocus(9515) | Control.HasFocus(9560) | Control.HasFocus(9518) | Control.HasFocus(9507) | Control.HasFocus(9503) | Control.HasFocus(9504) | Control.HasFocus(9517) | Control.HasFocus(9520) | Control.HasFocus(9552) | Control.HasFocus(9553) | Control.HasFocus(9556) | Control.HasFocus(9558) | Control.HasFocus(9559) | Control.HasFocus(9579) | Control.HasFocus(9550)</visible>
 
                     <centertop>120</centertop>

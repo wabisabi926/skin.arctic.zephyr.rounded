@@ -89,15 +89,14 @@
                 <control type="radiobutton" id="9089" description="Enable Extra Fanart">
                     <include>Def_Button_Gradient_Context</include>
                     <label>$LOCALIZE[31113]</label>
-                    <selected>!Skin.HasSetting(hide.furniture.nowplaying)</selected>
-                    <onclick>Skin.ToggleSetting(hide.furniture.nowplaying)</onclick>
+                    <selected>!Skin.HasSetting(hide.furniture.nowplaying.views)</selected>
+                    <onclick>Skin.ToggleSetting(hide.furniture.nowplaying.views)</onclick>
                 </control>
                 <control type="radiobutton" id="9743">
                     <include>Def_Button_Gradient_Context</include>
                     <label>$LOCALIZE[31564]</label>
                     <selected>Skin.HasSetting(show.nowplaying.video.view.flix)</selected>
                     <onclick>Skin.ToggleSetting(show.nowplaying.video.view.flix)</onclick>
-                    <visible>!Skin.HasSetting(home.hide.nowplaying)</visible>
                 </control>
                 <control type="button" id="97429" description="Auto Trailer Black Bars">
                     <include>Def_Button_Gradient_Context</include>
@@ -107,7 +106,6 @@
                     <onclick condition="Skin.HasSetting(home.netflix.autoplay.trailer.custom.window)">Skin.SetBool(home.netflix.autoplay.trailer.custom.window.force)</onclick>
                     <onclick condition="Skin.HasSetting(home.netflix.autoplay.trailer.custom.window)">Skin.Reset(home.netflix.autoplay.trailer.custom.window)</onclick>
                     <onclick condition="Skin.HasSetting(home.netflix.autoplay.trailer.custom.window.force)">Skin.Reset(home.netflix.autoplay.trailer.custom.window.force)</onclick>
-                    <visible>!Skin.HasSetting(home.hide.nowplaying) + [Skin.HasSetting(show.nowplaying.video.home.flix) | Skin.HasSetting(show.nowplaying.video.view.flix)]</visible>
                     <enable>Skin.HasSetting(show.nowplaying.video.view.flix)</enable>
                 </control>
 
