@@ -31,28 +31,11 @@
             <include>Animation_Common</include>
             <include>Def_Dialog_Settings</include>
 
-            <!-- LEFT - HEADER  -->
+            <!-- HEADER  -->
 
-            <control type="label">
-                <top>18</top>
-                <left>30</left>
-                <width>390</width>
-                <font>MediumBold</font>
-                <label>5</label>
-                <textcolor>PanelWhite100</textcolor>
-            </control>
-            <control type="label">
-                <top>77</top>
-                <left>30</left>
-                <right>30</right>
-                <height>30</height>
-                <font>Tiny</font>
-                <textcolor>PanelWhite70</textcolor>
-                <label>$INFO[System.ProfileName]</label>
-                <align>left</align>
-                <scroll>true</scroll>
-                <textoffsetx>0</textoffsetx>
-            </control>
+            <include content="Def_Dialog_Settings_Header">
+                <param name="label_right_sub_title" value="10012" />
+            </include>
 
             <!-- LEFT - GROUP -->
 
@@ -162,52 +145,17 @@
                 </content>
             </control>
 
-            <!-- LINES - VERTICAL -->
-
-            <include content="Def_Dialog_Line_Vertical"><param name="top" value="17" /><param name="right" value="1310" /></include>
-
             <!-- SCROLLBAR -->
 
             <control type="scrollbar" id="61">
                 <top>140</top>
                 <right>0</right>
-                <height>490</height>
                 <width>10</width>
+                <height>490</height>
                 <onleft>6000</onleft>
                 <showonepage>false</showonepage>
                 <animation effect="fade" condition="!Control.HasFocus(61)" start="100" end="0" time="200">Conditional</animation>
             </control>
-
-            <!-- RIGHT - HEADER -->
-
-            <control type="group">
-                <visible>!Container(3000).HasFocus(1)</visible>
-                <control type="label">
-                    <left>480</left>
-                    <width>390</width>
-                    <top>18</top>
-                    <font>MediumBold</font>
-                    <label>$VAR[Label_Header_Settings]</label>
-                    <textcolor>PanelWhite100</textcolor>
-                </control>
-                <control type="label">
-                    <left>480</left>
-                    <right>30</right>
-                    <top>77</top>
-                    <height>30</height>
-                    <font>Tiny</font>
-                    <textcolor>PanelWhite70</textcolor>
-                    <scroll>true</scroll>
-                    <label>10012</label>
-                </control>
-            </control>
-
-            <!-- RIGHT - LINE -->
-
-            <include content="Def_Dialog_Header_Line">
-                <param name="top" value="123" />
-                <param name="left" value="480" />
-            </include>
 
             <!-- RIGHT - GROUP -->
 

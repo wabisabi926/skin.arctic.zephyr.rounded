@@ -15,33 +15,19 @@
             <include>Animation_Common</include>
             <include>Def_Dialog_Settings</include>
 
-            <!-- LEFT - HEADER -->
+            <!-- HEADER  -->
 
-            <control type="label">
-                <left>110</left>
-                <width>390</width>
-                <top>18</top>
-                <font>MediumBold</font>
-                <label>5</label>
-                <textcolor>PanelWhite100</textcolor>
-            </control>
-            <control type="label">
-                <left>110</left>
-                <right>30</right>
-                <top>77</top>
-                <height>30</height>
-                <font>Tiny</font>
-                <textcolor>PanelWhite70</textcolor>
-                <scroll>true</scroll>
-                <align>left</align>
-                <textoffsetx>0</textoffsetx>
-                <label>$INFO[System.ProfileName]</label>
-            </control>
+            <include content="Def_Dialog_Settings_Header">
+                <param name="left" value="110" />
+                <param name="width" value="338" />
+                <param name="label_right_sub_title" value="$INFO[Control.GetLabel(6)]" />
+            </include>
 
             <!-- LEFT - GROUP -->
 
             <control type="grouplist" id="3">
                 <description>Button Area</description>
+                <include>Animation_Scrolltime_Views_List</include>
                 <top>140</top>
                 <left>96</left>
                 <right>16</right>
@@ -52,36 +38,7 @@
                 <onleft>20</onleft>
                 <ondown>3</ondown>
                 <orientation>vertical</orientation>
-                <include>Animation_Scrolltime_Views_List</include>
             </control>
-
-            <!-- LINES - VERTICAL -->
-
-            <include content="Def_Dialog_Line_Vertical"><param name="top" value="17" /><param name="right" value="1310" /></include>
-
-            <!-- RIGHT - HEADER -->
-
-            <control type="label">
-                <left>480</left>
-                <width>390</width>
-                <top>18</top>
-                <font>MediumBold</font>
-                <label>$VAR[Label_Header_Settings]</label>
-                <textcolor>PanelWhite100</textcolor>
-            </control>
-            <control type="label" id="6">
-                <left>480</left>
-                <right>30</right>
-                <top>77</top>
-                <height>30</height>
-                <font>Tiny</font>
-                <textcolor>PanelWhite70</textcolor>
-                <scroll>true</scroll>
-            </control>
-
-            <!-- RIGHT - LINE -->
-
-            <include content="Def_Dialog_Header_Line"><param name="top" value="123" /><param name="left" value="480" /></include>
 
             <!-- RIGHT - GROUP -->
 
@@ -154,6 +111,9 @@
             </control>
         </control>
 
+        <control type="label" id="6">
+            <visible>false</visible>
+        </control>
         <control type="label" id="14">
             <include>Def_Settings_Label_Title_Right_Side</include>
         </control>

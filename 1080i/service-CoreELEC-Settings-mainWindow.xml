@@ -13,28 +13,14 @@
             <include>Animation_Common</include>
             <include>Def_Dialog_Settings</include>
 
-            <!-- LEFT - HEADER -->
 
-            <control type="label">
-                <left>30</left>
-                <width>390</width>
-                <top>18</top>
-                <font>MediumBold</font>
-                <label>5</label>
-                <textcolor>PanelWhite100</textcolor>
-            </control>
-            <control type="label">
-                <top>77</top>
-                <height>30</height>
-                <left>30</left>
-                <right>30</right>
-                <font>Tiny</font>
-                <textcolor>PanelWhite70</textcolor>
-                <scroll>true</scroll>
-                <align>left</align>
-                <textoffsetx>0</textoffsetx>
-                <label>$INFO[System.ProfileName]</label>
-            </control>
+            <!-- HEADER  -->
+
+            <include content="Def_Dialog_Settings_Header">
+                <param name="label_right_title" value="$ADDON[service.coreelec.settings 32363]" />
+                <param name="label_right_sub_title" value="$INFO[Window.Property(InfoText)]" />
+                <param name="visible_header_right" value="!ControlGroup(9100).HasFocus(9108)" />
+            </include>
 
             <!-- LEFT - GROUP -->
 
@@ -78,45 +64,6 @@
                     </control>
                 </focusedlayout>
             </control>
-
-            <!-- LINES - VERTICAL -->
-
-            <include content="Def_Dialog_Line_Vertical"><param name="top" value="17" /><param name="right" value="1310" /></include>
-
-            <!-- RIGHT - HEADER -->
-
-            <control type="group">
-                <visible>!ControlGroup(9100).HasFocus(9108)</visible>
-                <control type="label">
-                    <left>480</left>
-                    <width>390</width>
-                    <top>18</top>
-                    <font>MediumBold</font>
-                    <label>$ADDON[service.coreelec.settings 32363]</label>
-                    <textcolor>PanelWhite100</textcolor>
-                </control>
-                <control type="label" id="1400">
-                    <left>480</left>
-                    <right>30</right>
-                    <top>77</top>
-                    <height>30</height>
-                    <label>$INFO[Window.Property(InfoText)]</label>
-                    <align>left</align>
-                    <font>Tiny</font>
-                    <textcolor>PanelWhite70</textcolor>
-                    <scroll>true</scroll>
-                    <align>left</align>
-                    <textoffsetx>0</textoffsetx>
-                </control>
-            </control>
-
-            <!-- RIGHT - LINE -->
-
-            <include content="Def_Dialog_Header_Line">
-                <param name="top" value="123" />
-                <param name="left" value="480" />
-                <param name="visible" value="!ControlGroup(9100).HasFocus(9108)" />
-            </include>
 
             <!-- RIGHT - GROUP -->
 

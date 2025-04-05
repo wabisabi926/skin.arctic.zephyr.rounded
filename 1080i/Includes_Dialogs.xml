@@ -75,12 +75,85 @@
         </definition>
     </include>
 
-<animation effect="fade" start="0" end="100" time="100" condition="!Control.HasFocus(1600) + !Container.Scrolling">Conditional</animation>
-
     <include name="Def_List_Dimension">
         <height>68</height>
         <bottom>33</bottom>
         <itemgap>28</itemgap>
+    </include>
+
+    <include name="Def_Dialog_Settings_Header">
+        <param name="left" value="$PARAM[left]"  default="30" />
+        <param name="width" value="$PARAM[width]"  default="390" />
+        <param name="label_left_title" value="$PARAM[label_left_title]"  default="5" />
+        <param name="label_left_sub_title" value="$PARAM[label_left_sub_title]" default="$INFO[System.ProfileName]" />
+        <param name="label_right_title" value="$PARAM[label_right_title]" default="$VAR[Label_Header_Settings]" />
+        <param name="label_right_sub_title" value="$PARAM[label_right_sub_title]" />
+        <param name="visible_header_right" value="$PARAM[visible_header_right]" default="true" />
+
+        <definition>
+
+            <!-- LEFT - HEADER -->
+
+            <control type="label">
+                <top>18</top>
+                <left>$PARAM[left]</left>
+                <width>$PARAM[width]</width>
+                <font>MediumBold</font>
+                <label>$PARAM[label_left_title]</label>
+                <textcolor>PanelWhite100</textcolor>
+            </control>
+            <control type="label">
+                <top>77</top>
+                <left>$PARAM[left]</left>
+                <height>30</height>
+                <width>$PARAM[width]</width>
+                <font>Tiny</font>
+                <textcolor>PanelWhite70</textcolor>
+                <scroll>true</scroll>
+                <align>left</align>
+                <textoffsetx>0</textoffsetx>
+                <label>$PARAM[label_left_sub_title]</label>
+            </control>
+
+            <!-- LINES - VERTICAL -->
+
+            <include content="Def_Dialog_Line_Vertical">
+                <param name="top" value="17" />
+                <param name="right" value="1310" />
+            </include>
+
+            <!-- RIGHT - HEADER -->
+
+            <control type="group">
+                <visible>$PARAM[visible_header_right]</visible>
+                <control type="label">
+                    <top>18</top>
+                    <left>480</left>
+                    <right>30</right>
+                    <font>MediumBold</font>
+                    <label>$PARAM[label_right_title]</label>
+                    <textcolor>PanelWhite100</textcolor>
+                </control>
+                <control type="label">
+                    <top>77</top>
+                    <height>30</height>
+                    <left>480</left>
+                    <right>30</right>
+                    <font>Tiny</font>
+                    <label>$PARAM[label_right_sub_title]</label>
+                    <textcolor>PanelWhite70</textcolor>
+                    <scroll>true</scroll>
+                </control>
+            </control>
+
+            <!-- RIGHT - LINE -->
+
+            <include content="Def_Dialog_Header_Line">
+                <param name="top" value="123" />
+                <param name="left" value="480" />
+                <param name="visible" value="$PARAM[visible_header_right]" />
+            </include>
+        </definition>
     </include>
 
     <!-- DEF - DIALOG - NOTIFICATION -->
