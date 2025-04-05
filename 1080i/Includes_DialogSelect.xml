@@ -522,6 +522,7 @@
             </control>
 
             <include content="Def_Dialog_Header_Logo"><param name="texture" value="search" /></include>
+
             <include>Def_Dialog_Header_Line</include>
 
             <include content="Object_Scrollbar_Dialog_Vertical">
@@ -669,7 +670,15 @@
                 <label/>
             </control>
 
-            <include content="Def_Dialog_Header_Logo"><param name="texture" value="kodi" /></include>
+            <include content="Def_Dialog_Header_Logo">
+                <param name="texture" value="kodi" />
+                <param name="visible" value="![String.IsEqual(Control.GetLabel(1),Wikipedia) | Window.IsVisible(script-wikipedia.xml)]" />
+            </include>
+            <include content="Def_Dialog_Header_Logo">
+                <param name="texture" value="world" />
+                <param name="visible" value="[String.IsEqual(Control.GetLabel(1),Wikipedia) | Window.IsVisible(script-wikipedia.xml)]" />
+            </include>
+
             <include>Def_Dialog_Header_Line</include>
 
             <include content="Object_Scrollbar_Dialog_Vertical">
