@@ -83,6 +83,33 @@
         <itemgap>28</itemgap>
     </include>
 
+    <include name="Def_Dialog_Header">
+        <param name="label" value="$PARAM[label]" default="" />
+        <param name="label_id" value="$PARAM[label_id]" />
+        <param name="label_color" value="$PARAM[label_color]" default="Dark2" />
+        <param name="icon" value="$PARAM[icon]" default="kodi" />
+        <param name="icon_color" value="$PARAM[icon_color]" default="$VAR[Color_Dialog_Header_Logo]" />
+        <param name="line_color" value="$PARAM[line_color]" default="Black12" />
+
+        <definition>
+            <include content="Def_Dialog_Header_Logo">
+                <param name="texture" value="$PARAM[icon]" />
+                <param name="colordiffuse" value="$PARAM[icon_color]" />
+            </include>
+
+            <control type="label" id="$PARAM[label_id]">
+                <include content="Def_Dialog_Header_Title">
+                    <param name="textcolor" value="$PARAM[label_color]" />
+                </include>
+                <label>$PARAM[label]</label>
+            </control>
+
+            <include content="Def_Dialog_Header_Line">
+                <param name="colordiffuse" value="$PARAM[line_color]" />
+            </include>
+        </definition>
+    </include>
+
     <include name="Def_Dialog_Settings_Header">
         <param name="left" value="$PARAM[left]"  default="30" />
         <param name="width" value="$PARAM[width]"  default="390" />
@@ -154,33 +181,6 @@
                 <param name="top" value="123" />
                 <param name="left" value="480" />
                 <param name="visible" value="$PARAM[visible_header_right]" />
-            </include>
-        </definition>
-    </include>
-
-    <include name="Def_Dialog_Header">
-        <param name="label" value="$PARAM[label]" default="" />
-        <param name="label_id" value="$PARAM[label_id]" />
-        <param name="label_color" value="$PARAM[label_color]" default="Dark2" />
-        <param name="icon" value="$PARAM[icon]" default="kodi" />
-        <param name="icon_color" value="$PARAM[icon_color]" default="$VAR[Color_Dialog_Header_Logo]" />
-        <param name="line_color" value="$PARAM[line_color]" default="Black12" />
-
-        <definition>
-            <include content="Def_Dialog_Header_Logo">
-                <param name="texture" value="$PARAM[icon]" />
-                <param name="colordiffuse" value="$PARAM[icon_color]" />
-            </include>
-
-            <control type="label" id="$PARAM[label_id]">
-                <include content="Def_Dialog_Header_Title">
-                    <param name="textcolor" value="$PARAM[label_color]" />
-                </include>
-                <label>$PARAM[label]</label>
-            </control>
-
-            <include content="Def_Dialog_Header_Line">
-                <param name="colordiffuse" value="$PARAM[line_color]" />
             </include>
         </definition>
     </include>
@@ -422,17 +422,10 @@
                     <param name="visible">Integer.IsGreater(Container(9400).NumItems,7)</param>
                 </include>
 
-                <!-- HEADER -->
-
-                <control type="group">
-                    <control type="label">
-                        <include>Def_Dialog_Header_Title</include>
-                        <label>16106</label>
-                    </control>
-
-                    <include content="Def_Dialog_Header_Logo"><param name="texture" value="settings" /></include>
-                    <include>Def_Dialog_Header_Line</include>
-                </control>
+                <include content="Def_Dialog_Header">
+                    <param name="label" value="16106" />
+                    <param name="icon" value="settings" />
+                </include>
 
                 <!-- LIST MENU -->
 
