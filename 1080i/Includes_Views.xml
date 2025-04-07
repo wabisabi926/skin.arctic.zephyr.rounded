@@ -34,7 +34,7 @@
             <control type="group">
                 <visible>$PARAM[visible]</visible>
 
-                <top>195</top>
+                <top>185</top>
                 <left>View_SidePad</left>
                 <width>NetflixPlotWidth</width>
 
@@ -110,20 +110,30 @@
                     <visible>$PARAM[show_clearlogo]</visible>
                 </control>
 
-                <!-- MAIN TITLE - TEXT -->
+                <!-- MAIN TITLE - TEXT - SHOW CLEARLOGO - DISABLE -->
 
                 <control type="label">
-                    <include content="Def_Height" condition="$EXP[View_Flix_Show_Clearlogo_Enable] + $PARAM[show_clearlogo]">
-                        <param name="height">ClearLogoTitleMaxHeight</param>
-                    </include>
-                    <include content="Def_Height" condition="!$EXP[View_Flix_Show_Clearlogo_Enable] | !$PARAM[show_clearlogo]">
-                        <param name="height">40</param>
-                    </include>
+                    <top>0</top>
+                    <height>40</height>
                     <textcolor>Dark1</textcolor>
                     <font>LargeNetflix</font>
                     <label fallback="19055">$VAR[Label_View_Flix_Main_Title]</label>
                     <include condition="Skin.HasSetting(labels.autoscroll)">LabelScroll</include>
                     <visible>[$EXP[View_Flix_Show_Clearlogo_Enable] + !$EXP[Title_Clearlogo_Available]] | !$EXP[View_Flix_Show_Clearlogo_Enable] | !$PARAM[show_clearlogo]</visible>
+                    <visible>![$EXP[View_Flix_Show_Clearlogo_Enable] + $PARAM[show_clearlogo]]</visible>
+                </control>
+
+                <!-- MAIN TITLE - TEXT - SHOW CLEARLOGO - ENABLE -->
+
+                <control type="label">
+                    <top>32</top>
+                    <height>ClearLogoTitleMaxHeight</height>
+                    <textcolor>Dark1</textcolor>
+                    <font>LargeNetflix</font>
+                    <label fallback="19055">$VAR[Label_View_Flix_Main_Title]</label>
+                    <include condition="Skin.HasSetting(labels.autoscroll)">LabelScroll</include>
+                    <visible>[$EXP[View_Flix_Show_Clearlogo_Enable] + !$EXP[Title_Clearlogo_Available]] | !$EXP[View_Flix_Show_Clearlogo_Enable] | !$PARAM[show_clearlogo]</visible>
+                    <visible>$EXP[View_Flix_Show_Clearlogo_Enable] + $PARAM[show_clearlogo]</visible>
                 </control>
             </control>
         </definition>
