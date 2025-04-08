@@ -4484,6 +4484,7 @@
                         <aspectratio aligny="center" align="center">keep</aspectratio>
                         <left>20</left>
                         <texture colordiffuse="Dark1" background="true">flags/rating/imdb/imdb_white.png</texture>
+                        <visible>![Control.HasFocus(9579) | Control.HasFocus(95797)]</visible>
                     </control>
 
                     <control type="label">
@@ -4495,6 +4496,7 @@
                         <left>13</left>
                         <textcolor>Dark2</textcolor>
                         <label>$INFO[Container($PARAM[controlid]).ListItem.Rating(imdb)]</label>
+                        <visible>![Control.HasFocus(9579) | Control.HasFocus(95797)]</visible>
                     </control>
                     <control type="label">
                         <visible>String.IsEmpty(Container($PARAM[controlid]).ListItem.Rating(imdb)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating)) + !Container($PARAM[controlid]).ListItem.IsCollection + Skin.HasSetting(show.flags.rating.imdb) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
@@ -4505,6 +4507,7 @@
                         <left>13</left>
                         <textcolor>Dark2</textcolor>
                         <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating)]</label>
+                        <visible>![Control.HasFocus(9579) | Control.HasFocus(95797)]</visible>
                     </control>
 
                     <!-- IMDb top 250 B/W -->
@@ -4516,6 +4519,7 @@
                         <aspectratio aligny="center" align="center">keep</aspectratio>
                         <texture colordiffuse="Dark1">flags/rating/imdb/imdb_250_white.png</texture>
                         <visible>!Skin.HasSetting(hide.flags.top250) + [!String.IsEmpty(Container($PARAM[controlid]).ListItem.Top250) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Top250))]</visible>
+                        <visible>![Control.HasFocus(9579) | Control.HasFocus(95797)]</visible>
                     </control>
                     <control type="label" description="IMDB Top 250">
                         <centertop>50%</centertop>
@@ -4526,6 +4530,7 @@
                         <textcolor>Dark2</textcolor>
                         <label>$INFO[Container($PARAM[controlid]).ListItem.Top250,#,]</label>
                         <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Top250) + Skin.HasSetting(show.flags.top250.classement)</visible>
+                        <visible>![Control.HasFocus(9579) | Control.HasFocus(95797)]</visible>
                     </control>
                     <control type="label" description="IMDB Top 250">
                         <centertop>50%</centertop>
@@ -4536,10 +4541,13 @@
                         <textcolor>Dark2</textcolor>
                         <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.Top250),#,]</label>
                         <visible>String.IsEmpty(Container($PARAM[controlid]).ListItem.Top250) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Top250)) + Skin.HasSetting(show.flags.top250.classement)</visible>
+                        <visible>![Control.HasFocus(9579) | Control.HasFocus(95797)]</visible>
                     </control>
 
                     <!-- Star Kodi / user rating B/W -->
-                    <include content="Def_Flags_Furniture_Small_Ext" condition="!Skin.HasSetting(hide.flags.rating)"><param name="controlid" value="$PARAM[controlid]" /></include>
+                    <include content="Def_Flags_Furniture_Small_Ext" condition="!Skin.HasSetting(hide.flags.rating)">
+                        <param name="controlid" value="$PARAM[controlid]" />
+                    </include>
                 </control>
 
                 <!-- COLOR -->
@@ -4813,6 +4821,7 @@
                         <aspectratio aligny="center" align="center">keep</aspectratio>
                         <left>20</left>
                         <texture background="true">flags/rating/imdb/imdb.png</texture>
+                        <visible>![Control.HasFocus(9579) | Control.HasFocus(95797)]</visible>
                     </control>
 
                     <control type="label">
@@ -4824,6 +4833,7 @@
                         <left>13</left>
                         <textcolor>Dark2</textcolor>
                         <label>$INFO[Container($PARAM[controlid]).ListItem.Rating(imdb)]</label>
+                        <visible>![Control.HasFocus(9579) | Control.HasFocus(95797)]</visible>
                     </control>
                     <control type="label">
                         <visible>String.IsEmpty(Container($PARAM[controlid]).ListItem.Rating(imdb)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating)) + !Container($PARAM[controlid]).ListItem.IsCollection + Skin.HasSetting(show.flags.rating.imdb) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
@@ -4834,6 +4844,7 @@
                         <left>13</left>
                         <textcolor>Dark2</textcolor>
                         <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating)]</label>
+                        <visible>![Control.HasFocus(9579) | Control.HasFocus(95797)]</visible>
                     </control>
 
                     <!-- IMDb Top 250 -->
@@ -4844,6 +4855,7 @@
                         <aspectratio aligny="center" align="center">keep</aspectratio>
                         <texture colordiffuse="Dark1">flags/rating/imdb/imdb_250_white.png</texture>
                         <visible>!Skin.HasSetting(hide.flags.top250) + [!String.IsEmpty(Container($PARAM[controlid]).ListItem.Top250) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Top250))]</visible>
+                        <visible>![Control.HasFocus(9579) | Control.HasFocus(95797)]</visible>
                     </control>
                     <control type="label" description="IMDB Top 250">
                         <centertop>50%</centertop>
@@ -4854,6 +4866,7 @@
                         <textcolor>Dark2</textcolor>
                         <label>$INFO[Container($PARAM[controlid]).ListItem.Top250,#,]</label>
                         <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Top250) + Skin.HasSetting(show.flags.top250.classement)</visible>
+                        <visible>![Control.HasFocus(9579) | Control.HasFocus(95797)]</visible>
                     </control>
                     <control type="label" description="IMDB Top 250">
                         <centertop>50%</centertop>
@@ -4864,6 +4877,7 @@
                         <textcolor>Dark2</textcolor>
                         <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.Top250),#,]</label>
                         <visible>String.IsEmpty(Container($PARAM[controlid]).ListItem.Top250) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Top250)) + Skin.HasSetting(show.flags.top250.classement)</visible>
+                        <visible>![Control.HasFocus(9579) | Control.HasFocus(95797)]</visible>
                     </control>
 
                     <!-- TMDB -->
@@ -4890,7 +4904,9 @@
                     </control>
 
                     <!-- Star Kodi / user rating Color -->
-                    <include content="Def_Flags_Furniture_Small_Ext" condition="!Skin.HasSetting(hide.flags.rating)"><param name="controlid" value="$PARAM[controlid]" /></include>
+                    <include content="Def_Flags_Furniture_Small_Ext" condition="!Skin.HasSetting(hide.flags.rating)">
+                        <param name="controlid" value="$PARAM[controlid]" />
+                    </include>
                 </control>
             </control>
         </definition>
