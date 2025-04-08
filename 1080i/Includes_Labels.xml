@@ -1133,6 +1133,15 @@
         <value>$VAR[Label_Duration_Time_Check]</value>
     </variable>
 
+    <variable name="Label_58_515_Footer_Info">
+        <value condition="Container.Content(tvshows) + !ListItem.IsParentFolder">$VAR[Label_Year,,  •  ]$VAR[Label_Rating]</value>
+        <value condition="Container.Content(seasons) + !ListItem.IsParentFolder">$VAR[Label_Year,,  •  ]$INFO[ListItem.Property(TotalEpisodes),, $LOCALIZE[20360]]</value>
+        <value condition="Container.Content(episodes) + !ListItem.IsParentFolder">$VAR[Label_Duration,,  •  ]$VAR[Label_Rating]</value>
+        <value condition="Container.Content(artists) + !ListItem.IsParentFolder">$INFO[ListItem.Genre]</value>
+        <value condition="$EXP[IsGameMode]">$VAR[Label_Game_Year]</value>
+        <value>$VAR[Label_Year,,  •  ]$VAR[Label_Duration,,  •  ]$VAR[Label_Rating]</value>
+    </variable>
+
     <!-- 31021           Informations détaillées -->
     <!-- 31137           Fanart de -->
 
@@ -2222,7 +2231,6 @@
 
     <variable name="Label_Progress_Circle">
         <value condition="String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)">$VAR[Label_Percentage]</value>
-        <value condition="String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) + String.IsEmpty(ListItem.Property(WatchedEpisodes))">0/$INFO[ListItem.Property(TotalEpisodes)]</value>
         <value condition="String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)">$INFO[ListItem.Property(WatchedEpisodes)]/$INFO[ListItem.Property(TotalEpisodes)]</value>
     </variable>
 
