@@ -1344,6 +1344,7 @@
                     <param name="icon" value="buttonsdialogs/image.png" />
                 </include>
                 <visible>!Skin.HasSetting(hide.button.music.fanart)</visible>
+                <visible>[!String.IsEmpty(ListItem.Art(fanart)) + !Skin.HasSetting(hide.artwork.music.fanart)] | [!String.IsEmpty(ListItem.Art(landscape)) + !Skin.HasSetting(hide.artwork.music.landscape)] | [!String.IsEmpty(ListItem.Art(thumb)) + !Skin.HasSetting(hide.artwork.music.thumb)]</visible>
             </control>
 
             <!-- YOUTUBE -->
@@ -1914,10 +1915,9 @@
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/image.png" />
                 </include>
-                <!-- <visible>!Skin.HasSetting(hide.button.video.fanart)</visible> -->
+                <visible>!Skin.HasSetting(hide.button.video.fanart)</visible>
                 <visible>!String.IsEqual(ListItem.Property(item.type),person) + !String.IsEmpty(ListItem.DBType)</visible>
                 <visible>[!String.IsEmpty(ListItem.Art(fanart)) + !Skin.HasSetting(hide.artwork.video.fanart)] | [!String.IsEmpty(ListItem.Art(landscape)) + !Skin.HasSetting(hide.artwork.video.landscape)] | Skin.HasSetting(showartwork.video.tmdbhelper)</visible>
-                <visible>!Skin.HasSetting(hide.button.video.fanart)</visible>
                 <!-- <visible>!Integer.IsEqual(Container(9505).NumItems,0) + !Container(9505).IsUpdating</visible> -->
                 <!-- <visible>String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating)) + !String.IsEmpty(Window(Home).Property(Init_Value_TMDb))</visible> -->
             </control>
