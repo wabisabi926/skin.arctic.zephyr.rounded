@@ -2636,6 +2636,7 @@
 
         <top>-750</top>
         <left>View_SidePad</left>
+
         <include>Def_Home_Widget_Weather_Info_Sub</include>
     </include>
 
@@ -2644,22 +2645,23 @@
     <include name="Home_Widget_System_Info_Sub">
         <param name="issettingslayout" value="$PARAM[issettingslayout]" default="false" />
         <param name="id" value="$PARAM[id]" />
+
         <definition>
-        <include content="Def_Top" condition="Skin.HasSetting(home.style.horizontal.clean) + !Skin.HasSetting(hide.widget.title)">
-            <param name="top" value="-418" />
-        </include>
-        <include content="Def_Top" condition="Skin.HasSetting(home.style.horizontal.clean)">
-            <param name="top" value="-378" />
-        </include>
+            <include content="Def_Top" condition="Skin.HasSetting(home.style.horizontal.clean) + !Skin.HasSetting(hide.widget.title)">
+                <param name="top" value="-418" />
+            </include>
+            <include content="Def_Top" condition="Skin.HasSetting(home.style.horizontal.clean)">
+                <param name="top" value="-378" />
+            </include>
 
-        <top>-750</top>
-        <left>View_SidePad</left>
+            <top>-750</top>
+            <left>View_SidePad</left>
 
-        <include condition="!$PARAM[issettingslayout]">Def_Home_Widget_System_Info_Sub</include>
+            <include condition="!$PARAM[issettingslayout]">Def_Home_Widget_System_Info_Sub</include>
 
-        <include condition="$PARAM[issettingslayout]" content="Def_Home_Widget_Settings_Info_Sub">
-            <param name="id" value="$PARAM[id]" />
-        </include>
+            <include condition="$PARAM[issettingslayout]" content="Def_Home_Widget_Settings_Info_Sub">
+                <param name="id" value="$PARAM[id]" />
+            </include>
         </definition>
     </include>
 
