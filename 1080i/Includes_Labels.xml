@@ -1273,6 +1273,7 @@
         <value condition="Control.HasFocus(9004)">$LOCALIZE[31138] $INFO[ListItem.Title]</value>
         <value condition="Control.HasFocus(9005) | Control.HasFocus(95051)">$LOCALIZE[31349] $INFO[ListItem.Title]</value>
         <value condition="Control.HasFocus(9006)">$LOCALIZE[31116] $INFO[Window(Home).Property(SetDirectorSelected)]</value>
+        <value condition="Control.HasFocus(9010)">$INFO[ListItem.Title]</value>
         <value condition="Control.HasFocus(9011)">$INFO[ListItem.Title]</value>
         <value condition="Control.HasFocus(9012)">$INFO[ListItem.Title]</value>
         <value condition="Control.HasFocus(9013)">$LOCALIZE[31477]</value>
@@ -1291,10 +1292,12 @@
         <value condition="Control.HasFocus(9058)">$LOCALIZE[31141] $INFO[ListItem.Label] $LOCALIZE[31535]</value>
         <value condition="Control.HasFocus(9059)">$LOCALIZE[31529] $INFO[ListItem.Label] $LOCALIZE[31535]</value>
         <value condition="Control.HasFocus(9060)">$LOCALIZE[31116] $INFO[ListItem.Label]</value>
+        <value condition="Control.HasFocus(9078) + String.IsEqual(ListItem.DBType,season)">$INFO[ListItem.Title]</value>
         <value condition="Control.HasFocus(9079) + String.IsEqual(ListItem.DBType,tvshow)">$LOCALIZE[31183] $INFO[ListItem.Label]</value>
         <value condition="Control.HasFocus(9079) + String.IsEqual(ListItem.DBType,season)">$LOCALIZE[31183] $INFO[ListItem.TVShowTitle]</value>
         <value condition="Control.HasFocus(9079) + String.IsEqual(ListItem.DBType,episode)">$LOCALIZE[31183] $INFO[ListItem.TVShowTitle]</value>
         <value condition="Control.HasFocus(90122)">$INFO[ListItem.Label]</value>
+
         <!-- VIDEO - DIALOG INFO - EXTENDED -->
 
         <value condition="[Control.HasFocus(50) | Control.HasFocus(507)] + !String.IsEqual(ListItem.DBType,set)">$LOCALIZE[31135] $INFO[ListItem.Title]</value>
@@ -1330,7 +1333,8 @@
 
         <value condition="String.IsEqual(ListItem.DBType,movie)">$INFO[ListItem.Title]</value>
         <value condition="String.IsEqual(ListItem.DBType,tvshow)">$INFO[ListItem.Title]</value>
-        <value condition="String.IsEqual(ListItem.DBType,season)">$LOCALIZE[31183] $INFO[ListItem.TVShowTitle]</value>
+        <!-- <value condition="String.IsEqual(ListItem.DBType,season)">$LOCALIZE[31183] $INFO[ListItem.TVShowTitle]</value> -->
+        <value condition="String.IsEqual(ListItem.DBType,season)">$INFO[ListItem.Title]</value>
         <value condition="String.IsEqual(ListItem.DBType,episode)">$LOCALIZE[31183] $INFO[ListItem.TVShowTitle]</value>
 
         <value>$LOCALIZE[19055]</value>
@@ -1425,6 +1429,7 @@
 
         <value condition="[Control.HasFocus(9003) | Control.HasFocus(9503) | Control.HasFocus(95037)] + String.IsEqual(ListItem.DBType,movie)">$INFO[Container(9503).NumItems] $LOCALIZE[342]</value>
         <value condition="[Control.HasFocus(9003) | Control.HasFocus(9503) | Control.HasFocus(95037)] + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)]">$INFO[Container(9503).NumItems] $LOCALIZE[20343]</value>
+
         <value condition="Control.HasFocus(9005) | Control.HasFocus(95051)">$INFO[Container(9505).NumItems] $LOCALIZE[31151]</value>
 
         <value condition="Control.HasFocus(9015) | Control.HasFocus(9515) | Control.HasFocus(95157)">$INFO[Container(9515).NumItems] $LOCALIZE[342]</value>
@@ -1435,7 +1440,8 @@
 
         <value condition="String.IsEqual(ListItem.Property(item.type),person)">$INFO[ListItem.Property(Gender)] $INFO[ListItem.Property(Department),  •  ,]</value>
 
-        <!-- 9079 - button season -->
+        <!-- season -->
+        <value condition="Control.HasFocus(9078) + String.IsEqual(ListItem.DBType,season)">$INFO[ListItem.TVShowTitle]$INFO[ListItem.Property(TotalEpisodes),  •  , $LOCALIZE[20453]]</value>
 
         <value condition="Control.HasFocus(9079) + String.IsEqual(ListItem.DBType,season)">$INFO[ListItem.TVShowTitle]$INFO[ListItem.Title,  •  ,]$INFO[ListItem.Property(TotalEpisodes),  •  , $LOCALIZE[20453]]</value>
 
@@ -1616,6 +1622,16 @@
         <value condition="$EXP[IsYoutubeItem]">$LOCALIZE[13280] Youtube</value>
     </variable>
 
+    <variable name="Label_Dialog_Info_Video_Duration_or_Episodes_Label">
+        <value condition="Container.Content(seasons)">$LOCALIZE[20360]</value>
+        <value>$LOCALIZE[2050]</value>
+    </variable>
+
+    <variable name="Label_Dialog_Info_Video_Duration_or_Episodes_Value">
+        <value condition="Container.Content(seasons)">$INFO[ListItem.Property(TotalEpisodes),, $LOCALIZE[20453]]</value>
+        <value>$VAR[Label_Duration_Time_Check]</value>
+    </variable>
+
     <variable name="Label_Dialog_Info_Video_EndAt_Or_Rating_Label">
         <value condition="[Container.Content(movies) | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,video)] + !String.IsEmpty(ListItem.Duration)">$LOCALIZE[31485]</value>
         <value>$LOCALIZE[563]</value>
@@ -1623,7 +1639,11 @@
 
     <variable name="Label_Dialog_Info_Video_EndAt_Or_Rating_Value">
         <value condition="[Container.Content(movies) | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,video)] + !String.IsEmpty(ListItem.EndTime) + !String.IsEmpty(ListItem.Duration)">$INFO[ListItem.EndTime]</value>
+
+        <value condition="String.IsEqual(ListItem.DBType,season) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Rating))">TMDb : $INFO[Window(Home).Property(TMDbHelper.ListItem.Rating)] $INFO[Window(Home).Property(TMDbHelper.ListItem.Votes),(, $LOCALIZE[205])]</value>
+
         <value condition="ListItem.IsCollection + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Set.Rating))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Rating)] $INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Votes),(, $LOCALIZE[205])]</value>
+
         <value>$VAR[Label_Rating_And_Votes_Info]</value>
     </variable>
 
