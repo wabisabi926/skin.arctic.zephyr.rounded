@@ -1846,9 +1846,9 @@
 
             <visible>[!Skin.HasSetting(55wall.showinfo) + Control.IsVisible(55)] | Control.IsVisible(506) | Control.IsVisible(52) | Control.IsVisible(515) | Control.IsVisible(512) | Control.IsVisible(517) | Control.IsVisible(547) | Control.IsVisible(557) | Control.IsVisible(5048) | Control.IsVisible(5218) | [Control.IsVisible(5228) + String.IsEqual(Skin.String(522.landscape.size),2)] | [Control.IsVisible(5228) + String.IsEmpty(Skin.String(522.landscape.size))] | [Control.IsVisible(5228) + Container.Content(files)] | Control.IsVisible(508) | Control.IsVisible(547) | [Control.IsVisible(5238) + String.IsEqual(Skin.String(523.square.size),2)] | [Control.IsVisible(5238) + String.IsEmpty(Skin.String(523.square.size))] | Window.IsVisible(FileManager.xml) | Window.IsVisible(script-globalsearch.xml) | Control.IsVisible(59)</visible>
 
+            <top>880</top>
             <align>left</align>
             <left>View_SidePad</left>
-            <centerbottom>100</centerbottom>
 
             <!-- <include content="Def_Right" condition="!Skin.HasSetting(show.furniture.clock.date.weather)"> -->
                 <!-- <param name="right" value="View_SidePad" /> -->
@@ -1972,9 +1972,9 @@
 
             <include>Animation_FurnitureVisible_footer</include>
 
+            <top>880</top>
             <align>right</align>
             <right>View_SidePad</right>
-            <centerbottom>100</centerbottom>
 
             <!-- MOVIES / VIDEOS -->
 
@@ -2134,9 +2134,9 @@
 
             <visible>Skin.HasSetting(show.furniture.footer) | Control.IsVisible(5048) | Control.IsVisible(5218) | Window.IsVisible(script-globalsearch.xml)</visible>
 
+            <top>946</top>
             <align>right</align>
             <right>View_SidePad</right>
-            <centerbottom>66</centerbottom>
 
             <control type="label">
                 <include>Def_Info_Right_Line2</include>
@@ -3725,8 +3725,8 @@
             <visible>!Container($PARAM[controlid]).IsUpdating</visible>
             <include>Animation_Delay_Fade_In_200</include>
 
+            <top>880</top>
             <align>left</align>
-            <centerbottom>100</centerbottom>
 
             <itemgap>0</itemgap>
             <orientation>horizontal</orientation>
@@ -3801,9 +3801,9 @@
             <visible>!Container($PARAM[controlid]).IsUpdating</visible>
             <include>Animation_Delay_Fade_In_200</include>
 
+            <top>880</top>
             <align>right</align>
             <right>View_SidePad</right>
-            <centerbottom>100</centerbottom>
 
             <!-- MOVIES not local only -->
 
@@ -3895,9 +3895,9 @@
             <visible>!Container($PARAM[controlid]).IsUpdating</visible>
             <include>Animation_Delay_Fade_In_200</include>
 
+            <top>946</top>
             <align>right</align>
             <right>View_SidePad</right>
-            <centerbottom>66</centerbottom>
 
             <control type="label">
                 <include>Def_Info_Right_Line2</include>
@@ -4584,12 +4584,14 @@
 
     <include name="Furniture_Flags_DialogInfo_Extended_Audio">
         <control type="group">
-            <!-- <visible>Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7)</visible> -->
-            <visible>Control.HasFocus($PARAM[controlid])</visible>
-            <include>Animation_Delay_Fade_In_200</include>
-            <top>910</top>
             <visible>Control.HasFocus($PARAM[controlid])</visible>
             <visible>!Container($PARAM[controlid]).IsUpdating</visible>
+
+            <!-- <visible>Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7)</visible> -->
+
+            <include>Animation_Delay_Fade_In_200</include>
+
+            <top>910</top>
 
             <!-- BLACK / WHITE -->
 
@@ -4742,11 +4744,13 @@
 
             <control type="grouplist">
                 <visible>Skin.HasSetting(enable.furniture.flags.colored)</visible>
+
                 <width>1400</width>
                 <height>120</height>
-                <orientation>horizontal</orientation>
                 <align>left</align>
+
                 <itemgap>0</itemgap>
+                <orientation>horizontal</orientation>
                 <usecontrolcoords>true</usecontrolcoords>
 
                 <include content="Number_Album_Disc_Count_Ext"><param name="controlid" value="$PARAM[controlid]" /></include>

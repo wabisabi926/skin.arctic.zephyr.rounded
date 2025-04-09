@@ -10,10 +10,10 @@
                 <include>Animation_Wiki_Fade_Out</include>
                 <include>Animation_Video_Fade_Out</include>
 
-                <animation effect="slide" start="0,0" end="0,130" delay="0" time="200" tween="quadratic" easing="out" condition="String.IsEqual(Window.Property(ShowDisc),1) + Skin.HasSetting(Show.Discart.Video.Info)" >Conditional</animation>
-                <!-- <animation type="Conditional" condition="String.IsEqual(Window.Property(ShowDisc),1) + Skin.HasSetting(Show.Discart.Video.Info)"> -->
-                    <!-- <effect type="slide" start="0,0" end="0,130" delay="0" time="200" tween="quadratic" easing="out" /> -->
-                <!-- </animation> -->
+                <animation type="Conditional" condition="String.IsEqual(Window.Property(ShowDisc),1) + Skin.HasSetting(Show.Discart.Video.Info)">
+                    <effect type="slide" start="0,0" end="0,130" delay="0" time="200" tween="quadratic" easing="out" />
+                </animation>
+
                 <control type="group">
                     <include>Animation_Delay_Fade_In_200</include>
                     <visible>Control.HasFocus(9001) + !String.IsEqual(Window.Property(ShowDisc),1) + !String.IsEmpty(ListItem.Art(discart)) + Skin.HasSetting(Show.Discart.Video.Info)</visible>
@@ -1353,7 +1353,7 @@
                     </control>
                 </control>
 
-<!--            Def_Layout_Dialog_Info_Video_Wall_Poster            -->
+<!--            View_Dialog_Info_Poster            -->
 <!--                                                                -->
 <!--            Sets                                                -->
 <!--            ===========================================         -->
@@ -1533,7 +1533,7 @@
 
                     <!-- CAST LOCAL -->
 
-                    <include content="Def_Layout_Dialog_Info_Video_List_Cast" condition="!String.IsEmpty(ListItem.DBID) + !String.IsEqual(ListItem.DBType,set) + !$EXP[IsYoutubeItem]">
+                    <include content="View_Dialog_Info_Cast" condition="!String.IsEmpty(ListItem.DBID) + !String.IsEqual(ListItem.DBType,set) + !$EXP[IsYoutubeItem]">
                         <param name="fallbackpicture" value="DefaultActor.png" />
                         <param name="visible" value="![Skin.HasSetting(filter.video.cast.on.line) | String.IsEmpty(ListItem.DBID)] + String.IsEmpty(Window(Home).Property(moviecontent)) + ![Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hide.button.video.wiki)]" />
                         <param name="visible.layouts" value="[Control.HasFocus(50) | Control.HasFocus(507) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Container(9999).IsUpdating ]]] + !Window.IsVisible(DialogVideoManager.xml) + !Window.IsVisible(DialogSelect.xml) + !Window.IsVisible(FileBrowser.xml)" />
@@ -1549,7 +1549,7 @@
 
                     <!-- CAST TMDB - ON LINE / SEASON ONLY -->
 
-                    <include content="Def_Layout_Dialog_Info_Video_List_Cast" condition="!String.IsEqual(ListItem.DBType,set) + !$EXP[IsYoutubeItem]">
+                    <include content="View_Dialog_Info_Cast" condition="!String.IsEqual(ListItem.DBType,set) + !$EXP[IsYoutubeItem]">
                         <param name="condition.includecontent" value="true" />
                         <param name="fallbackpicture" value="pbtmdb.png" />
                         <param name="visible" value="[Skin.HasSetting(filter.video.cast.on.line) | String.IsEmpty(ListItem.DBID)] + String.IsEmpty(Window(Home).Property(moviecontent)) + ![Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hide.button.video.wiki)]" />
@@ -1564,14 +1564,15 @@
                         <param name="thumb" value="false" />
                     </include>
                     <include content="Def_Dialog_Info_List_Updating">
-                        <param name="visible" value="String.IsEmpty(Window(Home).Property(moviecontent)) + !$EXP[IsYoutubeItem] + [Skin.HasSetting(filter.video.cast.on.line) | String.IsEmpty(ListItem.DBID) | String.IsEqual(ListItem.DBType,season)] + [Control.HasFocus(8008) | Control.HasFocus(9201) | Control.HasFocus(9078)]" />
+                        <param name="visible" value="String.IsEmpty(Window(Home).Property(moviecontent)) + !$EXP[IsYoutubeItem] + [Skin.HasSetting(filter.video.cast.on.line) | String.IsEmpty(ListItem.DBID) | String.IsEqual(ListItem.DBType,season)]" />
                         <param name="controlid" value="9550" />
                         <param name="centerleft" value="430" />
+                        <param name="label_spinner" value="$LOCALIZE[31575]..." />
                     </include>
 
                     <!-- SETS -->
 
-                    <include content="Def_Layout_Dialog_Info_Video_Wall_Poster" condition="String.IsEqual(ListItem.DBType,set)">
+                    <include content="View_Dialog_Info_Poster" condition="String.IsEqual(ListItem.DBType,set)">
                         <param name="condition.issets" value="true" />
                         <param name="condition.isnotsets" value="false" />
                         <param name="condition.includecontent" value="true" />
@@ -1597,7 +1598,7 @@
 
                     <!-- MOVIES LIST BY CAST -->
 
-                    <include content="Def_Layout_Dialog_Info_Video_Wall_Poster" condition="String.IsEqual(ListItem.Property(item.type),person) + !String.IsEqual(ListItem.DBType,set)">
+                    <include content="View_Dialog_Info_Poster" condition="String.IsEqual(ListItem.Property(item.type),person) + !String.IsEqual(ListItem.DBType,set)">
                         <param name="condition.includecontent" value="true" />
                         <param name="fallbackpicture" value="pbtmdb.png" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),11)" />
@@ -1621,7 +1622,7 @@
 
                     <!-- TVSHOWS LIST BY CAST -->
 
-                    <include content="Def_Layout_Dialog_Info_Video_Wall_Poster" condition="String.IsEqual(ListItem.Property(item.type),person) + !String.IsEqual(ListItem.DBType,set)">
+                    <include content="View_Dialog_Info_Poster" condition="String.IsEqual(ListItem.Property(item.type),person) + !String.IsEqual(ListItem.DBType,set)">
                         <param name="condition.includecontent" value="true" />
                         <param name="fallbackpicture" value="pbtmdb.png" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),12)" />
@@ -1645,7 +1646,7 @@
 
                     <!-- MOVIES LIST BY MEMBER CREW -->
 
-                    <include content="Def_Layout_Dialog_Info_Video_Wall_Poster" condition="String.IsEqual(ListItem.Property(item.type),person) + !String.IsEqual(ListItem.DBType,set)">
+                    <include content="View_Dialog_Info_Poster" condition="String.IsEqual(ListItem.Property(item.type),person) + !String.IsEqual(ListItem.DBType,set)">
                         <param name="condition.includecontent" value="true" />
                         <param name="fallbackpicture" value="pbtmdb.png" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),18)" />
@@ -1669,7 +1670,7 @@
 
                     <!-- TVSHOWS LIST BY MEMBER CREW -->
 
-                    <include content="Def_Layout_Dialog_Info_Video_Wall_Poster" condition="String.IsEqual(ListItem.Property(item.type),person) + !String.IsEqual(ListItem.DBType,set)">
+                    <include content="View_Dialog_Info_Poster" condition="String.IsEqual(ListItem.Property(item.type),person) + !String.IsEqual(ListItem.DBType,set)">
                         <param name="condition.includecontent" value="true" />
                         <param name="fallbackpicture" value="pbtmdb.png" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),19)" />
@@ -1693,7 +1694,7 @@
 
                     <!-- MOVIES LIST BY DIRECTOR (PERSON) -->
 
-                    <include content="Def_Layout_Dialog_Info_Video_Wall_Poster" condition="String.IsEqual(ListItem.Property(item.type),person)">
+                    <include content="View_Dialog_Info_Poster" condition="String.IsEqual(ListItem.Property(item.type),person)">
                         <param name="condition.includecontent" value="true" />
                         <param name="fallbackpicture" value="pbtmdb.png" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),20)" />
@@ -1717,7 +1718,7 @@
 
                     <!-- SEASONS -->
 
-                    <include content="Def_Layout_Dialog_Info_Video_Wall_Poster"  condition="[String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set) + !Skin.HasSetting(hide.button.tvshow.season)">
+                    <include content="View_Dialog_Info_Poster"  condition="[String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set) + !Skin.HasSetting(hide.button.tvshow.season)">
                         <param name="condition.includecontent" value="true" />
                         <param name="fallbackpicture" value="pbtmdb.png" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),15)" />
@@ -1739,7 +1740,7 @@
 
                     <!-- PICTURES LIST BY CAST -->
 
-                    <include content="Def_Layout_Dialog_Info_Video_List_Cast" condition="String.IsEqual(ListItem.Property(item.type),person) + !String.IsEqual(ListItem.DBType,set)">
+                    <include content="View_Dialog_Info_Cast" condition="String.IsEqual(ListItem.Property(item.type),person) + !String.IsEqual(ListItem.DBType,set)">
                         <param name="condition.includecontent" value="true" />
                         <param name="fallbackpicture" value="pbtmdb.png" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),13) + ![Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hide.button.video.wiki)]" />
@@ -1763,7 +1764,7 @@
 
                     <!-- CREATOR -->
 
-                    <include content="Def_Layout_Dialog_Info_Video_Wall_Poster" condition="[String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + !String.IsEqual(ListItem.DBType,set) + !Skin.HasSetting(hide.button.tvshow.creator)">
+                    <include content="View_Dialog_Info_Poster" condition="[String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + !String.IsEqual(ListItem.DBType,set) + !Skin.HasSetting(hide.button.tvshow.creator)">
                         <param name="condition.includecontent" value="true" />
                         <param name="fallbackpicture" value="pbtmdb.png" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),20)" />
@@ -1787,7 +1788,7 @@
 
                     <!-- CREW -->
 
-                    <include content="Def_Layout_Dialog_Info_Video_List_Cast" condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set) + Skin.HasSetting(show.button.video.crew)">
+                    <include content="View_Dialog_Info_Cast" condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set) + Skin.HasSetting(show.button.video.crew)">
                         <param name="condition.includecontent" value="true" />
                         <param name="fallbackpicture" value="pbtmdb.png" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),17)" />
@@ -1809,7 +1810,7 @@
 
                     <!-- BY DIRECTOR -->
 
-                    <include content="Def_Layout_Dialog_Info_Video_Wall_Poster" condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set) + Skin.HasSetting(show.button.video.director)">
+                    <include content="View_Dialog_Info_Poster" condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set) + Skin.HasSetting(show.button.video.director)">
                         <param name="condition.includecontent" value="true" />
                         <param name="fallbackpicture" value="pbtmdb.png" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),7)" />
@@ -1833,7 +1834,7 @@
 
                     <!-- WRITER -->
 
-                    <include content="Def_Layout_Dialog_Info_Video_Wall_Poster" condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set) + Skin.HasSetting(show.button.video.writer)">
+                    <include content="View_Dialog_Info_Poster" condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set) + Skin.HasSetting(show.button.video.writer)">
                         <param name="condition.includecontent" value="true" />
                         <param name="fallbackpicture" value="pbtmdb.png" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),14)" />
@@ -1857,7 +1858,7 @@
 
                     <!-- YEAR MOVIES / TV SHOWS -->
 
-                    <include content="Def_Layout_Dialog_Info_Video_Wall_Poster" condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set) + Skin.HasSetting(show.button.video.year) + !String.IsEmpty(ListItem.Year)">
+                    <include content="View_Dialog_Info_Poster" condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set) + Skin.HasSetting(show.button.video.year) + !String.IsEmpty(ListItem.Year)">
                         <param name="condition.includecontent" value="true" />
                         <param name="fallbackpicture" value="pbtmdb.png" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),9)" />
@@ -1881,7 +1882,7 @@
 
                     <!-- BY SETS -->
 
-                    <include content="Def_Layout_Dialog_Info_Video_Wall_Poster" condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)] + !String.IsEqual(ListItem.DBType,set) + Skin.HasSetting(show.button.video.set)">
+                    <include content="View_Dialog_Info_Poster" condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)] + !String.IsEqual(ListItem.DBType,set) + Skin.HasSetting(show.button.video.set)">
                         <param name="condition.includecontent" value="true" />
                         <param name="fallbackpicture" value="pbtmdb.png" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),8)" />
@@ -1905,7 +1906,7 @@
 
                     <!-- SIMILAR MOVIES / TV SHOWS  -->
 
-                    <include content="Def_Layout_Dialog_Info_Video_Wall_Poster" condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set) + !Skin.HasSetting(hide.button.video.similar)">
+                    <include content="View_Dialog_Info_Poster" condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set) + !Skin.HasSetting(hide.button.video.similar)">
                         <param name="condition.includecontent" value="true" />
                         <param name="fallbackpicture" value="pbtmdb.png" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),2)" />
@@ -1929,7 +1930,7 @@
 
                     <!-- RECOMENDATION MOVIES / TV SHOWS  -->
 
-                    <include content="Def_Layout_Dialog_Info_Video_Wall_Poster" condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set) + Skin.HasSetting(show.button.video.recommended)">
+                    <include content="View_Dialog_Info_Poster" condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set) + Skin.HasSetting(show.button.video.recommended)">
                         <param name="condition.includecontent" value="true" />
                         <param name="fallbackpicture" value="pbtmdb.png" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),16)" />
@@ -1951,7 +1952,7 @@
 
                     <!-- STUDIO MOVIES / TV SHOWS -->
 
-                    <include content="Def_Layout_Dialog_Info_Video_Wall_Poster" condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set) + !Skin.HasSetting(hide.button.video.studio)">
+                    <include content="View_Dialog_Info_Poster" condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set) + !Skin.HasSetting(hide.button.video.studio)">
                         <param name="condition.includecontent" value="true" />
                         <param name="fallbackpicture" value="pbtmdb.png" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),3)" />
@@ -1975,7 +1976,7 @@
 
                     <!-- YOUTUBE -->
 
-                    <include content="Def_Layout_Dialog_Info_Video_Music_List_Square" condition="[[[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.Property(item.type),person)] + !String.IsEqual(ListItem.DBType,set)] | $EXP[IsTMDbHelperItem]] + !Skin.HasSetting(hide.button.video.youtube)">
+                    <include content="View_Dialog_Info_Square" condition="[[[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.Property(item.type),person)] + !String.IsEqual(ListItem.DBType,set)] | $EXP[IsTMDbHelperItem]] + !Skin.HasSetting(hide.button.video.youtube)">
                         <param name="fallbackpicture" value="DefaultVideo.png" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),4) | Control.HasFocus(7011)" />
                         <param name="Animation_new" value="Animation_CastInfo2" />
@@ -1998,7 +1999,7 @@
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),4) + Control.HasFocus(9004)" />
                         <param name="controlid" value="9504" />
                         <param name="alignleft" value="640" />
-                        <param name="label_spinner" value="$LOCALIZE[31546] Youtube..." />
+                        <param name="label_spinner" value="Youtube..." />
                     </include>
                 </control>
             </control>
