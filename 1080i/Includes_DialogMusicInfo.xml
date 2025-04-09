@@ -949,29 +949,62 @@
 
                 <!-- EXTENDED VIEW - FURNITURE HEADER -->
 
-                <!-- list albums -->
-                <include content="Furniture_Header_DialogInfo_Extended">
-                    <param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),2)" />
-                    <param name="controlid" value="9501" />
-                </include>
+                <control type="group">
+                    <top>40</top>
+                    <left>40</left>
 
-                <!-- list songs -->
-                 <include content="Furniture_Header_DialogInfo_Extended">
-                    <param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),8)" />
-                    <param name="controlid" value="9508" />
-                </include>
+                    <!-- list albums -->
+                    <include content="Furniture_Header_DialogInfo_Extended">
+                        <param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),2)" />
+                        <param name="controlid" value="9501" />
+                    </include>
 
-                <!-- albums this year -->
-                <include content="Furniture_Header_DialogInfo_Extended">
-                    <param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),5)" />
-                    <param name="controlid" value="9511" />
-                </include>
+                    <!-- list songs -->
+                     <include content="Furniture_Header_DialogInfo_Extended">
+                        <param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),8)" />
+                        <param name="controlid" value="9508" />
+                    </include>
 
-                <!-- youtube -->
-                 <include content="Furniture_Header_DialogInfo_Extended">
-                    <param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),3)" />
-                    <param name="controlid" value="9502" />
-                </include>
+                    <!-- albums this year -->
+                    <include content="Furniture_Header_DialogInfo_Extended">
+                        <param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),5)" />
+                        <param name="controlid" value="9511" />
+                    </include>
+
+                    <!-- youtube -->
+                     <include content="Furniture_Header_DialogInfo_Extended">
+                        <param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),3)" />
+                        <param name="controlid" value="9502" />
+                    </include>
+                </control>
+
+                <!-- EXTENDED VIEW - FURNITURE FOOTER / FLAG -->
+
+                <control type="group">
+                    <align>left</align>
+                    <left>View_SidePad</left>
+
+                    <!-- list albums -->
+                    <include content="Furniture_Footer_DialogInfo_Extended"><param name="controlid" value="9501" /><param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),2)" /></include>
+                    <include content="Furniture_Flags_DialogInfo_Extended_Audio"><param name="controlid" value="9501" /><param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),2)" /></include>
+                    <include content="Hidden_List_Album_Track_Count_Dialog_Music_Info_Ext" condition="!Skin.HasSetting(disable.all.hidden.list)"><param name="controlid" value="9501" /><param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),2)" /></include>
+
+                    <!-- list songs -->
+                    <include content="Furniture_Footer_DialogInfo_Extended"><param name="controlid" value="9508" /><param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),8)" /></include>
+                    <include content="Furniture_Flags_DialogInfo_Extended_Audio"><param name="controlid" value="9508" /><param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),8)" /></include>
+
+                    <!-- albums this year -->
+                    <include content="Furniture_Footer_DialogInfo_Extended"><param name="controlid" value="9511" /><param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),5)" /></include>
+                    <include content="Furniture_Flags_DialogInfo_Extended_Audio"><param name="controlid" value="9511" /><param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),5)" /></include>
+                    <include content="Hidden_List_Album_Track_Count_Dialog_Music_Info_Ext" condition="!Skin.HasSetting(disable.all.hidden.list)"><param name="controlid" value="9511" /><param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),5)" /></include>
+
+                    <include content="Dialog_Music_Clearlogo_Ext"><param name="controlid" value="9511" /><param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),5)" /></include>
+
+                    <!-- youtube -->
+                    <include content="Furniture_Footer_DialogInfo_Extended"><param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),3)" /><param name="controlid" value="9502" /></include>
+                </control>
+
+                <!-- EXTENDED VIEW - LAYOUT -->
 
                 <control type="group">
                     <top>200</top>
@@ -1073,30 +1106,9 @@
                         <param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),3) + Control.HasFocus(9005)" />
                         <param name="controlid" value="9502" />
                         <param name="centerleft" value="526" />
-                        <param name="label_spinner" value="Youtube..." />
+                        <param name="label_spinner" value="$LOCALIZE[31546] Youtube..." />
                     </include>
                 </control>
-
-                <!-- EXTENDED VIEW - FURNITURE FOOTER / FLAG -->
-
-                <!-- list albums -->
-                <include content="Furniture_Footer_DialogInfo_Extended"><param name="controlid" value="9501" /><param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),2)" /></include>
-                <include content="Furniture_Flags_DialogInfo_Extended_Audio"><param name="controlid" value="9501" /><param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),2)" /></include>
-                <include content="Hidden_List_Album_Track_Count_Dialog_Music_Info_Ext" condition="!Skin.HasSetting(disable.all.hidden.list)"><param name="controlid" value="9501" /><param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),2)" /></include>
-
-                <!-- list songs -->
-                <include content="Furniture_Footer_DialogInfo_Extended"><param name="controlid" value="9508" /><param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),8)" /></include>
-                <include content="Furniture_Flags_DialogInfo_Extended_Audio"><param name="controlid" value="9508" /><param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),8)" /></include>
-
-                <!-- albums this year -->
-                <include content="Furniture_Footer_DialogInfo_Extended"><param name="controlid" value="9511" /><param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),5)" /></include>
-                <include content="Furniture_Flags_DialogInfo_Extended_Audio"><param name="controlid" value="9511" /><param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),5)" /></include>
-                <include content="Hidden_List_Album_Track_Count_Dialog_Music_Info_Ext" condition="!Skin.HasSetting(disable.all.hidden.list)"><param name="controlid" value="9511" /><param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),5)" /></include>
-
-                <include content="Dialog_Music_Clearlogo_Ext"><param name="controlid" value="9511" /><param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),5)" /></include>
-
-                <!-- youtube -->
-                <include content="Furniture_Footer_DialogInfo_Extended"><param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),3)" /><param name="controlid" value="9502" /></include>
             </control>
         </control>
 

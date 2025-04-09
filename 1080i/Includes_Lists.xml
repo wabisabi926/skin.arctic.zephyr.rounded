@@ -762,7 +762,8 @@
         <param name="listbottom" value="$PARAM[listbottom]" default="30" />
         <param name="listleft" value="$PARAM[listleft]" default="-700" />
         <param name="alignleft" value="$PARAM[alignleft]" default="500" />
-        <param name="aspect" value="$PARAM[aspect]" default="scale" />
+        <param name="aspectratio" value="$PARAM[aspectratio]" default="scale" />
+        <param name="colordiffuse" value="$PARAM[colordiffuse]" default="White100" />
 
         <definition>
 
@@ -865,9 +866,10 @@
                         <visible>$PARAM[visible.layouts]</visible>
                         <animation effect="fade" tween="sine" easing="inout" start="0" end="100" time="450" delay="50">Visible</animation>
                         <include content="Layout_Dialog_Info_Square">
-                            <param name="aspectratio" value="$PARAM[aspectratio]" default="keep" />
                             <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
                             <param name="thumb" value="$PARAM[thumb]" default="false" />
+                            <param name="aspectratio" value="$PARAM[aspectratio]" default="scale" />
+                            <param name="colordiffuse" value="$PARAM[colordiffuse]" default="White100" />
                         </include>
                     </control>
                 </itemlayout>
@@ -876,11 +878,13 @@
                         <visible>$PARAM[visible.layouts]</visible>
                         <animation effect="fade" start="0" end="100" time="0" delay="150">Visible</animation>
                         <include content="Layout_Dialog_Info_Square_Focus">
-                            <param name="aspectratio" value="$PARAM[aspectratio]" default="scale" />
                             <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
                             <param name="controlid" value="$PARAM[controlid]" />
                             <param name="zoom" value="$PARAM[zoom]" />
                             <param name="thumb" value="$PARAM[thumb]" default="false" />
+                            <param name="aspectratio" value="$PARAM[aspectratio]" default="scale" />
+                            <param name="colordiffuse" value="$PARAM[colordiffuse]" default="White100" />
+                            <param name="controlid" value="$PARAM[controlid]" />
                         </include>
                     </control>
                 </focusedlayout>
@@ -1025,15 +1029,16 @@
         <param name="fallbackpicture" value="$PARAM[fallbackpicture]" default="DefaultPicture.png" />
         <param name="thumb" value="$PARAM[thumb]" default="true" />
         <param name="pad_image" value="$PARAM[pad_image]" default="10" />
+        <param name="colordiffuse" value="$PARAM[colordiffuse]" default="White100" />
 
         <definition>
             <control type="group">
-                <right>20</right>
+                <right>16</right>
 
                 <include content="Def_Art_Full_Background_b12">
                     <param name="pad_shadow" value="1" />
                     <param name="pad_image" value="10" />
-                    <param name="colordiffuse" value="White100" />
+                    <param name="colordiffuse" value="$PARAM[colordiffuse]" />
                 </include>
 
                 <control type="image">
@@ -1056,22 +1061,21 @@
         <param name="aspectratio" value="$PARAM[aspectratio]" default="scale" />
         <param name="fallbackpicture" default="pbtmdb.png" />
         <param name="thumb" value="$PARAM[thumb]" default="true" />
+        <param name="colordiffuse" value="$PARAM[colordiffuse]" default="White100" />
+        <param name="controlid" value="$PARAM[controlid]" />
 
         <definition>
             <control type="group">
-                <!-- <animation effect="fade" start="0" end="100" time="350" tween="sine" easing="out" reversible="false">Visible</animation> -->
-                <!-- <animation effect="fade" start="100" end="0" tween="cubic" easing="out" time="350" reversible="false">Hidden</animation> -->
-
                 <animation center="auto" easing="inout" effect="zoom" end="$PARAM[zoom]" start="100" time="200" tween="sine">Focus</animation>
                 <animation center="auto" easing="inout" effect="zoom" end="100" start="$PARAM[zoom]" time="200" tween="sine">UnFocus</animation>
 
                 <control type="group">
-                    <right>20</right>
+                    <right>16</right>
 
                     <include content="Def_Art_Full_Background_b12">
                         <param name="pad_shadow" value="1" />
                         <param name="pad_image" value="10" />
-                        <param name="colordiffuse" value="black" />
+                        <param name="colordiffuse" value="$PARAM[colordiffuse]" />
                     </include>
 
                     <control type="image">
@@ -1079,6 +1083,15 @@
                         <texture border="18">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/selectbox_h.png</texture>
                         <include>Animation_Delay_Fade_In_200</include>
                     </control>
+
+                    <include content="Layout_Widget_Glow">
+                        <param name="glow_height" value="342" />
+                        <param name="glow_top" value="6" />
+                        <param name="glow_left" value="4" />
+                        <param name="glow_right" value="4" />
+                        <param name="glow_zoom" value="108" />
+                        <param name="id" value="$PARAM[controlid]" />
+                    </include>
 
                     <control type="image">
                         <include content="Def_Padding"><param name="pad">10</param></include>
