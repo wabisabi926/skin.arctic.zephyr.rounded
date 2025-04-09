@@ -387,6 +387,11 @@
         <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating))">$INFO[Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating)]</value>
     </variable>
 
+    <variable name="Value_Item_Rating_TMDb">
+        <value condition="!Container.Content(seasons) + !String.IsEmpty(ListItem.Rating)">$INFO[ListItem.Rating]</value>
+        <value condition="Container.Content(seasons) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Rating))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Rating)]</value>
+    </variable>
+
     <variable name="Value_Item_Rating">
         <value condition="Integer.IsEqual(ListItem.Rating,10.0)">10</value>
         <value>$INFO[ListItem.Rating]</value>

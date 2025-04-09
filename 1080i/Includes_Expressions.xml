@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 
+    <!-- RATING -->
+
+    <expression name="Condition_IMDb_Rating">[[!String.IsEmpty(ListItem.Rating(imdb)) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating))] + [Container.Content(movies) | Container.Content(tvshows) | [Container.Content(episodes) + !String.IsEmpty(ListItem.DBID)]]]</expression>
+
+    <expression name="Condition_TMDb_Rating">[[!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Rating)) + Container.Content(seasons)] | [!Container.Content(seasons) + !String.IsEmpty(ListItem.Rating) + String.IsEmpty(ListItem.DBID)]]</expression>
+
     <!-- CONDITION HIDDEN LIST -->
 
     <expression name="Condition_List_Item_Name_In_Folder">[[Container.Content(movies) + String.IsEmpty(ListItem.DBType)] | Container.Content(genres) | Container.Content(years) | Container.Content(countries) | Container.Content(studios) | Container.Content(videoversions) | Container.Content(tags) | Container.Content(files) | Container.Content(albums) | Container.Content(images) | String.IsEqual(ListItem.DBType,album)] + [$EXP[Home_Is_Flix] | $EXP[View_Flix]] + !String.IsEmpty(ListItem.FolderPath) + ListItem.IsFolder + [!$EXP[IsAnPlugin] | $EXP[IsPluginShortlist]]</expression>
