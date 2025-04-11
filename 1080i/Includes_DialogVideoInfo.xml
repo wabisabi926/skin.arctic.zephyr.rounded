@@ -1398,523 +1398,162 @@
                 <!-- EXTENDED VIEW - FURNITURE HEADER -->
 
                 <control type="group">
+                    <!-- =========================== -->
+                    <!--           SET               -->
+                    <!-- =========================== -->
 
-                    <!-- MOVIE / TV SHOW  -->
+                    <include content="Recommendation_Set" condition="String.IsEqual(ListItem.DBType,set)">
+                        <param name="controlid" value="9550" />
+                        <param name="visible" value="9550" />
+                    </include>
 
-                    <include content="Furniture_Header_DialogInfo_Extended"><param name="controlid" value="9557" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),17)" /></include>    <!-- CREW -->
+                    <!-- =========================== -->
+                    <!--           CAST              -->
+                    <!-- =========================== -->
 
-                    <include content="Furniture_Header_DialogInfo_Extended"><param name="controlid" value="9515" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),8)" /></include>    <!-- SET (MOVIE) -->
-                    <include content="Furniture_Header_DialogInfo_Extended"><param name="controlid" value="9518" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),2)" /></include>    <!-- SIMILAR -->
-                    <include content="Furniture_Header_DialogInfo_Extended"><param name="controlid" value="9517" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),16)" /></include>    <!-- RECOMMENDATION -->
-                    <include content="Furniture_Header_DialogInfo_Extended"><param name="controlid" value="9503" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),3)" /></include>    <!-- STUDIO -->
-                    <include content="Furniture_Header_DialogInfo_Extended"><param name="controlid" value="9504" /></include>    <!-- YOUTUBE -->
+                    <!-- CAST - LOCAL -->
 
-                    <!-- TVSHOW -->
+                    <include content="Recommendation_Cast_Local" condition="!String.IsEqual(ListItem.Property(item.type),person)">
+                        <param name="controlid" value="50" />
+                    </include>
 
-                    <include content="Furniture_Header_DialogInfo_Extended"><param name="controlid" value="9579" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),15)" /></include>    <!-- SEASONS -->
+                    <!-- CAST - ONLINE / SEASON -->
 
-                    <!-- PERSON -->
+                    <include content="Recommendation_Cast_Online" condition="!String.IsEqual(ListItem.DBType,set)">
+                        <param name="controlid" value="9550" />
+                    </include>
 
-                    <include content="Furniture_Header_DialogInfo_Extended"><param name="controlid" value="9554" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),13)" /></include>    <!-- CAST        PICTURES -->
+                    <!-- =========================== -->
+                    <!--           PERSONS           -->
+                    <!-- =========================== -->
 
-                    <include content="Furniture_Header_DialogInfo_Extended"><param name="controlid" value="9552" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),11)" /></include>    <!-- MOVIES      LIST BY CAST -->
-                    <include content="Furniture_Header_DialogInfo_Extended"><param name="controlid" value="9553" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),12)" /></include>    <!-- TVSHOWS     LIST BY CAST -->
-                    <include content="Furniture_Header_DialogInfo_Extended"><param name="controlid" value="9558" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),18)" /></include>    <!-- MOVIES      LIST BY MEMBER CREW -->
-                    <include content="Furniture_Header_DialogInfo_Extended"><param name="controlid" value="9559" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),19)" /></include>    <!-- TVSHOWS     LIST BY MEMBER CREW -->
+                    <!-- PERSON - PICTURES -->
 
-                    <include content="Furniture_Header_DialogInfo_Extended"><param name="controlid" value="9560" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),20)" /></include>    <!-- MOVIES      LIST BY DIRECTOR -->
+                    <include content="Recommendation_Person_Picture" condition="String.IsEqual(ListItem.Property(item.type),person)">
+                        <param name="controlid" value="9554" />
+                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),13)" />
+                    </include>
 
-                    <!-- SETS -->
+                    <!-- PERSON - DIRECTOR - MOVIES / TVSHOWS -->
 
-                    <include content="Furniture_Header_DialogInfo_Extended"><param name="controlid" value="9550" /></include>
-                </control>
+                    <include content="Recommendation_Person_Director" condition="String.IsEqual(ListItem.Property(item.type),person)">
+                        <param name="controlid" value="9560" />
+                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),20)" />
+                    </include>
 
-                <!-- EXTENDED VIEW - FURNITURE FOOTER / FLAG -->
+                    <!-- PERSON - ACTOR - MOVIES -->
 
-                <control type="group">
+                    <include content="Recommendation_Person_Actor_Movies" condition="String.IsEqual(ListItem.Property(item.type),person)">
+                        <param name="controlid" value="9552" />
+                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),11)" />
+                    </include>
 
-                    <!-- MOVIE / TV SHOW  -->
+                    <!-- PERSON - ACTOR - TVSHOWS -->
+
+                    <include content="Recommendation_Person_Actor_Tvshows" condition="String.IsEqual(ListItem.Property(item.type),person)">
+                        <param name="controlid" value="9553" />
+                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),12)" />
+                    </include>
+
+                    <!-- PERSON - MEMBER CREW - MOVIES -->
+
+                    <include content="Recommendation_Person_Member_Crew__Movies" condition="String.IsEqual(ListItem.Property(item.type),person)">
+                        <param name="controlid" value="9558" />
+                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),18)" />
+                    </include>
+
+                    <!-- PERSON - MEMBER CREW - TVSHOWS -->
+
+                    <include content="Recommendation_Person_Member_Crew_Tvshows" condition="String.IsEqual(ListItem.Property(item.type),person)">
+                        <param name="controlid" value="9559" />
+                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),19)" />
+                    </include>
+
+                    <!-- =========================== -->
+                    <!--          YOUTUBE            -->
+                    <!-- =========================== -->
+
+                    <include content="Recommendation_Youtube" condition="!Skin.HasSetting(hide.button.video.youtube)">
+                        <param name="controlid" value="9504" />
+                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),4)" />
+                    </include>
+
+                    <!-- =========================== -->
+                    <!--       MOVIE / TV SHOW       -->
+                    <!-- =========================== -->
 
                     <!-- CREW -->
-                    <include content="Furniture_Footer_DialogInfo_Extended"><param name="controlid" value="9557" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),17)" /></include>
 
-                    <!-- YEAR -->
-
-
-                    <!-- SET (MOVIE) -->
-                    <include content="Furniture_Footer_DialogInfo_Extended"><param name="controlid" value="9515" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),8)" /></include>
-                    <include content="Furniture_Flags_DialogInfo_Extended" condition="!Skin.HasSetting(hide.furniture.flags)"><param name="controlid" value="9515" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),8)" /></include>
-
-                    <!-- SIMILAR -->
-                    <include content="Furniture_Footer_DialogInfo_Extended"><param name="controlid" value="9518" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),2)" /></include>
-                    <include content="Furniture_Flags_DialogInfo_Extended" condition="!Skin.HasSetting(hide.furniture.flags)"><param name="controlid" value="9518" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),2)" /></include>
-
-                    <!-- RECOMMENDATION -->
-                    <include content="Furniture_Footer_DialogInfo_Extended"><param name="controlid" value="9517" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),16)" /></include>
-                    <include content="Furniture_Flags_DialogInfo_Extended" condition="!Skin.HasSetting(hide.furniture.flags)"><param name="controlid" value="9517" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),16)" /></include>
-
-                    <!-- STUDIO -->
-                    <include content="Furniture_Footer_DialogInfo_Extended"><param name="controlid" value="9503" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),3)" /></include>
-                    <include content="Furniture_Flags_DialogInfo_Extended" condition="!Skin.HasSetting(hide.furniture.flags)"><param name="controlid" value="9503" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),3)" /></include>
-
-                    <!-- YOUTUBE -->
-                    <include content="Furniture_Footer_DialogInfo_Extended"><param name="controlid" value="9504" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),4) | Control.HasFocus(7011)" /></include>
-
-                    <!-- TVSHOW -->
-
-                    <!-- SEASONS -->
-                    <include content="Furniture_Footer_DialogInfo_Extended"><param name="controlid" value="9579" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),15)" /></include>
-                    <include content="Furniture_Flags_DialogInfo_Extended" condition="!Skin.HasSetting(hide.furniture.flags)"><param name="controlid" value="9579" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),15)" /></include>
-
-
-                    <!-- PERSON -->
-
-                    <!-- MOVIES      LIST BY CAST -->
-                    <include content="Furniture_Footer_DialogInfo_Extended"><param name="controlid" value="9552" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),11)" /></include>
-                    <include content="Furniture_Flags_DialogInfo_Extended" condition="!Skin.HasSetting(hide.furniture.flags)"><param name="controlid" value="9552" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),11)" /></include>
-
-                    <!-- TVSHOWS      LIST BY CAST -->
-                    <include content="Furniture_Footer_DialogInfo_Extended"><param name="controlid" value="9553" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),12)" /></include>
-                    <include content="Furniture_Flags_DialogInfo_Extended" condition="!Skin.HasSetting(hide.furniture.flags)"><param name="controlid" value="9553" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),12)" /></include>
-
-                    <!-- MOVIES      LIST BY MEMBER CREW -->
-                    <include content="Furniture_Footer_DialogInfo_Extended"><param name="controlid" value="9558" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),18)" /></include>
-                    <include content="Furniture_Flags_DialogInfo_Extended" condition="!Skin.HasSetting(hide.furniture.flags)"><param name="controlid" value="9558" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),18)" /></include>
-
-                    <!-- TVSHOWS      LIST BY MEMBER CREW -->
-                    <include content="Furniture_Footer_DialogInfo_Extended"><param name="controlid" value="9559" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),19)" /></include>
-                    <include content="Furniture_Flags_DialogInfo_Extended" condition="!Skin.HasSetting(hide.furniture.flags)"><param name="controlid" value="9559" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),19)" /></include>
-
-                    <!-- MOVIES       LIST BY DIRECTOR - LOCAL ONLY -->
-                    <include content="Furniture_Footer_DialogInfo_Extended" condition="String.IsEqual(ListItem.Property(item.type),person)"><param name="controlid" value="9560" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),20)" /></include>
-                    <include content="Furniture_Flags_DialogInfo_Extended" condition="!Skin.HasSetting(hide.furniture.flags)"><param name="controlid" value="9560" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),20)" /></include>
-
-                    <!-- PICTURES     -->
-                    <include content="Furniture_Footer_DialogInfo_Extended"><param name="controlid" value="9554" /><param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),13)" /></include>
-
-                    <!-- SETS -->
-
-                    <include content="Furniture_Footer_DialogInfo_Extended" condition="String.IsEqual(ListItem.DBType,set)"><param name="controlid" value="9550" /></include>
-                    <include content="Furniture_Flags_DialogInfo_Extended" condition="String.IsEqual(ListItem.DBType,set) + !Skin.HasSetting(hide.furniture.flags)"><param name="controlid" value="9550" /></include>
-                </control>
-
-
-
-
-                <!-- CAST LOCAL -->
-
-                <include content="Recommendation_Cast_Local">
-                    <param name="controlid" value="50" />
-                </include>
-
-                <!-- CAST ONLINE -->
-
-                <include content="Recommendation_Cast_Online">
-                    <param name="controlid" value="9550" />
-                </include>
-
-                <!-- BY DIRECTOR -->
-
-                <include content="Recommendation_Director" condition="Skin.HasSetting(show.button.video.director)">
-                    <param name="controlid" value="9506" />
-                </include>
-
-                <!-- BY WRITER -->
-
-                <include content="Recommendation_Writer" condition="Skin.HasSetting(show.button.video.writer)">
-                    <param name="controlid" value="9556" />
-                </include>
-
-                <!-- YEAR MOVIES / TV SHOWS -->
-
-                <include content="Recommendation_Year" condition="Skin.HasSetting(show.button.video.year)">
-                    <param name="controlid" value="9514" />
-                </include>
-
-
-
-
-                <!-- EXTENDED VIEW - LAYOUT -->
-
-                <control type="group">
-
-                    <!-- CAST TMDB - ON LINE / SEASON ONLY -->
-
-
-
-                    <!-- SETS -->
-
-                    <include content="View_Dialog_Info_Poster" condition="String.IsEqual(ListItem.DBType,set)">
-                        <param name="condition.issets" value="true" />
-                        <param name="condition.isnotsets" value="false" />
-                        <param name="condition.includecontent" value="true" />
-                        <param name="fallbackpicture" value="pbtmdb.png" />
-                        <param name="visible" value="String.IsEmpty(Window(Home).Property(moviecontent)) + ![Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hide.button.video.wiki)]" />
-                        <param name="animation" value="Animation_cast" />
-                        <param name="controlid" value="9550" />
-                        <param name="ContentToLoad" value="$VAR[Def_List_Set]" />
-                        <param name="sortby" value="year" />
-                        <param name="sortorder" value="ascending" />
-                        <param name="visible.layouts" value="Control.HasFocus(9550) | Control.HasFocus(95507) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
-                        <param name="onclick1" value="$VAR[Def_Item]" />
-                        <param name="onclick2" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" />
-                        <param name="listleft" value="-840" />
-                        <param name="poster" value="true" />
-                        <param name="thumb" value="false" />
-                    </include>
-                    <include content="Def_Dialog_Info_List_Updating">
-                        <param name="visible" value="String.IsEmpty(Window(Home).Property(moviecontent)) + String.IsEqual(ListItem.DBType,set) + !Control.HasFocus(9550)" />
-                        <param name="controlid" value="9550" />
-                        <param name="centerleft" value="430" />
+                    <include content="Recommendation_Crew" condition="Skin.HasSetting(show.button.video.crew)">
+                        <param name="controlid" value="9557" />
+                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),17)" />
                     </include>
 
-                    <!-- MOVIES LIST BY CAST -->
+                    <!-- BY DIRECTOR -->
 
-                    <include content="View_Dialog_Info_Poster" condition="String.IsEqual(ListItem.Property(item.type),person) + !String.IsEqual(ListItem.DBType,set)">
-                        <param name="condition.includecontent" value="true" />
-                        <param name="fallbackpicture" value="pbtmdb.png" />
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),11)" />
-                        <param name="animation" value="Animation_cast" />
-                        <param name="controlid" value="9552" />
-                        <param name="ContentToLoad" value="$VAR[Def_Person_List_Movies]" />
-                        <param name="sortby" value="year" />
-                        <param name="sortorder" value="descending" />
-                        <param name="visible.layouts" value="Control.HasFocus(9552) | Control.HasFocus(95527) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
-                        <param name="onclick1" value="$VAR[Def_Item]" />
-                        <param name="onclick2" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" />
-                        <param name="listleft" value="-840" />
-                        <param name="poster" value="true" />
-                        <param name="thumb" value="false" />
-                    </include>
-                    <include content="Def_Dialog_Info_List_Updating">
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),11) + Control.HasFocus(9052)" />
-                        <param name="controlid" value="9552" />
-                        <param name="centerleft" value="430" />
+                    <include content="Recommendation_Director" condition="Skin.HasSetting(show.button.video.director)">
+                        <param name="controlid" value="9506" />
+                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),7)" />
                     </include>
 
-                    <!-- TVSHOWS LIST BY CAST -->
+                    <!-- BY WRITER -->
 
-                    <include content="View_Dialog_Info_Poster" condition="String.IsEqual(ListItem.Property(item.type),person) + !String.IsEqual(ListItem.DBType,set)">
-                        <param name="condition.includecontent" value="true" />
-                        <param name="fallbackpicture" value="pbtmdb.png" />
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),12)" />
-                        <param name="animation" value="Animation_cast" />
-                        <param name="controlid" value="9553" />
-                        <param name="ContentToLoad" value="$VAR[Def_Person_List_TvShows]" />
-                        <param name="sortby" value="year" />
-                        <param name="sortorder" value="descending" />
-                        <param name="visible.layouts" value="Control.HasFocus(9553) | Control.HasFocus(95537) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
-                        <param name="onclick1" value="$VAR[Def_Item]" />
-                        <param name="onclick2" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" />
-                        <param name="listleft" value="-840" />
-                        <param name="poster" value="true" />
-                        <param name="thumb" value="false" />
-                    </include>
-                    <include content="Def_Dialog_Info_List_Updating">
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),12) + Control.HasFocus(9053)" />
-                        <param name="controlid" value="9553" />
-                        <param name="centerleft" value="430" />
+                    <include content="Recommendation_Writer" condition="Skin.HasSetting(show.button.video.writer)">
+                        <param name="controlid" value="9556" />
+                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),14)" />
                     </include>
 
-                    <!-- MOVIES LIST BY MEMBER CREW -->
+                    <!-- YEAR MOVIES / TV SHOWS -->
 
-                    <include content="View_Dialog_Info_Poster" condition="String.IsEqual(ListItem.Property(item.type),person) + !String.IsEqual(ListItem.DBType,set)">
-                        <param name="condition.includecontent" value="true" />
-                        <param name="fallbackpicture" value="pbtmdb.png" />
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),18)" />
-                        <param name="animation" value="Animation_cast" />
-                        <param name="controlid" value="9558" />
-                        <param name="ContentToLoad" value="$VAR[Def_Person_List_Movies_Member_Crew]" />
-                        <param name="sortby" value="year" />
-                        <param name="sortorder" value="descending" />
-                        <param name="visible.layouts" value="Control.HasFocus(9558) | Control.HasFocus(95587) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
-                        <param name="onclick1" value="$VAR[Def_Item]" />
-                        <param name="onclick2" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" />
-                        <param name="listleft" value="-840" />
-                        <param name="poster" value="true" />
-                        <param name="thumb" value="false" />
-                    </include>
-                    <include content="Def_Dialog_Info_List_Updating">
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),18) + Control.HasFocus(9058)" />
-                        <param name="controlid" value="9558" />
-                        <param name="centerleft" value="430" />
+                    <include content="Recommendation_Year" condition="Skin.HasSetting(show.button.video.year)">
+                        <param name="controlid" value="9514" />
+                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),9)" />
                     </include>
 
-                    <!-- TVSHOWS LIST BY MEMBER CREW -->
+                    <!-- COLLECTION - MOVIES -->
 
-                    <include content="View_Dialog_Info_Poster" condition="String.IsEqual(ListItem.Property(item.type),person) + !String.IsEqual(ListItem.DBType,set)">
-                        <param name="condition.includecontent" value="true" />
-                        <param name="fallbackpicture" value="pbtmdb.png" />
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),19)" />
-                        <param name="animation" value="Animation_cast" />
-                        <param name="controlid" value="9559" />
-                        <param name="ContentToLoad" value="$VAR[Def_Person_List_TvShows_Member_Crew]" />
-                        <param name="sortby" value="year" />
-                        <param name="sortorder" value="descending" />
-                        <param name="visible.layouts" value="Control.HasFocus(9559) | Control.HasFocus(95597) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
-                        <param name="onclick1" value="$VAR[Def_Item]" />
-                        <param name="onclick2" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" />
-                        <param name="listleft" value="-840" />
-                        <param name="poster" value="true" />
-                        <param name="thumb" value="false" />
-                    </include>
-                    <include content="Def_Dialog_Info_List_Updating">
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),19) + Control.HasFocus(9059)" />
-                        <param name="controlid" value="9559" />
-                        <param name="centerleft" value="430" />
+                    <include content="Recommendation_Collection" condition="Skin.HasSetting(show.button.video.set)">
+                        <param name="controlid" value="9515" />
+                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),8)" />
                     </include>
 
-                    <!-- MOVIES LIST BY DIRECTOR (PERSON) -->
+                    <!-- SIMILAR - MOVIES / TV SHOWS -->
 
-                    <include content="View_Dialog_Info_Poster" condition="String.IsEqual(ListItem.Property(item.type),person)">
-                        <param name="condition.includecontent" value="true" />
-                        <param name="fallbackpicture" value="pbtmdb.png" />
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),20)" />
-                        <param name="animation" value="Animation_cast" />
-                        <param name="controlid" value="9560" />
-                        <param name="ContentToLoad" value="$VAR[Def_List_Director_Person]" />
-                        <param name="sortby" value="year" />
-                        <param name="sortorder" value="descending" />
-                        <param name="visible.layouts" value="Control.HasFocus(9560) | Control.HasFocus(95607) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Container(9999).IsUpdating]]" />
-                        <param name="onclick1" value="$VAR[Def_Item]" />
-                        <param name="onclick2" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" />
-                        <param name="listleft" value="-840" />
-                        <param name="poster" value="true" />
-                        <param name="thumb" value="false" />
-                    </include>
-                    <include content="Def_Dialog_Info_List_Updating">
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),20) + Control.HasFocus(9060)" />
-                        <param name="controlid" value="9560" />
-                        <param name="centerleft" value="430" />
+                    <include content="Recommendation_Similar" condition="!Skin.HasSetting(hide.button.video.similar)">
+                        <param name="controlid" value="9518" />
+                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),2)" />
                     </include>
 
-                    <!-- SEASONS -->
+                    <!-- RECOMMENDATION - MOVIES / TV SHOWS -->
 
-                    <include content="View_Dialog_Info_Poster"  condition="[String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set) + !Skin.HasSetting(hide.button.tvshow.season)">
-                        <param name="condition.includecontent" value="true" />
-                        <param name="fallbackpicture" value="pbtmdb.png" />
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),15)" />
-                        <param name="animation" value="Animation_cast" />
-                        <param name="controlid" value="9579" />
-                        <param name="ContentToLoad" value="$VAR[Def_List_Seasons]" />
-                        <param name="visible.layouts" value="Control.HasFocus(9579) | Control.HasFocus(95797) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
-                        <param name="onclick1" value="$VAR[Def_Item]" />
-                        <param name="onclick2" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" />
-                        <param name="listleft" value="-840" />
-                        <param name="poster" value="true" />
-                        <param name="thumb" value="false" />
-                    </include>
-                    <include content="Def_Dialog_Info_List_Updating">
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),15) + Control.HasFocus(9079)" />
-                        <param name="controlid" value="9579" />
-                        <param name="centerleft" value="430" />
+                    <include content="Recommendation_Recommendation" condition="Skin.HasSetting(show.button.video.recommended)">
+                        <param name="controlid" value="9517" />
+                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),16)" />
                     </include>
 
-                    <!-- PICTURES LIST BY CAST -->
+                    <!-- STUDIO - MOVIES / TV SHOWS -->
 
-                    <include content="View_Dialog_Info_Cast" condition="String.IsEqual(ListItem.Property(item.type),person) + !String.IsEqual(ListItem.DBType,set)">
-                        <param name="condition.includecontent" value="true" />
-                        <param name="fallbackpicture" value="pbtmdb.png" />
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),13) + ![Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hide.button.video.wiki)]" />
-                        <param name="animation" value="Animation_cast" />
-                        <param name="controlid" value="9554" />
-                        <param name="ContentToLoad" value="$VAR[Def_Person_List_Picture]" />
-                        <param name="sortby" value="year" />
-                        <param name="sortorder" value="descending" />
-                        <param name="visible.layouts" value="Control.HasFocus(9554) | Control.HasFocus(95547) | Control.HasFocus(6) | Control.HasFocus(10) | Control.HasFocus(160) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
-                        <param name="onclick1" value="SetFocus(160)" />
-                        <!-- <param name="onclick2" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" /> -->
-                        <param name="listleft" value="-840" />
-                        <param name="poster" value="true" />
-                        <param name="thumb" value="false" />
+                    <include content="Recommendation_Studio" condition="!Skin.HasSetting(hide.button.video.studio)">
+                        <param name="controlid" value="9503" />
+                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),3)" />
                     </include>
-                    <include content="Def_Dialog_Info_List_Updating">
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),13) + [Control.HasFocus(9054) | Control.HasFocus(9201) | Control.HasFocus(9013) | Control.HasFocus(90122)]" />
-                        <param name="controlid" value="9554" />
-                        <param name="centerleft" value="430" />
-                        <param name="label_spinner" value="$LOCALIZE[31577]..." />
-                    </include>
+
+                    <!-- =========================== -->
+                    <!--          TV SHOW            -->
+                    <!-- =========================== -->
 
                     <!-- CREATOR -->
 
-                    <include content="Furniture_Header_DialogInfo_Extended">
+                    <include content="Recommendation_Creator" condition="!Skin.HasSetting(hide.button.tvshow.creator)">
                         <param name="controlid" value="9520" />
-                    </include>
-                    <include content="Furniture_Footer_DialogInfo_Extended">
-                        <param name="controlid" value="9520" />
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),20)" />
-                    </include>
-                    <include content="Furniture_Flags_DialogInfo_Extended" condition="!Skin.HasSetting(hide.furniture.flags)">
-                        <param name="controlid" value="9520" />
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),20)" />
-                    </include>
-                    <include content="View_Dialog_Info_Poster" condition="[String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + !String.IsEqual(ListItem.DBType,set) + !Skin.HasSetting(hide.button.tvshow.creator)">
-                        <param name="condition.includecontent" value="true" />
-                        <param name="fallbackpicture" value="pbtmdb.png" />
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),20)" />
-                        <param name="animation" value="Animation_cast" />
-                        <param name="controlid" value="9520" />
-                        <param name="ContentToLoad" value="$VAR[Def_List_Creator]" />
-                        <param name="sortby" value="year" />
-                        <param name="sortorder" value="descending" />
-                        <param name="visible.layouts" value="Control.HasFocus(9520) | Control.HasFocus(95207) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
-                        <param name="onclick1" value="$VAR[Def_Item]" />
-                        <param name="onclick2" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" />
-                        <param name="listleft" value="-840" />
-                        <param name="poster" value="true" />
-                        <param name="thumb" value="false" />
-                    </include>
-                    <include content="Def_Dialog_Info_List_Updating">
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),20) + Control.HasFocus(9020)" />
-                        <param name="controlid" value="9520" />
-                        <param name="centerleft" value="430" />
+                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),22)" />
                     </include>
 
-                    <!-- CREW -->
+                    <!-- SEASONS -->
 
-                    <include content="View_Dialog_Info_Cast" condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set) + Skin.HasSetting(show.button.video.crew)">
-                        <param name="condition.includecontent" value="true" />
-                        <param name="fallbackpicture" value="pbtmdb.png" />
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),17)" />
-                        <param name="animation" value="Animation_cast" />
-                        <param name="controlid" value="9557" />
-                        <param name="ContentToLoad" value="$VAR[Def_List_Crew]" />
-                        <param name="visible.layouts" value="Control.HasFocus(9557) | Control.HasFocus(95577) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
-                        <param name="onclick1" value="$VAR[Def_Item]" />
-                        <param name="onclick2" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" />
-                        <param name="listleft" value="-840" />
-                        <param name="poster" value="true" />
-                        <param name="thumb" value="false" />
-                    </include>
-                    <include content="Def_Dialog_Info_List_Updating">
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),17) + Control.HasFocus(9057)" />
-                        <param name="controlid" value="9557" />
-                        <param name="centerleft" value="640" />
-                    </include>
-
-
-
-                    <!-- BY SETS -->
-
-                    <include content="View_Dialog_Info_Poster" condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)] + !String.IsEqual(ListItem.DBType,set) + Skin.HasSetting(show.button.video.set)">
-                        <param name="condition.includecontent" value="true" />
-                        <param name="fallbackpicture" value="pbtmdb.png" />
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),8)" />
-                        <param name="animation" value="Animation_cast" />
-                        <param name="controlid" value="9515" />
-                        <param name="ContentToLoad" value="$VAR[Def_List_Set]" />
-                        <param name="sortby" value="year" />
-                        <param name="sortorder" value="ascending" />
-                        <param name="visible.layouts" value="Control.HasFocus(9515) | Control.HasFocus(95157) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
-                        <param name="onclick1" value="$VAR[Def_Item]" />
-                        <param name="onclick2" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" />
-                        <param name="listleft" value="-840" />
-                        <param name="poster" value="true" />
-                        <param name="thumb" value="false" />
-                    </include>
-                    <include content="Def_Dialog_Info_List_Updating">
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),8) + Control.HasFocus(9015)" />
-                        <param name="controlid" value="9515" />
-                        <param name="centerleft" value="430" />
-                    </include>
-
-                    <!-- SIMILAR MOVIES / TV SHOWS  -->
-
-                    <include content="View_Dialog_Info_Poster" condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set) + !Skin.HasSetting(hide.button.video.similar)">
-                        <param name="condition.includecontent" value="true" />
-                        <param name="fallbackpicture" value="pbtmdb.png" />
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),2)" />
-                        <param name="animation" value="Animation_cast" />
-                        <param name="controlid" value="9518" />
-                        <param name="ContentToLoad" value="$VAR[Def_List_Similar]" />
-                        <param name="sortby" value="year" />
-                        <param name="sortorder" value="descending" />
-                        <param name="visible.layouts" value="Control.HasFocus(9518) | Control.HasFocus(95187) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
-                        <param name="onclick1" value="$VAR[Def_Item]" />
-                        <param name="onclick2" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" />
-                        <param name="listleft" value="-840" />
-                        <param name="poster" value="true" />
-                        <param name="thumb" value="false" />
-                    </include>
-                    <include content="Def_Dialog_Info_List_Updating">
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),2) + Control.HasFocus(9018)" />
-                        <param name="controlid" value="9518" />
-                        <param name="centerleft" value="430" />
-                    </include>
-
-                    <!-- RECOMENDATION MOVIES / TV SHOWS  -->
-
-                    <include content="View_Dialog_Info_Poster" condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set) + Skin.HasSetting(show.button.video.recommended)">
-                        <param name="condition.includecontent" value="true" />
-                        <param name="fallbackpicture" value="pbtmdb.png" />
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),16)" />
-                        <param name="animation" value="Animation_cast" />
-                        <param name="controlid" value="9517" />
-                        <param name="ContentToLoad" value="$VAR[Def_List_Recommendation]" />
-                        <param name="visible.layouts" value="Control.HasFocus(9517) | Control.HasFocus(95177) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
-                        <param name="onclick1" value="$VAR[Def_Item]" />
-                        <param name="onclick2" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" />
-                        <param name="listleft" value="-840" />
-                        <param name="poster" value="true" />
-                        <param name="thumb" value="false" />
-                    </include>
-                    <include content="Def_Dialog_Info_List_Updating">
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),16) + Control.HasFocus(9017)" />
-                        <param name="controlid" value="9517" />
-                        <param name="centerleft" value="430" />
-                    </include>
-
-                    <!-- STUDIO MOVIES / TV SHOWS -->
-
-                    <include content="View_Dialog_Info_Poster" condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set) + !Skin.HasSetting(hide.button.video.studio)">
-                        <param name="condition.includecontent" value="true" />
-                        <param name="fallbackpicture" value="pbtmdb.png" />
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),3)" />
-                        <param name="animation" value="Animation_cast" />
-                        <param name="controlid" value="9503" />
-                        <param name="ContentToLoad" value="$VAR[Def_List_Studio]" />
-                        <param name="sortby" value="year" />
-                        <param name="sortorder" value="descending" />
-                        <param name="visible.layouts" value="Control.HasFocus(9503) | Control.HasFocus(95037) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
-                        <param name="onclick1" value="$VAR[Def_Item]" />
-                        <param name="onclick2" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" />
-                        <param name="listleft" value="-840" />
-                        <param name="poster" value="true" />
-                        <param name="thumb" value="false" />
-                    </include>
-                    <include content="Def_Dialog_Info_List_Updating">
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),3) + Control.HasFocus(9003)" />
-                        <param name="controlid" value="9503" />
-                        <param name="centerleft" value="430" />
-                    </include>
-
-                    <!-- YOUTUBE -->
-
-                    <include content="View_Dialog_Info_Square" condition="[[[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.Property(item.type),person)] + !String.IsEqual(ListItem.DBType,set)] | $EXP[IsTMDbHelperItem]] + !Skin.HasSetting(hide.button.video.youtube)">
-                        <param name="fallbackpicture" value="DefaultVideo.png" />
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),4) | Control.HasFocus(7011)" />
-                        <param name="Animation_new" value="Animation_CastInfo2" />
-                        <param name="controlid" value="9504" />
-                        <!-- <param name="focusposition" value="1" /> -->
-                        <param name="visible.layouts" value="Control.HasFocus(9504) | Control.HasFocus(95047) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
-                        <param name="ContentToLoad" value="$VAR[Def_Content_Youtube_Video]" />
-                        <param name="onclick1" value="SetProperty(VideoYoutubeIsPlaying,$INFO[Container(9504).ListItem.FileNameAndPath],Home)" />
-                        <param name="onclick2" value="SetFocus(7011)" />
-                        <param name="onclick3" value="AlarmClock(LaunchYoutubeVideo,PlayMedia($ESCINFO[Window(Home).Property(VideoYoutubeIsPlaying)],False,1,playlist_type_hint=1),00:01,silent)" />
-                        <param name="limit" value="25" />
-                        <param name="sortby" value="file" />
-                        <param name="target" value="videos" />
-                        <param name="leftbackgroundlist" value="-227" />
-                        <param name="alignleft" value="640" />
-                        <param name="thumb" value="true" />
-                        <param name="aspectratio" value="scale" />
-                        <param name="colordiffuse" value="black" />
-                    </include>
-                    <include content="Def_Dialog_Info_List_Updating">
-                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),4) + Control.HasFocus(9004)" />
-                        <param name="controlid" value="9504" />
-                        <param name="alignleft" value="640" />
-                        <param name="label_spinner" value="$LOCALIZE[31546] Youtube..." />
+                     <include content="Recommendation_Seasons" condition="!Skin.HasSetting(hide.button.tvshow.season)">
+                        <param name="controlid" value="9579" />
+                        <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),15)" />
                     </include>
                 </control>
             </control>

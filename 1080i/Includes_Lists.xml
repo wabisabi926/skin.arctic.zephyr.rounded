@@ -1,278 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 
-    <include name="Def_Layout_Poster_rating_Info">
-
-        <!-- BACKGROUND LABEL -->
-
-        <!-- <control type="image"> -->
-            <!-- <visible>!Control.IsVisible(50) + !$EXP[IsPluginShortlist]</visible> -->
-            <!-- <visible>[Container.Content(movies) + String.IsEmpty(ListItem.DBType)] | -->
-            <!-- [!Container.Content(favourites) + !Container.Content(files) + !Container.Content(sets) + !Container.Content(videos) + !Container.Content(movies) + !Container.Content(tvshows) + !Container.Content(artists) + !Container.Content(albums) + !Container.Content(songs) + [Control.IsVisible(547) | Control.IsVisible(557)]]</visible> -->
-            <!-- <align>left</align> -->
-            <!-- <aligny>center</aligny> -->
-            <!-- <right>10</right> -->
-            <!-- <left>5</left> -->
-            <!-- <bottom>21</bottom> -->
-            <!-- <height>50</height> -->
-            <!-- <texture background="true" border="25" colordiffuse="Dark3">common/menu2.png</texture> -->
-            <!-- <animation effect="fade" start="100" end="70" condition="true">Conditional</animation> -->
-        <!-- </control> -->
-
-        <!-- ALL OTHERS LABEL -->
-
-        <control type="textbox">
-            <visible>!Container.Content(addons) + !Container.Content(addons) + !Container.Content(favourites) + !Container.Content(sets) + !Container.Content(genres) + !Container.Content(videos) + [!Container.Content(movies) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType)]] + !Container.Content(tvshows) + !Container.Content(seasons) + !Container.Content(episodes) + !Container.Content(artists) + !Container.Content(albums) + !Container.Content(songs) + [[Control.IsVisible(547) + Container.Content(files)] | Control.IsVisible(557) | Control.IsVisible(521) | Control.IsVisible(55) | Control.IsVisible(517) | Control.IsVisible(509) | Control.IsVisible(519) | Control.IsVisible(514) | Control.IsVisible(527) | Control.IsVisible(53) | Control.IsVisible(5218) | [Control.IsVisible(5238) + String.IsEqual(Skin.String(523.square.size),2)]]</visible>
-            <visible>!Control.IsVisible(523)</visible>
-            <visible>String.StartsWith(ListItem.Icon,Default)</visible>
-            <align>center</align>
-            <aligny>center</aligny>
-            <left>20</left>
-            <right>20</right>
-            <bottom>28</bottom>
-            <height>70</height>
-            <font>InfoNetflix</font>
-            <textcolor>PanelWhite70</textcolor>
-            <selectedcolor>PanelWhite70</selectedcolor>
-            <autoscroll>true</autoscroll>
-            <label>$INFO[ListItem.Label]</label>
-        </control>
-
-        <!-- RATING IMDb -->
-
-        <control type="image">
-            <visible>!String.IsEqual(ListItem.DBType,album) + !String.IsEqual(ListItem.DBType,set)</visible>
-            <visible>!String.IsEmpty(ListItem.Rating(imdb)) + !String.IsEmpty(ListItem.DBID)</visible>
-            <align>left</align>
-            <aligny>center</aligny>
-            <width>40</width>
-            <left>10</left>
-            <bottom>26</bottom>
-            <height>40</height>
-            <texture background="true" colordiffuse="FFF6C700">diffuse/circle_64.png</texture>
-        </control>
-        <control type="label">
-            <visible>!String.IsEqual(ListItem.DBType,album) + !String.IsEqual(ListItem.DBType,set)</visible>
-            <visible>!String.IsEmpty(ListItem.Rating(imdb)) + !String.IsEmpty(ListItem.DBID)</visible>
-            <align>left</align>
-            <aligny>center</aligny>
-            <width>80</width>
-            <left>14</left>
-            <bottom>28</bottom>
-            <height>40</height>
-            <font>Tiny</font>
-            <textcolor>black</textcolor>
-            <selectedcolor>black</selectedcolor>
-            <label>$INFO[ListItem.Rating(imdb)]</label>
-        </control>
-
-        <!-- RATING KODI - DIALOG VIDEO INFO  -->
-
-        <control type="image">
-            <visible>Window.IsVisible(DialogVideoInfo.xml) | $EXP[IsTMDbHelperItem]</visible>
-            <visible>!String.IsEqual(ListItem.DBType,album)</visible>
-            <visible>String.IsEmpty(ListItem.Rating(imdb)) + !String.IsEmpty(ListItem.Rating) + !String.IsEmpty(ListItem.DBID)</visible>
-            <align>left</align>
-            <aligny>center</aligny>
-            <width>40</width>
-            <left>10</left>
-            <bottom>26</bottom>
-            <height>40</height>
-            <texture background="true" colordiffuse="FFF6C700">diffuse/circle_64.png</texture>
-        </control>
-        <control type="label">
-            <visible>Window.IsVisible(DialogVideoInfo.xml) | $EXP[IsTMDbHelperItem]</visible>
-            <visible>!String.IsEqual(ListItem.DBType,album)</visible>
-            <visible>String.IsEmpty(ListItem.Rating(imdb)) + !String.IsEmpty(ListItem.Rating) + !String.IsEmpty(ListItem.DBID)</visible>
-            <align>left</align>
-            <aligny>center</aligny>
-            <width>80</width>
-            <left>14</left>
-            <bottom>28</bottom>
-            <height>40</height>
-            <font>Tiny</font>
-            <textcolor>black</textcolor>
-            <selectedcolor>black</selectedcolor>
-            <label>$VAR[Value_Item_Rating]</label>
-        </control>
-
-        <!-- RATING KODI - VIEWS -->
-
-        <control type="image">
-            <visible>![Window.IsVisible(DialogVideoInfo.xml) | $EXP[IsTMDbHelperItem]]</visible>
-            <visible>!String.IsEqual(ListItem.DBType,album)</visible>
-            <visible>String.IsEmpty(ListItem.Rating(imdb)) + !String.IsEmpty(ListItem.Rating) + !String.IsEmpty(ListItem.DBID)</visible>
-            <align>left</align>
-            <aligny>center</aligny>
-            <width>40</width>
-            <left>10</left>
-            <bottom>26</bottom>
-            <height>40</height>
-            <texture background="true" colordiffuse="FF6ACEDB">diffuse/circle_64.png</texture>
-        </control>
-        <control type="label">
-            <visible>![Window.IsVisible(DialogVideoInfo.xml) | $EXP[IsTMDbHelperItem]]</visible>
-            <visible>!String.IsEqual(ListItem.DBType,album)</visible>
-            <visible>String.IsEmpty(ListItem.Rating(imdb)) + !String.IsEmpty(ListItem.Rating) + !String.IsEmpty(ListItem.DBID)</visible>
-            <align>left</align>
-            <aligny>center</aligny>
-            <width>80</width>
-            <left>14</left>
-            <bottom>28</bottom>
-            <height>40</height>
-            <font>Tiny</font>
-            <textcolor>black</textcolor>
-            <selectedcolor>black</selectedcolor>
-            <label>$VAR[Value_Item_Rating]</label>
-        </control>
-
-        <!-- RATING TMDB -->
-
-        <control type="image">
-            <visible>!String.IsEqual(ListItem.DBType,album) + !String.IsEqual(ListItem.DBType,set) + !$EXP[IsYoutubeItem]</visible>
-            <visible>!String.IsEmpty(ListItem.Rating) + String.IsEmpty(ListItem.DBID)</visible>
-            <align>left</align>
-            <aligny>center</aligny>
-            <width>40</width>
-            <left>10</left>
-            <bottom>26</bottom>
-            <height>40</height>
-            <texture background="true" colordiffuse="FF081C24">diffuse/circle_64.png</texture>
-        </control>
-        <control type="label">
-            <visible>!String.IsEqual(ListItem.DBType,album) + !String.IsEqual(ListItem.DBType,set) + !$EXP[IsYoutubeItem]</visible>
-            <visible>!String.IsEmpty(ListItem.Rating) + String.IsEmpty(ListItem.DBID)</visible>
-            <align>left</align>
-            <aligny>center</aligny>
-            <width>80</width>
-            <left>14</left>
-            <bottom>28</bottom>
-            <height>40</height>
-            <font>Tiny</font>
-            <textcolor>FF00D273</textcolor>
-            <selectedcolor>FF00D273</selectedcolor>
-            <label>$VAR[Value_Item_Rating]</label>
-        </control>
-
-        <!-- SETS -->
-
-        <!-- <control type="image"> -->
-            <!-- <visible>ListItem.IsCollection</visible> -->
-            <!-- <align>right</align> -->
-            <!-- <aligny>center</aligny> -->
-            <!-- <width>40</width> -->
-            <!-- <right>14</right> -->
-            <!-- <bottom>26</bottom> -->
-            <!-- <height>40</height> -->
-            <!-- <texture background="true" colordiffuse="FF081C24">diffuse/circle_64.png</texture> -->
-        <!-- </control> -->
-        <control type="image">
-            <visible>ListItem.IsCollection</visible>
-            <align>right</align>
-            <aligny>center</aligny>
-            <width>70</width>
-            <right>4</right>
-            <bottom>20</bottom>
-            <height>52</height>
-            <texture background="false" colordiffuse="$VAR[Color_Indicator_Set]">flags/video/white/other/sets.png</texture>
-        </control>
-
-        <!-- VERSIONS -->
-
-        <control type="image">
-            <visible>Container($PARAM[controlid]).ListItem.HasVideoVersions</visible>
-            <align>right</align>
-            <aligny>center</aligny>
-            <width>40</width>
-            <right>14</right>
-            <bottom>26</bottom>
-            <height>40</height>
-            <texture background="true" colordiffuse="FF081C24">diffuse/circle_64.png</texture>
-        </control>
-        <control type="image">
-            <visible>Container($PARAM[controlid]).ListItem.HasVideoVersions</visible>
-            <align>right</align>
-            <aligny>center</aligny>
-            <width>32</width>
-            <right>18</right>
-            <bottom>30</bottom>
-            <height>32</height>
-            <texture background="true" colordiffuse="$VAR[Color_Indicator_Version]">buttonsdialogs/server.png</texture>
-        </control>
-
-        <!-- DBType movie / tvshow ? -->
-
-        <control type="image">
-            <visible>String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)</visible>
-            <visible>Control.IsVisible(9506) | Control.IsVisible(9556) | Control.IsVisible(9560) | [Control.IsVisible(6) + !String.IsEmpty(Window(Home).Property(ListVideoForCast))]</visible>
-            <align>right</align>
-            <aligny>center</aligny>
-            <width>40</width>
-            <right>14</right>
-            <bottom>26</bottom>
-            <height>40</height>
-            <texture background="true" colordiffuse="FF081C24">diffuse/circle_64.png</texture>
-        </control>
-        <control type="image">
-            <visible>String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)</visible>
-            <visible>Control.IsVisible(9506) | Control.IsVisible(9556) | Control.IsVisible(9560) | [Control.IsVisible(6) + !String.IsEmpty(Window(Home).Property(ListVideoForCast))]</visible>
-            <align>right</align>
-            <aligny>center</aligny>
-            <width>28</width>
-            <right>20</right>
-            <bottom>32</bottom>
-            <height>28</height>
-            <texture background="true" colordiffuse="$VAR[Color_Indicator_DBType]">buttonsdialogs/$INFO[ListItem.DBType].png</texture>
-        </control>
-    </include>
-
-    <include name="Def_Layout_Addon_Status">
-        <!-- <control type="image"> -->
-            <!-- <visible>ListItem.HasVideoVersions | ListItem.IsCollection</visible> -->
-            <!-- <align>left</align> -->
-            <!-- <aligny>center</aligny> -->
-            <!-- <width>202</width> -->
-            <!-- <left>5</left> -->
-            <!-- <bottom>21</bottom> -->
-            <!-- <height>50</height> -->
-            <!-- <texture background="true"colordiffuse="black">common/menu2.png</texture> -->
-            <!-- <animation effect="fade" start="100" end="40" condition="true">Conditional</animation> -->
-        <!-- </control> -->
-
-        <control type="image">
-            <visible>!ListItem.IsFolder + Container.Content(addons)</visible>
-            <visible>Window.IsVisible(AddonBrowser.xml)</visible>
-            <align>left</align>
-            <aligny>center</aligny>
-            <width>40</width>
-            <left>10</left>
-            <bottom>26</bottom>
-            <height>40</height>
-            <texture background="true" colordiffuse="FF081C24">diffuse/circle_64.png</texture>
-        </control>
-        <control type="image">
-            <visible>!ListItem.IsFolder + Container.Content(addons)</visible>
-            <visible>Window.IsVisible(AddonBrowser.xml)</visible>
-            <align>left</align>
-            <aligny>center</aligny>
-            <height>32</height>
-            <width>32</width>
-            <left>14</left>
-            <bottom>30</bottom>
-            <texture colordiffuse="FF00D273">$VAR[Image_Addons_Status_Icon]</texture>
-        </control>
-        <control type="image">
-            <visible>!ListItem.IsFolder + Container.Content(addons)</visible>
-            <visible>Window.IsVisible(AddonBrowser.xml)</visible>
-            <align>left</align>
-            <aligny>center</aligny>
-            <height>32</height>
-            <width>32</width>
-            <left>14</left>
-            <bottom>30</bottom>
-            <texture colordiffuse="FFFF0000">$VAR[Image_Addons_Status_Icon_Disable]</texture>
-        </control>
-    </include>
+    <!-- MISC -->
 
     <include name="Def_Dialog_Info_List_Updating">
         <param name="centerleft" value="$PARAM[centerleft]" default="350" />
@@ -302,6 +31,70 @@
                 </include>
             </control>
         </definition>
+    </include>
+
+    <include name="Def_Dialog_Info_Music_Most_Played_Song">
+        <control type="button" id="9010">
+            <left>-2000</left>
+            <width>1</width>
+            <visible allowhiddenfocus="true">false</visible>
+            <onup>SetFocus(9000)</onup>
+            <ondown>SetFocus(9000)</ondown>
+            <onleft>SetFocus(9000)</onleft>
+            <onright>SetFocus(9000)</onright>
+            <onclick>PlayMedia($ESCINFO[Container(9551).ListItem.FileNameAndPath])</onclick>
+        </control>
+        <control type="list" id="9551">
+            <left>250</left>
+            <top>0</top>
+            <right>View_SidePad</right>
+            <width>1000</width>
+            <height>50</height>
+            <onleft>9000</onleft>
+            <onright>62</onright>
+            <onup>9551</onup>
+            <ondown>9551</ondown>
+            <viewtype label="">list</viewtype>
+            <pagecontrol>62</pagecontrol>
+            <orientation>vertical</orientation>
+            <itemlayout height="36" width="1000">
+                <control type="group">
+                    <control type="label">
+                        <textcolor>Dark2</textcolor>
+                        <selectedcolor>Dark2</selectedcolor>
+                        <height>auto</height>
+                        <width>660</width>
+                        <font>Tiny</font>
+                        <label>$INFO[ListItem.Label] $INFO[ListItem.Year,(,)]</label>
+                    </control>
+                </control>
+            </itemlayout>
+            <focusedlayout height="36" width="1000">
+                <control type="group">
+                    <visible>Control.HasFocus(9010)</visible>
+                    <control type="label">
+                        <textcolor>$VAR[Color_List_Item_Selected]</textcolor>
+                        <selectedcolor>$VAR[Color_List_Item_Selected]</selectedcolor>
+                        <height>auto</height>
+                        <width>660</width>
+                        <font>Tiny</font>
+                        <label>$INFO[ListItem.Label] $INFO[ListItem.Year,(,)]</label>
+                    </control>
+                </control>
+                <control type="group">
+                    <visible>!Control.HasFocus(9010)</visible>
+                    <control type="label">
+                        <textcolor>Dark2</textcolor>
+                        <selectedcolor>Dark2</selectedcolor>
+                        <height>auto</height>
+                        <width>660</width>
+                        <font>Tiny</font>
+                        <label>$INFO[ListItem.Label] $INFO[ListItem.Year,(,)]</label>
+                    </control>
+                </control>
+            </focusedlayout>
+            <content sortorder="descending" limit="1" sortby="playcount">$VAR[Def_Music_Dialog_Most_Played_Song]</content>
+        </control>
     </include>
 
 <!--            View_Dialog_Info_Poster            -->
@@ -1581,72 +1374,6 @@
                 </control>
             </control>
         </definition>
-    </include>
-
-    <!-- MISC -->
-
-    <include name="Def_Most_Played_Song">
-        <control type="button" id="9010">
-            <left>-2000</left>
-            <width>1</width>
-            <visible allowhiddenfocus="true">false</visible>
-            <onup>SetFocus(9000)</onup>
-            <ondown>SetFocus(9000)</ondown>
-            <onleft>SetFocus(9000)</onleft>
-            <onright>SetFocus(9000)</onright>
-            <onclick>PlayMedia($ESCINFO[Container(9551).ListItem.FileNameAndPath])</onclick>
-        </control>
-        <control type="list" id="9551">
-            <left>250</left>
-            <top>0</top>
-            <right>View_SidePad</right>
-            <width>1000</width>
-            <height>50</height>
-            <onleft>9000</onleft>
-            <onright>62</onright>
-            <onup>9551</onup>
-            <ondown>9551</ondown>
-            <viewtype label="">list</viewtype>
-            <pagecontrol>62</pagecontrol>
-            <orientation>vertical</orientation>
-            <itemlayout height="36" width="1000">
-                <control type="group">
-                    <control type="label">
-                        <textcolor>Dark2</textcolor>
-                        <selectedcolor>Dark2</selectedcolor>
-                        <height>auto</height>
-                        <width>660</width>
-                        <font>Tiny</font>
-                        <label>$INFO[ListItem.Label] $INFO[ListItem.Year,(,)]</label>
-                    </control>
-                </control>
-            </itemlayout>
-            <focusedlayout height="36" width="1000">
-                <control type="group">
-                    <visible>Control.HasFocus(9010)</visible>
-                    <control type="label">
-                        <textcolor>$VAR[Color_List_Item_Selected]</textcolor>
-                        <selectedcolor>$VAR[Color_List_Item_Selected]</selectedcolor>
-                        <height>auto</height>
-                        <width>660</width>
-                        <font>Tiny</font>
-                        <label>$INFO[ListItem.Label] $INFO[ListItem.Year,(,)]</label>
-                    </control>
-                </control>
-                <control type="group">
-                    <visible>!Control.HasFocus(9010)</visible>
-                    <control type="label">
-                        <textcolor>Dark2</textcolor>
-                        <selectedcolor>Dark2</selectedcolor>
-                        <height>auto</height>
-                        <width>660</width>
-                        <font>Tiny</font>
-                        <label>$INFO[ListItem.Label] $INFO[ListItem.Year,(,)]</label>
-                    </control>
-                </control>
-            </focusedlayout>
-            <content sortorder="descending" limit="1" sortby="playcount">$VAR[Def_Music_Dialog_Most_Played_Song]</content>
-        </control>
     </include>
 
     <!-- HIDDEN LIST -->
