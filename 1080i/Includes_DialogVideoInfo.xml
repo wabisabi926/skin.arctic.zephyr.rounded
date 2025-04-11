@@ -1517,7 +1517,7 @@
 
                     <!-- YEAR MOVIES / TV SHOWS -->
 
-                    <include content="Recommendation_Year" condition="Skin.HasSetting(show.button.video.year) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set) + !String.IsEmpty(ListItem.Year)">
+                    <include content="Recommendation_Year" condition="Skin.HasSetting(show.button.video.year) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set)">
                         <param name="controlid" value="9514" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),9)" />
                     </include>
@@ -1556,14 +1556,14 @@
 
                     <!-- CREATOR -->
 
-                    <include content="Recommendation_Creator" condition="!Skin.HasSetting(hide.button.tvshow.creator)">
+                    <include content="Recommendation_Creator" condition="!Skin.HasSetting(hide.button.tvshow.creator) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set)">
                         <param name="controlid" value="9520" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),22)" />
                     </include>
 
                     <!-- SEASONS -->
 
-                     <include content="Recommendation_Seasons" condition="!Skin.HasSetting(hide.button.tvshow.season)">
+                     <include content="Recommendation_Seasons" condition="!Skin.HasSetting(hide.button.tvshow.season) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set)">
                         <param name="controlid" value="9579" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),15)" />
                     </include>
