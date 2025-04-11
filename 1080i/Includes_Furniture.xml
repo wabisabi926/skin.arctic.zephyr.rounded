@@ -3656,256 +3656,259 @@
     <!-- VIDEO - MUSIC - ADDONS - HEADER - FOOTER -->
 
     <include name="Furniture_Header_DialogInfo_Extended">
-        <param name="controlid" value="$PARAM[controlid]" />
+        <control type="group">
+            <visible>Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7)</visible>
+            <visible>!Window.IsVisible(DialogBusy.xml)</visible>
+            <include>Animation_Delay_Fade_In_200</include>
 
-        <definition>
-             <control type="group">
-                <visible>Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7)</visible>
-                <visible>!Window.IsVisible(DialogBusy.xml)</visible>
-                <include>Animation_Delay_Fade_In_200</include>
+            <top>40</top>
+            <left>40</left>
 
-                <!-- ICON -->
+            <!-- ICON -->
 
-                <control type="image">
-                    <width>160</width>
-                    <height>160</height>
-                    <texture colordiffuse="White70">common/circlebutton.png</texture>
-                    <animation effect="fade" start="100" end="90" condition="true">Conditional</animation>
-                </control>
-                <control type="image">
-                    <top>36</top>
-                    <left>36</left>
-                    <width>88</width>
-                    <height>88</height>
-                    <texture colordiffuse="PanelWhite100" border="8">$VAR[Image_Header_Dialog_Info_Icon]</texture>
-                    <visible>!Window.IsVisible(DialogBusy.xml)</visible>
-                </control>
-
-                <!-- DIRECTOR PICTURE -->
-
-                 <!-- <control type="image"> -->
-                    <!-- <top>76</top> -->
-                    <!-- <left>76</left> -->
-                    <!-- <width>88</width> -->
-                    <!-- <height>88</height> -->
-                    <!-- <bordersize>2</bordersize> -->
-                    <!-- <aspectratio scalediffuse="false">scale</aspectratio> -->
-                    <!-- <texture diffuse="diffuse/circle_50.png" colordiffuse="PanelWhite100">$VAR[Image_Director_Icon]</texture> -->
-                <!-- </control>                -->
-
-                <!-- HEADER - MAIN TITLE -->
-
-                <control type="label">
-                    <top>28</top>
-                    <left>142</left>
-                    <width>1020</width>
-                    <align>left</align>
-                    <font>LargeNew</font>
-                    <textcolor>Dark1</textcolor>
-                    <label>$VAR[Label_Dialog_Info_Header_Main_Title]</label>
-                </control>
-
-                <!-- HEADER - SUB TITLE -->
-
-                <control type="label">
-                    <top>83</top>
-                    <left>142</left>
-                    <height>36</height>
-                    <aligny>center</aligny>
-                    <font>Tiny</font>
-                    <textcolor>Dark1</textcolor>
-                    <label>$VAR[Label_Dialog_Info_Header_Sub_Title]</label>
-                </control>
+            <control type="image">
+                <width>160</width>
+                <height>160</height>
+                <texture colordiffuse="White70">common/circlebutton.png</texture>
+                <animation effect="fade" start="100" end="90" condition="true">Conditional</animation>
             </control>
-        </definition>
+            <control type="image">
+                <top>36</top>
+                <left>36</left>
+                <width>88</width>
+                <height>88</height>
+                <texture colordiffuse="PanelWhite100" border="8">$VAR[Image_Header_Dialog_Info_Icon]</texture>
+                <visible>!Window.IsVisible(DialogBusy.xml)</visible>
+            </control>
+
+            <!-- DIRECTOR PICTURE -->
+
+             <!-- <control type="image"> -->
+                <!-- <top>76</top> -->
+                <!-- <left>76</left> -->
+                <!-- <width>88</width> -->
+                <!-- <height>88</height> -->
+                <!-- <bordersize>2</bordersize> -->
+                <!-- <aspectratio scalediffuse="false">scale</aspectratio> -->
+                <!-- <texture diffuse="diffuse/circle_50.png" colordiffuse="PanelWhite100">$VAR[Image_Director_Icon]</texture> -->
+            <!-- </control>                -->
+
+            <!-- HEADER - MAIN TITLE -->
+
+            <control type="label">
+                <top>28</top>
+                <left>142</left>
+                <width>1020</width>
+                <align>left</align>
+                <font>LargeNew</font>
+                <textcolor>Dark1</textcolor>
+                <label>$VAR[Label_Dialog_Info_Header_Main_Title]</label>
+            </control>
+
+            <!-- HEADER - SUB TITLE -->
+
+            <control type="label">
+                <top>83</top>
+                <left>142</left>
+                <height>36</height>
+                <aligny>center</aligny>
+                <font>Tiny</font>
+                <textcolor>Dark1</textcolor>
+                <label>$VAR[Label_Dialog_Info_Header_Sub_Title]</label>
+            </control>
+        </control>
     </include>
 
     <include name="Furniture_Footer_DialogInfo_Extended">
-
-         <!-- INFORMATION - LEFT -->
-
-         <control type="grouplist">
-            <visible>Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7)</visible>
-            <visible>!Container($PARAM[controlid]).IsUpdating</visible>
-            <include>Animation_Delay_Fade_In_200</include>
-
-            <top>880</top>
+        <control type="group">
             <align>left</align>
+            <left>View_SidePad</left>
 
-            <itemgap>0</itemgap>
-            <orientation>horizontal</orientation>
-            <usecontrolcoords>true</usecontrolcoords>
+             <!-- INFORMATION - LEFT -->
 
-            <!-- MOVIES -->
-
-            <control type="label">
-                <include>Def_Info_Left_Line1</include>
-                <label>$INFO[Container($PARAM[controlid]).ListItem.Title]$INFO[Container($PARAM[controlid]).ListItem.Year,  •  ]</label>
-                <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Title)</visible>
-                <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,movie)</visible>
-            </control>
-
-            <!-- TV SHOW -->
-
-            <control type="label">
-                <include>Def_Info_Left_Line1</include>
-                <label>$INFO[Container($PARAM[controlid]).ListItem.TVShowTitle]$INFO[Container($PARAM[controlid]).ListItem.Year,  •  ]</label>
-                <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.TVShowTitle)</visible>
-                <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,tvshow) | String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,season)</visible>
-            </control>
-
-            <!-- MUSIC - Albums -->
-
-            <control type="label">
-                <include>Def_Info_Left_Line1</include>
-                <label>$INFO[Container($PARAM[controlid]).ListItem.Label]$INFO[Container($PARAM[controlid]).ListItem.Year,  •  ,]</label>
-                <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,album)</visible>
-            </control>
-
-            <!-- MUSIC - Songs -->
-
-            <control type="label">
-                <include>Def_Info_Left_Line1</include>
-                <label>$INFO[Container($PARAM[controlid]).ListItem.TrackNumber]. $INFO[Container($PARAM[controlid]).ListItem.Label]$INFO[Container($PARAM[controlid]).ListItem.Year,  •  ,]</label>
-                <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,song)</visible>
-            </control>
-
-            <!-- YOUTUBE -->
-
-            <control type="label">
-                <include>Def_Info_Left_Line1</include>
-                <label>$INFO[Container($PARAM[controlid]).ListItem.Label]</label>
-                <visible>Control.HasFocus(9502) | Control.HasFocus(95027) | Control.HasFocus(9504) | Control.HasFocus(95047)</visible>
-            </control>
-
-            <!-- CONTAINER IS UPDATING -->
-
-            <control type="image">
+             <control type="grouplist">
+                <visible>Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7)</visible>
+                <visible>!Container($PARAM[controlid]).IsUpdating</visible>
                 <include>Animation_Delay_Fade_In_200</include>
-                <include>Animation_Fade_Out</include>
-                <bottom>144</bottom>
-                <aligny>center</aligny>
-                <left>10</left>
-                <description>Busy animation</description>
-                <width>45</width>
-                <height>45</height>
-                <animation effect="rotate" condition="true" start="360" end="0" loop="true" time="1000" center="auto">Conditional</animation>
-                <texture colordiffuse="$VAR[Color_Loading_Spinner]">dialog/loading-spinner.png</texture>
-                <aspectratio align="left">keep</aspectratio>
-                <include>Animation_Vertical_Widgets_Title_Loading</include>
-                <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating)) | String.IsEmpty(Window(Home).Property(Init_Value_TMDb)) | Container($PARAM[controlid]).IsUpdating</visible>
-                <visible>!Control.IsVisible(50) + !Control.IsVisible(9557) + !Control.IsVisible(9554) + !Control.IsVisible(9550)</visible>
-            </control>
-        </control>
 
-        <!-- INFORMATION - RIGHT -->
+                <top>880</top>
+                <align>left</align>
 
-        <control type="group">
-            <visible>Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7)</visible>
-            <visible>!Container($PARAM[controlid]).IsUpdating</visible>
-            <include>Animation_Delay_Fade_In_200</include>
+                <itemgap>0</itemgap>
+                <orientation>horizontal</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
 
-            <top>880</top>
-            <align>right</align>
-            <right>View_SidePad</right>
+                <!-- MOVIES -->
 
-            <!-- MOVIES not local only -->
+                <control type="label">
+                    <include>Def_Info_Left_Line1</include>
+                    <label>$INFO[Container($PARAM[controlid]).ListItem.Title]$INFO[Container($PARAM[controlid]).ListItem.Year,  •  ]</label>
+                    <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Title)</visible>
+                    <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,movie)</visible>
+                </control>
 
-            <control type="label">
-                <include>Def_Info_Right_Line1</include>
-                <label>$VAR[Label_Genre]$INFO[Window(Home).Property(TMDbHelper.ListItem.Duration_H),  •  ,$LOCALIZE[31061]] $INFO[Window(Home).Property(TMDbHelper.ListItem.Duration_M),,$LOCALIZE[31062]]$INFO[Container($PARAM[controlid]).ListItem.Rating,  •  ]</label>
-                <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Genre)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Duration))</visible>
-                <visible>[!Skin.HasSetting(filter.video.only.local) | String.IsEmpty(ListItem.DBID)]</visible>
-                <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,movie)</visible>
-            </control>
+                <!-- TV SHOW -->
 
-            <!-- MOVIES local only -->
+                <control type="label">
+                    <include>Def_Info_Left_Line1</include>
+                    <label>$INFO[Container($PARAM[controlid]).ListItem.TVShowTitle]$INFO[Container($PARAM[controlid]).ListItem.Year,  •  ]</label>
+                    <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.TVShowTitle)</visible>
+                    <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,tvshow) | String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,season)</visible>
+                </control>
 
-            <control type="label">
-                <include>Def_Info_Right_Line1</include>
-                <label>$VAR[Label_Genre]$INFO[Container($PARAM[controlid]).ListItem.Duration(h),  •  ,$LOCALIZE[31061]] $INFO[Container($PARAM[controlid]).ListItem.Duration(mm),,$LOCALIZE[31062]]$INFO[Container($PARAM[controlid]).ListItem.Rating,  •  ]</label>
-                <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Genre) + !String.IsEmpty(Container($PARAM[controlid]).ListItem.Duration)</visible>
-                <visible>![!Skin.HasSetting(filter.video.only.local) | String.IsEmpty(ListItem.DBID)]</visible>
-                <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,movie)</visible>
-            </control>
+                <!-- MUSIC - Albums -->
 
-            <!-- TV SHOWS  not local only -->
+                <control type="label">
+                    <include>Def_Info_Left_Line1</include>
+                    <label>$INFO[Container($PARAM[controlid]).ListItem.Label]$INFO[Container($PARAM[controlid]).ListItem.Year,  •  ,]</label>
+                    <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,album)</visible>
+                </control>
 
-            <control type="label">
-                <include>Def_Info_Right_Line1</include>
-                <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.Genre.1.Name)]$INFO[Window(Home).Property(TMDbHelper.ListItem.Genre.2.Name), / ,]$INFO[Container($PARAM[controlid]).ListItem.Property(TotalEpisodes),  •  , $LOCALIZE[20453]]$INFO[Window(Home).Property(TMDbHelper.ListItem.Rating),  •  ]</label>
-                <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Genre))</visible>
-                <visible>[!Skin.HasSetting(filter.video.only.local) | String.IsEmpty(ListItem.DBID)]</visible>
-                <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,tvshow)</visible>
-            </control>
+                <!-- MUSIC - Songs -->
 
-            <!-- TV SHOWS  local only -->
+                <control type="label">
+                    <include>Def_Info_Left_Line1</include>
+                    <label>$INFO[Container($PARAM[controlid]).ListItem.TrackNumber]. $INFO[Container($PARAM[controlid]).ListItem.Label]$INFO[Container($PARAM[controlid]).ListItem.Year,  •  ,]</label>
+                    <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,song)</visible>
+                </control>
 
-            <control type="label">
-                <include>Def_Info_Right_Line1</include>
-                <label>$INFO[Container($PARAM[controlid]).ListItem.Genre]$INFO[Container($PARAM[controlid]).ListItem.Property(TotalEpisodes),  •  , $LOCALIZE[20453]]$INFO[Container($PARAM[controlid]).ListItem.Rating,  •  ]</label>
-                <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Genre)</visible>
-                <visible>![!Skin.HasSetting(filter.video.only.local) | String.IsEmpty(ListItem.DBID)]</visible>
-                <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,tvshow)</visible>
-            </control>
+                <!-- YOUTUBE -->
 
-            <!-- SEASON  not local only -->
+                <control type="label">
+                    <include>Def_Info_Left_Line1</include>
+                    <label>$INFO[Container($PARAM[controlid]).ListItem.Label]</label>
+                    <visible>Control.HasFocus(9502) | Control.HasFocus(95027) | Control.HasFocus(9504) | Control.HasFocus(95047)</visible>
+                </control>
 
-            <control type="label">
-                <include>Def_Info_Right_Line1</include>
-                <label>$LOCALIZE[20373] $INFO[Window(Home).Property(TMDbHelper.ListItem.Season)]$INFO[Container($PARAM[controlid]).ListItem.Property(TotalEpisodes),  •  , $LOCALIZE[20453]]$INFO[Window(Home).Property(TMDbHelper.ListItem.Rating),  •  ]</label>
-                <visible>[!Skin.HasSetting(filter.video.only.local) | String.IsEmpty(ListItem.DBID)]</visible>
-                <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,season)</visible>
+                <!-- CONTAINER IS UPDATING -->
+
+                <control type="image">
+                    <include>Animation_Delay_Fade_In_200</include>
+                    <include>Animation_Fade_Out</include>
+                    <bottom>144</bottom>
+                    <aligny>center</aligny>
+                    <left>10</left>
+                    <description>Busy animation</description>
+                    <width>45</width>
+                    <height>45</height>
+                    <animation effect="rotate" condition="true" start="360" end="0" loop="true" time="1000" center="auto">Conditional</animation>
+                    <texture colordiffuse="$VAR[Color_Loading_Spinner]">dialog/loading-spinner.png</texture>
+                    <aspectratio align="left">keep</aspectratio>
+                    <include>Animation_Vertical_Widgets_Title_Loading</include>
+                    <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating)) | String.IsEmpty(Window(Home).Property(Init_Value_TMDb)) | Container($PARAM[controlid]).IsUpdating</visible>
+                    <visible>!Control.IsVisible(50) + !Control.IsVisible(9557) + !Control.IsVisible(9554) + !Control.IsVisible(9550)</visible>
+                </control>
             </control>
 
-            <!-- SEASON  local only -->
+            <!-- INFORMATION - RIGHT -->
 
-            <control type="label">
-                <include>Def_Info_Right_Line1</include>
-                <label>$INFO[Container($PARAM[controlid]).ListItem.Label]$INFO[Container($PARAM[controlid]).ListItem.Property(TotalEpisodes),  •  , $LOCALIZE[20453]]$INFO[Container($PARAM[controlid]).ListItem.Rating,  •  ]</label>
-                <visible>![!Skin.HasSetting(filter.video.only.local) | String.IsEmpty(ListItem.DBID)]</visible>
-                <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,season)</visible>
+            <control type="group">
+                <visible>Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7)</visible>
+                <visible>!Container($PARAM[controlid]).IsUpdating</visible>
+                <include>Animation_Delay_Fade_In_200</include>
+
+                <top>880</top>
+                <align>right</align>
+                <right>View_SidePad</right>
+
+                <!-- MOVIES not local only -->
+
+                <control type="label">
+                    <include>Def_Info_Right_Line1</include>
+                    <label>$VAR[Label_Genre]$INFO[Window(Home).Property(TMDbHelper.ListItem.Duration_H),  •  ,$LOCALIZE[31061]] $INFO[Window(Home).Property(TMDbHelper.ListItem.Duration_M),,$LOCALIZE[31062]]$INFO[Container($PARAM[controlid]).ListItem.Rating,  •  ]</label>
+                    <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Genre)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Duration))</visible>
+                    <visible>[!Skin.HasSetting(filter.video.only.local) | String.IsEmpty(ListItem.DBID)]</visible>
+                    <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,movie)</visible>
+                </control>
+
+                <!-- MOVIES local only -->
+
+                <control type="label">
+                    <include>Def_Info_Right_Line1</include>
+                    <label>$VAR[Label_Genre]$INFO[Container($PARAM[controlid]).ListItem.Duration(h),  •  ,$LOCALIZE[31061]] $INFO[Container($PARAM[controlid]).ListItem.Duration(mm),,$LOCALIZE[31062]]$INFO[Container($PARAM[controlid]).ListItem.Rating,  •  ]</label>
+                    <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Genre) + !String.IsEmpty(Container($PARAM[controlid]).ListItem.Duration)</visible>
+                    <visible>![!Skin.HasSetting(filter.video.only.local) | String.IsEmpty(ListItem.DBID)]</visible>
+                    <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,movie)</visible>
+                </control>
+
+                <!-- TV SHOWS  not local only -->
+
+                <control type="label">
+                    <include>Def_Info_Right_Line1</include>
+                    <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.Genre.1.Name)]$INFO[Window(Home).Property(TMDbHelper.ListItem.Genre.2.Name), / ,]$INFO[Container($PARAM[controlid]).ListItem.Property(TotalEpisodes),  •  , $LOCALIZE[20453]]$INFO[Window(Home).Property(TMDbHelper.ListItem.Rating),  •  ]</label>
+                    <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Genre))</visible>
+                    <visible>[!Skin.HasSetting(filter.video.only.local) | String.IsEmpty(ListItem.DBID)]</visible>
+                    <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,tvshow)</visible>
+                </control>
+
+                <!-- TV SHOWS  local only -->
+
+                <control type="label">
+                    <include>Def_Info_Right_Line1</include>
+                    <label>$INFO[Container($PARAM[controlid]).ListItem.Genre]$INFO[Container($PARAM[controlid]).ListItem.Property(TotalEpisodes),  •  , $LOCALIZE[20453]]$INFO[Container($PARAM[controlid]).ListItem.Rating,  •  ]</label>
+                    <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Genre)</visible>
+                    <visible>![!Skin.HasSetting(filter.video.only.local) | String.IsEmpty(ListItem.DBID)]</visible>
+                    <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,tvshow)</visible>
+                </control>
+
+                <!-- SEASON  not local only -->
+
+                <control type="label">
+                    <include>Def_Info_Right_Line1</include>
+                    <label>$LOCALIZE[20373] $INFO[Window(Home).Property(TMDbHelper.ListItem.Season)]$INFO[Container($PARAM[controlid]).ListItem.Property(TotalEpisodes),  •  , $LOCALIZE[20453]]$INFO[Window(Home).Property(TMDbHelper.ListItem.Rating),  •  ]</label>
+                    <visible>[!Skin.HasSetting(filter.video.only.local) | String.IsEmpty(ListItem.DBID)]</visible>
+                    <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,season)</visible>
+                </control>
+
+                <!-- SEASON  local only -->
+
+                <control type="label">
+                    <include>Def_Info_Right_Line1</include>
+                    <label>$INFO[Container($PARAM[controlid]).ListItem.Label]$INFO[Container($PARAM[controlid]).ListItem.Property(TotalEpisodes),  •  , $LOCALIZE[20453]]$INFO[Container($PARAM[controlid]).ListItem.Rating,  •  ]</label>
+                    <visible>![!Skin.HasSetting(filter.video.only.local) | String.IsEmpty(ListItem.DBID)]</visible>
+                    <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,season)</visible>
+                </control>
+
+                <!-- MUSIC - Albums -->
+
+                <control type="label">
+                    <include>Def_Info_Right_Line1</include>
+                    <label>$INFO[Container($PARAM[controlid]).ListItem.Artist]</label>
+                    <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,album)</visible>
+                </control>
+
+                <!-- MUSIC - Songs -->
+
+                <control type="label">
+                    <include>Def_Info_Right_Line1</include>
+                    <label>$INFO[Container($PARAM[controlid]).ListItem.Album]$INFO[Container($PARAM[controlid]).ListItem.Artist,  •  ,]</label>
+                    <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,song)</visible>
+                </control>
+
+                <!-- YOUTUBE -->
+
+                <control type="label">
+                    <include>Def_Info_Right_Line1</include>
+                    <label>$INFO[Container($PARAM[controlid]).ListItem.Premiered]$INFO[Container($PARAM[controlid]).ListItem.Duration(h),  •  ,$LOCALIZE[31061] ]$INFO[Container($PARAM[controlid]).ListItem.Duration(mm),,$LOCALIZE[31062]]</label>
+                    <visible>Control.HasFocus(9502) | Control.HasFocus(95027) | Control.HasFocus(9504) | Control.HasFocus(95047)</visible>
+                </control>
             </control>
 
-            <!-- MUSIC - Albums -->
+            <!-- NUM ITEM -->
 
-            <control type="label">
-                <include>Def_Info_Right_Line1</include>
-                <label>$INFO[Container($PARAM[controlid]).ListItem.Artist]</label>
-                <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,album)</visible>
-            </control>
+            <control type="group">
+                <visible>Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7)</visible>
+                <visible>!Container($PARAM[controlid]).IsUpdating</visible>
+                <include>Animation_Delay_Fade_In_200</include>
 
-            <!-- MUSIC - Songs -->
+                <top>946</top>
+                <align>right</align>
+                <right>View_SidePad</right>
 
-            <control type="label">
-                <include>Def_Info_Right_Line1</include>
-                <label>$INFO[Container($PARAM[controlid]).ListItem.Album]$INFO[Container($PARAM[controlid]).ListItem.Artist,  •  ,]</label>
-                <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,song)</visible>
-            </control>
-
-            <!-- YOUTUBE -->
-
-            <control type="label">
-                <include>Def_Info_Right_Line1</include>
-                <label>$INFO[Container($PARAM[controlid]).ListItem.Premiered]$INFO[Container($PARAM[controlid]).ListItem.Duration(h),  •  ,$LOCALIZE[31061] ]$INFO[Container($PARAM[controlid]).ListItem.Duration(mm),,$LOCALIZE[31062]]</label>
-                <visible>Control.HasFocus(9502) | Control.HasFocus(95027) | Control.HasFocus(9504) | Control.HasFocus(95047)</visible>
-            </control>
-        </control>
-
-        <!-- NUM ITEM -->
-
-        <control type="group">
-            <visible>Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7)</visible>
-            <visible>!Container($PARAM[controlid]).IsUpdating</visible>
-            <include>Animation_Delay_Fade_In_200</include>
-
-            <top>946</top>
-            <align>right</align>
-            <right>View_SidePad</right>
-
-            <control type="label">
-                <include>Def_Info_Right_Line2</include>
-                <label>$INFO[Container($PARAM[controlid]).CurrentItem] / $INFO[Container($PARAM[controlid]).NumItems]</label>
+                <control type="label">
+                    <include>Def_Info_Right_Line2</include>
+                    <label>$INFO[Container($PARAM[controlid]).CurrentItem] / $INFO[Container($PARAM[controlid]).NumItems]</label>
+                </control>
             </control>
         </control>
     </include>
@@ -3928,6 +3931,8 @@
             <include>Animation_Delay_Fade_In_200</include>
 
             <top>910</top>
+            <align>left</align>
+            <left>View_SidePad</left>
 
             <!-- BLACK AND WHITE -->
 
@@ -4592,6 +4597,8 @@
             <include>Animation_Delay_Fade_In_200</include>
 
             <top>910</top>
+            <align>left</align>
+            <left>View_SidePad</left>
 
             <!-- BLACK / WHITE -->
 
