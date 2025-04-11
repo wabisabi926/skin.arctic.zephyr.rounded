@@ -953,28 +953,28 @@
 
                     <!-- ALBUMS BY YEAR -->
 
-                    <include content="Recommendation_Album_By_Year">
+                    <include content="Recommendation_Album_By_Year" condition="!Skin.HasSetting(hide.button.music.album.year) + [String.IsEqual(ListItem.DBType,song) | String.IsEqual(ListItem.DBType,album)]">
                         <param name="controlid" value="9511" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),5)" />
                     </include>
 
                     <!-- ALBUMS -->
 
-                    <include content="Recommendation_Album">
+                    <include content="Recommendation_Album" condition="!Skin.HasSetting(hide.button.music.artist.albums)">
                         <param name="controlid" value="9501" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),2)" />
                     </include>
 
                     <!-- SONGS -->
 
-                    <include content="Recommendation_Song">
+                    <include content="Recommendation_Song" condition="!Skin.HasSetting(hide.button.music.artist.songs)">
                         <param name="controlid" value="9508" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),8)" />
                     </include>
 
                     <!-- YOUTUBE -->
 
-                    <include content="Recommendation_Youtube">
+                    <include content="Recommendation_Youtube" condition="!Skin.HasSetting(hide.button.music.youtube)">
                         <param name="controlid" value="9502" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),3)" />
                     </include>

@@ -1398,6 +1398,11 @@
                 <!-- EXTENDED VIEW - FURNITURE HEADER -->
 
                 <control type="group">
+
+<!-- ==================================================================== -->
+<!--                      GROUP BUTTON - 9000                             -->
+<!-- ==================================================================== -->
+
                     <!-- =========================== -->
                     <!--           SET               -->
                     <!-- =========================== -->
@@ -1413,13 +1418,13 @@
 
                     <!-- CAST - LOCAL -->
 
-                    <include content="Recommendation_Cast_Local" condition="!String.IsEqual(ListItem.Property(item.type),person)">
+                    <include content="Recommendation_Cast_Local" condition="!String.IsEqual(ListItem.Property(item.type),person) + !String.IsEqual(ListItem.DBType,set) + !String.IsEmpty(ListItem.DBID) + !$EXP[IsYoutubeItem]">
                         <param name="controlid" value="50" />
                     </include>
 
                     <!-- CAST - ONLINE / SEASON -->
 
-                    <include content="Recommendation_Cast_Online" condition="!String.IsEqual(ListItem.DBType,set)">
+                    <include content="Recommendation_Cast_Online" condition="!String.IsEqual(ListItem.Property(item.type),person) + !String.IsEqual(ListItem.DBType,set) + !$EXP[IsYoutubeItem]">
                         <param name="controlid" value="9550" />
                     </include>
 
@@ -1473,10 +1478,17 @@
                     <!--          YOUTUBE            -->
                     <!-- =========================== -->
 
-                    <include content="Recommendation_Youtube" condition="!Skin.HasSetting(hide.button.video.youtube)">
+                    <include content="Recommendation_Youtube" condition="!Skin.HasSetting(hide.button.video.youtube) + [[[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.Property(item.type),person)] + !String.IsEqual(ListItem.DBType,set)] | $EXP[IsTMDbHelperItem]]">
                         <param name="controlid" value="9504" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),4)" />
                     </include>
+
+
+
+
+<!-- ==================================================================== -->
+<!--                      GROUP BUTTON - 9090                             -->
+<!-- ==================================================================== -->
 
                     <!-- =========================== -->
                     <!--       MOVIE / TV SHOW       -->
@@ -1484,56 +1496,56 @@
 
                     <!-- CREW -->
 
-                    <include content="Recommendation_Crew" condition="Skin.HasSetting(show.button.video.crew)">
+                    <include content="Recommendation_Crew" condition="Skin.HasSetting(show.button.video.crew) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set)">
                         <param name="controlid" value="9557" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),17)" />
                     </include>
 
                     <!-- BY DIRECTOR -->
 
-                    <include content="Recommendation_Director" condition="Skin.HasSetting(show.button.video.director)">
+                    <include content="Recommendation_Director" condition="Skin.HasSetting(show.button.video.director) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set)">
                         <param name="controlid" value="9506" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),7)" />
                     </include>
 
                     <!-- BY WRITER -->
 
-                    <include content="Recommendation_Writer" condition="Skin.HasSetting(show.button.video.writer)">
+                    <include content="Recommendation_Writer" condition="Skin.HasSetting(show.button.video.writer) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set)">
                         <param name="controlid" value="9556" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),14)" />
                     </include>
 
                     <!-- YEAR MOVIES / TV SHOWS -->
 
-                    <include content="Recommendation_Year" condition="Skin.HasSetting(show.button.video.year)">
+                    <include content="Recommendation_Year" condition="Skin.HasSetting(show.button.video.year) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set) + !String.IsEmpty(ListItem.Year)">
                         <param name="controlid" value="9514" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),9)" />
                     </include>
 
                     <!-- COLLECTION - MOVIES -->
 
-                    <include content="Recommendation_Collection" condition="Skin.HasSetting(show.button.video.set)">
+                    <include content="Recommendation_Collection" condition="Skin.HasSetting(show.button.video.set) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)] + !String.IsEqual(ListItem.DBType,set)">
                         <param name="controlid" value="9515" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),8)" />
                     </include>
 
                     <!-- SIMILAR - MOVIES / TV SHOWS -->
 
-                    <include content="Recommendation_Similar" condition="!Skin.HasSetting(hide.button.video.similar)">
+                    <include content="Recommendation_Similar" condition="!Skin.HasSetting(hide.button.video.similar) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set)">
                         <param name="controlid" value="9518" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),2)" />
                     </include>
 
                     <!-- RECOMMENDATION - MOVIES / TV SHOWS -->
 
-                    <include content="Recommendation_Recommendation" condition="Skin.HasSetting(show.button.video.recommended)">
+                    <include content="Recommendation_Recommendation" condition="Skin.HasSetting(show.button.video.recommended) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set)">
                         <param name="controlid" value="9517" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),16)" />
                     </include>
 
                     <!-- STUDIO - MOVIES / TV SHOWS -->
 
-                    <include content="Recommendation_Studio" condition="!Skin.HasSetting(hide.button.video.studio)">
+                    <include content="Recommendation_Studio" condition="!Skin.HasSetting(hide.button.video.studio) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set)">
                         <param name="controlid" value="9503" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),3)" />
                     </include>

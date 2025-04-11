@@ -145,7 +145,7 @@
         <param name="focusposition" value="$PARAM[focusposition]" default="2" />
         <param name="width" value="$PARAM[width]" default="222" />
         <param name="listbottom" value="$PARAM[listbottom]" default="30" />
-        <param name="listleft" value="$PARAM[listleft]" default="-260" />
+        <param name="listleft" value="$PARAM[listleft]" default="-840" />
         <param name="condition.includecontent" value="$PARAM[condition.includecontent]" default="false" />
         <param name="condition.isnotsets" value="$PARAM[condition.isnotsets]" default="true" />
         <param name="condition.issets" value="$PARAM[condition.issets]" default="false" />
@@ -158,9 +158,9 @@
                 <!-- ARROWS -->
 
                 <control type="group">
-                    <visible>!Control.HasFocus(9554) + !Control.HasFocus(95547)</visible>
                     <visible>$PARAM[visible.layouts]</visible>
                     <visible>!Container($PARAM[controlid]).IsUpdating</visible>
+                    <visible>!Control.HasFocus(9554) + !Control.HasFocus(95547) + !Control.HasFocus($PARAM[controlid]7)</visible>
                     <visible>!Container($PARAM[controlid]).OnNext + !Container($PARAM[controlid]).OnPrevious + !ListItem.IsCollection</visible>
 
                     <include>Animation_Delay_Fade_In_200</include>
@@ -260,8 +260,8 @@
                     <onup>ClearProperty(ListVideoForCastIcon,Home)</onup>
 
                     <onup condition="Control.HasFocus(50)">$VAR[Path_Actor_Dialog_Info]</onup>
-                    <onup condition="Control.HasFocus(9550)">$VAR[Path_Actor_Dialog_Info_TMDb]</onup>
-                    <onup condition="[Control.HasFocus(9550) | Control.HasFocus(50)] + !ListItem.IsCollection">SetProperty(down,1)</onup>
+                    <onup condition="Control.HasFocus(9550) | Control.HasFocus(9557)">$VAR[Path_Actor_Dialog_Info_TMDb]</onup>
+                    <onup condition="[Control.HasFocus(50) | Control.HasFocus(9550) | Control.HasFocus(9557)] + !ListItem.IsCollection">SetProperty(down,1)</onup>
 
                     <!-- ON CLICK  -->
 
@@ -382,7 +382,7 @@
         <param name="height" value="$PARAM[height]" default="335" />
         <param name="focusposition" value="$PARAM[focusposition]" default="1" />
         <param name="width" value="$PARAM[width]" default="222" />
-        <param name="listleft" value="$PARAM[listleft]" default="-250" />
+        <param name="listleft" value="$PARAM[listleft]" default="-840" />
         <param name="listbottom" value="$PARAM[listbottom]" default="30" />
 
         <param name="condition.includecontent" value="$PARAM[condition.includecontent]" default="false" />
