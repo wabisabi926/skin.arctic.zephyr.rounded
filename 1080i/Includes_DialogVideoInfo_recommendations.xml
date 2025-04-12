@@ -20,12 +20,8 @@
             <param name="controlid" value="$PARAM[controlid]" />
         </include>
         <include content="View_Dialog_Info_Poster">
-            <param name="condition.issets" value="true" />
-            <param name="condition.isnotsets" value="false" />
             <param name="condition.includecontent" value="true" />
-            <param name="fallbackpicture" value="pbtmdb.png" />
             <param name="visible" value="String.IsEmpty(Window(Home).Property(moviecontent)) + ![Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hide.button.video.wiki)]" />
-            <param name="animation" value="Animation_cast" />
             <param name="controlid" value="$PARAM[controlid]" />
             <param name="ContentToLoad" value="$VAR[Def_List_Set]" />
             <param name="sortby" value="year" />
@@ -33,8 +29,6 @@
             <param name="visible.layouts" value="Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
             <param name="onclick1" value="$VAR[Def_Item]" />
             <param name="onclick2" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" />
-            <param name="poster" value="true" />
-            <param name="thumb" value="false" />
         </include>
         <include content="Def_Dialog_Info_List_Updating">
             <param name="visible" value="String.IsEmpty(Window(Home).Property(moviecontent)) + String.IsEqual(ListItem.DBType,set) + !Control.HasFocus($PARAM[controlid])" />
@@ -60,8 +54,9 @@
             <param name="fallbackpicture" value="DefaultActor.png" />
             <param name="visible" value="![Skin.HasSetting(filter.video.cast.on.line) | String.IsEmpty(ListItem.DBID)] + String.IsEmpty(Window(Home).Property(moviecontent)) + ![Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hide.button.video.wiki)]" />
             <param name="visible.layouts" value="Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
-            <param name="animation" value="Animation_cast" />
             <param name="controlid" value="50" />
+            <param name="poster" value="false" />
+            <param name="thumb" value="true" />
         </include>
     </include>
 
@@ -78,14 +73,10 @@
             <param name="visible" value="[Skin.HasSetting(filter.video.cast.on.line) | String.IsEmpty(ListItem.DBID)] + String.IsEmpty(Window(Home).Property(moviecontent)) + ![Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hide.button.video.wiki)] + !String.IsEqual(ListItem.DBType,set)" />
             <param name="controlid" value="$PARAM[controlid]" />
             <param name="condition.includecontent" value="true" />
-            <param name="fallbackpicture" value="pbtmdb.png" />
-            <param name="animation" value="Animation_cast" />
             <param name="ContentToLoad" value="$VAR[Def_List_Cast]" />
             <param name="visible.layouts" value="Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
             <param name="onclick1" value="$VAR[Path_Actor_Dialog_Info_TMDb]" />
             <param name="onclick2" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" />
-            <param name="poster" value="true" />
-            <param name="thumb" value="false" />
         </include>
         <include content="Def_Dialog_Info_List_Updating">
             <param name="visible" value="String.IsEmpty(Window(Home).Property(moviecontent)) + !$EXP[IsYoutubeItem] + [Skin.HasSetting(filter.video.cast.on.line) | String.IsEmpty(ListItem.DBID) | String.IsEqual(ListItem.DBType,season)] + !String.IsEqual(ListItem.DBType,set)" />
@@ -112,17 +103,15 @@
         </include>
         <include content="View_Dialog_Info_Cast">
             <param name="condition.includecontent" value="true" />
-            <param name="fallbackpicture" value="pbtmdb.png" />
             <param name="visible" value="$PARAM[visible] + ![Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hide.button.video.wiki)]" />
-            <param name="animation" value="Animation_cast" />
             <param name="controlid" value="$PARAM[controlid]" />
             <param name="ContentToLoad" value="$VAR[Def_Person_List_Picture]" />
             <param name="sortby" value="year" />
             <param name="sortorder" value="descending" />
             <param name="visible.layouts" value="Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
             <param name="onclick1" value="SetFocus(160)" />
-            <param name="poster" value="true" />
-            <param name="thumb" value="false" />
+            <param name="poster" value="false" />
+            <param name="thumb" value="true" />
         </include>
         <include content="Def_Dialog_Info_List_Updating">
             <param name="visible" value="$PARAM[visible] + [Control.HasFocus(9054) | Control.HasFocus(9201) | Control.HasFocus(9013) | Control.HasFocus(90122)]" />
@@ -148,11 +137,9 @@
             <param name="visible" value="$PARAM[visible]" />
         </include>
         <include content="View_Dialog_Info_Poster">
+            <param name="visible" value="$PARAM[visible]" />
             <param name="controlid" value="$PARAM[controlid]" />
             <param name="condition.includecontent" value="true" />
-            <param name="fallbackpicture" value="pbtmdb.png" />
-            <param name="visible" value="$PARAM[visible]" />
-            <param name="animation" value="Animation_cast" />
             <param name="controlid" value="$PARAM[controlid]" />
             <param name="ContentToLoad" value="$VAR[Def_List_Director_Person]" />
             <param name="sortby" value="year" />
@@ -160,8 +147,6 @@
             <param name="visible.layouts" value="Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
             <param name="onclick1" value="$VAR[Def_Item]" />
             <param name="onclick2" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" />
-            <param name="poster" value="true" />
-            <param name="thumb" value="false" />
         </include>
         <include content="Def_Dialog_Info_List_Updating">
             <param name="visible" value="$PARAM[visible] + Control.HasFocus(9060)" />
@@ -186,11 +171,9 @@
             <param name="visible" value="$PARAM[visible]" />
         </include>
         <include content="View_Dialog_Info_Poster">
+            <param name="visible" value="$PARAM[visible]" />
             <param name="controlid" value="$PARAM[controlid]" />
             <param name="condition.includecontent" value="true" />
-            <param name="fallbackpicture" value="pbtmdb.png" />
-            <param name="visible" value="$PARAM[visible]" />
-            <param name="animation" value="Animation_cast" />
             <param name="controlid" value="$PARAM[controlid]" />
             <param name="ContentToLoad" value="$VAR[Def_Person_List_Movies]" />
             <param name="sortby" value="year" />
@@ -198,8 +181,6 @@
             <param name="visible.layouts" value="Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
             <param name="onclick1" value="$VAR[Def_Item]" />
             <param name="onclick2" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" />
-            <param name="poster" value="true" />
-            <param name="thumb" value="false" />
         </include>
         <include content="Def_Dialog_Info_List_Updating">
             <param name="visible" value="$PARAM[visible] + Control.HasFocus(9052)" />
@@ -224,20 +205,15 @@
             <param name="visible" value="$PARAM[visible]" />
         </include>
         <include content="View_Dialog_Info_Poster">
+            <param name="visible" value="$PARAM[visible]" />
             <param name="controlid" value="$PARAM[controlid]" />
             <param name="condition.includecontent" value="true" />
-            <param name="fallbackpicture" value="pbtmdb.png" />
-            <param name="visible" value="$PARAM[visible]" />
-            <param name="animation" value="Animation_cast" />
-            <param name="controlid" value="$PARAM[controlid]" />
             <param name="ContentToLoad" value="$VAR[Def_Person_List_TvShows]" />
             <param name="sortby" value="year" />
             <param name="sortorder" value="descending" />
             <param name="visible.layouts" value="Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
             <param name="onclick1" value="$VAR[Def_Item]" />
             <param name="onclick2" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" />
-            <param name="poster" value="true" />
-            <param name="thumb" value="false" />
         </include>
         <include content="Def_Dialog_Info_List_Updating">
             <param name="visible" value="$PARAM[visible] + Control.HasFocus(9053)" />
@@ -262,20 +238,15 @@
             <param name="visible" value="$PARAM[visible]" />
         </include>
         <include content="View_Dialog_Info_Poster">
+            <param name="visible" value="$PARAM[visible]" />
             <param name="controlid" value="$PARAM[controlid]" />
             <param name="condition.includecontent" value="true" />
-            <param name="fallbackpicture" value="pbtmdb.png" />
-            <param name="visible" value="$PARAM[visible]" />
-            <param name="animation" value="Animation_cast" />
-            <param name="controlid" value="$PARAM[controlid]" />
             <param name="ContentToLoad" value="$VAR[Def_Person_List_Movies_Member_Crew]" />
             <param name="sortby" value="year" />
             <param name="sortorder" value="descending" />
             <param name="visible.layouts" value="Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
             <param name="onclick1" value="$VAR[Def_Item]" />
             <param name="onclick2" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" />
-            <param name="poster" value="true" />
-            <param name="thumb" value="false" />
         </include>
         <include content="Def_Dialog_Info_List_Updating">
             <param name="visible" value="$PARAM[visible] + Control.HasFocus(9058)" />
@@ -300,11 +271,9 @@
             <param name="visible" value="$PARAM[visible]" />
         </include>
         <include content="View_Dialog_Info_Poster">
+            <param name="visible" value="$PARAM[visible]" />
             <param name="controlid" value="$PARAM[controlid]" />
             <param name="condition.includecontent" value="true" />
-            <param name="fallbackpicture" value="pbtmdb.png" />
-            <param name="visible" value="$PARAM[visible]" />
-            <param name="animation" value="Animation_cast" />
             <param name="controlid" value="$PARAM[controlid]" />
             <param name="ContentToLoad" value="$VAR[Def_Person_List_TvShows_Member_Crew]" />
             <param name="sortby" value="year" />
@@ -312,8 +281,6 @@
             <param name="visible.layouts" value="Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
             <param name="onclick1" value="$VAR[Def_Item]" />
             <param name="onclick2" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" />
-            <param name="poster" value="true" />
-            <param name="thumb" value="false" />
         </include>
         <include content="Def_Dialog_Info_List_Updating">
             <param name="visible" value="$PARAM[visible] + Control.HasFocus(9059)" />
@@ -350,6 +317,7 @@
             <param name="target" value="videos" />
             <param name="leftbackgroundlist" value="-227" />
             <param name="alignleft" value="640" />
+            <param name="poster" value="false" />
             <param name="thumb" value="true" />
             <param name="aspectratio" value="scale" />
             <param name="colordiffuse" value="black" />
@@ -361,8 +329,6 @@
             <param name="label_spinner" value="$LOCALIZE[31546] Youtube..." />
         </include>
     </include>
-
-
 
     <!-- ==================================================================== -->
     <!--                      GROUP BUTTON - 9090                             -->
@@ -386,17 +352,13 @@
             <param name="visible" value="$PARAM[visible]" />
         </include>
         <include content="View_Dialog_Info_Cast">
+            <param name="visible" value="$PARAM[visible]" />
             <param name="controlid" value="$PARAM[controlid]" />
             <param name="condition.includecontent" value="true" />
-            <param name="fallbackpicture" value="pbtmdb.png" />
-            <param name="visible" value="$PARAM[visible]" />
-            <param name="animation" value="Animation_cast" />
             <param name="ContentToLoad" value="$VAR[Def_List_Crew]" />
             <param name="visible.layouts" value="Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
             <param name="onclick1" value="$VAR[Def_Item]" />
             <param name="onclick2" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" />
-            <param name="poster" value="true" />
-            <param name="thumb" value="false" />
         </include>
         <!-- <include content="Def_Dialog_Info_List_Updating"> -->
             <!-- <param name="visible" value="$PARAM[visible] + Control.HasFocus(9057)" /> -->
@@ -421,19 +383,15 @@
             <param name="visible" value="$PARAM[visible]" />
         </include>
         <include content="View_Dialog_Info_Poster">
+            <param name="visible" value="$PARAM[visible]" />
             <param name="controlid" value="$PARAM[controlid]" />
             <param name="condition.includecontent" value="true" />
-            <param name="fallbackpicture" value="pbtmdb.png" />
-            <param name="visible" value="$PARAM[visible]" />
-            <param name="animation" value="Animation_cast" />
             <param name="ContentToLoad" value="$VAR[Def_List_Director]" />
             <param name="sortby" value="year" />
             <param name="sortorder" value="descending" />
             <param name="visible.layouts" value="Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
             <param name="onclick1" value="$VAR[Def_Item]" />
             <param name="onclick2" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" />
-            <param name="poster" value="true" />
-            <param name="thumb" value="false" />
         </include>
         <!-- <include content="Def_Dialog_Info_List_Updating"> -->
             <!-- <param name="visible" value="$PARAM[visible] + Control.HasFocus(9006)" /> -->
@@ -458,19 +416,15 @@
             <param name="visible" value="$PARAM[visible]" />
         </include>
         <include content="View_Dialog_Info_Poster">
+            <param name="visible" value="$PARAM[visible]" />
             <param name="controlid" value="$PARAM[controlid]" />
             <param name="condition.includecontent" value="true" />
-            <param name="fallbackpicture" value="pbtmdb.png" />
-            <param name="visible" value="$PARAM[visible]" />
-            <param name="animation" value="Animation_cast" />
             <param name="ContentToLoad" value="$VAR[Def_List_Writer]" />
             <param name="sortby" value="year" />
             <param name="sortorder" value="descending" />
             <param name="visible.layouts" value="Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
             <param name="onclick1" value="$VAR[Def_Item]" />
             <param name="onclick2" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" />
-            <param name="poster" value="true" />
-            <param name="thumb" value="false" />
         </include>
         <!-- <include content="Def_Dialog_Info_List_Updating"> -->
             <!-- <param name="visible" value="$PARAM[visible] + Control.HasFocus(9056)" /> -->
@@ -496,9 +450,7 @@
         </include>
         <include content="View_Dialog_Info_Poster">
             <param name="condition.includecontent" value="true" />
-            <param name="fallbackpicture" value="pbtmdb.png" />
             <param name="visible" value="$PARAM[visible]" />
-            <param name="animation" value="Animation_cast" />
             <param name="controlid" value="$PARAM[controlid]" />
             <param name="ContentToLoad" value="$VAR[Def_List_Year]" />
             <param name="sortby" value="country" />
@@ -506,8 +458,6 @@
             <param name="visible.layouts" value="Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
             <param name="onclick1" value="$VAR[Def_Item]" />
             <param name="onclick2" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" />
-            <param name="poster" value="true" />
-            <param name="thumb" value="false" />
         </include>
         <!-- <include content="Def_Dialog_Info_List_Updating"> -->
             <!-- <param name="visible" value="$PARAM[visible] + Control.HasFocus(9014)" /> -->
@@ -533,9 +483,7 @@
         </include>
         <include content="View_Dialog_Info_Poster">
             <param name="condition.includecontent" value="true" />
-            <param name="fallbackpicture" value="pbtmdb.png" />
             <param name="visible" value="$PARAM[visible]" />
-            <param name="animation" value="Animation_cast" />
             <param name="controlid" value="$PARAM[controlid]" />
             <param name="ContentToLoad" value="$VAR[Def_List_Set]" />
             <param name="sortby" value="year" />
@@ -543,8 +491,6 @@
             <param name="visible.layouts" value="Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
             <param name="onclick1" value="$VAR[Def_Item]" />
             <param name="onclick2" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" />
-            <param name="poster" value="true" />
-            <param name="thumb" value="false" />
         </include>
         <!-- <include content="Def_Dialog_Info_List_Updating"> -->
             <!-- <param name="visible" value="$PARAM[visible] + Control.HasFocus(9015)" /> -->
@@ -570,9 +516,7 @@
         </include>
         <include content="View_Dialog_Info_Poster">
             <param name="controlid" value="$PARAM[controlid]" />
-            <param name="fallbackpicture" value="pbtmdb.png" />
             <param name="visible" value="$PARAM[visible]" />
-            <param name="animation" value="Animation_cast" />
 
 
             <param name="ContentToLoad" value="$VAR[Def_List_Similar]" />
@@ -582,8 +526,6 @@
             <param name="visible.layouts" value="Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
             <param name="onclick1" value="$VAR[Def_Item]" />
             <param name="onclick2" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" />
-            <param name="poster" value="true" />
-            <param name="thumb" value="false" />
         </include>
         <!-- <include content="Def_Dialog_Info_List_Updating"> -->
             <!-- <param name="visible" value="$PARAM[visible] + Control.HasFocus(9018)" /> -->
@@ -609,16 +551,12 @@
         </include>
         <include content="View_Dialog_Info_Poster">
             <param name="condition.includecontent" value="true" />
-            <param name="fallbackpicture" value="pbtmdb.png" />
             <param name="visible" value="$PARAM[visible]" />
-            <param name="animation" value="Animation_cast" />
             <param name="controlid" value="$PARAM[controlid]" />
             <param name="ContentToLoad" value="$VAR[Def_List_Recommendation]" />
             <param name="visible.layouts" value="Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
             <param name="onclick1" value="$VAR[Def_Item]" />
             <param name="onclick2" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" />
-            <param name="poster" value="true" />
-            <param name="thumb" value="false" />
         </include>
         <!-- <include content="Def_Dialog_Info_List_Updating"> -->
             <!-- <param name="visible" value="$PARAM[visible] + Control.HasFocus(9017)" /> -->
@@ -644,9 +582,7 @@
         </include>
         <include content="View_Dialog_Info_Poster">
             <param name="condition.includecontent" value="true" />
-            <param name="fallbackpicture" value="pbtmdb.png" />
             <param name="visible" value="$PARAM[visible]" />
-            <param name="animation" value="Animation_cast" />
             <param name="controlid" value="$PARAM[controlid]" />
             <param name="ContentToLoad" value="$VAR[Def_List_Studio]" />
             <param name="sortby" value="year" />
@@ -654,8 +590,6 @@
             <param name="visible.layouts" value="Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
             <param name="onclick1" value="$VAR[Def_Item]" />
             <param name="onclick2" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" />
-            <param name="poster" value="true" />
-            <param name="thumb" value="false" />
         </include>
         <!-- <include content="Def_Dialog_Info_List_Updating"> -->
             <!-- <param name="visible" value="$PARAM[visible] + Control.HasFocus(9003)" /> -->
@@ -684,9 +618,7 @@
         </include>
         <include content="View_Dialog_Info_Poster" condition="[String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + !String.IsEqual(ListItem.DBType,set)">
             <param name="condition.includecontent" value="true" />
-            <param name="fallbackpicture" value="pbtmdb.png" />
             <param name="visible" value="$PARAM[visible]" />
-            <param name="animation" value="Animation_cast" />
             <param name="controlid" value="$PARAM[controlid]" />
             <param name="ContentToLoad" value="$VAR[Def_List_Creator]" />
             <param name="sortby" value="year" />
@@ -694,8 +626,6 @@
             <param name="visible.layouts" value="Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
             <param name="onclick1" value="$VAR[Def_Item]" />
             <param name="onclick2" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" />
-            <param name="poster" value="true" />
-            <param name="thumb" value="false" />
         </include>
         <!-- <include content="Def_Dialog_Info_List_Updating"> -->
             <!-- <param name="visible" value="$PARAM[visible] + Control.HasFocus(9020)" /> -->
@@ -721,16 +651,12 @@
         </include>
         <include content="View_Dialog_Info_Poster"  condition="[String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set)">
             <param name="condition.includecontent" value="true" />
-            <param name="fallbackpicture" value="pbtmdb.png" />
             <param name="visible" value="$PARAM[visible]" />
-            <param name="animation" value="Animation_cast" />
             <param name="controlid" value="$PARAM[controlid]" />
             <param name="ContentToLoad" value="$VAR[Def_List_Seasons]" />
             <param name="visible.layouts" value="Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
             <param name="onclick1" value="$VAR[Def_Item]" />
             <param name="onclick2" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" />
-            <param name="poster" value="true" />
-            <param name="thumb" value="false" />
         </include>
         <!-- <include content="Def_Dialog_Info_List_Updating"> -->
             <!-- <param name="visible" value="$PARAM[visible] + Control.HasFocus(9079)" /> -->

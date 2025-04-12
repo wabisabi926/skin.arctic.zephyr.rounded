@@ -142,7 +142,6 @@
         <param name="Animation_new" value="$PARAM[Animation_new]" default="Animation_CastInfo" />
         <param name="zoom" value="$PARAM[zoom]" default="140" />
         <param name="height" value="$PARAM[height]" default="335" />
-        <param name="focusposition" value="$PARAM[focusposition]" default="2" />
         <param name="width" value="$PARAM[width]" default="222" />
         <param name="listbottom" value="$PARAM[listbottom]" default="30" />
         <param name="listleft" value="$PARAM[listleft]" default="-840" />
@@ -212,7 +211,6 @@
                         <param name="id" value="0" />
                         <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
                         <param name="controlid" value="$PARAM[controlid]" />
-                        <param name="visibleshadow" value="!Control.HasFocus($PARAM[controlid])" />
                         <param name="aspectbox" value="$PARAM[aspectbox]" />
                         <param name="aspectposter" value="$PARAM[aspectposter]" />
                         <param name="poster" value="$PARAM[poster]" />
@@ -223,7 +221,6 @@
                         <param name="id" value="0" />
                         <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
                         <param name="controlid" value="$PARAM[controlid]" />
-                        <param name="visibleshadow" value="!Control.HasFocus($PARAM[controlid])" />
                         <param name="aspectbox" value="$PARAM[aspectbox]" />
                         <param name="aspectposter" value="$PARAM[aspectposter]" />
                         <param name="poster" value="$PARAM[poster]" />
@@ -293,7 +290,7 @@
                     <onback>ClearProperty(view_extended,Home)</onback>
                     <onback>ClearProperty(down)</onback>
 
-                    <focusposition>$PARAM[focusposition]</focusposition>
+                    <focusposition>2</focusposition>
                     <pagecontrol>$PARAM[controlid]7</pagecontrol>
                     <orientation>horizontal</orientation>
                     <preloaditems>2</preloaditems>
@@ -375,19 +372,9 @@
     </include>
 
     <include name="View_Dialog_Info_Poster">
-        <param name="fallbackpicture" value="$PARAM[fallbackpicture]" default="DefaultPicture.png" />
-        <param name="leftbackgroundlist" value="$PARAM[leftbackgroundlist]" default="-227" />
+        <param name="fallbackpicture" value="$PARAM[fallbackpicture]" default="pbtmdb.png" />
         <param name="Animation_new" value="$PARAM[Animation_new]" default="Animation_CastInfo" />
-        <!-- <param name="zoom" value="$PARAM[zoom]" default="105" /> -->
-        <param name="height" value="$PARAM[height]" default="335" />
-        <param name="focusposition" value="$PARAM[focusposition]" default="1" />
-        <param name="width" value="$PARAM[width]" default="222" />
-        <param name="listleft" value="$PARAM[listleft]" default="-840" />
-        <param name="listbottom" value="$PARAM[listbottom]" default="30" />
-
         <param name="condition.includecontent" value="$PARAM[condition.includecontent]" default="false" />
-        <param name="condition.isnotsets" value="$PARAM[condition.isnotsets]" default="true" />
-        <param name="condition.issets" value="$PARAM[condition.issets]" default="false" />
 
         <definition>
             <control type="group">
@@ -409,28 +396,17 @@
                     </include>
 
                     <top>361</top>
-                    <left>$PARAM[leftbackgroundlist]</left>
+                    <left>-227</left>
                     <width>1400</width>
                     <height>400</height>
 
                     <orientation>horizontal</orientation>
                     <itemgap>-9.3</itemgap>
 
-                    <include content="Layout_Dialog_Info_UnFocus_Poster_Square" condition="$PARAM[condition.isnotsets]">
+                    <include content="Layout_Dialog_Info_UnFocus_Poster_Square">
                         <param name="id" value="0" />
                         <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
                         <param name="controlid" value="$PARAM[controlid]" />
-                        <param name="visibleshadow" value="!Control.HasFocus($PARAM[controlid])" />
-                        <param name="aspectbox" value="$PARAM[aspectbox]" />
-                        <param name="aspectposter" value="$PARAM[aspectposter]" />
-                        <param name="poster" value="$PARAM[poster]" />
-                        <param name="thumb" value="$PARAM[thumb]" />
-                    </include>
-                    <include content="Layout_Dialog_Info_UnFocus_Poster_Set" condition="$PARAM[condition.issets]">
-                        <param name="id" value="0" />
-                        <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
-                        <param name="controlid" value="$PARAM[controlid]" />
-                        <param name="visibleshadow" value="!Control.HasFocus($PARAM[controlid])" />
                         <param name="aspectbox" value="$PARAM[aspectbox]" />
                         <param name="aspectposter" value="$PARAM[aspectposter]" />
                         <param name="poster" value="$PARAM[poster]" />
@@ -486,21 +462,15 @@
                     <preloaditems>2</preloaditems>
                     <orientation>vertical</orientation>
                     <pagecontrol>$PARAM[controlid]7</pagecontrol>
-                    <focusposition>$PARAM[focusposition]</focusposition>
+                    <focusposition>1</focusposition>
 
                     <viewtype label="536">panel</viewtype>
 
-                    <itemlayout height="$PARAM[height]" width="$PARAM[width]">
+                    <itemlayout height="335" width="222">
                         <control type="group">
                             <visible>$PARAM[visible.layouts]</visible>
                             <animation effect="fade" start="0" end="100" time="0" delay="200">Visible</animation>
-                            <include content="Layout_Dialog_Info_Poster" condition="$PARAM[condition.isnotsets]">
-                                <param name="aspectratio" value="$PARAM[aspectratio]" default="scale" />
-                                <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
-                                <param name="poster" value="$PARAM[poster]" />
-                                <param name="thumb" value="$PARAM[thumb]" />
-                            </include>
-                            <include content="Layout_Dialog_Info_Poster_Set" condition="$PARAM[condition.issets]">
+                            <include content="Layout_Dialog_Info_Poster">
                                 <param name="aspectratio" value="$PARAM[aspectratio]" default="scale" />
                                 <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
                                 <param name="poster" value="$PARAM[poster]" />
@@ -508,20 +478,11 @@
                             </include>
                         </control>
                     </itemlayout>
-                    <focusedlayout height="$PARAM[height]" width="$PARAM[width]">
+                    <focusedlayout height="335" width="222">
                         <control type="group">
                             <visible>$PARAM[visible.layouts]</visible>
                             <animation effect="fade" start="0" end="100" time="0" delay="200">Visible</animation>
-                            <include content="Layout_Dialog_Info_Poster_Focus" condition="$PARAM[condition.isnotsets]">
-                                <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
-                                <param name="aspectratio" value="$PARAM[aspectratio]" default="scale" />
-                                <param name="controlid" value="$PARAM[controlid]" />
-                                <param name="zoom" value="$PARAM[zoom]" />
-                                <param name="poster" value="$PARAM[poster]" />
-                                <param name="thumb" value="$PARAM[thumb]" />
-                                <param name="controlid" value="$PARAM[controlid]" />
-                            </include>
-                             <include content="Layout_Dialog_Info_Poster_Set_Focus" condition="$PARAM[condition.issets]">
+                            <include content="Layout_Dialog_Info_Poster_Focus">
                                 <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
                                 <param name="aspectratio" value="$PARAM[aspectratio]" default="scale" />
                                 <param name="controlid" value="$PARAM[controlid]" />
@@ -616,7 +577,6 @@
                         <param name="id" value="0" />
                         <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
                         <param name="controlid" value="$PARAM[controlid]" />
-                        <param name="visibleshadow" value="!Control.HasFocus($PARAM[controlid])" />
                         <param name="aspectbox" value="$PARAM[aspectbox]" />
                         <param name="aspectposter" value="$PARAM[aspectposter]" />
                     </include>
@@ -783,7 +743,6 @@
                         <param name="id" value="0" />
                         <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
                         <param name="controlid" value="$PARAM[controlid]" />
-                        <param name="visibleshadow" value="!Control.HasFocus($PARAM[controlid])" />
                         <param name="aspectbox" value="$PARAM[aspectbox]" />
                         <param name="aspectposter" value="$PARAM[aspectposter]" />
                     </include>
@@ -867,8 +826,8 @@
     <include name="Layout_Dialog_Info_Poster">
         <param name="aspectratio" value="$PARAM[aspectratio]" default="scale" />
         <param name="fallbackpicture" value="$PARAM[fallbackpicture]" default="DefaultPicture.png" />
-        <param name="poster" value="$PARAM[poster]" default="false" />
-        <param name="thumb" value="$PARAM[thumb]" default="true" />
+        <param name="poster" value="$PARAM[poster]" default="true" />
+        <param name="thumb" value="$PARAM[thumb]" default="false" />
 
         <definition>
             <control type="group">
@@ -886,8 +845,8 @@
     <include name="Layout_Dialog_Info_Poster_Focus">
         <param name="aspectratio" value="$PARAM[aspectratio]" default="scale" />
         <param name="fallbackpicture" default="pbtmdb.png" />
-        <param name="poster" value="$PARAM[poster]" default="false" />
-        <param name="thumb" value="$PARAM[thumb]" default="true" />
+        <param name="poster" value="$PARAM[poster]" default="true" />
+        <param name="thumb" value="$PARAM[thumb]" default="false" />
         <definition>
             <control type="group">
                <animation center="auto" easing="inout" effect="zoom" end="$PARAM[zoom]" start="100" time="200" tween="sine">Focus</animation>
@@ -904,6 +863,7 @@
             </control>
 
             <control type="label">
+               <visible>!Container.Content(sets)</visible>
                <visible>Control.HasFocus(50) | Control.HasFocus(9550) | Control.HasFocus(9554) | Control.HasFocus(9557) | Window.IsVisible(DialogButtonMenu.xml)</visible>
                <left>-20</left>
                <bottom>-112</bottom>
@@ -917,6 +877,7 @@
                <animation effect="fade" start="100" end="0" time="0" delay="0">UnFocus</animation>
             </control>
             <control type="label">
+               <visible>!Container.Content(sets)</visible>
                <visible>Control.HasFocus(50) | Control.HasFocus(9550) | Control.HasFocus(9554) | Control.HasFocus(9557) | Window.IsVisible(DialogButtonMenu.xml)</visible>
                <bottom>-152</bottom>
                <left>130</left>
@@ -928,47 +889,6 @@
                <label>$VAR[Label_Dialog_Info_Video_Extended]</label>
                <animation effect="fade" start="0" end="100" time="350" tween="sine" delay="200" reversible="false">Focus</animation>
                <animation effect="fade" start="100" end="0" time="0" delay="0">UnFocus</animation>
-            </control>
-        </definition>
-    </include>
-
-    <include name="Layout_Dialog_Info_Poster_Set">
-        <param name="aspectratio" value="$PARAM[aspectratio]" default="scale" />
-        <param name="fallbackpicture" value="$PARAM[fallbackpicture]" default="DefaultPicture.png" />
-        <param name="poster" value="$PARAM[poster]" default="false" />
-        <param name="thumb" value="$PARAM[thumb]" default="true" />
-
-        <definition>
-            <control type="group">
-                <height>325</height>
-                <include content="Layout_Widget_Poster">
-                    <param name="texture" value="$VAR[Image_Dialog_Info_Video_Poster]" />
-                    <param name="texture_diffuse" value="poster_w202_h305" />
-                    <param name="id" value="$PARAM[controlid]" />
-                    <param name="aspectratio" value="keep" />
-                </include>
-            </control>
-        </definition>
-    </include>
-
-    <include name="Layout_Dialog_Info_Poster_Set_Focus">
-        <param name="aspectratio" value="$PARAM[aspectratio]" default="scale" />
-        <param name="fallbackpicture" default="pbtmdb.png" />
-        <param name="poster" value="$PARAM[poster]" default="false" />
-        <param name="thumb" value="$PARAM[thumb]" default="true" />
-        <definition>
-            <control type="group">
-                <animation center="auto" easing="inout" effect="zoom" end="$PARAM[zoom]" start="100" time="200" tween="sine">Focus</animation>
-                <animation center="auto" easing="inout" effect="zoom" end="100" start="$PARAM[zoom]" time="200" tween="sine">UnFocus</animation>
-                <control type="group">
-                    <height>325</height>
-                    <include content="Layout_Widget_Poster_Focus">
-                        <param name="texture" value="$VAR[Image_Dialog_Info_Video_Poster]" />
-                        <param name="texture_diffuse" value="poster_w202_h305" />
-                        <param name="id" value="$PARAM[controlid]" />
-                        <param name="aspectratio" value="keep" />
-                    </include>
-                </control>
             </control>
         </definition>
     </include>
@@ -1063,184 +983,105 @@
 
     <include name="Layout_Dialog_Info_UnFocus_Poster_Square">
         <param name="fallbackpicture" value="$PARAM[fallbackpicture]" default="DefaultPicture.png" />
-        <param name="poster" value="$PARAM[poster]" default="false" />
-        <param name="thumb" value="$PARAM[thumb]" default="true" />
+        <param name="poster" value="$PARAM[poster]" default="true" />
+        <param name="thumb" value="$PARAM[thumb]" default="false" />
 
         <definition>
             <include content="Def_Dialog_Info_UnFocus_Poster_Square_Item">
                 <param name="id" value="0" />
                 <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
                 <param name="controlid" value="$PARAM[controlid]" />
-                <param name="visibleshadow" value="!Control.HasFocus($PARAM[controlid])" />
                 <param name="aspectbox" value="$PARAM[aspectbox]" />
                 <param name="aspectposter" value="$PARAM[aspectposter]" />
-                <param name="poster" value="$PARAM[poster]" default="false" />
-                <param name="thumb" value="$PARAM[thumb]" default="true" />
+                <param name="poster" value="$PARAM[poster]" default="true" />
+                <param name="thumb" value="$PARAM[thumb]" default="false" />
             </include>
             <include content="Def_Dialog_Info_UnFocus_Poster_Square_Item">
                 <param name="id" value="1" />
                 <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
                 <param name="controlid" value="$PARAM[controlid]" />
-                <param name="visibleshadow" value="!Control.HasFocus($PARAM[controlid])" />
                 <param name="aspectbox" value="$PARAM[aspectbox]" />
                 <param name="aspectposter" value="$PARAM[aspectposter]" />
-                <param name="poster" value="$PARAM[poster]" default="false" />
-                <param name="thumb" value="$PARAM[thumb]" default="true" />
+                <param name="poster" value="$PARAM[poster]" default="true" />
+                <param name="thumb" value="$PARAM[thumb]" default="false" />
             </include>
             <include content="Def_Dialog_Info_UnFocus_Poster_Square_Item">
                 <param name="id" value="2" />
                 <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
                 <param name="controlid" value="$PARAM[controlid]" />
-                <param name="visibleshadow" value="!Control.HasFocus($PARAM[controlid])" />
                 <param name="aspectbox" value="$PARAM[aspectbox]" />
                 <param name="aspectposter" value="$PARAM[aspectposter]" />
-                <param name="poster" value="$PARAM[poster]" default="false" />
-                <param name="thumb" value="$PARAM[thumb]" default="true" />
+                <param name="poster" value="$PARAM[poster]" default="true" />
+                <param name="thumb" value="$PARAM[thumb]" default="false" />
             </include>
             <include content="Def_Dialog_Info_UnFocus_Poster_Square_Item">
                 <param name="id" value="3" />
                 <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
                 <param name="controlid" value="$PARAM[controlid]" />
-                <param name="visibleshadow" value="!Control.HasFocus($PARAM[controlid])" />
                 <param name="aspectbox" value="$PARAM[aspectbox]" />
                 <param name="aspectposter" value="$PARAM[aspectposter]" />
-                <param name="poster" value="$PARAM[poster]" default="false" />
-                <param name="thumb" value="$PARAM[thumb]" default="true" />
+                <param name="poster" value="$PARAM[poster]" default="true" />
+                <param name="thumb" value="$PARAM[thumb]" default="false" />
             </include>
             <include content="Def_Dialog_Info_UnFocus_Poster_Square_Item">
                 <param name="id" value="4" />
                 <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
                 <param name="controlid" value="$PARAM[controlid]" />
-                <param name="visibleshadow" value="!Control.HasFocus($PARAM[controlid])" />
                 <param name="aspectbox" value="$PARAM[aspectbox]" />
                 <param name="aspectposter" value="$PARAM[aspectposter]" />
-                <param name="poster" value="$PARAM[poster]" default="false" />
-                <param name="thumb" value="$PARAM[thumb]" default="true" />
+                <param name="poster" value="$PARAM[poster]" default="true" />
+                <param name="thumb" value="$PARAM[thumb]" default="false" />
             </include>
             <include content="Def_Dialog_Info_UnFocus_Poster_Square_Item">
                 <param name="id" value="5" />
                 <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
                 <param name="controlid" value="$PARAM[controlid]" />
-                <param name="visibleshadow" value="!Control.HasFocus($PARAM[controlid])" />
                 <param name="aspectbox" value="$PARAM[aspectbox]" />
                 <param name="aspectposter" value="$PARAM[aspectposter]" />
-                <param name="poster" value="$PARAM[poster]" default="false" />
-                <param name="thumb" value="$PARAM[thumb]" default="true" />
+                <param name="poster" value="$PARAM[poster]" default="true" />
+                <param name="thumb" value="$PARAM[thumb]" default="false" />
             </include>
             <include content="Def_Dialog_Info_UnFocus_Poster_Square_Item">
                 <param name="id" value="6" />
                 <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
                 <param name="controlid" value="$PARAM[controlid]" />
-                <param name="visibleshadow" value="!Control.HasFocus($PARAM[controlid])" />
                 <param name="aspectbox" value="$PARAM[aspectbox]" />
                 <param name="aspectposter" value="$PARAM[aspectposter]" />
-                <param name="poster" value="$PARAM[poster]" default="false" />
-                <param name="thumb" value="$PARAM[thumb]" default="true" />
+                <param name="poster" value="$PARAM[poster]" default="true" />
+                <param name="thumb" value="$PARAM[thumb]" default="false" />
             </include>
             <include content="Def_Dialog_Info_UnFocus_Poster_Square_Item">
                 <param name="id" value="7" />
                 <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
                 <param name="controlid" value="$PARAM[controlid]" />
-                <param name="visibleshadow" value="!Control.HasFocus($PARAM[controlid])" />
                 <param name="aspectbox" value="$PARAM[aspectbox]" />
                 <param name="aspectposter" value="$PARAM[aspectposter]" />
-                <param name="poster" value="$PARAM[poster]" default="false" />
-                <param name="thumb" value="$PARAM[thumb]" default="true" />
+                <param name="poster" value="$PARAM[poster]" default="true" />
+                <param name="thumb" value="$PARAM[thumb]" default="false" />
             </include>
         </definition>
     </include>
-
-    <include name="Layout_Dialog_Info_UnFocus_Poster_Set">
-        <param name="fallbackpicture" value="$PARAM[fallbackpicture]" default="DefaultPicture.png" />
-
-        <definition>
-            <include content="Def_Dialog_Info_UnFocus_Poster_Set_Item">
-                <param name="id" value="0" />
-                <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
-                <param name="controlid" value="$PARAM[controlid]" />
-                <param name="visibleshadow" value="!Control.HasFocus($PARAM[controlid])" />
-                <param name="aspectbox" value="$PARAM[aspectbox]" />
-                <param name="aspectposter" value="$PARAM[aspectposter]" />
-            </include>
-            <include content="Def_Dialog_Info_UnFocus_Poster_Set_Item">
-                <param name="id" value="1" />
-                <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
-                <param name="controlid" value="$PARAM[controlid]" />
-                <param name="visibleshadow" value="!Control.HasFocus($PARAM[controlid])" />
-                <param name="aspectbox" value="$PARAM[aspectbox]" />
-                <param name="aspectposter" value="$PARAM[aspectposter]" />
-            </include>
-            <include content="Def_Dialog_Info_UnFocus_Poster_Set_Item">
-                <param name="id" value="2" />
-                <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
-                <param name="controlid" value="$PARAM[controlid]" />
-                <param name="visibleshadow" value="!Control.HasFocus($PARAM[controlid])" />
-                <param name="aspectbox" value="$PARAM[aspectbox]" />
-                <param name="aspectposter" value="$PARAM[aspectposter]" />
-            </include>
-            <include content="Def_Dialog_Info_UnFocus_Poster_Set_Item">
-                <param name="id" value="3" />
-                <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
-                <param name="controlid" value="$PARAM[controlid]" />
-                <param name="visibleshadow" value="!Control.HasFocus($PARAM[controlid])" />
-                <param name="aspectbox" value="$PARAM[aspectbox]" />
-                <param name="aspectposter" value="$PARAM[aspectposter]" />
-            </include>
-            <include content="Def_Dialog_Info_UnFocus_Poster_Set_Item">
-                <param name="id" value="4" />
-                <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
-                <param name="controlid" value="$PARAM[controlid]" />
-                <param name="visibleshadow" value="!Control.HasFocus($PARAM[controlid])" />
-                <param name="aspectbox" value="$PARAM[aspectbox]" />
-                <param name="aspectposter" value="$PARAM[aspectposter]" />
-            </include>
-            <include content="Def_Dialog_Info_UnFocus_Poster_Set_Item">
-                <param name="id" value="5" />
-                <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
-                <param name="controlid" value="$PARAM[controlid]" />
-                <param name="visibleshadow" value="!Control.HasFocus($PARAM[controlid])" />
-                <param name="aspectbox" value="$PARAM[aspectbox]" />
-                <param name="aspectposter" value="$PARAM[aspectposter]" />
-            </include>
-            <include content="Def_Dialog_Info_UnFocus_Poster_Set_Item">
-                <param name="id" value="6" />
-                <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
-                <param name="controlid" value="$PARAM[controlid]" />
-                <param name="visibleshadow" value="!Control.HasFocus($PARAM[controlid])" />
-                <param name="aspectbox" value="$PARAM[aspectbox]" />
-                <param name="aspectposter" value="$PARAM[aspectposter]" />
-            </include>
-            <include content="Def_Dialog_Info_UnFocus_Poster_Set_Item">
-                <param name="id" value="7" />
-                <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
-                <param name="controlid" value="$PARAM[controlid]" />
-                <param name="visibleshadow" value="!Control.HasFocus($PARAM[controlid])" />
-                <param name="aspectbox" value="$PARAM[aspectbox]" />
-                <param name="aspectposter" value="$PARAM[aspectposter]" />
-            </include>
-        </definition>
-    </include>
-
-    <!-- DEF - LAYOUT - UNFOCUS - ITEM -->
 
     <include name="Def_Dialog_Info_UnFocus_Poster_Square_Item">
         <param name="fallbackpicture" value="$PARAM[fallbackpicture]" default="pbtmdb.png" />
         <param name="aspectposter" value="$PARAM[aspectposter]" default="true" />
         <param name="aspectbox" value="$PARAM[aspectbox]" default="false" />
         <param name="controlid" value="$PARAM[controlid]" />
-        <param name="poster" value="$PARAM[poster]" default="false" />
-        <param name="thumb" value="$PARAM[thumb]" default="true" />
+        <param name="poster" value="$PARAM[poster]" default="true" />
+        <param name="thumb" value="$PARAM[thumb]" default="false" />
         <param name="pad_image" value="$PARAM[pad_image]" default="10" />
 
         <definition>
             <control type="group">
                <visible>$PARAM[aspectposter]</visible>
                <visible>!Container($PARAM[controlid]).OnNext + !Container($PARAM[controlid]).OnPrevious + !ListItem.IsParentFolder</visible>
+
                <animation condition="!Container($PARAM[controlid]).OnNext + !Container($PARAM[controlid]).OnPrevious" effect="fade" start="0" end="0" time="0">Hidden</animation>
                <animation condition="!Container($PARAM[controlid]).OnNext + !Container($PARAM[controlid]).OnPrevious" effect="fade" delay="250" start="100" reversible="false" end="100" time="0">Visible</animation>
                <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Label)</visible>
-               <height>273</height>
+
                <width>209</width>
+               <height>273</height>
 
                <control type="group">
                     <right>20</right>
@@ -1312,13 +1153,13 @@
             </control>
 
             <control type="group">
-                    <visible>$PARAM[aspectbox]</visible>
-                    <visible>!Container($PARAM[controlid]).OnNext + !Container($PARAM[controlid]).OnPrevious + !ListItem.IsParentFolder</visible>
-                    <animation condition="!Container($PARAM[controlid]).OnNext + !Container($PARAM[controlid]).OnPrevious" effect="fade" start="100" end="0" time="400">Hidden</animation>
-                    <animation condition="!Container($PARAM[controlid]).OnNext + !Container($PARAM[controlid]).OnPrevious" effect="fade" delay="200" start="0" reversible="false" end="100" time="500">Visible</animation>
-                    <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Thumb)</visible>
-                    <height>273</height>
-                    <width>290</width>
+                <visible>$PARAM[aspectbox]</visible>
+                <visible>!Container($PARAM[controlid]).OnNext + !Container($PARAM[controlid]).OnPrevious + !ListItem.IsParentFolder</visible>
+                <animation condition="!Container($PARAM[controlid]).OnNext + !Container($PARAM[controlid]).OnPrevious" effect="fade" start="100" end="0" time="400">Hidden</animation>
+                <animation condition="!Container($PARAM[controlid]).OnNext + !Container($PARAM[controlid]).OnPrevious" effect="fade" delay="200" start="0" reversible="false" end="100" time="500">Visible</animation>
+                <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Thumb)</visible>
+                <height>273</height>
+                <width>290</width>
 
                 <control type="group">
                     <right>20</right>
@@ -1328,48 +1169,11 @@
                         <param name="pad_image" value="10" />
                         <param name="colordiffuse" value="White100" />
                     </include>
-
 
                     <control type="image">
                         <include content="Def_Padding"><param name="pad">10</param></include>
                         <aspectratio scalediffuse="false">scale</aspectratio>
                         <texture diffuse="diffuse/square_w305_h305.png" background="true" fallback="$PARAM[fallbackpicture]">$INFO[Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Thumb]</texture>
-                    </control>
-                </control>
-            </control>
-        </definition>
-    </include>
-
-    <include name="Def_Dialog_Info_UnFocus_Poster_Set_Item">
-        <param name="fallbackpicture" value="$PARAM[fallbackpicture]" default="pbtmdb.png" />
-        <param name="visibleshadow" value="$PARAM[visibleshadow]" default="true" />
-        <param name="aspectposter" value="$PARAM[aspectposter]" default="true" />
-        <param name="aspectbox" value="$PARAM[aspectbox]" default="false" />
-        <param name="controlid" value="$PARAM[controlid]" />
-
-        <definition>
-            <control type="group">
-                <visible>$PARAM[aspectposter]</visible>
-                <visible>!Container($PARAM[controlid]).OnNext + !Container($PARAM[controlid]).OnPrevious + !ListItem.IsParentFolder</visible>
-                <animation condition="!Container($PARAM[controlid]).OnNext + !Container($PARAM[controlid]).OnPrevious" effect="fade" start="0" end="0" time="0">Hidden</animation>
-                <animation condition="!Container($PARAM[controlid]).OnNext + !Container($PARAM[controlid]).OnPrevious" effect="fade" delay="250" start="100" reversible="false" end="100" time="0">Visible</animation>
-                <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Label)</visible>
-                <height>273</height>
-                <width>209</width>
-
-                <control type="group">
-                    <right>20</right>
-
-                    <include content="Def_Art_Full_Background_b12">
-                        <param name="pad_shadow" value="1" />
-                        <param name="pad_image" value="10" />
-                        <param name="colordiffuse" value="White100" />
-                    </include>
-
-                    <control type="image">
-                        <include content="Def_Padding"><param name="pad">10</param></include>
-                        <aspectratio scalediffuse="false">scale</aspectratio>
-                        <texture diffuse="diffuse/poster_w202_h305.png" background="true" fallback="$PARAM[fallbackpicture]">$INFO[Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Art(poster)]</texture>
                     </control>
                 </control>
             </control>
