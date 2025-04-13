@@ -41,25 +41,28 @@
 
             <control type="list" id="50">
                 <description>version list</description>
+                <include>Animation_Scrolltime_Views_List</include>
+
                 <top>112</top>
-                <height>625</height>
-                <left>510</left>
-                <width>672</width>
-                <height>720</height>
+                <left>508</left>
+                <width>600</width>
+                <height>640</height>
+
                 <onup>50</onup>
                 <ondown>50</ondown>
                 <onleft>9001</onleft>
                 <onright>60</onright>
-                <pagecontrol>60</pagecontrol>
-                <scrolltime>200</scrolltime>
 
-                <itemlayout height="134" width="598">
+                <scrolltime>200</scrolltime>
+                <pagecontrol>60</pagecontrol>
+
+                <itemlayout height="128" width="598">
                     <control type="label">
                         <left>30</left>
                         <top>0</top>
                         <right>20</right>
                         <height>60</height>
-                        <font>Small</font>
+                        <font>InfoNetflix</font>
                         <textcolor>Black70</textcolor>
                         <selectedcolor>Black70</selectedcolor>
                         <aligny>center</aligny>
@@ -96,7 +99,7 @@
                         <top>0</top>
                         <right>20</right>
                         <height>60</height>
-                        <font>Small</font>
+                        <font>InfoNetflix</font>
                         <textcolor>$VAR[Color_List_Item_Selected]</textcolor>
                         <selectedcolor>$VAR[Color_List_Item_Selected]</selectedcolor>
                         <aligny>center</aligny>
@@ -133,12 +136,12 @@
                         <param name="visible">ListItem.IsSelected</param>
                     </include>
                 </itemlayout>
-                <focusedlayout height="134" width="598">
+                <focusedlayout height="128" width="598">
                     <control type="image">
                         <width>100%</width>
                         <height>100%</height>
                         <texture border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png</texture>
-                        <animation effect="fade" start="100" end="50" condition="!Control.HasFocus(50)">Conditional</animation>
+                        <animation effect="fade" start="100" end="50">UnFocus</animation>
                     </control>
                     <control type="label">
                         <left>30</left>
@@ -147,7 +150,7 @@
                         <height>60</height>
                         <aligny>center</aligny>
                         <scroll>true</scroll>
-                        <font>Small</font>
+                        <font>InfoNetflix</font>
                         <textcolor>Selected</textcolor>
                         <selectedcolor>Selected</selectedcolor>
                         <label>$VAR[Label_Video_Media_Info_Version]</label>
@@ -182,9 +185,26 @@
                 </focusedlayout>
             </control>
 
+            <!-- SCROLLBAR -->
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="60" />
+                <param name="onleft" value="50" />
+                <param name="onright" value="9001" />
+                <param name="height" value="640" />
+                <param name="centerright" value="360" />
+            </include>
+
             <!-- LINES VERTICAL -->
 
-            <include content="Def_Dialog_Line_Vertical"><param name="right" value="360" /><param name="bottom" value="110" /></include>
+            <control type="image">
+                <right>360</right>
+                <top>112</top>
+                <bottom>100</bottom>
+                <width>1</width>
+                <texture colordiffuse="Black12">common/white.png</texture>
+                <animation effect="fade" start="0" end="100" time="100" condition="!Control.HasFocus(60) + !Container.Scrolling">Conditional</animation>
+            </control>
 
             <!-- BUTTON ON RIGHT -->
 
@@ -194,7 +214,9 @@
                 <right>30</right>
                 <width>300</width>
                 <height>490</height>
+
                 <onleft condition="Integer.IsGreater(Container(50).NumItems,0)">50</onleft>
+                <onright>50</onright>
 
                 <itemgap>14</itemgap>
                 <scrolltime tween="quadratic">200</scrolltime>
