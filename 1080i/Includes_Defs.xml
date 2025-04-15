@@ -66,6 +66,7 @@
             <include>Def_Hidden_Button</include>
 
             <!-- MAIN MENU : FOCUS IF INACTIVITY -->
+
             <onfocus condition="String.IsEmpty(Window(Home).Property(LaunchSearch))">SetProperty(focus_main_menu_timer_from_search_bar,1,Home)</onfocus>
             <onfocus condition="!String.IsEmpty(Window(Home).Property(LaunchSearch))">SetFocus(300)</onfocus>
 
@@ -73,8 +74,10 @@
             <onclick>ClearProperty(focus_main_menu_timer_from_search_bar,Home)</onclick>
 
             <!-- VERTICAL LAYOUT -->
+
             <onup condition="$EXP[Home_Is_Vertical]">SetProperty(AnimationDirection,Up,Home)</onup>
             <onup condition="$EXP[Home_Is_Vertical]">SetFocus(300,$INFO[Container(300).NumItems])</onup>
+            <onup condition="$EXP[Home_Is_Vertical]">SetProperty(end_menu,1,Home)</onup>
 
             <ondown condition="$EXP[Home_Is_Vertical]">SetProperty(AnimationDirection,Down,Home)</ondown>
             <ondown condition="$EXP[Home_Is_Vertical]">SetFocus(300,0,absolute)</ondown>
@@ -83,14 +86,16 @@
             <onright condition="$EXP[Home_Is_Vertical]">SetFocus(300,0,absolute)</onright>
 
             <!-- HORIZONTALE LAYOUT -->
-            <onup condition="$EXP[Home_Is_Horizontal]">300</onup>
-            <ondown condition="$EXP[Home_Is_Horizontal]">300</ondown>
 
             <onleft condition="$EXP[Home_Is_Horizontal]">SetProperty(AnimationDirection,Left,Home)</onleft>
             <onleft condition="$EXP[Home_Is_Horizontal]">SetFocus(300,$INFO[Container(300).NumItems])</onleft>
+            <onleft condition="$EXP[Home_Is_Horizontal]">SetProperty(end_menu,1,Home)</onleft>
 
             <onright condition="$EXP[Home_Is_Horizontal]">SetProperty(AnimationDirection,Right,Home)</onright>
             <onright condition="$EXP[Home_Is_Horizontal]">SetFocus(300,0,absolute)</onright>
+
+            <onup condition="$EXP[Home_Is_Horizontal]">300</onup>
+            <ondown condition="$EXP[Home_Is_Horizontal]">300</ondown>
 
             <onclick>ClearProperty(GlobalSearchWindowOpen,Home)</onclick>
             <onclick>SetProperty(LaunchSearch,1,Home)</onclick>
