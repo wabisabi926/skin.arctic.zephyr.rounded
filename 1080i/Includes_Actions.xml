@@ -110,17 +110,17 @@
     <!-- DEF ACTION ON INFO -->
 
     <include name="Def_On_Info">
-        <oninfo condition="Container.Content(actors) + String.IsEmpty(ListItem.Property(tmdb_id)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.tmdb_id))">SetProperty(isoninfo_actor,1,Home)</oninfo>
+        <oninfo condition="Container.Content(actors) | Container.Content(directors)">SetProperty(SelectPerson,1,home)</oninfo>
 
+        <oninfo condition="Container.Content(actors) + String.IsEmpty(ListItem.Property(tmdb_id)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.tmdb_id))">SetProperty(isoninfo_actor,1,Home)</oninfo>
         <oninfo condition="Container.Content(actors) + String.IsEmpty(ListItem.Property(tmdb_id)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.tmdb_id))">$VAR[Path_Actor_On_Info]</oninfo>
 
         <oninfo condition="Container.Content(actors) + String.IsEmpty(ListItem.Property(tmdb_id)) + String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.tmdb_id))">SetProperty(isoninfo_actor,1,Home)</oninfo>
-
         <oninfo condition="Container.Content(actors) + String.IsEmpty(ListItem.Property(tmdb_id)) + String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.tmdb_id))">$VAR[Path_Director_On_Info]</oninfo>
 
         <oninfo condition="Container.Content(directors) + String.IsEmpty(ListItem.Property(tmdb_id)) + !String.IsEmpty(ListItem.Label)">SetProperty(isoninfo_director,1,Home)</oninfo>
-
         <oninfo condition="Container.Content(directors) + String.IsEmpty(ListItem.Property(tmdb_id)) + !String.IsEmpty(ListItem.Label)">$VAR[Path_Director_On_Info]</oninfo>
+
         <!-- <oninfo condition="[Container.Content(actors) | [$EXP[IsTMDbHelperItem] + String.IsEmpty(ListItem.DBID)]] + [!String.IsEmpty(ListItem.Property(tmdb_id)) | [String.IsEmpty(ListItem.Property(tmdb_id)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.tmdb_id))]]">SetProperty(isoninfo_actor,1,Home)</oninfo> -->
 
         <!-- <oninfo condition="!String.IsEmpty(ListItem.Property(tmdb_id)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.DBType)) + String.IsEmpty(ListItem.DBID)">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=$VAR[Path_ContextParams_TMDbType]&amp;tmdb_id=$VAR[Path_ContextParams_TMDbID],call_auto=1190)</oninfo> -->

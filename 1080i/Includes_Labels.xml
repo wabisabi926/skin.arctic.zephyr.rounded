@@ -668,6 +668,11 @@
         <value condition="Container.Content(actors) + !String.IsEmpty(ListItem.Property(Department))">$VAR[Label_Department]</value>
     </variable>
 
+    <variable name="Label_Person">
+        <value condition="!String.IsEmpty(ListItem.Property(Gender))">$INFO[ListItem.Property(Gender)]$INFO[ListItem.Property(Age),  •  , $LOCALIZE[31530]]$INFO[ListItem.Property(Department),  •  ,]</value>
+        <value>$INFO[ListItem.Property(Department)]</value>
+    </variable>
+
     <variable name="Label_Genre">
         <value condition="$EXP[IsGameMode]">$VAR[Label_Game_Genre]</value>
         <!-- <value condition="!String.IsEmpty(Window.Property(Split.ListItem.Genre.0))">$INFO[Window.Property(Split.ListItem.Genre.0)]$INFO[Window.Property(Split.ListItem.Genre.1), / ,]</value> -->
