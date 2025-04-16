@@ -1573,6 +1573,8 @@
 
                 <!-- SEARCH DIRECTOR INFO -->
 
+                <onclick condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(SetDirectorSelected))">SetProperty(SelectPerson,1,home)</onclick>
+
                 <!-- <onclick condition="!String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(SetDirectorSelected))">SetProperty(isoninfo_director,1,Home)</onclick> -->
 
                 <onclick condition="!String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(SetDirectorSelected))">RunScript(plugin.video.themoviedb.helper,add_query=$INFO[Window(Home).Property(SetDirectorSelected)],type=person,call_auto=1190)</onclick>
