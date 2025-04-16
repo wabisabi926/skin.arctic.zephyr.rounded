@@ -24,7 +24,7 @@
 
             <!-- INFO -->
 
-            <include content="Object_OSD_Button">
+            <include content="Object_OSD_Button" condition="[String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),tvshow) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),season) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),episode) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),movie) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),director) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),actor) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),album) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),artist) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),song) | String.IsEqual(ListItem.Property(item.type),person)] | Container.Content(addons)">
                 <param name="visible" value="true" />
                 <param name="size" value="44" />
                 <param name="left" value="-38" />
@@ -33,14 +33,14 @@
                 <param name="id" value="6150" />
                 <param name="groupid" value="6099" />
                 <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
-                <onclick>Dialog.Close(contextmenu,true)</onclick>
-                <onclick>Action(Info)</onclick>
+                <onclick>Dialog.Close(contextmenu)</onclick>
+                <onclick>AlarmClock(launchsearch,Action(Info),00:01,silent)</onclick>
             </include>
 
             <!-- BACK FULLSCREEN NOW PLAYING -->
 
-            <include content="Object_OSD_Button">
-                <param name="visible" value="Player.HasMedia + String.IsEmpty(Window(Home).Property(TrailerWindowedIsPlaying))" />
+            <include content="Object_OSD_Button" condition="Player.HasMedia + String.IsEmpty(Window(Home).Property(TrailerWindowedIsPlaying))">
+                <param name="visible" value="true" />
                 <param name="size" value="44" />
                 <param name="left" value="-38" />
                 <param name="icon" value="special://skin/extras/icons/expand.png" />
@@ -56,8 +56,8 @@
 
             <!-- TRAILER -->
 
-            <include content="Object_OSD_Button">
-                <param name="visible" value="[!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Trailer))]" />
+            <include content="Object_OSD_Button" condition="[!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Trailer))]">
+                <param name="visible" value="true" />
                 <param name="size" value="44" />
                 <param name="left" value="-38" />
                 <param name="icon" value="special://skin/extras/icons/video.png" />
@@ -77,8 +77,8 @@
 
             <!-- WIKIPEDIA -->
 
-            <include content="Object_OSD_Button">
-                <param name="visible" value="[String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),tvshow) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),season) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),episode) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),movie) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),director) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),actor) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),album) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),artist) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),song) | String.IsEqual(ListItem.Property(item.type),person)]" />
+            <include content="Object_OSD_Button" condition="[String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),tvshow) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),season) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),episode) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),movie) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),director) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),actor) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),album) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),artist) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),song) | String.IsEqual(ListItem.Property(item.type),person)]">
+                <param name="visible" value="true" />
                 <param name="size" value="44" />
                 <param name="left" value="-38" />
                 <param name="icon" value="special://skin/extras/icons/world.png" />
@@ -93,8 +93,8 @@
 
             <!-- YOUTUBE -->
 
-            <include content="Object_OSD_Button">
-                <param name="visible" value="[String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),tvshow) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),season) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),episode) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),movie) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),director) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),actor) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),album) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),artist) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),song) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),video)]" />
+            <include content="Object_OSD_Button" condition="[String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),tvshow) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),season) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),episode) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),movie) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),director) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),actor) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),album) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),artist) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),song) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),video)]">
+                <param name="visible" value="true" />
                 <param name="size" value="44" />
                 <param name="left" value="-38" />
                 <param name="icon" value="special://skin/extras/icons/youtube.png" />
@@ -107,8 +107,8 @@
 
             <!-- MOVIES FROM DIRECTOR -->
 
-            <include content="Object_OSD_Button">
-                <param name="visible" value="[String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),episode) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),movie)]" />
+            <include content="Object_OSD_Button" condition="[String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),episode) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),movie)]">
+                <param name="visible" value="true" />
                 <param name="size" value="44" />
                 <param name="left" value="-38" />
                 <param name="icon" value="special://skin/extras/icons/user.png" />
@@ -133,17 +133,17 @@
                 <param name="groupid" value="6799" />
                 <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
 
-                <onclick>Dialog.Close(contextmenu,true)</onclick>
-                <onclick>SetProperty(ShowArtistInfo,1,Home)</onclick>
+                <onclick>Dialog.Close(contextmenu)</onclick>
+                <onclick>AlarmClock(launchsearch,SetProperty(ShowArtistInfo,1,Home),00:01,silent)</onclick>
 
                 <oninfo>Dialog.Close(contextmenu)</oninfo>
-                <oninfo>SetProperty(ShowArtistInfo,1,Home)</oninfo>
+                <oninfo>AlarmClock(launchsearch,SetProperty(ShowArtistInfo,1,Home),00:01,silent)</oninfo>
             </include>
 
             <!-- TMDB HELPER -->
 
-            <include content="Object_OSD_Button">
-                <param name="visible" value="[String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),tvshow) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),season) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),episode) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),movie)]" />
+            <include content="Object_OSD_Button" condition="[String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),tvshow) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),season) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),episode) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),movie)]">
+                <param name="visible" value="true" />
                 <param name="size" value="44" />
                 <param name="left" value="-38" />
                 <param name="icon" value="special://skin/extras/icons/tmdb.png" />
@@ -157,8 +157,8 @@
 
             <!-- FILES MANAGERS -->
 
-            <include content="Object_OSD_Button">
-                <param name="visible" value="!String.Contains(Window(Home).Property(TMDbHelper.ListItem.base_path),plugin://plugin) + [String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),movie) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),tvshow) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),season) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),episode) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),song)]" />
+            <include content="Object_OSD_Button" condition="!String.Contains(Window(Home).Property(TMDbHelper.ListItem.base_path),plugin://plugin) + [String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),movie) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),tvshow) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),season) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),episode) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),song)]">
+                <param name="visible" value="true" />
                 <param name="size" value="44" />
                 <param name="left" value="-38" />
                 <param name="icon" value="special://skin/extras/icons/filebox.png" />
