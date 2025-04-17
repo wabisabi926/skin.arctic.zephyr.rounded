@@ -360,7 +360,6 @@
                 </animation>
 
                 <animation effect="fade" start="100" end="0" time="150" condition="Window.IsVisible(DialogPlayerProcessInfo.xml)">Conditional</animation>
-                <animation effect="slide" start="0" end="0,-74" time="150" condition="Window.IsVisible(videoosd)">Conditional</animation>
 
                 <top>$PARAM[top]</top>
                 <height>$PARAM[height]</height>
@@ -2134,16 +2133,18 @@
                         <control type="group">
                             <visible>!VideoPlayer.Content(livetv) + [!String.IsEmpty(Player.Art(tvshow.poster)) | !String.IsEmpty(Player.Art(poster))]</visible>
 
-                            <animation effect="zoom" start="100" end="140" center="0,680" time="400" tween="cubic" easing="out" reversible="false" condition="!String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">Conditional</animation>
+                            <animation effect="slide" start="0" end="0,74" time="150" condition="Window.IsVisible(videoosd)">Conditional</animation>
 
-                            <animation effect="zoom" start="140" end="100" center="0,680" time="400" tween="cubic" easing="out" reversible="false" condition="String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">Conditional</animation>
+                            <animation effect="zoom" start="100" end="140" center="0,780" time="400" tween="cubic" easing="out" reversible="false" condition="!String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">Conditional</animation>
+
+                            <animation effect="zoom" start="140" end="100" center="0,780" time="400" tween="cubic" easing="out" reversible="false" condition="String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">Conditional</animation>
 
                             <top>-270</top>
                             <left>0</left>
                             <width>270</width>
                             <height>390</height>
 
-                            <include content="Def_Art_Full_Background_b12">
+                            <include content="Def_Art_Full_Background_b24">
                                 <param name="colordiffuse" value="$VAR[Color_OSD_Background_Dialog]" />
                                 <param name="condition_fade" value="false" />
                             </include>
@@ -2151,7 +2152,7 @@
                             <control type="image">
                                 <width>100%</width>
                                 <height>100%</height>
-                                <texture diffuse="diffuse/poster_w270_h390.png">$VAR[Image_Player_Poster]</texture>
+                                <texture diffuse="diffuse/poster_w270_h390_b24.png">$VAR[Image_Player_Poster]</texture>
                                 <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
                             </control>
                         </control>
@@ -2161,14 +2162,16 @@
                         <control type="group">
                             <visible>[!VideoPlayer.Content(livetv) + !String.IsEmpty(Player.Art(thumb)) + String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster))] | [VideoPlayer.Content(livetv) + !String.IsEmpty(PVR.EpgEventIcon)]</visible>
 
-                            <animation effect="zoom" start="100" end="150" center="0,1180" time="400" tween="cubic" easing="out" reversible="false" condition="!String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">Conditional</animation>
+                            <animation effect="slide" start="0" end="0,74" time="150" condition="Window.IsVisible(videoosd)">Conditional</animation>
 
-                            <animation effect="zoom" start="150" end="100" center="0,1180" time="400" tween="cubic" easing="out" reversible="false" condition="String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">Conditional</animation>
+                            <animation effect="zoom" start="100" end="150" center="0,1270" time="400" tween="cubic" easing="out" reversible="false" condition="!String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">Conditional</animation>
+
+                            <animation effect="zoom" start="150" end="100" center="0,1270" time="400" tween="cubic" easing="out" reversible="false" condition="String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">Conditional</animation>
 
                             <top>-36</top>
                             <left>0</left>
                             <width>270</width>
-                            <height>156</height>
+                            <height>148</height>
 
                             <include content="Def_Art_Full_Background_b12">
                                 <param name="colordiffuse" value="$VAR[Color_OSD_Background_Dialog]" />
@@ -2176,10 +2179,8 @@
                             </include>
 
                             <control type="image">
-                                <width>100%</width>
-                                <height>100%</height>
-                                <texture diffuse="diffuse/fanart_w270_h156.png">$VAR[Image_Player_Poster]</texture>
                                 <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                                <texture diffuse="diffuse/fanart_w270_h148.png">$VAR[Image_Player_Poster]</texture>
                             </control>
                         </control>
 
@@ -2188,9 +2189,11 @@
                         <control type="group">
                             <visible>VideoPlayer.Content(livetv) + !String.IsEmpty(VideoPlayer.ChannelLogo) + String.IsEmpty(PVR.EpgEventIcon)</visible>
 
-                            <animation effect="zoom" start="100" end="150" center="0,870" time="400" tween="cubic" easing="out" reversible="false" condition="!String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">Conditional</animation>
+                            <animation effect="slide" start="0" end="0,74" time="150" condition="Window.IsVisible(videoosd)">Conditional</animation>
 
-                            <animation effect="zoom" start="150" end="100" center="0,870" time="400" tween="cubic" easing="out" reversible="false" condition="String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">Conditional</animation>
+                            <animation effect="zoom" start="100" end="150" center="0,930" time="400" tween="cubic" easing="out" reversible="false" condition="!String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">Conditional</animation>
+
+                            <animation effect="zoom" start="150" end="100" center="0,930" time="400" tween="cubic" easing="out" reversible="false" condition="String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT))">Conditional</animation>
 
                             <bottom>39</bottom>
                             <left>0</left>
@@ -2199,7 +2202,7 @@
 
                             <!-- CHANNEL LOGO -->
 
-                            <include content="Def_Art_Full_Background_b12">
+                            <include content="Def_Art_Full_Background_b24">
                                 <param name="colordiffuse" value="$VAR[Color_OSD_Background_Dialog]" />
                                 <param name="condition_fade" value="false" />
                             </include>
@@ -2207,8 +2210,8 @@
                             <control type="image">
                                 <width>100%</width>
                                 <height>100%</height>
-                                <aspectratio>keep</aspectratio>
-                                <texture diffuse="diffuse/square_w270_h270.png">$INFO[VideoPlayer.ChannelLogo]</texture>
+                                <aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
+                                <texture diffuse="diffuse/square_w270_h270_b24.png">$INFO[VideoPlayer.ChannelLogo]</texture>
                                 <visible>VideoPlayer.Content(livetv) + !String.IsEmpty(VideoPlayer.ChannelLogo) + String.IsEmpty(PVR.EpgEventIcon)</visible>
                             </control>
                         </control>
