@@ -1137,7 +1137,7 @@
                     <control type="image">
                         <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
                         <aspectratio scalediffuse="false">keep</aspectratio>
-                        <texture diffuse="diffuse/poster_w190_h272.png" colordiffuse="Dark2" background="true">$INFO[Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Icon]</texture>
+                        <texture diffuse="diffuse/poster_w190_h272.png" colordiffuse="Dark2" background="true" fallback="DefaultMovies.png">$INFO[Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Icon]</texture>
                         <visible>$PARAM[poster] + String.IsEmpty(Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Art(poster))</visible>
                         <visible>![!Skin.HasSetting(filter.video.only.local) | Skin.HasSetting(filter.video.cast.on.line) | String.IsEmpty(ListItem.DBID)]</visible>
                     </control>

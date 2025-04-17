@@ -2142,7 +2142,7 @@
             <!-- DIRECTOR -->
 
             <control type="radiobutton" id="9006">
-                <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)</visible>
+                <visible>String.IsEqual(ListItem.DBType,movie) | [String.IsEqual(ListItem.DBType,episode) + [!Skin.HasSetting(filter.video.only.local) | String.IsEmpty(ListItem.DBID)]]</visible>
                 <onfocus condition="!String.IsEqual(Window(Home).Property(moviecontent),7)">ClearProperty(moviecontent,Home)</onfocus>
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
                 <onfocus>SetProperty(moviecontent,7,Home)</onfocus>
@@ -2163,7 +2163,7 @@
             <!-- WRITER -->
 
             <control type="radiobutton" id="9056">
-                <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)</visible>
+                <visible>String.IsEqual(ListItem.DBType,movie) | [String.IsEqual(ListItem.DBType,episode) + [!Skin.HasSetting(filter.video.only.local) | String.IsEmpty(ListItem.DBID)]]</visible>
                 <onfocus condition="!String.IsEqual(Window(Home).Property(moviecontent),14)">ClearProperty(moviecontent,Home)</onfocus>
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
                 <onfocus>SetProperty(moviecontent,14,Home)</onfocus>

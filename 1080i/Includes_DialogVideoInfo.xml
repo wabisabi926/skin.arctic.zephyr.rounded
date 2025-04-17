@@ -1503,14 +1503,14 @@
 
                     <!-- BY DIRECTOR -->
 
-                    <include content="Recommendation_Director" condition="Skin.HasSetting(show.button.video.director) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set)">
+                    <include content="Recommendation_Director" condition="Skin.HasSetting(show.button.video.director) + [String.IsEqual(ListItem.DBType,movie) | [String.IsEqual(ListItem.DBType,episode) + [!Skin.HasSetting(filter.video.only.local) | String.IsEmpty(ListItem.DBID)]]] + !String.IsEqual(ListItem.DBType,set)">
                         <param name="controlid" value="9506" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),7)" />
                     </include>
 
                     <!-- BY WRITER -->
 
-                    <include content="Recommendation_Writer" condition="Skin.HasSetting(show.button.video.writer) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEqual(ListItem.DBType,set)">
+                    <include content="Recommendation_Writer" condition="Skin.HasSetting(show.button.video.writer) + [String.IsEqual(ListItem.DBType,movie) | [String.IsEqual(ListItem.DBType,episode) + [!Skin.HasSetting(filter.video.only.local) | String.IsEmpty(ListItem.DBID)]]] + !String.IsEqual(ListItem.DBType,set)">
                         <param name="controlid" value="9556" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),14)" />
                     </include>
