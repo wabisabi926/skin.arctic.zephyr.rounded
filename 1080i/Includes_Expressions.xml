@@ -46,7 +46,7 @@
 
     <!-- ICON ADDONS -->
 
-    <expression name="Icon_Container_Addons">[Container.Content() | String.IsEqual(ListItem.FolderPath,addons://all/) | String.StartsWith(ListItem.Icon,DefaultFolder)]</expression>
+    <expression name="Icon_Container_Addons">[Container.Content() | String.IsEqual(ListItem.FolderPath,addons://all/) | String.StartsWith(ListItem.Icon,DefaultFolder) | [String.StartsWith(Container.FolderPath,addons://) + String.IsEqual(ListItem.Icon,DefaultAddon.png)]]</expression>
 
     <!-- SHOW SCRIPT SKINSHORTCUTS WIDGET MENU -->
 
