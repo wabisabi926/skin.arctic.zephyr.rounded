@@ -134,11 +134,11 @@
 
     <include name="Def_Art_Full_Background_b12">
         <param name="pad_shadow" value="$PARAM[pad_shadow]" default="-9" />
-        <param name="Texture_Shadow" value="$PARAM[Texture_Shadow]" default="$VAR[shadow12]" />
-        <param name="visible_Shadow" value="$PARAM[visible_Shadow]" default="true" />
+        <param name="texture_shadow" value="$PARAM[texture_shadow]" default="$VAR[shadow12]" />
+        <param name="visible_shadow" value="$PARAM[visible_shadow]" default="true" />
 
-        <param name="Border_Shadow" value="$PARAM[Border_Shadow]" default="18" />
-        <param name="Texture_Border" value="$PARAM[Texture_Border]" default="$VAR[border12]" />
+        <param name="border_shadow" value="$PARAM[border_shadow]" default="18" />
+        <param name="texture_border" value="$PARAM[texture_border]" default="$VAR[border12]" />
         <param name="visible_border" value="$PARAM[visible_border]" default="true" />
 
         <param name="pad_image" value="$PARAM[pad_image]" default="0" />
@@ -150,13 +150,13 @@
         <definition>
             <control type="image">
                 <include content="Def_Padding"><param name="pad">$PARAM[pad_shadow]</param></include>
-                <texture border="$PARAM[Border_Shadow]" infill="false">$PARAM[Texture_Shadow]</texture>
+                <texture border="$PARAM[border_shadow]" infill="false">$PARAM[texture_shadow]</texture>
                 <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-                <visible>$PARAM[visible] + $PARAM[visible_Shadow]</visible>
+                <visible>$PARAM[visible] + $PARAM[visible_shadow]</visible>
             </control>
             <control type="image">
                 <include content="Def_Padding"><param name="pad">$PARAM[pad_shadow]</param></include>
-                <texture border="$PARAM[Border_Shadow]" infill="false">$PARAM[Texture_Border]</texture>
+                <texture border="$PARAM[border_shadow]" infill="false">$PARAM[texture_border]</texture>
                 <visible>$PARAM[visible] + $PARAM[visible_border]</visible>
             </control>
             <control type="image">
@@ -170,11 +170,11 @@
 
     <include name="Def_Art_Full_Background_b24">
         <param name="pad_shadow" value="$PARAM[pad_shadow]" default="-9" />
-        <param name="Texture_Shadow" value="$PARAM[Texture_Shadow]" default="$VAR[shadow24]" />
-        <param name="visible_Shadow" value="$PARAM[visible_Shadow]" default="true" />
+        <param name="texture_shadow" value="$PARAM[texture_shadow]" default="$VAR[shadow24]" />
+        <param name="visible_shadow" value="$PARAM[visible_shadow]" default="true" />
 
-        <param name="Border_Shadow" value="$PARAM[Border_Shadow]" default="40" />
-        <param name="Texture_Border" value="$PARAM[Texture_Border]" default="$VAR[border24]" />
+        <param name="border_shadow" value="$PARAM[border_shadow]" default="40" />
+        <param name="texture_border" value="$PARAM[texture_border]" default="$VAR[border24]" />
         <param name="visible_border" value="$PARAM[visible_border]" default="true" />
 
         <param name="pad_image" value="$PARAM[pad_image]" default="0" />
@@ -186,14 +186,14 @@
         <definition>
             <control type="image">
                 <include content="Def_Padding"><param name="pad">$PARAM[pad_shadow]</param></include>
-                <texture border="40" infill="false">$PARAM[Texture_Shadow]</texture>
+                <texture border="40" infill="false">$PARAM[texture_shadow]</texture>
                 <animation effect="fade" end="80" start="100" time="0" condition="true">Conditional</animation>
                 <visible>!Skin.HasSetting(global.hide.shadows)</visible>
-                <visible>$PARAM[visible] + $PARAM[visible_Shadow]</visible>
+                <visible>$PARAM[visible] + $PARAM[visible_shadow]</visible>
             </control>
             <control type="image">
                 <include content="Def_Padding"><param name="pad">$PARAM[pad_shadow]</param></include>
-                <texture border="$PARAM[Border_Shadow]" infill="false">$PARAM[Texture_Border]</texture>
+                <texture border="$PARAM[border_shadow]" infill="false">$PARAM[texture_border]</texture>
                 <visible>$PARAM[visible]</visible>
                 <visible>$PARAM[visible] + $PARAM[visible_border]</visible>
             </control>
@@ -812,12 +812,12 @@
 
     <include name="Texture_Shadow_20">
         <param name="colordiffuse" default="80000000" />
-        <param name="Texture_Shadow" value="$PARAM[Texture_Shadow]" default="$VAR[shadow20]" />
+        <param name="texture_shadow" value="$PARAM[texture_shadow]" default="$VAR[shadow20]" />
 
         <definition>
             <include content="Def_Padding"><param name="pad" value="-20" /></include>
             <bordersize>20</bordersize>
-            <bordertexture border="32" colordiffuse="$PARAM[colordiffuse]">$PARAM[Texture_Shadow]</bordertexture>
+            <bordertexture border="32" colordiffuse="$PARAM[colordiffuse]">$PARAM[texture_shadow]</bordertexture>
         </definition>
     </include>
 

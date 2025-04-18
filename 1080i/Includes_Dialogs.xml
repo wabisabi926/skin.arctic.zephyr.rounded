@@ -282,9 +282,9 @@
 
     <include name="Def_Dialog_Background_Image">
         <param name="pad_shadow" value="$PARAM[pad_shadow]" default="-9" />
-        <param name="Texture_Shadow" value="$PARAM[Texture_Shadow]" default="$VAR[shadow24]" />
-        <param name="Border_Shadow" value="$PARAM[Border_Shadow]" default="40" />
-        <param name="Texture_Border" value="$PARAM[Texture_Border]" default="$VAR[border24]" />
+        <param name="texture_shadow" value="$PARAM[texture_shadow]" default="$VAR[shadow24]" />
+        <param name="border_shadow" value="$PARAM[border_shadow]" default="40" />
+        <param name="texture_border" value="$PARAM[texture_border]" default="$VAR[border24]" />
 
         <param name="pad_image" value="$PARAM[pad_image]" default="0" />
         <param name="colordiffuse" value="$PARAM[colordiffuse]" default="White100" />
@@ -295,13 +295,13 @@
         <definition>
             <control type="image">
                 <include content="Def_Padding"><param name="pad">$PARAM[pad_shadow]</param></include>
-                <texture border="$PARAM[Border_Shadow]" infill="false">$PARAM[Texture_Shadow]</texture>
+                <texture border="$PARAM[border_shadow]" infill="false">$PARAM[texture_shadow]</texture>
                 <visible>!Skin.HasSetting(global.hide.shadows)</visible>
                 <visible>$PARAM[visible]</visible>
             </control>
             <control type="image">
                 <include content="Def_Padding"><param name="pad">$PARAM[pad_shadow]</param></include>
-                <texture border="$PARAM[Border_Shadow]" infill="false">$PARAM[Texture_Border]</texture>
+                <texture border="$PARAM[border_shadow]" infill="false">$PARAM[texture_border]</texture>
                 <visible>Skin.HasSetting(global.hide.shadows)</visible>
                 <visible>$PARAM[visible]</visible>
             </control>
