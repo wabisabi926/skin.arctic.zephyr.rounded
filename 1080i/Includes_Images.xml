@@ -519,8 +519,8 @@
         <value condition="!String.IsEmpty(ListItem.Art(fanart)) + Container.Content(seasons)">$INFO[ListItem.Art(fanart)]</value>
 
         <!-- movie -->
-        <value condition="!String.IsEmpty(ListItem.Art(landscape)) + Container.Content(movies) + !Skin.HasSetting(dont.use.landscape.movies)">$INFO[ListItem.Art(landscape)]</value>
-        <value condition="!String.IsEmpty(ListItem.Art(fanart)) + Container.Content(movies) + String.IsEqual(ListItem.DBType,movie)">$INFO[ListItem.Art(fanart)]</value>
+        <value condition="!String.IsEmpty(ListItem.Art(landscape)) + [Container.Content(movies) | Container.Content(videoversions)] + !Skin.HasSetting(dont.use.landscape.movies)">$INFO[ListItem.Art(landscape)]</value>
+        <value condition="!String.IsEmpty(ListItem.Art(fanart)) + [Container.Content(movies) | Container.Content(videoversions)] + String.IsEqual(ListItem.DBType,movie)">$INFO[ListItem.Art(fanart)]</value>
 
         <!-- PVR epg event-->
         <value condition="!String.IsEmpty(ListItem.EpgEventIcon) + String.StartsWith(ListItem.FolderPath,pvr://)">$INFO[ListItem.EpgEventIcon]</value>

@@ -978,6 +978,8 @@
 
         <value condition="ListItem.IsCollection">$LOCALIZE[20457]</value>
 
+        <value condition="Container.Content(videoversions) + !ListItem.IsParentFolder + !String.IsEmpty(ListItem.Duration)">$VAR[Label_Video_Codec,, ]$INFO[ListItem.VideoResolution,| , ]$VAR[Label_Video_Resolution,, ]$VAR[Label_Video_HDR,| , ]$INFO[ListItem.VideoAspect,| ,:1 ]$VAR[Label_Video_Audio_Codec,| , ]$VAR[Label_Video_Audio_Channel]</value>
+
         <value condition="[Container.Content(movies) | $EXP[IsAnVideoInPlaylist]] + !ListItem.IsParentFolder + !String.IsEmpty(ListItem.Duration)">$INFO[ListItem.Genre]</value>
         <value condition="[Container.Content(movies) | $EXP[IsAnVideoInPlaylist]] + !ListItem.IsParentFolder + !String.IsEmpty(ListItem.Genre)">$INFO[ListItem.Genre]</value>
         <value condition="Container.Content(tvshows) + !ListItem.IsParentFolder + !String.IsEmpty(ListItem.Property(TotalEpisodes))">$INFO[ListItem.Property(TotalEpisodes),, $LOCALIZE[20453]]$INFO[ListItem.Genre,  •  ,]</value>
@@ -1041,6 +1043,7 @@
     <variable name="Label_View_56_List_Extended_Left">
         <value condition="$EXP[IsGameMode]">$VAR[Label_Game_Genre]</value>
         <value condition="ListItem.IsCollection">$LOCALIZE[20457]</value>
+        <value condition="Container.Content(videoversions) + !ListItem.IsParentFolder + !String.IsEmpty(ListItem.Duration)">$VAR[Label_Video_Codec,, ]$INFO[ListItem.VideoResolution,| , ]$VAR[Label_Video_Resolution,, ]$VAR[Label_Video_HDR,| , ]$INFO[ListItem.VideoAspect,| ,:1 ]$VAR[Label_Video_Audio_Codec,| , ]$VAR[Label_Video_Audio_Channel]</value>
         <value condition="Container.Content(tvshows) + !ListItem.IsParentFolder + !String.IsEmpty(ListItem.Year)">$INFO[ListItem.Year]$INFO[ListItem.Property(TotalEpisodes),  •  , $LOCALIZE[20453]]</value>
         <value condition="Container.Content(seasons) + !ListItem.IsParentFolder">$INFO[ListItem.Year]$INFO[ListItem.Property(TotalEpisodes),  •  , $LOCALIZE[20453]]</value>
         <value condition="Container.Content(episodes) + !ListItem.IsParentFolder + !String.IsEmpty(ListItem.Premiered)">$INFO[ListItem.Premiered]$INFO[ListItem.Season,  •  $LOCALIZE[20373] ]</value>
