@@ -221,10 +221,18 @@
                 <itemgap>14</itemgap>
                 <scrolltime tween="quadratic">200</scrolltime>
 
-                <include content="Def_Dialog_Button_Action">
-                    <param name="id" value="21" />
-                    <param name="label" value="$LOCALIZE[208]" />
-                </include>
+                <control type="button" id="921">
+                    <include>Def_Dialog_Standard_Button</include>
+                    <onclick condition="Window.IsVisible(1190)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,"playmedia=$INFO[Container(50).ListItem.FileNameAndPath]")</onclick>
+                    <onclick condition="!Window.IsVisible(1190)">SendClick(21)</onclick>
+                    <onclick>Dialog.Close(all)</onclick>
+                </control>
+
+                <!-- <include content="Def_Dialog_Button_Action"> -->
+                    <!-- <param name="id" value="21" /> -->
+                    <!-- <param name="label" value="$LOCALIZE[208]" /> -->
+                <!-- </include> -->
+
                 <include content="Def_Dialog_Button_Action">
                     <param name="id" value="22" />
                     <param name="label" value="$LOCALIZE[40014]" />
