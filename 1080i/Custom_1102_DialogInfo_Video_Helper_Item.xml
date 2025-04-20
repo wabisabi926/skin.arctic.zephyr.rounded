@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window id="1102" type="dialog">
+    <visible>Skin.HasSetting(filter.video.only.local) + !String.IsEmpty(Window(Home).Property(dialoginfolocalonly))</visible>
+
+    <visible>Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogSelect.xml)</visible>
+
+    <onload condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,movie)">RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;unencoded_paths=true&amp;window_id=Home&amp;window_prop=Encoded.ListItem.Title&amp;&amp;$INFO[Window(Home).Property(dialoginfo_title)]")</onload>
+
+    <onload condition="Skin.HasSetting(filter.video.only.local) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)]">RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;unencoded_paths=true&amp;window_id=Home&amp;window_prop=Encoded.ListItem.TVShowTitle&amp;&amp;$INFO[Window(Home).Property(dialoginfo_tvshow_title)]")</onload>
+
+    <onload condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,episode)">RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;unencoded_paths=true&amp;window_id=Home&amp;window_prop=Encoded.ListItem.EpisodeTitle&amp;&amp;$INFO[Window(Home).Property(dialoginfo_episode_title)]")</onload>
+
+    <!-- ============ -->
+    <!--  LOCAL ONLY  -->
+    <!-- ============ -->
+
+    <onload>AlarmClock(delay_dialoginfolocalonly,ClearProperty(dialoginfolocalonly,Home),00:00,silent)</onload>
+    <onload>AlarmClock(delay_dialoginfolocalonly_search,SetProperty(dialoginfolocalonly_search,1,Home),00:00,silent)</onload>
+
+    <onunload>ClearProperty(dialoginfo_title,Home)</onunload>
+    <onunload>ClearProperty(dialoginfo_tvshow_title,Home)</onunload>
+    <onunload>ClearProperty(dialoginfo_episode_title,Home)</onunload>
+</window>
