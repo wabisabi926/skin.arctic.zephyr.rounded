@@ -4,11 +4,11 @@
 
     <visible>Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogSelect.xml)</visible>
 
-    <onload condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,movie)">RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;unencoded_paths=true&amp;window_id=Home&amp;window_prop=Encoded.ListItem.Title&amp;&amp;$INFO[Window(Home).Property(dialoginfo_title)]")</onload>
+    <onload condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(Window(Home).Property(dialoginfo_item_type_db),movie)">RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;unencoded_paths=true&amp;window_id=Home&amp;window_prop=Encoded.ListItem.Title&amp;&amp;$INFO[Window(Home).Property(dialoginfo_title)]")</onload>
 
-    <onload condition="Skin.HasSetting(filter.video.only.local) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)]">RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;unencoded_paths=true&amp;window_id=Home&amp;window_prop=Encoded.ListItem.TVShowTitle&amp;&amp;$INFO[Window(Home).Property(dialoginfo_tvshow_title)]")</onload>
+    <onload condition="Skin.HasSetting(filter.video.only.local) + [String.IsEqual(Window(Home).Property(dialoginfo_item_type_db),tvshow) | String.IsEqual(Window(Home).Property(dialoginfo_item_type_db),episode)]">RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;unencoded_paths=true&amp;window_id=Home&amp;window_prop=Encoded.ListItem.TVShowTitle&amp;&amp;$INFO[Window(Home).Property(dialoginfo_tvshow_title)]")</onload>
 
-    <onload condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,episode)">RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;unencoded_paths=true&amp;window_id=Home&amp;window_prop=Encoded.ListItem.EpisodeTitle&amp;&amp;$INFO[Window(Home).Property(dialoginfo_episode_title)]")</onload>
+    <onload condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(Window(Home).Property(dialoginfo_item_type_db),episode)">RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;unencoded_paths=true&amp;window_id=Home&amp;window_prop=Encoded.ListItem.EpisodeTitle&amp;&amp;$INFO[Window(Home).Property(dialoginfo_episode_title)]")</onload>
 
     <!-- ============ -->
     <!--  LOCAL ONLY  -->

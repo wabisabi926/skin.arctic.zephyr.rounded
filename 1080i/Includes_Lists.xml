@@ -456,14 +456,17 @@
                     <onback>ClearProperty(view_extended,Home)</onback>
                     <onback>ClearProperty(down)</onback>
 
-                    <onclick condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,movie)">SetProperty(dialoginfo_title,$INFO[Container($PARAM[id]).ListItem.Title],Home)</onclick>
+                    <onclick condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(Container($PARAM[id]).ListItem.DBType,movie)">SetProperty(dialoginfo_title,$INFO[Container($PARAM[id]).ListItem.Title],Home)</onclick>
+                    <onclick condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(Container($PARAM[id]).ListItem.DBType,movie)">SetProperty(dialoginfo_item_type_db,movie,Home)</onclick>
 
-                    <onclick condition="Skin.HasSetting(filter.video.only.local) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)]">SetProperty(dialoginfo_tvshow_title,$INFO[Container($PARAM[id]).ListItem.TVShowTitle],Home)</onclick>
+                    <onclick condition="Skin.HasSetting(filter.video.only.local) + [String.IsEqual(Container($PARAM[id]).ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)]">SetProperty(dialoginfo_tvshow_title,$INFO[Container($PARAM[id]).ListItem.TVShowTitle],Home)</onclick>
+                    <onclick condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(Container($PARAM[id]).ListItem.DBType,tvshow)">SetProperty(dialoginfo_item_type_db,tvshow,Home)</onclick>
 
-                    <onclick condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,episode)">SetProperty(dialoginfo_episode_title,$INFO[Container($PARAM[id]).ListItem.Episode],Home)</onclick>
-                    <onclick condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,episode)">SetProperty(dialoginfo_episode_season,$INFO[Container($PARAM[id]).ListItem.Season],Home)</onclick>
+                    <onclick condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode)">SetProperty(dialoginfo_episode_title,$INFO[Container($PARAM[id]).ListItem.Episode],Home)</onclick>
+                    <onclick condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode)">SetProperty(dialoginfo_episode_season,$INFO[Container($PARAM[id]).ListItem.Season],Home)</onclick>
+                    <onclick condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode)">SetProperty(dialoginfo_item_type_db,episode,Home)</onclick>
 
-                    <onclick condition="Skin.HasSetting(filter.video.only.local)">SetProperty(dialoginfolocalonly,1,Home)</onclick>
+                    <onclick condition="Skin.HasSetting(filter.video.only.local) + [String.IsEqual(Container($PARAM[id]).ListItem.DBType,movie) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,tvshow) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode)]">SetProperty(dialoginfolocalonly,1,Home)</onclick>
 
                     <onclick>$PARAM[onclick1]</onclick>
                     <onclick>$PARAM[onclick2]</onclick>
