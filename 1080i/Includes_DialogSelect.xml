@@ -692,52 +692,14 @@
                         <param name="colordiffuse_background_icon_black">Black12</param>
                     </include>
 
-                    <control type="label">
-                        <top>-18</top>
-                        <left>150</left>
-                        <width>668</width>
-                        <height>135</height>
-                        <font>InfoNetflix</font>
-                        <textcolor>PanelWhite100</textcolor>
-                        <selectedcolor>PanelWhite100</selectedcolor>
-                        <label>$INFO[ListItem.Label]$INFO[ListItem.VideoVersionName,  •  ,]</label>
-                        <animation effect="slide" end="0,18" condition="String.IsEmpty(ListItem.Label2)">Conditional</animation>
-                        <visible>!ListItem.IsSelected</visible>
-                    </control>
-                    <control type="label">
-                        <left>150</left>
-                        <top>18</top>
-                        <width>668</width>
-                        <height>135</height>
-                        <font>Mini</font>
-                        <textcolor>PanelWhite100</textcolor>
-                        <selectedcolor>PanelWhite100</selectedcolor>
-                        <label>$INFO[ListItem.Label2]</label>
-                        <visible>!ListItem.IsSelected</visible>
-                    </control>
-                    <control type="label">
-                        <top>-18</top>
-                        <left>150</left>
-                        <width>668</width>
-                        <height>135</height>
-                        <font>InfoNetflix</font>
-                        <textcolor>$VAR[Color_List_Item_Selected]</textcolor>
-                        <selectedcolor>$VAR[Color_List_Item_Selected]</selectedcolor>
-                        <label>$INFO[ListItem.Label]$INFO[ListItem.VideoVersionName,  •  ,]</label>
-                        <animation effect="slide" end="0,18" condition="String.IsEmpty(ListItem.Label2)">Conditional</animation>
-                        <visible>ListItem.IsSelected</visible>
-                    </control>
-                    <control type="label">
-                        <left>150</left>
-                        <top>18</top>
-                        <width>668</width>
-                        <height>135</height>
-                        <font>Mini</font>
-                        <textcolor>$VAR[Color_List_Item_Selected]</textcolor>
-                        <selectedcolor>$VAR[Color_List_Item_Selected]</selectedcolor>
-                        <label>$INFO[ListItem.Label2]</label>
-                        <visible>ListItem.IsSelected</visible>
-                    </control>
+                    <!-- Label -->
+
+                    <include content="Def_View_List_Label">
+                        <param name="label_line_1">$INFO[ListItem.Label]$INFO[ListItem.VideoVersionName,  •  ,]</param>
+                        <param name="textcolor">PanelWhite100</param>
+                        <param name="selectedcolor">$VAR[Color_List_Item_Selected]</param>
+                    </include>
+
                     <include content="Def_Button_Radio">
                         <param name="colordiffuse_off">PanelWhite100</param>
                         <param name="colordiffuse_on">$VAR[Color_List_Item_Selected]</param>
@@ -758,27 +720,14 @@
                             <param name="visible_icon_black">String.StartsWith(ListItem.Icon,Default) | String.IsEmpty(ListItem.Icon) | String.StartsWith(ListItem.Icon,special://skin/extras/icons)</param>
                         </include>
 
-                        <control type="label">
-                            <top>-18</top>
-                            <left>150</left>
-                            <width>668</width>
-                            <height>135</height>
-                            <font>InfoNetflix</font>
-                            <textcolor>PanelWhite100</textcolor>
-                            <selectedcolor>PanelWhite100</selectedcolor>
-                            <label>$INFO[ListItem.Label]$INFO[ListItem.VideoVersionName,  •  ,]</label>
-                            <animation effect="slide" end="0,18" condition="String.IsEmpty(ListItem.Label2)">Conditional</animation>
-                        </control>
-                        <control type="label">
-                            <left>150</left>
-                            <top>18</top>
-                            <width>668</width>
-                            <height>135</height>
-                            <font>Mini</font>
-                            <textcolor>PanelWhite100</textcolor>
-                            <selectedcolor>PanelWhite100</selectedcolor>
-                            <label>$INFO[ListItem.Label2]</label>
-                        </control>
+                        <!-- Label -->
+
+                        <include content="Def_View_List_Label">
+                            <param name="label_line_1">$INFO[ListItem.Label]$INFO[ListItem.VideoVersionName,  •  ,]</param>
+                            <param name="textcolor">PanelWhite100</param>
+                            <param name="selectedcolor">PanelWhite100</param>
+                        </include>
+
                         <include content="Def_Button_Radio">
                             <param name="colordiffuse_off">PanelWhite100</param>
                             <param name="colordiffuse_on">PanelWhite100</param>
@@ -801,27 +750,14 @@
                             <param name="colordiffuse_background_icon_black">Black12</param>
                         </include>
 
-                        <control type="label">
-                            <top>-18</top>
-                            <left>150</left>
-                            <width>668</width>
-                            <height>135</height>
-                            <font>InfoNetflix</font>
-                            <textcolor>Selected</textcolor>
-                            <selectedcolor>Selected</selectedcolor>
-                            <label>$INFO[ListItem.Label]$INFO[ListItem.VideoVersionName,  •  ,]</label>
-                            <animation effect="slide" end="0,18" condition="String.IsEmpty(ListItem.Label2)">Conditional</animation>
-                        </control>
-                        <control type="label">
-                            <left>150</left>
-                            <top>18</top>
-                            <width>668</width>
-                            <height>135</height>
-                            <font>Mini</font>
-                            <textcolor>Selected</textcolor>
-                            <selectedcolor>Selected</selectedcolor>
-                            <label>$INFO[ListItem.Label2]</label>
-                        </control>
+                        <!-- Label -->
+
+                        <include content="Def_View_List_Label">
+                            <param name="label_line_1">$INFO[ListItem.Label]$INFO[ListItem.VideoVersionName,  •  ,]</param>
+                            <param name="textcolor">Selected</param>
+                            <param name="selectedcolor">Selected</param>
+                        </include>
+
                         <include content="Def_Button_Radio">
                             <param name="colordiffuse_off">Selected</param>
                             <param name="colordiffuse_on">Selected</param>
@@ -1025,81 +961,30 @@
                 <pagecontrol>1723</pagecontrol>
 
                 <itemlayout height="140">
-                   <control type="image">
-                        <top>12</top>
-                        <left>12</left>
-                        <width>111</width>
-                        <height>111</height>
-                        <aspectratio scalediffuse="false">keep</aspectratio>
-                        <texture  background="true" fallback="DefaultAddon.png" colordiffuse="PanelWhite100">$VAR[Image_Dialog_Select_List]</texture>
-                        <visible>!$EXP[Ressource_Images_Selected] + !String.StartsWith(ListItem.Icon,image://)</visible>
-                    </control>
-                   <control type="image">
-                        <top>12</top>
-                        <left>12</left>
-                        <width>111</width>
-                        <height>111</height>
-                        <aspectratio scalediffuse="false">keep</aspectratio>
-                        <texture  background="true" fallback="DefaultAddon.png">$VAR[Image_Dialog_Select_List]</texture>
-                        <visible>String.StartsWith(ListItem.Icon,image://)</visible>
-                    </control>
-                    <control type="image">
-                        <top>12</top>
-                        <left>12</left>
-                        <width>111</width>
-                        <height>111</height>
-                        <aspectratio scalediffuse="false">keep</aspectratio>
-                        <texture background="true" fallback="DefaultAddon.png" colordiffuse="$VAR[Color_List_Item_Selected]">$VAR[Image_Dialog_Select_List]</texture>
-                        <visible>$EXP[Ressource_Images_Selected] + !String.StartsWith(ListItem.Icon,image://)</visible>
-                    </control>
 
-                    <control type="label">
-                        <top>-18</top>
-                        <left>150</left>
-                        <width>668</width>
-                        <height>135</height>
-                        <font>InfoNetflix</font>
-                        <textcolor>PanelWhite100</textcolor>
-                        <selectedcolor>PanelWhite100</selectedcolor>
-                        <label>$INFO[ListItem.Label]</label>
-                        <animation effect="slide" end="0,18" condition="String.IsEmpty(ListItem.Label2)">Conditional</animation>
-                        <visible>!$EXP[Ressource_Images_Selected]</visible>
-                    </control>
-                    <control type="label">
-                        <left>150</left>
-                        <top>18</top>
-                        <width>668</width>
-                        <height>135</height>
-                        <font>Mini</font>
-                        <textcolor>PanelWhite100</textcolor>
-                        <selectedcolor>PanelWhite100</selectedcolor>
-                        <label>$INFO[ListItem.Label2]</label>
-                        <visible>!$EXP[Ressource_Images_Selected]</visible>
-                    </control>
+                    <!-- Icon -->
 
-                    <control type="label">
-                        <top>-18</top>
-                        <left>150</left>
-                        <width>668</width>
-                        <height>135</height>
-                        <font>InfoNetflix</font>
-                        <textcolor>$VAR[Color_List_Item_Selected]</textcolor>
-                        <selectedcolor>$VAR[Color_List_Item_Selected]</selectedcolor>
-                        <label>$INFO[ListItem.Label]$INFO[ListItem.VideoVersionName,  •  ,]</label>
-                        <animation effect="slide" end="0,18" condition="String.IsEmpty(ListItem.Label2)">Conditional</animation>
-                        <visible>$EXP[Ressource_Images_Selected]</visible>
-                    </control>
-                    <control type="label">
-                        <left>150</left>
-                        <top>18</top>
-                        <width>668</width>
-                        <height>135</height>
-                        <font>Mini</font>
-                        <textcolor>$VAR[Color_List_Item_Selected]</textcolor>
-                        <selectedcolor>$VAR[Color_List_Item_Selected]</selectedcolor>
-                        <label>$INFO[ListItem.Label2]</label>
-                        <visible>$EXP[Ressource_Images_Selected]</visible>
-                    </control>
+                    <include content="Def_View_List_Icon_Image_Select">
+                        <param name="colordiffuse_icon_black">PanelWhite100</param>
+                        <param name="colordiffuse_background_icon_black">Black12</param>
+                        <param name="visible_icon">String.StartsWith(ListItem.Icon,image://)</param>
+                        <param name="visible_icon_black">!$EXP[Ressource_Images_Selected] + !String.StartsWith(ListItem.Icon,image://)</param>
+                        <param name="colordiffuse_icon_black_selected">$VAR[Color_List_Item_Selected]</param>
+                        <param name="visible_icon_black_selected">$EXP[Ressource_Images_Selected] + !String.StartsWith(ListItem.Icon,image://)</param>
+                    </include>
+
+                    <!-- Label -->
+
+                    <include content="Def_View_List_Label">
+                        <param name="textcolor">PanelWhite100</param>
+                        <param name="selectedcolor">PanelWhite100</param>
+                        <param name="visible">!$EXP[Ressource_Images_Selected]</param>
+                    </include>
+                    <include content="Def_View_List_Label">
+                        <param name="textcolor">$VAR[Color_List_Item_Selected]</param>
+                        <param name="selectedcolor">$VAR[Color_List_Item_Selected]</param>
+                        <param name="visible">$EXP[Ressource_Images_Selected]</param>
+                    </include>
 
                     <include content="Def_Button_Radio">
                         <param name="colordiffuse_off">PanelWhite100</param>
@@ -1110,47 +995,24 @@
                 <focusedlayout height="140">
                     <control type="group">
                         <visible>!Control.HasFocus(6)</visible>
-                        <control type="image">
-                            <top>12</top>
-                            <left>12</left>
-                            <width>111</width>
-                            <height>111</height>
-                            <aspectratio scalediffuse="false">keep</aspectratio>
-                            <texture diffuse="diffuse/square_w111_h111.png" background="true" fallback="DefaultAddon.png">$VAR[Image_Dialog_Select_List]</texture>
-                            <visible>!String.StartsWith(ListItem.Icon,Default) + !String.IsEmpty(ListItem.Icon) + !String.StartsWith(ListItem.Icon,special://skin/extras/icons)</visible>
-                        </control>
-                        <control type="image">
-                            <top>12</top>
-                            <left>12</left>
-                            <width>111</width>
-                            <height>111</height>
-                            <aspectratio scalediffuse="false">keep</aspectratio>
-                            <texture diffuse="diffuse/square_w111_h111.png" background="true" fallback="DefaultAddon.png" colordiffuse="PanelWhite100">$VAR[Image_Dialog_Select_List]</texture>
-                            <visible>String.StartsWith(ListItem.Icon,Default) | String.IsEmpty(ListItem.Icon) | String.StartsWith(ListItem.Icon,special://skin/extras/icons)</visible>
-                        </control>
 
-                        <control type="label">
-                            <top>-18</top>
-                            <left>150</left>
-                            <width>668</width>
-                            <height>135</height>
-                            <font>InfoNetflix</font>
-                            <textcolor>PanelWhite100</textcolor>
-                            <selectedcolor>PanelWhite100</selectedcolor>
-                            <label>$INFO[ListItem.Label]</label>
-                            <label>$INFO[ListItem.Label]$INFO[ListItem.VideoVersionName,  •  ,]</label>
-                            <animation effect="slide" end="0,18" condition="String.IsEmpty(ListItem.Label2)">Conditional</animation>
-                        </control>
-                        <control type="label">
-                            <left>150</left>
-                            <top>18</top>
-                            <width>668</width>
-                            <height>135</height>
-                            <font>Mini</font>
-                            <textcolor>PanelWhite100</textcolor>
-                            <selectedcolor>PanelWhite100</selectedcolor>
-                            <label>$INFO[ListItem.Label2]</label>
-                        </control>
+                        <!-- Icon -->
+
+                        <include content="Def_View_List_Icon_Image_Select">
+                            <param name="colordiffuse_icon_black">PanelWhite100</param>
+                            <param name="colordiffuse_background_icon_black">Black12</param>
+                            <param name="visible_icon">!String.StartsWith(ListItem.Icon,Default) + !String.IsEmpty(ListItem.Icon) + !String.StartsWith(ListItem.Icon,special://skin/extras/icons)</param>
+                            <param name="visible_icon_black">String.StartsWith(ListItem.Icon,Default) | String.IsEmpty(ListItem.Icon) | String.StartsWith(ListItem.Icon,special://skin/extras/icons)</param>
+                        </include>
+
+                        <!-- Label -->
+
+                        <include content="Def_View_List_Label">
+                            <param name="textcolor">PanelWhite100</param>
+                            <param name="selectedcolor">PanelWhite100</param>
+                            <param name="visible">true</param>
+                        </include>
+
                         <include content="Def_Button_Radio">
                             <param name="colordiffuse_off">PanelWhite100</param>
                             <param name="colordiffuse_on">PanelWhite100</param>
@@ -1165,46 +1027,22 @@
                             <texture border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png</texture>
                         </control>
 
-                        <control type="image">
-                            <left>12</left>
-                            <top>12</top>
-                            <width>111</width>
-                            <height>111</height>
-                            <aspectratio scalediffuse="false">keep</aspectratio>
-                            <texture diffuse="diffuse/square_w111_h111.png" background="true" fallback="DefaultAddon.png">$VAR[Image_Dialog_Select_List]</texture>
-                            <visible>!$EXP[View_Icon_Black_Dialog_Select]</visible>
-                        </control>
-                        <control type="image">
-                            <left>12</left>
-                            <top>12</top>
-                            <width>111</width>
-                            <height>111</height>
-                            <aspectratio scalediffuse="false">keep</aspectratio>
-                            <texture diffuse="diffuse/square_w111_h111.png" background="true" fallback="DefaultAddon.png" colordiffuse="Selected">$VAR[Image_Dialog_Select_List]</texture>
-                            <visible>$EXP[View_Icon_Black_Dialog_Select]</visible>
-                        </control>
+                        <!-- Icon -->
 
-                        <control type="label">
-                            <top>-18</top>
-                            <left>150</left>
-                            <width>668</width>
-                            <height>135</height>
-                            <font>InfoNetflix</font>
-                            <textcolor>Selected</textcolor>
-                            <selectedcolor>Selected</selectedcolor>
-                            <label>$INFO[ListItem.Label]</label>
-                            <animation effect="slide" end="0,18" condition="String.IsEmpty(ListItem.Label2)">Conditional</animation>
-                        </control>
-                        <control type="label">
-                            <left>150</left>
-                            <top>18</top>
-                            <width>668</width>
-                            <height>135</height>
-                            <font>Mini</font>
-                            <textcolor>Selected</textcolor>
-                            <selectedcolor>Selected</selectedcolor>
-                            <label>$INFO[ListItem.Label2]</label>
-                        </control>
+                        <include content="Def_View_List_Icon_Image_Select">
+                            <param name="colordiffuse_icon_black">Selected</param>
+                            <param name="colordiffuse_background_icon_black">Black12</param>
+                            <param name="visible_icon">!$EXP[View_Icon_Black_Dialog_Select]</param>
+                            <param name="visible_icon_black">$EXP[View_Icon_Black_Dialog_Select]</param>
+                        </include>
+
+                        <!-- Label -->
+
+                        <include content="Def_View_List_Label">
+                            <param name="textcolor">Selected</param>
+                            <param name="selectedcolor">Selected</param>
+                            <param name="visible">true</param>
+                        </include>
 
                         <include content="Def_Button_Radio">
                             <param name="colordiffuse_off">Selected</param>

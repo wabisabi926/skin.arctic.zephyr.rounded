@@ -391,6 +391,9 @@
         <param name="texture_icon_black" value="$PARAM[texture_icon_black]" default="$VAR[Image_Dialog_Select_List]" />
         <param name="visible_icon_black" value="$PARAM[visible_icon_black]" default="$EXP[View_Icon_Black_Dialog_Select]" />
 
+        <param name="colordiffuse_icon_black_selected" value="$PARAM[colordiffuse_icon_black_selected]" default="$VAR[Color_List_Item_Selected]" />
+        <param name="visible_icon_black_selected" value="$PARAM[visible_icon_black_selected]" default="false" />
+
         <definition>
 
             <!-- Background -->
@@ -422,6 +425,57 @@
                 <aspectratio scalediffuse="false">$PARAM[aspectratio]</aspectratio>
                 <texture diffuse="diffuse/$PARAM[texture_diffuse].png" background="true" fallback="DefaultAddon.png" colordiffuse="$PARAM[colordiffuse_icon_black]">$PARAM[texture_icon_black]</texture>
                 <visible>$PARAM[visible_icon_black]</visible>
+            </control>
+
+            <!-- Icon black selected -->
+            <control type="image">
+                <top>$PARAM[top]</top>
+                <left>$PARAM[left]</left>
+                <width>$PARAM[width]</width>
+                <height>$PARAM[height]</height>
+                <aspectratio scalediffuse="false">$PARAM[aspectratio]</aspectratio>
+                <texture diffuse="diffuse/$PARAM[texture_diffuse].png" background="true" fallback="DefaultAddon.png" colordiffuse="$PARAM[colordiffuse_icon_black_selected]">$PARAM[texture_icon_black]</texture>
+                <visible>$PARAM[visible_icon_black_selected]</visible>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_View_List_Label">
+        <param name="label_line_1" value="$PARAM[left]" default="$INFO[ListItem.Label]" />
+        <param name="label_line_2" value="$PARAM[centertop]" default="$INFO[ListItem.Label2]" />
+        <param name="textcolor" value="$PARAM[textcolor]" default="PanelWhite100" />
+        <param name="selectedcolor" value="$PARAM[selectedcolor]" default="PanelWhite100" />
+        <param name="visible" value="$PARAM[visible]" default="true" />
+
+        <definition>
+
+            <!-- Label - Line 2 -->
+
+            <control type="label">
+                <top>-18</top>
+                <left>150</left>
+                <width>668</width>
+                <height>135</height>
+                <font>InfoNetflix</font>
+                <textcolor>$PARAM[textcolor]</textcolor>
+                <selectedcolor>$PARAM[selectedcolor]</selectedcolor>
+                <label>$INFO[ListItem.Label]</label>
+                <animation effect="slide" end="0,18" condition="String.IsEmpty(ListItem.Label2)">Conditional</animation>
+                <visible>$PARAM[visible]</visible>
+            </control>
+
+            <!-- Label - Line 2 -->
+
+            <control type="label">
+                <left>150</left>
+                <top>18</top>
+                <width>668</width>
+                <height>135</height>
+                <font>Mini</font>
+                <textcolor>$PARAM[textcolor]</textcolor>
+                <selectedcolor>$PARAM[selectedcolor]</selectedcolor>
+                <label>$INFO[ListItem.Label2]</label>
+                <visible>$PARAM[visible]</visible>
             </control>
         </definition>
     </include>
