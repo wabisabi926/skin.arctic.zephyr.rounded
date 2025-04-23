@@ -1128,7 +1128,7 @@
 
     <!-- FURNITURE - HEADER -->
 
-    <include name="Def_Furniture_Header_Image_Clearlogo">
+    <include name="Def_Home_Furniture_Header_Image_Clearlogo">
         <visible>Skin.HasSetting(show.home.header.clearlogo)</visible>
         <visible>Window.IsVisible(Home) + !Skin.HasSetting(home.style.flix)</visible>
         <visible>![Window.IsVisible(DialogMusicInfo.xml) + Window.IsVisible(DialogVideoInfo.xml)]</visible>
@@ -1155,49 +1155,20 @@
         <aspectratio align="right">keep</aspectratio>
     </include>
 
-    <include name="Furniture_Header">
-
-        <!-- VIEWS - HEADER - CLEARLOGO - CROP - NO CROP -->
-
-        <control type="image" description="clearlogo">
-            <visible>[!Window.IsVisible(Home) + Skin.HasSetting(show.header.clearlogo)]</visible>
-            <visible>![Window.IsVisible(Home) + Window.IsVisible(DialogVideoInfo.xml)]</visible>
-            <visible>![Window.IsVisible(Home) + Skin.HasSetting(show.home.flix.title.clearlogo) + $EXP[Home_Is_Vertical]]</visible>
-            <visible>![Control.IsVisible(509) + Skin.HasSetting(show.view.509.title.clearlogo)]</visible>
-            <visible>![Control.IsVisible(511) + Skin.HasSetting(show.view.511.title.clearlogo)]</visible>
-            <visible>![Control.IsVisible(512) + Skin.HasSetting(show.view.511.title.clearlogo)]</visible>
-            <visible>![Control.IsVisible(514) + Skin.HasSetting(show.view.514.title.clearlogo)]</visible>
-
-            <visible>!Window.IsVisible(FileManager.xml)</visible>
-            <visible>![Container.Content(actors) | Container.Content(directors)]</visible>
-
-            <visible>!$EXP[View_Clock_In_Footer_Always]</visible>
-            <animation effect="slide" start="0" end="0,60" time="0" condition="$EXP[Home_Is_Horizontal] + Window.IsVisible(Home.xml)">Conditional</animation>
-            <centertop>120</centertop>
-            <centerleft>50%</centerleft>
-            <height>ClearLogoMaxHeight</height>
-            <width>ClearLogoMaxWidth</width>
-            <fadetime>ClearArtFadetime</fadetime>
-            <aspectratio align="center">keep</aspectratio>
-            <texture background="true">$VAR[Image_Crop_ClearLogo]</texture>
-            <animation effect="fade" start="0" end="100" time="200" delay="0" reversible="true">Visible</animation>
-            <animation effect="fade" start="100" end="0" delay="400" time="200" reversible="true">Hidden</animation>
-        </control>
+    <include name="Furniture_Home_Header">
 
         <!-- HOME - HEADER - CLEARLOGO - CROP -->
 
         <control type="image" description="clearlogo home">
             <visible>$EXP[Title_Clearlogo_Home_Crop]</visible>
-
-            <include>Def_Furniture_Header_Image_Clearlogo</include>
+            <include>Def_Home_Furniture_Header_Image_Clearlogo</include>
             <texture background="true">$VAR[Image_Home_ClearLogo_Crop]</texture>
         </control>
 
         <control type="image" description="clearlogo home">
             <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,movie) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,video) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,tvshow) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,artist) | String.IsEmpty(Container($PARAM[id]).ListItem.DBType)</visible>
             <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Art(clearlogo)) + !$EXP[Title_Clearlogo_Home_Crop]</visible>
-
-            <include>Def_Furniture_Header_Image_Clearlogo</include>
+            <include>Def_Home_Furniture_Header_Image_Clearlogo</include>
             <texture background="true">$VAR[Image_Home_ClearLogo_Crop]</texture>
         </control>
 
@@ -1206,8 +1177,7 @@
         <control type="image" description="clearlogo home">
             <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,movie) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,video) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,tvshow) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,artist) | String.IsEmpty(Container($PARAM[id]).ListItem.DBType)</visible>
             <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Art(clearlogo)) + !$EXP[Title_Clearlogo_Home_Crop]</visible>
-
-            <include>Def_Furniture_Header_Image_Clearlogo</include>
+            <include>Def_Home_Furniture_Header_Image_Clearlogo</include>
             <texture background="true">$INFO[Container($PARAM[id]).ListItem.Art(clearlogo)]</texture>
         </control>
 
@@ -1216,8 +1186,7 @@
         <control type="image" description="clearlogo home">
             <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,season) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode)</visible>
             <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Art(tvshow.clearlogo)) + !$EXP[Title_Clearlogo_Home_Crop]</visible>
-
-            <include>Def_Furniture_Header_Image_Clearlogo</include>
+            <include>Def_Home_Furniture_Header_Image_Clearlogo</include>
             <texture background="true">$INFO[Container($PARAM[id]).ListItem.Art(tvshow.clearlogo)]</texture>
         </control>
 
@@ -1226,8 +1195,7 @@
         <control type="image" description="clearlogo home">
             <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,album)</visible>
             <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Art(artist.clearlogo)) + !$EXP[Title_Clearlogo_Home_Crop]</visible>
-
-            <include>Def_Furniture_Header_Image_Clearlogo</include>
+            <include>Def_Home_Furniture_Header_Image_Clearlogo</include>
             <texture background="true">$INFO[Container($PARAM[id]).ListItem.Art(artist.clearlogo)]</texture>
         </control>
 
@@ -1236,9 +1204,7 @@
         <control type="group">
             <top>40</top>
             <left>40</left>
-            <visible>[!Skin.HasSetting(hide.furniture.header) + !Window.IsActive(Home)] | Window.IsActive(Home)</visible>
-
-            <include condition="!Window.IsVisible(MyFavourites.xml)">Animation_Furniture_Visible_Home_Label</include>
+            <visible>Window.IsActive(Home)</visible>
 
             <!-- Hide with NowPlaying -->
             <animation type="Conditional" condition="Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + $EXP[Extended_Now_Playing_Is_Enable] + [ControlGroup(777).HasFocus() | !$EXP[Extended_Now_Playing_Helper_AutoShow]] + !$EXP[Home_Menu_Is_Focus] + !Control.HasFocus(9099) + !ControlGroup(301).HasFocus() + Window.IsVisible(Home) + !$EXP[View_Info_Dialog] + !Window.IsVisible(MyPVRGuide.xml) + !Window.IsVisible(DialogContextMenu.xml)" reversible="true">
@@ -1312,6 +1278,127 @@
                     <visible>Window.IsActive(Home)</visible>
                     <visible>Control.HasFocus(9099)</visible>
                 </control>
+            </control>
+
+            <!-- HOME - HEADER - CLOCK LEFT -->
+
+            <control type="group">
+                <visible>!Window.IsVisible(DialogBusy.xml)</visible>
+                <visible>Window.IsActive(Home) + Skin.HasSetting(show.home.header.clock.left) + Skin.HasSetting(show.furniture.clock.date.weather)</visible>
+                <visible>![Skin.HasSetting(home.style.horizontal.clean) + [Control.HasFocus(2011) | ControlGroup(301).HasFocus()]]</visible>
+
+                <top>40</top>
+                <left>144</left>
+
+                <control type="group">
+                    <!-- <top>10</top> -->
+                    <control type="label">
+                        <centertop>24</centertop>
+                        <align>left</align>
+                        <font>HeaderLabel</font>
+                        <textcolor>Dark1</textcolor>
+                        <label>$INFO[System.Time(hh:mm)]</label>
+                    </control>
+
+                    <control type="label">
+                        <centertop>58</centertop>
+                        <align>left</align>
+                        <font>Flag</font>
+                        <width>auto</width>
+                        <textcolor>Dark2</textcolor>
+                        <label>$INFO[System.Date]</label>
+                    </control>
+                </control>
+
+                <control type="group">
+                    <visible>!String.Contains(Weather.Temperature,$LOCALIZE[503])</visible>
+                    <visible>!String.IsEmpty(Weather.plugin)</visible>
+                    <visible>Weather.IsFetched</visible>
+                    <include>Animation_Fade_In_WeatherDelay</include>
+
+                    <top>-6</top>
+                    <left>90</left>
+                    <width>50</width>
+                    <height>50</height>
+                    <align>center</align>
+                    <aligny>center</aligny>
+
+                    <include>Def_Feature_Home_Header_Left_Clock_Weather_Icon</include>
+                </control>
+
+                <control type="group">
+                    <visible>!String.IsEmpty(Weather.plugin)</visible>
+                    <visible>Weather.IsFetched</visible>
+                    <width>500</width>
+                    <left>30</left>
+
+                    <control type="label">
+                        <centertop>24</centertop>
+                        <left>116</left>
+                        <width>auto</width>
+                        <font>Flag</font>
+                        <align>left</align>
+                        <textcolor>Dark2</textcolor>
+                        <label>$INFO[Weather.Temperature]</label>
+                    </control>
+                </control>
+            </control>
+        </control>
+    </include>
+
+    <include name="Furniture_Header">
+
+        <!-- VIEWS - HEADER - CLEARLOGO - CROP - NO CROP -->
+
+        <control type="image" description="clearlogo">
+            <visible>[!Window.IsVisible(Home) + Skin.HasSetting(show.header.clearlogo)]</visible>
+            <visible>![Window.IsVisible(Home) + Window.IsVisible(DialogVideoInfo.xml)]</visible>
+            <visible>![Window.IsVisible(Home) + Skin.HasSetting(show.home.flix.title.clearlogo) + $EXP[Home_Is_Vertical]]</visible>
+            <visible>![Control.IsVisible(509) + Skin.HasSetting(show.view.509.title.clearlogo)]</visible>
+            <visible>![Control.IsVisible(511) + Skin.HasSetting(show.view.511.title.clearlogo)]</visible>
+            <visible>![Control.IsVisible(512) + Skin.HasSetting(show.view.511.title.clearlogo)]</visible>
+            <visible>![Control.IsVisible(514) + Skin.HasSetting(show.view.514.title.clearlogo)]</visible>
+
+            <visible>!Window.IsVisible(FileManager.xml)</visible>
+            <visible>![Container.Content(actors) | Container.Content(directors)]</visible>
+
+            <visible>!$EXP[View_Clock_In_Footer_Always]</visible>
+            <animation effect="slide" start="0" end="0,60" time="0" condition="$EXP[Home_Is_Horizontal] + Window.IsVisible(Home.xml)">Conditional</animation>
+            <centertop>120</centertop>
+            <centerleft>50%</centerleft>
+            <height>ClearLogoMaxHeight</height>
+            <width>ClearLogoMaxWidth</width>
+            <fadetime>ClearArtFadetime</fadetime>
+            <aspectratio align="center">keep</aspectratio>
+            <texture background="true">$VAR[Image_Crop_ClearLogo]</texture>
+            <animation effect="fade" start="0" end="100" time="200" delay="0" reversible="true">Visible</animation>
+            <animation effect="fade" start="100" end="0" delay="400" time="200" reversible="true">Hidden</animation>
+        </control>
+
+        <!-- HEADER - LEFT - ICON - MAIN TITLE - SUB TILE -->
+
+        <control type="group">
+            <top>40</top>
+            <left>40</left>
+            <visible>[!Skin.HasSetting(hide.furniture.header) + !Window.IsActive(Home)] | Window.IsActive(Home)</visible>
+
+            <include condition="!Window.IsVisible(MyFavourites.xml)">Animation_Furniture_Visible_Home_Label</include>
+
+            <!-- Hide with NowPlaying -->
+            <animation type="Conditional" condition="Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + $EXP[Extended_Now_Playing_Is_Enable] + [ControlGroup(777).HasFocus() | !$EXP[Extended_Now_Playing_Helper_AutoShow]] + !$EXP[Home_Menu_Is_Focus] + !Control.HasFocus(9099) + !ControlGroup(301).HasFocus() + Window.IsVisible(Home) + !$EXP[View_Info_Dialog] + !Window.IsVisible(MyPVRGuide.xml) + !Window.IsVisible(DialogContextMenu.xml)" reversible="true">
+                <effect type="slide" start="0,0" end="-115,0" tween="sine" easing="out" time="300" delay="0" />
+                <effect type="fade" start="100" end="0" time="150" delay="0" />
+            </animation>
+
+            <!-- HEADER - ICON LEFT -->
+
+            <control type="group" description="iconbox">
+                <visible>!Window.IsVisible(DialogBusy.xml)</visible>
+                <visible>![Skin.HasSetting(home.style.horizontal.clean) + [Control.HasFocus(2011) | ControlGroup(301).HasFocus()]]</visible>
+                <visible>!Window.IsVisible(script-globalsearch.xml)</visible>
+
+                <width>160</width>
+                <height>160</height>
 
                 <!-- ICON HEADER -->
 
@@ -1322,7 +1409,6 @@
                     <animation effect="fade" start="100" end="90" condition="true">Conditional</animation>
                     <visible>!Window.IsActive(Home)</visible>
                 </control>
-
                 <control type="image">
                     <top>36</top>
                     <left>36</left>
@@ -1333,7 +1419,6 @@
                     <visible>!Window.IsActive(Home)</visible>
                     <include>Animation_Furniture_Icon</include>
                 </control>
-
                 <control type="label">
                     <centertop>79</centertop>
                     <centerleft>80</centerleft>
@@ -1662,7 +1747,7 @@
                 <align>center</align>
                 <aligny>center</aligny>
 
-                <include>Def_Feature_Header_Clock_Weather_Icon</include>
+                <include>Def_Feature_Header_Right_Clock_Weather_Icon</include>
             </control>
 
             <!-- BUSY ANIMATION -->
