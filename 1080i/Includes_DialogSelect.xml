@@ -665,22 +665,6 @@
 
             <include>Def_Dialog_Header_Line</include>
 
-            <include content="Object_Scrollbar_Dialog_Vertical">
-                <param name="scrollid" value="1723" />
-                <param name="onleft" value="3" />
-                <param name="onright" value="9001" />
-                <param name="centerright" value="360" />
-                <param name="visible" value="Control.IsVisible(3) + !Control.IsVisible(6)" />
-            </include>
-
-            <include content="Object_Scrollbar_Dialog_Vertical">
-                <param name="scrollid" value="1723" />
-                <param name="onleft" value="6" />
-                <param name="onright" value="9001" />
-                <param name="centerright" value="360" />
-                <param name="visible" value="Control.IsVisible(6) + !Control.IsVisible(3)" />
-            </include>
-
             <!-- DIALOG SELECT - ID 3  -->
             <include>Def_Dialog_Select</include>
 
@@ -700,24 +684,14 @@
                 <pagecontrol>1723</pagecontrol>
 
                 <itemlayout height="140">
-                    <control type="image">
-                        <top>12</top>
-                        <left>12</left>
-                        <width>111</width>
-                        <height>111</height>
-                        <aspectratio scalediffuse="false">keep</aspectratio>
-                        <texture diffuse="diffuse/square_w111_h111.png" background="true" fallback="DefaultAddon.png">$VAR[Image_Dialog_Select_List]</texture>
-                        <visible>!$EXP[View_Icon_Black_Dialog_Select]</visible>
-                    </control>
-                    <control type="image">
-                        <top>12</top>
-                        <left>12</left>
-                        <width>111</width>
-                        <height>111</height>
-                        <aspectratio scalediffuse="false">keep</aspectratio>
-                        <texture diffuse="diffuse/square_w111_h111.png" background="true" fallback="DefaultAddon.png" colordiffuse="PanelWhite100">$VAR[Image_Dialog_Select_List]</texture>
-                        <visible>$EXP[View_Icon_Black_Dialog_Select]</visible>
-                    </control>
+
+                    <!-- Icon -->
+
+                    <include content="Def_View_List_Icon_Image_Select">
+                        <param name="colordiffuse_icon_black">PanelWhite100</param>
+                        <param name="colordiffuse_background_icon_black">Black12</param>
+                    </include>
+
                     <control type="label">
                         <top>-18</top>
                         <left>150</left>
@@ -770,27 +744,20 @@
                         <param name="visible">ListItem.IsSelected</param>
                     </include>
                 </itemlayout>
+
                 <focusedlayout height="140">
                     <control type="group">
                         <visible>!Control.HasFocus(6)</visible>
-                        <control type="image">
-                            <top>12</top>
-                            <left>12</left>
-                            <width>111</width>
-                            <height>111</height>
-                            <aspectratio scalediffuse="false">keep</aspectratio>
-                            <texture diffuse="diffuse/square_w111_h111.png" background="true" fallback="DefaultAddon.png">$VAR[Image_Dialog_Select_List]</texture>
-                            <visible>!String.StartsWith(ListItem.Icon,Default) + !String.IsEmpty(ListItem.Icon) + !String.StartsWith(ListItem.Icon,special://skin/extras/icons)</visible>
-                        </control>
-                        <control type="image">
-                            <top>12</top>
-                            <left>12</left>
-                            <width>111</width>
-                            <height>111</height>
-                            <aspectratio scalediffuse="false">keep</aspectratio>
-                            <texture diffuse="diffuse/square_w111_h111.png" background="true" fallback="DefaultAddon.png" colordiffuse="PanelWhite100">$VAR[Image_Dialog_Select_List]</texture>
-                            <visible>String.StartsWith(ListItem.Icon,Default) | String.IsEmpty(ListItem.Icon) | String.StartsWith(ListItem.Icon,special://skin/extras/icons)</visible>
-                        </control>
+
+                    <!-- Icon -->
+
+                        <include content="Def_View_List_Icon_Image_Select">
+                            <param name="colordiffuse_icon_black">PanelWhite100</param>
+                            <param name="colordiffuse_background_icon_black">Black12</param>
+                            <param name="visible_icon">!String.StartsWith(ListItem.Icon,Default) + !String.IsEmpty(ListItem.Icon) + !String.StartsWith(ListItem.Icon,special://skin/extras/icons)</param>
+                            <param name="visible_icon_black">String.StartsWith(ListItem.Icon,Default) | String.IsEmpty(ListItem.Icon) | String.StartsWith(ListItem.Icon,special://skin/extras/icons)</param>
+                        </include>
+
                         <control type="label">
                             <top>-18</top>
                             <left>150</left>
@@ -818,6 +785,7 @@
                             <param name="visible">ListItem.IsSelected</param>
                         </include>
                     </control>
+
                     <control type="group">
                         <visible>Control.HasFocus(6)</visible>
                         <control type="image">
@@ -825,24 +793,14 @@
                             <height>135</height>
                             <texture border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png</texture>
                         </control>
-                        <control type="image">
-                            <left>12</left>
-                            <top>12</top>
-                            <width>111</width>
-                            <height>111</height>
-                            <aspectratio scalediffuse="false">keep</aspectratio>
-                            <texture diffuse="diffuse/square_w111_h111.png" background="true" fallback="DefaultAddon.png">$VAR[Image_Dialog_Select_List]</texture>
-                            <visible>!$EXP[View_Icon_Black_Dialog_Select]</visible>
-                        </control>
-                        <control type="image">
-                            <left>12</left>
-                            <top>12</top>
-                            <width>111</width>
-                            <height>111</height>
-                            <aspectratio scalediffuse="false">keep</aspectratio>
-                            <texture diffuse="diffuse/square_w111_h111.png" background="true" fallback="DefaultAddon.png" colordiffuse="Selected">$VAR[Image_Dialog_Select_List]</texture>
-                            <visible>$EXP[View_Icon_Black_Dialog_Select]</visible>
-                        </control>
+
+                        <!-- Icon -->
+
+                        <include content="Def_View_List_Icon_Image_Select">
+                            <param name="colordiffuse_icon_black">Selected</param>
+                            <param name="colordiffuse_background_icon_black">Black12</param>
+                        </include>
+
                         <control type="label">
                             <top>-18</top>
                             <left>150</left>
@@ -872,6 +830,35 @@
                     </control>
                 </focusedlayout>
             </control>
+
+            <!-- LINE VERTICAL -->
+
+            <control type="image">
+                <right>360</right>
+                <top>112</top>
+                <bottom>17</bottom>
+                <width>1</width>
+                <texture colordiffuse="Black12">common/white.png</texture>
+                <animation effect="fade" start="0" end="100" time="100" condition="!Control.HasFocus(1723) + !Container.Scrolling">Conditional</animation>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="1723" />
+                <param name="onleft" value="3" />
+                <param name="onright" value="9001" />
+                <param name="centerright" value="360" />
+                <param name="visible" value="Control.IsVisible(3) + !Control.IsVisible(6)" />
+            </include>
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="1723" />
+                <param name="onleft" value="6" />
+                <param name="onright" value="9001" />
+                <param name="centerright" value="360" />
+                <param name="visible" value="Control.IsVisible(6) + !Control.IsVisible(3)" />
+            </include>
 
             <!-- BUTTON ON RIGHT -->
 
@@ -909,14 +896,14 @@
                     <width>100%</width>
                     <height>100%</height>
                     <texture fallback="DefaultPicture.png">$VAR[Image_Dialog_Select_Big]</texture>
-                    <aspectratio align="center" aligny="bottom">keep</aspectratio>
+                    <aspectratio align="center" aligny="center">keep</aspectratio>
                     <visible>!$EXP[View_Icon_Black_Dialog_Select]</visible>
                 </control>
                 <control type="image">
                     <width>100%</width>
                     <height>100%</height>
                     <texture fallback="DefaultPicture.png" colordiffuse="PanelWhite100">$VAR[Image_Dialog_Select_Big]</texture>
-                    <aspectratio align="center" aligny="bottom">keep</aspectratio>
+                    <aspectratio align="center" aligny="center">keep</aspectratio>
                     <visible>$EXP[View_Icon_Black_Dialog_Select] + ![String.IsEqual(Control.GetLabel(1),Wikipedia) | String.IsEqual(Control.GetLabel(1),Light IMDb Ratings Update) | Window.IsVisible(script-wikipedia.xml)]</visible>
                 </control>
             </control>
@@ -995,17 +982,6 @@
                     <height>84</height>
                     <texture colordiffuse="Dark2">logo/wikipedia/wikipedia_title.png</texture>
                 </control>
-            </control>
-
-            <!-- LINE VERTICAL -->
-
-            <control type="image">
-                <right>360</right>
-                <top>112</top>
-                <bottom>17</bottom>
-                <width>1</width>
-                <texture colordiffuse="Black12">common/white.png</texture>
-                <animation effect="fade" start="0" end="100" time="100" condition="!Control.HasFocus(1723) + !Container.Scrolling">Conditional</animation>
             </control>
 
             <!-- NUM ITEMS -->
