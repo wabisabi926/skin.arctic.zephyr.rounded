@@ -3281,26 +3281,24 @@
                 <textcolor>Dark2</textcolor>
                 <label>$INFO[ListItem.UserRating].0</label>
             </control>
+
+
+            <!-- DURATION -->
+
             <control type="image">
-                <width>48</width>
-                <height>64</height>
-                <centertop>50%</centertop>
+                <include>Def_Flag_Image</include>
                 <texture colordiffuse="Dark1">flags/video/white/other/time.png</texture>
-                <aspectratio align="left">scale</aspectratio>
-                <visible>!String.IsEmpty(ListItem.Duration)</visible>
+                <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Duration)</visible>
             </control>
             <control type="label">
                 <width>auto</width>
-                <centertop>50%</centertop>
-                <height>64</height>
-                <align>left</align>
-                <left>15</left>
-                <aligny>center</aligny>
-                <label>$INFO[ListItem.Duration(mins:ss),, $LOCALIZE[31074]  ]</label>
                 <font>Flag</font>
-                <textcolor>Dark2</textcolor>
+                <textcolor>Dark1</textcolor>
+                <include>Def_Flag_Label</include>
+                <label>$INFO[ListItem.Duration(mins:ss),, $LOCALIZE[31074]  ]</label>
                 <visible>!String.IsEmpty(ListItem.Duration)</visible>
             </control>
+
             <include content="Def_Flags_Furniture_Small" condition="!Skin.HasSetting(hide.flags.music.rating)">
                 <param name="Star" value="FlagstarSong" />
                 <param name="visible" value="!Skin.HasSetting(enable.flags.rating.numeric)" />
@@ -3447,26 +3445,23 @@
                 <textcolor>Dark2</textcolor>
                 <label>$INFO[ListItem.UserRating].0</label>
             </control>
+
+            <!-- DURATION -->
+
             <control type="image">
-                <width>48</width>
-                <height>64</height>
-                <centertop>50%</centertop>
+                <include>Def_Flag_Image</include>
                 <texture colordiffuse="Dark1">flags/video/white/other/time.png</texture>
-                <aspectratio align="left">scale</aspectratio>
-                <visible>!String.IsEmpty(ListItem.Duration)</visible>
+                <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Duration)</visible>
             </control>
             <control type="label">
                 <width>auto</width>
-                <centertop>50%</centertop>
-                <height>64</height>
-                <align>left</align>
-                <aligny>center</aligny>
-                <left>15</left>
-                <label>$INFO[ListItem.Duration(mins:ss),, $LOCALIZE[31074]  ]</label>
                 <font>Flag</font>
                 <textcolor>Dark1</textcolor>
+                <include>Def_Flag_Label</include>
+                <label>$INFO[ListItem.Duration(mins:ss),, $LOCALIZE[31074]  ]</label>
                 <visible>!String.IsEmpty(ListItem.Duration)</visible>
             </control>
+
             <include content="Def_Flags_Furniture_Small" condition="!Skin.HasSetting(hide.flags.music.rating)">
                 <param name="Star" value="FlagstarSong" />
                 <param name="visible" value="!Skin.HasSetting(enable.flags.rating.numeric)" />
@@ -4699,32 +4694,31 @@
                     <textcolor>Dark2</textcolor>
                     <label>$INFO[Container($PARAM[controlid]).ListItem.UserRating].0</label>
                 </control>
+
+                <!-- DURATION -->
+
                 <control type="image">
-                    <width>48</width>
-                    <height>64</height>
-                    <centertop>50%</centertop>
+                    <include>Def_Flag_Image</include>
                     <texture colordiffuse="Dark1">flags/video/white/other/time.png</texture>
-                    <aspectratio align="left">scale</aspectratio>
                     <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Duration)</visible>
                 </control>
                 <control type="label">
                     <width>auto</width>
-                    <centertop>50%</centertop>
-                    <height>64</height>
-                    <align>left</align>
-                    <left>15</left>
-                    <aligny>center</aligny>
-                    <label>$INFO[Container($PARAM[controlid]).ListItem.Duration(mins:ss),, $LOCALIZE[31074]  ]</label>
                     <font>Flag</font>
-                    <textcolor>Dark2</textcolor>
+                    <textcolor>Dark1</textcolor>
+                    <include>Def_Flag_Label</include>
+                    <label>$INFO[Container($PARAM[controlid]).ListItem.Duration(mins:ss),, $LOCALIZE[31074]  ]</label>
                     <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Duration)</visible>
                 </control>
+
                 <include condition="!Skin.HasSetting(hide.flags.music.rating)">Def_Flags_Furniture_Small_Ext</include>
+
                 <!-- <include content="Def_Flags_Furniture_Small" condition="!Skin.HasSetting(hide.flags.music.rating)"> -->
                     <!-- <param name="Star" value="FlagstarSong" /> -->
                     <!-- <param name="visible" value="!Skin.HasSetting(enable.flags.rating.numeric)" /> -->
                     <!-- <param name="color" value="Dark1" /> -->
                 <!-- </include> -->
+
                 <control type="label">
                     <left>-6</left>
                     <width min="48">auto</width>
@@ -4847,24 +4841,20 @@
                     <textcolor>Dark2</textcolor>
                     <label>$INFO[Container($PARAM[controlid]).ListItem.UserRating].0</label>
                 </control>
+
+                <!-- DURATION -->
+
                 <control type="image">
-                    <width>48</width>
-                    <height>64</height>
-                    <centertop>50%</centertop>
+                    <include>Def_Flag_Image</include>
                     <texture colordiffuse="Dark1">flags/video/white/other/time.png</texture>
-                    <aspectratio align="left">scale</aspectratio>
                     <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Duration)</visible>
                 </control>
                 <control type="label">
                     <width>auto</width>
-                    <centertop>50%</centertop>
-                    <height>64</height>
-                    <align>left</align>
-                    <left>15</left>
-                    <aligny>center</aligny>
-                    <label>$INFO[Container($PARAM[controlid]).ListItem.Duration(mins:ss),, $LOCALIZE[31074]  ]</label>
                     <font>Flag</font>
                     <textcolor>Dark1</textcolor>
+                    <include>Def_Flag_Label</include>
+                    <label>$INFO[Container($PARAM[controlid]).ListItem.Duration(mins:ss),, $LOCALIZE[31074]  ]</label>
                     <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Duration)</visible>
                 </control>
 
