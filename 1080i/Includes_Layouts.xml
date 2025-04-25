@@ -115,6 +115,37 @@
             <label>$INFO[ListItem.Rating(imdb)]</label>
         </control>
 
+        <!-- RATING TMDB -->
+
+        <control type="image">
+            <visible>!Window.IsVisible(DialogVideoInfo.xml) </visible>
+            <visible>!String.IsEqual(ListItem.DBType,album) + !String.IsEqual(ListItem.DBType,set) + !$EXP[IsYoutubeItem]</visible>
+            <visible>[!String.IsEmpty(ListItem.Rating) + String.IsEmpty(ListItem.DBID)] | [!String.IsEmpty(ListItem.Rating) + String.IsEmpty(ListItem.Rating(imdb)) + !String.IsEmpty(ListItem.DBID)]</visible>
+            <align>left</align>
+            <aligny>center</aligny>
+            <width>40</width>
+            <left>10</left>
+            <bottom>26</bottom>
+            <height>40</height>
+            <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+            <texture diffuse="diffuse/circle_64.png" background="true">logo/tmdb/tmdb_circle_64.png</texture>
+        </control>
+        <control type="label">
+            <visible>!Window.IsVisible(DialogVideoInfo.xml) </visible>
+            <visible>!String.IsEqual(ListItem.DBType,album) + !String.IsEqual(ListItem.DBType,set) + !$EXP[IsYoutubeItem]</visible>
+            <visible>[!String.IsEmpty(ListItem.Rating) + String.IsEmpty(ListItem.DBID)] | [!String.IsEmpty(ListItem.Rating) + String.IsEmpty(ListItem.Rating(imdb)) + !String.IsEmpty(ListItem.DBID)]</visible>
+            <align>left</align>
+            <aligny>center</aligny>
+            <width>80</width>
+            <left>14</left>
+            <bottom>28</bottom>
+            <height>40</height>
+            <font>Tiny</font>
+            <textcolor>black</textcolor>
+            <selectedcolor>black</selectedcolor>
+            <label>$VAR[Value_Item_Rating]</label>
+        </control>
+
         <!-- RATING IMDB - DIALOG VIDEO INFO - TMDB ON LINE -->
 
         <control type="image">
@@ -204,35 +235,6 @@
             <visible>![Window.IsVisible(DialogVideoInfo.xml) | $EXP[IsTMDbHelperItem]]</visible>
             <visible>!String.IsEqual(ListItem.DBType,album)</visible>
             <visible>!String.IsEmpty(ListItem.Rating) + !String.IsEmpty(ListItem.DBID)</visible>
-            <align>left</align>
-            <aligny>center</aligny>
-            <width>80</width>
-            <left>14</left>
-            <bottom>28</bottom>
-            <height>40</height>
-            <font>Tiny</font>
-            <textcolor>black</textcolor>
-            <selectedcolor>black</selectedcolor>
-            <label>$VAR[Value_Item_Rating]</label>
-        </control>
-
-        <!-- RATING TMDB -->
-
-        <control type="image">
-            <visible>!String.IsEqual(ListItem.DBType,album) + !String.IsEqual(ListItem.DBType,set) + !$EXP[IsYoutubeItem]</visible>
-            <visible>!String.IsEmpty(ListItem.Rating) + String.IsEmpty(ListItem.DBID)</visible>
-            <align>left</align>
-            <aligny>center</aligny>
-            <width>40</width>
-            <left>10</left>
-            <bottom>26</bottom>
-            <height>40</height>
-            <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
-            <texture diffuse="diffuse/circle_64.png" background="true">logo/tmdb/tmdb_circle_64.png</texture>
-        </control>
-        <control type="label">
-            <visible>!String.IsEqual(ListItem.DBType,album) + !String.IsEqual(ListItem.DBType,set) + !$EXP[IsYoutubeItem]</visible>
-            <visible>!String.IsEmpty(ListItem.Rating) + String.IsEmpty(ListItem.DBID)</visible>
             <align>left</align>
             <aligny>center</aligny>
             <width>80</width>
