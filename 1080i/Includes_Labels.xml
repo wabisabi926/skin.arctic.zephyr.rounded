@@ -743,10 +743,6 @@
 
     <variable name="Label_Rating_Flix">
         <value condition="!String.IsEmpty(ListItem.UserRating) + Skin.HasSetting(userrating.override.kodi.rating.num)">$INFO[ListItem.UserRating,,.0]</value>
-
-        <value condition="Control.IsVisible(5161) + !String.IsEmpty(Container(5161).ListItem.Rating(imdb))">$INFO[Container(5161).ListItem.Rating(imdb)]</value>
-        <value condition="Control.IsVisible(5161) + !String.IsEmpty(Container(5161).ListItem.Rating)">$INFO[Container(5161).ListItem.Rating]</value>
-
         <value condition="!String.IsEmpty(ListItem.Rating(imdb))">$INFO[ListItem.Rating(imdb),IMDb ,]</value>
         <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating))">$INFO[Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating),IMDb ,]</value>
         <value>$INFO[ListItem.Rating]</value>
@@ -814,7 +810,7 @@
 
         <!-- <value condition="Container.Content(seasons) + String.IsEmpty(ListItem.Season)">$LOCALIZE[20366]$INFO[ListItem.Year,,  •  ]$INFO[ListItem.Property(TotalEpisodes),, $LOCALIZE[20453]] $INFO[ListItem.Property(UnWatchedEpisodes),  •  , $LOCALIZE[16101]]$INFO[ListItem.Rating,  •  ]</value> -->
         <value condition="Container.Content(seasons) + String.IsEmpty(ListItem.Season)">$INFO[ListItem.Label]</value>
-        <value condition="Container.Content(seasons)">$LOCALIZE[20373] $INFO[ListItem.Season,,  •  ]$INFO[ListItem.Year,,  •  ]$INFO[ListItem.Property(TotalEpisodes),, $LOCALIZE[20453]]$INFO[ListItem.Property(UnWatchedEpisodes),  •  , $LOCALIZE[16101]]$INFO[ListItem.Rating,  •  ]</value>
+        <value condition="Container.Content(seasons)">$LOCALIZE[20373] $INFO[ListItem.Season,,  •  ]$INFO[ListItem.Year,,  •  ]$INFO[ListItem.Property(TotalEpisodes),, $LOCALIZE[20453]]$INFO[ListItem.Property(UnWatchedEpisodes),  •  , $LOCALIZE[16101]]$INFO[ListItem.Rating,  •  TMDb ]</value>
 
         <!-- EPISODES -->
 

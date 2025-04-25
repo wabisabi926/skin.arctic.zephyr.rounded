@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
+    <!-- VIEWS LAYOUT - RATING - ADDONS STATUS -->
+
     <include name="Def_Layout_Addon_Status">
         <!-- <control type="image"> -->
             <!-- <visible>ListItem.HasVideoVersions | ListItem.IsCollection</visible> -->
@@ -113,7 +115,7 @@
             <label>$INFO[ListItem.Rating(imdb)]</label>
         </control>
 
-        <!-- RATING KODI - DIALOG VIDEO INFO  -->
+        <!-- RATING IMDB - DIALOG VIDEO INFO - TMDB ON LINE -->
 
         <control type="image">
             <visible>Window.IsVisible(DialogVideoInfo.xml) | $EXP[IsTMDbHelperItem]</visible>
@@ -143,24 +145,65 @@
             <label>$VAR[Value_Item_Rating]</label>
         </control>
 
-        <!-- RATING KODI - VIEWS -->
+        <!-- RATING - GLOBAL SEARCH -->
+
+        <!-- MOVIES / TVSHOWS -->
 
         <control type="image">
+            <visible>Window.IsVisible(script-globalsearch.xml)</visible>
+            <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(episodes)</visible>
             <visible>![Window.IsVisible(DialogVideoInfo.xml) | $EXP[IsTMDbHelperItem]]</visible>
             <visible>!String.IsEqual(ListItem.DBType,album)</visible>
-            <visible>String.IsEmpty(ListItem.Rating(imdb)) + !String.IsEmpty(ListItem.Rating) + !String.IsEmpty(ListItem.DBID)</visible>
+            <visible>!String.IsEmpty(ListItem.Rating) + !String.IsEmpty(ListItem.DBID)</visible>
             <align>left</align>
             <aligny>center</aligny>
             <width>40</width>
             <left>10</left>
             <bottom>26</bottom>
             <height>40</height>
-            <texture background="true" colordiffuse="FF6ACEDB">diffuse/circle_64.png</texture>
+            <texture background="true" colordiffuse="FFF6C700">diffuse/circle_64.png</texture>
         </control>
         <control type="label">
+            <visible>Window.IsVisible(script-globalsearch.xml)</visible>
+            <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(episodes)</visible>
             <visible>![Window.IsVisible(DialogVideoInfo.xml) | $EXP[IsTMDbHelperItem]]</visible>
             <visible>!String.IsEqual(ListItem.DBType,album)</visible>
-            <visible>String.IsEmpty(ListItem.Rating(imdb)) + !String.IsEmpty(ListItem.Rating) + !String.IsEmpty(ListItem.DBID)</visible>
+            <visible>!String.IsEmpty(ListItem.Rating) + !String.IsEmpty(ListItem.DBID)</visible>
+            <align>left</align>
+            <aligny>center</aligny>
+            <width>80</width>
+            <left>14</left>
+            <bottom>28</bottom>
+            <height>40</height>
+            <font>Tiny</font>
+            <textcolor>black</textcolor>
+            <selectedcolor>black</selectedcolor>
+            <label>$VAR[Value_Item_Rating]</label>
+        </control>
+
+        <!-- EPISODES -->
+
+        <control type="image">
+            <visible>Window.IsVisible(script-globalsearch.xml)</visible>
+            <visible>Container.Content(seasons)</visible>
+            <visible>![Window.IsVisible(DialogVideoInfo.xml) | $EXP[IsTMDbHelperItem]]</visible>
+            <visible>!String.IsEqual(ListItem.DBType,album)</visible>
+            <visible>!String.IsEmpty(ListItem.Rating) + !String.IsEmpty(ListItem.DBID)</visible>
+            <align>left</align>
+            <aligny>center</aligny>
+            <width>40</width>
+            <left>10</left>
+            <bottom>26</bottom>
+            <height>40</height>
+            <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+            <texture diffuse="diffuse/circle_64.png" background="true">logo/tmdb/tmdb_circle_64.png</texture>
+        </control>
+        <control type="label">
+            <visible>Window.IsVisible(script-globalsearch.xml)</visible>
+            <visible>Container.Content(seasons)</visible>
+            <visible>![Window.IsVisible(DialogVideoInfo.xml) | $EXP[IsTMDbHelperItem]]</visible>
+            <visible>!String.IsEqual(ListItem.DBType,album)</visible>
+            <visible>!String.IsEmpty(ListItem.Rating) + !String.IsEmpty(ListItem.DBID)</visible>
             <align>left</align>
             <aligny>center</aligny>
             <width>80</width>
@@ -184,7 +227,8 @@
             <left>10</left>
             <bottom>26</bottom>
             <height>40</height>
-            <texture background="true" colordiffuse="FF081C24">diffuse/circle_64.png</texture>
+            <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+            <texture diffuse="diffuse/circle_64.png" background="true">logo/tmdb/tmdb_circle_64.png</texture>
         </control>
         <control type="label">
             <visible>!String.IsEqual(ListItem.DBType,album) + !String.IsEqual(ListItem.DBType,set) + !$EXP[IsYoutubeItem]</visible>
@@ -196,8 +240,8 @@
             <bottom>28</bottom>
             <height>40</height>
             <font>Tiny</font>
-            <textcolor>FF00D273</textcolor>
-            <selectedcolor>FF00D273</selectedcolor>
+            <textcolor>black</textcolor>
+            <selectedcolor>black</selectedcolor>
             <label>$VAR[Value_Item_Rating]</label>
         </control>
 
@@ -272,7 +316,6 @@
             <texture background="true" colordiffuse="$VAR[Color_Indicator_DBType]">buttonsdialogs/$INFO[ListItem.DBType].png</texture>
         </control>
     </include>
-
 
     <!-- VIEWS LAYOUT - LIST -->
 
