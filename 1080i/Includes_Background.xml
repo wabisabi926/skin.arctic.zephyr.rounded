@@ -37,7 +37,7 @@
         </definition>
     </include>
 
-    <variable name="StartupFanart">
+    <variable name="Startup_Fanart">
         <value condition="!String.IsEmpty(Skin.String(startupfanart.fallback))">$INFO[Skin.String(startupfanart.fallback)]</value>
         <value>background/bg_startup.jpg</value>
     </variable>
@@ -72,21 +72,21 @@
         </include>
     </include>
 
-    <!-- Fade Time -->
+    <!-- FADE TIME -->
 
-    <include name="FadetimeFast">
+    <include name="Fade_Time_Fast_400">
         <fadetime>400</fadetime>
     </include>
 
-    <include name="FadetimeDefault">
+    <include name="Fade_Time_Default_600">
         <fadetime>600</fadetime>
     </include>
 
-    <include name="FadetimeSlow">
+    <include name="Fade_Time_Slow_1800">
         <fadetime>1800</fadetime>
     </include>
 
-    <include name="FadetimeSuperSlow">
+    <include name="Fade_Time_Super_Slow_3600">
         <fadetime>3600</fadetime>
     </include>
 
@@ -164,22 +164,6 @@
         <animation effect="fade" end="40" start="40" time="0" condition="true">Conditional</animation>
     </include>
 
-    <include name="Overlay510">
-        <colordiffuse>BackgroundNew</colordiffuse>
-    </include>
-
-    <include name="Overlay510Blur">
-        <colordiffuse>BackgroundNewBlur</colordiffuse>
-    </include>
-
-    <include name="IncludeFloorFade">
-        <colordiffuse>FloorFade</colordiffuse>
-    </include>
-
-    <include name="IncludeFloorFadeBlur">
-        <colordiffuse>FloorFadeBlur</colordiffuse>
-    </include>
-
     <variable name="Background_Global_Image">
         <value condition="Skin.HasSetting(enable.blur.effect)">$VAR[Image_Background_Flix_Art]</value>
         <value condition="!Skin.HasSetting(enable.blur.effect)">$VAR[Global_Fanart_Background]</value>
@@ -198,10 +182,10 @@
     <!-- BACKGROUND FANART FADE TIME -->
 
     <include name="Background_Fanart_Fade_time">
-        <include condition="Integer.IsEqual(Skin.String(Fadetime),600) | String.IsEmpty(Skin.String(Fadetime))">FadetimeDefault</include>
-        <include condition="Integer.IsEqual(Skin.String(Fadetime),1800)">FadetimeSlow</include>
-        <include condition="Integer.IsEqual(Skin.String(Fadetime),3600)">FadetimeSuperSlow</include>
-        <include condition="Integer.IsEqual(Skin.String(Fadetime),400)">FadetimeFast</include>
+        <include condition="Integer.IsEqual(Skin.String(Fadetime),600) | String.IsEmpty(Skin.String(Fadetime))">Fade_Time_Default_600</include>
+        <include condition="Integer.IsEqual(Skin.String(Fadetime),1800)">Fade_Time_Slow_1800</include>
+        <include condition="Integer.IsEqual(Skin.String(Fadetime),3600)">Fade_Time_Super_Slow_3600</include>
+        <include condition="Integer.IsEqual(Skin.String(Fadetime),400)">Fade_Time_Fast_400</include>
     </include>
 
     <!-- PREVIEW WINDOWS NETFLIX - FULL SCREEN -->
@@ -1002,7 +986,7 @@
 
         <!-- FROM TMDB HELPER -->
 
-        <value condition="$EXP[Home_Background_On_Home_Clean] + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.fanart)) + [!Window.IsVisible(Home) | ![Window.IsVisible(Home) + Skin.HasSetting(home.enable.menu.background)]]">$INFO[Window(Home).Property(TMDbHelper.ListItem.fanart)]</value>
+        <!-- <value condition="$EXP[Home_Background_On_Home_Clean] + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.fanart)) + [!Window.IsVisible(Home) | ![Window.IsVisible(Home) + Skin.HasSetting(home.enable.menu.background)]]">$INFO[Window(Home).Property(TMDbHelper.ListItem.fanart)]</value> -->
 
     <!-- =================================== -->
     <!--     FALLBACK ON WIDGETS / VIEWS     -->
