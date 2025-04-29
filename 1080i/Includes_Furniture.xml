@@ -739,6 +739,10 @@
     <!--                VIEWS                -->
     <!-- =================================== -->
 
+    <!--        LOCALIZE 16100      All videos               -->
+    <!--        LOCALIZE 16101      Unwatched      62593     -->
+    <!--        LOCALIZE 16102      Watched        62133     -->
+
     <!-- FURNITURE - HEADER -->
 
     <include name="Def_Header_Sub_Info">
@@ -788,7 +792,7 @@
 
             <control type="grouplist">
                 <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
-                <visible>!String.IsEmpty(Container.NumItems) + Container.Filtered + String.Contains(Control.GetLabel(14),*)</visible>
+                <visible>!String.IsEmpty(Container.NumItems) + Container.Filtered + String.IsEqual(Control.GetLabel(10),$LOCALIZE[16101])</visible>
                 <itemgap>0</itemgap>
                 <orientation>horizontal</orientation>
                 <usecontrolcoords>true</usecontrolcoords>
@@ -804,11 +808,11 @@
 
                 <control type="label">
                     <include>Def_Header_Sub_Info_Definition</include>
-                    <label>  •  $LOCALIZE[31386] $LOCALIZE[31368]</label>
+                    <label>  •  $LOCALIZE[16101]</label>
                 </control>
                 <control type="label">
                     <include>Def_Label_Header_Sub_Icon_Definition</include>
-                    <label>   &#61651;</label>
+                    <label>   &#62593;</label>
                 </control>
                 <control type="label">
                     <include>Def_Header_Sub_Info_Definition</include>
@@ -824,11 +828,51 @@
                 </control>
             </control>
 
-            <!-- FILTER + ALL -->
+            <!-- FILTER + WATCHED ONLY -->
 
             <control type="grouplist">
                 <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
-                <visible>!String.IsEmpty(Container.NumItems) + Container.Filtered + !String.Contains(Control.GetLabel(14),*)</visible>
+                <visible>!String.IsEmpty(Container.NumItems) + Container.Filtered + String.IsEqual(Control.GetLabel(10),$LOCALIZE[16102])</visible>
+                <itemgap>0</itemgap>
+                <orientation>horizontal</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>$INFO[Container.CurrentItem] / $INFO[Container.NumItems,,]</label>
+                </control>
+
+                <control type="label">
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>$VAR[Label_Icon_Container_Type]</label>
+                </control>
+
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>  •  $LOCALIZE[16102]</label>
+                </control>
+                <control type="label">
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>   &#62133;</label>
+                </control>
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>  •  </label>
+                </control>
+                <control type="label">
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>&#61532;</label>
+                </control>
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>   $INFO[Control.GetLabel(19).index(1)]</label>
+                </control>
+            </control>
+
+            <!-- FILTER + ALL VIDEO -->
+
+            <control type="grouplist">
+                <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
+                <visible>!String.IsEmpty(Container.NumItems) + Container.Filtered + String.IsEqual(Control.GetLabel(10),$LOCALIZE[16100])</visible>
                 <itemgap>0</itemgap>
                 <orientation>horizontal</orientation>
                 <usecontrolcoords>true</usecontrolcoords>
@@ -860,7 +904,7 @@
 
             <control type="grouplist">
                 <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
-                <visible>!String.IsEmpty(Container.NumItems) + !Container.Filtered + String.Contains(Control.GetLabel(14),*)</visible>
+                <visible>!String.IsEmpty(Container.NumItems) + !Container.Filtered + String.IsEqual(Control.GetLabel(10),$LOCALIZE[16101])</visible>
                 <itemgap>0</itemgap>
                 <orientation>horizontal</orientation>
                 <usecontrolcoords>true</usecontrolcoords>
@@ -875,11 +919,38 @@
 
                 <control type="label">
                     <include>Def_Header_Sub_Info_Definition</include>
-                    <label>  •  $LOCALIZE[31386] $LOCALIZE[31368]</label>
+                    <label>  •  $LOCALIZE[16101]</label>
                 </control>
                 <control type="label">
                     <include>Def_Label_Header_Sub_Icon_Definition</include>
-                    <label>   &#61651;</label>
+                    <label>   &#62593;</label>
+                </control>
+            </control>
+
+            <!-- WATCHED ONLY -->
+
+            <control type="grouplist">
+                <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
+                <visible>!String.IsEmpty(Container.NumItems) + !Container.Filtered + String.IsEqual(Control.GetLabel(10),$LOCALIZE[16102])</visible>
+                <itemgap>0</itemgap>
+                <orientation>horizontal</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>$INFO[Container.CurrentItem] / $INFO[Container.NumItems,,]</label>
+                </control>
+                <control type="label">
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>$VAR[Label_Icon_Container_Type]</label>
+                </control>
+
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>  •  $LOCALIZE[16102]</label>
+                </control>
+                <control type="label">
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>   &#62133;</label>
                 </control>
             </control>
 
@@ -914,7 +985,7 @@
 
             <control type="grouplist">
                 <visible>Window.IsVisible(AddonBrowser.xml)</visible>
-                <visible>!String.IsEmpty(Container.NumItems) + !Container.Filtered + !String.Contains(Control.GetLabel(14),*)</visible>
+                <visible>!String.IsEmpty(Container.NumItems) + !Container.Filtered + !String.Contains(Control.GetLabel(10),$LOCALIZE[16101])</visible>
                 <itemgap>0</itemgap>
                 <orientation>horizontal</orientation>
                 <usecontrolcoords>true</usecontrolcoords>
@@ -947,7 +1018,7 @@
 
             <control type="grouplist">
                 <visible>Window.IsVisible(LoginScreen.xml)</visible>
-                <visible>!String.IsEmpty(Container.NumItems) + !Container.Filtered + !String.Contains(Control.GetLabel(14),*)</visible>
+                <visible>!String.IsEmpty(Container.NumItems) + !Container.Filtered + !String.Contains(Control.GetLabel(10),$LOCALIZE[16101])</visible>
                 <itemgap>0</itemgap>
                 <orientation>horizontal</orientation>
                 <usecontrolcoords>true</usecontrolcoords>
@@ -995,7 +1066,7 @@
 
             <control type="grouplist">
                 <visible>$EXP[IsPvrDialog]</visible>
-                <visible>!String.IsEmpty(Container.NumItems) + !Container.Filtered + !String.Contains(Control.GetLabel(14),*)</visible>
+                <visible>!String.IsEmpty(Container.NumItems) + !Container.Filtered + !String.Contains(Control.GetLabel(10),$LOCALIZE[16101])</visible>
                 <itemgap>0</itemgap>
                 <orientation>horizontal</orientation>
                 <usecontrolcoords>true</usecontrolcoords>
@@ -1024,10 +1095,12 @@
 
             <control type="grouplist">
                 <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
-                <visible>!String.IsEmpty(Container.NumItems) + !Container.Filtered + !String.Contains(Control.GetLabel(14),*) + !Window.IsActive(videoplaylist)</visible>
+                <visible>!String.IsEmpty(Container.NumItems) + !Container.Filtered + !String.Contains(Control.GetLabel(10),$LOCALIZE[16101]) + !String.Contains(Control.GetLabel(10),$LOCALIZE[16102]) + !Window.IsActive(videoplaylist)</visible>
+
                 <itemgap>0</itemgap>
                 <orientation>horizontal</orientation>
                 <usecontrolcoords>true</usecontrolcoords>
+
                 <control type="label">
                     <include>Def_Header_Sub_Info_Definition</include>
                     <label>$INFO[Container.CurrentItem] / $INFO[Container.NumItems,,]</label>
