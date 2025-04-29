@@ -2254,13 +2254,13 @@
             <usecontrolcoords>true</usecontrolcoords>
 
             <control type="group">
-                <visible>[[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + [!String.IsEmpty(ListItem.Property(TotalEpisodes)) | !String.IsEmpty(ListItem.Property(UnWatchedEpisodes))]] | ListItem.IsCollection</visible>
+                <visible>[[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + [!String.IsEmpty(ListItem.Property(TotalEpisodes)) | !String.IsEmpty(ListItem.Property(UnWatchedEpisodes))]]</visible>
 
                 <centertop>50%</centertop>
                 <width>70</width>
                 <height>40</height>
 
-                <!-- NUM EPISODES -->
+                <!-- TOTAL EPISODES -->
 
                 <control type="image" description="button back">
                     <width>45</width>
@@ -2268,7 +2268,6 @@
                     <left>10</left>
                     <align>center</align>
                     <texture border="0" colordiffuse="$VAR[Color_Background]">common/circle.png</texture>
-                    <visible>!ListItem.IsCollection</visible>
                 </control>
                 <control type="label">
                     <width>45</width>
@@ -2276,22 +2275,24 @@
                     <align>center</align>
                     <left>10</left>
                     <centertop>53%</centertop>
-                    <label>$VAR[Label_Flag_Total_Episodes]</label>
                     <font>Tiny44</font>
                     <textcolor>Dark1</textcolor>
-                    <visible>!ListItem.IsCollection</visible>
+                    <label>$VAR[Label_Flag_Total_Episodes]</label>
                 </control>
+            </control>
 
-                <!-- SETS -->
+            <!-- COLLECTION -->
 
-                <control type="image" description="Sets">
-                    <width>70</width>
-                    <height>50</height>
-                    <align>center</align>
-                    <texture border="0" colordiffuse="Dark1">flags/video/white/other/sets.png</texture>
-                    <visible>ListItem.IsCollection</visible>
-                    <centertop>50%</centertop>
-                </control>
+            <control type="image" description="Sets">
+                <width>60</width>
+                <include>Def_Flag_Image_Without_Label</include>
+                <texture colordiffuse="Dark1">flags/video/white/other/sets.png</texture>
+                <visible>ListItem.IsCollection</visible>
+            </control>
+            <control type="label">
+                <include>Def_Flag_Label</include>
+                <label>$INFO[Container(44023).NumItems]$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.NumItems),/,]</label>
+                <visible>ListItem.IsCollection</visible>
             </control>
 
             <!-- VIDEO - RESOLUTION -->
@@ -2627,10 +2628,10 @@
             <orientation>horizontal</orientation>
             <usecontrolcoords>true</usecontrolcoords>
 
-            <!-- COLLECTION - NUM EPISODES -->
+            <!-- TOTAL EPISODES -->
 
             <control type="group">
-                <visible>[[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + [!String.IsEmpty(ListItem.Property(TotalEpisodes)) | !String.IsEmpty(ListItem.Property(UnWatchedEpisodes))]] | ListItem.IsCollection</visible>
+                <visible>[[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + [!String.IsEmpty(ListItem.Property(TotalEpisodes)) | !String.IsEmpty(ListItem.Property(UnWatchedEpisodes))]]</visible>
 
                 <centertop>50%</centertop>
                 <width>70</width>
@@ -2642,26 +2643,31 @@
                     <align>center</align>
                     <left>10</left>
                     <texture colordiffuse="$VAR[Color_Background]">common/circle.png</texture>
-                    <visible>!ListItem.IsCollection</visible>
                 </control>
                 <control type="label">
                     <width>45</width>
                     <height>40</height>
                     <align>center</align>
                     <centertop>53%</centertop>
-                    <label>$VAR[Label_Flag_Total_Episodes]</label>
                     <font>Tiny44</font>
                     <left>10</left>
                     <textcolor>Dark1</textcolor>
-                    <visible>!ListItem.IsCollection</visible>
+                    <label>$VAR[Label_Flag_Total_Episodes]</label>
                 </control>
-                <control type="image" description="Sets">
-                    <width>58</width>
-                    <include>Def_Flag_Image_Without_Label</include>
-                    <texture colordiffuse="Dark2">flags/video/white/other/sets.png</texture>
-                    <visible>ListItem.IsCollection</visible>
-                    <centertop>50%</centertop>
-                </control>
+            </control>
+
+            <!-- COLLECTION -->
+
+            <control type="image" description="Sets">
+                <width>70</width>
+                <include>Def_Flag_Image_Without_Label</include>
+                <texture>flags/video/color/other/set.png</texture>
+                <visible>ListItem.IsCollection</visible>
+            </control>
+            <control type="label">
+                <include>Def_Flag_Label</include>
+                <label>$INFO[Container(44023).NumItems]$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.NumItems),/,]</label>
+                <visible>ListItem.IsCollection</visible>
             </control>
 
             <!-- VIDEO - RESOLUTION -->
@@ -3896,10 +3902,10 @@
                 <orientation>horizontal</orientation>
                 <usecontrolcoords>true</usecontrolcoords>
 
-                <!-- COLLECTION - NUM EPISODES -->
+                <!-- TOTAL EPISODES -->
 
                 <control type="group">
-                    <visible>[[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + [!String.IsEmpty(ListItem.Property(TotalEpisodes)) | !String.IsEmpty(ListItem.Property(UnWatchedEpisodes))]] | ListItem.IsCollection</visible>
+                    <visible>[[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + [!String.IsEmpty(ListItem.Property(TotalEpisodes)) | !String.IsEmpty(ListItem.Property(UnWatchedEpisodes))]]</visible>
                     <centertop>50%</centertop>
                     <width>70</width>
                     <height>40</height>
@@ -3909,7 +3915,6 @@
                         <left>10</left>
                         <align>center</align>
                         <texture border="0" colordiffuse="$VAR[Color_Background]">common/circle.png</texture>
-                        <visible>!Container($PARAM[controlid]).ListItem.IsCollection</visible>
                     </control>
                     <control type="label">
                         <width>45</width>
@@ -3920,15 +3925,6 @@
                         <font>Tiny44</font>
                         <left>10</left>
                         <textcolor>Dark1</textcolor>
-                        <visible>!Container($PARAM[controlid]).ListItem.IsCollection</visible>
-                    </control>
-                    <control type="image" description="Sets">
-                        <width>70</width>
-                        <height>50</height>
-                        <align>center</align>
-                        <texture colordiffuse="Dark1">flags/video/white/other/sets.png</texture>
-                        <visible>Container($PARAM[controlid]).ListItem.IsCollection</visible>
-                        <centertop>50%</centertop>
                     </control>
                 </control>
 
@@ -3966,11 +3962,9 @@
                 <!-- VIDEO -->
 
                 <control type="image">
-                    <width min="20" max="100">auto</width>
-                    <height>48</height>
-                    <centertop>50%</centertop>
+                <width min="20" max="100">auto</width>
+                <include>Def_Flag_Image_Without_Label</include>
                     <texture colordiffuse="Dark1" fallback="flags/fallback.png">$INFO[Container($PARAM[controlid]).ListItem.VideoCodec,flags/video/white/videocodec/,.png]</texture>
-                    <aspectratio align="center">keep</aspectratio>
                     <visible>Skin.HasSetting(enable.furniture.flags.icons) + !Skin.HasSetting(hide.flags.videocodec) + !String.IsEmpty(Container($PARAM[controlid]).ListItem.VideoCodec) + !Skin.HasSetting(enable.furniture.flags.colored)</visible>
                 </control>
                 <control type="image">
@@ -3984,7 +3978,7 @@
                 <!-- AUDIO -->
 
                 <control type="image">
-                    <width min="20" max="120">auto</width>
+                    <width min="20" max="100">auto</width>
                     <aspectratio aligny="center" align="center">keep</aspectratio>
                     <include>Def_Flag_Image_Without_Label</include>
                     <texture colordiffuse="Dark1" fallback="flags/fallback.png">$INFO[Container($PARAM[controlid]).ListItem.AudioCodec,flags/video/white/audiocodec/,.png]</texture>
@@ -4153,10 +4147,10 @@
                 <orientation>horizontal</orientation>
                 <usecontrolcoords>true</usecontrolcoords>
 
-                <!-- COLLECTION - NUM EPISODES -->
+                <!-- TOTAL EPISODES -->
 
                 <control type="group">
-                    <visible>[[Container.Content(tvshows) | Container.Content(seasons)] + [!String.IsEmpty(Container($PARAM[controlid]).ListItem.Property(TotalEpisodes)) | !String.IsEmpty(Container($PARAM[controlid]).ListItem.Property(UnWatchedEpisodes))]] | Container($PARAM[controlid]).ListItem.IsCollection</visible>
+                    <visible>[[Container.Content(tvshows) | Container.Content(seasons)] + [!String.IsEmpty(Container($PARAM[controlid]).ListItem.Property(TotalEpisodes)) | !String.IsEmpty(Container($PARAM[controlid]).ListItem.Property(UnWatchedEpisodes))]]</visible>
                     <centertop>50%</centertop>
                     <width>70</width>
                     <height>40</height>
@@ -4166,7 +4160,6 @@
                         <align>center</align>
                         <left>10</left>
                         <texture border="0" colordiffuse="$VAR[Color_Background]">common/circle.png</texture>
-                        <visible>!Container($PARAM[controlid]).ListItem.IsCollection</visible>
                     </control>
                     <control type="label">
                         <width>45</width>
@@ -4177,15 +4170,6 @@
                         <font>Tiny44</font>
                         <left>10</left>
                         <textcolor>Dark1</textcolor>
-                        <visible>!Container($PARAM[controlid]).ListItem.IsCollection</visible>
-                    </control>
-                    <control type="image" description="Sets">
-                        <width>70</width>
-                        <height>50</height>
-                        <align>center</align>
-                        <texture colordiffuse="Dark1">flags/video/white/other/sets.png</texture>
-                        <visible>Container($PARAM[controlid]).ListItem.IsCollection</visible>
-                        <centertop>50%</centertop>
                     </control>
                 </control>
 
