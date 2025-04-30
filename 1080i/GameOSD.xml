@@ -6,7 +6,9 @@
         <control type="group">
             <include>Animation_Fade_In</include>
             <include>Animation_Fade_Out</include>
-            <visible>ControlGroup(9000).HasFocus()</visible>
+
+            <visible>ControlGroup(9000).HasFocus() | Control.HasFocus(1799)</visible>
+
             <include content="Background_Overlay">
                 <param name="visible" value="!Window.IsActive(GameVideoFilter) + !Window.IsActive(GameStretchMode) + !Window.IsActive(GameVideoRotation)" />
             </include>
@@ -19,12 +21,12 @@
                 <!-- <effect type="fade" end="0" start="100" time="300" delay="0" /> -->
             <!-- </animation> -->
 
-            <include>Animation_Dialog_Menu_RightSide</include>
+            <include content="Animation_Slide_Menu"><param name="left" value="-490" /></include>
 
-            <animation effect="slide" start="0" end="-265" time="200" condition="Window.IsVisible(1108)">Conditional</animation>
+            <top>20</top>
+            <centerleft>255</centerleft>
 
-            <include content="Def_Dialog_Menu_Box"><param name="height" value="689" /></include>
-            <include content="Object_Arrows_View_ContextMenu"><param name="arrow_bottom" value="699" /></include>
+            <include content="Def_Dialog_Menu_Box"><param name="height" value="1039" /><param name="visible" value="ControlGroup(9000).HasFocus() | control.hasfocus(1799)" /></include>
 
             <include content="Def_Dialog_Header">
                 <param name="label" value="35221" />
@@ -32,13 +34,20 @@
             </include>
 
             <control type="grouplist" id="9000">
-                <top>112</top>
-                <usecontrolcoords>true</usecontrolcoords>
-                <include content="Def_Dialog_Menu_GroupList"><param name="height" value="630" /></include>
                 <include>Animation_Scrolltime_Views_List</include>
+
+                <top>112</top>
+                <height>910</height>
+
+                <onup>9000</onup>
+                <ondown>9000</ondown>
                 <onleft>Close</onleft>
-                <onright>ActivateWindow(1108)</onright>
+                <onright>1799</onright>
+
                 <itemgap>0</itemgap>
+                <pagecontrol>1799</pagecontrol>
+                <orientation>vertical</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
 
                 <!-- <item> -->
                     <!-- <description>Pause / Resume button</description> -->
@@ -60,6 +69,7 @@
                     <!-- <include>Def_Dialog_Menu_Button_Gradient_Select</include> -->
                     <!-- <onclick>Play</onclick> -->
                 <!-- </control> -->
+
                 <control type="button" id="110">
                     <description>Pause / Resume button</description>
                     <label>$LOCALIZE[35224]</label>
@@ -99,13 +109,52 @@
                     <label>31381</label>
                 </control>
 
-                <control type="button" id="9305">
+                <control type="button" id="104">
                     <include>Def_Dialog_Menu_Button_Gradient_Select</include>
-                    <label>$LOCALIZE[5]</label>
-                    <onright>ActivateWindow(1108)</onright>
-                    <onclick>ActivateWindow(1108)</onclick>
+                    <label>$LOCALIZE[35225]</label>
+                    <onclick>ActivateWindow(GameVideoFilter)</onclick>
+                </control>
+                <control type="button" id="105">
+                    <include>Def_Dialog_Menu_Button_Gradient_Select</include>
+                    <label>$LOCALIZE[35233]</label>
+                    <onclick>ActivateWindow(GameStretchMode)</onclick>
+                </control>
+                <control type="button" id="106">
+                    <include>Def_Dialog_Menu_Button_Gradient_Select</include>
+                    <label>$LOCALIZE[35227]</label>
+                    <onclick>ActivateWindow(GameVideoRotation)</onclick>
+                </control>
+                <control type="button" id="107">
+                    <label>$LOCALIZE[13376]</label>
+                    <include>Def_Dialog_Menu_Button_Gradient_Select</include>
+                    <onclick>ActivateWindow(GameVolume)</onclick>
+                </control>
+                <control type="button" id="109">
+                    <include>Def_Dialog_Menu_Button_Gradient_Select</include>
+                    <label>$LOCALIZE[35234]</label>
+                    <onclick>ActivateWindow(GameControllers)</onclick>
+                </control>
+                <control type="button" id="119">
+                    <include>Def_Dialog_Menu_Button_Gradient_Select</include>
+                    <label>$LOCALIZE[35110]</label>
+                    <onclick>ActivateWindow(GamePorts)</onclick>
+                </control>
+                <control type="button" id="120">
+                    <include>Def_Dialog_Menu_Button_Gradient_Select</include>
+                    <label>$LOCALIZE[10140]</label>
+                    <onclick>ActivateWindow(GameAdvancedSettings)</onclick>
                 </control>
             </control>
+
+            <!-- SCROLLBAR -->
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="1799" />
+                <param name="onleft" value="9000" />
+                <param name="onright" value="Close" />
+                <param name="height" value="910" />
+                <param name="centerright" value="4" />
+            </include>
         </control>
     </controls>
 </window>

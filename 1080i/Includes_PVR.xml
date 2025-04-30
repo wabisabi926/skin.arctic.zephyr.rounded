@@ -1924,66 +1924,12 @@
         <control type="group">
             <visible allowhiddenfocus="true">$EXP[View_Context_Menu_Visible]</visible>
 
-            <include>Animation_Dialog_Menu_RightSide</include>
+            <include content="Animation_Slide_Menu"><param name="left" value="-490" /></include>
 
-            <top>184</top>
-            <centerleft>50%</centerleft>
-            <width>470</width>
+            <top>20</top>
+            <centerleft>255</centerleft>
 
-            <!-- CONTEXT BACKGROUND -->
-
-            <include content="Def_Dialog_Background_PowerMenu">
-                <param name="height">479</param>
-                <param name="visible">[Window.IsActive(MyPVRSearch.xml) | Window.IsActive(MyPVRProviders.xml)] + !$EXP[Display_Views_Menu_MiniPlayer]</param>
-            </include>
-            <include content="Def_Dialog_Background_PowerMenu">
-                <param name="height">619</param>
-                <param name="visible">[Window.IsActive(MyPVRSearch.xml) | Window.IsActive(MyPVRProviders.xml)] + $EXP[Display_Views_Menu_MiniPlayer]</param>
-            </include>
-
-            <include content="Def_Dialog_Background_PowerMenu">
-                <param name="height">619</param>
-                <param name="visible">Window.IsActive(MyPVRTimers.xml) + !$EXP[Display_Views_Menu_MiniPlayer]</param>
-            </include>
-            <include content="Def_Dialog_Background_PowerMenu">
-                <param name="height">759</param>
-                <param name="visible">Window.IsActive(MyPVRTimers.xml) + $EXP[Display_Views_Menu_MiniPlayer]</param>
-            </include>
-
-            <include content="Def_Dialog_Background_PowerMenu">
-                <param name="height">619</param>
-                <param name="visible">[Window.IsActive(MyPVRChannels.xml) | Window.IsActive(MyPVRGuide.xml) | Window.IsActive(MyPVRRecordings.xml)] + !$EXP[Display_Views_Menu_MiniPlayer]</param>
-            </include>
-            <include content="Def_Dialog_Background_PowerMenu">
-                <param name="height">759</param>
-                <param name="visible">[Window.IsActive(MyPVRChannels.xml) | Window.IsActive(MyPVRGuide.xml) | Window.IsActive(MyPVRRecordings.xml)] + $EXP[Display_Views_Menu_MiniPlayer]</param>
-            </include>
-
-            <!-- ARROWS -->
-
-            <control type="group">
-                <control type="image">
-                    <centerleft>50%</centerleft>
-                    <top>-24</top>
-                    <include>Def_Arrow_Size</include>
-                    <texture colordiffuse="White100" flipy="true">common/arrow_small_down.png</texture>
-                </control>
-                <control type="image">
-                    <centerleft>50%</centerleft>
-                    <top>699</top>
-                    <include>Def_Arrow_Size</include>
-                    <texture colordiffuse="White100" flipy="false">common/arrow_small_down.png</texture>
-
-                    <animation effect="slide" end="0,-210" time="0" condition="[Window.IsActive(MyPVRSearch.xml) | Window.IsActive(MyPVRProviders.xml)] + !$EXP[Display_Views_Menu_MiniPlayer]">Conditional</animation>
-                    <animation effect="slide" end="0,-70" time="0" condition="[Window.IsActive(MyPVRSearch.xml) | Window.IsActive(MyPVRProviders.xml)] + $EXP[Display_Views_Menu_MiniPlayer]">Conditional</animation>
-
-                    <animation effect="slide" end="0,-70" time="0" condition="Window.IsActive(MyPVRTimers.xml) + !$EXP[Display_Views_Menu_MiniPlayer]">Conditional</animation>
-                    <animation effect="slide" end="0,70" time="0" condition="Window.IsActive(MyPVRTimers.xml) + $EXP[Display_Views_Menu_MiniPlayer]">Conditional</animation>
-
-                    <animation effect="slide" end="0,-70" time="0" condition="[Window.IsActive(MyPVRChannels.xml) | Window.IsActive(MyPVRGuide.xml) | Window.IsActive(MyPVRRecordings.xml)] + !$EXP[Display_Views_Menu_MiniPlayer]">Conditional</animation>
-                    <animation effect="slide" end="0,70" time="0" condition="[Window.IsActive(MyPVRChannels.xml) | Window.IsActive(MyPVRGuide.xml) | Window.IsActive(MyPVRRecordings.xml)] + $EXP[Display_Views_Menu_MiniPlayer]">Conditional</animation>
-                </control>
-            </control>
+            <include content="Def_Dialog_Menu_Box"><param name="height" value="1039" /></include>
 
             <include content="Def_Dialog_Header">
                 <param name="label" value="14018" />
@@ -1993,6 +1939,8 @@
             <include content="Def_Dialog_Header_Line"><param name="top">165</param></include>
 
             <control type="grouplist" id="9001">
+                <include>Animation_Scrolltime_Views_List</include>
+
                 <top>108</top>
                 <usecontrolcoords>false</usecontrolcoords>
 
@@ -2013,17 +1961,8 @@
                     <pagecontrol>9070</pagecontrol>
                     <usecontrolcoords>true</usecontrolcoords>
 
-                    <include content="Def_Dialog_Menu_GroupList_scrollbar" condition="[Window.IsActive(MyPVRChannels.xml) | Window.IsActive(MyPVRGuide.xml) | Window.IsActive(MyPVRRecordings.xml)] + !$EXP[Display_Views_Menu_MiniPlayer]"><param name="height" value="420" /><param name="scrollid" value="9070" /></include>
-                    <include content="Def_Dialog_Menu_GroupList_scrollbar" condition="[Window.IsActive(MyPVRChannels.xml) | Window.IsActive(MyPVRGuide.xml) | Window.IsActive(MyPVRRecordings.xml)] + $EXP[Display_Views_Menu_MiniPlayer]"><param name="height" value="560" /><param name="scrollid" value="9070" /></include>
+                    <include content="Def_Dialog_Menu_GroupList"><param name="height" value="910" /><param name="idlayout" value="50" /></include>
 
-                    <include content="Def_Dialog_Menu_GroupList_scrollbar" condition="Window.IsActive(MyPVRTimers.xml) + !$EXP[Display_Views_Menu_MiniPlayer]"><param name="height" value="420" /><param name="scrollid" value="9070" /></include>
-                    <include content="Def_Dialog_Menu_GroupList_scrollbar" condition="Window.IsActive(MyPVRTimers.xml) + $EXP[Display_Views_Menu_MiniPlayer]"><param name="height" value="560" /><param name="scrollid" value="9070" /></include>
-
-
-                    <include content="Def_Dialog_Menu_GroupList_scrollbar" condition="[Window.IsActive(MyPVRSearch.xml) | Window.IsActive(MyPVRProviders.xml)] + !$EXP[Display_Views_Menu_MiniPlayer]"><param name="height" value="280" /><param name="scrollid" value="9070" /></include>
-                    <include content="Def_Dialog_Menu_GroupList_scrollbar" condition="[Window.IsActive(MyPVRSearch.xml) | Window.IsActive(MyPVRProviders.xml)] + $EXP[Display_Views_Menu_MiniPlayer]"><param name="height" value="420" /><param name="scrollid" value="9070" /></include>
-
-                    <include>Animation_Scrolltime_Views_List</include>
 
                 <!-- NOW PLAYING -->
 

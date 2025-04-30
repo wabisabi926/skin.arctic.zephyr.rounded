@@ -1030,7 +1030,7 @@
         <param name="height" default="350" />
         <param name="idlayout" default="50" />
         <definition>
-            <visible allowhiddenfocus="true">ControlGroup(9000).HasFocus()</visible>
+            <visible allowhiddenfocus="true">$EXP[View_Context_Menu_Visible]</visible>
             <onleft>$PARAM[idlayout]</onleft>
             <onright>$PARAM[idlayout]</onright>
             <onback>$PARAM[idlayout]</onback>
@@ -1046,6 +1046,7 @@
         <param name="height" default="350" />
         <param name="idlayout" default="50" />
         <param name="scrollid" default="9070" />
+
         <definition>
             <visible allowhiddenfocus="true">$EXP[View_Context_Menu_Visible]</visible>
             <onleft>$PARAM[idlayout]</onleft>
@@ -1145,25 +1146,17 @@
         <control type="grouplist" id="6150">
             <visible>$EXP[Display_Views_Menu_MiniPlayer]</visible>
 
-            <include>Animation_Scrolltime_Views_List</include>
-
             <top>16</top>
-            <height>54</height>
             <left>-6</left>
+            <height>54</height>
             <align>center</align>
 
-            <usecontrolcoords>true</usecontrolcoords>
-            <orientation>horizontal</orientation>
             <itemgap>28</itemgap>
-            <!-- <onup>20</onup> -->
-            <!-- <ondown>9000</ondown> -->
-
-            <!-- <onup>9000</onup> -->
-            <!-- <ondown>20</ondown> -->
+            <orientation>horizontal</orientation>
+            <usecontrolcoords>true</usecontrolcoords>
 
             <onleft>6150</onleft>
             <onright>6150</onright>
-            <onback>50</onback>
 
             <include content="Object_OSD_Button">
                 <param name="visible" value="true" />

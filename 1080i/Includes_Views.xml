@@ -765,43 +765,12 @@
         <control type="group">
             <visible allowhiddenfocus="true">$EXP[View_Context_Menu_Visible]</visible>
 
-            <include>Animation_Dialog_Menu_RightSide</include>
+            <include content="Animation_Slide_Menu"><param name="left" value="-490" /></include>
 
-            <top>184</top>
-            <centerleft>50%</centerleft>
-            <height>689</height>
-            <width>470</width>
+            <top>20</top>
+            <centerleft>255</centerleft>
 
-            <!-- CONTEXT BACKGROUND -->
-
-            <include content="Def_Dialog_Background_PowerMenu">
-                <param name="height">479</param>
-                <param name="visible">!Player.HasMedia</param>
-            </include>
-
-            <include content="Def_Dialog_Background_PowerMenu">
-                <param name="height">689</param>
-                <param name="visible">Player.HasMedia</param>
-            </include>
-
-            <!-- ARROWS -->
-
-            <control type="group">
-                <visible>Integer.IsGreater(Container(9000).NumItems,0)</visible>
-                <control type="image">
-                    <centerleft>50%</centerleft>
-                    <top>-24</top>
-                    <include>Def_Arrow_Size</include>
-                    <texture colordiffuse="White100" flipy="true">common/arrow_small_down.png</texture>
-                </control>
-                <control type="image">
-                    <centerleft>50%</centerleft>
-                    <top>699</top>
-                    <include>Def_Arrow_Size</include>
-                    <texture colordiffuse="White100" flipy="false">common/arrow_small_down.png</texture>
-                    <animation effect="slide" end="0,-210" time="0" condition="!Player.HasMedia">Conditional</animation>
-                </control>
-            </control>
+            <include content="Def_Dialog_Menu_Box"><param name="height" value="1039" /></include>
 
             <include content="Def_Dialog_Header">
                 <param name="label" value="14018" />
@@ -809,11 +778,14 @@
             </include>
 
             <control type="grouplist" id="9000">
+                <include>Animation_Scrolltime_Views_List</include>
+
                 <top>112</top>
+
                 <pagecontrol>9070</pagecontrol>
                 <usecontrolcoords>true</usecontrolcoords>
-                <include content="Def_Dialog_Menu_GroupList_scrollbar"><param name="height" value="560" /><param name="scrollid" value="9070" /><param name="idlayout" value="9501" /></include>
-                <include>Animation_Scrolltime_Views_List</include>
+
+                <include content="Def_Dialog_Menu_GroupList"><param name="height" value="910" /><param name="idlayout" value="9501" /></include>
 
                 <!-- NOW PLAYING -->
 
@@ -863,18 +835,6 @@
                     <usealttexture>Library.IsScanningVideo</usealttexture>
                 </control>
             </control>
-
-            <!-- SCROLLBAR -->
-
-            <include content="Object_Scrollbar_Dialog_Vertical">
-                <param name="scrollid" value="9070" />
-                <param name="top" value="112" />
-                <param name="onleft" value="9000" />
-                <param name="onright" value="9000" />
-                <param name="onback" value="9000" />
-                <param name="height" value="560" />
-                <param name="centerright" value="4" />
-            </include>
         </control>
     </include>
 
