@@ -638,11 +638,15 @@
 
             <include content="Def_Dialog_Header_Logo">
                 <param name="texture" value="kodi" />
-                <param name="visible" value="![String.IsEqual(Control.GetLabel(1),Wikipedia) | Window.IsVisible(script-wikipedia.xml)]" />
+                <param name="visible" value="![String.IsEqual(Control.GetLabel(1),Wikipedia) | Window.IsVisible(script-wikipedia.xml) | String.IsEqual(Control.GetLabel(1),$LOCALIZE[13511])]" />
             </include>
             <include content="Def_Dialog_Header_Logo">
                 <param name="texture" value="world" />
                 <param name="visible" value="[String.IsEqual(Control.GetLabel(1),Wikipedia) | Window.IsVisible(script-wikipedia.xml)]" />
+            </include>
+            <include content="Def_Dialog_Header_Logo">
+                <param name="texture" value="pictures" />
+                <param name="visible" value="String.IsEqual(Control.GetLabel(1),$LOCALIZE[13511])" />
             </include>
 
             <include>Def_Dialog_Header_Line</include>
