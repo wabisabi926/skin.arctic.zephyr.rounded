@@ -297,8 +297,8 @@
         <control type="group">
             <visible>$EXP[Show_Video_Background_Not_Enable]</visible>
             <visible>$EXP[Show_Music_Visualisation_Background_Not_Enable]</visible>
-            
-            <visible>Skin.HasSetting(enable.blur.effect) + Skin.HasSetting(enable.blur.effect.fake)</visible>
+
+            <visible>Skin.HasSetting(enable.blur.effect) + [Skin.HasSetting(enable.blur.effect.fake) | $EXP[View_Settings]]</visible>
 
             <visible>[Window.IsVisible(Home) + !Skin.HasSetting(home.style.horizontal.clean)] | [Window.IsVisible(Home) + $EXP[View_Info_Dialog]] | !Window.IsVisible(Home)</visible>
 
@@ -329,8 +329,8 @@
             <!-- <visible>!Skin.HasSetting(hide.global.fanart)</visible> -->
             <visible>$EXP[Show_Video_Background_Not_Enable]</visible>
             <visible>$EXP[Show_Music_Visualisation_Background_Not_Enable]</visible>
-            
-            <visible>Skin.HasSetting(enable.blur.effect) + !Skin.HasSetting(enable.blur.effect.fake)</visible>
+
+            <visible>Skin.HasSetting(enable.blur.effect) + [!Skin.HasSetting(enable.blur.effect.fake) + !$EXP[View_Settings]]</visible>
 
             <visible>[Window.IsVisible(Home) + !Skin.HasSetting(home.style.horizontal.clean)] | [Window.IsVisible(Home) + $EXP[View_Info_Dialog]] | !Window.IsVisible(Home)</visible>
 
@@ -360,7 +360,7 @@
         <control type="multiimage" description="Fanart">
             <visible>$EXP[Show_Video_Background_Not_Enable]</visible>
             <visible>$EXP[Show_Music_Visualisation_Background_Not_Enable]</visible>
-            
+
             <visible>Skin.HasSetting(enable.blur.effect)</visible>
             <visible>!Skin.HasSetting(hide.view.flix.preview)</visible>
 
@@ -399,7 +399,7 @@
         <control type="multiimage" description="Fanart">
             <visible>$EXP[Show_Video_Background_Not_Enable]</visible>
             <visible>$EXP[Show_Music_Visualisation_Background_Not_Enable]</visible>
-            
+
             <visible>Skin.HasSetting(enable.blur.effect)</visible>
             <visible>!Skin.HasSetting(hide.view.flix.preview)</visible>
 
@@ -478,7 +478,7 @@
         <control type="group">
             <visible>$EXP[Show_Video_Background_Not_Enable]</visible>
             <visible>$EXP[Show_Music_Visualisation_Background_Not_Enable]</visible>
-            
+
             <visible>Skin.HasSetting(home.style.horizontal.clean) + Window.IsVisible(Home) + !$EXP[View_Info_Dialog]</visible>
 
             <animation effect="fade" start="0" end="100" time="400" reversible="false">Visible</animation>

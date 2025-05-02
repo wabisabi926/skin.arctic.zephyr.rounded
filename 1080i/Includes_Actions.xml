@@ -38,12 +38,8 @@
         <definition>
             <onload>SetProperty(TMDbHelper.Blur.SourceImage,$PARAM[sourceimage],Home)</onload>
             <onload>SetProperty(TMDbHelper.Blur.Fallback,$VAR[Image_SimpleBackground],Home)</onload>
-            <!-- <onload>RunScript(script.skinvariables,run_executebuiltin=special://skin/shortcuts/builtins/skinvariables-blurfallback.json,use_rules)</onload> -->
 
-            <!-- <include content="Defs_AutoScroll" condition="!String.IsEmpty(Skin.String(Background.MultiImage))"> -->
-                <!-- <param name="include">Defs_AutoSample_MultiImage</param> -->
-                <!-- <param name="condition">true</param> -->
-            <!-- </include> -->
+            <!-- <include content="Defs_AutoSample_MultiImage" condition="Skin.HasSetting(enable.extra.fanart)"></include> -->
         </definition>
     </include>
 
@@ -54,6 +50,10 @@
         <include content="_Action_Blur_Onload" condition="Skin.HasSetting(enable.extra.fanart)">
             <param name="sourceimage">Art(artist.fanart{x})|Art(tvshow.fanart{x})|Art(fanart{x})|Property(fanart)||EPGEventIcon||PicturePath</param>
         </include>
+    </include>
+
+    <include name="Defs_AutoSample_MultiImage">
+        <onload>AlarmClock(ResampleMultiImage,RunScript(script.skinvariables,run_executebuiltin=special://skin/shortcuts/builtins/skinvariables-blurfallback.json,use_rules),00:12,silent,loop)</onload>
     </include>
 
     <!-- <include name="_Action_Blur_Onload"> -->
