@@ -136,8 +136,8 @@
                     <include>Animation_Fade_Out</include>
 
                     <top>11</top>
-                    <height>100</height>
                     <left>0</left>
+                    <height>100</height>
                     <right>View_SidePad</right>
                     <width>1650</width>
 
@@ -171,9 +171,12 @@
                 <!-- LIST PROGRAM CHANNEL -->
 
                 <control type="epggrid" id="59" description="EPG">
-                    <left>0</left>
+                    <scrolltime tween="quadratic">250</scrolltime>
+
                     <top>0</top>
+                    <left>0</left>
                     <width>1760</width>
+
                     <include content="Def_Height" condition="Skin.HasSetting(pvr.fullepg)">
                         <param name="height" value="630" />
                     </include>
@@ -186,12 +189,15 @@
                     <include content="Def_Progress_Texture" condition="!Skin.HasSetting(pvr.fullepg)">
                         <param name="progresstexture" value="progress/pvr/progressline.png" />
                     </include>
-                    <onleft>28</onleft>
+
                     <onup>11</onup>
+                    <onleft>28</onleft>
+
                     <viewtype label="19069">list</viewtype>
-                    <scrolltime tween="quadratic">250</scrolltime>
-                    <timeblocks>40</timeblocks>
+
                     <rulerunit>6</rulerunit>
+                    <timeblocks>40</timeblocks>
+
                     <rulerlayout height="70" width="260">
                         <control type="label" id="2">
                             <include>Animation_Fade_In</include>
