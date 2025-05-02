@@ -156,6 +156,7 @@
                 <include content="Def_Width" condition="$PARAM[width_condition]">
                     <param name="width" value="520" />
                 </include>
+
                 <width>$PARAM[width]</width>
 
                 <!-- SUB TITLE - FILES -->
@@ -287,8 +288,7 @@
 
         <definition>
             <control type="group">
-                <visible>!ListItem.IsParentFolder + !String.IsEqual(ListItem.DBType,set) + !Window.IsVisible(MyMusicNav.xml) + !Window.IsVisible(MyPlaylist.xml) + !String.IsEmpty(ListItem.DBType) + !$EXP[IsYoutube]</visible>
-
+                <visible>$EXP[ShowCircleProgress]</visible>
                 <visible>$PARAM[visible]</visible>
 
                 <top>$PARAM[top]</top>

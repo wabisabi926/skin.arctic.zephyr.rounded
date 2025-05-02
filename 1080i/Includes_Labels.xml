@@ -190,7 +190,8 @@
 
     <variable name="Label_Icon_Container_Type">
         <value condition="Container.Content(movies)">   &#61853;</value>
-        <value condition="Container.Content(videoversions)">   &#61735;</value>
+        <value condition="Container.Content(sets)">   &#61898;</value>
+        <value condition="Container.Content(videoversions)">   &#61853;</value>
         <value condition="Container.Content(tvshows)">   &#61656;</value>
         <value condition="Container.Content(seasons)">   &#62659;</value>
         <value condition="Container.Content(episodes)">   &#62657;</value>
@@ -447,7 +448,7 @@
         <value condition="String.IsEmpty(ListItem.DBID)">[COLOR=$VAR[Color_Empty_DBID]]&#61589;[/COLOR]</value>
         <value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[553]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561])"></value>
         <value condition="Skin.HasSetting(hide.markers)"></value>
-        <value condition="String.IsEqual(ListItem.DBType,set) | ListItem.IsCollection">[COLOR=$VAR[Color_Indicator_Set]]&#61898;[/COLOR]</value>
+        <value condition="[String.IsEqual(ListItem.DBType,set) | ListItem.IsCollection]">[COLOR=$VAR[Color_Indicator_Set]]&#61898;[/COLOR]</value>
         <value condition="Container.Content(movies) + ListItem.HasVideoVersions + !String.StartsWith(Container.FolderPath,videodb://movies/videoversions)">[COLOR=$VAR[Color_Indicator_Version]]&#61735;[/COLOR]</value>
         <!-- <value condition="ListItem.IsPlaying + !Skin.HasSetting(hide.markers.isplaying) + !Player.Paused">[COLOR=$VAR[Color_Indicator_Background_Is_Playing]]&#62811;[/COLOR]</value> -->
         <!-- <value condition="ListItem.IsPlaying + !Skin.HasSetting(hide.markers.isplaying) + Player.Paused">[COLOR=$VAR[Color_Indicator_Background_Is_Playing]]&#62813;[/COLOR]</value> -->
@@ -800,7 +801,7 @@
 
         <!-- COLLECTION -->
 
-        <value condition="ListItem.IsCollection + Integer.IsGreater(Container(44023).NumItems,0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Years),,  •  ]$INFO[Container(44023).NumItems]$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.NumItems),/, $LOCALIZE[31014]] $INFO[ListItem.Rating,  •  ,]</value>
+        <value condition="ListItem.IsCollection + Integer.IsGreater(Container(44023).NumItems,0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Years),,  •  ]$INFO[Container(44023).NumItems]$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.NumItems),/, $LOCALIZE[31014]] $INFO[ListItem.Rating,  •  TMDb ,]</value>
 
         <value condition="ListItem.IsCollection + !Integer.IsGreater(Container(44023).NumItems,0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Years),,  •  ]$INFO[ListItem.Rating]</value>
 
@@ -1071,6 +1072,12 @@
         <value>$VAR[Label_Rating]</value>
     </variable>
 
+    <variable name="Label_56_Info">
+        <value condition="Container.Content(seasons) + !ListItem.IsParentFolder">$INFO[ListItem.Property(TotalEpisodes),, $LOCALIZE[20360]]</value>
+        <value condition="$EXP[IsGameMode]">$VAR[Label_Game_Year]</value>
+        <value>$INFO[ListItem.Label2]</value>
+    </variable>
+
     <variable name="label_FileBrowser_Type">
         <value condition="String.IsEqual(ListItem.Icon,DefaultHardDisk.png)">$LOCALIZE[13275]</value>
         <value condition="String.IsEqual(ListItem.Icon,DefaultNetwork.png)">$LOCALIZE[442]</value>
@@ -1147,12 +1154,6 @@
         <value condition="!String.IsEmpty(ListItem.Property(Artist_Genre))">$INFO[ListItem.Property(Artist_Genre)]</value>
 
         <value condition="String.IsEqual(ListItem.DBType,video)">$VAR[Label_Duration]</value>
-    </variable>
-
-    <variable name="Label_56_Info">
-        <value condition="Container.Content(seasons) + !ListItem.IsParentFolder">$INFO[ListItem.Property(TotalEpisodes),, $LOCALIZE[20360]]</value>
-        <value condition="$EXP[IsGameMode]">$VAR[Label_Game_Year]</value>
-        <value>$INFO[ListItem.Label2]</value>
     </variable>
 
     <variable name="Label_55_Slider_Sub_Title">
