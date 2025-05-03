@@ -156,11 +156,11 @@
     <!-- PREVIEW WINDOWS NETFLIX - FULL SCREEN -->
 
     <include name="Def_Window_Flix">
-        <aspectratio scalediffuse="false">scale</aspectratio>
+        <top>0</top>
+        <right>0</right>
         <width>1280</width>
         <height>720</height>
-        <right>0</right>
-        <top>0</top>
+        <aspectratio scalediffuse="false">scale</aspectratio>
         <imagepath background="true" diffuse="background/homediffuse510fs.png">$VAR[Global_Fanart_Background]</imagepath>
     </include>
 
@@ -170,20 +170,22 @@
 
     <include name="Background_Global">
         <include condition="Skin.HasSetting(enable.blur.effect)">Image_Path_Blur_TMDb</include>
-        <include>Global_Video_Window</include>
         <include condition="$EXP[ShowMusicVisualisation]">Global_Music_Visualisation</include>
+        <include>Global_Video_Window</include>
 
         <!-- EXTRA FANART -->
 
         <control type="fadelabel" id="4399">
+            <visible>Skin.HasSetting(enable.extra.fanart)</visible>
+
             <top>-900</top>
-            <width>2560</width>
             <height>0</height>
+            <width>2560</width>
+
             <scroll>false</scroll>
             <scrollout>false</scrollout>
             <randomize>true</randomize>
             <resetonlabelchange>true</resetonlabelchange>
-            <visible>Skin.HasSetting(enable.extra.fanart)</visible>
 
             <label>$INFO[ListItem.Art(fanart1)]</label>
             <label>$INFO[ListItem.Art(fanart2)]</label>
@@ -207,28 +209,6 @@
             <label>$INFO[ListItem.Art(fanart20)]</label>
             <label>$INFO[ListItem.Art(fanart)]</label>
 
-            <label>$INFO[ListItem.Art(artist.fanart1)]</label>
-            <label>$INFO[ListItem.Art(artist.fanart2)]</label>
-            <label>$INFO[ListItem.Art(artist.fanart3)]</label>
-            <label>$INFO[ListItem.Art(artist.fanart4)]</label>
-            <label>$INFO[ListItem.Art(artist.fanart5)]</label>
-            <label>$INFO[ListItem.Art(artist.fanart6)]</label>
-            <label>$INFO[ListItem.Art(artist.fanart7)]</label>
-            <label>$INFO[ListItem.Art(artist.fanart8)]</label>
-            <label>$INFO[ListItem.Art(artist.fanart9)]</label>
-            <label>$INFO[ListItem.Art(artist.fanart10)]</label>
-            <label>$INFO[ListItem.Art(artist.fanart11)]</label>
-            <label>$INFO[ListItem.Art(artist.fanart12)]</label>
-            <label>$INFO[ListItem.Art(artist.fanart13)]</label>
-            <label>$INFO[ListItem.Art(artist.fanart14)]</label>
-            <label>$INFO[ListItem.Art(artist.fanart15)]</label>
-            <label>$INFO[ListItem.Art(artist.fanart16)]</label>
-            <label>$INFO[ListItem.Art(artist.fanart17)]</label>
-            <label>$INFO[ListItem.Art(artist.fanart18)]</label>
-            <label>$INFO[ListItem.Art(artist.fanart19)]</label>
-            <label>$INFO[ListItem.Art(artist.fanart20)]</label>
-            <label>$INFO[ListItem.Art(artist.fanart)]</label>
-
             <label>$INFO[ListItem.Art(tvshow.fanart1)]</label>
             <label>$INFO[ListItem.Art(tvshow.fanart2)]</label>
             <label>$INFO[ListItem.Art(tvshow.fanart3)]</label>
@@ -250,6 +230,28 @@
             <label>$INFO[ListItem.Art(tvshow.fanart19)]</label>
             <label>$INFO[ListItem.Art(tvshow.fanart20)]</label>
             <label>$INFO[ListItem.Art(tvshow.fanart)]</label>
+
+            <label>$INFO[ListItem.Art(artist.fanart1)]</label>
+            <label>$INFO[ListItem.Art(artist.fanart2)]</label>
+            <label>$INFO[ListItem.Art(artist.fanart3)]</label>
+            <label>$INFO[ListItem.Art(artist.fanart4)]</label>
+            <label>$INFO[ListItem.Art(artist.fanart5)]</label>
+            <label>$INFO[ListItem.Art(artist.fanart6)]</label>
+            <label>$INFO[ListItem.Art(artist.fanart7)]</label>
+            <label>$INFO[ListItem.Art(artist.fanart8)]</label>
+            <label>$INFO[ListItem.Art(artist.fanart9)]</label>
+            <label>$INFO[ListItem.Art(artist.fanart10)]</label>
+            <label>$INFO[ListItem.Art(artist.fanart11)]</label>
+            <label>$INFO[ListItem.Art(artist.fanart12)]</label>
+            <label>$INFO[ListItem.Art(artist.fanart13)]</label>
+            <label>$INFO[ListItem.Art(artist.fanart14)]</label>
+            <label>$INFO[ListItem.Art(artist.fanart15)]</label>
+            <label>$INFO[ListItem.Art(artist.fanart16)]</label>
+            <label>$INFO[ListItem.Art(artist.fanart17)]</label>
+            <label>$INFO[ListItem.Art(artist.fanart18)]</label>
+            <label>$INFO[ListItem.Art(artist.fanart19)]</label>
+            <label>$INFO[ListItem.Art(artist.fanart20)]</label>
+            <label>$INFO[ListItem.Art(artist.fanart)]</label>
 
             <pauseatend>Background_Fanart_Time_Before_Next_Image</pauseatend>
         </control>
@@ -326,7 +328,6 @@
         <!-- BLUR GLOBAL - TMDB HELPER -->
 
         <control type="group">
-            <!-- <visible>!Skin.HasSetting(hide.global.fanart)</visible> -->
             <visible>$EXP[Show_Video_Background_Not_Enable]</visible>
             <visible>$EXP[Show_Music_Visualisation_Background_Not_Enable]</visible>
 
@@ -334,23 +335,28 @@
 
             <visible>[Window.IsVisible(Home) + !Skin.HasSetting(home.style.horizontal.clean)] | [Window.IsVisible(Home) + $EXP[View_Info_Dialog]] | !Window.IsVisible(Home)</visible>
 
-            <centertop>50%</centertop>
-            <height>108000</height>
+            <top>0</top>
+            <left>0</left>
+            <width>3300</width>
+            <height>720</height>
+
+            <!-- <centertop>50%</centertop> -->
+            <!-- <height>108000</height> -->
 
             <control type="multiimage" description="Fanart">
 
-                <width>192000</width>
-                <height>108000</height>
-                <centertop>64%</centertop>
+                <!-- <width>192000</width> -->
+                <!-- <height>108000</height> -->
+                <!-- <centertop>64%</centertop> -->
 
                 <include>Animation_Animate_Fanart</include>
                 <include>Animation_AutoTrailer_Fade_Out_Background</include>
                 <include>Animation_VideoHomeWindowsFlix_Fade_Out_Background</include>
                 <include>Background_Fanart_Fade_time</include>
+
                 <timeperimage>Background_Fanart_Time_Before_Next_Image</timeperimage>
                 <randomize>true</randomize>
-
-                <aspectratio>scale</aspectratio>
+                <aspectratio>stretch</aspectratio>
                 <include>Image_Path_Blur_TMDb</include>
             </control>
         </control>
