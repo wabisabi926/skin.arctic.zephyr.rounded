@@ -193,22 +193,21 @@
             <!-- </control> -->
 
             <control type="group">
-                <width>250%</width>
+                <width>150%</width>
                 <control type="multiimage">
                     <include>Background_Fanart_Fade_time</include>
                     <timeperimage>Background_Fanart_Time_Before_Next_Image</timeperimage>
                     <randomize>true</randomize>
                     <height>780</height>
-                    <imagepath background="true" flipx="true" flipy="false">$VAR[Image_Background_Blur]</imagepath>
+                    <imagepath background="true" flipx="false" flipy="false">$VAR[Image_Background_Blur]</imagepath>
                 </control>
                 <control type="multiimage">
                     <include>Background_Fanart_Fade_time</include>
-
                     <timeperimage>Background_Fanart_Time_Before_Next_Image</timeperimage>
                     <randomize>true</randomize>
                     <height>780</height>
                     <top>780</top>
-                    <imagepath background="true" flipx="true" flipy="true">$VAR[Image_Background_Blur]</imagepath>
+                    <imagepath background="true" flipx="false" flipy="true">$VAR[Image_Background_Blur]</imagepath>
                 </control>
             </control>
        </control>
@@ -241,7 +240,7 @@
                 <randomize>true</randomize>
 
                 <aspectratio>scale</aspectratio>
-                <include>Image_Path_Normal</include>
+                <imagepath background="true">$VAR[Global_Fanart_Background]</imagepath>
             </control>
         </control>
     </include>
@@ -364,22 +363,13 @@
         </control>
     </include>
 
-
-    <!-- IMAGE PATH -->
-
-    <include name="Image_Path_Normal">
-        <imagepath background="true">$VAR[Global_Fanart_Background]</imagepath>
-    </include>
-
-    <!-- <include name="Image_Path_Blur_TMDb"> -->
-        <!-- <imagepath background="true">$INFO[Window(Home).Property(TMDbHelper.ListItem.blurimage)]</imagepath> -->
-    <!-- </include> -->
+    <!-- DEF BLUR TMDB - IMAGE -->
 
     <variable name="Image_Background_Blur">
         <value>$INFO[Window(Home).Property(TMDbHelper.ListItem.blurimage)]</value>
     </variable>
 
-    <!-- BACKGROUND FANART FADE TIME -->
+    <!-- DEF - BACKGROUND FANART FADE TIME -->
 
     <include name="Background_Fanart_Fade_time">
         <include condition="Integer.IsEqual(Skin.String(Fadetime),600) | String.IsEmpty(Skin.String(Fadetime))">Fade_Time_Default_600</include>
@@ -388,7 +378,7 @@
         <include condition="Integer.IsEqual(Skin.String(Fadetime),400)">Fade_Time_Fast_400</include>
     </include>
 
-    <!-- PREVIEW WINDOWS NETFLIX - FULL SCREEN -->
+    <!-- DEF - PREVIEW WINDOWS NETFLIX - FULL SCREEN -->
 
     <include name="Def_Window_Flix">
         <top>0</top>
@@ -472,7 +462,6 @@
             <include>Animation_VideoHomeWindowsFlix_Fade_Out_Background</include>
 
             <include>Background_Fanart_Fade_time</include>
-
             <timeperimage>Background_Fanart_Time_Before_Next_Image</timeperimage>
             <randomize>true</randomize>
 
