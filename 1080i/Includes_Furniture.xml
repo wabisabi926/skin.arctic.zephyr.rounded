@@ -2064,7 +2064,7 @@
             <control type="label">
                 <include>Def_Info_Right_Line1</include>
                 <scroll>true</scroll>
-                <label>$VAR[Label_Genre]$INFO[ListItem.Duration(h),  •  ,$LOCALIZE[31061]] $INFO[ListItem.Duration(mm),,$LOCALIZE[31062]]$INFO[ListItem.Rating,  •  ]</label>
+                <label>$VAR[Label_Genre]$INFO[ListItem.Duration(h),  •  ,$LOCALIZE[31061]] $INFO[ListItem.Duration(mm),,$LOCALIZE[31062]]$VAR[Label_Rating_Flix,  •  ]</label>
                 <visible>!String.IsEmpty(ListItem.Genre)</visible>
                 <visible>Container.Content(movies) | String.IsEqual(ListItem.DBtype,movie) | String.IsEqual(ListItem.DBtype,video)</visible>
                 <visible>![Control.IsVisible(50) | Control.IsVisible(550) | Control.IsVisible(56) | Control.IsVisible(57) | Control.IsVisible(555) | Control.IsVisible(507) | Control.IsVisible(511)] | Window.IsVisible(script-globalsearch.xml)</visible>
@@ -2095,14 +2095,14 @@
 
             <control type="label">
                 <include>Def_Info_Right_Line1</include>
-                <label>$VAR[Label_Genre]$INFO[ListItem.Property(UnWatchedEpisodes),  •  ]$VAR[Label_Episodes_Number, / ]$INFO[ListItem.Rating,  •  ]</label>
+                <label>$VAR[Label_Genre]$VAR[Label_Episodes_Number,  •  , $LOCALIZE[20453]]$VAR[Label_Rating_Flix,  •  ]</label>
                 <visible>![Control.IsVisible(50) | Control.IsVisible(550) | Control.IsVisible(56) | Control.IsVisible(57) | Control.IsVisible(555)] | Window.IsVisible(script-globalsearch.xml)</visible>
                 <visible>String.IsEqual(ListItem.DBtype,tvshow) | String.IsEqual(ListItem.DBtype,season)</visible>
                 <visible>!String.IsEmpty(ListItem.Property(UnWatchedEpisodes))</visible>
             </control>
             <control type="label">
                 <include>Def_Info_Right_Line1</include>
-                <label>$VAR[Label_Genre]$VAR[Label_Episodes_Number,  •  , $LOCALIZE[20453]]$INFO[ListItem.Rating,  •  ]</label>
+                <label>$VAR[Label_Genre]$VAR[Label_Episodes_Number,  •  , $LOCALIZE[20453]]$VAR[Label_Rating_Flix,  •  ]</label>
                 <visible>![Control.IsVisible(50) | Control.IsVisible(550) | Control.IsVisible(56) | Control.IsVisible(57)] | Window.IsVisible(script-globalsearch.xml)</visible>
                 <visible>String.IsEqual(ListItem.DBtype,tvshow) | String.IsEqual(ListItem.DBtype,season)</visible>
                 <visible>String.IsEmpty(ListItem.Property(UnWatchedEpisodes))</visible>
@@ -2112,7 +2112,7 @@
 
             <control type="label">
                 <include>Def_Info_Right_Line1</include>
-                <label>$INFO[ListItem.Duration(h),,$LOCALIZE[31061]] $INFO[ListItem.Duration(mm),,$LOCALIZE[31062]]$INFO[ListItem.Rating,  •  ]</label>
+                <label>$INFO[ListItem.Duration(h),,$LOCALIZE[31061]] $INFO[ListItem.Duration(mm),,$LOCALIZE[31062]]$VAR[Label_Rating_Flix,  •  ]</label>
                 <visible>!String.IsEmpty(ListItem.Duration)</visible>
                 <visible>String.IsEqual(ListItem.DBtype,episode)</visible>
                 <visible>![Control.IsVisible(50) | Control.IsVisible(550) | Control.IsVisible(56) | Control.IsVisible(57)] | Window.IsVisible(script-globalsearch.xml)</visible>
