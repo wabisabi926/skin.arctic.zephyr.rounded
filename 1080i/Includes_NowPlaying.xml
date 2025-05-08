@@ -844,7 +844,7 @@
                 <effect type="fade" start="0" end="100" time="1" delay="800" />
             </animation>
             <visible>Player.HasMedia + Player.HasAudio</visible>
-            <visible>!Skin.HasSetting(hide.nowplaying.cd.music)</visible>
+            <visible>!Skin.HasSetting(hide.home.nowplaying.extended.music.cd)</visible>
             <include content="Def_NowPlaying_DiscArt">
                 <param name="visible" value="Skin.HasSetting(osd.music.disc.fake.cd)" />
                 <param name="diffuse" value="diffuse/cd_w496_h496.png" />
@@ -864,9 +864,10 @@
         <param name="left" value="$PARAM[left]" default="106" />
         <definition>
             <control type="group">
+                <visible>Player.HasMedia + Player.HasVideo + VideoPlayer.Content(movies)</visible>
+                <visible>!Skin.HasSetting(hide.home.nowplaying.extended.video.cd)</visible>
                 <visible>$PARAM[visible]</visible>
-                <top>460</top>
-                <left>$PARAM[left]</left>
+
                 <animation type="WindowClose" reversible="false">
                     <effect type="slide" start="0,0" end="-106,0" tween="sine" easing="out" time="300" delay="0" />
                     <effect type="fade" start="100" end="0" time="150" delay="0" />
@@ -882,8 +883,10 @@
                     <effect type="slide" start="-106,0" end="0,0" tween="sine" easing="out" time="600" delay="500" />
                     <effect type="fade" start="0" end="100" time="1" delay="500" />
                 </animation>
-                <visible>Player.HasMedia + Player.HasVideo + VideoPlayer.Content(movies)</visible>
-                <visible>!Skin.HasSetting(hide.home.nowplaying.extended.video.cd)</visible>
+
+                <top>560</top>
+                <left>$PARAM[left]</left>
+
                 <include content="Def_NowPlaying_DiscArt">
                     <param name="visible" value="Skin.HasSetting(home.video.disc.fake.bluray)" />
                     <param name="diffuse" value="diffuse/cd_w496_h496.png" />
@@ -1264,19 +1267,23 @@
 
             <include content="NowPlaying_InfoRight">
                 <param name="left" value="561" />
-                <param name="visible" value="$EXP[IsVideo] + Skin.HasSetting(show.home.nowplaying.extended.video.windows)" />
+                <param name="visible" value="$EXP[IsVideo] + Skin.HasSetting(show.home.nowplaying.extended.video.windows) + Skin.HasSetting(hide.home.nowplaying.extended.video.cd)" />
+            </include>
+            <include content="NowPlaying_InfoRight">
+                <param name="left" value="641" />
+                <param name="visible" value="$EXP[IsVideo] + Skin.HasSetting(show.home.nowplaying.extended.video.windows) + !Skin.HasSetting(hide.home.nowplaying.extended.video.cd)" />
             </include>
             <include content="NowPlaying_InfoRight">
                 <param name="left" value="0" />
-                <param name="visible" value="[$EXP[IsVideo] + !Skin.HasSetting(show.home.nowplaying.extended.video.windows)] | [$EXP[IsAudio] + Skin.HasSetting(hide.nowplaying.cd.music)] | [$EXP[IsPVRAudio] + Skin.HasSetting(hide.home.nowplaying.extended.video.cd)]" />
+                <param name="visible" value="[$EXP[IsVideo] + !Skin.HasSetting(show.home.nowplaying.extended.video.windows) + Skin.HasSetting(hide.home.nowplaying.extended.video.cd)] | [$EXP[IsAudio] + Skin.HasSetting(hide.home.nowplaying.extended.music.cd)] | [$EXP[IsPVRAudio] + Skin.HasSetting(hide.home.nowplaying.extended.video.cd)]" />
             </include>
             <include content="NowPlaying_InfoRight">
                 <param name="left" value="661" />
-                <param name="visible" value="$EXP[IsPVRVideo] + Skin.HasSetting(show.home.nowplaying.extended.video.windows)" />
+                <param name="visible" value="$EXP[IsPVRVideo] + Skin.HasSetting(show.home.nowplaying.extended.video.windows) + Skin.HasSetting(hide.home.nowplaying.extended.video.cd)" />
             </include>
             <include content="NowPlaying_InfoRight">
                 <param name="left" value="140" />
-                <param name="visible" value="[$EXP[IsPVRAudio] + !Skin.HasSetting(hide.home.nowplaying.extended.video.cd)] | [$EXP[IsAudio] + !Skin.HasSetting(hide.nowplaying.cd.music)]" />
+                <param name="visible" value="[$EXP[IsPVRAudio] + !Skin.HasSetting(hide.home.nowplaying.extended.video.cd)] | [$EXP[IsAudio] + !Skin.HasSetting(hide.home.nowplaying.extended.music.cd)]" />
             </include>
             <include content="NowPlaying_InfoRight">
                 <param name="left" value="100" />

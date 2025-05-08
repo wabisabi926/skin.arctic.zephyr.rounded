@@ -1735,15 +1735,6 @@
                     <onclick>Skin.ToggleSetting(hide.home.nowplaying.extended.video.cd)</onclick>
                     <visible>Skin.HasSetting(show.furniture.nowplaying.extended.home) + !Skin.HasSetting(show.nowplaying.video.home.flix)</visible>
                 </control>
-                <control type="radiobutton" id="9729">
-                    <width>1278</width>
-                    <visible>Container(3000).HasFocus(5)</visible>
-                    <include>Def_Settings_Button_Gradient_Select_Right_Side</include>
-                    <label>$LOCALIZE[31497]</label>
-                    <selected>Skin.HasSetting(osd.video.disc.fallback.only)</selected>
-                    <onclick>Skin.ToggleSetting(osd.video.disc.fallback.only)</onclick>
-                    <visible>Skin.HasSetting(show.furniture.nowplaying.extended.home) + !Skin.HasSetting(show.nowplaying.video.home.flix)</visible>
-                </control>
                 <control type="button" id="9725">
                     <width>1278</width>
                     <visible>Container(3000).HasFocus(5)</visible>
@@ -1754,8 +1745,18 @@
                     <onclick condition="Skin.HasSetting(home.video.disc.fallback.bluray)">Skin.ToggleSetting(home.video.disc.fake.bluray)</onclick>
                     <onclick condition="Skin.HasSetting(home.video.disc.fake.bluray)">Skin.Reset(home.video.disc.fake.bluray)</onclick>
                     <onclick condition="Skin.HasSetting(home.video.disc.fallback.bluray)">Skin.Reset(home.video.disc.fallback.bluray)</onclick>
-                    <enable>[!Skin.HasSetting(hide.home.nowplaying.extended.video.cd) | Skin.HasSetting(osd.video.disc.fallback.only)]</enable>
                     <visible>Skin.HasSetting(show.furniture.nowplaying.extended.home) + !Skin.HasSetting(show.nowplaying.video.home.flix)</visible>
+                    <visible>!Skin.HasSetting(hide.home.nowplaying.extended.video.cd)</visible>
+                </control>
+                <control type="radiobutton" id="9729">
+                    <width>1278</width>
+                    <visible>Container(3000).HasFocus(5)</visible>
+                    <include>Def_Settings_Button_Gradient_Select_Right_Side</include>
+                    <label>$LOCALIZE[31497]</label>
+                    <selected>Skin.HasSetting(osd.video.disc.fallback.only)</selected>
+                    <onclick>Skin.ToggleSetting(osd.video.disc.fallback.only)</onclick>
+                    <visible>Skin.HasSetting(show.furniture.nowplaying.extended.home) + !Skin.HasSetting(show.nowplaying.video.home.flix)</visible>
+                    <visible>!Skin.HasSetting(hide.home.nowplaying.extended.video.cd)</visible>
                 </control>
                 <control type="radiobutton" id="9731">
                     <width>1278</width>
@@ -1801,8 +1802,8 @@
                     <visible>Container(3000).HasFocus(5)</visible>
                     <include>Def_Settings_Button_Gradient_Select_Right_Side</include>
                     <label>$LOCALIZE[31345]</label>
-                    <selected>!Skin.HasSetting(hide.nowplaying.cd.music)</selected>
-                    <onclick>Skin.ToggleSetting(hide.nowplaying.cd.music)</onclick>
+                    <selected>!Skin.HasSetting(hide.home.nowplaying.extended.music.cd)</selected>
+                    <onclick>Skin.ToggleSetting(hide.home.nowplaying.extended.music.cd)</onclick>
                     <visible>Skin.HasSetting(show.furniture.nowplaying.extended.home)</visible>
                 </control>
                 <control type="button" id="9724">
@@ -1816,7 +1817,7 @@
                     <onclick condition="Skin.HasSetting(osd.music.disc.fake.cd)">Skin.Reset(osd.music.disc.fake.cd)</onclick>
                     <onclick condition="Skin.HasSetting(osd.music.disc.fallback.vinyl)">Skin.Reset(osd.music.disc.fallback.vinyl)</onclick>
                     <visible>Skin.HasSetting(show.furniture.nowplaying.extended.home)</visible>
-                    <visible>!Skin.HasSetting(hide.nowplaying.cd.music)</visible>
+                    <visible>!Skin.HasSetting(hide.home.nowplaying.extended.music.cd)</visible>
                 </control>
                 <control type="radiobutton" id="9728">
                     <width>1278</width>
@@ -1826,7 +1827,7 @@
                     <selected>Skin.HasSetting(osd.music.disc.fallback.only)</selected>
                     <onclick>Skin.ToggleSetting(osd.music.disc.fallback.only)</onclick>
                     <visible>Skin.HasSetting(show.furniture.nowplaying.extended.home)</visible>
-                    <visible>!Skin.HasSetting(hide.nowplaying.cd.music)</visible>
+                    <visible>!Skin.HasSetting(hide.home.nowplaying.extended.music.cd)</visible>
                 </control>
                 <control type="radiobutton" id="9733" description="SELECT ART">
                     <width>1278</width>
