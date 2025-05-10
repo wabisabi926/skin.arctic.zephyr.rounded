@@ -60,14 +60,13 @@
                     </include>
                 </control>
 
-                <control type="group">
-                    <visible>Skin.HasSetting(enable.view.video.rating.num)</visible>
-                    <left>0</left>
-                    <bottom>305</bottom>
-                    <include>Def_Layout_Poster_rating_Info</include>
-                </control>
+                <include content="Layout_Poster_Rating_Info_Type" condition="Skin.HasSetting(enable.view.video.rating.num)">
+                    <param name="left" value="0" />
+                    <param name="right" value="-130" />
+                    <param name="bottom" value="305" />
+                </include>
 
-                <include content="Layout_Indicator_Status" condition="!Skin.HasSetting(hide.markers)">
+                <include content="Layout_Poster_Indicator_Status" condition="!Skin.HasSetting(hide.markers)">
                     <param name="right" value="-138" />
                     <param name="top" value="110" />
                 </include>

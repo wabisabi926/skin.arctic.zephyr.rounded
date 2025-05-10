@@ -1348,14 +1348,12 @@
                 <param name="texture_diffuse" value="$PARAM[texture_diffuse]" />
             </include>
 
-            <control type="group">
-                <visible>Skin.HasSetting(enable.view.video.rating.num)</visible>
-                <left>5</left>
-                <bottom>-10</bottom>
-                <include>Def_Layout_Poster_rating_Info</include>
-            </control>
+            <include content="Layout_Poster_Rating_Info_Type" condition="Skin.HasSetting(enable.view.video.rating.num)">
+                <param name="left" value="5" />
+                <param name="bottom" value="-10" />
+            </include>
 
-            <include content="Layout_Indicator_Status" condition="!Skin.HasSetting(hide.markers)">
+            <include content="Layout_Poster_Indicator_Status" condition="!Skin.HasSetting(hide.markers)">
                 <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
             </include>
             <include condition="Skin.HasSetting(enable.morewidget)">more</include>
@@ -1447,17 +1445,10 @@
                 </include>
             </control>
 
-            <control type="group">
-                <visible>Skin.HasSetting(enable.view.video.rating.num)</visible>
-                <left>5</left>
-                <bottom>-10</bottom>
-                <include>Def_Layout_Poster_rating_Info</include>
-            </control>
-            <control type="group">
-                <left>5</left>
-                <bottom>-10</bottom>
-                <include>Def_Layout_Addon_Status</include>
-            </control>
+            <include content="Layout_Poster_Rating_Info_Type" condition="Skin.HasSetting(enable.view.video.rating.num)">
+                <param name="left" value="5" />
+                <param name="bottom" value="-10" />
+            </include>
 
             <control type="group">
                 <visible>$PARAM[middle]</visible>
@@ -1570,7 +1561,7 @@
                 </control>
             </control>
 
-            <include content="Layout_Indicator_Status" condition="!Skin.HasSetting(hide.markers)">
+            <include content="Layout_Poster_Indicator_Status" condition="!Skin.HasSetting(hide.markers)">
                 <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
             </include>
             <include condition="Skin.HasSetting(enable.morewidget)">more</include>
@@ -1722,19 +1713,16 @@
 
             <!-- RATING -->
 
-            <control type="group">
-                <visible>Skin.HasSetting(enable.view.video.rating.num)</visible>
-                <left>7</left>
-                <include content="Def_Bottom" condition="$PARAM[small]">
-                   <param name="bottom" value="82" />
-                </include>
-                <bottom>-10</bottom>
-                <include>Def_Layout_Poster_rating_Info</include>
-            </control>
+            <include content="Layout_Poster_Rating_Info_Type" condition="Skin.HasSetting(enable.view.video.rating.num)">
+                <param name="left" value="7" />
+                <param name="bottom" value="-10" />
+                <param name="small" value="$PARAM[small]" />
+                <param name="bottom_small" value="82" />
+            </include>
 
             <!-- WATCHED STATUS -->
 
-            <include content="Layout_Indicator_Status" condition="!Skin.HasSetting(hide.markers)">
+            <include content="Layout_Poster_Indicator_Status" condition="!Skin.HasSetting(hide.markers)">
                 <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
             </include>
 
@@ -1886,16 +1874,14 @@
                 <visible>$PARAM[small]</visible>
             </control>
 
-            <control type="group">
-                <visible>Skin.HasSetting(enable.view.video.rating.num)</visible>
-                <left>5</left>
-                <include content="Def_Bottom" condition="$PARAM[small]">
-                   <param name="bottom" value="82" />
-                </include>
-                <bottom>-10</bottom>
-                <include>Def_Layout_Poster_rating_Info</include>
-            </control>
-            <include content="Layout_Indicator_Status" condition="!Skin.HasSetting(hide.markers)">
+            <include content="Layout_Poster_Rating_Info_Type" condition="Skin.HasSetting(enable.view.video.rating.num)">
+                <param name="left" value="5" />
+                <param name="bottom" value="-10" />
+                <param name="small" value="$PARAM[small]" />
+                <param name="bottom_small" value="82" />
+            </include>
+
+            <include content="Layout_Poster_Indicator_Status" condition="!Skin.HasSetting(hide.markers)">
                 <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
             </include>
 
@@ -1999,12 +1985,10 @@
                 <visible>!String.IsEqual(ListItem.DBType,genre) + !String.EndsWith(Container.FolderPath,Genres) + !String.IsEqual(ListItem.DBType,episode) + !String.IsEqual(ListItem.DBType,actors)</visible>
             </control>
 
-            <control type="group">
-                <visible>Skin.HasSetting(enable.view.video.rating.num)</visible>
-                <left>5</left>
-                <bottom>-10</bottom>
-                <include>Def_Layout_Poster_rating_Info</include>
-            </control>
+            <include content="Layout_Poster_Rating_Info_Type" condition="Skin.HasSetting(enable.view.video.rating.num)">
+                <param name="left" value="5" />
+                <param name="bottom" value="-10" />
+            </include>
 
             <!-- <include content="Def_Widget_Image_Clearlogo_Dim" condition="$PARAM[clearlogo]"> -->
                 <!-- <param name="width" value="250" /> -->
@@ -2012,7 +1996,7 @@
                 <!-- <param name="bottom" value="20" /> -->
             <!-- </include> -->
 
-            <include content="Layout_Indicator_Status" condition="!Skin.HasSetting(hide.markers)">
+            <include content="Layout_Poster_Indicator_Status" condition="!Skin.HasSetting(hide.markers)">
                 <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
             </include>
         </definition>
@@ -2052,14 +2036,12 @@
                 <visible>String.IsEmpty(ListItem.Art(banner)) + String.IsEmpty(ListItem.Art(tvshow.banner))</visible>
             </control>
 
-            <control type="group">
-                <visible>Skin.HasSetting(enable.view.video.rating.num)</visible>
-                <left>5</left>
-                <bottom>-10</bottom>
-                <include>Def_Layout_Poster_rating_Info</include>
-            </control>
+            <include content="Layout_Poster_Rating_Info_Type" condition="Skin.HasSetting(enable.view.video.rating.num)">
+                <param name="left" value="5" />
+                <param name="bottom" value="-10" />
+            </include>
 
-            <include content="Layout_Indicator_Status" condition="!Skin.HasSetting(hide.markers)">
+            <include content="Layout_Poster_Indicator_Status" condition="!Skin.HasSetting(hide.markers)">
                 <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
             </include>
 
