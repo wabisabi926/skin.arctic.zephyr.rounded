@@ -242,6 +242,10 @@
 
     <expression name="ShowMusicVisualisation">Skin.HasSetting(show.global.visualisation.background.music) + !String.IsEmpty(Visualisation.Name)</expression>
 
+    <!-- VIEW PLAYLIST MUSIC - SHOW ARTIST SLIDESHOW -->
+
+    <expression name="IsViewPlaylistMusicArtistSlideShow">String.IsEqual(Container.FolderPath,playlistmusic://) + !String.IsEmpty(Window(Visualisation).Property(ArtistSlideshow.Image)) + System.AddonIsEnabled(script.artistslideshow) + !Skin.HasSetting(disable.artist.slideshow) + Player.HasAudio</expression>
+
     <!-- CONDITION NOT SHOW VIDEO BACKGROUND -->
 
     <expression name="Show_Video_Background_Not_Enable">[!Player.HasVideo | [Player.HasVideo + !Skin.HasSetting(show.global.visualisation.background.video)]]</expression>
@@ -280,7 +284,7 @@
     <!-- HOME BACKGROUND ON MENU -->
 
     <expression name="Background_Home_On_Menu">[[!Skin.HasSetting(hide.global.fanart) | $EXP[Home_Is_Horizontal_Clean] | $EXP[Home_Is_Flix]] + !Skin.HasSetting(home.enable.menu.background) + Window.IsVisible(Home) + [$EXP[Home_Menu_Is_Focus] | Control.HasFocus(2011)]]</expression>
-    
+
     <expression name="Background_Home_Extended_Now_Playing">[$EXP[Extended_Now_Playing_Is_Visible] + Window.IsVisible(Home) + !ControlGroup(301).HasFocus()]</expression>
 
     <expression name="Background_Home_Flix_Or_All_Views">[[!Skin.HasSetting(hide.global.fanart) + !$EXP[View_Settings]] | [Window.IsVisible(Home) + Skin.HasSetting(home.style.flix) + !$EXP[View_Info_Dialog]] | $EXP[View_Flix]]</expression>
