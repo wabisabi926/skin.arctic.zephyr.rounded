@@ -30,7 +30,9 @@
     <!-- VIEW - FLIX / INFO -->
 
     <include name="Def_View_Flix_Minimal_Content">
+        <param name="def_label_sub_title" value="$PARAM[def_label_sub_title]" default="Def_Label_View_Flix_Sub_Title" />
         <param name="visible" value="$PARAM[visible]" default="true" />
+
         <definition>
             <control type="group">
                 <visible>$PARAM[visible]</visible>
@@ -51,11 +53,11 @@
 
                     <!-- SUB TITLE -->
 
-                    <include content="Def_Label_View_Flix_Sub_Title">
+                    <include content="$PARAM[def_label_sub_title]">
                         <param name="visible" value="!$EXP[View_Flix_Show_Clearlogo_Enable]" />
                         <param name="top" value="45" />
                     </include>
-                    <include content="Def_Label_View_Flix_Sub_Title">
+                    <include content="$PARAM[def_label_sub_title]">
                         <param name="visible" value="$EXP[View_Flix_Show_Clearlogo_Enable]" />
                         <param name="top" value="105" />
                     </include>
@@ -253,6 +255,55 @@
                     <visible>![Container.Content(addons) | [$EXP[IsAnPlugin] + Container.Content()]]</visible>
                     <visible>![Container.Content(albums) | Container.Content(songs) | container.content(artists) | Container.Content(images) | String.StartsWith(ListItem.Path,pvr://channels)]</visible>
                     <visible>!container.content(files) | String.IsEqual(Container.FolderPath,playlistvideo://)</visible>
+                </control>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_Label_View_Flix_Playlist_Sub_Title">
+        <param name="height" value="$PARAM[height]" default="46" />
+        <param name="width" value="$PARAM[width]" default="100%" />
+        <param name="width_condition" value="$PARAM[width_condition]" default="false" />
+        <param name="align" value="$PARAM[align]" default="left" />
+        <param name="visible" value="$PARAM[visible]" default="true" />
+
+        <definition>
+            <control type="group">
+                <visible>$PARAM[visible]</visible>
+                <top>$PARAM[top]</top>
+                <left>$PARAM[left]</left>
+                <height>$PARAM[height]</height>
+
+                <include content="Def_Width" condition="$PARAM[width_condition]">
+                    <param name="width" value="520" />
+                </include>
+
+                <width>$PARAM[width]</width>
+
+                <!-- SUB TITLE - ALBUMS / SONGS -->
+
+                <control type="label">
+                    <aligny>center</aligny>
+                    <align>$PARAM[align]</align>
+                    <width>$PARAM[width]</width>
+                    <font>InfoNetflix</font>
+                    <textcolor>PanelWhite70</textcolor>
+                    <selectedcolor>PanelWhite70</selectedcolor>
+                    <label>$VAR[Label_View_Flix_Sub_Title_Music]</label>
+                    <visible>String.IsEqual(ListItem.DBType,song)</visible>
+                </control>
+
+                <!-- SUB TITLE - OTHERS -->
+
+                <control type="label">
+                    <aligny>center</aligny>
+                    <align>$PARAM[align]</align>
+                    <width>$PARAM[width]</width>
+                    <font>InfoNetflix</font>
+                    <textcolor>PanelWhite70</textcolor>
+                    <selectedcolor>PanelWhite70</selectedcolor>
+                    <label>$VAR[Label_View_Flix_Sub_Title]</label>
+                    <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,video) | String.IsEqual(ListItem.DBType,episode)</visible>
                 </control>
             </control>
         </definition>

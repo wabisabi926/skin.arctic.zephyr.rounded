@@ -326,6 +326,9 @@
                         [!Skin.HasSetting(dont.use.landscape.movies) + String.IsEmpty(ListItem.Art(landscape)) + String.IsEqual(ListItem.DBType,movie)] |
                         [Skin.HasSetting(use.clearlogo.on.fanart.artists) + [String.IsEqual(ListItem.DBType,artist) | String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,song)]]</expression>
 
+    <expression name="View_Clearlogo_Playlist_On_Fanart">[Skin.HasSetting(use.clearlogo.on.fanart.artists) + Container.Content(songs)] |
+                        [String.IsEqual(ListItem.DBType,episode) + String.IsEmpty(ListItem.Art(tvshow.landscape))] |
+                        [String.IsEqual(ListItem.DBType,movie) + String.IsEmpty(ListItem.Art(landscape))]</expression>
 
     <!-- VIEW 524 Flix List -->
 

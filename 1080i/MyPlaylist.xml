@@ -6,6 +6,7 @@
     <include condition="Skin.HasSetting(enabled.tmdb.helper.blur)">Action_Blur_Onload</include>
 
     <onload>RunScript(script.skinvariables,action=buildviews)</onload>
+
     <onunload condition="!Player.HasAudio + !String.IsEmpty(Window(Home).Property(Encoded.MusicPlayer.Album))">alarmclock(ResetValue,ClearProperty(Encoded.MusicPlayer.Album),Home),00:00,silent)</onunload>
 
     <controls>
@@ -182,20 +183,13 @@
                     <onclick>ReloadSkin()</onclick>
                     <visible>Control.IsVisible(523) | Control.IsVisible(524)</visible>
                 </control>
-                <control type="radiobutton" id="903">
-                    <include>Def_Dialog_Menu_Button_Gradient_Select</include>
-                    <label>$LOCALIZE[31090]</label>
-                    <selected>Skin.HasSetting(show.view.524.fanart.artist)</selected>
-                    <onclick>Skin.ToggleSetting(show.view.524.fanart.artist)</onclick>
-                    <onclick>ReloadSkin()</onclick>
-                    <visible>Control.IsVisible(524)</visible>
-                </control>
                 <control type="radiobutton" id="9035">
                     <include>Def_Dialog_Menu_Button_Gradient_Select</include>
                     <label>$LOCALIZE[31289]</label>
                     <selected>Skin.HasSetting(use.clearlogo.on.fanart.artists)</selected>
                     <onclick>Skin.ToggleSetting(use.clearlogo.on.fanart.artists)</onclick>
-                    <visible>[Control.IsVisible(57) + Container.Content(songs)] | Control.IsVisible(522) | Control.IsVisible(5228) | [Control.IsVisible(524) + Skin.HasSetting(show.view.524.fanart.artist)]</visible>
+                    <visible>[Control.IsVisible(57) + Container.Content(songs)] | Control.IsVisible(522) | Control.IsVisible(5228) | Control.IsVisible(524)</visible>
+                    <visible>Container.Content(songs)</visible>
                 </control>
                 <control type="radiobutton" id="90445">
                     <include>Def_Dialog_Menu_Button_Gradient_Select</include>
@@ -238,20 +232,6 @@
                     <enable>!Skin.HasSetting(hide.view.flix.preview)</enable>
                     <onclick>ReloadSkin()</onclick>
                 </control>
-
-                <!-- GLOBAL -->
-
-                <!-- <control type="button" id="55552"> -->
-                    <!-- <include>Def_Dialog_Menu_Button_Title</include> -->
-                    <!-- <label>31381</label> -->
-                <!-- </control> -->
-
-                <!-- <control type="button" id="9305"> -->
-                    <!-- <include>Def_Dialog_Menu_Button_Gradient_Select</include> -->
-                    <!-- <label>$LOCALIZE[5]</label> -->
-                    <!-- <align>left</align> -->
-                    <!-- <onclick>ActivateWindow(1110)</onclick> -->
-                <!-- </control> -->
             </control>
 
             <!-- SCROLLBAR -->

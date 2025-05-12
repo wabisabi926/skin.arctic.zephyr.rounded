@@ -24,8 +24,8 @@
                     <height>365</height>
                     <right>View_SidePad</right>
 
-                    <include content="Def_Left" condition="!Skin.HasSetting(show.view.524.poster.movies)"><param name="left" value="764" /></include>
                     <include content="Def_Left" condition="Skin.HasSetting(show.view.524.poster.movies)"><param name="left" value="364" /></include>
+                    <include content="Def_Left" condition="!Skin.HasSetting(show.view.524.poster.movies)"><param name="left" value="764" /></include>
 
                     <include>Def_View_Focus_Dialog_Menu_On_Right</include>
 
@@ -199,9 +199,7 @@
                     <top>View_Top</top>
                     <height>365</height>
                     <right>View_SidePad</right>
-
-                    <include content="Def_Left" condition="Skin.HasSetting(show.view.524.fanart.artist)"><param name="left" value="764" /></include>
-                    <include content="Def_Left" condition="!Skin.HasSetting(show.view.524.fanart.artist)"><param name="left" value="478" /></include>
+                    <left>764</left>
 
                     <include>Def_View_Focus_Dialog_Menu_On_Right</include>
                     <onleft>1623</onleft>
@@ -237,14 +235,7 @@
                 <!-- SCROLLBAR -->
 
                 <control type="scrollbar" id="1623">
-                    <include content="Object_Scrollbar_Views_Vertical" condition="!Skin.HasSetting(show.view.524.fanart.artist)">
-                        <param name="scrollid" value="1623" />
-                        <param name="top" value="216" />
-                        <param name="height" value="365" />
-                        <param name="idlayout" value="524" />
-                        <param name="centerleft" value="462" />
-                    </include>
-                    <include content="Object_Scrollbar_Views_Vertical" condition="Skin.HasSetting(show.view.524.fanart.artist)">
+                    <include content="Object_Scrollbar_Views_Vertical">
                         <param name="scrollid" value="1623" />
                         <param name="top" value="216" />
                         <param name="height" value="365" />
@@ -254,25 +245,29 @@
                 </control>
             </control>
 
-            <include>Def_View_Flix_Minimal_Content</include>
-            <include condition="!Skin.HasSetting(show.view.524.fanart.artist)">524_Album</include>
+            <include content="Def_View_Flix_Minimal_Content">
+                <param name="def_label_sub_title" value="Def_Label_View_Flix_Playlist_Sub_Title" />
+            </include>
 
-            <include content="524_Fanart" condition="Skin.HasSetting(show.view.524.fanart.artist)">
+            <include content="524_Fanart">
                 <param name="top" value="528" />
                 <param name="height" value="364" />
                 <param name="width" value="650" />
+                <param name="texture" value="$VAR[Image_Playlist_Fanart]" />
+                <param name="visible_clearlogo" value="$EXP[View_Clearlogo_Playlist_On_Fanart]" />
             </include>
         </control>
     </include>
 
-    <include name="524_Fanart">
-        <param name="top" value="$PARAM[top]" default="532" />
+    <include name="524_Poster">
+        <param name="top" value="$PARAM[top]" default="528" />
         <param name="left" value="$PARAM[left]" default="View_SidePad" />
-        <param name="height" value="$PARAM[height]" default="350" />
-        <param name="width" value="$PARAM[width]" default="625" />
-        <param name="pad_image" value="$PARAM[pad_image]" default="0" />
-        <param name="texture" value="$PARAM[texture]" default="$VAR[Image_Fanart]" />
         <param name="visible" value="$PARAM[visible]" default="true" />
+        <param name="width" value="$PARAM[width]" default="250" />
+        <param name="height" value="$PARAM[height]" default="364" />
+        <param name="pad_image" value="$PARAM[pad_image]" default="0" />
+        <param name="texture" value="$PARAM[texture]" default="$VAR[Image_Poster]" />
+
         <definition>
             <control type="group">
                 <visible>$PARAM[visible]</visible>
@@ -283,29 +278,16 @@
                 <height>$PARAM[height]</height>
 
                 <control type="group">
-                    <include>Def_Art_Full_Background_b24</include>
+                    <include>Def_Art_Full_Background_b12</include>
 
-                    <!-- FANART  -->
+                    <!-- POSTER -->
 
                     <include content="Def_Art_Icon_Image">
                         <param name="condition_fadetime" value="true" />
                         <param name="aspectratio" value="scale" />
                         <param name="texture" value="$PARAM[texture]" />
-                        <param name="texture_diffuse" value="fanart_w645_h370_b24" />
+                        <param name="texture_diffuse" value="poster_w240_h350" />
                     </include>
-
-                    <!-- CLEARLOGO -->
-
-                    <control type="image">
-                        <height>100</height>
-                        <width>240</width>
-                        <right>40</right>
-                        <bottom>30</bottom>
-                        <fadetime>PosterFanartFadetime</fadetime>
-                        <aspectratio align="right" aligny="bottom">keep</aspectratio>
-                        <texture background="true">$VAR[Image_ClearLogo]</texture>
-                        <visible>$EXP[View_Clearlogo_On_Fanart]</visible>
-                    </control>
                 </control>
             </control>
         </definition>
@@ -343,13 +325,16 @@
         </definition>
     </include>
 
-    <include name="524_Poster">
-        <param name="top" value="$PARAM[top]" default="528" />
+    <include name="524_Fanart">
+        <param name="top" value="$PARAM[top]" default="532" />
         <param name="left" value="$PARAM[left]" default="View_SidePad" />
-        <param name="visible" value="$PARAM[visible]" default="true" />
-        <param name="width" value="$PARAM[width]" default="250" />
-        <param name="height" value="$PARAM[height]" default="364" />
+        <param name="height" value="$PARAM[height]" default="350" />
+        <param name="width" value="$PARAM[width]" default="625" />
         <param name="pad_image" value="$PARAM[pad_image]" default="0" />
+        <param name="texture" value="$PARAM[texture]" default="$VAR[Image_Fanart]" />
+        <param name="visible" value="$PARAM[visible]" default="true" />
+        <param name="visible_clearlogo" value="$PARAM[visible_clearlogo]" default="$EXP[View_Clearlogo_On_Fanart]" />
+
         <definition>
             <control type="group">
                 <visible>$PARAM[visible]</visible>
@@ -360,16 +345,29 @@
                 <height>$PARAM[height]</height>
 
                 <control type="group">
-                    <include>Def_Art_Full_Background_b12</include>
+                    <include>Def_Art_Full_Background_b24</include>
 
-                    <!-- POSTER -->
+                    <!-- FANART  -->
 
                     <include content="Def_Art_Icon_Image">
                         <param name="condition_fadetime" value="true" />
                         <param name="aspectratio" value="scale" />
-                        <param name="texture" value="$VAR[Image_Poster]" />
-                        <param name="texture_diffuse" value="poster_w240_h350" />
+                        <param name="texture" value="$PARAM[texture]" />
+                        <param name="texture_diffuse" value="fanart_w645_h370_b24" />
                     </include>
+
+                    <!-- CLEARLOGO -->
+
+                    <control type="image">
+                        <height>100</height>
+                        <width>240</width>
+                        <right>40</right>
+                        <bottom>30</bottom>
+                        <fadetime>PosterFanartFadetime</fadetime>
+                        <aspectratio align="right" aligny="bottom">keep</aspectratio>
+                        <texture background="true">$VAR[Image_ClearLogo]</texture>
+                        <visible>$PARAM[visible_clearlogo]</visible>
+                    </control>
                 </control>
             </control>
         </definition>
