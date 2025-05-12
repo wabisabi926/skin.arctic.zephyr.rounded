@@ -1010,10 +1010,13 @@
 
         <value condition="Container.Content(videoversions) + !ListItem.IsParentFolder + !String.IsEmpty(ListItem.Duration)">$VAR[Label_Video_Version_Media_Info]</value>
 
-        <value condition="[Container.Content(movies) | $EXP[IsAnVideoInPlaylist]] + !ListItem.IsParentFolder + !String.IsEmpty(ListItem.Duration)">$INFO[ListItem.Genre]</value>
-        <value condition="[Container.Content(movies) | $EXP[IsAnVideoInPlaylist]] + !ListItem.IsParentFolder + !String.IsEmpty(ListItem.Genre)">$INFO[ListItem.Genre]</value>
+        <!-- <value condition="[Container.Content(movies) | $EXP[IsAnVideoInPlaylist]] + !ListItem.IsParentFolder + !String.IsEmpty(ListItem.Duration)">$INFO[ListItem.Genre]</value> -->
+        <!-- <value condition="[Container.Content(movies) | $EXP[IsAnVideoInPlaylist]] + !ListItem.IsParentFolder + !String.IsEmpty(ListItem.Genre)">$INFO[ListItem.Genre]</value> -->
+
         <value condition="Container.Content(tvshows) + !ListItem.IsParentFolder + !String.IsEmpty(ListItem.Property(TotalEpisodes))">$INFO[ListItem.Property(TotalEpisodes),, $LOCALIZE[20453]]$INFO[ListItem.Genre,  •  ,]</value>
         <value condition="Container.Content(seasons) + !ListItem.IsParentFolder">$INFO[ListItem.Year]$INFO[ListItem.Property(TotalEpisodes),  •  , $LOCALIZE[20453]]</value>
+
+        <value condition="String.IsEqual(Container.FolderPath,playlistvideo://) + String.IsEqual(ListItem.DBType,episode) + !ListItem.IsParentFolder + !String.IsEmpty(ListItem.Premiered)">$INFO[ListItem.TVShowTitle]$INFO[ListItem.Season,  •  $LOCALIZE[20373] ]$INFO[ListItem.Episode,  •  $LOCALIZE[20359] ]</value>
 
         <value condition="[Container.Content(episodes) | String.IsEqual(ListItem.DBType,episode)] + !ListItem.IsParentFolder + !String.IsEmpty(ListItem.Premiered)">$INFO[ListItem.Premiered]$INFO[ListItem.Season,  •  $LOCALIZE[20373] ]</value>
 
