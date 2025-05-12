@@ -27,16 +27,20 @@
             <!-- LEFT SIDE BUTTONS -->
 
             <control type="grouplist" id="6000">
-                <bottom>118</bottom>
                 <left>130</left>
                 <height>48</height>
-                <orientation>horizontal</orientation>
+                <bottom>118</bottom>
                 <align>left</align>
-                <itemgap>16</itemgap>
-                <onleft>24</onleft>
-                <onright>12</onright>
+
                 <onup>8200</onup>
                 <onup>SetProperty(OSDArtistDetails,1,Home)</onup>
+                <onleft>24</onleft>
+                <onright>12</onright>
+
+                <itemgap>16</itemgap>
+                <orientation>horizontal</orientation>
+
+                <!-- REPEAT -->
 
                 <include content="Object_OSD_Button">
                     <param name="visible" value="true" />
@@ -50,6 +54,8 @@
                     <onclick>PlayerControl(Repeat)</onclick>
                     <onfocus>ClearProperty(OSDArtistDetails,Home)</onfocus>
                 </include>
+
+                <!-- SHUTTLE -->
 
                 <include content="Object_OSD_Button">
                     <param name="visible" value="true" />
@@ -66,6 +72,8 @@
                     <onright>2</onright>
                 </include>
 
+                <!-- LRC LYRIC -->
+
                 <include content="Object_OSD_Button">
                     <param name="visible" value="true" />
                     <param name="left" value="-64" />
@@ -78,6 +86,8 @@
                     <onclick condition="!System.HasAddon(script.cu.lrclyrics)">InstallAddon(script.cu.lrclyrics)</onclick>
                     <onclick condition="System.HasAddon(script.cu.lrclyrics)">RunScript(script.cu.lrclyrics)</onclick>
                 </include>
+
+                <!-- SHOW INFO -->
 
                 <include content="Object_OSD_Button">
                     <param name="visible" value="true" />
@@ -95,17 +105,20 @@
             <!-- CENTER BUTTONS -->
 
             <control type="grouplist" id="6003">
-
                 <left>0</left>
+                <height>48</height>
                 <bottom>118</bottom>
                 <width>100%</width>
-                <height>48</height>
-                <itemgap>16</itemgap>
-                <orientation>horizontal</orientation>
                 <align>center</align>
+
+                <onup>8200</onup>
                 <onleft>3</onleft>
                 <onright>21</onright>
-                <onup>8200</onup>
+
+                <itemgap>16</itemgap>
+                <orientation>horizontal</orientation>
+
+                <!-- PREVIOUS -->
 
                 <include content="Object_OSD_Button">
                     <param name="visible" value="true" />
@@ -191,13 +204,15 @@
                 <bottom>118</bottom>
                 <right>112</right>
                 <height>48</height>
-                <orientation>horizontal</orientation>
                 <align>right</align>
-                <itemgap>16</itemgap>
-                <onleft>17</onleft>
-                <onright>1</onright>
+
                 <onup>8200</onup>
                 <onup>SetProperty(OSDArtistDetails,1,Home)</onup>
+                <onleft>17</onleft>
+                <onright>1</onright>
+
+                <itemgap>16</itemgap>
+                <orientation>horizontal</orientation>
 
                 <include content="Object_OSD_Button">
                     <param name="visible" value="true" />
@@ -270,9 +285,9 @@
                 <height>50</height>
                 <align>left</align>
 
-                <usecontrolcoords>true</usecontrolcoords>
-                <orientation>horizontal</orientation>
                 <itemgap>0</itemgap>
+                <orientation>horizontal</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
 
                 <control type="image">
                     <width>50</width>
@@ -309,6 +324,8 @@
             </control>
         </control>
 
+        <!-- MANUAL SLIDER -->
+
         <control type="progress">
             <left>110</left>
             <right>110</right>
@@ -321,7 +338,6 @@
             <midtexture />
             <visible>Control.HasFocus(8200)</visible>
         </control>
-
         <control type="slider" id="8200">
             <left>130</left>
             <right>130</right>
