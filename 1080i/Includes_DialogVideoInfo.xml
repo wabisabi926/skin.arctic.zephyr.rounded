@@ -671,13 +671,19 @@
 
                 <control type="group">
                     <visible>!String.IsEqual(Window(Home).Property(moviecontent),5) + !String.IsEqual(Window(Home).Property(moviecontent),6) + ![Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hide.button.video.wiki)]</visible>
+
                     <include>Animation_Video_Fade_Out</include>
-                    <include condition="!String.IsEqual(ListItem.Property(item.type),person)">Furniture_Flags_DialogInfo_Video</include>
                     <include>Animation_Fade_In_DialogInfo</include>
                     <include>Animation_Fade_Out_DialogInfo</include>
+
+                    <!-- MEDIA FLAG -->
+
+                    <include condition="!String.IsEqual(ListItem.Property(item.type),person)">Furniture_Flags_DialogInfo_Video</include>
+
+                    <top>205</top>
                     <left>570</left>
                     <bottom>224</bottom>
-                    <top>205</top>
+
                     <control type="group">
                         <right>View_SidePad</right>
 
@@ -803,7 +809,7 @@
                                     <height>36</height>
                                     <font>Tiny</font>
                                     <textcolor>Dark2</textcolor>
-                                    <label fallback="19055">$VAR[Label_Year]</label>
+                                    <label fallback="19055">$VAR[Label_Dialog_Info_Video_Year]</label>
                                     <aligny>center</aligny>
                                 </control>
                                 <control type="label">
@@ -1481,9 +1487,6 @@
                         <param name="controlid" value="9504" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),4)" />
                     </include>
-
-
-
 
 <!-- ==================================================================== -->
 <!--                      GROUP BUTTON - 9090                             -->
