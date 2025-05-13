@@ -319,9 +319,10 @@
                 <!-- ALL OTHERS LABEL -->
 
                 <control type="textbox">
-                    <visible>!Container.Content(addons) + !Container.Content(addons) + !Container.Content(favourites) + !Container.Content(sets) + !Container.Content(genres) + !Container.Content(videos) + [!Container.Content(movies) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType)]] + !Container.Content(tvshows) + !Container.Content(seasons) + !Container.Content(episodes) + !Container.Content(artists) + !Container.Content(albums) + !Container.Content(songs) + [[Control.IsVisible(547) + Container.Content(files)] | Control.IsVisible(557) | Control.IsVisible(521) | Control.IsVisible(55) | Control.IsVisible(517) | Control.IsVisible(509) | Control.IsVisible(519) | Control.IsVisible(514) | Control.IsVisible(527) | Control.IsVisible(53) | Control.IsVisible(5218) | [Control.IsVisible(5238) + String.IsEqual(Skin.String(523.square.size),2)]]</visible>
                     <visible>!Control.IsVisible(523)</visible>
                     <visible>String.StartsWith(ListItem.Icon,Default)</visible>
+                    <visible>!Container.Content(addons) + !Container.Content(addons) + !Container.Content(favourites) + !Container.Content(sets) + !Container.Content(genres) + !Container.Content(videos) + [!Container.Content(movies) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType)]] + !Container.Content(tvshows) + !Container.Content(seasons) + !Container.Content(episodes) + !Container.Content(artists) + !Container.Content(albums) + !Container.Content(songs) + [[Control.IsVisible(547) + Container.Content(files)] | Control.IsVisible(557) | Control.IsVisible(521) | Control.IsVisible(55) | Control.IsVisible(517) | Control.IsVisible(509) | Control.IsVisible(519) | Control.IsVisible(514) | Control.IsVisible(527) | Control.IsVisible(53) | Control.IsVisible(5218) | [Control.IsVisible(5238) + String.IsEqual(Skin.String(523.square.size),2)]]</visible>
+
                     <align>center</align>
                     <aligny>center</aligny>
                     <left>20</left>
@@ -489,68 +490,53 @@
 
                 <control type="image">
                     <visible>ListItem.IsCollection</visible>
-                    <include>Def_Image_Poster_Rating_Info_Right</include>
+                    <include>Def_Background_Poster_Rating_Info_Right</include>
                     <texture background="true" colordiffuse="FF081C24">diffuse/circle_64.png</texture>
                 </control>
-                <!-- <control type="image"> -->
-                    <!-- <visible>ListItem.IsCollection</visible> -->
-                    <!-- <align>right</align> -->
-                    <!-- <aligny>center</aligny> -->
-                    <!-- <width>32</width> -->
-                    <!-- <right>18</right> -->
-                    <!-- <bottom>30</bottom> -->
-                    <!-- <height>32</height> -->
-                    <!-- <texture background="false" colordiffuse="$VAR[Color_Indicator_Set]">buttonsdialogs/collection.png</texture> -->
-                <!-- </control> -->
-                <control type="label">
+                <control type="image">
                     <visible>ListItem.IsCollection</visible>
-                    <include>Def_Label_Poster_Set_Version_Right</include>
-                    <label>[COLOR=$VAR[Color_Indicator_Set]]&#61898;[/COLOR]</label>
+                    <include>Def_Image_Poster_Rating_Info_Right</include>
+                    <texture background="false" colordiffuse="$VAR[Color_Indicator_Set]">buttonsdialogs/collection.png</texture>
                 </control>
+                <!-- <control type="label"> -->
+                    <!-- <visible>ListItem.IsCollection</visible> -->
+                    <!-- <include>Def_Label_Poster_Set_Version_Right</include> -->
+                    <!-- <label>[COLOR=$VAR[Color_Indicator_Set]]&#61898;[/COLOR]</label> -->
+                <!-- </control> -->
 
                 <!-- VERSIONS -->
 
                 <control type="image">
                     <visible>Container($PARAM[controlid]).ListItem.HasVideoVersions</visible>
                     <visible>!Container.Content(videoversions) + !String.StartsWith(Container.FolderPath,videodb://movies/videoversions)</visible>
-                    <include>Def_Image_Poster_Rating_Info_Right</include>
+                    <include>Def_Background_Poster_Rating_Info_Right</include>
                     <texture background="true" colordiffuse="FF081C24">diffuse/circle_64.png</texture>
                 </control>
-                <!-- <control type="image"> -->
-                    <!-- <visible>Container($PARAM[controlid]).ListItem.HasVideoVersions</visible> -->
-                    <!-- <visible>!Container.Content(videoversions) + !String.StartsWith(Container.FolderPath,videodb://movies/videoversions)</visible> -->
-                    <!-- <align>right</align> -->
-                    <!-- <aligny>center</aligny> -->
-                    <!-- <width>32</width> -->
-                    <!-- <right>18</right> -->
-                    <!-- <bottom>30</bottom> -->
-                    <!-- <height>32</height> -->
-                    <!-- <texture background="true" colordiffuse="$VAR[Color_Indicator_Version]">buttonsdialogs/server.png</texture> -->
-                <!-- </control> -->
-                <control type="label">
+                <control type="image">
                     <visible>Container($PARAM[controlid]).ListItem.HasVideoVersions</visible>
                     <visible>!Container.Content(videoversions) + !String.StartsWith(Container.FolderPath,videodb://movies/videoversions)</visible>
-                    <include>Def_Label_Poster_Set_Version_Right</include>
-                    <label>[COLOR=$VAR[Color_Indicator_Version]]&#61735;[/COLOR]</label>
+                    <include>Def_Image_Poster_Rating_Info_Right</include>
+                    <texture background="true" colordiffuse="$VAR[Color_Indicator_Version]">buttonsdialogs/server.png</texture>
                 </control>
+                <!-- <control type="label"> -->
+                    <!-- <visible>Container($PARAM[controlid]).ListItem.HasVideoVersions</visible> -->
+                    <!-- <visible>!Container.Content(videoversions) + !String.StartsWith(Container.FolderPath,videodb://movies/videoversions)</visible> -->
+                    <!-- <include>Def_Label_Poster_Set_Version_Right</include> -->
+                    <!-- <label>[COLOR=$VAR[Color_Indicator_Version]]&#61735;[/COLOR]</label> -->
+                <!-- </control> -->
 
                 <!-- DBType movie / tvshow ? -->
 
                 <control type="image">
                     <visible>String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)</visible>
                     <visible>Control.IsVisible(9506) | Control.IsVisible(9556) | Control.IsVisible(9560) | [Control.IsVisible(6) + !String.IsEmpty(Window(Home).Property(ListVideoForCast))]</visible>
-                    <include>Def_Image_Poster_Rating_Info_Right</include>
+                    <include>Def_Background_Poster_Rating_Info_Right</include>
                     <texture background="true" colordiffuse="FF081C24">diffuse/circle_64.png</texture>
                 </control>
                 <control type="image">
                     <visible>String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)</visible>
                     <visible>Control.IsVisible(9506) | Control.IsVisible(9556) | Control.IsVisible(9560) | [Control.IsVisible(6) + !String.IsEmpty(Window(Home).Property(ListVideoForCast))]</visible>
-                    <align>right</align>
-                    <aligny>center</aligny>
-                    <width>28</width>
-                    <right>15</right>
-                    <bottom>32</bottom>
-                    <height>28</height>
+                    <include>Def_Image_Poster_Rating_Info_Right</include>
                     <texture background="true" colordiffuse="$VAR[Color_Indicator_DBType]">buttonsdialogs/$INFO[ListItem.DBType].png</texture>
                 </control>
             </control>
