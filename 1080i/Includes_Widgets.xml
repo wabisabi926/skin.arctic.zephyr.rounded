@@ -1328,7 +1328,6 @@
     <include name="Def_Widget_Poster">
         <param name="texture" value="$PARAM[texture]"  default="$VAR[Image_Poster]"/>
         <param name="texture_diffuse" value="$PARAM[texture_diffuse]" />
-        <param name="indicatorbackground" value="$PARAM[indicatorbackground]" default="false" />
         <param name="visible_title_overlay" value="$PARAM[visible_title_overlay]" default="false" />
         <param name="pad_image" value="$PARAM[pad_image]" default="10" />
 
@@ -1353,9 +1352,13 @@
                 <param name="bottom" value="-10" />
             </include>
 
-            <include content="Layout_Poster_Indicator_Status" condition="!Skin.HasSetting(hide.markers)">
-                <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
-            </include>
+            <!-- WATCHED STATUS -->
+
+            <include condition="!Skin.HasSetting(hide.markers) + !Skin.HasSetting(furniture.markers.alternative)">Layout_Poster_Indicator_Status_Icon</include>
+            <include condition="!Skin.HasSetting(hide.markers) + Skin.HasSetting(furniture.markers.alternative)">Layout_Poster_Indicator_Status_Banner</include>
+
+            <!-- WIDGET "MORE" -->
+
             <include condition="Skin.HasSetting(enable.morewidget)">more</include>
         </definition>
     </include>
@@ -1561,9 +1564,13 @@
                 </control>
             </control>
 
-            <include content="Layout_Poster_Indicator_Status" condition="!Skin.HasSetting(hide.markers)">
-                <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
-            </include>
+            <!-- WATCHED STATUS -->
+
+            <include condition="!Skin.HasSetting(hide.markers) + !Skin.HasSetting(furniture.markers.alternative)">Layout_Poster_Indicator_Status_Icon</include>
+            <include condition="!Skin.HasSetting(hide.markers) + Skin.HasSetting(furniture.markers.alternative)">Layout_Poster_Indicator_Status_Banner</include>
+
+            <!-- WIDGET "MORE" -->
+
             <include condition="Skin.HasSetting(enable.morewidget)">more</include>
         </definition>
     </include>
@@ -1571,7 +1578,6 @@
     <include name="Def_Widget_Thumb">
         <param name="texture" value="$PARAM[texture]" default="$VAR[Image_Widget_Thumb]"/>
         <param name="texture_diffuse" value="$PARAM[texture_diffuse]" />
-        <param name="indicatorbackground" value="$PARAM[indicatorbackground]" default="false" />
         <param name="pad_image" value="$PARAM[pad_image]" default="10" />
         <param name="clearlogo" value="$PARAM[clearlogo]" default="false" />
         <param name="small" value="$PARAM[smallthumb]" default="false" />
@@ -1722,9 +1728,8 @@
 
             <!-- WATCHED STATUS -->
 
-            <include content="Layout_Poster_Indicator_Status" condition="!Skin.HasSetting(hide.markers)">
-                <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
-            </include>
+            <include condition="!Skin.HasSetting(hide.markers) + !Skin.HasSetting(furniture.markers.alternative)">Layout_Poster_Indicator_Status_Icon</include>
+            <include condition="!Skin.HasSetting(hide.markers) + Skin.HasSetting(furniture.markers.alternative)">Layout_Poster_Indicator_Status_Banner</include>
 
             <!-- WIDGET "MORE" -->
 
@@ -1735,7 +1740,6 @@
     <include name="Def_Widget_Fanart">
         <param name="texture" value="$PARAM[texture]"  default="$VAR[Image_Widget_Fanart]"/>
         <param name="texture_diffuse" value="$PARAM[texture_diffuse]" />
-        <param name="indicatorbackground" value="$PARAM[indicatorbackground]" default="false" />
         <param name="pad_image" value="$PARAM[pad_image]" default="10" />
         <param name="height" value="$PARAM[height]" default="325" />
         <param name="image_height" value="$PARAM[image_height]" default="325" />
@@ -1881,9 +1885,12 @@
                 <param name="bottom_small" value="82" />
             </include>
 
-            <include content="Layout_Poster_Indicator_Status" condition="!Skin.HasSetting(hide.markers)">
-                <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
-            </include>
+            <!-- WATCHED STATUS -->
+
+            <include condition="!Skin.HasSetting(hide.markers) + !Skin.HasSetting(furniture.markers.alternative)">Layout_Poster_Indicator_Status_Icon</include>
+            <include condition="!Skin.HasSetting(hide.markers) + Skin.HasSetting(furniture.markers.alternative)">Layout_Poster_Indicator_Status_Banner</include>
+
+            <!-- WIDGET "MORE" -->
 
             <include condition="Skin.HasSetting(enable.morewidget)">more</include>
         </definition>
@@ -1893,7 +1900,6 @@
     <include name="Def_Widget_Landscape">
         <param name="texture" value="$PARAM[texture]"  default="$VAR[Image_Fanart]"/>
         <param name="texture_diffuse" value="$PARAM[texture_diffuse]" />
-        <param name="indicatorbackground" value="$PARAM[indicatorbackground]" default="false" />
         <param name="pad_image" value="$PARAM[pad_image]" default="10" />
         <param name="clearlogo" value="$PARAM[clearlogo]" default="false" />
         <param name="small" value="$PARAM[small]" default="false" />
@@ -1990,22 +1996,16 @@
                 <param name="bottom" value="-10" />
             </include>
 
-            <!-- <include content="Def_Widget_Image_Clearlogo_Dim" condition="$PARAM[clearlogo]"> -->
-                <!-- <param name="width" value="250" /> -->
-                <!-- <param name="right" value="30" /> -->
-                <!-- <param name="bottom" value="20" /> -->
-            <!-- </include> -->
+            <!-- WATCHED STATUS -->
 
-            <include content="Layout_Poster_Indicator_Status" condition="!Skin.HasSetting(hide.markers)">
-                <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
-            </include>
+            <include condition="!Skin.HasSetting(hide.markers) + !Skin.HasSetting(furniture.markers.alternative)">Layout_Poster_Indicator_Status_Icon</include>
+            <include condition="!Skin.HasSetting(hide.markers) + Skin.HasSetting(furniture.markers.alternative)">Layout_Poster_Indicator_Status_Banner</include>
         </definition>
     </include>
 
     <include name="Def_Widget_Banner">
         <param name="texture" value="$PARAM[texture]"  default="$VAR[Image_Banner]"/>
         <param name="texture_diffuse" value="$PARAM[texture_diffuse]" />
-        <param name="indicatorbackground" value="$PARAM[indicatorbackground]" default="false" />
         <param name="pad_image" value="$PARAM[pad_image]" default="10" />
 
         <definition>
@@ -2041,9 +2041,12 @@
                 <param name="bottom" value="-10" />
             </include>
 
-            <include content="Layout_Poster_Indicator_Status" condition="!Skin.HasSetting(hide.markers)">
-                <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
-            </include>
+            <!-- WATCHED STATUS -->
+
+            <include condition="!Skin.HasSetting(hide.markers) + !Skin.HasSetting(furniture.markers.alternative)">Layout_Poster_Indicator_Status_Icon</include>
+            <include condition="!Skin.HasSetting(hide.markers) + Skin.HasSetting(furniture.markers.alternative)">Layout_Poster_Indicator_Status_Banner</include>
+
+            <!-- WIDGET "MORE" -->
 
             <include condition="Skin.HasSetting(enable.morewidget)">more</include>
         </definition>
@@ -2506,7 +2509,6 @@
                     <param name="colordiffuse" value="$PARAM[colordiffuse]" />
                     <param name="texture" value="$PARAM[texture]" />
                     <param name="texture_diffuse" value="$PARAM[texture_diffuse]" />
-                    <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
                 </include>
             </control>
         </definition>
@@ -2527,7 +2529,6 @@
                     <param name="colordiffuse" value="$PARAM[colordiffuse]" />
                     <param name="texture" value="$PARAM[texture]" />
                     <param name="texture_diffuse" value="$PARAM[texture_diffuse]" />
-                    <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
                 </include>
                 <include content="Layout_Widget_Focus">
                     <param name="id" value="$PARAM[id]" />
@@ -2554,7 +2555,6 @@
                     <param name="colordiffuse" value="$PARAM[colordiffuse]" />
                     <param name="texture" value="$PARAM[texture]" />
                     <param name="texture_diffuse" value="$PARAM[texture_diffuse]" />
-                    <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
                     <param name="aspectratio" value="$PARAM[aspectratio]" />
                     <param name="middle" value="$PARAM[middle]" default="false" />
                     <param name="small" value="$PARAM[small]" default="false" />
@@ -2578,7 +2578,6 @@
                     <param name="colordiffuse" value="$PARAM[colordiffuse]" />
                     <param name="texture" value="$PARAM[texture]" />
                     <param name="texture_diffuse" value="$PARAM[texture_diffuse]" />
-                    <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
                     <param name="aspectratio" value="$PARAM[aspectratio]" />
                     <param name="middle" value="$PARAM[middle]" default="false" />
                     <param name="small" value="$PARAM[small]" default="false" />
@@ -2611,7 +2610,6 @@
                     <param name="colordiffuse" value="$PARAM[colordiffuse]" />
                     <param name="texture" value="$PARAM[texture]" />
                     <param name="texture_diffuse" value="$PARAM[texture_diffuse]" />
-                    <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
                     <param name="small" value="$PARAM[small]" default="false" />
                     <param name="image_height" value="$PARAM[image_height]" />
                     <param name="clearlogo" value="$PARAM[clearlogo]" />
@@ -2634,7 +2632,6 @@
                     <param name="colordiffuse" value="$PARAM[colordiffuse]" />
                     <param name="texture" value="$PARAM[texture]" />
                     <param name="texture_diffuse" value="$PARAM[texture_diffuse]" />
-                    <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
                     <param name="small" value="$PARAM[small]" default="false" />
                     <param name="image_height" value="$PARAM[image_height]" />
                     <param name="clearlogo" value="$PARAM[clearlogo]" />
@@ -2665,7 +2662,6 @@
                     <param name="colordiffuse" value="$PARAM[colordiffuse]" />
                     <param name="texture" value="$PARAM[texture]" />
                     <param name="texture_diffuse" value="$PARAM[texture_diffuse]" />
-                    <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
                     <param name="clearlogo" value="$PARAM[clearlogo]" />
                     <param name="small" value="$PARAM[small]" />
                     <param name="image_height" value="$PARAM[image_height]" />
@@ -2688,7 +2684,6 @@
                     <param name="colordiffuse" value="$PARAM[colordiffuse]" />
                     <param name="texture" value="$PARAM[texture]" />
                     <param name="texture_diffuse" value="$PARAM[texture_diffuse]" />
-                    <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
                     <param name="clearlogo" value="$PARAM[clearlogo]" />
                     <param name="small" value="$PARAM[small]" />
                     <param name="image_height" value="$PARAM[image_height]" />
@@ -2720,7 +2715,6 @@
                     <param name="texture" value="$PARAM[texture]" />
                     <param name="texture_diffuse" value="$PARAM[texture_diffuse]" />
                     <param name="clearlogo" value="$PARAM[clearlogo]" />
-                    <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
                     <param name="small" value="$PARAM[small]" />
                     <param name="image_height" value="$PARAM[image_height]" />
                     <param name="poster" value="$PARAM[poster]" />
@@ -2747,7 +2741,6 @@
                     <param name="small" value="$PARAM[small]" />
                     <param name="image_height" value="$PARAM[image_height]" />
                     <param name="poster" value="$PARAM[poster]" />
-                    <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
                 </include>
                 <include content="Layout_Widget_Focus">
                     <param name="id" value="$PARAM[id]" />
@@ -2789,7 +2782,6 @@
                     <param name="colordiffuse" value="$PARAM[colordiffuse]" />
                     <param name="texture" value="$PARAM[texture]" />
                     <param name="texture_diffuse" value="$PARAM[texture_diffuse]" />
-                    <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
                 </include>
             </control>
         </definition>
@@ -2806,7 +2798,6 @@
                     <param name="colordiffuse" value="$PARAM[colordiffuse]" />
                     <param name="texture" value="$PARAM[texture]" />
                     <param name="texture_diffuse" value="$PARAM[texture_diffuse]" />
-                    <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
                 </include>
                 <include content="Layout_Widget_Focus">
                     <param name="id" value="$PARAM[id]"/>

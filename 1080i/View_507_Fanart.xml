@@ -54,9 +54,13 @@
                 <control type="group">
                     <visible>Control.IsVisible(507)</visible>
 
-                    <!-- STATUS INDICATOR -->
+                    <!-- WATCHED STATUS -->
 
-                    <include content="Layout_Poster_Indicator_Status" condition="!Skin.HasSetting(hide.markers)">
+                    <include content="Layout_Poster_Indicator_Status_Icon" condition="!Skin.HasSetting(hide.markers) + !Skin.HasSetting(furniture.markers.alternative)">
+                        <param name="right" value="71" />
+                        <param name="top" value="207" />
+                    </include>
+                    <include content="Layout_Poster_Indicator_Status_Banner" condition="!Skin.HasSetting(hide.markers) + Skin.HasSetting(furniture.markers.alternative)">
                         <param name="right" value="71" />
                         <param name="top" value="207" />
                     </include>
