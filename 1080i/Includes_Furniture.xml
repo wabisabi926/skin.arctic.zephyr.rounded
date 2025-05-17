@@ -338,43 +338,58 @@
 
                 <!-- RATING IMDb -->
 
-                <control type="image">
+                <control type="group">
                     <visible>!String.IsEmpty(ListItem.Rating)</visible>
                     <visible>!String.IsEmpty(ListItem.DBID)</visible>
                     <visible>!String.IsEmpty(ListItem.Rating(imdb)) | String.IsEqual(Skin.String(Value_Kodi_Rating_Provider),IMDb)</visible>
-                    <visible>!String.IsEqual(ListItem.DBType,album) + !String.IsEqual(ListItem.DBType,set)</visible>
-
-                    <include>Def_Image_Poster_Rating_Info_Left</include>
-                    <texture background="true" colordiffuse="FFF6C700">diffuse/circle_64.png</texture>
-                </control>
-                <control type="label">
-                    <visible>!String.IsEmpty(ListItem.Rating)</visible>
-                    <visible>!String.IsEmpty(ListItem.DBID)</visible>
-                    <visible>!String.IsEmpty(ListItem.Rating(imdb)) | String.IsEqual(Skin.String(Value_Kodi_Rating_Provider),IMDb)</visible>
-                    <visible>!String.IsEqual(ListItem.DBType,album) + !String.IsEqual(ListItem.DBType,set)</visible>
-
-                    <include>Def_Label_Poster_Rating_Left</include>
-                    <label>$INFO[ListItem.Rating]</label>
-                </control>
-
-                <!-- RATING TMDb -->
-
-                <control type="image">
-                    <visible>!String.IsEmpty(ListItem.Rating)</visible>
-                    <visible>String.IsEmpty(ListItem.DBID) | [!String.IsEmpty(ListItem.DBID) + String.IsEmpty(ListItem.Rating(imdb)) + String.IsEqual(Skin.String(Value_Kodi_Rating_Provider),TMDb)]</visible>
                     <visible>!String.IsEqual(ListItem.DBType,album) + !String.IsEqual(ListItem.DBType,set) + !$EXP[IsYoutubeItem]</visible>
 
-                    <include>Def_Image_Poster_Rating_Info_Left</include>
-                    <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
-                    <texture diffuse="diffuse/circle_64.png" background="true">logo/tmdb/tmdb_circle_64.png</texture>
+                    <control type="image">
+                        <include>Def_Image_Poster_Rating_Info_Left</include>
+                        <texture background="true" colordiffuse="FFF6C700">diffuse/circle_64.png</texture>
+                    </control>
+                    <control type="label">
+                        <include>Def_Label_Poster_Rating_Left</include>
+                        <label>$INFO[ListItem.Rating]</label>
+                    </control>
                 </control>
-                <control type="label">
+
+                <!-- RATING TMDb - KODI -->
+
+                <control type="group">
                     <visible>!String.IsEmpty(ListItem.Rating)</visible>
-                    <visible>String.IsEmpty(ListItem.DBID) | [!String.IsEmpty(ListItem.DBID) + String.IsEmpty(ListItem.Rating(imdb)) + String.IsEqual(Skin.String(Value_Kodi_Rating_Provider),TMDb)]</visible>
+                    <visible>!String.IsEmpty(ListItem.DBID) + String.IsEmpty(ListItem.Rating(imdb))</visible>
+                    <visible>String.IsEqual(Skin.String(Value_Kodi_Rating_Provider),TMDb) | String.IsEqual(Skin.String(Value_Kodi_Rating_Provider),Kodi)</visible>
                     <visible>!String.IsEqual(ListItem.DBType,album) + !String.IsEqual(ListItem.DBType,set) + !$EXP[IsYoutubeItem]</visible>
 
-                    <include>Def_Label_Poster_Rating_Left</include>
-                    <label>$VAR[Value_Item_Rating]</label>
+                    <control type="image">
+                        <include>Def_Image_Poster_Rating_Info_Left</include>
+                        <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                        <texture diffuse="diffuse/circle_64.png" background="true">logo/kodi/kodi_circle_64.png</texture>
+                    </control>
+                    <control type="label">
+                        <textcolor>FF12B2E6</textcolor>
+                        <include>Def_Label_Poster_Rating_Left</include>
+                        <label>$VAR[Value_Item_Rating]</label>
+                    </control>
+                </control>
+
+                <!-- RATING TMDb - ON LINE -->
+
+                <control type="group">
+                    <visible>!String.IsEmpty(ListItem.Rating)</visible>
+                    <visible>String.IsEmpty(ListItem.DBID)</visible>
+                    <visible>!String.IsEqual(ListItem.DBType,album) + !String.IsEqual(ListItem.DBType,set) + !$EXP[IsYoutubeItem]</visible>
+
+                    <control type="image">
+                        <include>Def_Image_Poster_Rating_Info_Left</include>
+                        <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                        <texture diffuse="diffuse/circle_64.png" background="true">logo/tmdb/tmdb_circle_64.png</texture>
+                    </control>
+                    <control type="label">
+                        <include>Def_Label_Poster_Rating_Left</include>
+                        <label>$VAR[Value_Item_Rating]</label>
+                    </control>
                 </control>
             </control>
 
