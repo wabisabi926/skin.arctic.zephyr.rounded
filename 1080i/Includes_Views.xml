@@ -512,6 +512,13 @@
                     </include>
 
                     <control type="image">
+                        <include content="Def_Padding"><param name="pad">-8</param></include>
+                        <texture border="24" colordiffuse="$VAR[Color_Focus]">common/box24.png</texture>
+                        <animation condition="Control.HasFocus(9500)" effect="fade" end="100" start="0" time="150">Conditional</animation>
+                        <animation condition="!Control.HasFocus(9500)" effect="fade" end="0" start="100" time="100">Conditional</animation>
+                    </control>
+
+                    <control type="image">
                         <width>100%</width>
                         <height>100%</height>
                         <texture background="true" diffuse="diffuse/fanart_w1122_h640_b24.png">background/bg_fallback.jpg</texture>
@@ -554,24 +561,28 @@
                         <content limit="$VAR[Def_Hub_Limit]" target="$VAR[Def_Hub_Widget_Target]" browse="never">$VAR[Def_Hub_Widget_Ref]</content>
                     </control>
 
+                    <!-- FANART INFO - WITH PLOT -->
+
                     <control type="group">
                         <visible>Skin.HasSetting(hub.showplot)</visible>
                         <visible>Integer.IsGreater(Container(9500).NumItems,0)</visible>
+
                         <animation effect="fade" start="0" end="100" time="500">Visible</animation>
                         <animation effect="fade" start="100" end="0" time="300">Hidden</animation>
 
                         <left>0</left>
-                        <width>1122</width>
                         <bottom>0</bottom>
+                        <width>1122</width>
                         <height>70</height>
 
                         <control type="image">
                             <left>0</left>
                             <right>0</right>
                             <bottom>0</bottom>
-                            <height>210</height>
-                            <texture border="15" colordiffuse="OSD_Black">common/shadowbottom.png</texture>
+                            <height>160</height>
+                            <texture border="24" colordiffuse="B3333333">common/box24.png</texture>
                         </control>
+
                         <control type="label">
                             <left>30</left>
                             <top>-80</top>
@@ -642,21 +653,26 @@
                         </control>
                     </control>
 
+                    <!-- FANART INFO - WITHOUT PLOT -->
+
                     <control type="group">
-                        <left>0</left>
-                        <width>1122</width>
-                        <bottom>0</bottom>
-                        <height>70</height>
-                        <animation effect="fade" start="0" end="100" time="500">Visible</animation>
-                        <animation effect="fade" start="100" end="0" time="300">Hidden</animation>
                         <visible>!Skin.HasSetting(hub.showplot)</visible>
                         <visible>Integer.IsGreater(Container(9500).NumItems,0)</visible>
+
+                        <animation effect="fade" start="0" end="100" time="500">Visible</animation>
+                        <animation effect="fade" start="100" end="0" time="300">Hidden</animation>
+
+                        <left>0</left>
+                        <bottom>0</bottom>
+                        <height>70</height>
+                        <width>1122</width>
+
                         <control type="image">
                             <left>0</left>
                             <right>0</right>
                             <bottom>0</bottom>
-                            <height>90</height>
-                            <texture border="24" colordiffuse="OSD_Black">common/shadowbottomsmall_b24.png</texture>
+                            <height>80</height>
+                            <texture border="24" colordiffuse="B3333333">common/box24.png</texture>
                         </control>
                         <control type="label">
                             <left>30</left>
@@ -710,17 +726,6 @@
                             <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
                             <selectedcolor>$VAR[Color_OSD_Panel_White70]</selectedcolor>
                             <label>$VAR[Label_Rating_9500]</label>
-                        </control>
-                    </control>
-
-                    <control type="group">
-                        <left>-2</left>
-                        <width>1126</width>
-                        <top>-2</top>
-                        <height>644</height>
-                        <control type="image">
-                        <texture border="18">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/selectbox_h.png</texture>
-                        <visible>Control.HasFocus(9500)</visible>
                         </control>
                     </control>
                 </control>
