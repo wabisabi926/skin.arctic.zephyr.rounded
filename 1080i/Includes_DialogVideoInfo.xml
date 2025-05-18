@@ -326,10 +326,11 @@
                         <onback>9000</onback>
                         <onup>9000</onup>
 
-                        <autoscroll time="5000">ControlGroup(9000).HasFocus()</autoscroll>
-                        <viewtype label="31005">fixedlist</viewtype>
-                        <orientation>horizontal</orientation>
                         <preloaditems>2</preloaditems>
+                        <orientation>horizontal</orientation>
+                        <autoscroll time="5000">ControlGroup(9000).HasFocus()</autoscroll>
+
+                        <viewtype label="31005">fixedlist</viewtype>
 
                         <itemlayout width="1268" height="607">
                             <control type="image">
@@ -466,8 +467,8 @@
 
                     <top>View_Top</top>
                     <left>570</left>
-                    <height>607</height>
                     <width>1268</width>
+                    <height>607</height>
 
                     <include content="Def_Dialog_Background_Image">
                         <param name="colordiffuse" value="Panel" />
@@ -800,7 +801,7 @@
                                     <font>Tiny</font>
                                     <height>36</height>
                                     <textcolor>Dark1</textcolor>
-                                    <label>[B]$VAR[Label_Dialog_Info_Video_EndAt_Or_Rating_Label][/B]</label>
+                                    <label>[B]$LOCALIZE[563][/B]</label>
                                     <aligny>center</aligny>
                                 </control>
                             </control>
@@ -1061,27 +1062,18 @@
                         <control type="label">
                             <font>Tiny</font>
                             <textcolor>Dark1</textcolor>
-                            <label>[B]IMDb[/B]</label>
-                            <aligny>center</aligny>
-                            <align>left</align>
-                            <visible>!String.IsEmpty(ListItem.Rating(imdb)) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating))</visible>
-                        </control>
-                        <control type="label">
-                            <font>Tiny</font>
-                            <textcolor>Dark1</textcolor>
-                            <label>[B]TMDb[/B]</label>
-                            <aligny>center</aligny>
-                            <align>left</align>
-                            <visible>String.IsEmpty(ListItem.Rating(imdb)) + String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating))</visible>
-                            <visible>!String.IsEmpty(ListItem.Rating)</visible>
-                        </control>
-                        <control type="label">
-                            <font>Tiny</font>
-                            <textcolor>Dark1</textcolor>
                             <label>[B]$LOCALIZE[574][/B]</label>
                             <aligny>center</aligny>
                             <align>left</align>
                             <visible>!String.IsEmpty(ListItem.Country) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Country))</visible>
+                        </control>
+                        <control type="label">
+                            <font>Tiny</font>
+                            <textcolor>Dark1</textcolor>
+                            <label>[B]$LOCALIZE[20376][/B]</label>
+                            <aligny>center</aligny>
+                            <align>left</align>
+                            <visible>!String.IsEmpty(ListItem.OriginalTitle)</visible>
                         </control>
                         <control type="label">
                             <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)</visible>
@@ -1155,24 +1147,16 @@
                         <control type="label">
                             <font>Tiny</font>
                             <textcolor>Dark2</textcolor>
-                            <label>$VAR[Label_Rating_IMDb_Votes_Top250]</label>
-                            <aligny>center</aligny>
-                            <visible>!String.IsEmpty(ListItem.Rating(imdb)) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating))</visible>
-                        </control>
-                        <control type="label">
-                            <font>Tiny</font>
-                            <textcolor>Dark2</textcolor>
-                            <label>$VAR[Label_Rating_TMDb_Votes_Top250]</label>
-                            <aligny>center</aligny>
-                            <visible>String.IsEmpty(ListItem.Rating(imdb)) + String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating))</visible>
-                            <visible>!String.IsEmpty(ListItem.Rating)</visible>
-                        </control>
-                        <control type="label">
-                            <font>Tiny</font>
-                            <textcolor>Dark2</textcolor>
                             <label fallback="19055">$VAR[Label_Country]</label>
                             <aligny>center</aligny>
                             <visible>!String.IsEmpty(ListItem.Country) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Country))</visible>
+                        </control>
+                        <control type="label">
+                            <font>Tiny</font>
+                            <textcolor>Dark2</textcolor>
+                            <label>$INFO[ListItem.OriginalTitle]</label>
+                            <aligny>center</aligny>
+                            <visible>!String.IsEmpty(ListItem.OriginalTitle)</visible>
                         </control>
 
                         <control type="grouplist">

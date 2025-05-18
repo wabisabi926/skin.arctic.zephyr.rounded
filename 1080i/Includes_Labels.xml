@@ -751,9 +751,7 @@
 
     <variable name="Label_Rating_And_Votes_Info">
         <value condition="!String.IsEmpty(ListItem.UserRating) + Skin.HasSetting(userrating.override.kodi.rating.num)">$INFO[ListItem.UserRating,,.0] ($LOCALIZE[38018])</value>
-
         <value condition="!String.IsEmpty(ListItem.Rating(imdb))">$INFO[ListItem.Rating(imdb),IMDb ,]$INFO[ListItem.Votes(imdb),  •  $LOCALIZE[205] ,]</value>
-
         <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating))">$INFO[Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating),IMDb ,]$INFO[Window(Home).Property(TMDbHelper.ListItem.IMDb_Votes),  •  $LOCALIZE[205] ,]</value>
         <value condition="!String.IsEmpty(ListItem.Rating)">$INFO[ListItem.Rating,TMDb ,]$INFO[ListItem.Votes,  •  $LOCALIZE[205] ,]</value>
     </variable>
@@ -819,7 +817,7 @@
         <!-- TVSHOWS -->
 
         <!-- <value condition="Container.Content(tvshows)">$INFO[ListItem.Year]$VAR[Label_Episodes_Number,  •  , $LOCALIZE[20453]]$VAR[Label_Rating_Flix,  •  ]</value> -->
-        <value condition="Container.Content(tvshows)">$INFO[ListItem.Year]$VAR[Label_Episodes_Number,  •  , $LOCALIZE[20453]]</value>
+        <value condition="Container.Content(tvshows)">$INFO[ListItem.Year]$VAR[Label_Episodes_Number,  •  , $LOCALIZE[20453]]$VAR[Label_Genre,  •  ,]</value>
 
         <!-- SEASONS -->
 
@@ -1747,18 +1745,9 @@
         <value>$VAR[Label_Duration_Time_Check]</value>
     </variable>
 
-    <variable name="Label_Dialog_Info_Video_EndAt_Or_Rating_Label">
-        <value condition="[Container.Content(movies) | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,video)] + !String.IsEmpty(ListItem.Duration)">$LOCALIZE[31485]</value>
-        <value>$LOCALIZE[563]</value>
-    </variable>
-
     <variable name="Label_Dialog_Info_Video_EndAt_Or_Rating_Value">
-        <value condition="[Container.Content(movies) | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,video)] + !String.IsEmpty(ListItem.EndTime) + !String.IsEmpty(ListItem.Duration)">$INFO[ListItem.EndTime]</value>
-
         <value condition="String.IsEqual(ListItem.DBType,season) + !String.IsEmpty(ListItem.Rating)">$INFO[ListItem.Rating,TMDb ,] $INFO[Window(Home).Property(TMDbHelper.ListItem.Votes),(, $LOCALIZE[205])]</value>
-
         <value condition="ListItem.IsCollection + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Set.Rating))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Rating),TMDb ,] $INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Votes),(, $LOCALIZE[205])]</value>
-
         <value>$VAR[Label_Rating_And_Votes_Info]</value>
     </variable>
 
