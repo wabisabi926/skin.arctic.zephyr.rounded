@@ -242,49 +242,55 @@
     </include>
 
     <include name="Object_Spinner_Pause">
-        <param name="visible" default="Player.Paused + !Skin.HasSetting(hide.play.pause.info)" />
+        <param name="visible" default="Player.Paused" />
         <param name="centerleft" default="54" />
         <param name="centertop" default="54" />
         <param name="size" default="100" />
         <definition>
             <control type="group">
                 <visible>$PARAM[visible]</visible>
-                <centerleft>$PARAM[centerleft]</centerleft>
-                <centertop>$PARAM[centertop]</centertop>
-                <height>$PARAM[size]</height>
-                <width>$PARAM[size]</width>
 
-                <control type="image" description="Back">
-                    <left>0</left>
-                    <centertop>50%</centertop>
-                    <width>100</width>
-                    <height>100</height>
-                    <aspectratio align="center" aligny="center">keep</aspectratio>
-                    <texture>dialog/loading-back.png</texture>
-                    <animation effect="fade" start="100" end="0" time="500" condition="Player.Playing">Conditional</animation>
-                    <visible>Player.Playing</visible>
-                </control>
-                <control type="image" description="Play">
-                    <left>0</left>
-                    <centertop>50%</centertop>
-                    <width>100</width>
-                    <height>100</height>
-                    <aspectratio align="center" aligny="center">keep</aspectratio>
-                    <texture colordiffuse="FFFFFFFF">nowplaying/play.png</texture>
-                    <animation effect="fade" start="100" end="0" time="500" condition="Player.Playing">Conditional</animation>
-                    <visible>Player.Playing</visible>
-                    <include>Animation_Rotate_Play</include>
-                </control>
-                <control type="image">
-                    <left>0</left>
-                    <centertop>50%</centertop>
-                    <width>100</width>
-                    <height>100</height>
-                    <texture colordiffuse="$VAR[Color_Loading_Spinner]">$INFO[Control.GetLabel(933),progress/circle_info/p,.png]</texture>
-                    <aspectratio align="center">keep</aspectratio>
-                    <animation effect="fade" start="100" end="0" time="500" condition="Player.Playing">Conditional</animation>
-                    <visible>Player.Playing</visible>
-                </control>
+                <centertop>$PARAM[centertop]</centertop>
+                <centerleft>$PARAM[centerleft]</centerleft>
+
+                <width>$PARAM[size]</width>
+                <height>$PARAM[size]</height>
+
+                <!-- PLAYING -->
+
+                <!-- <control type="image" description="Back"> -->
+                    <!-- <left>0</left> -->
+                    <!-- <centertop>50%</centertop> -->
+                    <!-- <width>100</width> -->
+                    <!-- <height>100</height> -->
+                    <!-- <aspectratio align="center" aligny="center">keep</aspectratio> -->
+                    <!-- <texture>dialog/loading-back.png</texture> -->
+                    <!-- <animation effect="fade" start="100" end="0" time="500" condition="Player.Playing">Conditional</animation> -->
+                    <!-- <visible>Player.Playing</visible> -->
+                <!-- </control> -->
+                <!-- <control type="image" description="Play"> -->
+                    <!-- <left>0</left> -->
+                    <!-- <centertop>50%</centertop> -->
+                    <!-- <width>100</width> -->
+                    <!-- <height>100</height> -->
+                    <!-- <aspectratio align="center" aligny="center">keep</aspectratio> -->
+                    <!-- <texture colordiffuse="FFFFFFFF">nowplaying/play.png</texture> -->
+                    <!-- <animation effect="fade" start="100" end="0" time="500" condition="Player.Playing">Conditional</animation> -->
+                    <!-- <visible>Player.Playing</visible> -->
+                    <!-- <include>Animation_Rotate_Play</include> -->
+                <!-- </control> -->
+                <!-- <control type="image"> -->
+                    <!-- <left>0</left> -->
+                    <!-- <centertop>50%</centertop> -->
+                    <!-- <width>100</width> -->
+                    <!-- <height>100</height> -->
+                    <!-- <texture colordiffuse="$VAR[Color_Loading_Spinner]">$INFO[Control.GetLabel(933),progress/circle_info/p,.png]</texture> -->
+                    <!-- <aspectratio align="center">keep</aspectratio> -->
+                    <!-- <animation effect="fade" start="100" end="0" time="500" condition="Player.Playing">Conditional</animation> -->
+                    <!-- <visible>Player.Playing</visible> -->
+                <!-- </control> -->
+
+                <!-- BACKGROUND -->
 
                 <control type="image" description="Back">
                     <left>0</left>
@@ -295,6 +301,9 @@
                     <texture>dialog/loading-back.png</texture>
                     <animation effect="fade" start="0" end="100" time="150">VisibleChange</animation>
                 </control>
+
+                <!-- PAUSED -->
+
                 <control type="image" description="Pause">
                     <left>0</left>
                     <centertop>50%</centertop>
@@ -305,6 +314,23 @@
                     <animation effect="fade" start="0" end="100" time="150">VisibleChange</animation>
                     <visible>Player.Paused</visible>
                 </control>
+
+                <!-- PLAYING -->
+
+                <control type="image" description="Pause">
+                    <left>0</left>
+                    <centertop>50%</centertop>
+                    <width>100</width>
+                    <height>100</height>
+                    <aspectratio align="center" aligny="center">keep</aspectratio>
+                    <texture colordiffuse="FFFFFFFF">nowplaying/play.png</texture>
+                    <animation effect="fade" start="0" end="100" time="150">VisibleChange</animation>
+                    <include>Animation_Rotate_Play</include>
+                    <visible>Player.Playing</visible>
+                </control>
+
+                <!-- PROGRESS -->
+
                 <control type="progress" id="933">
                     <texturebg />
                     <lefttexture />
@@ -701,8 +727,10 @@
             <width>1840</width>
             <height>160</height>
 
-            <include content="Def_Dialog_Background_Jumpbar_Horizontal"><param name="colordiffuse" value="White70" /></include>
-            <!-- <include content="Def_Dialog_Background_Image"><param name="colordiffuse" value="White100" /></include> -->
+            <include content="Def_Dialog_Background_Notification">
+                <param name="texture" value="notification_w1840_h160" />
+                <param name="colordiffuse" value="White70" />
+            </include>
 
             <control type="grouplist">
 

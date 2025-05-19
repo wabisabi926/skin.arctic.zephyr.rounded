@@ -250,12 +250,12 @@
             <top>40</top>
             <right>90</right>
             <height>160</height>
-            <width>580</width>
+            <width>660</width>
 
             <!-- VIDEO -->
 
             <include content="Def_Dialog_Background_Notification">
-                <param name="texture" value="notification_w580_h160" />
+                <param name="texture" value="notification_w660_h160" />
                 <param name="colordiffuse" value="$VAR[Color_OSD_Background_Dialog]" />
             </include>
 
@@ -263,7 +263,7 @@
 
             <control type="group">
                 <top>40</top>
-                <right>40</right>
+                <right>120</right>
                 <height>40</height>
                 <width>500</width>
 
@@ -322,15 +322,22 @@
                     <label>$VAR[Label_OSD_Time_Finish]</label>
                 </control>
             </control>
+
+            <!-- SPINNER PAUSE -->
+
+            <control type="group">
+                <top>40</top>
+                <right>44</right>
+                <height>40</height>
+                <width>80</width>
+
+                <include content="Object_Spinner_Pause">
+                    <param name="visible" value="true" />
+                    <param name="centerleft" value="40" />
+                    <param name="centertop" value="40" />
+                </include>
+            </control>
         </control>
-
-        <!-- SPINNER PAUSE -->
-
-        <include content="Object_Spinner_Pause">
-            <param name="visible" value="Player.Paused + !Skin.HasSetting(hide.play.pause.info) + String.IsEmpty(Window(Home).Property(OSDArtistDetails)) + !Skin.HasSetting(show.osd.artist.infos) + String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT)) + !Window.IsVisible(DialogBusy.xml)" />
-            <param name="centerleft" value="50%" />
-            <param name="centertop" value="50%" />
-        </include>
     </include>
 
     <include name="Object_OSD_Player_Plot">
