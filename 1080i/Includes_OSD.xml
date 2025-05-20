@@ -2103,7 +2103,7 @@
                             <width>270</width>
                             <height>390</height>
 
-                            <include content="Def_Art_Full_Background_b24">
+                            <include content="Def_Art_Full_Background_b12">
                                 <param name="colordiffuse" value="$VAR[Color_OSD_Background_Dialog]" />
                                 <param name="condition_fade" value="false" />
                             </include>
@@ -2111,7 +2111,7 @@
                             <control type="image">
                                 <width>100%</width>
                                 <height>100%</height>
-                                <texture diffuse="diffuse/poster_w270_h390_b24.png">$VAR[Image_Player_Poster]</texture>
+                                <texture diffuse="diffuse/poster_w270_h390.png">$VAR[Image_Player_Poster]</texture>
                                 <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
                             </control>
                         </control>
@@ -2551,7 +2551,7 @@
             </control>
         </control>
 
-        <!-- DISC -->
+        <!-- ILLUSTRATION -->
 
         <control type="group">
             <visible>!Window.IsVisible(script-cu-lrclyrics-main.xml) | [Window.IsVisible(script-cu-lrclyrics-main.xml) + !Skin.HasSetting(hideseekbaronlyrics)]</visible>
@@ -2567,6 +2567,8 @@
             </animation>
             <top>30</top>
             <left>50</left>
+
+            <!-- DISC -->
 
             <control type="group">
                 <animation effect="fade" start="100" end="0" time="100" condition="!String.IsEmpty(Window(Home).Property(OSDArtistDetails))">Conditional</animation>
@@ -2588,6 +2590,8 @@
                 </animation>
                 <include>Def_OSD_DiscArt</include>
             </control>
+
+            <!-- ALBUM COVER -->
 
             <control type="group">
                 <animation effect="zoom" start="100" end="150" center="76,1570" time="400" tween="cubic" easing="out" reversible="false" condition="[Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(Home).Property(OSDArtistDetails))]">Conditional</animation>

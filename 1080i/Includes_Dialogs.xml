@@ -1158,11 +1158,14 @@
             <ondown condition="!String.IsEqual(Window.Property(ShowDisc),1) + !String.IsEqual(Window.Property(RotateCover),1)">9669</ondown>
 
             <onup condition="String.IsEqual(Window(Home).Property(musiccontent),2)">9501</onup>
+            <onup condition="String.IsEqual(Window(Home).Property(musiccontent),2)">SetProperty(TMDbHelper.WidgetContainer,9501,home)</onup>
             <onup condition="String.IsEqual(Window(Home).Property(musiccontent),8)">9508</onup>
+            <onup condition="String.IsEqual(Window(Home).Property(musiccontent),8)">SetProperty(TMDbHelper.WidgetContainer,9508,home)</onup>
+            <onup condition="String.IsEqual(Window(Home).Property(musiccontent),5)">9511</onup>
+            <onup condition="String.IsEqual(Window(Home).Property(musiccontent),5)">SetProperty(TMDbHelper.WidgetContainer,9511,home)</onup>
             <onup condition="String.IsEqual(Window(Home).Property(musiccontent),3)">9502</onup>
             <onup condition="String.IsEqual(Window(Home).Property(musiccontent),4) + Integer.IsGreater(Container(9503).NumItems,0)">95031</onup>
             <onup condition="String.IsEqual(Window(Home).Property(musiccontent),1)">9009</onup>
-            <onup condition="String.IsEqual(Window(Home).Property(musiccontent),5)">9511</onup>
             <onup condition="String.IsEmpty(Window(Home).Property(musiccontent))">50</onup>
 
             <!-- <onup condition="String.IsEqual(Window(Home).Property(musiccontent),8) + Integer.IsGreater(Container(9508).NumItems,1)">9508</onup> -->
@@ -1173,6 +1176,10 @@
             <onup condition="Control.HasFocus(12) + String.IsEqual(Window.Property(ShowDisc),1) + String.IsEqual(Window.Property(RotateCover),1) + !String.IsEmpty(ListItem.Art(discart))">ClearProperty(RotateCover)</onup>
             <onup condition="Control.HasFocus(12) + String.IsEqual(Window.Property(ShowDisc),1) + String.IsEqual(Window.Property(RotateCover),1) + !String.IsEmpty(ListItem.Art(discart))">ClearProperty(ShowDisc)</onup>
             <onup condition="String.IsEmpty(Window(Home).Property(musiccontent))">9010</onup>
+
+            <onup condition="String.IsEqual(Window(Home).Property(musiccontent),2) | String.IsEqual(Window(Home).Property(musiccontent),8) | String.IsEqual(Window(Home).Property(musiccontent),5)">Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onup>
+
+            <onback>Skin.Reset(TMDbHelper.ForceWidgetContainer)</onback>
 
             <!-- BACK FULLSCREEN NOW PLAYING -->
 
@@ -1308,6 +1315,8 @@
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
                 <onfocus>SetProperty(musiccontent,2,Home)</onfocus>
                 <onclick>SetFocus(9501)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9501,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
                 <include>Def_Button_Dimensions_Square</include>
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/compact-disc.png" />
@@ -1322,7 +1331,9 @@
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
                 <onfocus condition="!String.IsEqual(Window(Home).Property(musiccontent),8)">ClearProperty(musiccontent,Home)</onfocus>
                 <onfocus>SetProperty(musiccontent,8,Home)</onfocus>
-                <onclick condition="String.IsEqual(Window(Home).Property(musiccontent),8) + Integer.IsGreater(Container(9508).NumItems,1)">SetFocus(9508)</onclick>
+                <onclick>SetFocus(9508)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9508,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
                 <font>Button</font>
                 <textcolor>Dark2</textcolor>
                 <include>Def_Button_Dimensions_Square</include>
@@ -1342,6 +1353,8 @@
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
                 <onfocus>SetProperty(musiccontent,5,Home)</onfocus>
                 <onclick>SetFocus(9511)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9511,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
                 <include>Def_Button_Dimensions_Square</include>
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/calendar-day.png" />
