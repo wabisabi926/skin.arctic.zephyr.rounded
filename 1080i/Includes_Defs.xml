@@ -400,7 +400,7 @@
     </variable>
 
     <variable name="Value_Item_Rating_TMDb">
-        <value condition="Container.Content(seasons) + !String.IsEmpty(ListItem.Rating) + !String.IsEqual(ListItem.Rating),0)">$INFO[ListItem.Rating]</value>
+        <value condition="Container.Content(seasons) + !String.IsEmpty(ListItem.Rating) + !String.IsEqual(ListItem.Rating,0)">$INFO[ListItem.Rating]</value>
         <value condition="[Container.Content(sets) |  String.IsEqual(ListItem.DBType,set)] + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Set.Rating)) + !String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Rating)]</value>
         <value condition="!Container.Content(seasons) + !String.IsEmpty(ListItem.Rating)">$VAR[Value_Item_Rating]</value>
     </variable>
