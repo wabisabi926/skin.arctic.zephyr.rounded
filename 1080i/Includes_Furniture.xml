@@ -1851,29 +1851,30 @@
             <!-- BUSY ANIMATION -->
 
             <control type="group">
-                <visible>[String.Contains(Weather.Temperature,$LOCALIZE[503]) | String.IsEmpty(Window(Weather).Property(Updated)) | String.IsEmpty(Weather.plugin) | !Weather.IsFetched]</visible>
+                <visible>String.Contains(Weather.Temperature,$LOCALIZE[503]) | String.IsEmpty(Window(Weather).Property(Updated))</visible>
+                <visible>!String.IsEmpty(Weather.plugin)</visible>
+                <visible>Weather.IsFetched</visible>
+
                 <include>Animation_Fade_In_Weather</include>
                 <include>Animation_Fade_Out_Weather</include>
-                <orientation>horizontal</orientation>
 
-                <control type="image">
-                    <description>Busy animation</description>
+                <control type="group">
                     <right>100</right>
                     <centertop>26</centertop>
                     <width>45</width>
                     <height>45</height>
-                    <texture>dialog/loading-back.png</texture>
-                    <aspectratio>keep</aspectratio>
-                </control>
-                <control type="image">
-                    <description>Busy animation</description>
-                    <right>100</right>
-                    <centertop>26</centertop>
-                    <width>45</width>
-                    <height>45</height>
-                    <animation effect="rotate" condition="true" start="360" end="0" loop="true" time="1000" center="auto">Conditional</animation>
-                    <texture colordiffuse="$VAR[Color_Loading_Spinner]">dialog/loading-spinner.png</texture>
-                    <aspectratio>keep</aspectratio>
+
+                    <control type="image">
+                        <description>Busy animation</description>
+                        <texture>dialog/loading-back.png</texture>
+                        <aspectratio>keep</aspectratio>
+                    </control>
+                    <control type="image">
+                        <description>Busy animation</description>
+                        <animation effect="rotate" condition="true" start="360" end="0" loop="true" time="1000" center="auto">Conditional</animation>
+                        <texture colordiffuse="$VAR[Color_Loading_Spinner]">dialog/loading-spinner.png</texture>
+                        <aspectratio>keep</aspectratio>
+                    </control>
                 </control>
             </control>
         </control>
@@ -1944,36 +1945,37 @@
                     </control>
                 </control>
 
-                <!-- Busy animation -->
+                <!-- BUSY ANIMATION -->
 
                 <control type="group">
                     <visible>String.Contains(Weather.Temperature,$LOCALIZE[503]) | String.IsEmpty(Window(Weather).Property(Updated))</visible>
                     <visible>!String.IsEmpty(Weather.plugin)</visible>
                     <visible>Weather.IsFetched</visible>
+
                     <include>Animation_Fade_In_Weather</include>
                     <include>Animation_Fade_Out_Weather</include>
-                    <orientation>horizontal</orientation>
+
                     <left>1625</left>
                     <height>100</height>
                     <bottom>10</bottom>
-                    <control type="image">
-                        <description>Busy animation</description>
+
+                    <control type="group">
                         <centerleft>54</centerleft>
                         <centertop>54</centertop>
                         <width>45</width>
                         <height>45</height>
-                        <texture>dialog/loading-back.png</texture>
-                        <aspectratio>keep</aspectratio>
-                    </control>
-                    <control type="image">
-                        <description>Busy animation</description>
-                        <centerleft>54</centerleft>
-                        <centertop>54</centertop>
-                        <width>45</width>
-                        <height>45</height>
-                        <animation effect="rotate" condition="true" start="360" end="0" loop="true" time="1000" center="auto">Conditional</animation>
-                        <texture colordiffuse="$VAR[Color_Loading_Spinner]">dialog/loading-spinner.png</texture>
-                        <aspectratio>keep</aspectratio>
+
+                        <control type="image">
+                            <description>Busy animation</description>
+                            <texture>dialog/loading-back.png</texture>
+                            <aspectratio>keep</aspectratio>
+                        </control>
+                        <control type="image">
+                            <description>Busy animation</description>
+                            <animation effect="rotate" condition="true" start="360" end="0" loop="true" time="1000" center="auto">Conditional</animation>
+                            <texture colordiffuse="$VAR[Color_Loading_Spinner]">dialog/loading-spinner.png</texture>
+                            <aspectratio>keep</aspectratio>
+                        </control>
                     </control>
                 </control>
             </control>
