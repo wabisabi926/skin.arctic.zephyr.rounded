@@ -96,19 +96,20 @@
 
     <!-- DEF GLOBAL -->
 
-    <include name="Global_Video_Window">
+    <include name="Global_Background_Full_Screen_Video">
         <control type="image" description="Background">
             <include>Def_Dimensions_Fullscreen</include>
             <texture colordiffuse="Background">background/bg.jpg</texture>
         </control>
-        <control type="image" description="Background">
-            <include>Def_Dimensions_Fullscreen</include>
-            <texture colordiffuse="FF000000">common/white.png</texture>
+        <control type="group" description="Background">
             <visible>Player.HasVideo + Skin.HasSetting(show.global.visualisation.background.video)</visible>
-        </control>
-        <control type="videowindow">
-            <include>Def_Dimensions_Fullscreen</include>
-            <visible>Player.HasVideo + Skin.HasSetting(show.global.visualisation.background.video)</visible>
+            <control type="image" description="Background">
+                <include>Def_Dimensions_Fullscreen</include>
+                <texture colordiffuse="FF000000">common/white.png</texture>
+            </control>
+            <control type="videowindow">
+                <include>Def_Dimensions_Fullscreen</include>
+            </control>
         </control>
     </include>
 
@@ -148,7 +149,7 @@
             <visible>$EXP[Show_Music_Visualisation_Background_Not_Enable]</visible>
 
             <visible>Skin.HasSetting(enable.blur.effect) + Skin.HasSetting(enable.blur.effect.fake) + !$EXP[View_Blur_Disable]</visible>
-            <visible>!Skin.HasSetting(enabled.tmdb.helper.blur) | [Skin.HasSetting(enabled.tmdb.helper.blur) + [$EXP[Background_Home_Extended_Now_Playing] | Control.HasFocus(9099) | $EXP[IsViewPlaylistMusicArtistSlideShow] | [Skin.HasSetting(hide.global.fanart) + [[!$EXP[Home_Is_Flix] + !$EXP[View_Flix]] | $EXP[View_Info_Dialog]]]]]</visible>
+            <visible>!Skin.HasSetting(enabled.tmdb.helper.blur) | [Skin.HasSetting(enabled.tmdb.helper.blur) + [$EXP[Background_Home_Extended_Now_Playing] | $EXP[Home_Menu_Is_Focus] | Control.HasFocus(9099) | $EXP[IsViewPlaylistMusicArtistSlideShow] | [Skin.HasSetting(hide.global.fanart) + [[!$EXP[Home_Is_Flix] + !$EXP[View_Flix]] | $EXP[View_Info_Dialog]]]]]</visible>
 
             <visible>[Window.IsVisible(Home) + !Skin.HasSetting(home.style.horizontal.clean)] | [Window.IsVisible(Home) + $EXP[View_Info_Dialog]] | !Window.IsVisible(Home)</visible>
 
@@ -178,7 +179,7 @@
             <visible>$EXP[Show_Video_Background_Not_Enable]</visible>
             <visible>$EXP[Show_Music_Visualisation_Background_Not_Enable]</visible>
 
-            <visible>!$EXP[Background_Home_Extended_Now_Playing] + !Control.HasFocus(9099) + !$EXP[IsViewPlaylistMusicArtistSlideShow]</visible>
+            <visible>!$EXP[Background_Home_Extended_Now_Playing] + !Control.HasFocus(9099) + !$EXP[IsViewPlaylistMusicArtistSlideShow] + !$EXP[Home_Menu_Is_Focus]</visible>
             <visible>!Skin.HasSetting(hide.global.fanart) | [Skin.HasSetting(hide.global.fanart) + [$EXP[View_Flix] | [Window.IsVisible(Home) + $EXP[Home_Is_Flix] + !$EXP[View_Info_Dialog]]]]</visible>
 
             <visible>Skin.HasSetting(enable.blur.effect) + Skin.HasSetting(enabled.tmdb.helper.blur) + !$EXP[View_Blur_Disable]</visible>
@@ -401,7 +402,7 @@
         <!-- <include condition="Skin.HasSetting(enable.blur.effect)">Image_Path_Blur_TMDb</include> -->
 
         <include condition="$EXP[ShowMusicVisualisation]">Global_Music_Visualisation</include>
-        <include>Global_Video_Window</include>
+        <include>Global_Background_Full_Screen_Video</include>
 
         <!-- EXTRA FANART -->
 
@@ -999,6 +1000,11 @@
 
         <!-- <value condition="$EXP[Background_Home_Flix_Or_All_Views] + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.fanart)) + [!Window.IsVisible(Home) | ![Window.IsVisible(Home) + Skin.HasSetting(home.enable.menu.background)]]">$INFO[Window(Home).Property(TMDbHelper.ListItem.fanart)]</value> -->
 
+        <value>$VAR[Global_Fanart_Fallback_Background]</value>
+    </variable>
+
+    <variable name="Global_Fanart_Fallback_Background">
+
     <!-- =================================== -->
     <!--     FALLBACK ON WIDGETS / VIEWS     -->
     <!-- =================================== -->
@@ -1129,6 +1135,12 @@
         <value condition="!String.IsEmpty(Skin.String(fanart.fallback))">$INFO[Skin.String(fanart.fallback)]</value>
 
         <!-- Last chance -->
+
         <value>background/bg_fallback.jpg</value>
+    </variable>
+
+    <variable name="Global_Fanart_Fallback_Background_Blur">
+        <value condition="String.Contains(Skin.CurrentColourTheme,Light)">background/bg.jpg</value>
+        <value>background/bg_black.jpg</value>
     </variable>
 </includes>

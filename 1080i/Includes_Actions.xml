@@ -19,10 +19,10 @@
     </variable>
 
     <variable name="Image_SimpleBackground">
-        <!-- <value>$VAR[Global_Fanart_Background]</value> -->
+        <!-- <value>$VAR[Global_Fanart_Fallback_Background]</value> -->
         <!-- <value>background/bg_fallback.jpg</value> -->
         <!-- <value condition="!String.IsEmpty(Skin.String(fanart.fallback))">$INFO[Skin.String(fanart.fallback)]</value> -->
-        <value>background/bg.jpg</value>
+        <!-- <value>background/bg.jpg</value> -->
         <!-- <value>special://skin/extras/backgrounds/fallback/bg_fallback.jpg</value> -->
     </variable>
 
@@ -30,7 +30,7 @@
         <param name="sourceimage">Art(fanart)</param>
         <definition>
             <onload>SetProperty(TMDbHelper.Blur.SourceImage,$PARAM[sourceimage],Home)</onload>
-            <onload>SetProperty(TMDbHelper.Blur.Fallback,$VAR[Image_SimpleBackground],Home)</onload>
+            <onload>SetProperty(TMDbHelper.Blur.Fallback,$VAR[Global_Fanart_Fallback_Background_Blur],Home)</onload>
         </definition>
     </include>
 
