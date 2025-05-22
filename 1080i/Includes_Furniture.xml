@@ -3095,11 +3095,15 @@
             <texture colordiffuse="Dark1">flags/video/white/other/audio.png</texture>
         </control>
         <control type="grouplist">
+            <visible>!String.IsEmpty(ListItem.Property(AudioLanguage.1)) + !String.IsEqual(ListItem.Property(AudioLanguage.1),und)</visible>
+
             <centertop>65%</centertop>
+            <left>4</left>
             <width>250</width>
             <height>64</height>
-            <left>4</left>
+
             <orientation>horizontal</orientation>
+
             <control type="image">
                 <top>20</top>
                 <width>32</width>
@@ -3142,18 +3146,21 @@
         <control type="image">
             <visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.1))</visible>
             <centertop>50%</centertop>
+            <left>30</left>
             <width>41</width>
             <height>30</height>
-            <left>30</left>
             <texture background="true" colordiffuse="Dark1">flags/video/white/other/cc_white.png</texture>
         </control>
         <control type="grouplist">
+            <visible>Skin.HasSetting(show.flags.subtitles.country)</visible>
+            <visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.1))</visible>
+
             <centertop>65%</centertop>
+            <left>10</left>
             <width>300</width>
             <height>64</height>
-            <left>10</left>
+
             <orientation>horizontal</orientation>
-            <visible>Skin.HasSetting(show.flags.subtitles.country)</visible>
 
             <control type="image">
                 <top>20</top>
@@ -4460,11 +4467,15 @@
             <texture colordiffuse="Dark1">flags/video/white/other/audio.png</texture>
         </control>
         <control type="grouplist">
+            <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Property(AudioLanguage.1)) + !String.IsEqual(Container($PARAM[controlid]).ListItem.Property(AudioLanguage.1),und)</visible>
+
             <centertop>65%</centertop>
             <width>250</width>
             <height>64</height>
             <left>4</left>
+
             <orientation>horizontal</orientation>
+
             <control type="image">
                 <top>20</top>
                 <width>32</width>
@@ -4513,12 +4524,16 @@
             <texture background="true" colordiffuse="Dark1">flags/video/white/other/cc_white.png</texture>
         </control>
         <control type="grouplist">
+            <visible>Skin.HasSetting(show.flags.subtitles.country)</visible>
+            <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Property(SubtitleLanguage.1))</visible>
+
             <centertop>64%</centertop>
             <width>250</width>
             <height>64</height>
             <left>10</left>
+
             <orientation>horizontal</orientation>
-            <visible>Skin.HasSetting(show.flags.subtitles.country)</visible>
+
             <control type="image">
                 <top>20</top>
                 <width>32</width>
