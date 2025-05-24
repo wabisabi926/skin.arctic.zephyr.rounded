@@ -1159,6 +1159,35 @@
         <value>$NUMBER[10]</value>
     </variable>
 
+    <!-- DEF - HOME - WIDGET - MORE -->
+
+    <include name="Def_Widget_Label_More_Content">
+        <control type="label">
+            <align>center</align>
+            <aligny>center</aligny>
+            <width>100%</width>
+            <height>100%</height>
+            <textcolor>PanelWhite70</textcolor>
+            <font>Small</font>
+            <label>31320</label>
+            <visible>!ListItem.IsParentFolder</visible>
+            <visible>String.IsEqual(ListItem.Property(LabelMore),more)</visible>
+        </control>
+    </include>
+
+    <include name="Def_Widget_Item_More_Content">
+        <content>
+            <item>
+                <label>$LOCALIZE[31320]</label>
+                <property name="LabelMore">more</property>
+                <!-- <property name="labelisvisible" value="true"/> -->
+                <icon>buttonsdialogs/morewidget.png</icon>
+                <onclick>ActivateWindow($PARAM[target],$PARAM[content],return)</onclick>
+                <visible>Integer.IsGreater(Container($PARAM[id]).NumItems,9)</visible>
+            </item>
+        </content>
+    </include>
+
     <!-- =================================== -->
     <!--          WIDGET CONTAINER           -->
     <!-- =================================== -->
@@ -1366,7 +1395,7 @@
 
             <!-- WIDGET "MORE" -->
 
-            <include condition="Skin.HasSetting(enable.morewidget)">more</include>
+            <include condition="Skin.HasSetting(enable.morewidget)">Def_Widget_Label_More_Content</include>
         </definition>
     </include>
 
@@ -1578,7 +1607,7 @@
 
             <!-- WIDGET "MORE" -->
 
-            <include condition="Skin.HasSetting(enable.morewidget)">more</include>
+            <include condition="Skin.HasSetting(enable.morewidget)">Def_Widget_Label_More_Content</include>
         </definition>
     </include>
 
@@ -1740,7 +1769,7 @@
 
             <!-- WIDGET "MORE" -->
 
-            <include condition="Skin.HasSetting(enable.morewidget)">more</include>
+            <include condition="Skin.HasSetting(enable.morewidget)">Def_Widget_Label_More_Content</include>
         </definition>
     </include>
 
@@ -1899,7 +1928,7 @@
 
             <!-- WIDGET "MORE" -->
 
-            <include condition="Skin.HasSetting(enable.morewidget)">more</include>
+            <include condition="Skin.HasSetting(enable.morewidget)">Def_Widget_Label_More_Content</include>
         </definition>
     </include>
 
@@ -2055,7 +2084,7 @@
 
             <!-- WIDGET "MORE" -->
 
-            <include condition="Skin.HasSetting(enable.morewidget)">more</include>
+            <include condition="Skin.HasSetting(enable.morewidget)">Def_Widget_Label_More_Content</include>
         </definition>
     </include>
 

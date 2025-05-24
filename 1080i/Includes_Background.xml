@@ -1013,6 +1013,10 @@
 
         <value condition="$EXP[Background_Home_Flix_Or_All_Views] + !String.IsEmpty(Skin.String(fanart.fallback.radio)) + $EXP[IsPluginRadio]">$INFO[Skin.String(fanart.fallback.radio)]</value>
 
+        <!-- MORE -->
+
+        <value condition="$EXP[Background_Home_Flix_Or_All_Views] + !String.IsEmpty(Skin.String(fanart.fallback)) + [Window.IsVisible(Home) + String.IsEqual(ListItem.Property(LabelMore),more)]">$VAR[Global_Fanart_Fallback_Background_Blur]</value>
+
         <!-- APPLE PODCASTS -->
 
         <value condition="$EXP[Background_Fallback_Home_Flix_Or_All_Views] + !String.IsEmpty(Skin.String(fanart.fallback.podcasts)) + $EXP[IsItunesItem]">$INFO[Skin.String(fanart.fallback.podcasts)]</value>
@@ -1072,6 +1076,7 @@
     <!-- =================================== -->
     <!--           FALLBACK ON MENU          -->
     <!-- =================================== -->
+
 
         <!-- APPLE PODCASTS -->
 
@@ -1134,12 +1139,16 @@
 
         <value condition="!String.IsEmpty(Skin.String(fanart.fallback))">$INFO[Skin.String(fanart.fallback)]</value>
 
-        <!-- Last chance -->
+        <!-- LAST CHANCE -->
 
         <value>background/bg_fallback.jpg</value>
     </variable>
 
     <variable name="Global_Fanart_Fallback_Background_Blur">
+
+        <!-- MORE -->
+        <value condition="!String.IsEmpty(Skin.String(fanart.fallback.more)) + String.IsEqual(ListItem.Property(LabelMore),more)">$INFO[Skin.String(fanart.fallback.more)]</value>
+
         <value condition="String.Contains(Skin.CurrentColourTheme,Light)">background/bg.jpg</value>
         <value>background/bg_black.jpg</value>
     </variable>

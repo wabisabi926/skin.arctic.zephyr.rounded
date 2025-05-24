@@ -3872,7 +3872,7 @@
 
                 <control type="label">
                     <include>Def_Info_Right_Line1</include>
-                    <label>$VAR[Label_Genre]$INFO[Container($PARAM[controlid]).ListItem.Duration(h),  •  ,$LOCALIZE[31061]] $INFO[Container($PARAM[controlid]).ListItem.Duration(mm),,$LOCALIZE[31062]]</label>
+                    <label>$VAR[Label_Genre,,  •  ]$INFO[Container($PARAM[controlid]).ListItem.Duration(h),,$LOCALIZE[31061]] $INFO[Container($PARAM[controlid]).ListItem.Duration(mm),,$LOCALIZE[31062]]</label>
                     <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Genre)) + !String.IsEmpty(Container($PARAM[controlid]).ListItem.Duration)</visible>
                     <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,movie)</visible>
                 </control>
@@ -3881,7 +3881,7 @@
 
                 <control type="label">
                     <include>Def_Info_Right_Line1</include>
-                    <label>$VAR[Label_Genre]$INFO[Container($PARAM[controlid]).ListItem.Property(TotalEpisodes),  •  , $LOCALIZE[20453]]</label>
+                    <label>$VAR[Label_Genre,,  •  ]$INFO[Container($PARAM[controlid]).ListItem.Property(TotalEpisodes),, $LOCALIZE[20453]]</label>
                     <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Genre))</visible>
                     <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,tvshow)</visible>
                 </control>
