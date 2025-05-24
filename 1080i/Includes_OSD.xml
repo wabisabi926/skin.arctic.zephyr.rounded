@@ -181,7 +181,26 @@
                 <texture border="24" colordiffuse="B3333333">common/box24.png</texture>
             </control>
 
-            <!-- LABEL INFO -->
+            <!-- LABEL INFO - LEFT -->
+
+            <control type="group">
+                <bottom>26</bottom>
+                <left>46</left>
+                <width>900</width>
+                <height>64</height>
+                <align>left</align>
+
+                <control type="label">
+                    <width>auto</width>
+                    <align>left</align>
+                    <height>40</height>
+                    <font>InfoNetflix</font>
+                    <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
+                    <label>$INFO[Player.Title]</label>
+                </control>
+            </control>
+
+            <!-- LABEL INFO - RIGHT -->
 
             <control type="grouplist">
                 <bottom>26</bottom>
@@ -199,7 +218,6 @@
                     <font>InfoNetflix</font>
                     <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
                     <label>$INFO[Player.Time]</label>
-                    <visible>Player.HasVideo</visible>
                 </control>
                 <control type="image">
                     <centertop>10%</centertop>
@@ -208,7 +226,6 @@
                     <align>right</align>
                     <colordiffuse>$VAR[Color_OSD_Panel_White30]</colordiffuse>
                     <texture>kaitoast/finishtime2.png</texture>
-                    <visible>Player.HasVideo</visible>
                 </control>
                 <control type="label" description="Total Time">
                     <width>auto</width>
@@ -217,7 +234,6 @@
                     <font>InfoNetflix</font>
                     <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
                     <label>$INFO[Player.Duration]</label>
-                    <visible>Player.HasVideo</visible>
                 </control>
             </control>
 
