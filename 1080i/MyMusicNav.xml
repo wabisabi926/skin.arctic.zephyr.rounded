@@ -63,6 +63,7 @@
         <include condition="!Skin.HasSetting(hide.furniture.flags)">Furniture_Flags_Audio</include>
         <include>Furniture_Header_Clock_Right</include>
 
+        <include>Hidden_Button_ReloadSkin</include>
         <include>Set_Artist_Search</include>
         <include condition="!Skin.HasSetting(disable.all.hidden.list)">Hidden_List_Item_Name_In_Folder</include>
 
@@ -85,11 +86,8 @@
             <include>Def_Dialog_Menu_Hidden_Button_id2_id3</include>
 
             <control type="grouplist" id="9000">
-                <top>112</top>
-                <pagecontrol>9070</pagecontrol>
-                <usecontrolcoords>true</usecontrolcoords>
-                <include content="Def_Dialog_Menu_GroupList_scrollbar"><param name="height" value="910" /><param name="scrollid" value="9070" /></include>
                 <include>Animation_Scrolltime_Views_List</include>
+                <include content="Def_Dialog_Menu_GroupList_scrollbar"><param name="height" value="910" /><param name="scrollid" value="9070" /></include>
 
                 <!-- NOW PLAYING -->
 
@@ -218,14 +216,14 @@
                     <selected>Skin.HasSetting(514NoCenter)</selected>
                     <onclick>Skin.ToggleSetting(514NoCenter)</onclick>
                     <visible>Control.IsVisible(514)</visible>
-                    <onclick>ReloadSkin()</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                 </control>
                 <control type="radiobutton" id="9025788">
                     <include>Def_Dialog_Menu_Button_Gradient_Select</include>
                     <label>31414</label>
                     <selected>Skin.HasSetting(show.view.netflix.title.clearlogo.music)</selected>
                     <onclick>Skin.ToggleSetting(show.view.netflix.title.clearlogo.music)</onclick>
-                    <onclick>ReloadSkin()</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                     <visible>Control.IsVisible(523) | Control.IsVisible(522) | Control.IsVisible(524)</visible>
                 </control>
                 <!-- <control type="button" id="90702"> -->
@@ -235,7 +233,7 @@
                     <!-- <onclick condition="String.IsEmpty(Skin.String(523.autoscroll.speed))">Skin.SetString(523.autoscroll.speed,1)</onclick> -->
                     <!-- <onclick condition="String.IsEqual(Skin.String(523.autoscroll.speed),1)">Skin.SetString(523.autoscroll.speed,2)</onclick> -->
                     <!-- <onclick condition="String.IsEqual(Skin.String(523.autoscroll.speed),2)">Skin.Reset(523.autoscroll.speed)</onclick> -->
-                    <!-- <onclick>ReloadSkin()</onclick> -->
+                    <!-- <onclick>SetProperty(reloadskin,1,Home)</onclick> -->
                     <!-- <visible>Control.IsVisible(523)</visible> -->
                 <!-- </control> -->
                 <control type="button" id="90701" description="522 Landscape Size">
@@ -260,7 +258,7 @@
                     <onclick>Skin.ToggleSetting(51bigwide.showinfo)</onclick>
                     <onclick>Skin.Reset(51bigwide.showclassic)</onclick>
                     <onclick>Skin.Reset(51bigwide.showinfo.alternative)</onclick>
-                    <onclick>ReloadSkin()</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                     <visible>Control.IsVisible(51)</visible>
                 </control>
                 <control type="radiobutton" id="9055" description="Big Wide Info (51)">
@@ -270,7 +268,7 @@
                     <onclick>Skin.ToggleSetting(51bigwide.showinfo.alternative)</onclick>
                     <onclick>Skin.Reset(51bigwide.showclassic)</onclick>
                     <onclick>Skin.Reset(51bigwide.showinfo)</onclick>
-                    <onclick>ReloadSkin()</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                     <visible>Control.IsVisible(51)</visible>
                 </control>
                 <control type="radiobutton" id="9034" description="SELECT LISTTYPE">
@@ -279,7 +277,7 @@
                     <selected>Skin.HasSetting(523.square.control.list)</selected>
                     <onclick>Skin.ToggleSetting(523.square.control.list)</onclick>
                     <onclick>Skin.Reset(523poster.fixedlist)</onclick>
-                    <onclick>ReloadSkin()</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                     <visible>Control.IsVisible(523)</visible>
                 </control>
                 <control type="button" id="90709" description="522 Landscape Size">
@@ -295,7 +293,7 @@
                     <label>31258</label>
                     <selected>Skin.HasSetting(522.landscape.control.list)</selected>
                     <onclick>Skin.ToggleSetting(522.landscape.control.list)</onclick>
-                    <onclick>ReloadSkin()</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                     <visible>Control.IsVisible(522)</visible>
                 </control>
 
@@ -319,7 +317,7 @@
                     <label>$LOCALIZE[31090]</label>
                     <selected>Skin.HasSetting(show.view.524.fanart.artist)</selected>
                     <onclick>Skin.ToggleSetting(show.view.524.fanart.artist)</onclick>
-                    <onclick>ReloadSkin()</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                     <visible>Control.IsVisible(524)</visible>
                 </control>
                 <control type="radiobutton" id="9035">
@@ -375,6 +373,7 @@
                 <param name="onback" value="9000" />
                 <param name="height" value="910" />
                 <param name="centerright" value="4" />
+                <param name="visible" value="$EXP[View_Context_Menu_Visible]" />
             </include>
         </control>
 

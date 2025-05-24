@@ -67,6 +67,7 @@
         <include condition="Skin.HasSetting(show.furniture.footer)">Furniture_Footer</include>
         <include condition="!Skin.HasSetting(hide.furniture.flags)">Furniture_Flags</include>
         <include>Furniture_Header_Clock_Right</include>
+        <include>Hidden_Button_ReloadSkin</include>
 
         <include condition="!Skin.HasSetting(disable.all.hidden.list)">Hidden_List_Item_Name_In_Folder</include>
         <include condition="!Skin.HasSetting(disable.all.hidden.list)">Hidden_List_Set_Count</include>
@@ -96,11 +97,8 @@
             <include>Def_Dialog_Menu_Hidden_Button_id2_id3</include>
 
             <control type="grouplist" id="9000">
-                <top>112</top>
-                <pagecontrol>9070</pagecontrol>
-                <usecontrolcoords>true</usecontrolcoords>
-                <include content="Def_Dialog_Menu_GroupList_scrollbar"><param name="height" value="910" /><param name="scrollid" value="9070" /></include>
                 <include>Animation_Scrolltime_Views_List</include>
+                <include content="Def_Dialog_Menu_GroupList_scrollbar"><param name="height" value="910" /><param name="scrollid" value="9070" /></include>
 
             <!-- NOW PLAYING -->
 
@@ -239,7 +237,7 @@
                     <selected>Skin.HasSetting(view.526.switch.plot.poster)</selected>
                     <onclick>Skin.ToggleSetting(view.526.switch.plot.poster)</onclick>
                     <visible>Control.IsVisible(526)</visible>
-                    <onclick>ReloadSkin()</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                 </control>
                 <control type="button" id="90449">
                     <include>Def_Dialog_Menu_Button_Gradient_Select</include>
@@ -250,14 +248,14 @@
                     <onclick condition="Skin.HasSetting(527.fixedlist)">Skin.Reset(527.fixedlist)</onclick>
                     <onclick condition="Skin.HasSetting(527.wraplist)">Skin.Reset(527.wraplist)</onclick>
                     <visible>Control.IsVisible(527)</visible>
-                    <onclick>ReloadSkin()</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                 </control>
-                <control type="radiobutton" id="9025788">
+                <control type="radiobutton" id="90450">
                     <include>Def_Dialog_Menu_Button_Gradient_Select</include>
                     <label>31414</label>
                     <selected>Skin.HasSetting(show.view.netflix.title.clearlogo.video)</selected>
                     <onclick>Skin.ToggleSetting(show.view.netflix.title.clearlogo.video)</onclick>
-                    <onclick>ReloadSkin()</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                     <visible>Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(524)</visible>
                 </control>
                 <!-- <control type="button" id="90702" description="504 Landscape Size"> -->
@@ -267,7 +265,7 @@
                     <!-- <onclick condition="String.IsEmpty(Skin.String(521.autoscroll.speed))">Skin.SetString(521.autoscroll.speed,1)</onclick> -->
                     <!-- <onclick condition="String.IsEqual(Skin.String(521.autoscroll.speed),1)">Skin.SetString(521.autoscroll.speed,2)</onclick> -->
                     <!-- <onclick condition="String.IsEqual(Skin.String(521.autoscroll.speed),2)">Skin.Reset(521.autoscroll.speed)</onclick> -->
-                    <!-- <onclick>ReloadSkin()</onclick> -->
+                    <!-- <onclick>SetProperty(reloadskin,1,Home)</onclick> -->
                     <!-- <visible>Control.IsVisible(521)</visible> -->
                 <!-- </control> -->
                 <control type="button" id="90701" description="522 Landscape Size">
@@ -292,7 +290,7 @@
                     <selected>Skin.HasSetting(523.square.control.list)</selected>
                     <onclick>Skin.ToggleSetting(523.square.control.list)</onclick>
                     <onclick>Skin.Reset(523poster.fixedlist)</onclick>
-                    <onclick>ReloadSkin()</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                     <visible>Control.IsVisible(523)</visible>
                 </control>
 
@@ -316,7 +314,7 @@
                     <selected>Skin.HasSetting(ListView511)</selected>
                     <onclick>Skin.ToggleSetting(ListView511)</onclick>
                     <visible>Control.IsVisible(511) | Control.IsVisible(512)</visible>
-                    <onclick>ReloadSkin()</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                 </control>
                 <control type="radiobutton" id="9028">
                     <include>Def_Dialog_Menu_Button_Gradient_Select</include>
@@ -344,7 +342,7 @@
                     <label>31190</label>
                     <selected>!Skin.HasSetting(hide.poster.view.50)</selected>
                     <onclick>Skin.ToggleSetting(hide.poster.view.50)</onclick>
-                    <onclick>ReloadSkin()</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                     <visible>Control.IsVisible(50)</visible>
                 </control>
                 <control type="radiobutton" id="9031">
@@ -361,7 +359,7 @@
                     <selected>Skin.HasSetting(55wall.showinfo)</selected>
                     <onclick>Skin.Reset(55wall.showposter)</onclick>
                     <onclick>Skin.ToggleSetting(55wall.showinfo)</onclick>
-                    <onclick>ReloadSkin()</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                     <visible>Control.IsVisible(55)</visible>
                 </control>
                 <control type="radiobutton" id="9035" description="Poster Wall (55)">
@@ -370,7 +368,7 @@
                     <selected>Skin.HasSetting(55wall.showposter)</selected>
                     <onclick>Skin.Reset(55wall.showinfo)</onclick>
                     <onclick>Skin.ToggleSetting(55wall.showposter)</onclick>
-                    <onclick>ReloadSkin()</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                     <visible>Control.IsVisible(55)</visible>
                 </control>
                 <control type="radiobutton" id="9039">
@@ -379,7 +377,7 @@
                     <selected>Skin.HasSetting(ShowPoster517)</selected>
                     <onclick>Skin.ToggleSetting(ShowPoster517)</onclick>
                     <visible>Control.IsVisible(517)</visible>
-                    <onclick>ReloadSkin()</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                 </control>
                 <control type="radiobutton" id="9041" description="Big Wide Info (51)">
                     <include>Def_Dialog_Menu_Button_Gradient_Select</include>
@@ -388,7 +386,7 @@
                     <onclick>Skin.ToggleSetting(51bigwide.showinfo)</onclick>
                     <onclick>Skin.Reset(51bigwide.showclassic)</onclick>
                     <onclick>Skin.Reset(51bigwide.showinfo.alternative)</onclick>
-                    <onclick>ReloadSkin()</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                     <visible>Control.IsVisible(51)</visible>
                 </control>
                 <control type="radiobutton" id="9043" description="Big Wide Info (51)">
@@ -398,7 +396,7 @@
                     <onclick>Skin.ToggleSetting(51bigwide.showinfo.alternative)</onclick>
                     <onclick>Skin.Reset(51bigwide.showclassic)</onclick>
                     <onclick>Skin.Reset(51bigwide.showinfo)</onclick>
-                    <onclick>ReloadSkin()</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                     <visible>Control.IsVisible(51)</visible>
                 </control>
 
@@ -407,7 +405,7 @@
                     <label>31107</label>
                     <selected>!Skin.HasSetting(disable.wrap.view.53)</selected>
                     <onclick>Skin.ToggleSetting(disable.wrap.view.53)</onclick>
-                    <onclick>ReloadSkin()</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                     <visible>Control.IsVisible(53)</visible>
                 </control>
 
@@ -418,7 +416,7 @@
                     <label>31258</label>
                     <selected>Skin.HasSetting(521.poster.control.list)</selected>
                     <onclick>Skin.ToggleSetting(521.poster.control.list)</onclick>
-                    <onclick>ReloadSkin()</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                     <visible>Control.IsVisible(521)</visible>
                 </control>
                 <control type="radiobutton" id="90341" description="SELECT LISTTYPE">
@@ -426,7 +424,7 @@
                     <label>31258</label>
                     <selected>Skin.HasSetting(522.landscape.control.list)</selected>
                     <onclick>Skin.ToggleSetting(522.landscape.control.list)</onclick>
-                    <onclick>ReloadSkin()</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                     <visible>Control.IsVisible(522)</visible>
                 </control>
                 <!-- <control type="radiobutton" id="90342" description="SELECT LISTTYPE"> -->
@@ -435,7 +433,7 @@
                     <!-- <label>31258</label> -->
                     <!-- <selected>Skin.HasSetting(524.landscape.control.list)</selected> -->
                     <!-- <onclick>Skin.ToggleSetting(524.landscape.control.list)</onclick> -->
-                    <!-- <onclick>ReloadSkin()</onclick> -->
+                    <!-- <onclick>SetProperty(reloadskin,1,Home)</onclick> -->
                     <!-- <visible>Control.IsVisible(524)</visible> -->
                 <!-- </control> -->
 
@@ -451,7 +449,7 @@
                     <label>31414</label>
                     <selected>Skin.HasSetting(show.view.509.title.clearlogo)</selected>
                     <onclick>Skin.ToggleSetting(show.view.509.title.clearlogo)</onclick>
-                    <onclick>ReloadSkin()</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                     <visible>Control.IsVisible(509)</visible>
                 </control>
                 <control type="radiobutton" id="9045">
@@ -473,7 +471,7 @@
                     <label>$LOCALIZE[31555]</label>
                     <selected>Skin.HasSetting(show.view.524.poster.movies)</selected>
                     <onclick>Skin.ToggleSetting(show.view.524.poster.movies)</onclick>
-                    <onclick>ReloadSkin()</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                     <visible>Control.IsVisible(524)</visible>
                 </control>
                 <!-- <control type="radiobutton" id="90339" description="No Wrap"> -->
@@ -482,7 +480,7 @@
                     <!-- <label>$LOCALIZE[31555]</label> -->
                     <!-- <selected>Skin.HasSetting(show.view.524.poster.tvshows)</selected> -->
                     <!-- <onclick>Skin.ToggleSetting(show.view.524.poster.tvshows)</onclick> -->
-                    <!-- <onclick>ReloadSkin()</onclick> -->
+                    <!-- <onclick>SetProperty(reloadskin,1,Home)</onclick> -->
                     <!-- <visible>Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible> -->
                     <!-- <visible>Control.IsVisible(524)</visible> -->
                 <!-- </control> -->
@@ -518,7 +516,7 @@
                     <selected>Skin.HasSetting(509NoCenter)</selected>
                     <onclick>Skin.ToggleSetting(509NoCenter)</onclick>
                     <visible>Control.IsVisible(509)</visible>
-                    <onclick>ReloadSkin()</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                 </control>
                 <control type="button" id="9051">
                     <include>Def_Dialog_Menu_Button_Gradient_Select</include>
@@ -527,7 +525,7 @@
                     <selected>Skin.HasSetting(514NoCenter)</selected>
                     <onclick>Skin.ToggleSetting(514NoCenter)</onclick>
                     <visible>Control.IsVisible(514)</visible>
-                    <onclick>ReloadSkin()</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                 </control>
                 <control type="radiobutton" id="90321">
                     <include>Def_Dialog_Menu_Button_Gradient_Select</include>
@@ -565,7 +563,7 @@
                     <label>31418</label>
                     <selected>Skin.HasSetting(show.furniture.progress.circle)</selected>
                     <onclick>Skin.ToggleSetting(show.furniture.progress.circle)</onclick>
-                    <onclick>ReloadSkin()</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                     <visible>[Control.IsVisible(55) + Skin.HasSetting(55wall.showinfo)] | Control.IsVisible(56) | Control.IsVisible(57) | Control.IsVisible(501) | Control.IsVisible(507) | Control.IsVisible(516) | Control.IsVisible(526) | Control.IsVisible(53)</visible>
                     <visible>!$EXP[IsYoutube] + !Container.content(sets)</visible>
                 </control>
@@ -739,6 +737,7 @@
                 <param name="onback" value="9000" />
                 <param name="height" value="910" />
                 <param name="centerright" value="4" />
+                <param name="visible" value="$EXP[View_Context_Menu_Visible]" />
             </include>
         </control>
 

@@ -90,23 +90,26 @@
         <param name="icon" value="$PARAM[icon]" default="kodi" />
         <param name="icon_color" value="$PARAM[icon_color]" default="$VAR[Color_Dialog_Header_Logo]" />
         <param name="line_color" value="$PARAM[line_color]" default="Black12" />
-
+        <param name="visible" default="true" />
         <definition>
-            <include content="Def_Dialog_Header_Logo">
-                <param name="texture" value="$PARAM[icon]" />
-                <param name="colordiffuse" value="$PARAM[icon_color]" />
-            </include>
-
-            <control type="label" id="$PARAM[label_id]">
-                <include content="Def_Dialog_Header_Title">
-                    <param name="textcolor" value="$PARAM[label_color]" />
+            <control type="group">
+                <visible>$PARAM[visible]</visible>
+                <include content="Def_Dialog_Header_Logo">
+                    <param name="texture" value="$PARAM[icon]" />
+                    <param name="colordiffuse" value="$PARAM[icon_color]" />
                 </include>
-                <label>$PARAM[label]</label>
-            </control>
 
-            <include content="Def_Dialog_Header_Line">
-                <param name="colordiffuse" value="$PARAM[line_color]" />
-            </include>
+                <control type="label" id="$PARAM[label_id]">
+                    <include content="Def_Dialog_Header_Title">
+                        <param name="textcolor" value="$PARAM[label_color]" />
+                    </include>
+                    <label>$PARAM[label]</label>
+                </control>
+
+                <include content="Def_Dialog_Header_Line">
+                    <param name="colordiffuse" value="$PARAM[line_color]" />
+                </include>
+            </control>
         </definition>
     </include>
 

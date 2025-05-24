@@ -574,6 +574,7 @@
 
             <include content="Def_Dialog_Background_Image">
                 <param name="colordiffuse" value="White100" />
+                <!-- <param name="visible" value="$EXP[View_Context_Menu_Visible]" /> -->
             </include>
         </definition>
     </include>
@@ -630,14 +631,21 @@
 
         <definition>
             <visible allowhiddenfocus="true">$EXP[View_Context_Menu_Visible]</visible>
-            <onleft>$PARAM[idlayout]</onleft>
+
+            <onleft condition="String.IsEmpty(Window(Home).Property(reloadskin))">$PARAM[idlayout]</onleft>
+            <onleft condition="!String.IsEmpty(Window(Home).Property(reloadskin))">SetFocus(3033)</onleft>
             <onright>$PARAM[scrollid]</onright>
-            <onback>$PARAM[idlayout]</onback>
+            <onback condition="String.IsEmpty(Window(Home).Property(reloadskin))">$PARAM[idlayout]</onback>
+            <onback condition="!String.IsEmpty(Window(Home).Property(reloadskin))">3033</onback>
+
+            <top>112</top>
             <left>0</left>
-            <top>16</top>
             <width>470</width>
             <height>$PARAM[height]</height>
+
             <itemgap>0</itemgap>
+            <pagecontrol>9070</pagecontrol>
+            <usecontrolcoords>true</usecontrolcoords>
         </definition>
     </include>
 
