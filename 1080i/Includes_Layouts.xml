@@ -612,9 +612,15 @@
         <param name="idlayout" default="50" />
         <definition>
             <visible allowhiddenfocus="true">$EXP[View_Context_Menu_Visible]</visible>
-            <onleft>$PARAM[idlayout]</onleft>
+
             <onright>$PARAM[idlayout]</onright>
-            <onback>$PARAM[idlayout]</onback>
+
+            <onleft condition="String.IsEmpty(Window(Home).Property(reloadskin))">$PARAM[idlayout]</onleft>
+            <onleft condition="!String.IsEmpty(Window(Home).Property(reloadskin))">SetFocus(3033)</onleft>
+
+            <onback condition="String.IsEmpty(Window(Home).Property(reloadskin))">$PARAM[idlayout]</onback>
+            <onback condition="!String.IsEmpty(Window(Home).Property(reloadskin))">3033</onback>
+
             <left>0</left>
             <top>16</top>
             <width>470</width>
@@ -631,9 +637,11 @@
         <definition>
             <visible allowhiddenfocus="true">$EXP[View_Context_Menu_Visible]</visible>
 
+            <onright>$PARAM[scrollid]</onright>
+
             <onleft condition="String.IsEmpty(Window(Home).Property(reloadskin))">$PARAM[idlayout]</onleft>
             <onleft condition="!String.IsEmpty(Window(Home).Property(reloadskin))">SetFocus(3033)</onleft>
-            <onright>$PARAM[scrollid]</onright>
+
             <onback condition="String.IsEmpty(Window(Home).Property(reloadskin))">$PARAM[idlayout]</onback>
             <onback condition="!String.IsEmpty(Window(Home).Property(reloadskin))">3033</onback>
 

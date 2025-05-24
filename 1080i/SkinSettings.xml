@@ -14,6 +14,8 @@
         <include condition="!Skin.HasSetting(hide.furniture.nowplaying.views)">Furniture_Header_NowPlaying</include>
         <include condition="!Skin.HasSetting(show.clock.date.weather.home.only)">Furniture_Footer_Clock_Right</include>
 
+        <include>Hidden_Button_ReloadSkin</include>
+
         <control type="group">
             <include>Animation_Common</include>
             <include>Def_Dialog_Settings</include>
@@ -358,7 +360,7 @@
                     <label>$LOCALIZE[31112]</label>
                     <selected>!Skin.HasSetting(hide.furniture.flags.vertical.widgets)</selected>
                     <onclick>Skin.ToggleSetting(hide.furniture.flags.vertical.widgets)</onclick>
-                    <!-- <onclick>ReloadSkin()</onclick> -->
+                    <!-- <onclick>SetProperty(reloadskin,1,Home)</onclick> -->
                     <visible>Skin.HasSetting(home.vertical)</visible>
                     <!-- <enable>Skin.HasSetting(hide.home.menu)</enable> -->
                 </control>
@@ -671,7 +673,7 @@
                     <label>31379</label>
                     <selected>Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget)</selected>
                     <onclick>Skin.ToggleSetting(enable.widgets.onup.go.back.to.last.widget)</onclick>
-                    <onclick>ReloadSkin()</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                     <visible>$EXP[Home_Is_Vertical]</visible>
                 </control>
 
@@ -684,7 +686,7 @@
                     <label>31498</label>
                     <selected>Skin.HasSetting(enable.onleft.go.to.last.item.widget)</selected>
                     <onclick>Skin.ToggleSetting(enable.onleft.go.to.last.item.widget)</onclick>
-                    <onclick>ReloadSkin()</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                     <visible>$EXP[Home_Is_Vertical]</visible>
                 </control>
 
@@ -792,7 +794,7 @@
                     <label>31439</label>
                     <selected>Skin.HasSetting(hide.mouse.warning)</selected>
                     <onclick>Skin.ToggleSetting(hide.mouse.warning)</onclick>
-                    <onclick>ReloadSkin()</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                 </control>
 
                 <!-- KIOSK MODE -->
@@ -1109,7 +1111,7 @@
                     <label>$LOCALIZE[31187]</label>
                     <selected>Skin.HasSetting(enable.extra.fanart)</selected>
                     <onclick>Skin.ToggleSetting(enable.extra.fanart)</onclick>
-                    <onclick>ReloadSkin()</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                     <onclick condition="Skin.HasSetting(enable.extra.fanart)">Skin.SetBool(enabled.tmdb.helper.blur)</onclick>
                     <onclick condition="!Skin.HasSetting(enable.extra.fanart)">Skin.Reset(enabled.tmdb.helper.blur)</onclick>
                     <enable>!Skin.HasSetting(hide.global.fanart)</enable>
@@ -1279,7 +1281,7 @@
                     <label>$LOCALIZE[31163] ($LOCALIZE[31151])</label>
                     <selected>Skin.HasSetting(enable.view.video.rating.num)</selected>
                     <onclick>Skin.ToggleSetting(enable.view.video.rating.num)</onclick>
-                    <onclick>ReloadSkin()</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                 </control>
                 <control type="radiobutton" id="92761">
                     <width>1278</width>
@@ -1881,7 +1883,7 @@
                     <label>$LOCALIZE[31113]</label>
                     <selected>!Skin.HasSetting(hide.furniture.nowplaying.views)</selected>
                     <onclick>Skin.ToggleSetting(hide.furniture.nowplaying.views)</onclick>
-                    <onclick>ReloadSkin()</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                 </control>
                 <control type="radiobutton" id="9743">
                     <width>1278</width>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window id="2">
-    <views>50,51,506,500,547,523,555,557,522,5228,5238</views>
+    <views>50,51,506,500,547,522,523,555,557,5228,5238</views>
     <defaultcontrol always="true">50</defaultcontrol>
     <menucontrol>9000</menucontrol>
     <include condition="Skin.HasSetting(enabled.tmdb.helper.blur)">Action_Blur_Onload</include>
@@ -35,6 +35,8 @@
         <!-- <include>Furniture_Footer_Clock_Right</include> -->
         <include>Furniture_Header_Clock_Right</include>
         <include condition="!Skin.HasSetting(disable.all.hidden.list)">Hidden_List_Item_Name_In_Folder</include>
+
+        <include>Hidden_Button_ReloadSkin</include>
 
         <include>Def_Dialog_Menu_Background_Overlay</include>
 
@@ -152,7 +154,7 @@
                     <label>31258</label>
                     <selected>Skin.HasSetting(522.landscape.control.list)</selected>
                     <onclick>Skin.ToggleSetting(522.landscape.control.list)</onclick>
-                    <onclick>ReloadSkin()</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                     <visible>Control.IsVisible(522)</visible>
                 </control>
                 <control type="button" id="90702" description="522 Landscape Size">
@@ -169,16 +171,7 @@
                     <selected>Skin.HasSetting(523.square.control.list)</selected>
                     <onclick>Skin.ToggleSetting(523.square.control.list)</onclick>
                     <onclick>Skin.Reset(523poster.fixedlist)</onclick>
-                    <onclick>ReloadSkin()</onclick>
-                    <visible>Control.IsVisible(523)</visible>
-                </control>
-                <control type="radiobutton" id="9035" description="SELECT LISTTYPE">
-                    <include>Def_Dialog_Menu_Button_Gradient_Select</include>
-                    <label>31258</label>
-                    <selected>Skin.HasSetting(523.square.control.list)</selected>
-                    <onclick>Skin.ToggleSetting(523.square.control.list)</onclick>
-                    <onclick>Skin.Reset(523poster.fixedlist)</onclick>
-                    <onclick>ReloadSkin()</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                     <visible>Control.IsVisible(523)</visible>
                 </control>
                 <control type="radiobutton" id="9027">
