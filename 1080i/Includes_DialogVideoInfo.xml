@@ -128,7 +128,7 @@
                         <aspectratio>keep</aspectratio>
                         <include>Animation_Vertical_Widgets_Title_Loading</include>
                         <visible>$EXP[DialogVideoInfo_IsUpadttingInfo]</visible>
-                        <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.Property(item.type),person)</visible>
+                        <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.Property(tmdb_type),person)</visible>
                         <visible>ControlGroup(9000).HasFocus() | ControlGroup(9090).HasFocus()</visible>
                         <animation effect="fade" start="0" end="100" time="400" delay="100" reversible="false" condition="ControlGroup(9090).HasFocus()">Conditional</animation>
                         <animation effect="fade" start="0" end="100" time="400" delay="100" reversible="false" condition="ControlGroup(9000).HasFocus()">Conditional</animation>
@@ -146,7 +146,7 @@
                         <visible>ControlGroup(9000).HasFocus() | ControlGroup(9090).HasFocus()</visible>
                         <include>Animation_Button_Label_Video</include>
                         <visible>$EXP[DialogVideoInfo_IsUpadttingInfo]</visible>
-                        <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.Property(item.type),person)</visible>
+                        <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.Property(tmdb_type),person)</visible>
                         <animation effect="fade" start="0" end="100" time="400" delay="100" reversible="false" condition="ControlGroup(9090).HasFocus()">Conditional</animation>
                         <animation effect="fade" start="0" end="100" time="400" delay="100" reversible="false" condition="ControlGroup(9000).HasFocus()">Conditional</animation>
                     </control>
@@ -641,7 +641,7 @@
 
                     <!-- MEDIA FLAG -->
 
-                    <include condition="!String.IsEqual(ListItem.Property(item.type),person)">Furniture_Flags_DialogInfo_Video</include>
+                    <include condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">Furniture_Flags_DialogInfo_Video</include>
 
                     <top>205</top>
                     <left>570</left>
@@ -738,7 +738,7 @@
                         <!-- MOVIE / TVSHOW / SEASON / EPISODE -->
 
                         <control type="grouplist">
-                            <visible>!String.IsEqual(ListItem.Property(item.type),person) + !String.IsEqual(ListItem.DBType,set)</visible>
+                            <visible>!String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEqual(ListItem.DBType,set)</visible>
                             <orientation>horizontal</orientation>
                             <itemgap>15</itemgap>
                             <top>5</top>
@@ -829,7 +829,7 @@
                         <!-- PERSON -->
 
                         <control type="grouplist">
-                            <visible>String.IsEqual(ListItem.Property(item.type),person)</visible>
+                            <visible>String.IsEqual(ListItem.Property(tmdb_type),person)</visible>
                             <orientation>horizontal</orientation>
                             <itemgap>15</itemgap>
                             <top>5</top>
@@ -925,7 +925,7 @@
 
                         <control type="textbox">
                             <visible>[String.IsEqual(Container(50).NumItems,0) + String.IsEmpty(Window(Home).Property(moviecontent))] | String.IsEqual(ListItem.DBType,video) | String.IsEmpty(ListItem.DBType)</visible>
-                            <visible>!String.IsEqual(ListItem.Property(item.type),person) + !String.IsEqual(ListItem.DBType,season)</visible>
+                            <visible>!String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEqual(ListItem.DBType,season)</visible>
                             <right>0</right>
                             <top>180</top>
                             <left>0</left>
@@ -937,7 +937,7 @@
                         </control>
                         <control type="textbox">
                             <visible>[String.IsEqual(Container(50).NumItems,0) + !String.IsEmpty(Window(Home).Property(moviecontent))] | !String.IsEqual(Container(50).NumItems,0)</visible>
-                            <visible>!String.IsEqual(ListItem.Property(item.type),person) + !String.IsEqual(ListItem.DBType,season)</visible>
+                            <visible>!String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEqual(ListItem.DBType,season)</visible>
                             <right>0</right>
                             <top>180</top>
                             <left>0</left>
@@ -979,7 +979,7 @@
 
                         <control type="textbox">
                             <visible>String.IsEqual(Container(50).NumItems,0) + String.IsEmpty(Window(Home).Property(moviecontent))</visible>
-                            <visible>String.IsEqual(ListItem.Property(item.type),person)</visible>
+                            <visible>String.IsEqual(ListItem.Property(tmdb_type),person)</visible>
                             <right>0</right>
                             <top>110</top>
                             <left>0</left>
@@ -991,7 +991,7 @@
                         </control>
                         <control type="textbox">
                             <visible>[String.IsEqual(Container(50).NumItems,0) + !String.IsEmpty(Window(Home).Property(moviecontent))] | !String.IsEqual(Container(50).NumItems,0)</visible>
-                            <visible>String.IsEqual(ListItem.Property(item.type),person)</visible>
+                            <visible>String.IsEqual(ListItem.Property(tmdb_type),person)</visible>
                             <right>0</right>
                             <top>110</top>
                             <left>0</left>
@@ -1369,13 +1369,13 @@
 
                     <!-- CAST - LOCAL -->
 
-                    <include content="Recommendation_Cast_Local" condition="!String.IsEqual(ListItem.Property(item.type),person) + !String.IsEqual(ListItem.DBType,set) + !String.IsEmpty(ListItem.DBID) + !$EXP[IsYoutubeItem]">
+                    <include content="Recommendation_Cast_Local" condition="!String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEqual(ListItem.DBType,set) + !String.IsEmpty(ListItem.DBID) + !$EXP[IsYoutubeItem]">
                         <param name="controlid" value="50" />
                     </include>
 
                     <!-- CAST - ONLINE / SEASON -->
 
-                    <include content="Recommendation_Cast_Online" condition="!String.IsEqual(ListItem.Property(item.type),person) + !String.IsEqual(ListItem.DBType,set) + !$EXP[IsYoutubeItem]">
+                    <include content="Recommendation_Cast_Online" condition="!String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEqual(ListItem.DBType,set) + !$EXP[IsYoutubeItem]">
                         <param name="controlid" value="9550" />
                     </include>
 
@@ -1385,42 +1385,42 @@
 
                     <!-- PERSON - PICTURES -->
 
-                    <include content="Recommendation_Person_Picture" condition="String.IsEqual(ListItem.Property(item.type),person)">
+                    <include content="Recommendation_Person_Picture" condition="String.IsEqual(ListItem.Property(tmdb_type),person)">
                         <param name="controlid" value="9554" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),13)" />
                     </include>
 
                     <!-- PERSON - DIRECTOR - MOVIES / TVSHOWS -->
 
-                    <include content="Recommendation_Person_Director" condition="String.IsEqual(ListItem.Property(item.type),person)">
+                    <include content="Recommendation_Person_Director" condition="String.IsEqual(ListItem.Property(tmdb_type),person)">
                         <param name="controlid" value="9560" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),20)" />
                     </include>
 
                     <!-- PERSON - ACTOR - MOVIES -->
 
-                    <include content="Recommendation_Person_Actor_Movies" condition="String.IsEqual(ListItem.Property(item.type),person)">
+                    <include content="Recommendation_Person_Actor_Movies" condition="String.IsEqual(ListItem.Property(tmdb_type),person)">
                         <param name="controlid" value="9552" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),11)" />
                     </include>
 
                     <!-- PERSON - ACTOR - TVSHOWS -->
 
-                    <include content="Recommendation_Person_Actor_Tvshows" condition="String.IsEqual(ListItem.Property(item.type),person)">
+                    <include content="Recommendation_Person_Actor_Tvshows" condition="String.IsEqual(ListItem.Property(tmdb_type),person)">
                         <param name="controlid" value="9553" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),12)" />
                     </include>
 
                     <!-- PERSON - MEMBER CREW - MOVIES -->
 
-                    <include content="Recommendation_Person_Member_Crew__Movies" condition="String.IsEqual(ListItem.Property(item.type),person)">
+                    <include content="Recommendation_Person_Member_Crew__Movies" condition="String.IsEqual(ListItem.Property(tmdb_type),person)">
                         <param name="controlid" value="9558" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),18)" />
                     </include>
 
                     <!-- PERSON - MEMBER CREW - TVSHOWS -->
 
-                    <include content="Recommendation_Person_Member_Crew_Tvshows" condition="String.IsEqual(ListItem.Property(item.type),person)">
+                    <include content="Recommendation_Person_Member_Crew_Tvshows" condition="String.IsEqual(ListItem.Property(tmdb_type),person)">
                         <param name="controlid" value="9559" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),19)" />
                     </include>
@@ -1429,7 +1429,7 @@
                     <!--          YOUTUBE            -->
                     <!-- =========================== -->
 
-                    <include content="Recommendation_Youtube" condition="!Skin.HasSetting(hide.button.video.youtube) + [[[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.Property(item.type),person)] + !String.IsEqual(ListItem.DBType,set)] | $EXP[IsTMDbHelperItem]]">
+                    <include content="Recommendation_Youtube" condition="!Skin.HasSetting(hide.button.video.youtube) + [[[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.Property(tmdb_type),person)] + !String.IsEqual(ListItem.DBType,set)] | $EXP[IsTMDbHelperItem]]">
                         <param name="controlid" value="9504" />
                         <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),4)" />
                     </include>
@@ -1655,7 +1655,7 @@
                 <include>Animation_Video_Fade_Out_Clearlogo</include>
 
                 <visible>!Player.HasMedia | Skin.HasSetting(hide.furniture.nowplaying.views)</visible>
-                <visible>!String.IsEqual(ListItem.Property(item.type),person) + !Window.IsActive(DialogNotification.xml)</visible>
+                <visible>!String.IsEqual(ListItem.Property(tmdb_type),person) + !Window.IsActive(DialogNotification.xml)</visible>
                 <visible>![Control.HasFocus(9501) | Control.HasFocus(9506) | Control.HasFocus(95067) | Control.HasFocus(9514) | Control.HasFocus(9515) | Control.HasFocus(9560) | Control.HasFocus(9518) | Control.HasFocus(9507) | Control.HasFocus(9503) | Control.HasFocus(9504) | Control.HasFocus(9552) | Control.HasFocus(9553)]</visible>
 
                 <centertop>120</centertop>

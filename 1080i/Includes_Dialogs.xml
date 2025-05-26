@@ -1416,7 +1416,7 @@
 
     <include name="Def_Dialog_Info_Navigation_Video">
         <control type="grouplist" id="9000">
-            <visible allowhiddenfocus="true">ControlGroup(9000).HasFocus() | Control.HasFocus(95051) | Control.HasFocus(9504) | Control.HasFocus(9554) | Control.HasFocus(9750) | Control.HasFocus(50) | Control.HasFocus(9550) | [Control.HasFocus(9669) + ![String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)]] | String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.Property(item.type),person) | ControlGroup(9800).HasFocus() | Window.IsVisible(Custom_1260_DialogInfo_Settings.xml) | Control.HasFocus(7011) | Control.HasFocus(7012) | Control.HasFocus(290) | Control.HasFocus(291) | Control.HasFocus(292) | Control.HasFocus(293) | Control.HasFocus(294)</visible>
+            <visible allowhiddenfocus="true">ControlGroup(9000).HasFocus() | Control.HasFocus(95051) | Control.HasFocus(9504) | Control.HasFocus(9554) | Control.HasFocus(9750) | Control.HasFocus(50) | Control.HasFocus(9550) | [Control.HasFocus(9669) + ![String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)]] | String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.Property(tmdb_type),person) | ControlGroup(9800).HasFocus() | Window.IsVisible(Custom_1260_DialogInfo_Settings.xml) | Control.HasFocus(7011) | Control.HasFocus(7012) | Control.HasFocus(290) | Control.HasFocus(291) | Control.HasFocus(292) | Control.HasFocus(293) | Control.HasFocus(294)</visible>
 
             <include>Animation_Scrolltime_Widgets_List</include>
 
@@ -1440,27 +1440,27 @@
             <!-- Hide discart -->
             <ondown condition="String.IsEqual(Window(Home).Property(moviecontent),1) + String.IsEqual(Window.Property(ShowDisc),1) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.Art(discart))">ClearProperty(ShowDisc)</ondown>
             <!-- focus second row button navigation -->
-            <ondown condition="!String.IsEqual(ListItem.Property(item.type),person) + !String.IsEqual(ListItem.DBType,set) + String.IsEmpty(Window.Property(ShowDisc)) + !String.IsEqual(ListItem.DBType,video)">9090</ondown>
+            <ondown condition="!String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEqual(ListItem.DBType,set) + String.IsEmpty(Window.Property(ShowDisc)) + !String.IsEqual(ListItem.DBType,video)">9090</ondown>
             <!-- show resume overlay -->
-            <ondown condition="String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.DBType,video)">9669</ondown>
+            <ondown condition="String.IsEqual(ListItem.Property(tmdb_type),person) | String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.DBType,video)">9669</ondown>
 
             <orientation>horizontal</orientation>
 
             <!-- Movies list by cast -->
-            <onup condition="String.IsEqual(ListItem.Property(item.type),person) + String.IsEqual(Window(Home).Property(moviecontent),11)">9552</onup>
-            <onup condition="String.IsEqual(ListItem.Property(item.type),person) + String.IsEqual(Window(Home).Property(moviecontent),11)">SetProperty(TMDbHelper.WidgetContainer,9552,home)</onup>
+            <onup condition="String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEqual(Window(Home).Property(moviecontent),11)">9552</onup>
+            <onup condition="String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEqual(Window(Home).Property(moviecontent),11)">SetProperty(TMDbHelper.WidgetContainer,9552,home)</onup>
             <!-- TvShows list by cast -->
-            <onup condition="String.IsEqual(ListItem.Property(item.type),person) + String.IsEqual(Window(Home).Property(moviecontent),12)">9553</onup>
-            <onup condition="String.IsEqual(ListItem.Property(item.type),person) + String.IsEqual(Window(Home).Property(moviecontent),12)">SetProperty(TMDbHelper.WidgetContainer,9553,home)</onup>
+            <onup condition="String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEqual(Window(Home).Property(moviecontent),12)">9553</onup>
+            <onup condition="String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEqual(Window(Home).Property(moviecontent),12)">SetProperty(TMDbHelper.WidgetContainer,9553,home)</onup>
             <!-- Movies list by member crew -->
-            <onup condition="String.IsEqual(ListItem.Property(item.type),person) + String.IsEqual(Window(Home).Property(moviecontent),18)">9558</onup>
-            <onup condition="String.IsEqual(ListItem.Property(item.type),person) + String.IsEqual(Window(Home).Property(moviecontent),18)">SetProperty(TMDbHelper.WidgetContainer,9558,home)</onup>
+            <onup condition="String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEqual(Window(Home).Property(moviecontent),18)">9558</onup>
+            <onup condition="String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEqual(Window(Home).Property(moviecontent),18)">SetProperty(TMDbHelper.WidgetContainer,9558,home)</onup>
             <!-- TvShows list by member crew -->
-            <onup condition="String.IsEqual(ListItem.Property(item.type),person) + String.IsEqual(Window(Home).Property(moviecontent),19)">9559</onup>
-            <onup condition="String.IsEqual(ListItem.Property(item.type),person) + String.IsEqual(Window(Home).Property(moviecontent),19)">SetProperty(TMDbHelper.WidgetContainer,9559,home)</onup>
+            <onup condition="String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEqual(Window(Home).Property(moviecontent),19)">9559</onup>
+            <onup condition="String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEqual(Window(Home).Property(moviecontent),19)">SetProperty(TMDbHelper.WidgetContainer,9559,home)</onup>
             <!-- Movies list by director -->
-            <onup condition="String.IsEqual(ListItem.Property(item.type),person) + String.IsEqual(Window(Home).Property(moviecontent),20)">9560</onup>
-            <onup condition="String.IsEqual(ListItem.Property(item.type),person) + String.IsEqual(Window(Home).Property(moviecontent),20)">SetProperty(TMDbHelper.WidgetContainer,9560,home)</onup>
+            <onup condition="String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEqual(Window(Home).Property(moviecontent),20)">9560</onup>
+            <onup condition="String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEqual(Window(Home).Property(moviecontent),20)">SetProperty(TMDbHelper.WidgetContainer,9560,home)</onup>
 
             <!-- Cast list - Local only -->
             <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + !Skin.HasSetting(filter.video.cast.on.line) + !String.IsEqual(ListItem.DBType,season) + !String.IsEqual(ListItem.DBType,set) + !$EXP[IsYoutubeItem] + !String.IsEmpty(ListItem.DBID)">50</onup>
@@ -1516,8 +1516,8 @@
             <!-- BACK FULLSCREEN NOW PLAYING -->
 
             <control type="radiobutton" id="9201">
-                <onfocus condition="!String.IsEqual(ListItem.Property(item.type),person)">ClearProperty(moviecontent,Home)</onfocus>
-                <onfocus condition="String.IsEqual(ListItem.Property(item.type),person)">SetProperty(moviecontent,13,Home)</onfocus>
+                <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
+                <onfocus condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetProperty(moviecontent,13,Home)</onfocus>
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
                 <include>Def_Button_Dimensions</include>
 
@@ -1559,7 +1559,7 @@
                 <onclick>Dialog.Close(all)</onclick>
                 <visible>!ListItem.IsPlaying</visible>
                 <visible>!String.IsEqual(ListItem.DBType,tvshow) + !String.IsEqual(ListItem.DBType,season)</visible>
-                <visible>!String.IsEqual(ListItem.Property(item.type),person) + !String.IsEqual(ListItem.DBType,set)</visible>
+                <visible>!String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEqual(ListItem.DBType,set)</visible>
 
                 <!-- <visible>!Integer.IsEqual(Container(50).NumItems,0) + String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating)) + !String.IsEmpty(Window(Home).Property(Init_Value_TMDb))</visible> -->
             </control>
@@ -1681,7 +1681,7 @@
 
                 <visible>!String.IsEmpty(ListItem.Trailer) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Trailer))</visible>
                 <visible>!Skin.HasSetting(PlayTrailerWindowed)</visible>
-                <visible>!String.IsEqual(ListItem.Property(item.type),person)</visible>
+                <visible>!String.IsEqual(ListItem.Property(tmdb_type),person)</visible>
                 <visible>System.AddonIsEnabled(plugin.video.youtube)</visible>
             </control>
 
@@ -1708,7 +1708,7 @@
 
                 <visible>!String.IsEmpty(ListItem.Trailer) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Trailer))</visible>
                 <visible>Skin.HasSetting(PlayTrailerWindowed)</visible>
-                <visible>!String.IsEqual(ListItem.Property(item.type),person)</visible>
+                <visible>!String.IsEqual(ListItem.Property(tmdb_type),person)</visible>
                 <visible>System.AddonIsEnabled(plugin.video.youtube)</visible>
             </control>
 
@@ -1717,8 +1717,8 @@
             <!-- LOCAL ONLY / ON LINE -->
 
              <control type="radiobutton" id="90122">
-                <onfocus condition="!String.IsEqual(ListItem.Property(item.type),person)">ClearProperty(moviecontent,Home)</onfocus>
-                <onfocus condition="String.IsEqual(ListItem.Property(item.type),person)">SetProperty(moviecontent,13,Home)</onfocus>
+                <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
+                <onfocus condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetProperty(moviecontent,13,Home)</onfocus>
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
                 <onclick>Skin.ToggleSetting(filter.video.only.local)</onclick>
                 <include>Def_Cleanup_On_Click</include>
@@ -1730,15 +1730,15 @@
                 <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/storageinfo.png</textureradioofffocus>
                 <textureradiooffnofocus colordiffuse="Dark2">buttonsdialogs/storageinfo.png</textureradiooffnofocus>
                 <usealttexture>Skin.HasSetting(filter.video.only.local)</usealttexture>
-                <visible>String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.DBType,set)</visible>
+                <visible>String.IsEqual(ListItem.Property(tmdb_type),person) | String.IsEqual(ListItem.DBType,set)</visible>
                 <visible>System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)</visible>
             </control>
 
             <!-- LOCAL ONLY IF TMDB HELPER DISABLE -->
 
              <control type="radiobutton" id="90123">
-                <onfocus condition="!String.IsEqual(ListItem.Property(item.type),person)">ClearProperty(moviecontent,Home)</onfocus>
-                <onfocus condition="String.IsEqual(ListItem.Property(item.type),person)">SetProperty(moviecontent,13,Home)</onfocus>
+                <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
+                <onfocus condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetProperty(moviecontent,13,Home)</onfocus>
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
                 <onfocus condition="!Skin.HasSetting(filter.video.only.local)">Skin.ToggleSetting(filter.video.only.local)</onfocus>
 
@@ -1750,14 +1750,14 @@
                 <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/storageinfo.png</textureradioofffocus>
                 <textureradiooffnofocus colordiffuse="Dark2">buttonsdialogs/storageinfo.png</textureradiooffnofocus>
                 <usealttexture>Skin.HasSetting(filter.video.only.local)</usealttexture>
-                <visible>String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.DBType,set)</visible>
+                <visible>String.IsEqual(ListItem.Property(tmdb_type),person) | String.IsEqual(ListItem.DBType,set)</visible>
                 <visible>![System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)]</visible>
             </control>
 
             <!-- CAST PICTURES -->
 
             <!-- <control type="radiobutton" id="9054"> -->
-                <!-- <visible>String.IsEqual(ListItem.Property(item.type),person)</visible> -->
+                <!-- <visible>String.IsEqual(ListItem.Property(tmdb_type),person)</visible> -->
                 <!-- <onfocus condition="!String.IsEqual(Window(Home).Property(moviecontent),13)">ClearProperty(moviecontent,Home)</onfocus> -->
                 <!-- <onfocus>ClearProperty(ShowDisc)</onfocus> -->
                 <!-- <onfocus>SetProperty(moviecontent,13,Home)</onfocus> -->
@@ -1785,7 +1785,7 @@
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/director.png" />
                 </include>
-                <visible>String.IsEqual(ListItem.Property(item.type),person)</visible>
+                <visible>String.IsEqual(ListItem.Property(tmdb_type),person)</visible>
                 <visible>!Integer.IsEqual(Container(9560).NumItems,0) + !Container(9560).IsUpdating</visible>
                 <!-- <visible>[!Integer.IsEqual(Container(9560).NumItems,0) + !Container(9560).IsUpdating] | !String.IsEmpty(Window(Home).Property(isoninfo_director))</visible> -->
                 <visible>String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating)) + !String.IsEmpty(Window(Home).Property(Init_Value_TMDb))</visible>
@@ -1806,7 +1806,7 @@
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/movie.png" />
                 </include>
-                <visible>String.IsEqual(ListItem.Property(item.type),person)</visible>
+                <visible>String.IsEqual(ListItem.Property(tmdb_type),person)</visible>
                 <visible>!Integer.IsEqual(Container(9552).NumItems,0) + !Container(9552).IsUpdating</visible>
                 <visible>String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating)) + !String.IsEmpty(Window(Home).Property(Init_Value_TMDb))</visible>
             </control>
@@ -1825,7 +1825,7 @@
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/tvshow.png" />
                 </include>
-                <visible>String.IsEqual(ListItem.Property(item.type),person)</visible>
+                <visible>String.IsEqual(ListItem.Property(tmdb_type),person)</visible>
                 <visible>!Integer.IsEqual(Container(9553).NumItems,0) + !Container(9553).IsUpdating</visible>
                 <visible>String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating)) + !String.IsEmpty(Window(Home).Property(Init_Value_TMDb))</visible>
             </control>
@@ -1844,7 +1844,7 @@
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/people-group.png" />
                 </include>
-                <visible>String.IsEqual(ListItem.Property(item.type),person) + !Skin.HasSetting(filter.video.only.local)</visible>
+                <visible>String.IsEqual(ListItem.Property(tmdb_type),person) + !Skin.HasSetting(filter.video.only.local)</visible>
                 <visible>!Integer.IsEqual(Container(9558).NumItems,0) + !Container(9558).IsUpdating</visible>
                 <visible>String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating)) + !String.IsEmpty(Window(Home).Property(Init_Value_TMDb))</visible>
             </control>
@@ -1863,7 +1863,7 @@
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/people-line.png" />
                 </include>
-                <visible>String.IsEqual(ListItem.Property(item.type),person) + !Skin.HasSetting(filter.video.only.local)</visible>
+                <visible>String.IsEqual(ListItem.Property(tmdb_type),person) + !Skin.HasSetting(filter.video.only.local)</visible>
                 <visible>!Integer.IsEqual(Container(9559).NumItems,0) + !Container(9559).IsUpdating</visible>
                 <visible>String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating)) + !String.IsEmpty(Window(Home).Property(Init_Value_TMDb))</visible>
             </control>
@@ -1872,8 +1872,8 @@
 
             <control type="radiobutton" id="9013">
                 <visible>String.IsEqual(ListItem.DBType,video) | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)</visible>
-                <onfocus condition="String.IsEqual(ListItem.Property(item.type),person)">SetProperty(moviecontent,13,Home)</onfocus>
-                <onfocus condition="!String.IsEqual(ListItem.Property(item.type),person)">ClearProperty(moviecontent,Home)</onfocus>
+                <onfocus condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetProperty(moviecontent,13,Home)</onfocus>
+                <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
                 <onfocus>ClearProperty(dontslide,Home)</onfocus>
                 <onclick>SetProperty(dontslide,1,Home)</onclick>
@@ -1883,7 +1883,7 @@
                     <param name="icon" value="buttonsdialogs/wiki.png" />
                 </include>
                 <visible>!Skin.HasSetting(hide.button.video.wiki) + System.AddonIsEnabled(script.wikipedia)</visible>
-                <visible>[!String.IsEqual(ListItem.DBType,video) + !String.IsEmpty(ListItem.DBType)] | String.IsEqual(ListItem.Property(item.type),person)</visible>
+                <visible>[!String.IsEqual(ListItem.DBType,video) + !String.IsEmpty(ListItem.DBType)] | String.IsEqual(ListItem.Property(tmdb_type),person)</visible>
             </control>
 
             <!-- CINEMA EXPERIENCE -->
@@ -1905,8 +1905,8 @@
             <!-- USER RATING -->
 
             <control type="radiobutton" id="7">
-                <onfocus condition="!String.IsEqual(ListItem.Property(item.type),person)">ClearProperty(moviecontent,Home)</onfocus>
-                <onfocus condition="String.IsEqual(ListItem.Property(item.type),person)">SetProperty(moviecontent,13,Home)</onfocus>
+                <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
+                <onfocus condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetProperty(moviecontent,13,Home)</onfocus>
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
                 <include>OnFocusOnClick</include>
                 <include>ClearOnFocusOnClick</include>
@@ -1925,8 +1925,8 @@
             <!-- ADD-ON "SPECIAL FEATURES" -->
 
             <control type="radiobutton" id="1236">
-                <onfocus condition="!String.IsEqual(ListItem.Property(item.type),person)">ClearProperty(moviecontent,Home)</onfocus>
-                <onfocus condition="String.IsEqual(ListItem.Property(item.type),person)">SetProperty(moviecontent,13,Home)</onfocus>
+                <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
+                <onfocus condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetProperty(moviecontent,13,Home)</onfocus>
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
                 <include>OnFocusOnClick</include>
                 <include>ClearOnFocusOnClick</include>
@@ -1955,7 +1955,7 @@
                     <param name="icon" value="buttonsdialogs/image.png" />
                 </include>
                 <visible>!Skin.HasSetting(hide.button.video.fanart)</visible>
-                <visible>!String.IsEqual(ListItem.Property(item.type),person) + !String.IsEmpty(ListItem.DBType)</visible>
+                <visible>!String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEmpty(ListItem.DBType)</visible>
                 <visible>[!String.IsEmpty(ListItem.Art(fanart)) + !Skin.HasSetting(hide.artwork.video.fanart)] | [!String.IsEmpty(ListItem.Art(landscape)) + !Skin.HasSetting(hide.artwork.video.landscape)] | Skin.HasSetting(showartwork.video.tmdbhelper)</visible>
                 <visible>!Container.Content(seasons)</visible>
                 <!-- <visible>!Integer.IsEqual(Container(9505).NumItems,0) + !Container(9505).IsUpdating</visible> -->
@@ -1977,7 +1977,7 @@
                 <onfocus condition="String.IsEmpty(Window.Property(SetYoutubeSearch))">SetProperty(SetYoutubeSearch,1)</onfocus>
 
                 <visible>!Skin.HasSetting(hide.button.video.youtube) + System.AddonIsEnabled(plugin.video.youtube)</visible>
-                <visible>[!String.IsEqual(ListItem.DBType,set) + !String.IsEqual(ListItem.DBType,video) + !String.IsEmpty(ListItem.DBType)] | String.IsEqual(ListItem.Property(item.type),person) | $EXP[IsTMDbHelperItem]</visible>
+                <visible>[!String.IsEqual(ListItem.DBType,set) + !String.IsEqual(ListItem.DBType,video) + !String.IsEmpty(ListItem.DBType)] | String.IsEqual(ListItem.Property(tmdb_type),person) | $EXP[IsTMDbHelperItem]</visible>
                 <!-- <visible>!Integer.IsEqual(Container(9504).NumItems,0) + !Container(9504).IsUpdating</visible> -->
                 <!-- <visible>String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating)) + !String.IsEmpty(Window(Home).Property(Init_Value_TMDb))</visible> -->
             </control>
@@ -1985,8 +1985,8 @@
             <!-- TRAKT -->
 
             <control type="radiobutton" id="9011">
-                <onfocus condition="!String.IsEqual(ListItem.Property(item.type),person)">ClearProperty(moviecontent,Home)</onfocus>
-                <onfocus condition="String.IsEqual(ListItem.Property(item.type),person)">SetProperty(moviecontent,13,Home)</onfocus>
+                <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
+                <onfocus condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetProperty(moviecontent,13,Home)</onfocus>
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
@@ -2002,8 +2002,8 @@
 
             <control type="radiobutton" id="9010">
                 <onright>9000</onright>
-                <onfocus condition="!String.IsEqual(ListItem.Property(item.type),person)">ClearProperty(moviecontent,Home)</onfocus>
-                <onfocus condition="String.IsEqual(ListItem.Property(item.type),person)">SetProperty(moviecontent,13,Home)</onfocus>
+                <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
+                <onfocus condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetProperty(moviecontent,13,Home)</onfocus>
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
@@ -2011,7 +2011,7 @@
                 </include>
                 <onclick>SetFocus(9400)</onclick>
                 <visible>!Skin.HasSetting(global.kioskmode)</visible>
-                <visible>!String.IsEqual(ListItem.Property(item.type),person) + !String.IsEqual(ListItem.DBType,video) + !String.IsEmpty(ListItem.DBType)</visible>
+                <visible>!String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEqual(ListItem.DBType,video) + !String.IsEmpty(ListItem.DBType)</visible>
             </control>
         </control>
     </include>
@@ -2019,7 +2019,7 @@
     <include name="Def_Dialog_Info_Navigation_Video_2">
         <control type="grouplist" id="9090">
             <visible allowhiddenfocus="true">ControlGroup(9090).HasFocus() | Control.HasFocus(9669) | Control.HasFocus(190) | Control.HasFocus(191) | Control.HasFocus(192)</visible>
-            <visible>!String.IsEqual(ListItem.Property(item.type),person) + !String.IsEqual(ListItem.DBType,set)</visible>
+            <visible>!String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEqual(ListItem.DBType,set)</visible>
 
             <include>Animation_Scrolltime_Widgets_List</include>
 
@@ -2082,7 +2082,7 @@
                 <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/storageinfo.png</textureradioofffocus>
                 <textureradiooffnofocus colordiffuse="Dark2">buttonsdialogs/storageinfo.png</textureradiooffnofocus>
                 <usealttexture>Skin.HasSetting(filter.video.only.local)</usealttexture>
-                <visible>![String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.DBType,set)]</visible>
+                <visible>![String.IsEqual(ListItem.Property(tmdb_type),person) | String.IsEqual(ListItem.DBType,set)]</visible>
                 <visible>![System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)]</visible>
             </control>
 

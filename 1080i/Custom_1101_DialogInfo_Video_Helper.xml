@@ -4,7 +4,7 @@
 
     <visible>Window.IsVisible(DialogVideoInfo.xml) + String.IsEmpty(Window(Home).Property(Init_Value_TMDb)) + !Window.IsVisible(DialogSelect.xml)</visible>
 
-    <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.Property(item.type),person)</visible>
+    <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.Property(tmdb_type),person)</visible>
 
     <visible>!$EXP[IsAnPlugin] | $EXP[IsTMDbHelper] | $EXP[IsPluginShortlist]</visible>
 
@@ -30,7 +30,7 @@
 
     <!-- DIRECTOR - PERSON -->
 
-    <onload condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.Property(item.type),person) + !String.IsEmpty(ListItem.Label) + String.IsEmpty(Window(Home).Property(SetDirectorSelected))">SetProperty(SetDirectorSelected,$INFO[ListItem.Label],Home)</onload>
+    <onload condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEmpty(ListItem.Label) + String.IsEmpty(Window(Home).Property(SetDirectorSelected))">SetProperty(SetDirectorSelected,$INFO[ListItem.Label],Home)</onload>
 
     <!-- WRITER -->
 
@@ -69,7 +69,7 @@
 
     <!-- DIRECTOR - PERSON -->
 
-    <onload condition="[!Skin.HasSetting(filter.video.only.local) | String.IsEmpty(ListItem.DBID)] + String.IsEqual(ListItem.Property(item.type),person) + String.IsEmpty(Window(Home).Property(Director_Person_Query))">SetProperty(Director_Person_Query,$VAR[Path_Director_Person_TMDb_ID],Home)</onload>
+    <onload condition="[!Skin.HasSetting(filter.video.only.local) | String.IsEmpty(ListItem.DBID)] + String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEmpty(Window(Home).Property(Director_Person_Query))">SetProperty(Director_Person_Query,$VAR[Path_Director_Person_TMDb_ID],Home)</onload>
 
     <!-- WRITER -->
 
