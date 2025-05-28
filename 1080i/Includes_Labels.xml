@@ -685,6 +685,10 @@
         <value condition="!String.IsEmpty(ListItem.Genre)">$INFO[ListItem.Genre]</value>
     </variable>
 
+    <variable name="Label_Genre_Ext">
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Genre.1.Name))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Genre.1.Name)]$INFO[Window(Home).Property(TMDbHelper.ListItem.Genre.2.Name), / ,]</value>
+    </variable>
+
     <variable name="Label_Studio">
         <value condition="$EXP[IsGameMode]">$VAR[Label_Game_Studio]</value>
         <value condition="!String.IsEmpty(ListItem.Studio)">$INFO[ListItem.Studio]</value>
