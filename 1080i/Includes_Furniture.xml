@@ -3972,12 +3972,6 @@
                     <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Duration) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Genre.1.Name))</visible>
                     <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,movie)</visible>
                 </control>
-                <control type="label">
-                    <include>Def_Info_Right_Line1</include>
-                    <label>$INFO[Container($PARAM[controlid]).ListItem.Genre]</label>
-                    <visible>String.IsEmpty(Container($PARAM[controlid]).ListItem.Duration) | String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Genre.1.Name))</visible>
-                    <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,movie)</visible>
-                </control>
 
                 <!-- TV SHOWS -->
 
@@ -3985,12 +3979,6 @@
                     <include>Def_Info_Right_Line1</include>
                     <label>$VAR[Label_Genre_Ext,,  •  ]$INFO[Container($PARAM[controlid]).ListItem.Property(TotalEpisodes),, $LOCALIZE[20453]]</label>
                     <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Property(TotalEpisodes)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Genre.1.Name))</visible>
-                    <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,tvshow)</visible>
-                </control>
-                <control type="label">
-                    <include>Def_Info_Right_Line1</include>
-                    <label>$INFO[Container($PARAM[controlid]).ListItem.Genre]</label>
-                    <visible>String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Genre.1.Name)) | String.IsEmpty(Container($PARAM[controlid]).ListItem.Property(TotalEpisodes))</visible>
                     <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,tvshow)</visible>
                 </control>
 

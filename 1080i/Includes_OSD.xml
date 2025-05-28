@@ -879,7 +879,7 @@
         <!-- LEFT - MAIN TITLE - MOVIES INFO -->
 
         <control type="group">
-            <visible>!Skin.HasSetting(show.osd.video.clearlogo) | [Skin.HasSetting(show.osd.video.clearlogo) + !$EXP[Title_Clearlogo_Player_Available]] </visible>
+            <visible>!Skin.HasSetting(show.osd.video.clearlogo) | [Skin.HasSetting(show.osd.video.clearlogo) + !$EXP[Title_Clearlogo_Player_Available]]</visible>
 
             <align>left</align>
 
@@ -1501,13 +1501,18 @@
             <!-- AUDIO MENU SETTINGS -->
 
             <control type="group">
-                <!-- <visible allowhiddenfocus="true">ControlGroup(19500).HasFocus() | Control.HasFocus(2)</visible> -->
                 <visible allowhiddenfocus="true">ControlGroup(19500).HasFocus()</visible>
                 <animation effect="slide" end="290,0" time="0" condition="Player.ShowInfo">Conditional</animation>
+
                 <include>Animation_SlideUp</include>
                 <include>Animation_Fade_Out</include>
-                <bottom>232</bottom>
-                <centerleft>272</centerleft>
+
+                <include content="Def_Bottom" condition="!Skin.HasSetting(show.osd.video.clearlogo) | [Skin.HasSetting(show.osd.video.clearlogo) + !$EXP[Title_Clearlogo_Player_Available]]">
+                    <param name="bottom" value="232" />
+                </include>
+
+                <bottom>290</bottom>
+                <centerleft>296</centerleft>
                 <width>336</width>
                 <height>214</height>
 
@@ -1525,12 +1530,17 @@
 
             <control type="group">
                 <visible allowhiddenfocus="true">ControlGroup(9500).HasFocus()</visible>
-                <!-- <visible allowhiddenfocus="true">ControlGroup(9500).HasFocus() | Control.HasFocus(3)</visible> -->
                 <animation effect="slide" end="290,0" time="0" condition="Player.ShowInfo">Conditional</animation>
+
                 <include>Animation_SlideUp</include>
                 <include>Animation_Fade_Out</include>
-                <bottom>232</bottom>
-                <centerleft>272</centerleft>
+
+                <include content="Def_Bottom" condition="!Skin.HasSetting(show.osd.video.clearlogo) | [Skin.HasSetting(show.osd.video.clearlogo) + !$EXP[Title_Clearlogo_Player_Available]]">
+                    <param name="bottom" value="232" />
+                </include>
+
+                <bottom>290</bottom>
+                <centerleft>296</centerleft>
                 <width>336</width>
                 <height>274</height>
 
