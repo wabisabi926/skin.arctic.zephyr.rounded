@@ -97,9 +97,6 @@
 
     <onload condition="!Skin.HasSetting(hide.button.video.studio) + !Skin.HasSetting(filter.video.only.local) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + String.IsEmpty(Window(Home).Property(Network_Query))">SetProperty(Network_Query,$VAR[Path_Network_TMDb_ID],Home)</onload>
 
-    <!-- Encode label sets -->
-    <!-- <onload condition="!Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,set)">RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;unencoded_paths=true&amp;window_id=Home&amp;window_prop=Encoded.ListItem.Label&amp;&amp;$INFO[ListItem.Label]")</onload> -->
-
     <!-- DEBUG -->
 
     <!-- <onload condition="!Skin.HasSetting(filter.video.only.local)">SetProperty(Director_1,$INFO[Window(Home).Property(TMDbHelper.ListItem.Director.1.TMDb_ID)],Home)</onload> -->

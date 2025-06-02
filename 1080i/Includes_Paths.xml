@@ -83,15 +83,11 @@
 
         <!-- search episode -->
 
-        <value condition="!String.IsEmpty(VideoPlayer.TvShowTitle) + !String.IsEmpty(Window(Home).Property(Encoded.VideoPlayer.TvShowTitle))">RunScript(plugin.video.themoviedb.helper,add_path='"videodb://tvshows/titles/-1/-1/-1/-1/?xsp=%7b%22rules%22%3a%7b%22and%22%3a%5b%7b%22field%22%3a%22tvshow%22%2c%22operator%22%3a%22is%22%2c%22value%22%3a%5b%22$INFO[Window(Home).Property(Encoded.VideoPlayer.TvShowTitle)]%22%5d%7d%2c%7b%22field%22%3a%22season%22%2c%22operator%22%3a%22is%22%2c%22value%22%3a%5b%22$INFO[VideoPlayer.Season]%22%5d%7d%2c%7b%22field%22%3a%22episode%22%2c%22operator%22%3a%22is%22%2c%22value%22%3a%5b%22$INFO[VideoPlayer.Episode]%22%5d%7d%5d%7d%2c%22type%22%3a%22episodes%22%7d"',call_auto=1190)</value>
-
-        <!-- search tvshow -->
-
-        <!-- <value condition="!String.IsEmpty(VideoPlayer.TvShowTitle) + !String.IsEmpty(Window(Home).Property(Encoded.VideoPlayer.TvShowTitle))">RunScript(plugin.video.themoviedb.helper,add_path='"$INFO[Window(Home).Property(Encoded.VideoPlayer.TvShowTitle),videodb://tvshows/titles/?xsp=%7B%22order%22%3A%7B%22direction%22%3A%22ascending%22%2C%22ignorefolders%22%3A0%2C%22method%22%3A%22sorttitle%22%7D%2C%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22,%22%5D%7D%5D%7D%2C%22type%22%3A%22episodes%22%7D]"',call_auto=1190)</value> -->
+        <value condition="!String.IsEmpty(VideoPlayer.TvShowTitle)">RunScript(plugin.video.themoviedb.helper,add_dbid=$INFO[VideoPlayer.DBID],tmdb_type=episode,call_auto=1190)</value>
 
         <!-- search movie -->
 
-        <value condition="String.IsEmpty(VideoPlayer.TvShowTitle) + !String.IsEmpty(Window(Home).Property(Encoded.VideoPlayer.Title))">RunScript(plugin.video.themoviedb.helper,add_path="videodb://movies/titles/?xsp=%7B%22order%22%3A%7B%22direction%22%3A%22ascending%22%2C%22ignorefolders%22%3A0%2C%22method%22%3A%22sorttitle%22%7D%2C%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22$INFO[Window(Home).Property(Encoded.VideoPlayer.Title)]%22%5D%7D%2C%7B%22field%22%3A%22year%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22$INFO[VideoPlayer.Year]%22%5D%7D%5D%7D%2C%22type%22%3A%22movies%22%7D",call_auto=1190)</value>
+        <value condition="String.IsEmpty(VideoPlayer.TvShowTitle)">RunScript(plugin.video.themoviedb.helper,add_dbid=$INFO[VideoPlayer.DBID],tmdb_type=movie,call_auto=1190)</value>
     </variable>
 
     <!-- =================================== -->
@@ -437,36 +433,23 @@
 
     <variable name="Def_Open_Info_Item">
 
-
-        <!-- <value>AlarmClock(callinfo,RunScript(plugin.video.themoviedb.helper,tmdb_id=$INFO[ListItem.Property(tmdb_id)],type=movie,call_auto=1190),00:00,silent)</value> -->
-
-        <!-- Browse by updating Media Window -->
-        <!-- <value condition="ListItem.IsFolder + Window.IsVisible(MyVideoNav.xml) + String.IsEmpty(ListItem.DBID)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,call_update=$INFO[ListItem.FolderPath])</value> -->
-
-        <!-- <value condition="ListItem.IsFolder + Window.IsVisible(MyVideoNav.xml) + !String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBType,tvshow)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,call_update=$INFO[ListItem.DBID,videodb://tvshows/titles/,/])</value> -->
-
-        <!-- <value condition="ListItem.IsFolder + Window.IsVisible(MyVideoNav.xml) + !String.IsEmpty(ListItem.DBID) + ListItem.IsCollection">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,call_update=$INFO[ListItem.DBID,videodb://movies/sets/,/])</value> -->
-
-        <!-- DIALOG INFO - ALL ITEM - TMDB Helper - 1190 -->
+        <!-- TMDB HELPER -->
 
         <value condition="!Skin.HasSetting(filter.video.only.local)">AlarmClock(callinfo,RunScript(plugin.video.themoviedb.helper,add_path=$INFO[ListItem.FolderPath],call_auto=1190),00:00,silent)</value>
 
-        <!-- DIALOG INFO - ITEM - SEASON -->
+        <!-- SEASON -->
 
         <value condition="String.IsEqual(ListItem.DBType,season)">AlarmClock(callinfo,RunScript(plugin.video.themoviedb.helper,close_dialog=1190,call_path=$INFO[ListItem.FolderPath]),00:00,silent)</value>
 
-        <!-- DIALOG INFO - ITEM - MOVIE -->
+        <!-- LOCAL ONLY -->
 
-        <!-- <value condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,movie)">AlarmClock(redirect,RunScript(plugin.video.themoviedb.helper,add_path='"$INFO[Window(Home).Property(Encoded.ListItem.Title,videodb://movies/titles/?xsp=%7B%22order%22%3A%7B%22direction%22%3A%22ascending%22%2C%22ignorefolders%22%3A0%2C%22method%22%3A%22sorttitle%22%7D%2C%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22,%22%5D%7D%5D%7D%2C%22type%22%3A%22movies%22%7D]"',call_auto=1190),00:00,silent)</value> -->
+        <value condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,movie)">AlarmClock(callinfo,RunScript(plugin.video.themoviedb.helper,add_dbid=$INFO[ListItem.DBID],tmdb_type=movie,call_auto=1190),00:00,silent)</value>
 
-        <!-- DIALOG INFO - ITEM - TV SHOW -->
+        <value condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,tvshow)">AlarmClock(callinfo,RunScript(plugin.video.themoviedb.helper,add_dbid=$INFO[ListItem.DBID],tmdb_type=tv,call_auto=1190),00:00,silent)</value>
 
-        <!-- <value condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,tvshow)">AlarmClock(redirect,RunScript(plugin.video.themoviedb.helper,add_path='"$INFO[Container($PARAM[id]).ListItem.TVShowTitle,videodb://tvshows/titles/?xsp=%7B%22order%22%3A%7B%22direction%22%3A%22ascending%22%2C%22ignorefolders%22%3A0%2C%22method%22%3A%22sorttitle%22%7D%2C%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22,%22%5D%7D%5D%7D%2C%22type%22%3A%22tvshows%22%7D]"',call_auto=1190),00:00,silent)</value> -->
-
-        <!-- DIALOG INFO - ITEM - EPISODE -->
-
-        <!-- <value condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,episode)">AlarmClock(redirect,RunScript(plugin.video.themoviedb.helper,add_path='"videodb://tvshows/titles/-1/-1/-1/-1/?xsp=%7b%22rules%22%3a%7b%22and%22%3a%5b%7b%22field%22%3a%22tvshow%22%2c%22operator%22%3a%22is%22%2c%22value%22%3a%5b%22$INFO[Container($PARAM[id]).ListItem.TVShowtitle]%22%5d%7d%2c%7b%22field%22%3a%22season%22%2c%22operator%22%3a%22is%22%2c%22value%22%3a%5b%22$INFO[Container($PARAM[id]).ListItem.Season]%22%5d%7d%2c%7b%22field%22%3a%22episode%22%2c%22operator%22%3a%22is%22%2c%22value%22%3a%5b%22$INFO[Container($PARAM[id]).ListItem.Episode]%22%5d%7d%5d%7d%2c%22type%22%3a%22episodes%22%7d"',call_auto=1190),00:00,silent)</value> -->
+        <value condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,episode)">AlarmClock(callinfo,RunScript(plugin.video.themoviedb.helper,add_dbid=$INFO[ListItem.DBID],tmdb_type=episode,call_auto=1190),00:00,silent)</value>
     </variable>
+
 
     <!-- =================================== -->
     <!--              PERSON                 -->
