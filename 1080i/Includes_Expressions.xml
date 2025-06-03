@@ -235,8 +235,6 @@
 
     <expression name="Home_Is_Sub_Menu_Horizontal">[Skin.HasSetting(home.horizontal) + Skin.HasSetting(home.show.sub.menu.horizontal) + !Skin.HasSetting(home.show.menu.icons)]</expression>
 
-    <expression name="Home_Menu_Is_Focus">[Control.HasFocus(300) | Control.HasFocus(302) | Control.HasFocus(222) | Control.HasFocus(399)]</expression>
-
     <expression name="Home_Clean_Brightness_If_View_Info_Dialog">[!Skin.HasSetting(home.style.horizontal.clean) + !$EXP[Home_Is_Flix]]</expression>
 
     <!-- ENABLE DIALOG INFO BRIGHTNESS -->
@@ -286,7 +284,11 @@
 
     <!-- HOME BACKGROUND ON MENU -->
 
+    <expression name="Home_Menu_Is_Focus">[Control.HasFocus(300) | Control.HasFocus(302) | Control.HasFocus(222) | Control.HasFocus(399)]</expression>
+
     <expression name="Background_Home_On_Menu">[[!Skin.HasSetting(hide.global.fanart) | $EXP[Home_Is_Horizontal_Clean] | $EXP[Home_Is_Flix]] + !Skin.HasSetting(home.enable.menu.background) + Window.IsVisible(Home) + [$EXP[Home_Menu_Is_Focus] | Control.HasFocus(2011)]]</expression>
+
+    <expression name="Background_Home_On_Menu_Background_Setting_Menu">[Skin.HasSetting(home.enable.menu.background) + Window.IsVisible(Home) + [$EXP[Home_Menu_Is_Focus] | Control.HasFocus(2011)]]</expression>
 
     <expression name="Background_Home_Extended_Now_Playing">[$EXP[Extended_Now_Playing_Is_Visible] + Window.IsVisible(Home) + !ControlGroup(301).HasFocus()]</expression>
 
