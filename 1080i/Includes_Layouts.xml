@@ -109,6 +109,7 @@
 
         <param name="aspectratio" value="$PARAM[aspectratio]" default="keep" />
         <param name="texture_diffuse" value="$PARAM[texture_diffuse]" default="icon_w100_h100" />
+        <param name="fallback" value="$PARAM[fallback]" default="defaultpvrchannels" />
 
         <param name="texture_icon" value="$PARAM[texture_icon]" default="$VAR[Image_PVR_Icon]" />
         <param name="visible_icon" value="$PARAM[visible_icon]" default="!String.StartsWith(ListItem.Icon,Default)" />
@@ -136,7 +137,7 @@
                 <width>$PARAM[width]</width>
                 <height>$PARAM[height]</height>
                 <aspectratio align="center" aligny="center" scalediffuse="false">$PARAM[aspectratio]</aspectratio>
-                <texture colordiffuse="$PARAM[colordiffuse_icon_black]">$PARAM[texture_icon_black]</texture>
+                <texture colordiffuse="$PARAM[colordiffuse_icon_black]" fallback="$PARAM[fallback].png">$PARAM[texture_icon_black]</texture>
                 <visible>$PARAM[visible_icon_black]</visible>
             </control>
 
@@ -147,7 +148,7 @@
                 <width>$PARAM[width]</width>
                 <height>$PARAM[height]</height>
                 <aspectratio align="center" aligny="center" scalediffuse="false">$PARAM[aspectratio]</aspectratio>
-                <texture diffuse="diffuse/$PARAM[texture_diffuse].png" background="true">$PARAM[texture_icon]</texture>
+                <texture diffuse="diffuse/$PARAM[texture_diffuse].png" background="true" fallback="$PARAM[fallback].png">$PARAM[texture_icon]</texture>
                 <visible>$PARAM[visible_icon]</visible>
             </control>
         </definition>
