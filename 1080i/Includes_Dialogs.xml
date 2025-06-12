@@ -1554,8 +1554,10 @@
                 <textureradiooffnofocus colordiffuse="Dark2">buttonsdialogs/play.png</textureradiooffnofocus>
                 <selected>ListItem.IsResumable</selected>
                 <onclick>SetProperty(set.player.icon,$INFO[ListItem.Icon],Home)</onclick>
-                <onclick condition="Window.IsVisible(1190)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,"playmedia=$INFO[ListItem.FilenameAndPath]")</onclick>
+
+                <onclick condition="Window.IsVisible(1190)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,playmedia=$INFO[ListItem.FolderPath])</onclick>
                 <onclick condition="!Window.IsVisible(1190)">SendClick(8)</onclick>
+
                 <onclick>Dialog.Close(all)</onclick>
                 <visible>!ListItem.IsPlaying</visible>
                 <visible>!String.IsEqual(ListItem.DBType,tvshow) + !String.IsEqual(ListItem.DBType,season)</visible>
