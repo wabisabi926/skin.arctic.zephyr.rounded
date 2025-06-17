@@ -1159,18 +1159,6 @@
             <onclick>PlayerControl(Next)</onclick>
         </include>
 
-        <!-- EJECT DVD -->
-
-        <include content="Object_OSD_Button" condition="System.HasMediadvd">
-            <param name="visible" value="true" />
-            <param name="icon" value="osd/eject.png" />
-            <param name="id" value="9002" />
-            <param name="groupid" value="6599" />
-            <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
-            <include>Def_OSD_UpDown_Video_Info</include>
-            <onclick>EjectTray()</onclick>
-        </include>
-
         <!-- SPEED READING -->
 
         <include content="Object_OSD_Button" condition="Player.TempoEnabled">
@@ -1254,21 +1242,6 @@
             <disabledcolor>PanelWhite12</disabledcolor>
         </include>
 
-        <!-- <control type="button" id="5"> -->
-            <!-- <description>3D Mode</description> -->
-            <!-- <align>right</align> -->
-            <!-- <width>48</width> -->
-            <!-- <height>48</height> -->
-            <!-- <label/> -->
-            <!-- <font /> -->
-            <!-- <include>Def_OSD_UpDown_Home_NowPlaying</include> -->
-            <!-- <texturefocus colordiffuse="$VAR[Color_Focus]" flipx="true">osd/3d.png</texturefocus> -->
-            <!-- <texturenofocus colordiffuse="$VAR[Color_OSD_Panel_White30]" flipx="true">osd/3d.png</texturenofocus> -->
-            <!-- <onclick>StereoMode</onclick> -->
-            <!-- <visible>VideoPlayer.IsStereoscopic</visible> -->
-            <!-- <disabledcolor>PanelWhite12</disabledcolor> -->
-        <!-- </control> -->
-
         <!-- AUDIO PROFILE -->
 
         <include content="Object_OSD_Button" condition="System.HasAddon(script.audio.profiles) + System.AddonIsEnabled(script.audio.profiles)">
@@ -1279,7 +1252,6 @@
             <param name="groupid" value="7199" />
             <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
             <align>right</align>
-            <!-- <include>Def_OSD_UpDown_Home_NowPlaying</include> -->
             <onclick>runscript(script.audio.profiles,popup)</onclick>
             <disabledcolor>PanelWhite12</disabledcolor>
         </include>
@@ -1337,7 +1309,6 @@
             <param name="groupid" value="6299" />
             <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
             <align>right</align>
-            <!-- <include>Def_OSD_UpDown_Home_NowPlaying</include> -->
             <onclick>ActivateWindow(pvrchannelguide)</onclick>
         </include>
 
@@ -1351,7 +1322,6 @@
             <param name="groupid" value="3299" />
             <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
             <align>right</align>
-            <!-- <include>Def_OSD_UpDown_Home_NowPlaying</include> -->
             <onclick>Close</onclick>
             <onclick>ActivateWindow(tvguide,,return)</onclick>
         </include>
@@ -1363,7 +1333,7 @@
 
         <include content="Object_OSD_Button" condition="VideoPlayer.HasMenu">
             <param name="visible" value="true" />
-            <param name="left" value="-47" />
+            <param name="left" value="-48" />
             <param name="icon" value="osd/dvdmenu.png" />
             <param name="id" value="4" />
             <param name="groupid" value="5899" />
@@ -1371,6 +1341,19 @@
             <align>right</align>
             <onclick>PlayerControl(ShowVideoMenu)</onclick>
             <disabledcolor>White12</disabledcolor>
+        </include>
+
+        <!-- EJECT DVD / CD -->
+
+        <include content="Object_OSD_Button" condition="System.HasMediadvd | System.HasMediaAudioCD">
+            <param name="visible" value="true" />
+            <param name="left" value="-48" />
+            <param name="icon" value="osd/eject.png" />
+            <param name="id" value="9002" />
+            <param name="groupid" value="6599" />
+            <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
+            <include>Def_OSD_UpDown_Video_Info</include>
+            <onclick>EjectTray()</onclick>
         </include>
     </include>
 
@@ -1409,7 +1392,6 @@
             <param name="groupid" value="5899" />
             <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
             <align>right</align>
-            <!-- <include>Def_OSD_UpDown_Home_NowPlaying</include> -->
             <enable>!String.IsEmpty(VideoPlayer.Title) + !String.IsEmpty(VideoPlayer.DBID)</enable>
             <onclick condition="!String.IsEmpty(VideoPlayer.Title) + String.IsEmpty(Skin.String(Value_OSD_Auto_Hide_Timeout))">Dialog.Close(VideoOSD)</onclick>
             <onclick condition="!String.IsEmpty(VideoPlayer.Title)">SetProperty(wikipedia,1,Home)</onclick>
