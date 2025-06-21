@@ -872,18 +872,11 @@
 
     <!-- OSD - DEF -->
 
-    <include name="Def_OSD_Video_Main_Title_Clearlogo">
+    <include name="Def_OSD_Video_Main_Title_Clearlogo_Info">
 
         <!-- LEFT - CLEARLOGO -->
 
-        <control type="image">
-            <bottom>90</bottom>
-            <height>ClearLogoTitleMaxHeight</height>
-            <width>ClearLogoTitleMaxWidth</width>
-            <texture>$VAR[Image_Player_Video_Title_Crop_ClearLogo]</texture>
-            <aspectratio align="left" aligny="bottom">keep</aspectratio>
-            <visible>Skin.HasSetting(show.osd.video.clearlogo) + $EXP[Title_Clearlogo_Player_Available]</visible>
-        </control>
+        <include>Def_OSD_Main_Title_Logo</include>
 
         <!-- LEFT - MAIN TITLE - MOVIES INFO -->
 
@@ -901,21 +894,54 @@
             </include>
 
             <include content="Def_Width" condition="!Skin.HasSetting(show.osd.video.rating) + Skin.HasSetting(show.osd.video.flags.icons)">
-                <param name="width" value="1100" />
+                <param name="width" value="1000" />
             </include>
 
             <include content="Def_Width" condition="Skin.HasSetting(show.osd.video.rating) + !Skin.HasSetting(show.osd.video.numeric.rating) + Skin.HasSetting(show.osd.video.flags.icons)">
-                <param name="width" value="940" />
+                <param name="width" value="820" />
             </include>
 
-            <control type="label" description="Show">
-                <bottom>85</bottom>
-                <height>40</height>
-                <font>LargeNew</font>
-                <textcolor>$VAR[Color_OSD_Panel_White100]</textcolor>
-                <label>$VAR[Label_OSD_Title_Big]</label>
-                <include condition="Skin.HasSetting(labels.autoscroll)">LabelScroll</include>
-            </control>
+            <include>Def_OSD_Main_Title_Label</include>
+        </control>
+    </include>
+
+    <include name="Def_OSD_Video_Main_Title_Clearlogo">
+
+        <!-- LEFT - CLEARLOGO -->
+
+        <include>Def_OSD_Main_Title_Logo</include>
+
+        <!-- LEFT - MAIN TITLE - MOVIES INFO -->
+
+        <control type="group">
+            <visible>!Skin.HasSetting(show.osd.video.clearlogo) | [Skin.HasSetting(show.osd.video.clearlogo) + !$EXP[Title_Clearlogo_Player_Available]]</visible>
+
+            <align>left</align>
+            <width>1270</width>
+
+            <include>Def_OSD_Main_Title_Label</include>
+        </control>
+    </include>
+
+    <include name="Def_OSD_Main_Title_Logo">
+        <control type="image">
+            <bottom>90</bottom>
+            <height>ClearLogoTitleMaxHeight</height>
+            <width>ClearLogoTitleMaxWidth</width>
+            <texture>$VAR[Image_Player_Video_Title_Crop_ClearLogo]</texture>
+            <aspectratio align="left" aligny="bottom">keep</aspectratio>
+            <visible>Skin.HasSetting(show.osd.video.clearlogo) + $EXP[Title_Clearlogo_Player_Available]</visible>
+        </control>
+    </include>
+
+    <include name="Def_OSD_Main_Title_Label">
+        <control type="label" description="Show">
+            <bottom>85</bottom>
+            <height>40</height>
+            <font>LargeNew</font>
+            <textcolor>$VAR[Color_OSD_Panel_White100]</textcolor>
+            <label>$VAR[Label_OSD_Title_Big]</label>
+            <include condition="Skin.HasSetting(labels.autoscroll)">LabelScroll</include>
         </control>
     </include>
 
@@ -1681,7 +1707,7 @@
 
             <!-- LEFT - MAIN TITLE / CLEARLOGO -->
 
-            <include>Def_OSD_Video_Main_Title_Clearlogo</include>
+            <include>Def_OSD_Video_Main_Title_Clearlogo_Info</include>
 
             <!-- LEFT - SUB TITLE - INFO - MOVIES / TVSHOWS  -->
 
