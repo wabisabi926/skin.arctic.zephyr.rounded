@@ -1987,13 +1987,15 @@
 
     <variable name="Label_OSD_Sub_Title_Video">
         <value condition="!String.IsEmpty(VideoPlayer.Genre)">$INFO[VideoPlayer.Year]$INFO[VideoPlayer.Genre,  •  ]</value>
-        <value condition="String.IsEmpty(VideoPlayer.Genre) + !String.IsEmpty(VideoPlayer.Premiered)">$INFO[VideoPlayer.Premiered]</value>
+        <value condition="String.IsEmpty(VideoPlayer.Genre) + !String.IsEmpty(VideoPlayer.Premiered) + !Player.IsLive">$INFO[VideoPlayer.Premiered]</value>
+        <value condition="String.IsEmpty(VideoPlayer.Genre) + !String.IsEmpty(VideoPlayer.Premiered) + Player.IsLive">$INFO[VideoPlayer.Premiered,,  •  ]$LOCALIZE[19664]</value>
         <value>$INFO[player.chapter,$LOCALIZE[21396] ]$INFO[Player.ChapterCount,/]</value>
     </variable>
 
     <variable name="Label_OSD_Sub_Title_LiveTV">
         <value condition="!String.IsEmpty(VideoPlayer.NextTitle)">$INFO[VideoPlayer.ChannelName]$INFO[VideoPlayer.StartTime,  •  ,]$INFO[VideoPlayer.EndTime, - ]$INFO[PVR.EpgEventDuration(mins),  •  , $LOCALIZE[31074]]</value>
-        <value condition="String.IsEmpty(VideoPlayer.NextTitle)">$INFO[VideoPlayer.ChannelNumberLabel,$LOCALIZE[19029] ,  •  ]$LOCALIZE[142] $INFO[System.Time]</value>
+        <value condition="String.IsEmpty(VideoPlayer.NextTitle) + !Player.IsLive">$INFO[VideoPlayer.ChannelNumberLabel,$LOCALIZE[19029] ,  •  ]$LOCALIZE[142] $INFO[System.Time]</value>
+        <value condition="String.IsEmpty(VideoPlayer.NextTitle) + Player.IsLive">$INFO[VideoPlayer.ChannelNumberLabel,$LOCALIZE[19029] ,  •  ]$LOCALIZE[142] $INFO[System.Time,,  •  ]$LOCALIZE[19664]</value>
     </variable>
 
     <variable name="Label_OSD_Time">
