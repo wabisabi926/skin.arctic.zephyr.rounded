@@ -2001,33 +2001,36 @@
                 <param name="icon" value="settings" />
             </include>
 
+            <!-- CONTEXT MENU ICON -->
+
+            <control type="group" id="9011">
+                <top>110</top>
+                <left>10</left>
+                <height>64</height>
+                <include>Def_Context_Menu_PVR_Icon</include>
+            </control>
+
             <include content="Def_Dialog_Header_Line"><param name="top">165</param></include>
 
             <control type="grouplist" id="9001">
                 <include>Animation_Scrolltime_Views_List</include>
 
-                <top>108</top>
+                <top>182</top>
                 <usecontrolcoords>false</usecontrolcoords>
-
-                <!-- CONTEXT MENU ICON -->
-
-                <control type="group" id="9011">
-                    <left>10</left>
-                    <height>64</height>
-                    <include>Def_Context_Menu_PVR_Icon</include>
-                </control>
 
                 <!-- CONTEXT MENU LIST -->
 
                 <control type="grouplist" id="9000">
-                    <onup>SetFocus(8151)</onup>
-                    <ondown>SetFocus(8151)</ondown>
+                    <include>Animation_Scrolltime_Views_List</include>
+
+                    <!-- <onup>995</onup> -->
+                    <!-- <ondown>8152</ondown> -->
+                    <onright>995</onright>
 
                     <pagecontrol>9070</pagecontrol>
                     <usecontrolcoords>true</usecontrolcoords>
 
-                    <include content="Def_Dialog_Menu_GroupList"><param name="height" value="910" /><param name="idlayout" value="50" /></include>
-
+                    <include content="Def_Dialog_Menu_GroupList"><param name="height" value="840" /><param name="idlayout" value="50" /></include>
 
                 <!-- NOW PLAYING -->
 
@@ -2151,16 +2154,16 @@
 
             <!-- SCROLLBAR -->
 
-            <include content="Object_Scrollbar_Dialog_Vertical">
-                <param name="scrollid" value="9070" />
-                <param name="top" value="182" />
-                <param name="onleft" value="9000" />
-                <param name="onright" value="9000" />
-                <param name="onback" value="9000" />
-                <param name="height" value="420" />
-                <param name="centerright" value="4" />
-                <param name="visible" value="!$EXP[Display_Views_Menu_MiniPlayer]" />
-            </include>
+            <!-- <include content="Object_Scrollbar_Dialog_Vertical"> -->
+                <!-- <param name="scrollid" value="9070" /> -->
+                <!-- <param name="top" value="182" /> -->
+                <!-- <param name="onleft" value="9000" /> -->
+                <!-- <param name="onright" value="9000" /> -->
+                <!-- <param name="onback" value="9000" /> -->
+                <!-- <param name="height" value="420" /> -->
+                <!-- <param name="centerright" value="4" /> -->
+                <!-- <param name="visible" value="!$EXP[Display_Views_Menu_MiniPlayer]" /> -->
+            <!-- </include> -->
 
             <!-- BUTTON -->
 
