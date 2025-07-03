@@ -1393,7 +1393,7 @@
         <value condition="Control.HasFocus(9018)">$LOCALIZE[31136] $INFO[ListItem.Title]</value>
         <value condition="Control.HasFocus(9020)">$LOCALIZE[31537] $INFO[Window(Home).Property(SetCreatorSelected)]</value>
         <value condition="Control.HasFocus(9052)">$LOCALIZE[31141] $INFO[ListItem.Label]</value>
-        <value condition="Control.HasFocus(9053) + ![String.IsEmpty(ListItem.DBID) | !Skin.HasSetting(filter.video.only.local)]">$LOCALIZE[31529] $INFO[ListItem.Label]</value>
+        <value condition="Control.HasFocus(9053) + [!String.IsEmpty(ListItem.DBID) | Skin.HasSetting(filter.video.only.local)]">$LOCALIZE[31529] $INFO[ListItem.Label]</value>
         <value condition="Control.HasFocus(9053) + [String.IsEmpty(ListItem.DBID) | !Skin.HasSetting(filter.video.only.local)]">$LOCALIZE[31142] $INFO[ListItem.Label]</value>
         <value condition="Control.HasFocus(9054)">$INFO[ListItem.Label]</value>
         <value condition="Control.HasFocus(9056)">$LOCALIZE[31526] $INFO[Window(Home).Property(SetWriterSelected)]</value>
@@ -1427,7 +1427,7 @@
         <value condition="Control.IsVisible(9518)">$LOCALIZE[31136] $INFO[ListItem.Label]</value>
         <value condition="Control.IsVisible(9520)">$LOCALIZE[31537] $INFO[Window(Home).Property(SetCreatorSelected)]</value>
         <value condition="Control.IsVisible(9552)">$LOCALIZE[31141] $INFO[ListItem.Label]</value>
-        <value condition="Control.IsVisible(9553) + ![String.IsEmpty(ListItem.DBID) | !Skin.HasSetting(filter.video.only.local)]">$LOCALIZE[31529] $INFO[ListItem.Label]</value>
+        <value condition="Control.IsVisible(9553) + [!String.IsEmpty(ListItem.DBID) | Skin.HasSetting(filter.video.only.local)]">$LOCALIZE[31529] $INFO[ListItem.Label]</value>
         <value condition="Control.IsVisible(9553) + [String.IsEmpty(ListItem.DBID) | !Skin.HasSetting(filter.video.only.local)]">$LOCALIZE[31142] $INFO[ListItem.Label]</value>
 
         <value condition="Control.IsVisible(9556)">$LOCALIZE[31526] $INFO[Window(Home).Property(SetWriterSelected)]</value>
@@ -1512,7 +1512,7 @@
         <value condition="[Control.HasFocus(9550) | Control.HasFocus(95507)] + !String.IsEqual(ListItem.DBType,set)">$INFO[Container(9550).NumItems] $LOCALIZE[344]</value>
 
         <value condition="String.IsEqual(ListItem.DBType,set) + [String.IsEmpty(ListItem.DBID) | !Skin.HasSetting(filter.video.only.local)]">$INFO[Container(9550).NumItems] $LOCALIZE[342]</value>
-        <value condition="String.IsEqual(ListItem.DBType,set) + ![String.IsEmpty(ListItem.DBID) | !Skin.HasSetting(filter.video.only.local)]">$INFO[Container(44023).NumItems]$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.NumItems),/,] $LOCALIZE[342]</value>
+        <value condition="String.IsEqual(ListItem.DBType,set) + [!String.IsEmpty(ListItem.DBID) | Skin.HasSetting(filter.video.only.local)]">$INFO[Container(44023).NumItems]$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.NumItems),/,] $LOCALIZE[342]</value>
 
         <!-- <value condition="Container.Content(addons)">$INFO[Container(50).NumItems] $LOCALIZE[344]</value> -->
         <value condition="Control.HasFocus(9013)">$VAR[Path_Wikipedia_Query]</value>
@@ -1556,32 +1556,47 @@
 
         <value condition="String.IsEqual(ListItem.Property(tmdb_type),person)">$INFO[ListItem.Property(Gender)] $INFO[ListItem.Property(Department),  •  ,]</value>
 
-        <!-- season -->
+        <!-- SEASON -->
+
         <value condition="Control.HasFocus(9078) + String.IsEqual(ListItem.DBType,season)">$INFO[ListItem.TVShowTitle]$INFO[ListItem.Property(TotalEpisodes),  •  , $LOCALIZE[20453]]</value>
 
         <value condition="Control.HasFocus(9079) + String.IsEqual(ListItem.DBType,season)">$INFO[ListItem.TVShowTitle]$INFO[ListItem.Title,  •  ,]$INFO[ListItem.Property(TotalEpisodes),  •  , $LOCALIZE[20453]]</value>
 
-        <!-- season N° -->
+        <!-- SEASON N° -->
+
         <value condition="Control.HasFocus(9579) + !Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.Season),1) + [String.IsEmpty(ListItem.DBID) | !Skin.HasSetting(filter.video.only.local)]">$LOCALIZE[20373] $INFO[Window(Home).Property(TMDbHelper.ListItem.Season)]</value>
         <value condition="Control.HasFocus(9579) + Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.Season),1) + [String.IsEmpty(ListItem.DBID) | !Skin.HasSetting(filter.video.only.local)]">$LOCALIZE[20373] $INFO[Window(Home).Property(TMDbHelper.ListItem.Season)]</value>
 
-       <!-- default value  -->
-        <value condition="String.IsEqual(ListItem.DBType,tvshow) + !Integer.IsGreater(ListItem.Property(TotalSeasons),1) + ![String.IsEmpty(ListItem.DBID) | !Skin.HasSetting(filter.video.only.local)]">$INFO[ListItem.Property(TotalSeasons),, $LOCALIZE[36904]] $INFO[ListItem.Property(TotalEpisodes),  •  ,] $LOCALIZE[36907]</value>
-        <value condition="String.IsEqual(ListItem.DBType,tvshow) + Integer.IsGreater(ListItem.Property(TotalSeasons),1) + ![String.IsEmpty(ListItem.DBID) | !Skin.HasSetting(filter.video.only.local)]">$INFO[ListItem.Property(TotalSeasons),, $LOCALIZE[36905]]$INFO[ListItem.Property(TotalEpisodes),  •  ,] $LOCALIZE[36907]</value>
+        <!-- TV SHOW - NUMBER SEASON / NUMBER EPISODES - LOCAL -->
 
-        <!-- TV Show - number season / number episodes -->
+        <value condition="String.IsEqual(ListItem.DBType,tvshow) + !Integer.IsGreater(ListItem.Property(TotalSeasons),1) + [!String.IsEmpty(ListItem.DBID) | Skin.HasSetting(filter.video.only.local)]">$INFO[ListItem.Property(TotalSeasons),, $LOCALIZE[36904]] $INFO[ListItem.Property(TotalEpisodes),  •  ,] $LOCALIZE[36907]</value>
+
+        <value condition="String.IsEqual(ListItem.DBType,tvshow) + Integer.IsGreater(ListItem.Property(TotalSeasons),1) + [!String.IsEmpty(ListItem.DBID) | Skin.HasSetting(filter.video.only.local)]">$INFO[ListItem.Property(TotalSeasons),, $LOCALIZE[36905]]$INFO[ListItem.Property(TotalEpisodes),  •  ,] $LOCALIZE[36907]</value>
+
+        <!-- TV SHOW - NUMBER SEASON / NUMBER EPISODES - ONLINE -->
 
         <value condition="String.IsEqual(ListItem.DBType,tvshow) + !Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.Season),1) + [String.IsEmpty(ListItem.DBID) | !Skin.HasSetting(filter.video.only.local)]">$INFO[Window(Home).Property(TMDbHelper.ListItem.Season),, $LOCALIZE[36904]] $INFO[Window(Home).Property(TMDbHelper.ListItem.Episode),  •  , $LOCALIZE[20453]]</value>
 
         <value condition="String.IsEqual(ListItem.DBType,tvshow) + Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.Season),1) + [String.IsEmpty(ListItem.DBID) | !Skin.HasSetting(filter.video.only.local)]">$INFO[Window(Home).Property(TMDbHelper.ListItem.Season),, $LOCALIZE[36905]] $INFO[Window(Home).Property(TMDbHelper.ListItem.Episode),  •  , $LOCALIZE[20453]]</value>
 
+        <!-- SEASON -->
 
         <value condition="String.IsEqual(ListItem.DBType,season)">$INFO[ListItem.TVShowTitle]$INFO[ListItem.Property(TotalEpisodes),  •  , $LOCALIZE[20453]]</value>
 
+        <!-- EPISODE -->
+
         <value condition="String.IsEqual(ListItem.DBType,episode) + !String.IsEmpty(ListItem.TvShowTitle)">$INFO[ListItem.TvShowTitle]$INFO[ListItem.Season,  •  $LOCALIZE[20373] ]$INFO[ListItem.Episode,  •  $LOCALIZE[20359] ]</value>
 
+        <!-- TAG LINE -->
+
         <value condition="!String.IsEmpty(ListItem.Tagline)">$INFO[ListItem.Tagline]</value>
+
+        <!-- IS PLUGIN -->
+
         <value condition="$EXP[IsPluginItem]">$INFO[ListItem.Label2]</value>
+
+        <!-- TITLE -->
+
         <value>$INFO[ListItem.Title]</value>
     </variable>
 
@@ -1774,9 +1789,9 @@
 
         <value condition="String.IsEqual(ListItem.DBType,tvshow) + Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.Season),1) + [String.IsEmpty(ListItem.DBID) | !Skin.HasSetting(filter.video.only.local)]">$INFO[Window(Home).Property(TMDbHelper.ListItem.Season),, $LOCALIZE[36905]]</value>
 
-        <value condition="String.IsEqual(ListItem.DBType,tvshow) + !Integer.IsGreater(ListItem.Property(TotalSeasons),1) + ![String.IsEmpty(ListItem.DBID) | !Skin.HasSetting(filter.video.only.local)]">$INFO[ListItem.Property(TotalSeasons),, $LOCALIZE[36904]]</value>
+        <value condition="String.IsEqual(ListItem.DBType,tvshow) + !Integer.IsGreater(ListItem.Property(TotalSeasons),1) + [!String.IsEmpty(ListItem.DBID) | Skin.HasSetting(filter.video.only.local)]">$INFO[ListItem.Property(TotalSeasons),, $LOCALIZE[36904]]</value>
 
-        <value condition="String.IsEqual(ListItem.DBType,tvshow) + Integer.IsGreater(ListItem.Property(TotalSeasons),1) + ![String.IsEmpty(ListItem.DBID) | !Skin.HasSetting(filter.video.only.local)]">$INFO[ListItem.Property(TotalSeasons),, $LOCALIZE[36905]]</value>
+        <value condition="String.IsEqual(ListItem.DBType,tvshow) + Integer.IsGreater(ListItem.Property(TotalSeasons),1) + [!String.IsEmpty(ListItem.DBID) | Skin.HasSetting(filter.video.only.local)]">$INFO[ListItem.Property(TotalSeasons),, $LOCALIZE[36905]]</value>
 
         <value condition="String.IsEqual(ListItem.DBType,season)">$INFO[ListItem.Property(TotalEpisodes),, $LOCALIZE[20453]]</value>
 
