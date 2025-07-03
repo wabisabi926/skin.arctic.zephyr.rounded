@@ -2302,14 +2302,6 @@
                 <label>$VAR[Label_Genre]$VAR[Label_Episodes_Number,  •  , $LOCALIZE[20453]]</label>
                 <visible>![Control.IsVisible(50) | Control.IsVisible(550) | Control.IsVisible(56) | Control.IsVisible(57) | Control.IsVisible(555)] | Window.IsVisible(script-globalsearch.xml)</visible>
                 <visible>String.IsEqual(ListItem.DBtype,tvshow) | String.IsEqual(ListItem.DBtype,season)</visible>
-                <visible>!String.IsEmpty(ListItem.Property(UnWatchedEpisodes))</visible>
-            </control>
-            <control type="label">
-                <include>Def_Info_Right_Line1</include>
-                <label>$VAR[Label_Genre]$VAR[Label_Episodes_Number,  •  , $LOCALIZE[20453]]</label>
-                <visible>![Control.IsVisible(50) | Control.IsVisible(550) | Control.IsVisible(56) | Control.IsVisible(57)] | Window.IsVisible(script-globalsearch.xml)</visible>
-                <visible>String.IsEqual(ListItem.DBtype,tvshow) | String.IsEqual(ListItem.DBtype,season)</visible>
-                <visible>String.IsEmpty(ListItem.Property(UnWatchedEpisodes))</visible>
             </control>
 
             <!-- EPISODES -->
@@ -2481,7 +2473,7 @@
             <usecontrolcoords>true</usecontrolcoords>
 
             <control type="group">
-                <visible>[[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + [!String.IsEmpty(ListItem.Property(TotalEpisodes)) | !String.IsEmpty(ListItem.Property(UnWatchedEpisodes))]]</visible>
+                <visible>[[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + !String.IsEmpty(ListItem.Property(TotalEpisodes))]</visible>
 
                 <centertop>50%</centertop>
                 <width>70</width>
@@ -2863,7 +2855,7 @@
             <!-- TOTAL EPISODES -->
 
             <control type="group">
-                <visible>[[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + [!String.IsEmpty(ListItem.Property(TotalEpisodes)) | !String.IsEmpty(ListItem.Property(UnWatchedEpisodes))]]</visible>
+                <visible>[[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + !String.IsEmpty(ListItem.Property(TotalEpisodes))]</visible>
 
                 <centertop>50%</centertop>
                 <width>70</width>
@@ -4000,8 +3992,14 @@
                 <control type="label">
                     <include>Def_Info_Right_Line1</include>
                     <label>$VAR[Label_Genre_Ext]$INFO[Container($PARAM[controlid]).ListItem.Duration(h),  •  ,$LOCALIZE[31061]] $INFO[Container($PARAM[controlid]).ListItem.Duration(mm),,$LOCALIZE[31062]]</label>
-                    <!-- <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Duration) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Genre.1.Name))</visible> -->
                     <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,movie)</visible>
+                    <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Duration)</visible>
+                </control>
+                <control type="label">
+                    <include>Def_Info_Right_Line1</include>
+                    <label>$VAR[Label_Genre_Ext]$INFO[Window(Home).Property(TMDbHelper.ListItem.Duration_H),  •  ,$LOCALIZE[31061]] $INFO[Window(Home).Property(TMDbHelper.ListItem.Duration_M),,$LOCALIZE[31062]]</label>
+                    <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,movie)</visible>
+                    <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Duration)) + String.IsEmpty(Container($PARAM[controlid]).ListItem.Duration)</visible>
                 </control>
 
                 <!-- TV SHOWS -->
@@ -4009,8 +4007,14 @@
                 <control type="label">
                     <include>Def_Info_Right_Line1</include>
                     <label>$VAR[Label_Genre_Ext]$INFO[Container($PARAM[controlid]).ListItem.Property(TotalEpisodes),  •  , $LOCALIZE[20453]]</label>
-                    <!-- <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Property(TotalEpisodes)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Genre.1.Name))</visible> -->
                     <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,tvshow)</visible>
+                    <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Property(TotalEpisodes))</visible>
+                </control>
+                <control type="label">
+                    <include>Def_Info_Right_Line1</include>
+                    <label>$VAR[Label_Genre_Ext]$INFO[Window(Home).Property(TMDbHelper.ListItem.Episode),  •  , $LOCALIZE[20453]]</label>
+                    <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,tvshow)</visible>
+                    <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Episode))</visible>
                 </control>
 
                 <!-- SEASON not local only -->
@@ -4113,7 +4117,7 @@
                 <!-- TOTAL EPISODES -->
 
                 <control type="group">
-                    <visible>[[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + [!String.IsEmpty(ListItem.Property(TotalEpisodes)) | !String.IsEmpty(ListItem.Property(UnWatchedEpisodes))]]</visible>
+                    <visible>[[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + !String.IsEmpty(ListItem.Property(TotalEpisodes))]</visible>
                     <centertop>50%</centertop>
                     <width>70</width>
                     <height>40</height>
@@ -4355,7 +4359,7 @@
                 <!-- TOTAL EPISODES -->
 
                 <control type="group">
-                    <visible>[[Container.Content(tvshows) | Container.Content(seasons)] + [!String.IsEmpty(Container($PARAM[controlid]).ListItem.Property(TotalEpisodes)) | !String.IsEmpty(Container($PARAM[controlid]).ListItem.Property(UnWatchedEpisodes))]]</visible>
+                    <visible>[[Container.Content(tvshows) | Container.Content(seasons)] + !String.IsEmpty(Container($PARAM[controlid]).ListItem.Property(TotalEpisodes))]</visible>
                     <centertop>50%</centertop>
                     <width>70</width>
                     <height>40</height>
