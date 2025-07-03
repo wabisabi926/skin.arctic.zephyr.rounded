@@ -4014,7 +4014,7 @@
                     <include>Def_Info_Right_Line1</include>
                     <label>$VAR[Label_Genre_Ext]$INFO[Window(Home).Property(TMDbHelper.ListItem.Episode),  •  , $LOCALIZE[20453]]</label>
                     <visible>String.IsEqual(Container($PARAM[controlid]).ListItem.DBtype,tvshow)</visible>
-                    <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Episode))</visible>
+                    <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Episode)) + String.IsEmpty(Container($PARAM[controlid]).ListItem.Property(TotalEpisodes))</visible>
                 </control>
 
                 <!-- SEASON not local only -->
