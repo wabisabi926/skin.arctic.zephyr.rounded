@@ -1451,50 +1451,67 @@
 
             <orientation>horizontal</orientation>
 
-            <!-- Movies list by cast -->
+            <!-- MOVIES LIST BY CAST -->
+
             <onup condition="String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEqual(Window(Home).Property(moviecontent),11)">9552</onup>
             <onup condition="String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEqual(Window(Home).Property(moviecontent),11)">SetProperty(TMDbHelper.WidgetContainer,9552,home)</onup>
-            <!-- TvShows list by cast -->
+
+            <!-- TVSHOWS LIST BY CAST -->
+
             <onup condition="String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEqual(Window(Home).Property(moviecontent),12)">9553</onup>
             <onup condition="String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEqual(Window(Home).Property(moviecontent),12)">SetProperty(TMDbHelper.WidgetContainer,9553,home)</onup>
-            <!-- Movies list by member crew -->
+
+            <!-- MOVIES LIST BY MEMBER CREW -->
+
             <onup condition="String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEqual(Window(Home).Property(moviecontent),18)">9558</onup>
             <onup condition="String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEqual(Window(Home).Property(moviecontent),18)">SetProperty(TMDbHelper.WidgetContainer,9558,home)</onup>
-            <!-- TvShows list by member crew -->
+
+            <!-- TVSHOWS LIST BY MEMBER CREW -->
+
             <onup condition="String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEqual(Window(Home).Property(moviecontent),19)">9559</onup>
             <onup condition="String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEqual(Window(Home).Property(moviecontent),19)">SetProperty(TMDbHelper.WidgetContainer,9559,home)</onup>
-            <!-- Movies list by director -->
+
+            <!-- MOVIES LIST BY DIRECTOR -->
+
             <onup condition="String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEqual(Window(Home).Property(moviecontent),20)">9560</onup>
             <onup condition="String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEqual(Window(Home).Property(moviecontent),20)">SetProperty(TMDbHelper.WidgetContainer,9560,home)</onup>
 
-            <!-- Cast list - Local only -->
+            <!-- CAST LIST - LOCAL ONLY -->
+
             <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + !Skin.HasSetting(filter.video.cast.on.line) + !String.IsEqual(ListItem.DBType,season) + !String.IsEqual(ListItem.DBType,set) + !$EXP[IsYoutubeItem] + !String.IsEmpty(ListItem.DBID)">50</onup>
 
             <!-- <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + !String.IsEqual(ListItem.DBType,set) + !$EXP[IsYoutubeItem] + !Skin.HasSetting(filter.video.only.local)">9550</onup> -->
             <!-- <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + !String.IsEqual(ListItem.DBType,set) + !$EXP[IsYoutubeItem] + !Skin.HasSetting(filter.video.only.local)">SetProperty(TMDbHelper.WidgetContainer,9550,Home)</onup> -->
 
-            <!-- Set list -->
+            <!-- SET LIST -->
+
             <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + !Container(9550).IsUpdating + String.IsEqual(ListItem.DBType,set)">9550</onup>
             <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + !Container(9550).IsUpdating + String.IsEqual(ListItem.DBType,set)">SetProperty(TMDbHelper.WidgetContainer,9550,Home)</onup>
 
-            <!-- Cast list - on line - only for season -->
+            <!-- CAST LIST - ON LINE - ONLY FOR SEASON -->
+
             <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + !Container(9550).IsUpdating + string.IsEqual(ListItem.DBType,season)">9550</onup>
             <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + !Container(9550).IsUpdating + String.IsEqual(ListItem.DBType,season)">SetProperty(TMDbHelper.WidgetContainer,9550,Home)</onup>
 
-            <!-- Cast list - on line - with TMDb online -->
+            <!-- CAST LIST - ON LINE - WITH TMDB ONLINE -->
+
             <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + !Container(9550).IsUpdating + [Skin.HasSetting(filter.video.cast.on.line) | String.IsEmpty(ListItem.DBID)] + [!$EXP[IsPluginItem] | $EXP[IsTMDbHelperItem] | $EXP[IsPluginShortlist]]">9550</onup>
             <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + !Container(9550).IsUpdating + [Skin.HasSetting(filter.video.cast.on.line) | String.IsEmpty(ListItem.DBID)] + [!$EXP[IsPluginItem] | $EXP[IsTMDbHelperItem] | $EXP[IsPluginShortlist]]">SetProperty(TMDbHelper.WidgetContainer,9550,Home)</onup>
 
-            <!-- Cast Picture -->
+            <!-- CAST PICTURE -->
+
             <onup condition="String.IsEqual(Window(Home).Property(moviecontent),13)">9554</onup>
 
-            <!-- Youtube -->
+            <!-- YOUTUBE -->
+
             <onup condition="String.IsEqual(Window(Home).Property(moviecontent),4)">9504</onup>
 
-            <!-- Fanart -->
+            <!-- FANART -->
+
             <onup condition="String.IsEqual(Window(Home).Property(moviecontent),5) + Integer.IsGreater(Container(9505).NumItems,0)">95051</onup>
 
-            <!-- Discart -->
+            <!-- DISCART -->
+
             <onup condition="String.IsEqual(Window(Home).Property(moviecontent),1) + !String.IsEqual(Window.Property(ShowDisc),1) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.Art(discart))">SetProperty(ShowDisc,1)</onup>
             <onup condition="String.IsEqual(Window(Home).Property(moviecontent),1) + String.IsEqual(Window.Property(ShowDisc),1) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.Art(discart))">ClearProperty(ShowDisc)</onup>
 
@@ -1579,7 +1596,9 @@
                 <onfocus>ClearProperty(moviecontent,Home)</onfocus>
                 <onclick condition="Skin.HasSetting(home.netflix.autoplay.trailer) + $EXP[TrailerIsPlaying] + !Skin.HasSetting(enable.trailer.playing.on.unfocus)">Stop</onclick>
                 <onclick condition="Skin.HasSetting(home.netflix.autoplay.trailer) + $EXP[TrailerIsPlaying] + !Skin.HasSetting(enable.trailer.playing.on.unfocus)">ClearProperty(TrailerPath,Home)</onclick>
-                <onclick>Close</onclick>
+                <!-- <onclick>Close</onclick> -->
+                <onclick>Dialog.Close(all)</onclick>
+                <onclick condition="Window.IsVisible(1190)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190)</onclick>
                 <onclick condition="Window.IsVisible(1190)">$VAR[Def_Browse_List_Episode]</onclick>
                 <onclick condition="!Window.IsVisible(1190)">SendClick(8)</onclick>
                 <include>Def_Button_Dimensions</include>
