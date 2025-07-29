@@ -130,10 +130,13 @@
     <!-- =================================== -->
 
     <variable name="Image_Content_Fanart_TMDb">
-        <value condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty($INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)])">plugin://plugin.video.themoviedb.helper?info=fanart&amp;tmdb_type=$VAR[Path_Dialog_Info_TMDbType]&amp;tmdb_id=$INFO[$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]]$VAR[Path_Param_Widget_Cache_Only]</value>
-        <value condition="String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty($INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)])">plugin://plugin.video.themoviedb.helper?info=fanart&amp;tmdb_type=$VAR[Path_Dialog_Info_TMDbType]&amp;tmdb_id=$INFO[$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]]$VAR[Path_Param_Widget_Cache_Only]</value>
+        <value condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper?info=fanart&amp;tmdb_type=$VAR[Path_Dialog_Info_TMDbType]&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]$VAR[Path_Param_Widget_Cache_Only]</value>
+
+        <value condition="String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper?info=fanart&amp;tmdb_type=$VAR[Path_Dialog_Info_TMDbType]&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]$VAR[Path_Param_Widget_Cache_Only]</value>
+
         <value condition="String.IsEqual(ListItem.DBType,season) + !String.IsEmpty(Window(Home).Property(Item_Title))">plugin://plugin.video.themoviedb.helper?info=fanart&amp;tmdb_type=$VAR[Path_Dialog_Info_TMDbType]&amp;query=$INFO[Window(Home).Property(Item_Title)]&amp;year=$INFO[Window(Home).Property(Item_Year)]$VAR[Path_Param_Widget_Cache_Only]</value>
-        <value condition="String.IsEqual(ListItem.DBType,episode) + !String.IsEmpty($INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)])">plugin://plugin.video.themoviedb.helper?info=fanart&amp;tmdb_type=$VAR[Path_Dialog_Info_TMDbType]&amp;tmdb_id=$INFO[$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]]$VAR[Path_Param_Widget_Cache_Only]</value>
+
+        <value condition="String.IsEqual(ListItem.DBType,episode) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper?info=fanart&amp;tmdb_type=$VAR[Path_Dialog_Info_TMDbType]&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]$VAR[Path_Param_Widget_Cache_Only]</value>
     </variable>
 
     <include name="Image_Content_Additional_Fanart">
@@ -502,7 +505,7 @@
     </variable>
 
     <variable name="Def_Person_List_TvShows_Member_Crew">
-        <value condition="!Skin.HasSetting(filter.video.only.local) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper?info=crew_in_tvshows&amp;type=person&amp;tmdb_id=$INFO[$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]]$VAR[Path_Param_Widget_Cache_Only]$VAR[Path_Param_Limit]</value>
+        <value condition="!Skin.HasSetting(filter.video.only.local) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper?info=crew_in_tvshows&amp;type=person&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]$VAR[Path_Param_Widget_Cache_Only]$VAR[Path_Param_Limit]</value>
     </variable>
 
 
