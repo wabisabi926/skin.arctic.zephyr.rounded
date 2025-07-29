@@ -421,8 +421,9 @@
 
         <!-- VIDEO PLAYER -->
 
-        <value condition="VideoPlayer.Content(episodes) + !String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEmpty(Window(Home).Property(TMDbHelper.Player.TVShow.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.Player.TVShow.TMDb_ID)]</value>
-        <value condition="VideoPlayer.Content(movies) + !String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEmpty(Window(Home).Property(TMDbHelper.Player.tmdb_id))">$INFO[Window(Home).Property(TMDbHelper.Player.tmdb_id)]</value>
+        <value condition="VideoPlayer.Content(episodes) + !String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEmpty(Window(Home).Property(TMDbHelper.Player.TVShow.TMDb_ID)) + !String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO))">$INFO[Window(Home).Property(TMDbHelper.Player.TVShow.TMDb_ID)]</value>
+
+        <value condition="VideoPlayer.Content(movies) + !String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEmpty(Window(Home).Property(TMDbHelper.Player.tmdb_id)) + !String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO))">$INFO[Window(Home).Property(TMDbHelper.Player.tmdb_id)]</value>
 
         <!-- MOVIE / TVSHOW / PERSON -->
 
