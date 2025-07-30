@@ -446,19 +446,19 @@
 
         <!-- TMDB HELPER -->
 
-        <value condition="String.IsEmpty(Container.ListItem.DBID)">RunScript(plugin.video.themoviedb.helper,add_path=$INFO[ListItem.FolderPath],call_auto=1190$VAR[Path_Info_First_Item],return)</value>
+        <value condition="String.IsEmpty(Container.ListItem.DBID) + String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))">RunScript(plugin.video.themoviedb.helper,add_path=$INFO[ListItem.FolderPath],call_auto=1190$VAR[Path_Info_First_Item],return)</value>
 
         <!-- SEASON -->
 
-        <value condition="String.IsEqual(ListItem.DBType,season)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,call_path=$INFO[ListItem.FolderPath])</value>
+        <value condition="String.IsEqual(ListItem.DBType,season) + String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,call_path=$INFO[ListItem.FolderPath])</value>
 
         <!-- LOCAL ONLY -->
 
-        <value condition="!String.IsEmpty(Container.ListItem.DBID) + String.IsEqual(ListItem.DBType,movie)">RunScript(plugin.video.themoviedb.helper,add_dbid=$INFO[ListItem.DBID],tmdb_type=movie,call_auto=1190$VAR[Path_Info_First_Item],return)</value>
+        <value condition="!String.IsEmpty(Container.ListItem.DBID) + String.IsEqual(ListItem.DBType,movie) + String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))">RunScript(plugin.video.themoviedb.helper,add_dbid=$INFO[ListItem.DBID],tmdb_type=movie,call_auto=1190$VAR[Path_Info_First_Item],return)</value>
 
-        <value condition="!String.IsEmpty(Container.ListItem.DBID) + String.IsEqual(ListItem.DBType,tvshow)">RunScript(plugin.video.themoviedb.helper,add_dbid=$INFO[ListItem.DBID],tmdb_type=tv,call_auto=1190$VAR[Path_Info_First_Item],return)</value>
+        <value condition="!String.IsEmpty(Container.ListItem.DBID) + String.IsEqual(ListItem.DBType,tvshow) + String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))">RunScript(plugin.video.themoviedb.helper,add_dbid=$INFO[ListItem.DBID],tmdb_type=tv,call_auto=1190$VAR[Path_Info_First_Item],return)</value>
 
-        <value condition="!String.IsEmpty(Container.ListItem.DBID) + String.IsEqual(ListItem.DBType,episode)">RunScript(plugin.video.themoviedb.helper,add_dbid=$INFO[ListItem.DBID],tmdb_type=episode,call_auto=1190$VAR[Path_Info_First_Item],return)</value>
+        <value condition="!String.IsEmpty(Container.ListItem.DBID) + String.IsEqual(ListItem.DBType,episode) + String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))">RunScript(plugin.video.themoviedb.helper,add_dbid=$INFO[ListItem.DBID],tmdb_type=episode,call_auto=1190$VAR[Path_Info_First_Item],return)</value>
     </variable>
 
     <variable name="Def_Browse_List_Episode">

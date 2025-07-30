@@ -21,7 +21,7 @@
 
             <top>200</top>
             <centerleft>50%</centerleft>
-            <width>1315</width>
+            <width>1615</width>
 
             <include content="Def_Dialog_Background_PowerMenu">
                 <param name="height">590</param>
@@ -41,7 +41,7 @@
             <control type="panel" id="9000">
                 <top>112</top>
                 <left>20</left>
-                <right>8</right>
+                <width>1202</width>
                 <height>462</height>
                 <onright>5</onright>
                 <orientation>horizontal</orientation>
@@ -113,6 +113,7 @@
                         <onclick condition="System.AddonIsEnabled(script.globalsearch)">RunScript(script.globalsearch)</onclick>
                         <onclick condition="System.HasAddon(script.globalsearch) + !System.AddonIsEnabled(script.globalsearch)">EnableAddon(script.globalsearch)</onclick>
                         <onclick condition="!System.HasAddon(script.globalsearch)">InstallAddon(script.globalsearch)</onclick>
+                        <visible>System.AddonIsEnabled(script.globalsearch)</visible>
                     </item>
                     <item id="3">
                         <label>$LOCALIZE[31477]</label>
@@ -123,6 +124,7 @@
                         <!-- <onclick condition="System.AddonIsEnabled(script.wikipedia)">RunScript(script.wikipedia,wikipedia="$INFO[Control.GetLabel(9099).index(1)]",language=$VAR[Path_Wikipedia_Language])</onclick> -->
                         <onclick condition="System.HasAddon(script.wikipedia) + !System.AddonIsEnabled(script.wikipedia)">EnableAddon(script.wikipedia)</onclick>
                         <onclick condition="!System.HasAddon(script.wikipedia)">InstallAddon(script.wikipedia)</onclick>
+                        <visible>System.AddonIsEnabled(script.wikipedia)</visible>
                     </item>
                     <item id="2">
                         <label>$LOCALIZE[31101]</label>
@@ -133,6 +135,7 @@
                         <onclick condition="System.AddonIsEnabled(plugin.video.youtube)">ActivateWindow(videos,"plugin://plugin.video.youtube/kodion/search/list/",return)</onclick>
                         <onclick condition="System.HasAddon(plugin.video.youtube) + !System.AddonIsEnabled(plugin.video.youtube)">EnableAddon(plugin.video.youtube)</onclick>
                         <onclick condition="!System.HasAddon(plugin.video.youtube)">InstallAddon(plugin.video.youtube)</onclick>
+                        <visible>System.AddonIsEnabled(plugin.video.youtube)</visible>
                     </item>
                     <item id="4">
                         <label>$LOCALIZE[10510]</label>
@@ -154,6 +157,7 @@
                         <onclick condition="System.AddonIsEnabled(plugin.video.themoviedb.helper)">ActivateWindow(videos,"plugin://plugin.video.themoviedb.helper/?info=dir_multisearch&amp;tmdb_type=None",return)</onclick>
                         <onclick condition="System.HasAddon(plugin.video.themoviedb.helper) + !System.AddonIsEnabled(plugin.video.themoviedb.helper)">EnableAddon(plugin.video.themoviedb.helper)</onclick>
                         <!-- <onclick condition="!System.HasAddon(plugin.video.themoviedb.helper)">InstallAddon(plugin.video.themoviedb.helper)</onclick> -->
+                        <visible>System.AddonIsEnabled(plugin.video.themoviedb.helper)</visible>
                     </item>
                     <item id="6">
                         <label>$LOCALIZE[19021]</label>
@@ -165,16 +169,26 @@
                         <onclick condition="System.HasAddon(plugin.audio.radiode) + !System.AddonIsEnabled(plugin.audio.radiode)">EnableAddon(plugin.audio.radiode)</onclick>
                         <onclick condition="!System.HasAddon(plugin.audio.radiode)">InstallAddon(plugin.audio.radiode)</onclick>
                     </item>
-                    <!-- <item id="6"> -->
-                        <!-- <label>$LOCALIZE[19021]</label> -->
-                        <!-- <icon>special://skin/extras/icons/radio.png</icon> -->
-                        <!-- <onfocus>ClearProperty(LaunchSearch,Home)</onfocus> -->
-                        <!-- <onclick>Dialog.Close(all)</onclick> -->
-                        <!-- <onclick>SetProperty(LaunchSearch,1,Home)</onclick> -->
-                        <!-- <onclick condition="System.AddonIsEnabled(plugin.audio.radio_de)">ActivateWindow(videos,"plugin://plugin.audio.radio_de/stations/search/")</onclick> -->
-                        <!-- <onclick condition="System.HasAddon(plugin.audio.radio_de) + !System.AddonIsEnabled(plugin.audio.radio_de)">EnableAddon(plugin.audio.radio_de)</onclick> -->
-                        <!-- <onclick condition="!System.HasAddon(plugin.audio.radio_de)">InstallAddon(plugin.audio.radio_de)</onclick> -->
-                    <!-- </item> -->
+                    <item id="7">
+                        <label>Twitch</label>
+                        <icon>special://skin/extras/icons/twitch.png</icon>
+                        <onfocus>ClearProperty(LaunchSearch,Home)</onfocus>
+                        <onclick>Dialog.Close(all)</onclick>
+                        <onclick>SetProperty(LaunchSearch,1,Home)</onclick>
+                        <onclick condition="System.AddonIsEnabled(plugin.video.twitch)">ActivateWindow(videos,"plugin://plugin.video.twitch/?mode=search")</onclick>
+                        <!-- <onclick condition="!System.HasAddon(plugin.video.twitch)">InstallAddon(plugin.video.twitch)</onclick> -->
+                        <visible>System.HasAddon(plugin.video.twitch)</visible>
+                    </item>
+                    <item id="8">
+                        <label>$LOCALIZE[15016]</label>
+                        <icon>special://skin/extras/icons/gamepad.png</icon>
+                        <onfocus>ClearProperty(LaunchSearch,Home)</onfocus>
+                        <onclick>Dialog.Close(all)</onclick>
+                        <onclick>SetProperty(LaunchSearch,1,Home)</onclick>
+                        <onclick condition="System.AddonIsEnabled(plugin.program.iagl)">ActivateWindow(videos,"plugin://plugin.program.iagl/search")</onclick>
+                        <!-- <onclick condition="!System.HasAddon(plugin.program.iagl)">InstallAddon(plugin.program.iagl)</onclick> -->
+                        <visible>System.HasAddon(plugin.program.iagl)</visible>
+                    </item>
                 </content>
             </control>
 
@@ -228,7 +242,7 @@
                 <width>80</width>
                 <height>80</height>
                 <control type="image">
-                    <width>889</width>
+                    <width>589</width>
                     <height>80</height>
                     <texture border="40">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/menu_h.png</texture>
                 </control>
@@ -257,7 +271,7 @@
                 <left>32</left>
                 <orientation>horizontal</orientation>
                 <control type="edit" id="9099">
-                    <width>480</width>
+                    <width>580</width>
                     <height>80</height>
                     <label/>
                     <align>left</align>
@@ -291,7 +305,7 @@
 
             <control type="label">
                 <top>638</top>
-                <right>387</right>
+                <right>987</right>
                 <height>50</height>
                 <font>Mini</font>
                 <scroll>true</scroll>
