@@ -4281,6 +4281,31 @@
                     <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_UserMeter)]%</label>
                 </control>
 
+                <!-- TMDB -->
+
+                <control type="image">
+                    <visible>[String.IsEmpty(Container($PARAM[controlid]).ListItem.DBID) + !String.IsEmpty(Container($PARAM[controlid]).ListItem.Rating) + Skin.HasSetting(show.flags.rating.imdb) + Skin.HasSetting(enable.furniture.flags.icons)] | [!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating)) + !String.IsEmpty(Container($PARAM[controlid]).ListItem.DBID)]</visible>
+                    <visible>Skin.HasSetting(show.flags.rating.tmdb) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                    <visible>!Control.IsVisible(5161) + !Control.IsVisible(5261)</visible>
+                    <width>70</width>
+                    <include>Def_Flag_Image</include>
+                    <texture colordiffuse="Dark2" background="true">flags/rating/white/tmdb/tmdb_white.png</texture>
+                </control>
+                <control type="label">
+                    <visible>String.IsEmpty(Container($PARAM[controlid]).ListItem.DBID) + !String.IsEmpty(Container($PARAM[controlid]).ListItem.Rating)</visible>
+                    <visible>Skin.HasSetting(show.flags.rating.tmdb) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                    <visible>!Control.IsVisible(5161) + !Control.IsVisible(5261)</visible>
+                    <include>Def_Flag_Label</include>
+                    <label>$INFO[Container($PARAM[controlid]).ListItem.Rating]</label>
+                </control>
+                <control type="label">
+                    <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating)) + !String.IsEmpty(Container($PARAM[controlid]).ListItem.DBID)</visible>
+                    <visible>Skin.HasSetting(show.flags.rating.tmdb) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                    <visible>!Control.IsVisible(5161) + !Control.IsVisible(5261)</visible>
+                    <include>Def_Flag_Label</include>
+                    <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating)]</label>
+                </control>
+
                 <!-- IMDB B/W -->
 
                 <control type="image">
@@ -4327,22 +4352,6 @@
                     <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.Top250),#,]</label>
                     <visible>String.IsEmpty(Container($PARAM[controlid]).ListItem.Top250) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Top250)) + Skin.HasSetting(show.flags.top250.classement)</visible>
                     <visible>![Control.HasFocus(9579) | Control.HasFocus(95797)]</visible>
-                </control>
-
-                <!-- TMDB -->
-
-                <control type="image">
-                    <visible>!Skin.HasSetting(filter.video.only.local) + String.IsEmpty(Container($PARAM[controlid]).ListItem.Property(IMDb_Rating)) + !String.IsEmpty(Container($PARAM[controlid]).ListItem.Rating) + !Container($PARAM[controlid]).ListItem.IsCollection + Skin.HasSetting(show.flags.rating.imdb) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
-                    <visible>!Control.IsVisible(5161) + !Control.IsVisible(5261)</visible>
-                    <width>70</width>
-                    <include>Def_Flag_Image</include>
-                    <texture colordiffuse="Dark2" background="true">flags/rating/white/tmdb/tmdb_white.png</texture>
-                </control>
-                <control type="label">
-                    <visible>!Skin.HasSetting(filter.video.only.local) + String.IsEmpty(Container($PARAM[controlid]).ListItem.Property(IMDb_Rating)) + !String.IsEmpty(Container($PARAM[controlid]).ListItem.Rating) + !Container($PARAM[controlid]).ListItem.IsCollection + Skin.HasSetting(show.flags.rating.imdb) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
-                    <visible>!Control.IsVisible(5161) + !Control.IsVisible(5261)</visible>
-                    <include>Def_Flag_Label</include>
-                    <label>$INFO[Container($PARAM[controlid]).ListItem.Rating]</label>
                 </control>
 
                 <!-- RATING STAR - LABEL -->
@@ -4524,6 +4533,31 @@
                     <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_UserMeter)]%</label>
                 </control>
 
+                <!-- TMDB -->
+
+                <control type="image">
+                    <visible>[String.IsEmpty(Container($PARAM[controlid]).ListItem.DBID) + !String.IsEmpty(Container($PARAM[controlid]).ListItem.Rating) + Skin.HasSetting(show.flags.rating.imdb) + Skin.HasSetting(enable.furniture.flags.icons)] | [!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating)) + !String.IsEmpty(Container($PARAM[controlid]).ListItem.DBID)]</visible>
+                    <visible>Skin.HasSetting(show.flags.rating.tmdb) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                    <visible>!Control.IsVisible(5161) + !Control.IsVisible(5261)</visible>
+                    <width>70</width>
+                    <include>Def_Flag_Image</include>
+                    <texture background="true">flags/rating/color/tmdb/tmdb.png</texture>
+                </control>
+                <control type="label">
+                    <visible>String.IsEmpty(Container($PARAM[controlid]).ListItem.DBID) + !String.IsEmpty(Container($PARAM[controlid]).ListItem.Rating)</visible>
+                    <visible>Skin.HasSetting(show.flags.rating.tmdb) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                    <visible>!Control.IsVisible(5161) + !Control.IsVisible(5261)</visible>
+                    <include>Def_Flag_Label</include>
+                    <label>$INFO[Container($PARAM[controlid]).ListItem.Rating]</label>
+                </control>
+                <control type="label">
+                    <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating)) + !String.IsEmpty(Container($PARAM[controlid]).ListItem.DBID)</visible>
+                    <visible>Skin.HasSetting(show.flags.rating.tmdb) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                    <visible>!Control.IsVisible(5161) + !Control.IsVisible(5261)</visible>
+                    <include>Def_Flag_Label</include>
+                    <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating)]</label>
+                </control>
+
                 <!-- IMDb -->
 
                 <control type="image">
@@ -4570,22 +4604,6 @@
                     <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.Top250),#,]</label>
                     <visible>String.IsEmpty(Container($PARAM[controlid]).ListItem.Top250) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Top250)) + Skin.HasSetting(show.flags.top250.classement)</visible>
                     <visible>![Control.HasFocus(9579) | Control.HasFocus(95797)]</visible>
-                </control>
-
-                <!-- TMDB -->
-
-                <control type="image">
-                    <visible>!Skin.HasSetting(filter.video.only.local) + String.IsEmpty(Container($PARAM[controlid]).ListItem.Property(IMDb_Rating)) + !String.IsEmpty(Container($PARAM[controlid]).ListItem.Rating) + !Container($PARAM[controlid]).ListItem.IsCollection + Skin.HasSetting(show.flags.rating.imdb) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
-                    <visible>!Control.IsVisible(5161) + !Control.IsVisible(5261)</visible>
-                    <width>70</width>
-                    <include>Def_Flag_Image</include>
-                    <texture background="true">flags/rating/color/tmdb/tmdb.png</texture>
-                </control>
-                <control type="label">
-                    <visible>!Skin.HasSetting(filter.video.only.local) + String.IsEmpty(Container($PARAM[controlid]).ListItem.Property(IMDb_Rating)) + !String.IsEmpty(Container($PARAM[controlid]).ListItem.Rating) + !Container($PARAM[controlid]).ListItem.IsCollection + Skin.HasSetting(show.flags.rating.imdb) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
-                    <visible>!Control.IsVisible(5161) + !Control.IsVisible(5261)</visible>
-                    <include>Def_Flag_Label</include>
-                    <label>$INFO[Container($PARAM[controlid]).ListItem.Rating]</label>
                 </control>
 
                 <!-- RATING STAR - LABEL -->
