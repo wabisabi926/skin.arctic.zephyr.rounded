@@ -105,6 +105,119 @@
         </control>
     </include>
 
+    <!-- TOTAL EPISODE -->
+
+    <include name="Total_Episodes">
+        <control type="group">
+            <visible>[[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + !String.IsEmpty(ListItem.Property(TotalEpisodes))]</visible>
+
+            <centertop>50%</centertop>
+            <width>98</width>
+            <height>40</height>
+
+            <control type="image" description="button back">
+                <width>78</width>
+                <height>45</height>
+                <align>center</align>
+                <left>10</left>
+                <texture colordiffuse="$VAR[Color_Background]">common/circle3.png</texture>
+            </control>
+            <control type="label">
+                <width>78</width>
+                <height>40</height>
+                <align>center</align>
+                <centertop>53%</centertop>
+                <font>Tiny44</font>
+                <left>10</left>
+                <textcolor>Dark1</textcolor>
+                <label>$VAR[Label_Flag_Total_Episodes]</label>
+            </control>
+        </control>
+    </include>
+
+    <include name="Total_Episodes_Ext">
+        <control type="group">
+            <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Property(TotalEpisodes)) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Episode))</visible>
+
+            <centertop>50%</centertop>
+            <width>98</width>
+            <height>40</height>
+
+            <control type="image" description="button back">
+                <width>78</width>
+                <height>45</height>
+                <align>center</align>
+                <left>10</left>
+                <texture colordiffuse="$VAR[Color_Background]">common/circle3.png</texture>
+            </control>
+            <control type="label">
+                <width>78</width>
+                <height>40</height>
+                <align>center</align>
+                <centertop>53%</centertop>
+                <font>Tiny44</font>
+                <left>10</left>
+                <textcolor>Dark1</textcolor>
+                <label>$INFO[Container($PARAM[controlid]).ListItem.Property(TotalEpisodes)]</label>
+                <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Property(TotalEpisodes))</visible>
+            </control>
+            <control type="label">
+                <width>78</width>
+                <height>40</height>
+                <align>center</align>
+                <centertop>53%</centertop>
+                <font>Tiny44</font>
+                <left>10</left>
+                <textcolor>Dark1</textcolor>
+                <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.Episode)]</label>
+                <visible>String.IsEmpty(Container($PARAM[controlid]).ListItem.Property(TotalEpisodes))</visible>
+            </control>
+        </control>
+    </include>
+
+    <!-- NEXT AIRED -->
+
+    <include name="Next_Aired">
+        <control type="image">
+            <width>64</width>
+            <include>Def_Flag_Image</include>
+            <texture colordiffuse="Dark1">flags/video/white/other/airing.png</texture>
+            <visible>!Skin.HasSetting(hide.flags.nextaired) + $EXP[HasNextAired]</visible>
+        </control>
+        <control type="label">
+            <include>Def_Flag_Label</include>
+            <label>$VAR[Label_Flag_Next_Aired_Details]</label>
+            <visible>!Skin.HasSetting(hide.flags.nextaired) + $EXP[HasNextAired]</visible>
+        </control>
+        <control type="label">
+            <width>10</width>
+            <include>Def_Flag_Label</include>
+            <visible>!Skin.HasSetting(hide.flags.nextaired) + $EXP[HasNextAired]</visible>
+        </control>
+    </include>
+
+    <include name="Next_Aired_Ext">
+        <control type="image">
+            <width>32</width>
+            <include>Def_Flag_Image</include>
+            <texture colordiffuse="Dark1">flags/video/white/other/airing.png</texture>
+            <visible>!Skin.HasSetting(hide.flags.nextaired)</visible>
+            <visible>[String.IsEqual(Container($PARAM[controlid]).ListItem.DBType,tvshow) | String.IsEqual(Container($PARAM[controlid]).ListItem.DBType,season)] + [!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Next_Aired)) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Last_Aired))]</visible>
+        </control>
+        <control type="label">
+            <include>Def_Flag_Label</include>
+            <label>$VAR[Label_Flag_Next_Aired_Details]</label>
+            <visible>!Skin.HasSetting(hide.flags.nextaired)</visible>
+            <visible>[String.IsEqual(Container($PARAM[controlid]).ListItem.DBType,tvshow) | String.IsEqual(Container($PARAM[controlid]).ListItem.DBType,season)] + [!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Next_Aired)) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Last_Aired))]</visible>
+        </control>
+        <control type="label">
+            <width>10</width>
+            <include>Def_Flag_Label</include>
+            <visible>!Skin.HasSetting(hide.flags.nextaired)</visible>
+            <visible>[String.IsEqual(Container($PARAM[controlid]).ListItem.DBType,tvshow) | String.IsEqual(Container($PARAM[controlid]).ListItem.DBType,season)] + [!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Next_Aired)) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Last_Aired))]</visible>
+        </control>
+    </include>
+
     <!-- ====================================================== -->
     <!--            VIEWS LAYOUT - FLAGS INDICATORS             -->
     <!-- ====================================================== -->
@@ -2472,31 +2585,13 @@
             <orientation>horizontal</orientation>
             <usecontrolcoords>true</usecontrolcoords>
 
-            <control type="group">
-                <visible>[[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + !String.IsEmpty(ListItem.Property(TotalEpisodes))]</visible>
+            <!-- TOTAL EPISODES -->
 
-                <centertop>50%</centertop>
-                <width>98</width>
-                <height>40</height>
+            <include>Total_Episodes</include>
 
-                <control type="image" description="button back">
-                    <width>78</width>
-                    <height>45</height>
-                    <align>center</align>
-                    <left>10</left>
-                    <texture colordiffuse="$VAR[Color_Background]">common/circle3.png</texture>
-                </control>
-                <control type="label">
-                    <width>78</width>
-                    <height>40</height>
-                    <align>center</align>
-                    <centertop>53%</centertop>
-                    <font>Tiny44</font>
-                    <left>10</left>
-                    <textcolor>Dark1</textcolor>
-                    <label>$VAR[Label_Flag_Total_Episodes]</label>
-                </control>
-            </control>
+            <!-- NEXT AIRED -->
+
+            <include>Next_Aired</include>
 
             <!-- COLLECTION -->
 
@@ -2525,25 +2620,6 @@
                 <include>Def_Flag_Image_Without_Label</include>
                 <texture colordiffuse="Dark1" fallback="flags/fallback.png">$INFO[ListItem.VideoResolution,flags/video/white/resolution/,.png]</texture>
                 <visible>Skin.HasSetting(enable.furniture.flags.icons) + !Skin.HasSetting(hide.flags.resolution) + !String.IsEmpty(ListItem.VideoResolution) + !String.Contains(ListItem.Path,videodb://movies/sets)</visible>
-            </control>
-
-            <!-- NEXT AIRED -->
-
-            <control type="image">
-                <width>64</width>
-                <include>Def_Flag_Image</include>
-                <texture colordiffuse="Dark1">flags/video/white/other/airing.png</texture>
-                <visible>!Skin.HasSetting(hide.flags.nextaired) + $EXP[HasNextAired]</visible>
-            </control>
-            <control type="label">
-                <include>Def_Flag_Label</include>
-                <label>$VAR[Label_Flag_Next_Aired_Details]</label>
-                <visible>!Skin.HasSetting(hide.flags.nextaired) + $EXP[HasNextAired]</visible>
-            </control>
-            <control type="label">
-                <width>10</width>
-                <include>Def_Flag_Label</include>
-                <visible>!Skin.HasSetting(hide.flags.nextaired) + $EXP[HasNextAired]</visible>
             </control>
 
             <!-- VIDEO -->
@@ -2852,31 +2928,11 @@
 
             <!-- TOTAL EPISODES -->
 
-            <control type="group">
-                <visible>[[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + !String.IsEmpty(ListItem.Property(TotalEpisodes))]</visible>
+            <include>Total_Episodes</include>
 
-                <centertop>50%</centertop>
-                <width>98</width>
-                <height>40</height>
+            <!-- NEXT AIRED -->
 
-                <control type="image" description="button back">
-                    <width>78</width>
-                    <height>45</height>
-                    <align>center</align>
-                    <left>10</left>
-                    <texture colordiffuse="$VAR[Color_Background]">common/circle3.png</texture>
-                </control>
-                <control type="label">
-                    <width>78</width>
-                    <height>40</height>
-                    <align>center</align>
-                    <centertop>53%</centertop>
-                    <font>Tiny44</font>
-                    <left>10</left>
-                    <textcolor>Dark1</textcolor>
-                    <label>$VAR[Label_Flag_Total_Episodes]</label>
-                </control>
-            </control>
+            <include>Next_Aired</include>
 
             <!-- COLLECTION -->
 
@@ -2905,25 +2961,6 @@
                 <include>Def_Flag_Image_Without_Label</include>
                 <texture fallback="flags/fallback.png">$INFO[ListItem.VideoResolution,flags/video/color/resolution/,.png]</texture>
                 <visible>Skin.HasSetting(enable.furniture.flags.icons) + !Skin.HasSetting(hide.flags.resolution) + !String.IsEmpty(ListItem.VideoResolution) + !String.Contains(ListItem.Path,videodb://movies/sets)</visible>
-            </control>
-
-            <!-- NEXT AIRED -->
-
-            <control type="image">
-                <width>32</width>
-                <include>Def_Flag_Image</include>
-                <texture colordiffuse="Dark1">flags/video/white/other/airing.png</texture>
-                <visible>!Skin.HasSetting(hide.flags.nextaired) + $EXP[HasNextAired]</visible>
-            </control>
-            <control type="label">
-                <include>Def_Flag_Label</include>
-                <label>$VAR[Label_Flag_Next_Aired_Details]</label>
-                <visible>!Skin.HasSetting(hide.flags.nextaired) + $EXP[HasNextAired]</visible>
-            </control>
-            <control type="label">
-                <width>10</width>
-                <include>Def_Flag_Label</include>
-                <visible>!Skin.HasSetting(hide.flags.nextaired) + $EXP[HasNextAired]</visible>
             </control>
 
             <!-- VIDEO -->
@@ -4123,31 +4160,11 @@
 
                 <!-- TOTAL EPISODES -->
 
-                <control type="group">
-                    <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Property(TotalEpisodes))</visible>
+                <include>Total_Episodes_Ext</include>
 
-                    <centertop>50%</centertop>
-                    <width>98</width>
-                    <height>40</height>
+                <!-- NEXT AIRED -->
 
-                    <control type="image" description="button back">
-                        <width>78</width>
-                        <height>45</height>
-                        <align>center</align>
-                        <left>10</left>
-                        <texture colordiffuse="$VAR[Color_Background]">common/circle3.png</texture>
-                    </control>
-                    <control type="label">
-                        <width>78</width>
-                        <height>40</height>
-                        <align>center</align>
-                        <centertop>53%</centertop>
-                        <font>Tiny44</font>
-                        <left>10</left>
-                        <textcolor>Dark1</textcolor>
-                        <label>$INFO[Container($PARAM[controlid]).ListItem.Property(TotalEpisodes)]</label>
-                    </control>
-                </control>
+                <include>Next_Aired_Ext</include>
 
                 <!-- VIDEO - RESOLUTION -->
 
@@ -4156,25 +4173,6 @@
                     <include>Def_Flag_Image_Without_Label</include>
                     <texture colordiffuse="Dark1" fallback="flags/fallback.png">$INFO[Container($PARAM[controlid]).ListItem.VideoResolution,flags/video/white/resolution/,.png]</texture>
                     <visible>Skin.HasSetting(enable.furniture.flags.icons) + !Skin.HasSetting(hide.flags.resolution) + !String.IsEmpty(Container($PARAM[controlid]).ListItem.VideoResolution) + !String.Contains(Container($PARAM[controlid]).ListItem.Path,videodb://movies/sets)</visible>
-                </control>
-
-                <!-- NEXT AIRED -->
-
-                <control type="image">
-                    <width>32</width>
-                    <include>Def_Flag_Image</include>
-                    <texture colordiffuse="Dark1">flags/video/white/other/airing.png</texture>
-                    <visible>!Skin.HasSetting(hide.flags.nextaired) + $EXP[HasNextAired]</visible>
-                </control>
-                <control type="label">
-                    <include>Def_Flag_Label</include>
-                    <label>$VAR[Label_Flag_Next_Aired_Details]</label>
-                    <visible>!Skin.HasSetting(hide.flags.nextaired) + $EXP[HasNextAired]</visible>
-                </control>
-                <control type="label">
-                    <width>10</width>
-                    <include>Def_Flag_Label</include>
-                    <visible>!Skin.HasSetting(hide.flags.nextaired) + $EXP[HasNextAired]</visible>
                 </control>
 
                 <!-- VIDEO -->
@@ -4376,31 +4374,11 @@
 
                 <!-- TOTAL EPISODES -->
 
-                <control type="group">
-                    <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Property(TotalEpisodes))</visible>
+                <include>Total_Episodes_Ext</include>
 
-                    <centertop>50%</centertop>
-                    <width>98</width>
-                    <height>40</height>
+                <!-- NEXT AIRED -->
 
-                    <control type="image" description="button back">
-                        <width>78</width>
-                        <height>45</height>
-                        <align>center</align>
-                        <left>10</left>
-                        <texture colordiffuse="$VAR[Color_Background]">common/circle3.png</texture>
-                    </control>
-                    <control type="label">
-                        <width>78</width>
-                        <height>40</height>
-                        <align>center</align>
-                        <centertop>53%</centertop>
-                        <font>Tiny44</font>
-                        <left>10</left>
-                        <textcolor>Dark1</textcolor>
-                        <label>$INFO[Container($PARAM[controlid]).ListItem.Property(TotalEpisodes)]</label>
-                    </control>
-                </control>
+                <include>Next_Aired_Ext</include>
 
                 <!-- VIDEO - RESOLUTION -->
 
@@ -4410,25 +4388,6 @@
                     <texture fallback="flags/fallback.png">$INFO[Container($PARAM[controlid]).ListItem.VideoResolution,flags/video/color/resolution/,.png]</texture>
                     <aspectratio align="left">keep</aspectratio>
                     <visible>Skin.HasSetting(enable.furniture.flags.icons) + !Skin.HasSetting(hide.flags.resolution) + !String.IsEmpty(Container($PARAM[controlid]).ListItem.VideoResolution) + !String.Contains(Container($PARAM[controlid]).ListItem.Path,videodb://movies/sets)</visible>
-                </control>
-
-                <!-- NEXT AIRED -->
-
-                <control type="image">
-                    <width>32</width>
-                    <include>Def_Flag_Image</include>
-                    <texture colordiffuse="Dark1">flags/video/white/other/airing.png</texture>
-                    <visible>!Skin.HasSetting(hide.flags.nextaired) + $EXP[HasNextAired]</visible>
-                </control>
-                <control type="label">
-                    <include>Def_Flag_Label</include>
-                    <label>$VAR[Label_Flag_Next_Aired_Details]</label>
-                    <visible>!Skin.HasSetting(hide.flags.nextaired) + $EXP[HasNextAired]</visible>
-                </control>
-                <control type="label">
-                    <width>10</width>
-                    <include>Def_Flag_Label</include>
-                    <visible>!Skin.HasSetting(hide.flags.nextaired) + $EXP[HasNextAired]</visible>
                 </control>
 
                 <!-- VIDEO -->
