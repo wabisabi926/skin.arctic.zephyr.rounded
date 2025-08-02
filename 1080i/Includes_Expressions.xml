@@ -16,6 +16,8 @@
     <expression name="Condition_Flag_TMDb_Rating">[[[!String.IsEmpty(ListItem.Rating) + Container.Content(seasons)] |
     [Container.Content(episodes) + !String.IsEmpty(ListItem.Rating) + String.IsEmpty(ListItem.DBID)] | Container.Content(sets) | String.IsEqual(ListItem.DBType,set) | Skin.HasSetting(show.flags.rating.tmdb)] + !$EXP[IsYoutubeItem]]</expression>
 
+    <expression name="Condition_TMDb_Rating_Not_Null">[[!String.IsEmpty(ListItem.Rating) + !String.IsEqual(ListItem.Rating,0)] | [!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating)) + !String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating),0)] | [!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Set.Rating)) + !String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Set.Rating),0)]]</expression>
+
     <expression name="Condition_Item_IMDb_Rating">[!String.IsEmpty(ListItem.DBID) + !String.IsEmpty(ListItem.Rating) + [!String.IsEmpty(ListItem.Rating(imdb)) | String.IsEqual(Skin.String(Value_Kodi_Rating_Provider),IMDb)]]</expression>
 
     <expression name="Condition_Item_IMDb_Rating_5161">[!String.IsEmpty(Container(5161).ListItem.DBID) + !String.IsEmpty(Container(5161).ListItem.Rating) + [!String.IsEmpty(Container(5161).ListItem.Rating(imdb)) | String.IsEqual(Skin.String(Value_Kodi_Rating_Provider),IMDb)]]</expression>

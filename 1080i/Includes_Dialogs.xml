@@ -1768,7 +1768,7 @@
                 <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/storageinfo.png</textureradioofffocus>
                 <textureradiooffnofocus colordiffuse="Dark2">buttonsdialogs/storageinfo.png</textureradiooffnofocus>
                 <usealttexture>Skin.HasSetting(filter.video.only.local)</usealttexture>
-                <visible>String.IsEqual(ListItem.Property(tmdb_type),person) | String.IsEqual(ListItem.DBType,set)</visible>
+                <visible>String.IsEqual(ListItem.Property(tmdb_type),person) | [ListItem.IsCollection + !String.IsEmpty(ListItem.DBID)]</visible>
                 <visible>System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)</visible>
             </control>
 

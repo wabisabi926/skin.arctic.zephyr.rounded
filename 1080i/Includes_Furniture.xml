@@ -2432,7 +2432,13 @@
             <control type="label">
                 <include>Def_Info_Right_Line1</include>
                 <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Years),,  •  ]$INFO[Container(44023).NumItems]$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.NumItems),/,] $LOCALIZE[31014]</label>
-                <visible>ListItem.IsCollection</visible>
+                <visible>ListItem.IsCollection + !String.IsEmpty(ListItem.DBID)</visible>
+                <visible>!Control.IsVisible(50) + !Control.IsVisible(56) + !Control.IsVisible(57)</visible>
+            </control>
+            <control type="label">
+                <include>Def_Info_Right_Line1</include>
+                <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Years),,  •  ]$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.NumItems),, $LOCALIZE[342]]</label>
+                <visible>ListItem.IsCollection + String.IsEmpty(ListItem.DBID)</visible>
                 <visible>!Control.IsVisible(50) + !Control.IsVisible(56) + !Control.IsVisible(57)</visible>
             </control>
 
@@ -2605,7 +2611,13 @@
                 <width min="34">auto</width>
                 <include>Def_Flag_Label</include>
                 <label>$INFO[Container(44023).NumItems]$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.NumItems),/,]</label>
-                <visible>ListItem.IsCollection</visible>
+                <visible>ListItem.IsCollection + !String.IsEmpty(ListItem.DBID)</visible>
+            </control>
+            <control type="label">
+                <width min="15">auto</width>
+                <include>Def_Flag_Label</include>
+                <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.NumItems]</label>
+                <visible>ListItem.IsCollection + String.IsEmpty(ListItem.DBID)</visible>
             </control>
             <control type="label">
                 <width>10</width>
@@ -2946,7 +2958,13 @@
                 <width min="34">auto</width>
                 <include>Def_Flag_Label</include>
                 <label>$INFO[Container(44023).NumItems]$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.NumItems),/,]</label>
-                <visible>ListItem.IsCollection</visible>
+                <visible>ListItem.IsCollection + !String.IsEmpty(ListItem.DBID)</visible>
+            </control>
+            <control type="label">
+                <width min="15">auto</width>
+                <include>Def_Flag_Label</include>
+                <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.NumItems]</label>
+                <visible>ListItem.IsCollection + String.IsEmpty(ListItem.DBID)</visible>
             </control>
             <control type="label">
                 <width>10</width>
@@ -3161,6 +3179,7 @@
             <control type="image">
                 <visible>Skin.HasSetting(enable.furniture.flags.icons)</visible>
                 <visible>$EXP[Condition_Flag_TMDb_Rating]</visible>
+                <visible>$EXP[Condition_TMDb_Rating_Not_Null]</visible>
                 <width>56</width>
                 <include>Def_Flag_Image</include>
                 <texture background="true">flags/rating/color/tmdb/tmdb.png</texture>
@@ -3168,6 +3187,7 @@
             <control type="label">
                 <visible>Skin.HasSetting(enable.furniture.flags.icons)</visible>
                 <visible>$EXP[Condition_Flag_TMDb_Rating]</visible>
+                <visible>$EXP[Condition_TMDb_Rating_Not_Null]</visible>
                 <include>Def_Flag_Label</include>
                 <label>$VAR[Value_Item_Rating_TMDb]</label>
             </control>
