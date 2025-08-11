@@ -105,39 +105,15 @@
                     </control>
                 </control>
 
-                <control type="radiobutton" id="11441">
-                    <top>11</top>
-                    <right>0</right>
-                    <font>Button</font>
-                    <textcolor>Dark2</textcolor>
-                    <width>80</width>
-                    <height>80</height>
-                    <radioposx>20</radioposx>
-                    <radioposy>18</radioposy>
-                    <radiowidth>48</radiowidth>
-                    <onup>59</onup>
-                    <ondown>59</ondown>
-                    <onleft>11</onleft>
-                    <onclick>SetFocus(9000)</onclick>
-                    <onright>SetFocus(11,0,absolute)</onright>
-                    <visible>!Control.HasFocus(59)</visible>
-                    <include>Animation_Fade_In</include>
-                    <include>Animation_Fade_Out</include>
-                    <texturenofocus/>
-                    <texturefocus/>
-                    <textureradioonfocus colordiffuse="$VAR[Color_Focus]">buttonsdialogs/settings.png</textureradioonfocus>
-                    <textureradioonnofocus colordiffuse="FFFFFFFF">buttonsdialogs/settings.png</textureradioonnofocus>
-                    <textureradioofffocus colordiffuse="$VAR[Color_Focus]">buttonsdialogs/settings.png</textureradioofffocus>
-                    <textureradiooffnofocus colordiffuse="FFFFFFFF">buttonsdialogs/settings.png</textureradiooffnofocus>
-                </control>
+                <!-- LIST GROUP CHANNEL IN TOP -->
 
                 <control type="list" id="11">
-                    <visible allowhiddenfocus="true">!Control.HasFocus(59) | ControlGroup(9000).HasFocus()</visible>
+                    <visible allowhiddenfocus="true">!Control.HasFocus(59) + !ControlGroup(9000).HasFocus() + !ControlGroup(9011).HasFocus()</visible>
                     <include>Animation_Fade_In</include>
                     <include>Animation_Fade_Out</include>
 
                     <top>11</top>
-                    <left>0</left>
+                    <left>22</left>
                     <height>100</height>
                     <right>View_SidePad</right>
                     <width>1650</width>
@@ -169,6 +145,38 @@
                     </focusedlayout>
                 </control>
 
+                <!-- ICON CONTEXT MENU IN TOP -->
+
+                <control type="radiobutton" id="11441">
+                    <visible>!Control.HasFocus(59) + !ControlGroup(9000).HasFocus() + !ControlGroup(9011).HasFocus()</visible>
+                    <include>Animation_Fade_In</include>
+                    <include>Animation_Fade_Out</include>
+
+                    <top>11</top>
+                    <right>0</right>
+                    <width>80</width>
+                    <height>80</height>
+                    <radioposx>10</radioposx>
+                    <radioposy>18</radioposy>
+                    <radiowidth>48</radiowidth>
+
+                    <onup>59</onup>
+                    <ondown>59</ondown>
+                    <onleft>11</onleft>
+                    <onclick>SetFocus(9000)</onclick>
+                    <onright>SetFocus(11,0,absolute)</onright>
+
+                    <font>Button</font>
+                    <textcolor>Dark2</textcolor>
+
+                    <texturenofocus/>
+                    <texturefocus/>
+                    <textureradioonfocus colordiffuse="$VAR[Color_Focus]">buttonsdialogs/settings.png</textureradioonfocus>
+                    <textureradioonnofocus colordiffuse="FFFFFFFF">buttonsdialogs/settings.png</textureradioonnofocus>
+                    <textureradioofffocus colordiffuse="$VAR[Color_Focus]">buttonsdialogs/settings.png</textureradioofffocus>
+                    <textureradiooffnofocus colordiffuse="FFFFFFFF">buttonsdialogs/settings.png</textureradiooffnofocus>
+                </control>
+
                 <!-- LIST PROGRAM CHANNEL -->
 
                 <control type="epggrid" id="59" description="EPG">
@@ -192,17 +200,19 @@
                     </include>
 
                     <onup>11</onup>
-                    <onleft>28</onleft>
+                    <onleft>11</onleft>
 
                     <viewtype label="19069">list</viewtype>
 
                     <rulerunit>6</rulerunit>
                     <timeblocks>40</timeblocks>
 
+                    <!-- TIME LINE IN FIRST ROW -->
+
                     <rulerlayout height="70" width="260">
                         <control type="label" id="2">
                             <include>Animation_Fade_In</include>
-                            <visible>Control.HasFocus(59)</visible>
+                            <visible>Control.HasFocus(59) | ControlGroup(9000).HasFocus() | ControlGroup(9011).HasFocus()</visible>
                             <left>10</left>
                             <top>30</top>
                             <width>200</width>
@@ -213,6 +223,9 @@
                             <textcolor>PanelWhite100</textcolor>
                         </control>
                     </rulerlayout>
+
+                    <!-- LEFT CHANNEL INFO -->
+
                     <channellayout height="70" width="460">
                         <control type="image" id="2">
                             <width>92</width>
@@ -312,6 +325,7 @@
                             <height>67</height>
                             <font>ChannelInfo</font>
                             <textcolor>Selected</textcolor>
+                            <selectedcolor>Selected</selectedcolor>
                             <label>$INFO[ListItem.ChannelName]</label>
                         </control>
                         <control type="label">
@@ -322,6 +336,7 @@
                             <height>67</height>
                             <font>ChannelInfo</font>
                             <textcolor>Selected</textcolor>
+                            <selectedcolor>Selected</selectedcolor>
                             <label>$INFO[ListItem.ChannelNumberLabel]</label>
                         </control>
                         <control type="image">
@@ -333,6 +348,9 @@
                             <aspectratio aligny="center" align="center">keep</aspectratio>
                         </control>
                     </focusedchannellayout>
+
+                    <!-- RIGHT EPG INFO -->
+
                     <itemlayout height="70" width="260">
                         <control type="image" id="2">
                             <width>259</width>
@@ -422,6 +440,7 @@
                             <width>285</width>
                             <textoffsetx>50</textoffsetx>
                             <textcolor>Selected</textcolor>
+                            <selectedcolor>Selected</selectedcolor>
                             <label>$INFO[ListItem.Label]</label>
                             <visible>ListItem.HasTimer | ListItem.IsRecording</visible>
                         </control>
@@ -432,6 +451,7 @@
                             <height>67</height>
                             <font>ChannelInfo</font>
                             <textcolor>Selected</textcolor>
+                            <selectedcolor>Selected</selectedcolor>
                             <textoffsetx>0</textoffsetx>
                             <label>$INFO[ListItem.Label]</label>
                             <visible>!ListItem.HasTimer + !ListItem.IsRecording</visible>
