@@ -2461,13 +2461,21 @@
     <!-- LABEL - PROGRESS -->
 
     <variable name="Label_Progress_Circle">
-        <value condition="String.IsEqual(Container(5161).ListItem.DBType,episode) + Control.HasFocus(5161)">$INFO[Container(5161).ListItem.PercentPlayed]%</value>
-        <value condition="String.IsEqual(Container(5261).ListItem.DBType,episode) + Control.HasFocus(5261)">$INFO[Container(5261).ListItem.PercentPlayed]%</value>
+        <value condition="String.IsEqual(Container(5161).ListItem.DBType,episode) + Control.HasFocus(5161)">$VAR[Label_Percentage]</value>
+        <value condition="String.IsEqual(Container(5261).ListItem.DBType,episode) + Control.HasFocus(5261)">$VAR[Label_Percentage]</value>
         <value condition="String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)">$VAR[Label_Percentage]</value>
         <value condition="String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)">$INFO[ListItem.Property(WatchedEpisodes)]/$INFO[ListItem.Property(TotalEpisodes)]</value>
     </variable>
 
     <variable name="Label_Percentage">
+        <value condition="Container(5161).ListItem.IsResumable">$INFO[Container(5161).ListItem.PercentPlayed]%</value>
+        <value condition="String.IsEqual(Container(5161).ListItem.Overlay,OverlayWatched.png) + !Container(5161).ListItem.IsResumable">100%</value>
+        <value condition="String.IsEqual(Container(5161).ListItem.PercentPlayed,0) + String.IsEqual(Container(5161).ListItem.Overlay,OverlayUnwatched.png)">0%</value>
+
+        <value condition="Container(5261).ListItem.IsResumable">$INFO[Container(5261).ListItem.PercentPlayed]%</value>
+        <value condition="String.IsEqual(Container(5261).ListItem.Overlay,OverlayWatched.png) + !Container(5261).ListItem.IsResumable">100%</value>
+        <value condition="String.IsEqual(Container(5261).ListItem.PercentPlayed,0) + String.IsEqual(Container(5261).ListItem.Overlay,OverlayUnwatched.png)">0%</value>
+
         <value condition="ListItem.IsResumable">$INFO[ListItem.PercentPlayed]%</value>
         <value condition="String.IsEqual(ListItem.Overlay,OverlayWatched.png) + !ListItem.IsResumable">100%</value>
         <value condition="String.IsEqual(ListItem.PercentPlayed,0) + String.IsEqual(ListItem.Overlay,OverlayUnwatched.png)">0%</value>

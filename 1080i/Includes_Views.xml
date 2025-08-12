@@ -380,7 +380,7 @@
                         <!-- 100% WATCHED -->
 
                         <control type="image">
-                            <visible>String.Contains(ListItem.Overlay,OverlayWatched.png) + !ListItem.IsResumable</visible>
+                            <visible>[String.Contains(ListItem.Overlay,OverlayWatched.png) + !ListItem.IsResumable + ![Control.HasFocus(5161) | Control.HasFocus(5261)]] | [String.Contains(Container(5161).ListItem.Overlay,OverlayWatched.png) + !Container(5161).ListItem.IsResumable + Control.HasFocus(5161)] | [String.Contains(Container(5261).ListItem.Overlay,OverlayWatched.png) + !Container(5261).ListItem.IsResumable + Control.HasFocus(5261)]</visible>
                             <centertop>44%</centertop>
                             <width>139</width>
                             <height>139</height>
