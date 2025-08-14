@@ -1818,6 +1818,11 @@
         <value>$LOCALIZE[31546] $LOCALIZE[31553] $LOCALIZE[31179]...</value>
     </variable>
 
+    <variable name="Label_Season_Plot">
+        <value condition="!String.IsEmpty(ListItem.TVShowPlot)">$INFO[ListItem.TVShowPlot]</value>
+        <value>$INFO[Window(Home).Property(TMDbHelper.ListItem.Plot)]</value>
+    </variable>
+
     <variable name="Label_Plot_Box_Video_Music">
         <value condition="!String.IsEmpty(ListItem.Property(Artist_Description))">$INFO[ListItem.Property(Artist_Description)]</value>
         <value condition="!String.IsEmpty(ListItem.Property(Album_Description))">$INFO[ListItem.Property(Album_Description)]</value>
@@ -1829,7 +1834,7 @@
         <value condition="Control.HasFocus(5161)">$INFO[Container(5161).ListItem.Plot]</value>
         <value condition="Control.HasFocus(5261)">$INFO[Container(5261).ListItem.Plot]</value>
 
-        <value condition="Container.Content(seasons)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Plot)]</value>
+        <value condition="Container.Content(seasons)">$VAR[Label_Season_Plot]</value>
         <value condition="Container.Content(episodes)">$INFO[ListItem.Title,[B],[/B][CR],]$INFO[ListItem.Plot]</value>
 
         <value condition="$EXP[IsGameMode]">$VAR[Label_Game_Plot]</value>
