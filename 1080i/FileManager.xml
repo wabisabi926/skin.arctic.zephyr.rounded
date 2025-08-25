@@ -2,6 +2,10 @@
 <window id="3">
     <defaultcontrol always="true">20</defaultcontrol>
     <include condition="Skin.HasSetting(enabled.tmdb.helper.blur)">Action_Blur_Onload</include>
+
+    <onload condition="!String.IsEmpty(Window(Home).Property(CloseFileManager))">Close</onload>
+    <onunload condition="!String.IsEmpty(Window(Home).Property(CloseFileManager))">ClearProperty(CloseFileManager,Home)</onunload>
+
     <controls>
         <include condition="!Skin.HasSetting(show.global.visualisation.background.video)">Hidden_Video_Window</include>
 
@@ -191,7 +195,7 @@
                     <visible>!String.IsEmpty(Window(Home).Property(filemanager_back_video_info_bdid))</visible>
                 </control>
 
-                <!-- NAVIGATE -->
+                <!-- OPTION -->
 
                 <control type="button" id="55553">
                     <include>Def_Dialog_Menu_Button_Title</include>
@@ -204,8 +208,20 @@
                     <description>Check for updates</description>
                     <label>20108</label>
                     <include>Def_Dialog_Menu_Button_Gradient_Select</include>
-                    <onclick>Dialog.Close(all)</onclick>
+                    <onclick>Close</onclick>
                     <onclick>ActivateWindow(settings,return)</onclick>
+                    <onclick>AlarmClock(DelayFileManager,ActivateWindow(filemanager,return),00:01,silent)</onclick>
+                </control>
+
+                <!-- EXIT -->
+
+                <control type="button" id="122">
+                    <description>Check for updates</description>
+                    <label>35222</label>
+                    <include>Def_Dialog_Menu_Button_Gradient_Select</include>
+                    <onclick>Close</onclick>
+                    <onclick>ActivateWindow(settings,return)</onclick>
+                    <onclick>SetProperty(CloseFileManager,1,Home)</onclick>
                     <onclick>AlarmClock(DelayFileManager,ActivateWindow(filemanager,return),00:01,silent)</onclick>
                 </control>
             </control>
