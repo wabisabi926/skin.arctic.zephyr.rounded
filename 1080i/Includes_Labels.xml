@@ -773,8 +773,11 @@
     </variable>
 
     <variable name="Label_Rating_TMDb_Votes">
-        <value condition="!String.IsEmpty(ListItem.Rating)">$VAR[Value_Item_Rating]$INFO[ListItem.Votes,  •  $LOCALIZE[205] ,]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Rating)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Votes))">$VAR[Label_TMDbHelper_Rating_Value]$INFO[Window(Home).Property(TMDbHelper.ListItem.Votes),  •  $LOCALIZE[205] ,]</value>
+        <value condition="!ListItem.IsCollection + !String.IsEmpty(ListItem.Rating)">$VAR[Value_Item_Rating]$INFO[ListItem.Votes,  •  $LOCALIZE[205] ,]</value>
+        
+        <value condition="!ListItem.IsCollection + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Rating)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Votes))">$VAR[Label_TMDbHelper_Rating_Value]$INFO[Window(Home).Property(TMDbHelper.ListItem.Votes),  •  $LOCALIZE[205] ,]</value>
+        
+        <value condition="ListItem.IsCollection + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Set.Rating)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Set.Votes))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Rating)]$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Votes),  •  $LOCALIZE[205] ,]</value>
     </variable>
 
     <variable name="Label_Rating_TMDb_Votes_Top250">
@@ -1349,6 +1352,11 @@
         <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating))">$VAR[Label_Rating_IMDb_Votes_Top250,IMDb ,]</value>
 
         <!-- MOVIES TVSHOWS - TMDB RATING -->
+
+        <value condition="!String.IsEmpty(ListItem.Rating)">$VAR[Label_Rating_TMDb_Votes,TMDb ,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Rating))">$VAR[Label_Rating_TMDb_Votes,TMDb ,]</value>
+
+        <!-- SETS - TMDB RATING -->
 
         <value condition="!String.IsEmpty(ListItem.Rating)">$VAR[Label_Rating_TMDb_Votes,TMDb ,]</value>
         <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Rating))">$VAR[Label_Rating_TMDb_Votes,TMDb ,]</value>
