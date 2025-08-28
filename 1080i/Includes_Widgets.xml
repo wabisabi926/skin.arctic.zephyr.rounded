@@ -1370,6 +1370,20 @@
                 <param name="aspectratio" value="scale" />
                 <param name="texture" value="$PARAM[texture]" />
                 <param name="texture_diffuse" value="$PARAM[texture_diffuse]" />
+                    <param name="visible" value="![String.IsEqual(ListItem.Path,favourites://) | Container.Content(favourites)]" />
+            </include>
+
+            <!-- FAVOURITES -->
+
+            <include content="Def_Art_Image">
+                <param name="pad_image" value="$PARAM[pad_image]" />
+                <param name="aspectratio" value="scale" />
+                <param name="texture" value="$VAR[Image_Poster]" />
+                <param name="texture_diffuse" value="$PARAM[texture_diffuse]" />
+                <param name="fallback" value="DefaultFavourites" />
+                <param name="condition_fadetime" value="false" />
+                <param name="visible_background_b12" value="false" />
+                <param name="visible" value="[String.IsEqual(ListItem.Path,favourites://) | Container.Content(favourites)]" />
             </include>
 
             <include content="Layout_Poster_Rating_Info_Type" condition="Skin.HasSetting(enable.view.video.rating.num)">
@@ -1421,7 +1435,7 @@
 
                 <!-- FAVOURITES -->
 
-                <include content="Def_Art_Icon_Image">
+                <include content="Def_Art_Image">
                     <param name="pad_image" value="$PARAM[pad_image]" />
                     <param name="aspectratio" value="keep" />
                     <param name="texture" value="$VAR[Image_Poster]" />
@@ -1632,13 +1646,23 @@
 
                 <include content="Def_Art_Image">
                     <param name="pad_image" value="$PARAM[pad_image]" />
-                    <param name="aspectratio" value="keep" />
+                    <param name="aspectratio" value="scale" />
                     <param name="texture" value="$VAR[Image_Widget_Thumb_Epg]" />
                     <param name="texture_diffuse" value="$PARAM[texture_diffuse]" />
                     <param name="fallback" value="defaultpvrchannels" />
                     <param name="condition_fadetime" value="false" />
                     <param name="visible_background_b12" value="true" />
-                    <param name="visible" value="String.StartsWith(ListItem.Path,pvr://channels)" />
+                    <param name="visible" value="String.StartsWith(ListItem.Path,pvr://channels) + !String.IsEmpty(ListItem.EpgEventIcon)" />
+                </include>
+                <include content="Def_Art_Image">
+                    <param name="pad_image" value="$PARAM[pad_image]" />
+                    <param name="aspectratio" value="keep" />
+                    <param name="texture" value="$INFO[ListItem.Icon]" />
+                    <param name="texture_diffuse" value="$PARAM[texture_diffuse]" />
+                    <param name="fallback" value="defaultpvrchannels" />
+                    <param name="condition_fadetime" value="false" />
+                    <param name="visible_background_b12" value="true" />
+                    <param name="visible" value="String.StartsWith(ListItem.Path,pvr://channels) + String.IsEmpty(ListItem.EpgEventIcon)" />
                 </include>
 
                 <!-- GENRES -->
@@ -1793,7 +1817,7 @@
 
                 <!-- FAVOURITES -->
 
-                <include content="Def_Art_Icon_Image">
+                <include content="Def_Art_Image">
                     <param name="pad_image" value="$PARAM[pad_image]" />
                     <param name="aspectratio" value="keep" />
                     <param name="texture" value="$VAR[Image_Poster]" />
@@ -1808,13 +1832,23 @@
 
                 <include content="Def_Art_Image">
                     <param name="pad_image" value="$PARAM[pad_image]" />
-                    <param name="aspectratio" value="keep" />
+                    <param name="aspectratio" value="scale" />
                     <param name="texture" value="$VAR[Image_Widget_Thumb_Epg]" />
                     <param name="texture_diffuse" value="$PARAM[texture_diffuse]" />
                     <param name="fallback" value="defaultpvrchannels" />
                     <param name="condition_fadetime" value="false" />
                     <param name="visible_background_b12" value="true" />
-                    <param name="visible" value="String.StartsWith(ListItem.Path,pvr://channels)" />
+                    <param name="visible" value="String.StartsWith(ListItem.Path,pvr://channels) + !String.IsEmpty(ListItem.EpgEventIcon)" />
+                </include>
+                <include content="Def_Art_Image">
+                    <param name="pad_image" value="$PARAM[pad_image]" />
+                    <param name="aspectratio" value="keep" />
+                    <param name="texture" value="$INFO[ListItem.Icon]" />
+                    <param name="texture_diffuse" value="$PARAM[texture_diffuse]" />
+                    <param name="fallback" value="defaultpvrchannels" />
+                    <param name="condition_fadetime" value="false" />
+                    <param name="visible_background_b12" value="true" />
+                    <param name="visible" value="String.StartsWith(ListItem.Path,pvr://channels) + String.IsEmpty(ListItem.EpgEventIcon)" />
                 </include>
 
                 <!-- GENRES -->
@@ -1961,7 +1995,7 @@
 
             <!-- FAVOURITES -->
 
-            <include content="Def_Art_Icon_Image">
+            <include content="Def_Art_Image">
                 <param name="pad_image" value="$PARAM[pad_image]" />
                 <param name="aspectratio" value="keep" />
                 <param name="texture" value="$VAR[Image_Poster]" />
