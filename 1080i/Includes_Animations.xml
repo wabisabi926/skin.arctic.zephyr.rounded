@@ -464,14 +464,10 @@
         </animation>
     </include>
 
-    <include name="View_List_Scroll_Anim">
-        <animation type="Focus" condition="Container.OnNext" reversible="false">
-            <effect type="Fade" start="70" end="100" time="200" tween="back" easing="in" />
-            <effect type="slide" start="0,-37" time="200" tween="sine" easing="out" />
-        </animation>
-        <animation type="Focus" condition="Container.OnPrevious" reversible="false">
-            <effect type="Fade" start="70" end="100" time="200" tween="back" easing="in" />
-            <effect type="slide" start="0,37" time="200" tween="sine" easing="out" />
+    <include name="Animation_View_List_Focus_Scroll">
+        <animation type="Focus" reversible="false">
+            <effect type="zoom" start="96.5" end="100" time="150" tween="sine" easing="inout" center="auto"/>
+            <effect type="fade" start="20" end="100" time="150" tween="back" easing="out"/>
         </animation>
     </include>
 
@@ -811,5 +807,12 @@
 
     <include name="Animation_List_Information">
         <animation effect="fade" start="0" end="100" delay="450" time="250" reversible="false">Visible</animation>
+    </include>
+
+    <include name="Animation_Focus_Bounce">
+        <animation type="Focus" reversible="false">
+            <effect type="zoom" start="96.5" end="100" time="150" tween="sine" easing="inout" center="auto"/>
+            <effect type="fade" start="20" end="100" time="150" tween="back" easing="out"/>
+        </animation>
     </include>
 </includes>

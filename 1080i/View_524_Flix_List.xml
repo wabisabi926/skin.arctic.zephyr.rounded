@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
-
     <include name="View_524_Flix_List_Video">
         <description>List View (id=524)</description>
         <control type="group">
@@ -14,14 +13,14 @@
             <control type="group">
                 <top>310</top>
 
-                <control type="fixedlist" id="524">
+                <control type="panel" id="524">
                     <visible>$EXP[Exp_View_524]</visible>
                     <include>Animation_Scrolltime_Views_List</include>
 
                     <include>Def_On_Info</include>
 
                     <top>View_Top</top>
-                    <height>365</height>
+                    <height>366</height>
                     <right>View_SidePad</right>
 
                     <include content="Def_Left" condition="Skin.HasSetting(show.view.524.poster.movies)"><param name="left" value="364" /></include>
@@ -34,14 +33,15 @@
                     <ondown>524</ondown>
 
                     <pagecontrol>1654</pagecontrol>
-                    <focusposition>1</focusposition>
 
-                    <include content="Def_Movement" condition="!Skin.HasSetting(disable.view.524.extended.list.info)">
-                        <param name="movement" value="2" />
-                    </include>
-                    <include content="Def_Movement" condition="Skin.HasSetting(disable.view.524.extended.list.info)">
-                        <param name="movement" value="3" />
-                    </include>
+                    <!-- <focusposition>1</focusposition> -->
+
+                    <!-- <include content="Def_Movement" condition="!Skin.HasSetting(disable.view.524.extended.list.info)"> -->
+                        <!-- <param name="movement" value="2" /> -->
+                    <!-- </include> -->
+                    <!-- <include content="Def_Movement" condition="Skin.HasSetting(disable.view.524.extended.list.info)"> -->
+                        <!-- <param name="movement" value="3" /> -->
+                    <!-- </include> -->
 
                     <viewtype label="31556">list</viewtype>
 
@@ -104,13 +104,14 @@
 
             <control type="group">
                 <top>310</top>
-                <control type="fixedlist" id="524">
+                <control type="panel" id="524">
                     <visible>$EXP[Exp_View_524]</visible>
+                    <include>Animation_Scrolltime_Views_List</include>
 
                     <include>Def_On_Info</include>
 
                     <top>View_Top</top>
-                    <height>365</height>
+                    <height>366</height>
                     <right>View_SidePad</right>
 
                     <include content="Def_Left" condition="Skin.HasSetting(show.view.524.fanart.artist)"><param name="left" value="764" /></include>
@@ -123,16 +124,16 @@
 
                     <pagecontrol>1655</pagecontrol>
 
-                    <focusposition>1</focusposition>
-                    <include content="Def_Movement" condition="!Skin.HasSetting(disable.view.524.extended.list.info)">
-                        <param name="movement" value="2" />
-                    </include>
-                    <include content="Def_Movement" condition="Skin.HasSetting(disable.view.524.extended.list.info)">
-                        <param name="movement" value="3" />
-                    </include>
+                    <!-- <focusposition>1</focusposition> -->
+
+                    <!-- <include content="Def_Movement" condition="!Skin.HasSetting(disable.view.524.extended.list.info)"> -->
+                        <!-- <param name="movement" value="2" /> -->
+                    <!-- </include> -->
+                    <!-- <include content="Def_Movement" condition="Skin.HasSetting(disable.view.524.extended.list.info)"> -->
+                        <!-- <param name="movement" value="3" /> -->
+                    <!-- </include> -->
 
                     <viewtype label="31556">list</viewtype>
-                    <include>Animation_Scrolltime_Views_List</include>
 
                     <itemlayout condition="Skin.HasSetting(disable.view.524.extended.list.info)" height="64">
                         <include>layout_list_item_music</include>
@@ -191,13 +192,14 @@
 
             <control type="group">
                 <top>310</top>
-                <control type="fixedlist" id="524">
+                <control type="panel" id="524">
                     <visible>$EXP[Exp_View_524]</visible>
+                    <include>Animation_Scrolltime_Views_List</include>
 
                     <include>Def_On_Info</include>
 
                     <top>View_Top</top>
-                    <height>365</height>
+                    <height>366</height>
                     <right>View_SidePad</right>
                     <left>764</left>
 
@@ -208,16 +210,16 @@
 
                     <pagecontrol>1623</pagecontrol>
 
-                    <focusposition>1</focusposition>
-                    <include content="Def_Movement" condition="!Skin.HasSetting(disable.view.524.extended.list.info)">
-                        <param name="movement" value="2" />
-                    </include>
-                    <include content="Def_Movement" condition="Skin.HasSetting(disable.view.524.extended.list.info)">
-                        <param name="movement" value="3" />
-                    </include>
+                    <!-- <focusposition>1</focusposition> -->
+                    <!-- <include content="Def_Movement" condition="!Skin.HasSetting(disable.view.524.extended.list.info)"> -->
+                        <!-- <param name="movement" value="2" /> -->
+                    <!-- </include> -->
+                    <!-- <include content="Def_Movement" condition="Skin.HasSetting(disable.view.524.extended.list.info)"> -->
+                        <!-- <param name="movement" value="3" /> -->
+                    <!-- </include> -->
 
                     <viewtype label="31556">list</viewtype>
-                    <include>Animation_Scrolltime_Views_List</include>
+
                     <itemlayout condition="Skin.HasSetting(disable.view.524.extended.list.info)" height="64">
                         <include>layout_list_item_playlist</include>
                     </itemlayout>
@@ -262,11 +264,11 @@
     <include name="524_Poster">
         <param name="top" value="$PARAM[top]" default="528" />
         <param name="left" value="$PARAM[left]" default="View_SidePad" />
-        <param name="visible" value="$PARAM[visible]" default="true" />
         <param name="width" value="$PARAM[width]" default="250" />
         <param name="height" value="$PARAM[height]" default="364" />
         <param name="pad_image" value="$PARAM[pad_image]" default="0" />
         <param name="texture" value="$PARAM[texture]" default="$VAR[Image_Poster]" />
+        <param name="visible" value="$PARAM[visible]" default="true" />
 
         <definition>
             <control type="group">

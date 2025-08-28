@@ -25,45 +25,47 @@
 
             <!-- HEADER -->
 
-            <control type="image">
-                <left>530</left>
-                <top>-4</top>
-                <width>128</width>
-                <height>128</height>
-                <texture>special://skin/extras/icons/livetv.png</texture>
-                <colordiffuse>$VAR[Color_OSD_Panel_White100]</colordiffuse>
-            </control>
-            <control type="label">
-                <left>33</left>
-                <top>10</top>
-                <width>400</width>
-                <align>left</align>
-                <textcolor>$VAR[Color_OSD_Panel_White100]</textcolor>
-                <font>Medium</font>
-                <label>$INFO[VideoPlayer.ChannelGroup]</label>
-            </control>
-            <control type="label">
-                <left>33</left>
-                <top>44</top>
-                <width>400</width>
-                <align>left</align>
-                <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
-                <font>Tiny</font>
-                <label>$INFO[System.Time]$INFO[Container(11).NumItems, - ,  $LOCALIZE[19019]]</label>
-            </control>
-            <control type="image">
-                <left>30</left>
-                <top>120</top>
-                <width>607</width>
-                <height>1</height>
-                <align>left</align>
-                <colordiffuse>$VAR[Color_OSD_Dialog_Line]</colordiffuse>
-                <texture>common/white.png</texture>
+            <control type="group">
+                <control type="image">
+                    <left>530</left>
+                    <top>-4</top>
+                    <width>128</width>
+                    <height>128</height>
+                    <texture>special://skin/extras/icons/livetv.png</texture>
+                    <colordiffuse>$VAR[Color_OSD_Panel_White100]</colordiffuse>
+                </control>
+                <control type="label">
+                    <left>33</left>
+                    <top>10</top>
+                    <width>400</width>
+                    <align>left</align>
+                    <textcolor>$VAR[Color_OSD_Panel_White100]</textcolor>
+                    <font>Medium</font>
+                    <label>$INFO[VideoPlayer.ChannelGroup]</label>
+                </control>
+                <control type="label">
+                    <left>33</left>
+                    <top>44</top>
+                    <width>400</width>
+                    <align>left</align>
+                    <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
+                    <font>Tiny</font>
+                    <label>$INFO[System.Time]$INFO[Container(11).NumItems, - ,  $LOCALIZE[19019]]</label>
+                </control>
+                <control type="image">
+                    <left>30</left>
+                    <top>120</top>
+                    <width>607</width>
+                    <height>1</height>
+                    <align>left</align>
+                    <colordiffuse>$VAR[Color_OSD_Dialog_Line]</colordiffuse>
+                    <texture>common/white.png</texture>
+                </control>
             </control>
 
             <!-- CHANNEL LIST -->
 
-            <control type="list" id="11">
+            <control type="panel" id="11">
                 <include>Animation_Scrolltime_Views_List</include>
 
                 <top>136</top>
@@ -71,10 +73,17 @@
                 <width>635</width>
                 <height>892</height>
 
-                <onright>NextChannelGroup</onright>
+                <!-- <onright>NextChannelGroup</onright> -->
+                <onright>1773</onright>
                 <onleft>PreviousChannelGroup</onleft>
 
+                <!-- <movement>5</movement> -->
+                <!-- <focusposition>2</focusposition> -->
+
+                <itemgap>0</itemgap>
+                <pagecontrol>1773</pagecontrol>
                 <orientation>vertical</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
 
                 <itemlayout height="111.5" width="635">
 
@@ -232,6 +241,17 @@
                     </control>
                 </focusedlayout>
             </control>
+
+            <!-- SCROLLBAR -->
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="1773" />
+                <param name="onleft" value="11" />
+                <param name="onright" value="NextChannelGroup" />
+                <param name="top" value="136" />
+                <param name="height" value="892" />
+                <param name="centerright" value="1236" />
+            </include>
         </control>
     </controls>
 </window>
