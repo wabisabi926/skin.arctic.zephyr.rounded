@@ -290,24 +290,28 @@
     <!-- TITLE -->
 
     <include name="Def_Context_Menu_Information">
+        <param name="font" value="$PARAM[font]" default="Tiny" />
+        <param name="color" value="$PARAM[color]" default="Dark2" />
+
         <definition>
             <control type="group">
                 <visible>$PARAM[visible]</visible>
                 <height>40</height>
                 <control type="label">
+                    <top>2</top>
                     <width>46</width>
                     <height>40</height>
                     <font>SymbolList</font>
-                    <textcolor>Dark2</textcolor>
+                    <textcolor>$PARAM[color]</textcolor>
                     <label>$PARAM[label] :</label>
                 </control>
                 <control type="label">
-                    <left>50</left>
+                    <left>40</left>
                     <width>350</width>
                     <height>40</height>
-                    <font>Tiny</font>
-                    <textcolor>Dark1</textcolor>
-                    <label fallback="19055">[B]$PARAM[value][/B]</label>
+                    <font>$PARAM[font]</font>
+                    <textcolor>$PARAM[color]</textcolor>
+                    <label fallback="19055">$PARAM[value]</label>
                 </control>
             </control>
         </definition>
