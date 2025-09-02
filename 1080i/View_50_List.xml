@@ -1356,7 +1356,6 @@
             <textcolor>Selected</textcolor>
             <selectedcolor>Selected</selectedcolor>
             <visible>ListItem.IsPlaying</visible>
-            <visible>!String.IsEqual(Container.SortMethod,$LOCALIZE[38018])</visible>
         </control>
 
         <!-- DURATION -->
@@ -1466,8 +1465,22 @@
             <font>SmallNavi</font>
             <textcolor>Dark1</textcolor>
             <selectedcolor>Dark1</selectedcolor>
-            <label fallback="-">$INFO[ListItem.UserRating,,.0]</label>
+            <label fallback=" -- ">$INFO[ListItem.UserRating,,.0]</label>
             <visible>!ListItem.IsParentFolder + String.IsEqual(Container.SortMethod,$LOCALIZE[38018])</visible>
+            <visible>!ListItem.IsPlaying</visible>
+        </control>
+        <control type="label">
+            <right>30</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label fallback=" -- ">$INFO[ListItem.UserRating,,.0]</label>
+            <visible>!ListItem.IsParentFolder + String.IsEqual(Container.SortMethod,$LOCALIZE[38018])</visible>
+            <visible>ListItem.IsPlaying</visible>
         </control>
     </include>
 
@@ -1519,7 +1532,6 @@
             <visible>ListItem.IsPlaying</visible>
             <visible>Player.Paused</visible>
         </control>
-
         <control type="label">
             <left>145</left>
             <width max="700">auto</width>
@@ -1530,7 +1542,6 @@
             <textcolor>Selected</textcolor>
             <selectedcolor>Selected</selectedcolor>
             <visible>ListItem.IsPlaying</visible>
-            <visible>!String.IsEqual(Container.SortMethod,$LOCALIZE[38018])</visible>
         </control>
 
         <!-- DURATION -->
@@ -1578,13 +1589,12 @@
             <height>64</height>
             <align>right</align>
             <font>SmallNavi</font>
-            <textcolor>Dark1</textcolor>
-            <selectedcolor>Dark1</selectedcolor>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
             <label>$VAR[Label_View_List_Rating]</label>
             <visible>Container.Content(songs) | Container.Content(albums)</visible>
             <visible>!Skin.HasSetting(hide.music.ratings)</visible>
             <visible>!String.IsEqual(Container.SortMethod,$LOCALIZE[38018])</visible>
-            <visible>!ListItem.IsPlaying</visible>
         </control>
 
         <!-- "#38018" -->
@@ -1608,7 +1618,7 @@
             <font>SmallNavi</font>
             <textcolor>Selected</textcolor>
             <selectedcolor>Selected</selectedcolor>
-            <label fallback="-">$INFO[ListItem.UserRating,,.0]</label>
+            <label fallback=" -- ">$INFO[ListItem.UserRating,,.0]</label>
             <visible>!ListItem.IsParentFolder + String.IsEqual(Container.SortMethod,$LOCALIZE[38018])</visible>
         </control>
     </include>
@@ -1789,7 +1799,7 @@
             <font>SmallNavi</font>
             <textcolor>Dark1</textcolor>
             <selectedcolor>Dark1</selectedcolor>
-            <label fallback="-">$INFO[ListItem.UserRating,,.0]</label>
+            <label fallback=" -- ">$INFO[ListItem.UserRating,,.0]</label>
             <visible>!ListItem.IsParentFolder + String.IsEqual(Container.SortMethod,$LOCALIZE[38018])</visible>
             <visible>!ListItem.IsPlaying</visible>
         </control>
@@ -1803,7 +1813,7 @@
             <font>SmallNavi</font>
             <textcolor>Selected</textcolor>
             <selectedcolor>Selected</selectedcolor>
-            <label fallback="-">$INFO[ListItem.UserRating,,.0]</label>
+            <label fallback=" -- ">$INFO[ListItem.UserRating,,.0]</label>
             <visible>!ListItem.IsParentFolder + String.IsEqual(Container.SortMethod,$LOCALIZE[38018])</visible>
             <visible>ListItem.IsPlaying</visible>
         </control>
@@ -1888,7 +1898,6 @@
         </control>
         <control type="label">
             <top>-5</top>
-            <visible>!String.IsEqual(Container.SortMethod,$LOCALIZE[38018])</visible>
             <left>165</left>
             <width max="700">auto</width>
             <aligny>center</aligny>
@@ -1978,7 +1987,7 @@
             <font>SmallNavi</font>
             <textcolor>Selected</textcolor>
             <selectedcolor>Selected</selectedcolor>
-            <label fallback="-">$INFO[ListItem.UserRating,,.0]</label>
+            <label fallback=" -- ">$INFO[ListItem.UserRating,,.0]</label>
             <visible>!ListItem.IsParentFolder + String.IsEqual(Container.SortMethod,$LOCALIZE[38018])</visible>
         </control>
 
