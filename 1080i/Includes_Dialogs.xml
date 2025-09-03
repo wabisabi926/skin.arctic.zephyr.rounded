@@ -2582,34 +2582,30 @@
                 <onback>ClearProperty(VideoYoutubeIsPlaying,Home)</onback>
                 <onback>ClearProperty(show_mini_osd,Home)</onback>
                 <onback condition="Player.HasVideo">Stop</onback>
-
-                <onleft condition="!Player.HasVideo">ClearProperty(VideoYoutubeIsPlaying,Home)</onleft>
-                <onleft condition="!Player.HasVideo">ClearProperty(show_mini_osd,Home)</onleft>
-                <onleft condition="Player.HasVideo">StepBack</onleft>
-
-                <onright condition="!Player.HasVideo">ClearProperty(VideoYoutubeIsPlaying,Home)</onright>
-                <onright condition="!Player.HasVideo">ClearProperty(show_mini_osd,Home)</onright>
-                <onright condition="Player.HasVideo">StepForward</onright>
+                <onback condition="Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml)">9000</onback>
+                <onback condition="!Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml)">50</onback>
 
                 <onup>ClearProperty(VideoYoutubeIsPlaying,Home)</onup>
                 <onup>ClearProperty(show_mini_osd,Home)</onup>
                 <onup condition="Player.HasVideo">Stop</onup>
+                <onup condition="Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml)">SetFocus(9000)</onup>
+                <onup condition="!Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml)">SetFocus(50)</onup>
 
                 <ondown>ClearProperty(VideoYoutubeIsPlaying,Home)</ondown>
                 <ondown>ClearProperty(show_mini_osd,Home)</ondown>
                 <ondown condition="Player.HasVideo">Stop</ondown>
-
-                <onback condition="Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml)">9000</onback>
-                <onback condition="!Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml)">50</onback>
-
-                <onup condition="Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml)">SetFocus(9000)</onup>
-                <onup condition="!Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml)">SetFocus(50)</onup>
-
                 <ondown condition="Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml)">SetFocus(9000)</ondown>
                 <ondown condition="!Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml)">SetFocus(50)</ondown>
 
-                <onright condition="!Player.HasVideo + [Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml)]">SetFocus(9000)</onright>
+                <onleft condition="!Player.HasVideo">ClearProperty(VideoYoutubeIsPlaying,Home)</onleft>
+                <onleft condition="!Player.HasVideo">ClearProperty(show_mini_osd,Home)</onleft>
+                <onleft condition="Player.HasVideo">StepBack</onleft>
                 <onleft condition="!Player.HasVideo + [Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml)]">SetFocus(9000)</onleft>
+
+                <onright condition="!Player.HasVideo">ClearProperty(VideoYoutubeIsPlaying,Home)</onright>
+                <onright condition="!Player.HasVideo">ClearProperty(show_mini_osd,Home)</onright>
+                <onright condition="Player.HasVideo">StepForward</onright>
+                <onright condition="!Player.HasVideo + [Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml)]">SetFocus(9000)</onright>
            </control>
         </control>
     </include>
