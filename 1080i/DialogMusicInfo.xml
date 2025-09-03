@@ -2,6 +2,9 @@
 <window id="2001">
     <defaultcontrol always="false">9000</defaultcontrol>
 
+    <onload>ClearProperty(TMDbHelper.WidgetContainer)</onload>
+    <onload>Skin.Reset(TMDbHelper.ForceWidgetContainer)</onload>
+
     <onload condition="!String.IsEmpty(ListItem.Artist)">RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;unencoded_paths=true&amp;window_id=Home&amp;window_prop=Encoded.ListItem.Artist&amp;&amp;$INFO[ListItem.Artist]")</onload>
 
     <onload>SetFocus(9501,0,absolute)</onload>
@@ -15,9 +18,7 @@
     <onload>ClearProperty(content)</onload>
     <onload>ClearProperty(ShowDisc)</onload>
     <onload>ClearProperty(musiccontent,Home)</onload>
-
-    <onload>ClearProperty(TMDbHelper.WidgetContainer)</onload>
-    <!-- <onload>Skin.Reset(TMDbHelper.ForceWidgetContainer)</onload> -->
+    <onload>ClearProperty(view_extended,Home)</onload>
 
     <onload condition="String.IsEqual(ListItem.DBType,artist)">SetFocus(9002)</onload>
     <onload condition="!String.IsEqual(ListItem.DBType,artist) + Control.IsVisible(9001)">SetFocus(9001)</onload>
@@ -30,6 +31,7 @@
 
     <onunload>ClearProperty(SetUserRating,Home)</onunload>
     <onunload>ClearProperty(ShowDisc)</onunload>
+    <onunload>ClearProperty(view_extended,Home)</onunload>
 
     <onunload condition="!String.IsEmpty(Window(Home).Property(backtoslidehome_2011))">SetFocus(2011)</onunload>
     <onunload condition="!Window.IsVisible(MusicVisualisation.xml) + !String.IsEmpty(Window(Home).Property(shownowplayinginfo))">SetFocus(399)</onunload>

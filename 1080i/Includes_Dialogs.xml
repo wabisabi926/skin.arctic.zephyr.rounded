@@ -1187,6 +1187,8 @@
 
             <onup condition="String.IsEqual(Window(Home).Property(musiccontent),2) | String.IsEqual(Window(Home).Property(musiccontent),8) | String.IsEqual(Window(Home).Property(musiccontent),5)">Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onup>
 
+            <onup condition="String.IsEqual(Window(Home).Property(musiccontent),2) | String.IsEqual(Window(Home).Property(musiccontent),3) | String.IsEqual(Window(Home).Property(musiccontent),5) | String.IsEqual(Window(Home).Property(musiccontent),8) | String.IsEmpty(Window(Home).Property(musiccontent))">SetProperty(view_extended,1,Home)</onup>
+
             <!-- <onback>Skin.Reset(TMDbHelper.ForceWidgetContainer)</onback> -->
 
             <!-- BACK FULLSCREEN NOW PLAYING -->
@@ -1322,6 +1324,7 @@
                 <onfocus condition="!String.IsEqual(Window(Home).Property(musiccontent),2)">ClearProperty(musiccontent,Home)</onfocus>
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
                 <onfocus>SetProperty(musiccontent,2,Home)</onfocus>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
                 <onclick>SetFocus(9501)</onclick>
                 <onclick>SetProperty(TMDbHelper.WidgetContainer,9501,Home)</onclick>
                 <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
@@ -1339,6 +1342,7 @@
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
                 <onfocus condition="!String.IsEqual(Window(Home).Property(musiccontent),8)">ClearProperty(musiccontent,Home)</onfocus>
                 <onfocus>SetProperty(musiccontent,8,Home)</onfocus>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
                 <onclick>SetFocus(9508)</onclick>
                 <onclick>SetProperty(TMDbHelper.WidgetContainer,9508,Home)</onclick>
                 <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
@@ -1360,6 +1364,7 @@
                 <onfocus condition="!String.IsEqual(Window(Home).Property(musiccontent),5)">ClearProperty(musiccontent,Home)</onfocus>
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
                 <onfocus>SetProperty(musiccontent,5,Home)</onfocus>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
                 <onclick>SetFocus(9511)</onclick>
                 <onclick>SetProperty(TMDbHelper.WidgetContainer,9511,Home)</onclick>
                 <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
@@ -1396,6 +1401,7 @@
                 <onfocus condition="!String.IsEqual(Window(Home).Property(musiccontent),3)">ClearProperty(musiccontent,Home)</onfocus>
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
                 <onfocus>SetProperty(musiccontent,3,Home)</onfocus>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
                 <onclick>SetFocus(9502)</onclick>
                 <include>Def_Button_Dimensions_Square</include>
                 <include content="Def_Button_Textures">
@@ -1562,7 +1568,7 @@
                 <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/expand.png</textureradioofffocus>
                 <textureradiooffnofocus colordiffuse="Dark2">buttonsdialogs/expand.png</textureradiooffnofocus>
                 <selected>Player.Playing</selected>
-                <visible>Player.HasMedia + String.IsEmpty(Window(Home).Property(TrailerWindowedIsPlaying))</visible>
+                <visible>Player.HasMedia + String.IsEmpty(Window(Home).Property(TrailerFullscreenIsPlaying))</visible>
             </control>
 
             <!-- PAUSE / PLAY -->
@@ -1704,7 +1710,7 @@
                 </include>
             </control>
 
-            <!-- TRAILER - FULL SCREEN -->
+            <!-- TRAILER - FULLSCREEN -->
 
             <control type="radiobutton" id="1224">
                 <onfocus>ClearProperty(moviecontent,Home)</onfocus>
@@ -1716,7 +1722,7 @@
 
                 <onclick condition="Player.HasMedia">PlayerControl(Stop)</onclick>
                 <onclick>$VAR[Path_Trailer]</onclick>
-                <onclick>SetProperty(TrailerWindowedIsPlaying,1,Home)</onclick>
+                <onclick>SetProperty(TrailerFullscreenIsPlaying,1,Home)</onclick>
                 <onclick>SetFocus(7011)</onclick>
 
                 <!-- <onclick>Close</onclick> -->
@@ -1741,12 +1747,12 @@
 
                 <onup condition="String.IsEmpty(ListItem.Trailer)">PlayMedia($ESCINFO[Window(Home).Property(TMDbHelper.ListItem.Trailer)],False,1)</onup>
                 <onup condition="!String.IsEmpty(ListItem.Trailer)">PlayMedia($INFO[ListItem.Trailer],1)</onup>
-                <onup condition="!Player.HasVideo">SetProperty(TrailerWindowedIsPlaying,1,Home)</onup>
+                <onup condition="!Player.HasVideo">SetProperty(TrailerFullscreenIsPlaying,1,Home)</onup>
                 <onup>SetFocus(7012)</onup>
 
                 <onclick condition="Player.HasMedia">PlayerControl(Stop)</onclick>
                 <onclick>$VAR[Path_Trailer]</onclick>
-                <onclick>SetProperty(TrailerWindowedIsPlaying,1,Home)</onclick>
+                <onclick>SetProperty(TrailerFullscreenIsPlaying,1,Home)</onclick>
                 <onclick>SetFocus(7012)</onclick>
 
                 <visible>!String.IsEmpty(ListItem.Trailer) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Trailer))</visible>
@@ -2521,13 +2527,13 @@
         </control>
     </include>
 
-    <!-- DEF - VIDEO TRAILER FULLSCREEN -->
+    <!-- DEF - VIDEO TRAILER / YOUTUBE FULLSCREEN -->
 
     <include name="Def_Dialog_Info_Video_Fullscreen">
         <control type="group">
             <visible>Control.HasFocus(7011)</visible>
             <visible>Player.HasVideo</visible>
-            <visible>!String.IsEmpty(Window(Home).Property(VideoYoutubeIsPlaying)) | !String.IsEmpty(Window(Home).Property(TrailerWindowedIsPlaying))</visible>
+            <visible>!String.IsEmpty(Window(Home).Property(VideoYoutubeIsPlaying)) | !String.IsEmpty(Window(Home).Property(TrailerFullscreenIsPlaying))</visible>
 
             <include>Animation_Fade_In_DialogInfo</include>
             <include>Animation_Fade_Out_DialogInfo</include>
@@ -2593,15 +2599,17 @@
                 <ondown>ClearProperty(show_mini_osd,Home)</ondown>
                 <ondown condition="Player.HasVideo">Stop</ondown>
 
-                <onback condition="Window.IsVisible(DialogVideoInfo.xml)">9000</onback>
-                <onup condition="Window.IsVisible(DialogVideoInfo.xml)">SetFocus(9000)</onup>
-                <ondown condition="Window.IsVisible(DialogVideoInfo.xml)">SetFocus(9000)</ondown>
-                <onright condition="!Player.HasVideo + Window.IsVisible(DialogVideoInfo.xml)">SetFocus(9000)</onright>
-                <onleft condition="!Player.HasVideo + Window.IsVisible(DialogVideoInfo.xml)">SetFocus(9000)</onleft>
+                <onback condition="Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml)">9000</onback>
+                <onback condition="!Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml)">50</onback>
 
-                <onback condition="!Window.IsVisible(DialogVideoInfo.xml)">50</onback>
-                <onup condition="!Window.IsVisible(DialogVideoInfo.xml)">SetFocus(50)</onup>
-                <ondown condition="!Window.IsVisible(DialogVideoInfo.xml)">SetFocus(50)</ondown>
+                <onup condition="Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml)">SetFocus(9000)</onup>
+                <onup condition="!Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml)">SetFocus(50)</onup>
+
+                <ondown condition="Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml)">SetFocus(9000)</ondown>
+                <ondown condition="!Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml)">SetFocus(50)</ondown>
+
+                <onright condition="!Player.HasVideo + [Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml)]">SetFocus(9000)</onright>
+                <onleft condition="!Player.HasVideo + [Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml)]">SetFocus(9000)</onleft>
            </control>
         </control>
     </include>

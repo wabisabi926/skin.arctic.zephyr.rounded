@@ -39,7 +39,7 @@
 
             <!-- BACK FULLSCREEN NOW PLAYING -->
 
-            <include content="Object_OSD_Button" condition="Player.HasMedia + String.IsEmpty(Window(Home).Property(TrailerWindowedIsPlaying))">
+            <include content="Object_OSD_Button" condition="Player.HasMedia + String.IsEmpty(Window(Home).Property(TrailerFullscreenIsPlaying))">
                 <param name="visible" value="true" />
                 <param name="size" value="44" />
                 <param name="left" value="-39" />
@@ -68,7 +68,7 @@
                 <onclick>Dialog.Close(contextmenu)</onclick>
                 <onclick condition="Player.HasMedia">PlayerControl(Stop)</onclick>
                 <onclick>$VAR[Path_Trailer]</onclick>
-                <onclick>SetProperty(TrailerWindowedIsPlaying,1,Home)</onclick>
+                <onclick>SetProperty(TrailerFullscreenIsPlaying,1,Home)</onclick>
                 <onclick>SetFocus(7011)</onclick>
 
                 <!-- <onclick>AlarmClock(LaunchDelay,ActivateWindow(fullscreenvideo),00:01,silent)</onclick> -->

@@ -242,7 +242,7 @@
                         <description>Header Label</description>
                         <textcolor>Dark1</textcolor>
                         <label>$VAR[Label_Dialog_Info_Header_Main_Title]</label>
-                        <visible>!Player.HasMedia | Skin.HasSetting(hide.furniture.nowplaying.views)</visible>
+                        <visible>!Player.HasMedia | Skin.HasSetting(hide.furniture.nowplaying.views) | !String.IsEmpty(Window(Home).Property(VideoYoutubeIsPlaying))</visible>
                     </control>
                     <control type="label">
                         <left>104</left>
@@ -251,7 +251,7 @@
                         <description>Header Label</description>
                         <textcolor>Dark1</textcolor>
                         <label>$VAR[Label_Dialog_Info_Header_Main_Title]</label>
-                        <visible>Player.HasMedia + !Skin.HasSetting(hide.furniture.nowplaying.views)</visible>
+                        <visible>Player.HasMedia + !Skin.HasSetting(hide.furniture.nowplaying.views) + String.IsEmpty(Window(Home).Property(VideoYoutubeIsPlaying))</visible>
                     </control>
 
                     <!-- SUB HEADER TITLE -->
@@ -557,7 +557,7 @@
                 <control type="group">
                     <visible>Control.HasFocus(7012)</visible>
                     <visible>Player.HasVideo</visible>
-                    <visible>!String.IsEmpty(Window(Home).Property(TrailerWindowedIsPlaying))</visible>
+                    <visible>!String.IsEmpty(Window(Home).Property(TrailerFullscreenIsPlaying))</visible>
 
                     <include>Animation_Fade_In</include>
                     <include>Animation_Fade_Out</include>
@@ -618,41 +618,41 @@
 
                         <oninfo>9000</oninfo>
                         <oninfo>ClearProperty(show_mini_osd,Home))</oninfo>
-                        <oninfo>ClearProperty(TrailerWindowedIsPlaying,Home)</oninfo>
+                        <oninfo>ClearProperty(TrailerFullscreenIsPlaying,Home)</oninfo>
                         <oninfo condition="Player.HasVideo">Stop</oninfo>
 
                         <onback>9000</onback>
                         <onback>ClearProperty(show_mini_osd,Home)</onback>
-                        <onback>ClearProperty(TrailerWindowedIsPlaying,Home)</onback>
+                        <onback>ClearProperty(TrailerFullscreenIsPlaying,Home)</onback>
                         <onback condition="Player.HasVideo">Stop</onback>
 
                         <onclick condition="!Player.HasVideo">SetFocus(9000)</onclick>
-                        <onclick condition="!Player.HasVideo">ClearProperty(TrailerWindowedIsPlaying,Home)</onclick>
+                        <onclick condition="!Player.HasVideo">ClearProperty(TrailerFullscreenIsPlaying,Home)</onclick>
                         <onclick condition="Player.HasVideo + String.IsEmpty(Window(Home).Property(show_mini_osd))">SetProperty(show_mini_osd,1,Home)</onclick>
                         <onclick condition="Player.HasVideo + !String.IsEmpty(Window(Home).Property(show_mini_osd))">ClearProperty(show_mini_osd,Home)</onclick>
 
                         <onunfocus>SetFocus(9000)</onunfocus>
-                        <onunfocus>ClearProperty(TrailerWindowedIsPlaying,Home)</onunfocus>
+                        <onunfocus>ClearProperty(TrailerFullscreenIsPlaying,Home)</onunfocus>
                         <onunfocus>ClearProperty(show_mini_osd,Home)</onunfocus>
                         <onunfocus condition="Player.HasVideo">Stop</onunfocus>
 
                         <onleft condition="!Player.HasVideo">SetFocus(9000)</onleft>
-                        <onleft condition="!Player.HasVideo">ClearProperty(TrailerWindowedIsPlaying,Home)</onleft>
+                        <onleft condition="!Player.HasVideo">ClearProperty(TrailerFullscreenIsPlaying,Home)</onleft>
                         <onleft condition="!Player.HasVideo">ClearProperty(show_mini_osd,Home)</onleft>
                         <onleft condition="Player.HasVideo">StepBack</onleft>
 
                         <onright condition="!Player.HasVideo">SetFocus(9000)</onright>
-                        <onright condition="!Player.HasVideo">ClearProperty(TrailerWindowedIsPlaying,Home)</onright>
+                        <onright condition="!Player.HasVideo">ClearProperty(TrailerFullscreenIsPlaying,Home)</onright>
                         <onright condition="!Player.HasVideo">ClearProperty(show_mini_osd,Home)</onright>
                         <onright condition="Player.HasVideo">StepForward</onright>
 
                         <onup>SetFocus(9000)</onup>
-                        <onup>ClearProperty(TrailerWindowedIsPlaying,Home)</onup>
+                        <onup>ClearProperty(TrailerFullscreenIsPlaying,Home)</onup>
                         <onup>ClearProperty(show_mini_osd,Home)</onup>
                         <onup condition="Player.HasVideo">Stop</onup>
 
                         <ondown>SetFocus(9000)</ondown>
-                        <ondown>ClearProperty(TrailerWindowedIsPlaying,Home)</ondown>
+                        <ondown>ClearProperty(TrailerFullscreenIsPlaying,Home)</ondown>
                         <ondown>ClearProperty(show_mini_osd,Home)</ondown>
                         <ondown condition="Player.HasVideo">Stop</ondown>
                     </control>

@@ -30,7 +30,7 @@
             <param name="music_info_onclick" value="false" />
             <param name="music_info_album" value="true" />
             <param name="controlid" value="$PARAM[controlid]" />
-            <param name="visible.layouts" value="Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7) | Control.HasFocus(160) | Control.HasFocus(6) | Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml)" />
+            <param name="visible.layouts" value="Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7) | Control.HasFocus(160) | Control.HasFocus(6) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
             <param name="ContentToLoad" value="$VAR[Def_List_Albums_Year]" />
             <param name="sortby" value="year" />
             <param name="onclick1" value="Dialog.Close(musicinformation)" />
@@ -69,7 +69,7 @@
             <param name="music_info_onclick" value="false" />
             <param name="music_info_album" value="true" />
             <param name="controlid" value="$PARAM[controlid]" />
-            <param name="visible.layouts" value="Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7) | Control.HasFocus(160) | Control.HasFocus(6) | Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml)" />
+            <param name="visible.layouts" value="Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7) | Control.HasFocus(160) | Control.HasFocus(6) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
             <param name="ContentToLoad" value="$VAR[Def_List_Artist_Albums]" />
             <param name="sortby" value="year" />
             <param name="onclick1" value="Dialog.Close(musicinformation)" />
@@ -101,7 +101,7 @@
             <param name="fallbackpicture" value="DefaultMusicSongs.png" />
             <param name="visible" value="$PARAM[visible]" />
             <param name="controlid" value="$PARAM[controlid]" />
-            <param name="visible.layouts" value="Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7) | Control.HasFocus(160) | Control.HasFocus(6) | Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml)" />
+            <param name="visible.layouts" value="Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7) | Control.HasFocus(160) | Control.HasFocus(6) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
             <param name="ContentToLoad" value="$VAR[Def_List_Artist_Songs]" />
             <param name="onclick1" value="Dialog.Close(all,force)" />
             <param name="onclick2" value="PlayMedia($ESCINFO[Container($PARAM[controlid]).ListItem.FileNameAndPath()])" />
@@ -129,9 +129,9 @@
             <param name="fallbackpicture" value="DefaultVideo.png" />
             <param name="visible" value="$PARAM[visible]" />
             <param name="controlid" value="$PARAM[controlid]" />
-            <param name="visible.layouts" value="Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7) | Control.HasFocus(160) | Control.HasFocus(6) | Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml)" />
+            <param name="visible.layouts" value="Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7) | Control.HasFocus(160) | Control.HasFocus(6) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
             <param name="ContentToLoad" value="$VAR[Def_Content_Youtube_Music]" />
-            <param name="onclick1" value="SetProperty(VideoYoutubeIsPlaying,$INFO[Container(9504).ListItem.FileNameAndPath],Home)" />
+            <param name="onclick1" value="SetProperty(VideoYoutubeIsPlaying,$INFO[Container($PARAM[controlid]).ListItem.FileNameAndPath],Home)" />
             <param name="onclick2" value="SetFocus(7011)" />
             <param name="onclick3" value="AlarmClock(LaunchYoutubeVideo,PlayMedia($ESCINFO[Window(Home).Property(VideoYoutubeIsPlaying)],False,1,playlist_type_hint=1),00:01,silent)" />
             <param name="target" value="videos" />
