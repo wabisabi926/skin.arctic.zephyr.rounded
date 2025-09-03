@@ -974,7 +974,8 @@
 
             <orientation>horizontal</orientation>
 
-            <!-- launch -->
+            <!-- LAUNCH -->
+
             <control type="radiobutton" id="12">
                 <include>Def_Button_Dimensions_Square</include>
                 <include content="Def_Button_Textures">
@@ -985,7 +986,8 @@
                 <visible>Control.IsEnabled(12)</visible>
             </control>
 
-            <!-- install / uninstall -->
+            <!-- INSTALL / UNINSTALL -->
+
             <control type="radiobutton" id="6">
                 <include>Def_Button_Dimensions_Square</include>
                 <texturenofocus colordiffuse="Dark4" border="12">common/boxsquare.png</texturenofocus>
@@ -1001,7 +1003,8 @@
                 <selected>ListItem.Property(addon.isinstalled) | !Window.IsActive(addonbrowser)</selected>
             </control>
 
-            <!-- desactived -->
+            <!-- DESACTIVED -->
+
             <control type="radiobutton" id="7">
                 <include>Def_Button_Dimensions_Square</include>
                 <texturenofocus colordiffuse="Dark4" border="12">common/boxsquare.png</texturenofocus>
@@ -1017,7 +1020,8 @@
                 <selected>!String.StartsWith(Control.GetLabel(7),$LOCALIZE[24022]) | !Window.IsActive(addonbrowser)</selected>
             </control>
 
-            <!-- settings -->
+            <!-- SETTINGS -->
+
             <control type="radiobutton" id="9">
                 <include>Def_Button_Dimensions_Square</include>
                 <include content="Def_Button_Textures">
@@ -1025,7 +1029,6 @@
                 </include>
                 <visible>Control.IsEnabled(9)</visible>
             </control>
-
 
             <control type="radiobutton" id="8">
                 <include>Def_Button_Dimensions_Square</include>
@@ -1035,7 +1038,8 @@
                 <visible>Control.IsEnabled(8)</visible>
             </control>
 
-            <!-- version ? -->
+            <!-- VERSION ? -->
+
             <control type="radiobutton" id="14">
                 <include>Def_Button_Dimensions_Square</include>
                 <include content="Def_Button_Textures">
@@ -1044,7 +1048,8 @@
                 <visible>Control.IsEnabled(14)</visible>
             </control>
 
-            <!-- auto update / manual update ? -->
+            <!-- AUTO UPDATE / MANUAL UPDATE ? -->
+
             <control type="radiobutton" id="13">
                 <include>Def_Button_Dimensions_Square</include>
                 <texturenofocus colordiffuse="Dark4" border="12">common/boxsquare.png</texturenofocus>
@@ -1059,7 +1064,8 @@
                 <font>Null</font>
             </control>
 
-            <!-- dependency -->
+            <!-- DEPENDENCY -->
+
             <control type="radiobutton" id="10">
                 <include>Def_Button_Dimensions_Square</include>
                 <include content="Def_Button_Textures">
@@ -1407,6 +1413,7 @@
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/youtube.png" />
                 </include>
+                <onfocus condition="String.IsEmpty(Window(Home).Property(SetYoutubeSearch))">SetProperty(SetYoutubeSearch,1,Home)</onfocus>
                 <visible>!Skin.HasSetting(hide.button.music.youtube) + System.AddonIsEnabled(plugin.video.youtube)</visible>
             </control>
 
@@ -1678,7 +1685,7 @@
 
                 <onclick condition="[String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">ClearProperty(Init_Value_TMDb,Home)</onclick>
 
-                <onclick condition="[String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">ClearProperty(SetYoutubeSearch)</onclick>
+                <onclick condition="[String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">ClearProperty(SetYoutubeSearch,Home)</onclick>
 
                 <onclick condition="[String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">ClearProperty(SetDirectorSelected,Home)</onclick>
 
@@ -2023,7 +2030,7 @@
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/youtube.png" />
                 </include>
-                <onfocus condition="String.IsEmpty(Window.Property(SetYoutubeSearch))">SetProperty(SetYoutubeSearch,1)</onfocus>
+                <onfocus condition="String.IsEmpty(Window(Home).Property(SetYoutubeSearch))">SetProperty(SetYoutubeSearch,1,Home)</onfocus>
 
                 <visible>!Skin.HasSetting(hide.button.video.youtube) + System.AddonIsEnabled(plugin.video.youtube)</visible>
                 <visible>[!String.IsEqual(ListItem.DBType,set) + !String.IsEqual(ListItem.DBType,video) + !String.IsEmpty(ListItem.DBType)] | String.IsEqual(ListItem.Property(tmdb_type),person) | $EXP[IsTMDbHelperItem]</visible>
@@ -2451,8 +2458,17 @@
                 <visible>$PARAM[visible] + Container(9600).HasNext</visible>
                 <include>Animation_Fade_In</include>
                 <include>Animation_Fade_Out</include>
-                <left>952</left>
+
                 <top>970</top>
+                <left>952</left>
+
+                <control type="image" description="button back">
+                    <top>-7</top>
+                    <left>-12</left>
+                    <width>40</width>
+                    <height>40</height>
+                    <texture border="0" colordiffuse="White70">common/circle.png</texture>
+                </control>
                 <control type="image">
                     <top>0</top>
                     <include>Def_Arrow_Size</include>
@@ -2468,8 +2484,17 @@
                 <visible>$PARAM[visible] + Container(9600).HasPrevious</visible>
                 <include>Animation_Fade_In</include>
                 <include>Animation_Fade_Out</include>
-                <left>952</left>
+
                 <top>80</top>
+                <left>952</left>
+
+                <control type="image" description="button back">
+                    <top>-6</top>
+                    <left>-12</left>
+                    <width>40</width>
+                    <height>40</height>
+                    <texture border="0" colordiffuse="White70">common/circle.png</texture>
+                </control>
                 <control type="image">
                     <top>0</top>
                     <include>Def_Arrow_Size</include>
