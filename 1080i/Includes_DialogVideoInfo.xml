@@ -955,7 +955,6 @@
                         <control type="textbox">
                             <visible>[Integer.IsEqual(Container(50).NumItems,0) + Integer.IsEqual(Container(9550).NumItems,0) + String.IsEmpty(Window(Home).Property(moviecontent))] | String.IsEqual(ListItem.DBType,video) | String.IsEmpty(ListItem.DBType)</visible>
                             <visible>!String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEqual(ListItem.DBType,season)</visible>
-
                             <right>0</right>
                             <top>180</top>
                             <left>0</left>
@@ -968,7 +967,6 @@
                         <control type="textbox">
                             <visible>[[!Integer.IsEqual(Container(50).NumItems,0) | !Integer.IsEqual(Container(9550).NumItems,0)] + String.IsEmpty(Window(Home).Property(moviecontent))] | !String.IsEmpty(Window(Home).Property(moviecontent))</visible>
                             <visible>!String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEqual(ListItem.DBType,season)</visible>
-
                             <right>0</right>
                             <top>180</top>
                             <left>0</left>
@@ -1602,8 +1600,8 @@
             <animation effect="fade" end="100" start="20" time="200" tween="sine" easing="in" condition="Control.HasFocus(160) | Control.HasFocus(166)">Conditional</animation>
             <animation effect="fade" end="0" start="100" time="200" tween="sine" easing="in" condition="!Control.HasFocus(160) + !Control.HasFocus(166)">Hidden</animation>
             <control type="image">
-                <left>0</left>
                 <top>0</top>
+                <left>0</left>
                 <width>1920</width>
                 <height>1080</height>
                 <texture>common/black.png</texture>
@@ -1642,12 +1640,12 @@
             <!-- CLEARLOGO EXTENDED VIEW -->
 
             <control type="image" description="clearlogo">
-                <include>Animation_Wiki_Fade_Out</include>
-                <include>Animation_Video_Fade_Out_Clearlogo</include>
-
                 <visible>!Player.HasMedia | Skin.HasSetting(hide.furniture.nowplaying.views)</visible>
                 <visible>!String.IsEqual(ListItem.Property(tmdb_type),person) + !Window.IsActive(DialogNotification.xml)</visible>
                 <visible>![Control.HasFocus(9501) | Control.HasFocus(9506) | Control.HasFocus(95067) | Control.HasFocus(9514) | Control.HasFocus(9515) | Control.HasFocus(9560) | Control.HasFocus(9518) | Control.HasFocus(9507) | Control.HasFocus(9503) | Control.HasFocus(9504) | Control.HasFocus(9552) | Control.HasFocus(9553)]</visible>
+
+                <include>Animation_Wiki_Fade_Out</include>
+                <include>Animation_Video_Fade_Out_Clearlogo</include>
 
                 <centertop>120</centertop>
                 <right>View_SidePad</right>
@@ -1661,12 +1659,12 @@
             <!-- CLEARLOGO EXTENDED VIEW -->
 
             <control type="image" description="clearlogo">
-                <include>Animation_Wiki_Fade_Out</include>
-                <include>Animation_Video_Fade_In_Clearlogo</include>
-
                 <visible>!Container($PARAM[controlid]).IsUpdating</visible>
                 <visible>!Player.HasMedia | Skin.HasSetting(hide.furniture.nowplaying.views)</visible>
                 <visible>Control.HasFocus(9501) | Control.HasFocus(9506) | Control.HasFocus(95067) | Control.HasFocus(9514) | Control.HasFocus(9515) | Control.HasFocus(9560) | Control.HasFocus(9518) | Control.HasFocus(9507) | Control.HasFocus(9503) | Control.HasFocus(9504) | Control.HasFocus(9517) | Control.HasFocus(9520) | Control.HasFocus(9552) | Control.HasFocus(9553) | Control.HasFocus(9556) | Control.HasFocus(9558) | Control.HasFocus(9559) | Control.HasFocus(9579) | Control.HasFocus(9550)</visible>
+
+                <include>Animation_Wiki_Fade_Out</include>
+                <include>Animation_Video_Fade_In_Clearlogo</include>
 
                 <centertop>120</centertop>
                 <right>View_SidePad</right>
