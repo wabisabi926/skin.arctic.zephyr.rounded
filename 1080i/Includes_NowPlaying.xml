@@ -153,18 +153,20 @@
                 <left>$PARAM[left]</left>
                 <visible>$PARAM[visible]</visible>
 
-                <control type="group">
+                <!-- VIDEO -->
 
-                    <left>252</left>
+                <control type="group">
+                    <visible>Player.HasMedia + Player.HasVideo</visible>
 
                     <include content="Def_Top" condition="!Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button)">
                         <param name="top" value="125" />
                     </include>
 
                     <top>60</top>
-                    <visible>Player.HasMedia + Player.HasVideo</visible>
+                    <left>252</left>
 
                     <control type="group">
+                        <animation effect="slide" start="0,0" end="0,-70" time="0" condition="!Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button)">Conditional</animation>
 
                         <!-- PLAY / PAUSE INDICATOR -->
 
@@ -177,7 +179,7 @@
                         <!-- SUB LABEL -->
 
                         <control type="label">
-                            <top>55</top>
+                            <top>60</top>
                             <width>450</width>
                             <scroll>true</scroll>
                             <include>Widgets_Sub_Title_Definition</include>
@@ -187,6 +189,19 @@
                             </animation>
                             <visible>!Control.HasFocus(25) | [Control.HasFocus(25) + !Container(999).IsUpdating + !Integer.IsGreater(Container(999).NumItems,0)]</visible>
                             <visible>!VideoPlayer.Content(files) | [VideoPlayer.Content(livetv) + $EXP[Label_PVR_Info_Available]]</visible>
+                        </control>
+
+                        <!-- IF INFORMATION AVAILABLE ON CLICK POSTER -->
+
+                        <control type="label">
+                            <top>60</top>
+                            <width>1100</width>
+                            <include>Widgets_Sub_Title_Definition</include>
+                            <label>$LOCALIZE[22081]</label>
+                            <animation type="Hidden" reversible="false">
+                                <effect type="fade" end="0" start="100" time="400" delay="0" />
+                            </animation>
+                            <visible>Control.HasFocus(25) + !Container(999).IsUpdating + Integer.IsGreater(Container(999).NumItems,0)</visible>
                         </control>
 
                         <!-- FLAG BLACK / WHITE -->
@@ -296,20 +311,6 @@
                                 <!-- <visible>!String.IsEmpty(VideoPlayer.AudioChannels)</visible> -->
                             <!-- </control> -->
                         <!-- </control> -->
-
-                        <!-- IF INFORMATION AVAILABLE ON CLICK POSTER -->
-
-                        <control type="label">
-                            <top>55</top>
-                            <width>1100</width>
-                            <include>Widgets_Sub_Title_Definition</include>
-                            <label>$LOCALIZE[22081]</label>
-                            <animation type="Hidden" reversible="false">
-                                <effect type="fade" end="0" start="100" time="400" delay="0" />
-                            </animation>
-                            <visible>Control.HasFocus(25) + !Container(999).IsUpdating + Integer.IsGreater(Container(999).NumItems,0)</visible>
-                        </control>
-                        <animation effect="slide" start="0,0" end="0,-70" time="0" condition="!Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button)">Conditional</animation>
                     </control>
                     <control type="group">
                         <width>452</width>
@@ -322,25 +323,55 @@
                         <include condition="!Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button)">NowPlaying_Controls</include>
                     </control>
                 </control>
+
+                <!-- AUDIO -->
+
                 <control type="group">
-                    <left>340</left>
+                    <visible>Player.HasMedia + Player.HasAudio</visible>
+
                     <include content="Def_Top" condition="!Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button)">
                         <param name="top" value="125" />
                     </include>
+
                     <top>60</top>
-                    <visible>Player.HasMedia + Player.HasAudio</visible>
+                    <left>340</left>
+
                     <control type="group">
+                        <animation effect="slide" start="0,0" end="0,-70" time="0" condition="!Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button)">Conditional</animation>
+
+                        <!-- PLAY / PAUSE INDICATOR -->
+
                         <include>NowPlaying_PlayPause</include>
+
+                        <!-- TIME -->
+
                         <include>NowPlaying_Time</include>
+
+                        <!-- SUB LABEL -->
+
                         <control type="label">
                             <top>60</top>
-                            <width>1100</width>
+                            <width>450</width>
+                            <scroll>true</scroll>
                             <include>Widgets_Sub_Title_Definition</include>
                             <label fallback="19055">$VAR[Label_NowPlaying_Time_MusicSubInfo]</label>
                             <animation type="Visible" reversible="false">
                                 <effect type="fade" end="100" start="0" time="400" delay="300" />
                             </animation>
                             <visible>!Control.HasFocus(25) | [Control.HasFocus(25) + !Container(999).IsUpdating + !Integer.IsGreater(Container(999).NumItems,0)]</visible>
+                        </control>
+
+                        <!-- IF INFORMATION AVAILABLE ON CLICK POSTER -->
+
+                        <control type="label">
+                            <top>60</top>
+                            <width>450</width>
+                            <include>Widgets_Sub_Title_Definition</include>
+                            <label>$LOCALIZE[22081]</label>
+                            <animation type="Hidden" reversible="false">
+                                <effect type="fade" end="0" start="100" time="400" delay="0" />
+                            </animation>
+                            <visible>Control.HasFocus(25) + !Container(999).IsUpdating + Integer.IsGreater(Container(999).NumItems,0)</visible>
                         </control>
 
                         <!-- FLAG BLACK / WHITE -->
@@ -480,18 +511,6 @@
                                 <!-- </control> -->
                             <!-- </control> -->
                         <!-- </control> -->
-
-                        <control type="label">
-                            <top>55</top>
-                            <width>1100</width>
-                            <include>Widgets_Sub_Title_Definition</include>
-                            <label>$LOCALIZE[22081]</label>
-                            <animation type="Hidden" reversible="false">
-                                <effect type="fade" end="0" start="100" time="400" delay="0" />
-                            </animation>
-                            <visible>Control.HasFocus(25) + !Container(999).IsUpdating + Integer.IsGreater(Container(999).NumItems,0)</visible>
-                        </control>
-                        <animation effect="slide" start="0,0" end="0,-70" time="0" condition="!Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button)">Conditional</animation>
                     </control>
                     <control type="group">
                         <width>452</width>
