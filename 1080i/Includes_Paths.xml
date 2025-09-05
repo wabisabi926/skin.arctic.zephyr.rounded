@@ -49,22 +49,21 @@
 
     <variable name="Def_Dialog_Info_Currently_Playing_Item_Nowplaing">
 
-        <!-- search album -->
+        <!-- SEARCH ALBUM -->
+        
         <value condition="Player.HasAudio + !String.IsEmpty(MusicPlayer.DBID) + !String.IsEmpty(Window(Home).Property(Encoded.MusicPlayer.Album))">musicdb://albums/?xsp={"rules":{"and":[{"field":"album","operator":"contains","value":["$INFO[Window(Home).Property(Encoded.MusicPlayer.Album)]"]}]},"type":"albums"}</value>
+        
         <!-- <value condition="Player.HasAudio + !String.IsEmpty(ListItem.DBID)">musicdb://albums/?xsp={"rules":{"and":[{"field":"album","operator":"contains","value":["$INFO[ListItem.Album]"]}]},"type":"albums"}</value> -->
 
-        <!-- search artist -->
+        <!-- SEARCH ARTIST -->
+        
         <!-- <value condition="Player.HasAudio + !String.IsEmpty(MusicPlayer.DBID)">musicdb://artists/?xsp={"rules":{"and":[{"field":"artist","operator":"contains","value":["$INFO[MusicPlayer.Artist]"]}]},"type":"artists"}</value> -->
+        
         <!-- <value condition="Player.HasAudio + !String.IsEmpty(ListItem.DBID)">musicdb://artists/?xsp={"rules":{"and":[{"field":"artist","operator":"contains","value":["$INFO[ListItem.Artist]"]}]},"type":"artists"}</value> -->
 
-        <!-- search song -->
+        <!-- SEARCH SONG -->
+        
         <!-- <value condition="Player.HasAudio + !String.IsEmpty(MusicPlayer.DBID)">musicdb://songs/?songid=$INFO[MusicPlayer.DBID]</value> -->
-
-        <!-- search movie -->
-        <value condition="Player.HasVideo + VideoPlayer.Content(movies) + !String.IsEmpty(Window(Home).Property(Encoded.Player.Title)) + !String.IsEmpty(Window(Home).Property(Encoded.Player.Filename))">videodb://movies/titles/?xsp=%7B%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22$INFO[Window(Home).Property(Encoded.Player.Title)]%22%5D%7D%2C%7B%22field%22%3A%22filename%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22$INFO[Window(Home).Property(Encoded.Player.Filename)]%22%5D%7D%5D%7D%2C%22type%22%3A%22movies%22%7D</value>
-
-        <!-- search episode -->
-        <value condition="Player.HasVideo + VideoPlayer.Content(episodes) + !String.IsEmpty(Window(Home).Property(Encoded.Player.Title)) + !String.IsEmpty(Window(Home).Property(Encoded.Player.Filename))">videodb://tvshows/titles/-1/-1/?xsp=%7B%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22$INFO[Window(Home).Property(Encoded.Player.Title)]%22%5D%7D%2C%7B%22field%22%3A%22filename%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22$INFO[Window(Home).Property(Encoded.Player.Filename)]%22%5D%7D%5D%7D%2C%22type%22%3A%22episodes%22%7D</value>
     </variable>
 
     <!-- OSD - MUSIC - info dialog - search - currrently playing item -->

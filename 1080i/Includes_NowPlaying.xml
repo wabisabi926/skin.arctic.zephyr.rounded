@@ -187,7 +187,7 @@
                             <animation type="Visible" reversible="false">
                                 <effect type="fade" end="100" start="0" time="400" delay="300" />
                             </animation>
-                            <visible>!Control.HasFocus(25) | [Control.HasFocus(25) + !Container(999).IsUpdating + !Integer.IsGreater(Container(999).NumItems,0)]</visible>
+                            <visible>!Control.HasFocus(25) | [Control.HasFocus(25) + String.IsEmpty(VideoPlayer.DBID)]</visible>
                             <visible>!VideoPlayer.Content(files) | [VideoPlayer.Content(livetv) + $EXP[Label_PVR_Info_Available]]</visible>
                         </control>
 
@@ -201,7 +201,7 @@
                             <animation type="Hidden" reversible="false">
                                 <effect type="fade" end="0" start="100" time="400" delay="0" />
                             </animation>
-                            <visible>Control.HasFocus(25) + !Container(999).IsUpdating + Integer.IsGreater(Container(999).NumItems,0)</visible>
+                            <visible>Control.HasFocus(25) + !String.IsEmpty(VideoPlayer.DBID)</visible>
                         </control>
 
                         <!-- FLAG BLACK / WHITE -->
@@ -1075,23 +1075,33 @@
     <!-- DEF - OSD -->
 
     <include name="OSD_NowPlaying">
-
         <control type="button" id="25">
-            <description>Skip Back</description>
+            <visible allowhiddenfocus="!String.IsEmpty(VideoPlayer.DBID) | !String.IsEmpty(MusicPlayer.DBID)">false</visible>
+
             <width>48</width>
             <height>48</height>
+
             <label/>
             <font />
             <include>Def_OSD_UpDown_Home_NowPlaying</include>
             <texturefocus colordiffuse="$VAR[Color_Focus]" flipx="true">osd/info.png</texturefocus>
             <texturenofocus colordiffuse="Dark2" flipx="true">osd/info.png</texturenofocus>
-            <onclick condition="!Container(999).IsUpdating + Integer.IsGreater(Container(999).NumItems,0)">SetFocus(999)</onclick>
-            <onclick condition="!Container(999).IsUpdating + Integer.IsGreater(Container(999).NumItems,0)">Action(info)</onclick>
-            <oninfo condition="!Container(999).IsUpdating + Integer.IsGreater(Container(999).NumItems,0)">SetFocus(999)</oninfo>
-            <oninfo condition="!Container(999).IsUpdating + Integer.IsGreater(Container(999).NumItems,0)">Action(info)</oninfo>
+
+            <!-- VIDEO -->
+
+            <onclick condition="!String.IsEmpty(VideoPlayer.DBID)">$VAR[Def_Dialog_Info_Currently_Playing_Item_VideoOSD]</onclick>
+            <oninfo condition="!String.IsEmpty(VideoPlayer.DBID)">$VAR[Def_Dialog_Info_Currently_Playing_Item_VideoOSD]</oninfo>
+
+            <!-- MUSIC -->
+
+            <onclick condition="!String.IsEmpty(MusicPlayer.DBID) + !Container(999).IsUpdating + Integer.IsGreater(Container(999).NumItems,0)">SetFocus(999)</onclick>
+            <onclick condition="!String.IsEmpty(MusicPlayer.DBID) + !Container(999).IsUpdating + Integer.IsGreater(Container(999).NumItems,0)">Action(info)</onclick>
+
+            <oninfo condition="!String.IsEmpty(MusicPlayer.DBID) + !Container(999).IsUpdating + Integer.IsGreater(Container(999).NumItems,0)">SetFocus(999)</oninfo>
+            <oninfo condition="!String.IsEmpty(MusicPlayer.DBID) + !Container(999).IsUpdating + Integer.IsGreater(Container(999).NumItems,0)">Action(info)</oninfo>
+
             <onfocus condition="Skin.HasSetting(osd.open.auto.pause) + Player.Paused + Player.HasVideo + !String.IsEmpty(VideoPlayer.DBID)">PlayerControl(Play)</onfocus>
             <onfocus condition="!Player.HasMedia">SetFocus(300)</onfocus>
-            <visible allowhiddenfocus="!String.IsEmpty(VideoPlayer.DBID) | !String.IsEmpty(MusicPlayer.DBID)">false</visible>
         </control>
 
         <include content="Object_OSD_Button">
