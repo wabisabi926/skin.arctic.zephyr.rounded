@@ -21,7 +21,7 @@
         </include>
         <include content="View_Dialog_Info_Poster">
             <param name="condition.includecontent" value="true" />
-            <param name="visible" value="String.IsEmpty(Window(Home).Property(moviecontent)) + ![Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hide.button.video.wiki)]" />
+            <param name="visible" value="$PARAM[visible] + ![Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hide.button.video.wiki)]" />
             <param name="controlid" value="$PARAM[controlid]" />
             <param name="ContentToLoad" value="$VAR[Def_List_Set]" />
             <param name="sortby" value="year" />
@@ -31,7 +31,7 @@
             <!-- <param name="onclick2" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" /> -->
         </include>
         <include content="Def_Dialog_Info_List_Updating">
-            <param name="visible" value="String.IsEmpty(Window(Home).Property(moviecontent)) + String.IsEqual(ListItem.DBType,set) + !Control.HasFocus($PARAM[controlid])" />
+            <param name="visible" value="$PARAM[visible] + String.IsEqual(ListItem.DBType,set) + !Control.HasFocus($PARAM[controlid])" />
             <param name="controlid" value="$PARAM[controlid]" />
             <param name="centerleft" value="430" />
         </include>
@@ -45,16 +45,16 @@
 
     <include name="Recommendation_Cast_Local">
         <include content="Furniture_DialogInfo_Extended_Header">
-            <param name="controlid" value="50" />
+            <param name="controlid" value="$PARAM[controlid]" />
         </include>
         <include content="Furniture_DialogInfo_Extended_Footer" condition="Skin.HasSetting(show.furniture.footer)">
-            <param name="controlid" value="50" />
+            <param name="controlid" value="$PARAM[controlid]" />
         </include>
         <include content="View_Dialog_Info_Cast">
             <param name="fallbackpicture" value="DefaultActor.png" />
-            <param name="visible" value="![Skin.HasSetting(filter.video.cast.on.line) | String.IsEmpty(ListItem.DBID)] + String.IsEmpty(Window(Home).Property(moviecontent)) + ![Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hide.button.video.wiki)]" />
+            <param name="visible" value="$PARAM[visible] + ![Skin.HasSetting(filter.video.cast.on.line) | String.IsEmpty(ListItem.DBID)] + String.IsEmpty(Window(Home).Property(moviecontent)) + ![Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hide.button.video.wiki)]" />
             <param name="visible.layouts" value="Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
-            <param name="controlid" value="50" />
+            <param name="controlid" value="$PARAM[controlid]" />
             <param name="poster" value="false" />
             <param name="thumb" value="true" />
         </include>
@@ -70,7 +70,7 @@
             <param name="controlid" value="$PARAM[controlid]" />
         </include>
         <include content="View_Dialog_Info_Cast">
-            <param name="visible" value="[Skin.HasSetting(filter.video.cast.on.line) | String.IsEmpty(ListItem.DBID)] + String.IsEmpty(Window(Home).Property(moviecontent)) + ![Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hide.button.video.wiki)] + !String.IsEqual(ListItem.DBType,set)" />
+            <param name="visible" value="$PARAM[visible] + [Skin.HasSetting(filter.video.cast.on.line) | String.IsEmpty(ListItem.DBID)] + String.IsEmpty(Window(Home).Property(moviecontent)) + ![Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hide.button.video.wiki)] + !String.IsEqual(ListItem.DBType,set)" />
             <param name="controlid" value="$PARAM[controlid]" />
             <param name="condition.includecontent" value="true" />
             <param name="ContentToLoad" value="$VAR[Def_List_Cast]" />
@@ -79,7 +79,7 @@
             <!-- <param name="onclick2" value="Skin.Reset(TMDbHelper.ForceWidgetContainer)" /> -->
         </include>
         <include content="Def_Dialog_Info_List_Updating">
-            <param name="visible" value="String.IsEmpty(Window(Home).Property(moviecontent)) + !$EXP[IsYoutubeItem] + [Skin.HasSetting(filter.video.cast.on.line) | String.IsEmpty(ListItem.DBID) | String.IsEqual(ListItem.DBType,season)] + !String.IsEqual(ListItem.DBType,set)" />
+            <param name="visible" value="$PARAM[visible] + !$EXP[IsYoutubeItem] + [Skin.HasSetting(filter.video.cast.on.line) | String.IsEmpty(ListItem.DBID) | String.IsEqual(ListItem.DBType,season)] + !String.IsEqual(ListItem.DBType,set) + !Control.HasFocus(7011)" />
             <param name="controlid" value="$PARAM[controlid]" />
             <param name="centerleft" value="430" />
             <param name="label_spinner" value="$LOCALIZE[31575]..." />
@@ -300,11 +300,11 @@
         </include>
         <include content="Furniture_DialogInfo_Extended_Footer" condition="Skin.HasSetting(show.furniture.footer)">
             <param name="controlid" value="$PARAM[controlid]" />
-            <param name="visible" value="$PARAM[visible] | Control.HasFocus(7011)" />
+            <param name="visible" value="$PARAM[visible]" />
         </include>
         <include content="View_Dialog_Info_Square">
             <param name="fallbackpicture" value="DefaultVideo.png" />
-            <param name="visible" value="$PARAM[visible] | Control.HasFocus(7011)" />
+            <param name="visible" value="$PARAM[visible]" />
             <param name="Animation_new" value="Animation_CastInfo2" />
             <param name="controlid" value="$PARAM[controlid]" />
             <param name="visible.layouts" value="Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7) | Control.HasFocus(6) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml) | Container(9999).IsUpdating]]" />
