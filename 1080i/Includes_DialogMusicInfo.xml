@@ -827,10 +827,14 @@
 
                 <control type="group">
                     <visible>String.IsEqual(Window(Home).Property(musiccontent),1)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(musiccontent),1)</visible>
+
                     <include>Animation_Fade_Out_DialogInfo</include>
                     <include>Animation_Fade_In_DialogInfo</include>
+
                     <top>230</top>
                     <left>785</left>
+
                     <control type="label">
                         <width>150</width>
                         <height>36</height>
@@ -842,18 +846,20 @@
                         <include>Animation_Fade_In</include>
                     </control>
 
-                    <control type="button" id="9009">
+                    <control type="button" id="9119">
+                        <visible allowhiddenfocus="true">false</visible>
+
                         <left>-2000</left>
                         <width>1</width>
-                        <visible allowhiddenfocus="true">false</visible>
                         <include>Def_Buttons_Info</include>
+
                         <label>$INFO[Container(50).ListItem.Label]</label>
                         <onup>SetFocus(50)</onup>
                         <onup>Up</onup>
-                        <onup>SetFocus(9009)</onup>
+                        <onup>SetFocus(9119)</onup>
                         <ondown>SetFocus(50)</ondown>
                         <ondown>Down</ondown>
-                        <ondown>SetFocus(9009)</ondown>
+                        <ondown>SetFocus(9119)</ondown>
                         <onleft>SetFocus(9000)</onleft>
                         <onright>SetFocus(9000)</onright>
                         <onback>9000</onback>
@@ -875,7 +881,7 @@
                         <pagecontrol>62</pagecontrol>
                         <orientation>vertical</orientation>
 
-                        <viewtype label="">list</viewtype>
+                        <viewtype label="list">list</viewtype>
 
                         <itemlayout height="36" width="1000">
                             <control type="group">
@@ -901,7 +907,7 @@
                         </itemlayout>
                         <focusedlayout height="36" width="1000">
                             <control type="group">
-                                <visible>Control.HasFocus(9009)</visible>
+                                <visible>Control.HasFocus(9119)</visible>
                                 <control type="image">
                                     <left>-3</left>
                                     <centertop>26</centertop>
@@ -922,7 +928,7 @@
                                 </control>
                             </control>
                             <control type="group">
-                                <visible>!Control.HasFocus(9009)</visible>
+                                <visible>!Control.HasFocus(9119)</visible>
                                 <control type="image">
                                     <left>-3</left>
                                     <centertop>26</centertop>
