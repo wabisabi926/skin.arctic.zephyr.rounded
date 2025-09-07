@@ -11,7 +11,7 @@
 
     <!-- RATING -->
 
-    <expression name="Condition_Flag_IMDb_Rating">[[!String.IsEmpty(ListItem.Rating(imdb)) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating)) | [String.IsEqual(Skin.String(Value_Kodi_Rating_Provider),IMDb) + !String.IsEmpty(ListItem.DBID) + !String.IsEmpty(ListItem.Rating)]] + [Container.Content(movies) | Container.Content(videoversions) | Container.Content(tvshows) | String.IsEqual(ListItem.DBType,season) | [Container.Content(episodes) + !String.IsEmpty(ListItem.DBID)]]]</expression>
+    <expression name="Condition_Flag_IMDb_Rating">[[!String.IsEmpty(ListItem.Rating(imdb)) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating)) | [String.IsEqual(Skin.String(Value_Kodi_Rating_Provider),IMDb) + !String.IsEmpty(ListItem.DBID) + !String.IsEmpty(ListItem.Rating)]] + [Container.Content(movies) | Container.Content(videoversions) | Container.Content(tvshows) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode) | [Container.Content(episodes) + !String.IsEmpty(ListItem.DBID)]]]</expression>
 
     <expression name="Condition_Flag_TMDb_Rating">[[[!String.IsEmpty(ListItem.Rating) + Container.Content(seasons)] |
     [Container.Content(episodes) + !String.IsEmpty(ListItem.Rating) + String.IsEmpty(ListItem.DBID)] | Container.Content(sets) | String.IsEqual(ListItem.DBType,set) | Skin.HasSetting(show.flags.rating.tmdb)] + !$EXP[IsYoutubeItem]]</expression>
