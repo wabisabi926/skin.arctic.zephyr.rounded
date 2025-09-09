@@ -1290,9 +1290,11 @@
                 <onfocus>SetProperty(last_focus,12,Home)</onfocus>
                 <onfocus>ClearProperty(musiccontent,Home)</onfocus>
 
+                <onfocus>ClearProperty(ShowDisc)</onfocus>
+                <onfocus>ClearProperty(RotateCover)</onfocus>
+
                 <onclick condition="!String.IsEmpty(Window(Home).Property(show_info_song)) + String.IsEmpty(Window(Home).Property(show_info_album))">SetProperty(show_info_album,1,Home)</onclick>
                 <onclick condition="!String.IsEmpty(Window(Home).Property(show_info_song)) + !String.IsEmpty(Window(Home).Property(show_info_album))">SetProperty(show_info_artist,1,Home)</onclick>
-
                 <onclick>SendClick(12)</onclick>
 
                 <include>Def_Button_Dimensions_Square</include>
@@ -1538,9 +1540,6 @@
                 </include>
                 <onclick>SetFocus(9400)</onclick>
             </control>
-        </control>
-        <control type="radiobutton" id="12">
-            <visible>false</visible>
         </control>
     </include>
 
