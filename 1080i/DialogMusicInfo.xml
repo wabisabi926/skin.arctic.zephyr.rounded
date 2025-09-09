@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window id="2001">
     <defaultcontrol always="true">9000</defaultcontrol>
+    <menucontrol>9000</menucontrol>
 
     <!-- ==================================== -->
     <!--                 ON LOAD              -->
@@ -13,16 +14,6 @@
 
     <onload condition="!String.IsEmpty(ListItem.AlbumArtist)">RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;unencoded_paths=true&amp;window_id=Home&amp;window_prop=Encoded.ListItem.Artist&amp;&amp;$INFO[ListItem.AlbumArtist]")</onload>
 
-    <!-- <onload condition="String.IsEqual(ListItem.DBType,album) + String.IsEqual(ListItem.DBType,song) + !String.IsEmpty(ListItem.Artist)">RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;unencoded_paths=true&amp;window_id=Home&amp;window_prop=Encoded.ListItem.Artist&amp;&amp;$INFO[ListItem.Artist]")</onload> -->
-
-    <!-- SET ALL FOCUS LIST TO POSITION 0 -->
-
-    <!-- <onload>SetFocus(50,0,absolute)</onload> -->
-    <!-- <onload>SetFocus(9501,0,absolute)</onload> -->
-    <!-- <onload>SetFocus(9502,0,absolute)</onload> -->
-    <!-- <onload>SetFocus(9508,0,absolute)</onload> -->
-    <!-- <onload>SetFocus(9511,0,absolute)</onload> -->
-
     <!-- INIT VALUE -->
 
     <onload>ClearProperty(content)</onload>
@@ -32,18 +23,10 @@
     <onload>ClearProperty(focus_tracklist,Home)</onload>
     <onload>ClearProperty(last_focus,Home)</onload>
 
-    <!-- <onload condition="Window.Is(songinformation)">ClearProperty(show_info_artist,Home)</onload> -->
-
     <!-- FOCUS AT START -->
-
-    <!-- <onload>9000</onload> -->
 
     <onload>AlarmClock(Delay_focus12,SetFocus(9072),00:00,silent)</onload>
     <onload condition="Control.IsVisible(9002)">AlarmClock(Delay_focus9002,SetFocus(9002),00:00,silent)</onload>
-
-    <!-- <onload condition="String.IsEqual(ListItem.DBType,artist)">SetFocus(9002)</onload> -->
-    <!-- <onload condition="!String.IsEqual(ListItem.DBType,artist) + Control.IsVisible(9001)">SetFocus(9001)</onload> -->
-    <!-- <onload condition="!String.IsEqual(ListItem.DBType,artist) + Player.HasMedia + Control.IsVisible(9201)">SetFocus(9201)</onload> -->
 
     <!-- AUTOPLAY TRAILER -->
 
@@ -59,9 +42,6 @@
     <onload condition="Window.Is(songinformation) + !Window.IsActive(musicinformation)">SetProperty(show_info_song,1,Home)</onload>
     <onload condition="Window.Is(songinformation) + !Window.IsActive(musicinformation)">ClearProperty(show_info_artist,Home)</onload>
     <onload condition="Window.Is(songinformation) + !Window.IsActive(musicinformation)">ClearProperty(show_info_album,Home)</onload>
-
-    <!-- <onload condition="!Window.Is(songinformation) + Window.IsActive(musicinformation)">ClearProperty(show_info_song,Home)</onload> -->
-    <!-- <onload condition="!Window.Is(songinformation) + Window.IsActive(musicinformation)">ClearProperty(show_info_album,Home)</onload> -->
 
     <!-- ==================================== -->
     <!--               ON UNLOAD              -->

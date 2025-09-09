@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window id="2003">
-    <defaultcontrol always="false">9000</defaultcontrol>
+    <defaultcontrol always="true">9000</defaultcontrol>
+    <menucontrol>9000</menucontrol>
 
     <onload>ClearProperty(TMDbHelper.WidgetContainer)</onload>
     <onload>Skin.Reset(TMDbHelper.ForceWidgetContainer)</onload>
@@ -12,13 +13,6 @@
     <!-- <onload condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.DBID)">plugin://script.skinvariables/?info=get_dbitem_movie_details&amp;dbid=$INFO[ListItem.DBID]</onload> -->
 
     <include>Def_Cleanup_On_Load</include>
-
-    <!-- <onload>ClearProperty(ListVideoForCast,Home)</onload> -->
-    <!-- <onload>ClearProperty(ListVideoForCastIcon,Home)</onload> -->
-    <!-- <onload>ClearProperty(SetUserRating,Home)</onload> -->
-    <!-- <onload>ClearProperty(dontslide,Home)</onload> -->
-    <!-- <onload>ClearProperty(isoninfo_actor,Home)</onload> -->
-    <!-- <onload>ClearProperty(videoyoutube)</onload> -->
 
     <onload>ClearProperty(view_extended,Home)</onload>
     <onload>ClearProperty(ShowDisc)</onload>
@@ -35,33 +29,6 @@
 
     <onload>ClearProperty(filemanager_back_video_info_type,Home)</onload>
     <onload>ClearProperty(filemanager_back_video_info_bdid,Home)</onload>
-
-    <onload>SetFocus(50,0,absolute)</onload>
-    <onload>SetFocus(9518,0,absolute)</onload>
-    <onload>SetFocus(9503,0,absolute)</onload>
-    <onload>SetFocus(9504,0,absolute)</onload>
-    <onload>SetFocus(9505,0,absolute)</onload>
-    <onload>SetFocus(9506,0,absolute)</onload>
-    <onload>SetFocus(9514,0,absolute)</onload>
-    <onload>SetFocus(9515,0,absolute)</onload>
-    <onload>SetFocus(9517,0,absolute)</onload>
-    <onload>SetFocus(9520,0,absolute)</onload>
-    <onload>SetFocus(9550,0,absolute)</onload>
-    <onload>SetFocus(9552,0,absolute)</onload>
-    <onload>SetFocus(9553,0,absolute)</onload>
-    <onload>SetFocus(9554,0,absolute)</onload>
-    <onload>SetFocus(9556,0,absolute)</onload>
-    <onload>SetFocus(9557,0,absolute)</onload>
-    <onload>SetFocus(9558,0,absolute)</onload>
-    <onload>SetFocus(9559,0,absolute)</onload>
-    <onload>SetFocus(9560,0,absolute)</onload>
-    <onload>SetFocus(9579,0,absolute)</onload>
-
-    <!-- Info -->
-    <!-- <onload condition="!Control.IsVisible(8) + !Control.IsVisible(9201) + Control.IsVisible(9001)">SetFocus(9001)</onload> -->
-
-    <!-- button local / on line -->
-    <!-- <onload condition="!Control.IsVisible(8) + !Control.IsVisible(9078) + !Control.IsVisible(9201) + Control.IsVisible(9012)">SetFocus(9012)</onload> -->
 
     <!-- PERSON -->
 
@@ -80,8 +47,6 @@
     <!-- MOVIE - PLAY -->
 
     <onload condition="Control.IsVisible(8008)">SetFocus(8008)</onload>
-
-    <menucontrol>9000</menucontrol>
 
     <onload condition="Skin.HasSetting(osd.open.auto.pause) + Player.HasMedia + Player.HasVideo + !Player.Paused + !String.IsEmpty(VideoPlayer.DBID)">PlayerControl(Play)</onload>
     <onload condition="Skin.HasSetting(osd.open.auto.pause) + Player.HasMedia + Player.HasVideo + String.IsEmpty(Window(Home).Property(OSDVideo_DIALOG_VIDEO_INFO)) + !String.IsEmpty(VideoPlayer.DBID)">SetProperty(OSDVideo_DIALOG_VIDEO_INFO,1,Home)</onload>
