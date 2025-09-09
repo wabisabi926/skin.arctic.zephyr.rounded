@@ -38,7 +38,7 @@
 
     <!-- <onload>9000</onload> -->
 
-    <onload>AlarmClock(Delay_focus12,SetFocus(12),00:00,silent)</onload>
+    <onload>AlarmClock(Delay_focus12,SetFocus(9072),00:00,silent)</onload>
     <onload condition="Control.IsVisible(9002)">AlarmClock(Delay_focus9002,SetFocus(9002),00:00,silent)</onload>
 
     <!-- <onload condition="String.IsEqual(ListItem.DBType,artist)">SetFocus(9002)</onload> -->
@@ -57,10 +57,11 @@
     <!-- SHOW INFO ARTIST - IF SONGINFORMATION IS OPEN -->
 
     <onload condition="Window.Is(songinformation) + !Window.IsActive(musicinformation)">SetProperty(show_info_song,1,Home)</onload>
-
     <onload condition="Window.Is(songinformation) + !Window.IsActive(musicinformation)">ClearProperty(show_info_artist,Home)</onload>
+    <onload condition="Window.Is(songinformation) + !Window.IsActive(musicinformation)">ClearProperty(show_info_album,Home)</onload>
 
-    <onload condition="Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))">SetProperty(show_info_artist,1,Home)</onload>
+    <!-- <onload condition="!Window.Is(songinformation) + Window.IsActive(musicinformation)">ClearProperty(show_info_song,Home)</onload> -->
+    <!-- <onload condition="!Window.Is(songinformation) + Window.IsActive(musicinformation)">ClearProperty(show_info_album,Home)</onload> -->
 
     <!-- ==================================== -->
     <!--               ON UNLOAD              -->
@@ -89,7 +90,8 @@
     <!-- SHOW INFO ARTIST - IF SONGINFORMATION IS OPEN -->
 
     <onunload condition="Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))">ClearProperty(show_info_song,Home)</onunload>
-    <onunload condition="Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))">ClearProperty(show_info_artist,Home)</onunload>
+    <onunload condition="Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_album))">ClearProperty(show_info_album,Home)</onunload>
+    <onunload condition="Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_artist))">ClearProperty(show_info_artist,Home)</onunload>
 
     <controls>
         <include condition="!Skin.HasSetting(show.global.visualisation.background.video)">Hidden_Video_Window</include>
