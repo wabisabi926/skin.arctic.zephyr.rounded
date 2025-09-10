@@ -1880,62 +1880,59 @@
     </variable>
 
     <variable name="Label_Dialog_Info_Video_Footer_Tip_Right">
-        <value condition="Control.HasFocus(1223) | Control.HasFocus(7011)">$LOCALIZE[20410]</value>
-        <value condition="Control.HasFocus(1224)">$LOCALIZE[20410]</value>
-        <value condition="Control.HasFocus(1236)">$LOCALIZE[31208]</value>
-        <value condition="Control.HasFocus(8008)">$LOCALIZE[208]</value>
-        <value condition="Control.HasFocus(9001) + String.IsEqual(ListItem.DBType,tvshow) + [!Skin.HasSetting(filter.video.only.local) | String.IsEmpty(ListItem.DBID)]">$LOCALIZE[31582]</value>
-        <value condition="Control.HasFocus(9001) + String.IsEqual(ListItem.DBType,episode)">$LOCALIZE[20351]</value>
-        <value condition="Control.HasFocus(9001) + String.IsEqual(ListItem.DBType,season)">$LOCALIZE[20351]</value>
-        <value condition="Control.HasFocus(9001) + String.IsEqual(ListItem.DBType,movie)">$LOCALIZE[31002]</value>
-        <value condition="Control.HasFocus(9001)">$LOCALIZE[31021]</value>
-        <value condition="Control.HasFocus(9003)">$LOCALIZE[31165]</value>
-        <value condition="Control.HasFocus(9004)">$LOCALIZE[31101]</value>
-        <value condition="Control.HasFocus(9005)">$LOCALIZE[39123]</value>
-        <value condition="Control.HasFocus(9006)">$LOCALIZE[31116] $INFO[Window(Home).Property(SetDirectorSelected)]</value>
-        <value condition="Control.HasFocus(9010)">$LOCALIZE[16106]</value>
-        <value condition="Control.HasFocus(9011)">$LOCALIZE[31363]</value>
-        <value condition="Control.HasFocus(9012) + !Skin.HasSetting(filter.video.only.local)">$LOCALIZE[31375]</value>
-        <value condition="Control.HasFocus(9012) + Skin.HasSetting(filter.video.only.local)">$LOCALIZE[20220]</value>
-        <value condition="Control.HasFocus(9013)">$LOCALIZE[31477]</value>
-        <value condition="Control.HasFocus(9014) + String.IsEqual(ListItem.DBType,movie)">$LOCALIZE[31481]</value>
-        <value condition="Control.HasFocus(9014) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)]">$LOCALIZE[31486]</value>
-        <value condition="Control.HasFocus(9015)">$LOCALIZE[31373]</value>
-        <value condition="Control.HasFocus(9017)">$LOCALIZE[31533]</value>
-        <value condition="Control.HasFocus(9018)">$LOCALIZE[31153]</value>
-        <value condition="Control.HasFocus(9019)">$LOCALIZE[31021]</value>
-        <value condition="Control.HasFocus(9020)">$LOCALIZE[31537] $INFO[Window(Home).Property(SetCreatorSelected)]</value>
-        <value condition="Control.HasFocus(9035)">$LOCALIZE[31116] $INFO[ListItem.Director]</value>
-        <value condition="Control.HasFocus(9036)">$LOCALIZE[31128] $INFO[ListItem.Studio]</value>
-        <value condition="Control.HasFocus(9052)">$LOCALIZE[31141] $INFO[ListItem.Label]</value>
-        <value condition="Control.HasFocus(9053)">$LOCALIZE[31529] $INFO[ListItem.Label]</value>
-        <value condition="Control.HasFocus(9056)">$LOCALIZE[31526] $INFO[Window(Home).Property(SetWriterSelected)]</value>
-        <value condition="Control.HasFocus(9057)">$LOCALIZE[31168]</value>
-        <value condition="Control.HasFocus(9058)">$LOCALIZE[31141] $INFO[ListItem.Label] $LOCALIZE[31535]</value>
-        <value condition="Control.HasFocus(9059)">$LOCALIZE[31529] $INFO[ListItem.Label] $LOCALIZE[31535]</value>
-        <value condition="Control.HasFocus(9060)">$LOCALIZE[31116] $INFO[Listitem.Label]</value>
-        <value condition="Control.HasFocus(9077)">$LOCALIZE[31337]$INFO[Container(9911).ListItem.Label,: ,]</value>
-        <value condition="Control.HasFocus(9078)">$LOCALIZE[1024]</value>
-        <value condition="Control.HasFocus(9079)">$LOCALIZE[36905]</value>
-        <value condition="Control.HasFocus(9108)">$LOCALIZE[36910]</value>
-        <value condition="Control.HasFocus(9201) + Player.Playing">$LOCALIZE[13404] $LOCALIZE[31427]</value>
-        <value condition="Control.HasFocus(9201) + !Player.Playing">$LOCALIZE[13404] $LOCALIZE[31427]</value>
-        <value condition="Control.HasFocus(90122) + !Skin.HasSetting(filter.video.only.local)">$LOCALIZE[31375]</value>
-        <value condition="Control.HasFocus(90122) + Skin.HasSetting(filter.video.only.local)">$LOCALIZE[20220]</value>
-        <value condition="Control.HasFocus(7) + String.IsEmpty(ListItem.UserRating)">$LOCALIZE[38023]</value>
-        <value condition="Control.HasFocus(7) + !String.IsEmpty(ListItem.UserRating)">$INFO[ListItem.UserRating,$LOCALIZE[38018]: ]</value>
-        <value condition="Control.HasFocus(14)">$LOCALIZE[31538]</value>
-        <value condition="Control.HasFocus(15)">$LOCALIZE[31539]</value>
-        <value condition="Control.HasFocus(49)">$LOCALIZE[31127]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),1223) | String.IsEqual(Window(Home).Property(last_video_focus),7011)">$LOCALIZE[20410]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),1224)">$LOCALIZE[20410]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),1236)">$LOCALIZE[31208]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),8008)">$LOCALIZE[208]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9001) + String.IsEqual(ListItem.DBType,tvshow) + [!Skin.HasSetting(filter.video.only.local) | String.IsEmpty(ListItem.DBID)]">$LOCALIZE[31582]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9001) + String.IsEqual(ListItem.DBType,episode)">$LOCALIZE[20351]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9001) + String.IsEqual(ListItem.DBType,season)">$LOCALIZE[20351]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9001) + String.IsEqual(ListItem.DBType,movie)">$LOCALIZE[31002]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9001)">$LOCALIZE[31021]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9003)">$LOCALIZE[31165]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9004)">$LOCALIZE[31101]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9005)">$LOCALIZE[39123]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9006)">$LOCALIZE[31116] $INFO[Window(Home).Property(SetDirectorSelected)]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9010)">$LOCALIZE[16106]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9011)">$LOCALIZE[31363]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9012) + !Skin.HasSetting(filter.video.only.local)">$LOCALIZE[31375]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9012) + Skin.HasSetting(filter.video.only.local)">$LOCALIZE[20220]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9013)">$LOCALIZE[31477]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9014) + String.IsEqual(ListItem.DBType,movie)">$LOCALIZE[31481]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9014) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)]">$LOCALIZE[31486]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9015)">$LOCALIZE[31373]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9017)">$LOCALIZE[31533]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9018)">$LOCALIZE[31153]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9019)">$LOCALIZE[31021]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9020)">$LOCALIZE[31537] $INFO[Window(Home).Property(SetCreatorSelected)]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9035)">$LOCALIZE[31116] $INFO[ListItem.Director]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9036)">$LOCALIZE[31128] $INFO[ListItem.Studio]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9052)">$LOCALIZE[31141] $INFO[ListItem.Label]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9053)">$LOCALIZE[31529] $INFO[ListItem.Label]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9056)">$LOCALIZE[31526] $INFO[Window(Home).Property(SetWriterSelected)]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9057)">$LOCALIZE[31168]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9058)">$LOCALIZE[31141] $INFO[ListItem.Label] $LOCALIZE[31535]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9059)">$LOCALIZE[31529] $INFO[ListItem.Label] $LOCALIZE[31535]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9060)">$LOCALIZE[31116] $INFO[Listitem.Label]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9077)">$LOCALIZE[31337]$INFO[Container(9911).ListItem.Label,: ,]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9078)">$LOCALIZE[1024]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9079)">$LOCALIZE[36905]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9108)">$LOCALIZE[36910]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9201) + Player.Playing">$LOCALIZE[13404] $LOCALIZE[31427]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9201) + !Player.Playing">$LOCALIZE[13404] $LOCALIZE[31427]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),90122) + !Skin.HasSetting(filter.video.only.local)">$LOCALIZE[31375]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),90122) + Skin.HasSetting(filter.video.only.local)">$LOCALIZE[20220]</value>
+
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),7) + String.IsEmpty(ListItem.UserRating)">$LOCALIZE[38023]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),7) + !String.IsEmpty(ListItem.UserRating)">$INFO[ListItem.UserRating,$LOCALIZE[38018]: ]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),49)">$LOCALIZE[31127]</value>
     </variable>
 
     <variable name="Label_Dialog_Info_Music_Footer_Tip_Right">
         <value condition="String.IsEqual(Window(Home).Property(last_music_focus),9001)">$LOCALIZE[208]</value>
         <value condition="String.IsEqual(Window(Home).Property(last_music_focus),9003)">$LOCALIZE[31170]</value>
-
         <value condition="String.IsEqual(Window(Home).Property(last_music_focus),9004)">$LOCALIZE[31169] $INFO[ListItem.Artist]</value>
         <value condition="String.IsEqual(Window(Home).Property(last_music_focus),9024)">$LOCALIZE[31143] $INFO[ListItem.Artist]</value>
-
         <value condition="String.IsEqual(Window(Home).Property(last_music_focus),9005)">$LOCALIZE[31167]</value>
         <value condition="String.IsEqual(Window(Home).Property(last_music_focus),9006)">$LOCALIZE[39123]</value>
         <value condition="String.IsEqual(Window(Home).Property(last_music_focus),9007) + String.IsEmpty(ListItem.UserRating)">$LOCALIZE[38023]</value>
@@ -1943,15 +1940,12 @@
         <value condition="String.IsEqual(Window(Home).Property(last_music_focus),9008)">$LOCALIZE[16106]</value>
         <value condition="String.IsEqual(Window(Home).Property(last_music_focus),9119)">$LOCALIZE[21887]</value>
         <value condition="String.IsEqual(Window(Home).Property(last_music_focus),9011)">$LOCALIZE[31481]</value>
-
         <value condition="String.IsEqual(Window(Home).Property(last_music_focus),9029)">$LOCALIZE[31249] $INFO[ListItem.Artist]</value>
-
         <value condition="String.IsEqual(Window(Home).Property(last_music_focus),9030)">$LOCALIZE[31477]</value>
         <value condition="String.IsEqual(Window(Home).Property(last_music_focus),9201) + Player.Playing">$LOCALIZE[36045]</value>
         <value condition="String.IsEqual(Window(Home).Property(last_music_focus),9201) + !Player.Playing">$LOCALIZE[13404] $LOCALIZE[31427]</value>
         <value condition="String.IsEqual(Window(Home).Property(last_music_focus),9202) + Player.Playing">$LOCALIZE[13404] $LOCALIZE[31427]</value>
         <value condition="String.IsEqual(Window(Home).Property(last_music_focus),9202) + !Player.Playing">$LOCALIZE[13404] $LOCALIZE[31427]</value>
-
         <value condition="String.IsEqual(Window(Home).Property(last_music_focus),12) + !String.IsEmpty(Window(Home).Property(show_info_song)) + !String.IsEmpty(Window(Home).Property(show_info_album))">$LOCALIZE[31520]</value>
 
         <value condition="String.IsEqual(Window(Home).Property(last_music_focus),12) + !String.IsEmpty(Window(Home).Property(show_info_song)) + String.IsEmpty(Window(Home).Property(show_info_album))">$LOCALIZE[31521]</value>
