@@ -1545,7 +1545,7 @@
 
     <include name="Def_Dialog_Info_Navigation_Video">
         <control type="grouplist" id="9000">
-            <visible allowhiddenfocus="true">ControlGroup(9000).HasFocus() | ![ControlGroup(9090).HasFocus() | Control.HasFocus(9669) | Control.HasFocus(9506) | Control.HasFocus(9556) | Control.HasFocus(9557) | Control.HasFocus(9514) | Control.HasFocus(9518) | Control.HasFocus(9517) | Control.HasFocus(9503) | Control.HasFocus(9579) | Control.HasFocus(9515) | Control.HasFocus(9520) | Control.HasFocus(95067) | Control.HasFocus(95567) | Control.HasFocus(95577) | Control.HasFocus(95147) | Control.HasFocus(95187) | Control.HasFocus(95177) | Control.HasFocus(95037) | Control.HasFocus(95797) | Control.HasFocus(95157) | Control.HasFocus(95207)] | [Control.HasFocus(9669) + [String.IsEqual(ListItem.Property(tmdb_type),person) | String.IsEqual(ListItem.DBType,set)]]</visible>
+            <visible allowhiddenfocus="true">ControlGroup(9000).HasFocus() | !$EXP[Group9090IsFocus] | $EXP[Plot9669IsFocus]</visible>
 
             <include>Animation_Scrolltime_Widgets_List</include>
 
@@ -1667,17 +1667,19 @@
             <!-- BACK FULLSCREEN NOW PLAYING -->
 
             <control type="radiobutton" id="9201">
+                <visible>Player.HasMedia + String.IsEmpty(Window(Home).Property(TrailerFullscreenIsPlaying))</visible>
+
+                <onfocus>SetProperty(last_video_focus,9201,Home)</onfocus>
                 <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
                 <onfocus condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetProperty(moviecontent,13,Home)</onfocus>
+
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
                 <include>Def_Button_Dimensions</include>
 
                 <onclick condition="Player.HasVideo">close</onclick>
                 <onclick condition="Player.HasAudio">close</onclick>
-
                 <onclick condition="Window.IsVisible(1190) + Player.HasVideo">RunScript(plugin.video.themoviedb.helper,close_dialog=1190)</onclick>
                 <onclick condition="Player.HasVideo">AlarmClock(DelayFullSreen,ActivateWindow(fullscreenvideo),00:01,silent)</onclick>
-
                 <onclick condition="Player.HasAudio">ActivateWindow(visualisation)</onclick>
 
                 <texturenofocus colordiffuse="Dark4" border="12">common/boxsquare.png</texturenofocus>
@@ -1687,15 +1689,20 @@
                 <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/expand.png</textureradioofffocus>
                 <textureradiooffnofocus colordiffuse="Dark2">buttonsdialogs/expand.png</textureradiooffnofocus>
                 <selected>Player.Playing</selected>
-                <visible>Player.HasMedia + String.IsEmpty(Window(Home).Property(TrailerFullscreenIsPlaying))</visible>
             </control>
 
             <!-- PAUSE / PLAY -->
 
             <control type="radiobutton" id="8008">
+                <visible>!ListItem.IsPlaying</visible>
+                <visible>!String.IsEqual(ListItem.DBType,tvshow) + !String.IsEqual(ListItem.DBType,season)</visible>
+                <visible>!String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEqual(ListItem.DBType,set)</visible>
+
+                <onfocus>SetProperty(last_video_focus,8008,Home)</onfocus>
+                <onfocus>ClearProperty(moviecontent,Home)</onfocus>
 
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
-                <onfocus>ClearProperty(moviecontent,Home)</onfocus>
+
                 <include>Def_Button_Dimensions</include>
                 <texturenofocus colordiffuse="Dark4" border="12">common/boxsquare.png</texturenofocus>
                 <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</texturefocus>
@@ -1704,25 +1711,23 @@
                 <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/play.png</textureradioofffocus>
                 <textureradiooffnofocus colordiffuse="Dark2">buttonsdialogs/play.png</textureradiooffnofocus>
                 <selected>ListItem.IsResumable</selected>
-                <onclick>SetProperty(set.player.icon,$INFO[ListItem.Icon],Home)</onclick>
 
+                <onclick>SetProperty(set.player.icon,$INFO[ListItem.Icon],Home)</onclick>
                 <onclick condition="Window.IsVisible(1190)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,playmedia=$INFO[ListItem.FolderPath])</onclick>
                 <onclick condition="!Window.IsVisible(1190)">SendClick(8)</onclick>
-
                 <onclick>Dialog.Close(all)</onclick>
-                <visible>!ListItem.IsPlaying</visible>
-                <visible>!String.IsEqual(ListItem.DBType,tvshow) + !String.IsEqual(ListItem.DBType,season)</visible>
-                <visible>!String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEqual(ListItem.DBType,set)</visible>
-
-                <!-- <visible>!Integer.IsEqual(Container(50).NumItems,0) + String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating)) + !String.IsEmpty(Window(Home).Property(Init_Value_TMDb))</visible> -->
             </control>
 
             <!-- FOLDER SEASON / EPISODES / SET -->
 
             <control type="radiobutton" id="9078">
                 <visible>String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,set)</visible>
-                <onfocus>ClearProperty(ShowDisc)</onfocus>
+
+                <onfocus>SetProperty(last_video_focus,9078,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent,Home)</onfocus>
+
+                <onfocus>ClearProperty(ShowDisc)</onfocus>
+
                 <onclick condition="Skin.HasSetting(home.views.flix.autoplay.trailer) + $EXP[Trailer_Is_Playing] + !Skin.HasSetting(enable.trailer.playing.on.unfocus)">Stop</onclick>
                 <onclick condition="Skin.HasSetting(home.views.flix.autoplay.trailer) + $EXP[Trailer_Is_Playing] + !Skin.HasSetting(enable.trailer.playing.on.unfocus)">ClearProperty(Last_Trailer_Path,Home)</onclick>
                 <!-- <onclick>Close</onclick> -->
@@ -1741,8 +1746,12 @@
             <control type="radiobutton" id="9077">
                 <visible>[String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)]</visible>
                 <visible>Integer.IsGreater(ListItem.Property(UnwatchedEpisodes),0) + !String.IsEmpty(ListItem.DBID) + !Skin.HasSetting(HideNextUpEpisodeButton) + !String.IsEmpty(Container(9911).ListItem.FileNameAndPath)</visible>
+
+                <onfocus>SetProperty(last_video_focus,9077,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent,Home)</onfocus>
+
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
+
                 <onclick>Dialog.Close(all)</onclick>
                 <onclick condition="Window.IsVisible(1190)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190)</onclick>
                 <onclick>AlarmClock(LaunchUpNextEpisode,PlayMedia($ESCINFO[Container(9911).ListItem.FileNameAndPath]),00:01,silent)</onclick>
@@ -1756,8 +1765,15 @@
 
             <control type="radiobutton" id="9001">
                 <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)</visible>
-                <onfocus condition="!String.IsEqual(Window(Home).Property(moviecontent),1)">ClearProperty(moviecontent,Home)</onfocus>
+
+                <onfocus>SetProperty(last_video_focus,9001,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,1,Home)</onfocus>
+
+                <include>Def_Button_Dimensions</include>
+
+                <include content="Def_Button_Textures">
+                    <param name="icon" value="buttonsdialogs/info.png" />
+                </include>
 
                 <!-- SEARCH TVSHOW INFO -->
 
@@ -1821,19 +1837,21 @@
                 <onclick condition="[String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">ClearProperty(Encoded.ListItem.Studio,Home)</onclick>
 
                 <onclick condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">ClearProperty(Director_Person_Query,Home)</onclick>
-
-                <include>Def_Button_Dimensions</include>
-
-                <include content="Def_Button_Textures">
-                    <param name="icon" value="buttonsdialogs/info.png" />
-                </include>
             </control>
 
             <!-- TRAILER - FULLSCREEN -->
 
             <control type="radiobutton" id="1224">
+                <visible>!String.IsEmpty(ListItem.Trailer) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Trailer))</visible>
+                <visible>!String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEqual(ListItem.DBType,set)</visible>
+                <visible>System.AddonIsEnabled(plugin.video.youtube)</visible>
+                <visible>!Skin.HasSetting(PlayTrailerWindowed)</visible>
+
+                <onfocus>SetProperty(last_video_focus,1224,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent,Home)</onfocus>
+
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
+
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/trailer.png" />
@@ -1846,19 +1864,21 @@
 
                 <!-- <onclick>Close</onclick> -->
                 <!-- <onclick condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.Path.Current))">RunScript(plugin.video.themoviedb.helper,close_dialog=1190)</onclick> -->
-
-                <visible>!String.IsEmpty(ListItem.Trailer) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Trailer))</visible>
-                <visible>!Skin.HasSetting(PlayTrailerWindowed)</visible>
-                <visible>!String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEqual(ListItem.DBType,set)</visible>
-                <visible>System.AddonIsEnabled(plugin.video.youtube)</visible>
             </control>
 
             <!-- TRAILER - WINDOWED -->
 
             <control type="radiobutton" id="1223">
-                <onfocus condition="!String.IsEqual(Window(Home).Property(moviecontent),6)">ClearProperty(moviecontent,Home)</onfocus>
+                <visible>!String.IsEmpty(ListItem.Trailer) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Trailer))</visible>
+                <visible>!String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEqual(ListItem.DBType,set)</visible>
+                <visible>System.AddonIsEnabled(plugin.video.youtube)</visible>
+                <visible>Skin.HasSetting(PlayTrailerWindowed)</visible>
+
+                <onfocus>SetProperty(last_video_focus,1223,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,6,Home)</onfocus>
+
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
+
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/trailer.png" />
@@ -1873,11 +1893,6 @@
                 <onclick>$VAR[Path_Trailer]</onclick>
                 <onclick>SetProperty(TrailerFullscreenIsPlaying,1,Home)</onclick>
                 <onclick>SetFocus(7012)</onclick>
-
-                <visible>!String.IsEmpty(ListItem.Trailer) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Trailer))</visible>
-                <visible>Skin.HasSetting(PlayTrailerWindowed)</visible>
-                <visible>!String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEqual(ListItem.DBType,set)</visible>
-                <visible>System.AddonIsEnabled(plugin.video.youtube)</visible>
             </control>
 
         <!-- PERSONS -->
@@ -1885,11 +1900,15 @@
             <!-- LOCAL ONLY / ON LINE -->
 
              <control type="radiobutton" id="90122">
+                <visible>String.IsEqual(ListItem.Property(tmdb_type),person) | [ListItem.IsCollection + !String.IsEmpty(ListItem.DBID)]</visible>
+                <visible>System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)</visible>
+
+                <onfocus>SetProperty(last_video_focus,90122,Home)</onfocus>
                 <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
                 <onfocus condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetProperty(moviecontent,13,Home)</onfocus>
+
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
-                <onclick>Skin.ToggleSetting(filter.video.only.local)</onclick>
-                <include>Def_Cleanup_On_Click</include>
+
                 <include>Def_Button_Dimensions</include>
                 <texturenofocus colordiffuse="Dark4" border="12">common/boxsquare.png</texturenofocus>
                 <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</texturefocus>
@@ -1898,17 +1917,22 @@
                 <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/storageinfo.png</textureradioofffocus>
                 <textureradiooffnofocus colordiffuse="Dark2">buttonsdialogs/storageinfo.png</textureradiooffnofocus>
                 <usealttexture>Skin.HasSetting(filter.video.only.local)</usealttexture>
-                <visible>String.IsEqual(ListItem.Property(tmdb_type),person) | [ListItem.IsCollection + !String.IsEmpty(ListItem.DBID)]</visible>
-                <visible>System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)</visible>
+
+                <onclick>Skin.ToggleSetting(filter.video.only.local)</onclick>
+                <include>Def_Cleanup_On_Click</include>
             </control>
 
             <!-- LOCAL ONLY IF TMDB HELPER DISABLE -->
 
              <control type="radiobutton" id="90123">
+                <visible>String.IsEqual(ListItem.Property(tmdb_type),person) | String.IsEqual(ListItem.DBType,set)</visible>
+                <visible>![System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)]</visible>
+
+                <onfocus>SetProperty(last_video_focus,90123,Home)</onfocus>
                 <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
                 <onfocus condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetProperty(moviecontent,13,Home)</onfocus>
+
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
-                <onfocus condition="!Skin.HasSetting(filter.video.only.local)">Skin.ToggleSetting(filter.video.only.local)</onfocus>
 
                 <include>Def_Button_Dimensions</include>
                 <texturenofocus colordiffuse="Dark4" border="12">common/boxsquare.png</texturenofocus>
@@ -1918,23 +1942,28 @@
                 <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/storageinfo.png</textureradioofffocus>
                 <textureradiooffnofocus colordiffuse="Dark2">buttonsdialogs/storageinfo.png</textureradiooffnofocus>
                 <usealttexture>Skin.HasSetting(filter.video.only.local)</usealttexture>
-                <visible>String.IsEqual(ListItem.Property(tmdb_type),person) | String.IsEqual(ListItem.DBType,set)</visible>
-                <visible>![System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)]</visible>
+
+                <onfocus condition="!Skin.HasSetting(filter.video.only.local)">Skin.ToggleSetting(filter.video.only.local)</onfocus>
             </control>
 
             <!-- CAST PICTURES -->
 
             <!-- <control type="radiobutton" id="9054"> -->
                 <!-- <visible>String.IsEqual(ListItem.Property(tmdb_type),person)</visible> -->
+
+                <!-- <onfocus>SetProperty(last_video_focus,9054,Home)</onfocus>                 -->
                 <!-- <onfocus condition="!String.IsEqual(Window(Home).Property(moviecontent),13)">ClearProperty(moviecontent,Home)</onfocus> -->
-                <!-- <onfocus>ClearProperty(ShowDisc)</onfocus> -->
                 <!-- <onfocus>SetProperty(moviecontent,13,Home)</onfocus> -->
-                <!-- <onclick>SetFocus(9554)</onclick> -->
-                <!-- <onclick>SetProperty(view_extended,1,Home)</onclick> -->
+
+                <!-- <onfocus>ClearProperty(ShowDisc)</onfocus> -->
+
                 <!-- <include>Def_Button_Dimensions</include> -->
                 <!-- <include content="Def_Button_Textures"> -->
                     <!-- <param name="icon" value="buttonsdialogs/thumb.png" /> -->
                 <!-- </include> -->
+
+                <!-- <onclick>SetFocus(9554)</onclick> -->
+                <!-- <onclick>SetProperty(view_extended,1,Home)</onclick> -->
             <!-- </control> -->
 
         <!-- PERSONS -->
@@ -1942,142 +1971,170 @@
             <!-- MOVIES LIST BY DIRECTOR -->
 
             <control type="radiobutton" id="9060">
-                <onfocus condition="!String.IsEqual(Window(Home).Property(moviecontent),20)">ClearProperty(moviecontent,Home)</onfocus>
-                <onfocus>ClearProperty(ShowDisc)</onfocus>
+                <visible>String.IsEqual(ListItem.Property(tmdb_type),person)</visible>
+                <visible>!Integer.IsEqual(Container(9560).NumItems,0) + !Container(9560).IsUpdating</visible>
+                <visible>[Skin.HasSetting(filter.video.only.local) + !String.IsEmpty(Window(Home).Property(SetDirectorSelected))] | [!Skin.HasSetting(filter.video.only.local) + !String.IsEmpty(Window(Home).Property(Director_Person_Query))]</visible>
+
+                <onfocus>SetProperty(last_video_focus,9060,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,20,Home)</onfocus>
-                <onclick>SetFocus(9560)</onclick>
-                <onclick>SetProperty(view_extended,1,Home)</onclick>
-                <onclick>SetProperty(TMDbHelper.WidgetContainer,9560,Home)</onclick>
-                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+
+                <onfocus>ClearProperty(ShowDisc)</onfocus>
+
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/director.png" />
                 </include>
-                <visible>String.IsEqual(ListItem.Property(tmdb_type),person)</visible>
-                <visible>!Integer.IsEqual(Container(9560).NumItems,0) + !Container(9560).IsUpdating</visible>
-                <!-- <visible>[!Integer.IsEqual(Container(9560).NumItems,0) + !Container(9560).IsUpdating] | !String.IsEmpty(Window(Home).Property(isoninfo_director))</visible> -->
-                <!-- <visible>String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating)) + !String.IsEmpty(Window(Home).Property(Init_Value_TMDb))</visible> -->
-                <visible>[Skin.HasSetting(filter.video.only.local) + !String.IsEmpty(Window(Home).Property(SetDirectorSelected))] | [!Skin.HasSetting(filter.video.only.local) + !String.IsEmpty(Window(Home).Property(Director_Person_Query))]</visible>
+
+                <onclick>SetFocus(9560)</onclick>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9560,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
             </control>
 
             <!-- MOVIES LIST BY CAST -->
 
             <control type="radiobutton" id="9052">
-                <onfocus condition="!String.IsEqual(Window(Home).Property(moviecontent),11)">ClearProperty(moviecontent,Home)</onfocus>
-                <onfocus>ClearProperty(ShowDisc)</onfocus>
+                <visible>String.IsEqual(ListItem.Property(tmdb_type),person)</visible>
+                <visible>!Integer.IsEqual(Container(9552).NumItems,0) + !Container(9552).IsUpdating</visible>
+
+                <onfocus>SetProperty(last_video_focus,9052,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,11,Home)</onfocus>
-                <onclick>SetFocus(9552)</onclick>
-                <onclick>SetProperty(view_extended,1,Home)</onclick>
-                <onclick>SetProperty(TMDbHelper.WidgetContainer,9552,Home)</onclick>
-                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+
+                <onfocus>ClearProperty(ShowDisc)</onfocus>
+
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/movie.png" />
                 </include>
-                <visible>String.IsEqual(ListItem.Property(tmdb_type),person)</visible>
-                <visible>!Integer.IsEqual(Container(9552).NumItems,0) + !Container(9552).IsUpdating</visible>
-                <!-- <visible>String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating)) + !String.IsEmpty(Window(Home).Property(Init_Value_TMDb))</visible> -->
+
+                <onclick>SetFocus(9552)</onclick>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9552,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
             </control>
 
             <!-- TVSHOWS LIST BY CAST -->
 
             <control type="radiobutton" id="9053">
-                <onfocus condition="!String.IsEqual(Window(Home).Property(moviecontent),12)">ClearProperty(moviecontent,Home)</onfocus>
-                <onfocus>ClearProperty(ShowDisc)</onfocus>
+                <visible>String.IsEqual(ListItem.Property(tmdb_type),person)</visible>
+                <visible>!Integer.IsEqual(Container(9553).NumItems,0) + !Container(9553).IsUpdating</visible>
+
+                <onfocus>SetProperty(last_video_focus,9053,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,12,Home)</onfocus>
-                <onclick>SetFocus(9553)</onclick>
-                <onclick>SetProperty(view_extended,1,Home)</onclick>
-                <onclick>SetProperty(TMDbHelper.WidgetContainer,9553,Home)</onclick>
-                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+
+                <onfocus>ClearProperty(ShowDisc)</onfocus>
+
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/tvshow.png" />
                 </include>
-                <visible>String.IsEqual(ListItem.Property(tmdb_type),person)</visible>
-                <visible>!Integer.IsEqual(Container(9553).NumItems,0) + !Container(9553).IsUpdating</visible>
-                <!-- <visible>String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating)) + !String.IsEmpty(Window(Home).Property(Init_Value_TMDb))</visible> -->
+
+                <onclick>SetFocus(9553)</onclick>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9553,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
             </control>
 
             <!-- MOVIES LIST BY MEMBER CREW -->
 
             <control type="radiobutton" id="9058">
-                <onfocus condition="!String.IsEqual(Window(Home).Property(moviecontent),18)">ClearProperty(moviecontent,Home)</onfocus>
-                <onfocus>ClearProperty(ShowDisc)</onfocus>
+                <visible>String.IsEqual(ListItem.Property(tmdb_type),person) + !Skin.HasSetting(filter.video.only.local)</visible>
+                <visible>!Integer.IsEqual(Container(9558).NumItems,0) + !Container(9558).IsUpdating</visible>
+
+                <onfocus>SetProperty(last_video_focus,9058,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,18,Home)</onfocus>
-                <onclick>SetFocus(9558)</onclick>
-                <onclick>SetProperty(view_extended,1,Home)</onclick>
-                <onclick>SetProperty(TMDbHelper.WidgetContainer,9558,Home)</onclick>
-                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+
+                <onfocus>ClearProperty(ShowDisc)</onfocus>
+
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/people-group.png" />
                 </include>
-                <visible>String.IsEqual(ListItem.Property(tmdb_type),person) + !Skin.HasSetting(filter.video.only.local)</visible>
-                <visible>!Integer.IsEqual(Container(9558).NumItems,0) + !Container(9558).IsUpdating</visible>
-                <!-- <visible>String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating)) + !String.IsEmpty(Window(Home).Property(Init_Value_TMDb))</visible> -->
+
+                <onclick>SetFocus(9558)</onclick>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9558,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
             </control>
 
             <!-- TVSHOWS LIST BY MEMBER CREW -->
 
             <control type="radiobutton" id="9059">
-                <onfocus condition="!String.IsEqual(Window(Home).Property(moviecontent),19)">ClearProperty(moviecontent,Home)</onfocus>
-                <onfocus>ClearProperty(ShowDisc)</onfocus>
+                <visible>String.IsEqual(ListItem.Property(tmdb_type),person) + !Skin.HasSetting(filter.video.only.local)</visible>
+                <visible>!Integer.IsEqual(Container(9559).NumItems,0) + !Container(9559).IsUpdating</visible>
+
+                <onfocus>SetProperty(last_video_focus,9059,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,19,Home)</onfocus>
-                <onclick>SetFocus(9559)</onclick>
-                <onclick>SetProperty(view_extended,1,Home)</onclick>
-                <onclick>SetProperty(TMDbHelper.WidgetContainer,9559,Home)</onclick>
-                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+
+                <onfocus>ClearProperty(ShowDisc)</onfocus>
+
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/people-line.png" />
                 </include>
-                <visible>String.IsEqual(ListItem.Property(tmdb_type),person) + !Skin.HasSetting(filter.video.only.local)</visible>
-                <visible>!Integer.IsEqual(Container(9559).NumItems,0) + !Container(9559).IsUpdating</visible>
-                <!-- <visible>String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating)) + !String.IsEmpty(Window(Home).Property(Init_Value_TMDb))</visible> -->
+
+                <onclick>SetFocus(9559)</onclick>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9559,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
             </control>
 
             <!-- WIKIPEDIA -->
 
             <control type="radiobutton" id="9013">
                 <visible>String.IsEqual(ListItem.DBType,video) | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)</visible>
+                <visible>[!String.IsEqual(ListItem.DBType,video) + !String.IsEmpty(ListItem.DBType)] | String.IsEqual(ListItem.Property(tmdb_type),person)</visible>
+                <visible>!Skin.HasSetting(hide.button.video.wiki) + System.AddonIsEnabled(script.wikipedia)</visible>
+
+                <onfocus>SetProperty(last_video_focus,9013,Home)</onfocus>
                 <onfocus condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetProperty(moviecontent,13,Home)</onfocus>
                 <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
+
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
                 <onfocus>ClearProperty(dontslide,Home)</onfocus>
                 <onclick>SetProperty(dontslide,1,Home)</onclick>
-                <onclick>$VAR[Path_Dialog_Info_Wikipedia]</onclick>
+
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/wiki.png" />
                 </include>
-                <visible>!Skin.HasSetting(hide.button.video.wiki) + System.AddonIsEnabled(script.wikipedia)</visible>
-                <visible>[!String.IsEqual(ListItem.DBType,video) + !String.IsEmpty(ListItem.DBType)] | String.IsEqual(ListItem.Property(tmdb_type),person)</visible>
+
+                <onclick>$VAR[Path_Dialog_Info_Wikipedia]</onclick>
             </control>
 
             <!-- CINEMA EXPERIENCE -->
 
             <control type="radiobutton" id="49">
+                <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)</visible>
+                <visible>Skin.HasSetting(show.button.video.cinema) + System.AddonIsEnabled(script.preshowexperience)</visible>
+
+                <onfocus>SetProperty(last_video_focus,49,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent,Home)</onfocus>
+
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
-                <include>OnFocusOnClick</include>
-                <include>ClearOnFocusOnClick</include>
+
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/playcinema.png" />
                 </include>
+
+                <include>OnFocusOnClick</include>
+                <include>ClearOnFocusOnClick</include>
                 <onclick>RunScript(script.preshowexperience,dbtype=$INFO[ListItem.DBType],dbid=$INFO[ListItem.DBID])</onclick>
-                <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)</visible>
-                <visible>Skin.HasSetting(show.button.video.cinema) + System.AddonIsEnabled(script.preshowexperience)</visible>
             </control>
 
             <!-- USER RATING -->
 
             <control type="radiobutton" id="7">
+                <visible>[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)] + Control.IsEnabled(7)</visible>
+                <visible>!Skin.HasSetting(hide.button.video.rating)</visible>
+
+                <onfocus>SetProperty(last_video_focus,7,Home)</onfocus>
                 <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
                 <onfocus condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetProperty(moviecontent,13,Home)</onfocus>
+
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
-                <include>OnFocusOnClick</include>
-                <include>ClearOnFocusOnClick</include>
+
                 <include>Def_Button_Dimensions</include>
                 <texturenofocus colordiffuse="Dark4" border="12">common/boxsquare.png</texturenofocus>
                 <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</texturefocus>
@@ -2086,27 +2143,34 @@
                 <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/rating_new.png</textureradioofffocus>
                 <textureradiooffnofocus colordiffuse="Dark2">buttonsdialogs/rating_new.png</textureradiooffnofocus>
                 <selected>String.IsEmpty(ListItem.UserRating)</selected>
-                <visible>[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)] + Control.IsEnabled(7)</visible>
-                <visible>!Skin.HasSetting(hide.button.video.rating)</visible>
+
+                <include>OnFocusOnClick</include>
+                <include>ClearOnFocusOnClick</include>
             </control>
 
             <!-- ADD-ON "SPECIAL FEATURES" -->
 
             <control type="radiobutton" id="1236">
+                <visible>!Skin.HasSetting(hide.button.video.specialfeatures)</visible>
+                <visible>System.AddonIsEnabled(plugin.video.specialfeatures)</visible>
+                <visible>String.IsEqual(Window(Home).Property(SpecialFeatures.Visible),true)</visible>
+
+                <onfocus>SetProperty(last_video_focus,1236,Home)</onfocus>
                 <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
                 <onfocus condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetProperty(moviecontent,13,Home)</onfocus>
+
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
-                <include>OnFocusOnClick</include>
-                <include>ClearOnFocusOnClick</include>
+
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/more.png" />
                 </include>
-                <visible>System.AddonIsEnabled(plugin.video.specialfeatures)</visible>
-                <visible>String.IsEqual(Window(Home).Property(SpecialFeatures.Visible),true)</visible>
+
+                <include>OnFocusOnClick</include>
+                <include>ClearOnFocusOnClick</include>
+
                 <onclick>Action(close)</onclick>
                 <onclick>RunScript(plugin.video.specialfeatures,listitem)</onclick>
-                <visible>!Skin.HasSetting(hide.button.video.specialfeatures)</visible>
             </control>
 
         <!-- OTHERS -->
@@ -2114,80 +2178,94 @@
             <!-- FANART -->
 
             <control type="radiobutton" id="9005">
-                <onfocus condition="!String.IsEqual(Window(Home).Property(moviecontent),5)">ClearProperty(moviecontent,Home)</onfocus>
-                <onfocus>ClearProperty(ShowDisc)</onfocus>
-                <onfocus>SetProperty(moviecontent,5,Home)</onfocus>
-                <onclick>SetFocus(95051)</onclick>
-                <include>Def_Button_Dimensions</include>
-                <include content="Def_Button_Textures">
-                    <param name="icon" value="buttonsdialogs/image.png" />
-                </include>
                 <visible>!Skin.HasSetting(hide.button.video.fanart)</visible>
                 <visible>!String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEmpty(ListItem.DBType)</visible>
                 <visible>[!String.IsEmpty(ListItem.Art(fanart)) + !Skin.HasSetting(hide.artwork.video.fanart)] | [!String.IsEmpty(ListItem.Art(landscape)) + !Skin.HasSetting(hide.artwork.video.landscape)] | Skin.HasSetting(showartwork.video.tmdbhelper)</visible>
                 <visible>!Container.Content(seasons)</visible>
                 <!-- <visible>!Integer.IsEqual(Container(9505).NumItems,0) + !Container(9505).IsUpdating</visible> -->
-                <!-- <visible>String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating)) + !String.IsEmpty(Window(Home).Property(Init_Value_TMDb))</visible> -->
+
+                <onfocus>SetProperty(last_video_focus,9005,Home)</onfocus>
+                <onfocus>SetProperty(moviecontent,5,Home)</onfocus>
+
+                <onfocus>ClearProperty(ShowDisc)</onfocus>
+
+                <include>Def_Button_Dimensions</include>
+                <include content="Def_Button_Textures">
+                    <param name="icon" value="buttonsdialogs/image.png" />
+                </include>
+
+                <onclick>SetFocus(95051)</onclick>
             </control>
 
             <!-- YOUTUBE -->
 
             <control type="radiobutton" id="9004">
-                <onfocus condition="!String.IsEqual(Window(Home).Property(moviecontent),4)">ClearProperty(moviecontent,Home)</onfocus>
+                <visible>!Skin.HasSetting(hide.button.video.youtube) + System.AddonIsEnabled(plugin.video.youtube)</visible>
+                <visible>[!String.IsEqual(ListItem.DBType,set) + !String.IsEqual(ListItem.DBType,video) + !String.IsEmpty(ListItem.DBType)] | String.IsEqual(ListItem.Property(tmdb_type),person) | $EXP[IsTMDbHelperItem]</visible>
+                <!-- <visible>!Integer.IsEqual(Container(9504).NumItems,0) + !Container(9504).IsUpdating</visible> -->
+
+                <onfocus>SetProperty(last_video_focus,9004,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,4,Home)</onfocus>
+
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
-                <onclick>SetFocus(9504)</onclick>
-                <onclick>SetProperty(view_extended,1,Home)</onclick>
+
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/youtube.png" />
                 </include>
-                <onfocus condition="String.IsEmpty(Window(Home).Property(SetYoutubeSearch))">SetProperty(SetYoutubeSearch,1,Home)</onfocus>
 
-                <visible>!Skin.HasSetting(hide.button.video.youtube) + System.AddonIsEnabled(plugin.video.youtube)</visible>
-                <visible>[!String.IsEqual(ListItem.DBType,set) + !String.IsEqual(ListItem.DBType,video) + !String.IsEmpty(ListItem.DBType)] | String.IsEqual(ListItem.Property(tmdb_type),person) | $EXP[IsTMDbHelperItem]</visible>
-                <!-- <visible>!Integer.IsEqual(Container(9504).NumItems,0) + !Container(9504).IsUpdating</visible> -->
-                <!-- <visible>String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating)) + !String.IsEmpty(Window(Home).Property(Init_Value_TMDb))</visible> -->
+                <onfocus condition="String.IsEmpty(Window(Home).Property(SetYoutubeSearch))">SetProperty(SetYoutubeSearch,1,Home)</onfocus>
+                <onclick>SetFocus(9504)</onclick>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
             </control>
 
             <!-- TRAKT -->
 
             <control type="radiobutton" id="9011">
+                <visible>!Skin.HasSetting(hide.button.video.trakt)</visible>
+                <visible>[!String.IsEmpty(ListItem.Property(tmdb_id)) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.tmdb_id))] + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)] + !String.IsEmpty(Window(Home).Property(TMDbHelper.TraktIsAuth))</visible>
+                <enable>System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)</enable>
+
+                <onfocus>SetProperty(last_video_focus,9011,Home)</onfocus>
                 <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
                 <onfocus condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetProperty(moviecontent,13,Home)</onfocus>
+
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
+
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/trakt.png" />
                 </include>
+
                 <onclick>$VAR[Path_Dialog_Info_Trakt]</onclick>
-                <visible>!Skin.HasSetting(hide.button.video.trakt)</visible>
-                <visible>[!String.IsEmpty(ListItem.Property(tmdb_id)) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.tmdb_id))] + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)] + !String.IsEmpty(Window(Home).Property(TMDbHelper.TraktIsAuth))</visible>
-                <enable>System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)</enable>
             </control>
 
             <!-- SETTINGS -->
 
             <control type="radiobutton" id="9010">
-                <onright>9000</onright>
+                <visible>!Skin.HasSetting(global.kioskmode)</visible>
+                <visible>!String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEqual(ListItem.DBType,video) + !String.IsEmpty(ListItem.DBType)</visible>
+
+                <onfocus>SetProperty(last_video_focus,9010,Home)</onfocus>
                 <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
                 <onfocus condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetProperty(moviecontent,13,Home)</onfocus>
+
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
+
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/settings.png" />
                 </include>
+
+                <!-- <onright>9000</onright> -->
                 <onclick>SetFocus(9400)</onclick>
-                <visible>!Skin.HasSetting(global.kioskmode)</visible>
-                <visible>!String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEqual(ListItem.DBType,video) + !String.IsEmpty(ListItem.DBType)</visible>
             </control>
         </control>
     </include>
 
     <include name="Def_Dialog_Info_Navigation_Video_2">
         <control type="grouplist" id="9090">
-            <visible allowhiddenfocus="true">ControlGroup(9090).HasFocus() | Control.HasFocus(9669) | Control.HasFocus(9506) | Control.HasFocus(9556) | Control.HasFocus(9557) | Control.HasFocus(9514) | Control.HasFocus(9518) | Control.HasFocus(9517) | Control.HasFocus(9503) | Control.HasFocus(9579) | Control.HasFocus(9515) | Control.HasFocus(9520) | Control.HasFocus(95067) | Control.HasFocus(95567) | Control.HasFocus(95577) | Control.HasFocus(95147) | Control.HasFocus(95187) | Control.HasFocus(95177) | Control.HasFocus(95037) | Control.HasFocus(95797) | Control.HasFocus(95157) | Control.HasFocus(95207)</visible>
-
+            <visible allowhiddenfocus="true">$EXP[Group9090IsFocus]</visible>
             <visible>!String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEqual(ListItem.DBType,set)</visible>
 
             <include>Animation_Scrolltime_Widgets_List</include>
@@ -2219,10 +2297,15 @@
             <!-- LOCAL ONLY / ON LINE -->
 
              <control type="radiobutton" id="9012">
-                <onfocus condition="!String.IsEmpty(Window(Home).Property(moviecontent))">ClearProperty(moviecontent,Home)</onfocus>
+                <visible>System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)</visible>
+                <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)</visible>
+                <visible>!$EXP[IsAnPlugin] | $EXP[IsTMDbHelper] | $EXP[IsPluginShortlist]</visible>
+
+                <onfocus>SetProperty(last_video_focus,9012,Home)</onfocus>
+                <onfocus>ClearProperty(moviecontent,Home)</onfocus>
+
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
-                <include>Def_Cleanup_On_Click</include>
-                <onclick>Skin.ToggleSetting(filter.video.only.local)</onclick>
+
                 <include>Def_Button_Dimensions</include>
                 <texturenofocus colordiffuse="Dark4" border="12">common/boxsquare.png</texturenofocus>
                 <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_v.png</texturefocus>
@@ -2231,17 +2314,21 @@
                 <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/storageinfo.png</textureradioofffocus>
                 <textureradiooffnofocus colordiffuse="Dark2">buttonsdialogs/storageinfo.png</textureradiooffnofocus>
                 <usealttexture>Skin.HasSetting(filter.video.only.local)</usealttexture>
-                <visible>System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)</visible>
-                <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)</visible>
-                <visible>!$EXP[IsAnPlugin] | $EXP[IsTMDbHelper] | $EXP[IsPluginShortlist]</visible>
+
+                <include>Def_Cleanup_On_Click</include>
+                <onclick>Skin.ToggleSetting(filter.video.only.local)</onclick>
             </control>
 
             <!-- LOCAL ONLY IF TMDB HELPER DISABLE -->
 
              <control type="radiobutton" id="90124">
-                <onfocus condition="!String.IsEmpty(Window(Home).Property(moviecontent))">ClearProperty(moviecontent,Home)</onfocus>
+                <visible>![String.IsEqual(ListItem.Property(tmdb_type),person) | String.IsEqual(ListItem.DBType,set)]</visible>
+                <visible>![System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)]</visible>
+
+                <onfocus>SetProperty(last_video_focus,90124,Home)</onfocus>
+                <onfocus>ClearProperty(moviecontent,Home)</onfocus>
+
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
-                <onfocus condition="!Skin.HasSetting(filter.video.only.local)">Skin.ToggleSetting(filter.video.only.local)</onfocus>
 
                 <include>Def_Button_Dimensions</include>
                 <texturenofocus colordiffuse="Dark4" border="12">common/boxsquare.png</texturenofocus>
@@ -2251,8 +2338,8 @@
                 <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/storageinfo.png</textureradioofffocus>
                 <textureradiooffnofocus colordiffuse="Dark2">buttonsdialogs/storageinfo.png</textureradiooffnofocus>
                 <usealttexture>Skin.HasSetting(filter.video.only.local)</usealttexture>
-                <visible>![String.IsEqual(ListItem.Property(tmdb_type),person) | String.IsEqual(ListItem.DBType,set)]</visible>
-                <visible>![System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)]</visible>
+
+                <onfocus condition="!Skin.HasSetting(filter.video.only.local)">Skin.ToggleSetting(filter.video.only.local)</onfocus>
             </control>
 
         <!-- TVSOWS -->
@@ -2260,61 +2347,70 @@
             <!-- SEASONS -->
 
             <control type="radiobutton" id="9079">
-                <onfocus condition="!String.IsEqual(Window(Home).Property(moviecontent),15)">ClearProperty(moviecontent,Home)</onfocus>
-                <onfocus>ClearProperty(ShowDisc)</onfocus>
+                <visible>String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)</visible>
+                <visible>!Skin.HasSetting(hide.button.tvshow.season)</visible>
+                <visible>!Integer.IsEqual(Container(9579).NumItems,0) + !Container(9579).IsUpdating</visible>
+
+                <onfocus>SetProperty(last_video_focus,9079,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,15,Home)</onfocus>
-                <onclick>SetFocus(9579)</onclick>
-                <onclick>SetProperty(view_extended,1,Home)</onclick>
-                <onclick>SetProperty(TMDbHelper.WidgetContainer,9579,Home)</onclick>
-                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+
+                <onfocus>ClearProperty(ShowDisc)</onfocus>
+
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/viewmode.png" />
                 </include>
-                <visible>String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)</visible>
-                <visible>!Skin.HasSetting(hide.button.tvshow.season)</visible>
-                <visible>!Integer.IsEqual(Container(9579).NumItems,0) + !Container(9579).IsUpdating</visible>
-                <!-- <visible>String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating)) + !String.IsEmpty(Window(Home).Property(Init_Value_TMDb))</visible> -->
+
+                <onclick>SetFocus(9579)</onclick>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9579,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
             </control>
 
             <!-- CREW -->
 
             <control type="radiobutton" id="9057">
                 <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)</visible>
-                <onfocus condition="!String.IsEqual(Window(Home).Property(moviecontent),17)">ClearProperty(moviecontent,Home)</onfocus>
-                <onfocus>ClearProperty(ShowDisc)</onfocus>
+                <visible>Skin.HasSetting(show.button.video.crew) + !Skin.HasSetting(filter.video.only.local)</visible>
+                <visible>!Integer.IsEqual(Container(9557).NumItems,0) + !Container(9557).IsUpdating</visible>
+
+                <onfocus>SetProperty(last_video_focus,9057,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,17,Home)</onfocus>
-                <onclick>SetFocus(9557)</onclick>
-                <onclick>SetProperty(view_extended,1,Home)</onclick>
-                <onclick>SetProperty(TMDbHelper.WidgetContainer,9557,Home)</onclick>
-                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+
+                <onfocus>ClearProperty(ShowDisc)</onfocus>
+
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/users-line.png" />
                 </include>
-                <visible>Skin.HasSetting(show.button.video.crew) + !Skin.HasSetting(filter.video.only.local)</visible>
-                <visible>!Integer.IsEqual(Container(9557).NumItems,0) + !Container(9557).IsUpdating</visible>
-                <!-- <visible>String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating)) + !String.IsEmpty(Window(Home).Property(Init_Value_TMDb))</visible> -->
+
+                <onclick>SetFocus(9557)</onclick>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9557,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
             </control>
 
             <!-- CREATOR -->
 
             <control type="radiobutton" id="9020">
                 <visible>String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)</visible>
-                <onfocus condition="!String.IsEqual(Window(Home).Property(moviecontent),22)">ClearProperty(moviecontent,Home)</onfocus>
-                <onfocus>ClearProperty(ShowDisc)</onfocus>
+                <visible>!Skin.HasSetting(hide.button.tvshow.creator) + !Skin.HasSetting(filter.video.only.local)</visible>
+                <visible>!Integer.IsEqual(Container(9520).NumItems,0) + !Container(9520).IsUpdating</visible>
+
+                <onfocus>SetProperty(last_video_focus,9020,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,22,Home)</onfocus>
-                <onclick>SetFocus(9520)</onclick>
-                <onclick>SetProperty(view_extended,1,Home)</onclick>
-                <onclick>SetProperty(TMDbHelper.WidgetContainer,9520,Home)</onclick>
-                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+
+                <onfocus>ClearProperty(ShowDisc)</onfocus>
+
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/user-tie.png" />
                 </include>
-                <visible>!Skin.HasSetting(hide.button.tvshow.creator) + !Skin.HasSetting(filter.video.only.local)</visible>
-                <visible>!Integer.IsEqual(Container(9520).NumItems,0) + !Container(9520).IsUpdating</visible>
-                <!-- <visible>String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating)) + !String.IsEmpty(Window(Home).Property(Init_Value_TMDb))</visible> -->
+
+                <onclick>SetFocus(9520)</onclick>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9520,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
             </control>
 
         <!-- MOVIES -->
@@ -2323,85 +2419,95 @@
 
             <control type="radiobutton" id="9006">
                 <visible>String.IsEqual(ListItem.DBType,movie) | [String.IsEqual(ListItem.DBType,episode) + [!Skin.HasSetting(filter.video.only.local) | String.IsEmpty(ListItem.DBID)]]</visible>
-                <onfocus condition="!String.IsEqual(Window(Home).Property(moviecontent),7)">ClearProperty(moviecontent,Home)</onfocus>
-                <onfocus>ClearProperty(ShowDisc)</onfocus>
+                <visible>Skin.HasSetting(show.button.video.director)</visible>
+                <visible>!Integer.IsEqual(Container(9506).NumItems,0) + !Container(9506).IsUpdating</visible>
+                <!-- <visible>!String.IsEmpty(Window(Home).Property(SetDirectorSelected))</visible> -->
+
+                <onfocus>SetProperty(last_video_focus,9006,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,7,Home)</onfocus>
-                <onclick>SetFocus(9506)</onclick>
-                <onclick>SetProperty(view_extended,1,Home)</onclick>
-                <onclick>SetProperty(TMDbHelper.WidgetContainer,9506,Home)</onclick>
-                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+
+                <onfocus>ClearProperty(ShowDisc)</onfocus>
+
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/director.png" />
                 </include>
-                <visible>Skin.HasSetting(show.button.video.director)</visible>
-                <visible>!Integer.IsEqual(Container(9506).NumItems,0) + !Container(9506).IsUpdating</visible>
-                <!-- <visible>String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating)) + !String.IsEmpty(Window(Home).Property(Init_Value_TMDb))</visible> -->
-                <!-- <visible>!String.IsEmpty(Window(Home).Property(SetDirectorSelected))</visible> -->
+
+                <onclick>SetFocus(9506)</onclick>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9506,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
             </control>
 
             <!-- WRITER -->
 
             <control type="radiobutton" id="9056">
                 <visible>String.IsEqual(ListItem.DBType,movie) | [String.IsEqual(ListItem.DBType,episode) + [!Skin.HasSetting(filter.video.only.local) | String.IsEmpty(ListItem.DBID)]]</visible>
-                <onfocus condition="!String.IsEqual(Window(Home).Property(moviecontent),14)">ClearProperty(moviecontent,Home)</onfocus>
-                <onfocus>ClearProperty(ShowDisc)</onfocus>
+                <visible>Skin.HasSetting(show.button.video.writer)</visible>
+                <visible>!Integer.IsEqual(Container(9556).NumItems,0) + !Container(9556).IsUpdating</visible>
+                <!-- <visible>!String.IsEmpty(Window(Home).Property(SetWriterSelected))</visible> -->
+
+                <onfocus>SetProperty(last_video_focus,9056,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,14,Home)</onfocus>
-                <onclick>SetFocus(9556)</onclick>
-                <onclick>SetProperty(view_extended,1,Home)</onclick>
-                <onclick>SetProperty(TMDbHelper.WidgetContainer,9556,Home)</onclick>
-                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+
+                <onfocus>ClearProperty(ShowDisc)</onfocus>
+
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/writer.png" />
                 </include>
-                <visible>Skin.HasSetting(show.button.video.writer)</visible>
-                <visible>!Integer.IsEqual(Container(9556).NumItems,0) + !Container(9556).IsUpdating</visible>
-                <!-- <visible>String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating)) + !String.IsEmpty(Window(Home).Property(Init_Value_TMDb))</visible> -->
-                <!-- <visible>!String.IsEmpty(Window(Home).Property(SetWriterSelected))</visible> -->
+
+                <onclick>SetFocus(9556)</onclick>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9556,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
             </control>
 
             <!-- YEAR -->
 
             <control type="radiobutton" id="9014">
+                <visible>Skin.HasSetting(show.button.video.year)</visible>
+                <visible>!Integer.IsEqual(Container(9514).NumItems,0) + !Container(9514).IsUpdating</visible>
                 <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)</visible>
-                <onfocus condition="!String.IsEqual(Window(Home).Property(moviecontent),9)">ClearProperty(moviecontent,Home)</onfocus>
-                <onfocus>ClearProperty(ShowDisc)</onfocus>
+
+                <onfocus>SetProperty(last_video_focus,9014,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,9,Home)</onfocus>
-                <onclick>SetFocus(9514)</onclick>
-                <onclick>SetProperty(view_extended,1,Home)</onclick>
-                <onclick>SetProperty(TMDbHelper.WidgetContainer,9514,Home)</onclick>
-                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+
+                <onfocus>ClearProperty(ShowDisc)</onfocus>
+
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/calendar-day.png" />
                 </include>
-                <visible>Skin.HasSetting(show.button.video.year)</visible>
-                <visible>!Integer.IsEqual(Container(9514).NumItems,0) + !Container(9514).IsUpdating</visible>
-                <!-- <visible>String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating)) + !String.IsEmpty(Window(Home).Property(Init_Value_TMDb))</visible> -->
+
+                <onclick>SetFocus(9514)</onclick>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9514,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
             </control>
 
             <!-- SETS -->
 
             <control type="radiobutton" id="9015">
                 <visible>String.IsEqual(ListItem.DBType,movie)</visible>
-                <onfocus condition="!String.IsEqual(Window(Home).Property(moviecontent),8)">ClearProperty(moviecontent,Home)</onfocus>
-                <onfocus>ClearProperty(ShowDisc)</onfocus>
+                <visible>Skin.HasSetting(show.button.video.set)</visible>
+                <visible>[Skin.HasSetting(filter.video.only.local) + !String.IsEmpty(ListItem.SetId)] | [!Skin.HasSetting(filter.video.only.local) + !String.IsEmpty(Window(Home).Property(Set_Query))]</visible>
+                <visible>!Integer.IsEqual(Container(9515).NumItems,0) + !Container(9515).IsUpdating</visible>
+
+                <onfocus>SetProperty(last_video_focus,9015,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,8,Home)</onfocus>
-                <onclick>SetFocus(9515)</onclick>
-                <onclick>SetProperty(view_extended,1,Home)</onclick>
-                <onclick>SetProperty(TMDbHelper.WidgetContainer,9515,Home)</onclick>
-                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+
+                <onfocus>ClearProperty(ShowDisc)</onfocus>
+
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/collection.png" />
                 </include>
-                <visible>Skin.HasSetting(show.button.video.set)</visible>
 
-                <visible>[Skin.HasSetting(filter.video.only.local) + !String.IsEmpty(ListItem.SetId)] | [!Skin.HasSetting(filter.video.only.local) + !String.IsEmpty(Window(Home).Property(Set_Query))]</visible>
-
-                <visible>!Integer.IsEqual(Container(9515).NumItems,0) + !Container(9515).IsUpdating</visible>
-                <!-- <visible>String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating)) + !String.IsEmpty(Window(Home).Property(Init_Value_TMDb))</visible> -->
+                <onclick>SetFocus(9515)</onclick>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9515,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
             </control>
 
         <!-- MOVIES / TVSHOWS -->
@@ -2409,61 +2515,70 @@
             <!-- SIMILAR -->
 
             <control type="radiobutton" id="9018">
+                <visible>!Skin.HasSetting(hide.button.video.similar) + !Skin.HasSetting(filter.video.only.local)</visible>
+                <visible>!Integer.IsEqual(Container(9518).NumItems,0) + !Container(9518).IsUpdating</visible>
                 <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)</visible>
-                <onfocus condition="!String.IsEqual(Window(Home).Property(moviecontent),2)">ClearProperty(moviecontent,Home)</onfocus>
-                <onfocus>ClearProperty(ShowDisc)</onfocus>
+
+                <onfocus>SetProperty(last_video_focus,9018,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,2,Home)</onfocus>
-                <onclick>SetFocus(9518)</onclick>
-                <onclick>SetProperty(view_extended,1,Home)</onclick>
-                <onclick>SetProperty(TMDbHelper.WidgetContainer,9518,Home)</onclick>
-                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+
+                <onfocus>ClearProperty(ShowDisc)</onfocus>
+
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/similar.png" />
                 </include>
-                <visible>!Skin.HasSetting(hide.button.video.similar) + !Skin.HasSetting(filter.video.only.local)</visible>
-                <visible>!Integer.IsEqual(Container(9518).NumItems,0) + !Container(9518).IsUpdating</visible>
-                <!-- <visible>String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating)) + !String.IsEmpty(Window(Home).Property(Init_Value_TMDb))</visible> -->
+
+                <onclick>SetFocus(9518)</onclick>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9518,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
             </control>
 
             <!-- RECOMMENDATION -->
 
             <control type="radiobutton" id="9017">
+                <visible>Skin.HasSetting(show.button.video.recommended) + !Skin.HasSetting(filter.video.only.local)</visible>
+                <visible>!Integer.IsEqual(Container(9517).NumItems,0) + !Container(9517).IsUpdating</visible>
                 <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)</visible>
-                <onfocus condition="!String.IsEqual(Window(Home).Property(moviecontent),16)">ClearProperty(moviecontent,Home)</onfocus>
-                <onfocus>ClearProperty(ShowDisc)</onfocus>
+
+                <onfocus>SetProperty(last_video_focus,9017,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,16,Home)</onfocus>
-                <onclick>SetFocus(9517)</onclick>
-                <onclick>SetProperty(view_extended,1,Home)</onclick>
-                <onclick>SetProperty(TMDbHelper.WidgetContainer,9517,Home)</onclick>
-                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+
+                <onfocus>ClearProperty(ShowDisc)</onfocus>
+
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/lightbulb.png" />
                 </include>
-                <visible>Skin.HasSetting(show.button.video.recommended) + !Skin.HasSetting(filter.video.only.local)</visible>
-                <visible>!Integer.IsEqual(Container(9517).NumItems,0) + !Container(9517).IsUpdating</visible>
-                <!-- <visible>String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating)) + !String.IsEmpty(Window(Home).Property(Init_Value_TMDb))</visible> -->
+
+                <onclick>SetFocus(9517)</onclick>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9517,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
             </control>
 
             <!-- STUDIO -->
 
             <control type="radiobutton" id="9003">
+                <visible>!Skin.HasSetting(hide.button.video.studio)</visible>
+                <visible>!Integer.IsEqual(Container(9503).NumItems,0) + !Container(9503).IsUpdating</visible>
                 <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)</visible>
-                <onfocus condition="!String.IsEqual(Window(Home).Property(moviecontent),3)">ClearProperty(moviecontent,Home)</onfocus>
-                <onfocus>ClearProperty(ShowDisc)</onfocus>
+
+                <onfocus>SetProperty(last_video_focus,9003,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,3,Home)</onfocus>
-                <onclick>SetFocus(9503)</onclick>
-                <onclick>SetProperty(view_extended,1,Home)</onclick>
-                <onclick>SetProperty(TMDbHelper.WidgetContainer,9503,Home)</onclick>
-                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+
+                <onfocus>ClearProperty(ShowDisc)</onfocus>
+
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
                     <param name="icon" value="buttonsdialogs/studio.png" />
                 </include>
-                <visible>!Skin.HasSetting(hide.button.video.studio)</visible>
-                <visible>!Integer.IsEqual(Container(9503).NumItems,0) + !Container(9503).IsUpdating</visible>
-                <!-- <visible>String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating)) + !String.IsEmpty(Window(Home).Property(Init_Value_TMDb))</visible> -->
+
+                <onclick>SetFocus(9503)</onclick>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9503,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
             </control>
         </control>
     </include>

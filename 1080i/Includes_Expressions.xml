@@ -69,10 +69,6 @@
 
     <expression name="Script_SkinShortcuts_Widget">[String.EndsWith(Window.Property(groupname),.1) | String.EndsWith(Window.Property(groupname),.3) | String.EndsWith(Window.Property(groupname),.4) | String.EndsWith(Window.Property(groupname),.5) | String.EndsWith(Window.Property(groupname),.6) | String.EndsWith(Window.Property(groupname),.7) | String.EndsWith(Window.Property(groupname),.8) | String.EndsWith(Window.Property(groupname),.9) | String.EndsWith(Window.Property(groupname),.10)]</expression>
 
-    <!-- DIALOG INFO SINGLE VALUE -->
-
-    <expression name="DialogInfoSingleValue">[!String.Contains(ListItem.Writer, / ) + !String.Contains(ListItem.Director, / ) + !String.Contains(ListItem.Studio, / )]</expression>
-
     <!-- DIALOG INFO IS UPDATING INFO ? -->
 
     <expression name="DialogVideoInfo_IsUpadttingInfo">[!String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating)) | Container(9506).IsUpdating | Container(9556).IsUpdating | Container(9514).IsUpdating | Container(9515).IsUpdating | Container(9518).IsUpdating | Container(9517).IsUpdating | Container(9503).IsUpdating | Container(9557).IsUpdating | Container(50).IsUpdating | Container(9554).IsUpdating | Container(9552).IsUpdating | Container(9553).IsUpdating | Container(9558).IsUpdating | Container(9559).IsUpdating | Container(9560).IsUpdating | Container(9579).IsUpdating | Container(9520).IsUpdating | Container(95051).IsUpdating | Container(9504).IsUpdating | String.IsEmpty(Window(Home).Property(Init_Value_TMDb))]</expression>
@@ -217,10 +213,21 @@
 
     <expression name="Extended_Now_Playing_Is_Enable">[Skin.HasSetting(show.furniture.nowplaying.extended.home) + [[!Skin.HasSetting(show.nowplaying.video.home.flix) + Player.HasVideo] | Player.HasAudio]]</expression>
 
-    <!-- SHOW DIALOG VIDEO INFO - EXTENDED FANART -->
+    <!-- DIALOG VIDEO INFO - SHOW EXTENDED FANART -->
 
      <expression name="Show_Dialog_Video_Info_Fanart_Extended">[!Skin.HasSetting(hide.global.fanart) + $EXP[View_Info_Dialog]]</expression>
+    
+    <!-- DIALOG VIDEO INFO - SINGLE VALUE -->
 
+    <expression name="DialogInfoSingleValue">[!String.Contains(ListItem.Writer, / ) + !String.Contains(ListItem.Director, / ) + !String.Contains(ListItem.Studio, / )]</expression>
+
+    <!-- DIALOG VIDEO INFO - CONTROL BUTTON 9090 IS FOCUS -->
+
+    <expression name="Group9090IsFocus">[ControlGroup(9090).HasFocus() | Control.HasFocus(9669) | Control.HasFocus(9506) | Control.HasFocus(9556) | Control.HasFocus(9557) | Control.HasFocus(9514) | Control.HasFocus(9518) | Control.HasFocus(9517) | Control.HasFocus(9503) | Control.HasFocus(9579) | Control.HasFocus(9515) | Control.HasFocus(9520) | Control.HasFocus(95067) | Control.HasFocus(95567) | Control.HasFocus(95577) | Control.HasFocus(95147) | Control.HasFocus(95187) | Control.HasFocus(95177) | Control.HasFocus(95037) | Control.HasFocus(95797) | Control.HasFocus(95157) | Control.HasFocus(95207)]</expression>
+
+    <expression name="Plot9669IsFocus">[Control.HasFocus(9669) + [String.IsEqual(ListItem.Property(tmdb_type),person) | String.IsEqual(ListItem.DBType,set)]]</expression>
+
+    
     <!-- PVR INFO AVAILABLE -->
 
     <expression name="Label_PVR_Info_Available">[!String.IsEmpty(VideoPlayer.NextTitle) + !String.IsEmpty(VideoPlayer.NextStartTime) + !String.IsEmpty(VideoPlayer.NextEndTime)]</expression>
