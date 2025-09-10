@@ -1213,7 +1213,7 @@
             <control type="radiobutton" id="9202">
                 <visible>Player.HasMedia</visible>
 
-                <onfocus>SetProperty(last_focus,9202,Home)</onfocus>
+                <onfocus>SetProperty(last_music_focus,9202,Home)</onfocus>
                 <onfocus>ClearProperty(musiccontent,Home)</onfocus>
 
                 <onfocus condition="![Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))]">ClearProperty(show_info_artist,Home)</onfocus>
@@ -1240,7 +1240,7 @@
             <control type="radiobutton" id="9001">
                 <visible>[String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,song)] + ![ListItem.IsPlaying | [!String.IsEmpty(ListItem.FolderPath) + String.IsEqual(ListItem.FileNameAndPath,Player.Folderpath)]]</visible>
 
-                <onfocus>SetProperty(last_focus,9001,Home)</onfocus>
+                <onfocus>SetProperty(last_music_focus,9001,Home)</onfocus>
                 <onfocus>ClearProperty(musiccontent,Home)</onfocus>
 
                 <onfocus condition="![Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))]">ClearProperty(show_info_artist,Home)</onfocus>
@@ -1262,7 +1262,7 @@
             <control type="radiobutton" id="9201">
                 <visible>[String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,song)] + [ListItem.IsPlaying | [!String.IsEmpty(ListItem.FolderPath) + String.IsEqual(ListItem.FileNameAndPath,Player.Folderpath)]]</visible>
 
-                <onfocus>SetProperty(last_focus,9201,Home)</onfocus>
+                <onfocus>SetProperty(last_music_focus,9201,Home)</onfocus>
                 <onfocus>ClearProperty(musiccontent,Home)</onfocus>
 
                 <onfocus condition="![Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))]">ClearProperty(show_info_artist,Home)</onfocus>
@@ -1287,7 +1287,7 @@
                 <visible>String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,song)</visible>
                 <visible>Control.IsEnabled(12)</visible>
 
-                <onfocus>SetProperty(last_focus,12,Home)</onfocus>
+                <onfocus>SetProperty(last_music_focus,12,Home)</onfocus>
                 <onfocus>ClearProperty(musiccontent,Home)</onfocus>
 
                 <onfocus>ClearProperty(ShowDisc)</onfocus>
@@ -1305,7 +1305,7 @@
             <control type="radiobutton" id="9002">
                 <visible>String.IsEqual(ListItem.DBType,artist)</visible>
 
-                <onfocus>SetProperty(last_focus,9002,Home)</onfocus>
+                <onfocus>SetProperty(last_music_focus,9002,Home)</onfocus>
                 <onfocus>ClearProperty(musiccontent,Home)</onfocus>
 
                 <include>Def_Button_Dimensions_Square</include>
@@ -1319,7 +1319,7 @@
             <control type="radiobutton" id="9030">
                 <visible>!Skin.HasSetting(hide.button.music.wiki) + System.AddonIsEnabled(script.wikipedia)</visible>
 
-                <onfocus>SetProperty(last_focus,9030,Home)</onfocus>
+                <onfocus>SetProperty(last_music_focus,9030,Home)</onfocus>
                 <onfocus>ClearProperty(musiccontent,Home)</onfocus>
 
                 <onfocus condition="![Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))]">ClearProperty(show_info_artist,Home)</onfocus>
@@ -1339,7 +1339,7 @@
                 <visible>!String.IsEqual(ListItem.DBType,artist)</visible>
                 <visible>!Skin.HasSetting(hide.button.music.rating)</visible>
 
-                <onfocus>SetProperty(last_focus,9007,Home)</onfocus>
+                <onfocus>SetProperty(last_music_focus,9007,Home)</onfocus>
                 <onfocus>ClearProperty(musiccontent,Home)</onfocus>
 
                 <onfocus condition="![Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))]">ClearProperty(show_info_artist,Home)</onfocus>
@@ -1366,7 +1366,7 @@
             <control type="radiobutton" id="9003">
                 <visible>String.IsEqual(ListItem.DBType,album)</visible>
 
-                <onfocus>SetProperty(last_focus,9003,Home)</onfocus>
+                <onfocus>SetProperty(last_music_focus,9003,Home)</onfocus>
                 <onfocus condition="!String.IsEqual(Window(Home).Property(musiccontent),1)">ClearProperty(musiccontent,Home)</onfocus>
                 <onfocus>SetProperty(musiccontent,1,Home)</onfocus>
 
@@ -1388,7 +1388,7 @@
                 <visible>String.IsEqual(ListItem.DBType,artist)</visible>
                 <visible>![Window.Is(songinformation) + Window.IsActive(musicinformation)]</visible>
 
-                <onfocus>SetProperty(last_focus,9024,Home)</onfocus>
+                <onfocus>SetProperty(last_music_focus,9024,Home)</onfocus>
                 <onfocus>SetProperty(musiccontent,12,Home)</onfocus>
 
                 <onfocus condition="![Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))]">ClearProperty(show_info_artist,Home)</onfocus>
@@ -1411,7 +1411,7 @@
                 <visible>!Skin.HasSetting(hide.button.music.artist.albums)</visible>
                 <visible>!String.IsEmpty(Window(Home).Property(Encoded.ListItem.Artist))</visible>
 
-                <onfocus>SetProperty(last_focus,9004,Home)</onfocus>
+                <onfocus>SetProperty(last_music_focus,9004,Home)</onfocus>
                 <onfocus condition="!String.IsEqual(Window(Home).Property(musiccontent),2)">ClearProperty(musiccontent,Home)</onfocus>
                 <onfocus>SetProperty(musiccontent,2,Home)</onfocus>
 
@@ -1434,7 +1434,7 @@
                 <visible>!Skin.HasSetting(hide.button.music.artist.songs)</visible>
                 <visible>!String.IsEmpty(Window(Home).Property(Encoded.ListItem.Artist))</visible>
 
-                <onfocus>SetProperty(last_focus,9029,Home)</onfocus>
+                <onfocus>SetProperty(last_music_focus,9029,Home)</onfocus>
                 <onfocus condition="!String.IsEqual(Window(Home).Property(musiccontent),8)">ClearProperty(musiccontent,Home)</onfocus>
                 <onfocus>SetProperty(musiccontent,8,Home)</onfocus>
 
@@ -1461,7 +1461,7 @@
                 <visible>!Skin.HasSetting(hide.button.music.album.year)</visible>
                 <visible>String.IsEqual(ListItem.DBType,song) | String.IsEqual(ListItem.DBType,album)</visible>
 
-                <onfocus>SetProperty(last_focus,9011,Home)</onfocus>
+                <onfocus>SetProperty(last_music_focus,9011,Home)</onfocus>
                 <onfocus condition="!String.IsEqual(Window(Home).Property(musiccontent),5)">ClearProperty(musiccontent,Home)</onfocus>
                 <onfocus>SetProperty(musiccontent,5,Home)</onfocus>
 
@@ -1484,7 +1484,7 @@
                 <visible>!Skin.HasSetting(hide.button.music.fanart)</visible>
                 <visible>[!String.IsEmpty(ListItem.Art(fanart)) + !Skin.HasSetting(hide.artwork.music.fanart)] | [!String.IsEmpty(ListItem.Art(landscape)) + !Skin.HasSetting(hide.artwork.music.landscape)] | [!String.IsEmpty(ListItem.Art(thumb)) + !Skin.HasSetting(hide.artwork.music.thumb)]</visible>
 
-                <onfocus>SetProperty(last_focus,9006,Home)</onfocus>
+                <onfocus>SetProperty(last_music_focus,9006,Home)</onfocus>
                 <onfocus condition="!String.IsEqual(Window(Home).Property(musiccontent),4)">ClearProperty(musiccontent,Home)</onfocus>
                 <onfocus>SetProperty(musiccontent,4,Home)</onfocus>
 
@@ -1507,7 +1507,7 @@
             <control type="radiobutton" id="9005">
                 <visible>!Skin.HasSetting(hide.button.music.youtube) + System.AddonIsEnabled(plugin.video.youtube)</visible>
 
-                <onfocus>SetProperty(last_focus,9005,Home)</onfocus>
+                <onfocus>SetProperty(last_music_focus,9005,Home)</onfocus>
                 <onfocus condition="!String.IsEqual(Window(Home).Property(musiccontent),3)">ClearProperty(musiccontent,Home)</onfocus>
                 <onfocus>SetProperty(musiccontent,3,Home)</onfocus>
 
@@ -1528,7 +1528,7 @@
             <control type="radiobutton" id="9008">
                 <visible>!Skin.HasSetting(global.kioskmode)</visible>
 
-                <onfocus>SetProperty(last_focus,9008,Home)</onfocus>
+                <onfocus>SetProperty(last_music_focus,9008,Home)</onfocus>
                 <onfocus>ClearProperty(musiccontent,Home)</onfocus>
 
                 <!-- <onfocus condition="Window.Is(songinformation) + !Window.IsActive(musicinformation)">ClearProperty(show_info_artist,Home)</onfocus> -->

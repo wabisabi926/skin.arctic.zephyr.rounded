@@ -828,15 +828,16 @@
                 <!-- TIPS -->
 
                 <control type="label">
+                    <visible>ControlGroup(9000).HasFocus()</visible>
+                    <visible>!Window.IsVisible(script-wikipedia.xml)</visible>
+                    <include>Animation_Button_Label_Music</include>
                     <right>View_SidePad</right>
-                    <bottom>100</bottom>
                     <height>50</height>
+                    <bottom>100</bottom>
+                    <align>right</align>
                     <font>Mini</font>
                     <textcolor>Dark3</textcolor>
                     <label>$VAR[Label_Dialog_Info_Footer_Tip_Right]</label>
-                    <align>right</align>
-                    <visible>!Window.IsVisible(script-wikipedia.xml)</visible>
-                    <include>Animation_Button_Label_Music</include>
                 </control>
 
                 <!-- EXTENDED VIEW - LAYOUT -->
@@ -880,6 +881,8 @@
                 </control>
             </control>
         </control>
+
+        <!-- BUTTON OPEN INFO  -->
 
         <control type="button" id="12">
             <include>Def_Hidden_Button</include>
@@ -972,7 +975,12 @@
             <param name="visible" value="Control.HasFocus(161)" />
         </include>
 
+        <!-- CUSTOM SETTINGS -->
+
         <include>Def_Dialog_Custom_Settings</include>
+
+        <!-- VIDEO FULLSCREEN FAKE -->
+
         <include>Def_Dialog_Info_Video_Fullscreen</include>
     </include>
 
