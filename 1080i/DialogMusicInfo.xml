@@ -14,6 +14,11 @@
 
     <onload condition="!String.IsEmpty(ListItem.AlbumArtist)">RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;unencoded_paths=true&amp;window_id=Home&amp;window_prop=Encoded.ListItem.Artist&amp;&amp;$INFO[ListItem.AlbumArtist]")</onload>
 
+    <!-- FOCUS AT START -->
+
+    <onload>AlarmClock(Delay_focus12,SetFocus(9072),00:00,silent)</onload>
+    <onload condition="Control.IsVisible(9002)">AlarmClock(Delay_focus9002,SetFocus(9002),00:00,silent)</onload>
+
     <!-- INIT VALUE -->
 
     <onload>ClearProperty(content)</onload>
@@ -22,11 +27,6 @@
     <onload>ClearProperty(view_extended,Home)</onload>
     <onload>ClearProperty(focus_tracklist,Home)</onload>
     <onload>ClearProperty(last_music_focus,Home)</onload>
-
-    <!-- FOCUS AT START -->
-
-    <onload>AlarmClock(Delay_focus12,SetFocus(9072),00:00,silent)</onload>
-    <onload condition="Control.IsVisible(9002)">AlarmClock(Delay_focus9002,SetFocus(9002),00:00,silent)</onload>
 
     <!-- AUTOPLAY TRAILER -->
 

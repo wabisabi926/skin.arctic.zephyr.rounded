@@ -511,6 +511,7 @@
                             <icon>special://skin/extras/icons/images.png</icon>
                             <onclick>SendClick(10)</onclick>
                             <visible>Control.IsEnabled(10)</visible>
+                            <visible>!String.IsEqual(ListItem.DBType,song)</visible>
                         </item>
 
                         <!-- VERSION -->
@@ -580,6 +581,31 @@
                 </control>
             </control>
         </control>
+		<!-- <control type="button" id="6"> -->
+			<!-- <include>HiddenObject</include> -->
+		<!-- </control> -->
+		<!-- <control type="button" id="7"> -->
+			<!-- <enable>String.IsEmpty(Container.PluginName) + !Container.Content(Sets)</enable> -->
+			<!-- <include>HiddenObject</include> -->
+		<!-- </control> -->
+		<!-- <control type="togglebutton" id="8"> -->
+			<!-- <include>HiddenObject</include> -->
+		<!-- </control> -->
+		<!-- <control type="button" id="10"> -->
+			<!-- <include>HiddenObject</include> -->
+		<!-- </control> -->
+		<!-- <control type="button" id="11"> -->
+			<!-- <include>HiddenObject</include> -->
+		<!-- </control> -->
+		<!-- <control type="button" id="13"> -->
+			<!-- <include>HiddenObject</include> -->
+		<!-- </control> -->
+		<!-- <control type="button" id="14"> -->
+			<!-- <include>HiddenObject</include> -->
+		<!-- </control> -->
+		<!-- <control type="button" id="15"> -->
+			<!-- <include>HiddenObject</include> -->
+		<!-- </control> -->
     </include>
 
     <include name="Def_Dialog_Select_label_Num_Item">
@@ -1625,11 +1651,12 @@
             <!-- CAST LIST - ON LINE - WITH TMDB ONLINE -->
 
             <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + !Container(9550).IsUpdating + [Skin.HasSetting(filter.video.cast.on.line) | String.IsEmpty(ListItem.DBID)] + [!$EXP[IsPluginItem] | $EXP[IsTMDbHelperItem] | $EXP[IsPluginShortlist]]">9550</onup>
+
             <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + !Container(9550).IsUpdating + [Skin.HasSetting(filter.video.cast.on.line) | String.IsEmpty(ListItem.DBID)] + [!$EXP[IsPluginItem] | $EXP[IsTMDbHelperItem] | $EXP[IsPluginShortlist]]">SetProperty(TMDbHelper.WidgetContainer,9550,Home)</onup>
 
             <!-- CAST PICTURE -->
 
-            <!-- <onup condition="String.IsEqual(Window(Home).Property(moviecontent),13)">9554</onup> -->
+            <onup condition="String.IsEqual(Window(Home).Property(moviecontent),13)">9554</onup>
 
             <!-- YOUTUBE -->
 
