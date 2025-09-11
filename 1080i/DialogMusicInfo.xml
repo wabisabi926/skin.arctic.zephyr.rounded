@@ -16,17 +16,19 @@
 
     <!-- FOCUS AT START -->
 
-    <onload>AlarmClock(Delay_focus12,SetFocus(9072),00:00,silent)</onload>
+    <onload>AlarmClock(Delay_focus12,SetFocus(129),00:00,silent)</onload>
     <onload condition="Control.IsVisible(9002)">AlarmClock(Delay_focus9002,SetFocus(9002),00:00,silent)</onload>
 
     <!-- INIT VALUE -->
 
     <onload>ClearProperty(content)</onload>
-    <onload>ClearProperty(ShowDisc)</onload>
+    <onload>clearProperty(ShowDisc,Home)</onload>
+    <onload>ClearProperty(RotateCover)</onload>
     <onload>ClearProperty(musiccontent,Home)</onload>
     <onload>ClearProperty(view_extended,Home)</onload>
     <onload>ClearProperty(focus_tracklist,Home)</onload>
     <onload>ClearProperty(last_music_focus,Home)</onload>
+    <onload>ClearProperty(title_tempo,Home)</onload>
 
     <!-- AUTOPLAY TRAILER -->
 
@@ -48,10 +50,12 @@
     <!-- ==================================== -->
 
     <onunload>ClearProperty(SetUserRating,Home)</onunload>
-    <onunload>ClearProperty(ShowDisc)</onunload>
+    <onunload>clearProperty(ShowDisc,Home)</onunload>
+    <onunload>ClearProperty(RotateCover)</onunload>
     <onunload>ClearProperty(view_extended,Home)</onunload>
 
     <onunload condition="!String.IsEmpty(Window(Home).Property(backtoslidehome_2011))">SetFocus(2011)</onunload>
+
     <onunload condition="!Window.IsVisible(MusicVisualisation.xml) + !String.IsEmpty(Window(Home).Property(shownowplayinginfo))">SetFocus(399)</onunload>
 
     <onunload condition="Player.PauseEnabled + Window.IsVisible(MusicVisualisation.xml) + Window.IsVisible(MusicOSD.xml)">SetFocus(14)</onunload>

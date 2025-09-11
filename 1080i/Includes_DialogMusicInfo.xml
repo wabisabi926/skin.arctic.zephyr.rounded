@@ -10,12 +10,14 @@
                 <include>Animation_Wiki_Fade_Out</include>
                 <include>Animation_Music_Fade_Out</include>
 
-                <animation type="Conditional" condition="String.IsEqual(Window.Property(ShowDisc),1) + Skin.HasSetting(show.dialog.info.music.discart)">
+                <animation type="Conditional" condition="String.IsEqual(Window(Home).Property(ShowDisc),1) + Skin.HasSetting(show.dialog.info.music.discart)">
                     <effect type="slide" start="0,0" end="0,130" delay="0" time="200" tween="quadratic" easing="out" />
                 </animation>
 
+                <!-- ARROW -->
+
                 <control type="group">
-                    <visible>!String.IsEmpty(ListItem.Art(discart)) + Control.HasFocus(9072) + Skin.HasSetting(show.dialog.info.music.discart) + !String.IsEqual(Window.Property(ShowDisc),1)</visible>
+                    <visible>!String.IsEmpty(ListItem.Art(discart)) + String.IsEqual(Window(Home).Property(last_music_focus),9092) + Skin.HasSetting(show.dialog.info.music.discart) + !String.IsEqual(Window(Home).Property(ShowDisc),1)</visible>
 
                     <include>Animation_Delay_Fade_In_200</include>
 
@@ -29,8 +31,10 @@
                     </control>
                 </control>
 
+                <!-- DISCART -->
+
                 <control type="image">
-                    <visible>!String.IsEmpty(ListItem.Art(discart)) + Control.HasFocus(9072) + Skin.HasSetting(show.dialog.info.music.discart)</visible>
+                    <visible>!String.IsEmpty(ListItem.Art(discart)) + String.IsEqual(Window(Home).Property(last_music_focus),9092) + Skin.HasSetting(show.dialog.info.music.discart)</visible>
 
                     <animation type="Visible">
                         <effect type="slide" start="0,0" end="0,-120" delay="0" time="400" tween="quadratic" easing="out" />
@@ -38,7 +42,7 @@
                     <animation type="Hidden">
                         <effect type="slide" start="0,-120" end="0,0" delay="0" time="200" tween="quadratic" easing="out" />
                     </animation>
-                    <animation type="Conditional" condition="String.IsEqual(Window.Property(ShowDisc),1)">
+                    <animation type="Conditional" condition="String.IsEqual(Window(Home).Property(ShowDisc),1)">
                         <effect type="slide" start="0,0" end="0,-220" delay="0" time="200" tween="quadratic" easing="out" />
                     </animation>
 
@@ -49,11 +53,13 @@
                     <texture diffuse="diffuse/cd_w496_h496.png">$INFO[ListItem.Art(discart)]</texture>
                 </control>
 
+                <!-- POSTER FRONT / BACK -->
+
                 <control type="group">
                     <animation effect="rotatey" end="-180" start="0" center="400,0" time="350" condition="String.IsEqual(Window.Property(RotateCover),1)">Conditional</animation>
                     <animation effect="fade" end="10" start="100" time="250" condition="Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hide.button.music.wiki)">Conditional</animation>
 
-                    <animation condition="[Control.HasFocus(9072) | String.IsEqual(Window.Property(ShowDisc),1)] + String.IsEmpty(ListItem.Art(discart)) + !String.IsEmpty(ListItem.Art(discart))" effect="slide" end="0,80" start="0,0" time="300">Conditional</animation>
+                    <animation condition="[Control.HasFocus(9092) | String.IsEqual(Window(Home).Property(ShowDisc),1)] + String.IsEmpty(ListItem.Art(discart)) + !String.IsEmpty(ListItem.Art(discart))" effect="slide" end="0,80" start="0,0" time="300">Conditional</animation>
 
                     <include content="View_50_Side_Square">
                         <param name="texture" value="$VAR[Image_Dialog_Info_Square_Poster]" />
@@ -886,6 +892,15 @@
 
         <control type="button" id="12">
             <include>Def_Hidden_Button</include>
+        </control>
+
+        <control type="button" id="129">
+            <visible allowhiddenfocus="true">False</visible>
+            <include>Def_Hidden_Button</include>
+            <onfocus>clearProperty(ShowDisc,Home)</onfocus>
+            <onfocus>ClearProperty(RotateCover)</onfocus>
+            <onfocus>SetFocus(9092)</onfocus>
+            <onfocus condition="Control.IsVisible(9002)">SetFocus(9002)</onfocus>
         </control>
 
         <control type="button" id="160">
