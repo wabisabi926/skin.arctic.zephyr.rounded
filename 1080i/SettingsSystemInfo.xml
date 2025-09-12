@@ -32,7 +32,6 @@
                 <font>Tiny</font>
                 <textcolor>PanelWhite70</textcolor>
                 <label>$INFO[System.FriendlyName]</label>
-
                 <scroll>true</scroll>
             </control>
 
@@ -48,6 +47,7 @@
 
                 <onup>9101</onup>
                 <ondown>9101</ondown>
+                <onright>1773</onright>
 
                 <itemgap>0</itemgap>
 
@@ -82,6 +82,7 @@
                     <label>19012</label>
                 </control>
                 <control type="button" id="100">
+                    <description>Button Privacy policy</description>
                     <include>Def_Settings_Button_Gradient_Select_Right_Side</include>
                     <label>12389</label>
                 </control>
@@ -357,15 +358,31 @@
                 </control>
             </control>
 
+            <!-- PRIVACY POLICY -->
+
             <control type="textbox" id="30">
                 <visible>!ControlGroup(9101).HasFocus(101)</visible>
                 <left>480</left>
-                <top>155</top>
-                <bottom></bottom>
+                <top>157</top>
+                <bottom>17</bottom>
                 <right>30</right>
                 <font>Tiny</font>
                 <textcolor>PanelWhite100</textcolor>
+                <pagecontrol>1773</pagecontrol>
+                <autoscroll delay="5000" repeat="7500" time="5000">!Control.HasFocus(1773)</autoscroll>
             </control>
+
+            <!-- SCROLLBAR -->
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="1773" />
+                <param name="top" value="140" />
+                <param name="onleft" value="9101" />
+                <param name="onright" value="9101" />
+                <param name="height" value="490" />
+                <param name="centerright" value="4" />
+                <param name="visible" value="Control.IsVisible(30)" />
+            </include>
         </control>
     </controls>
 </window>
