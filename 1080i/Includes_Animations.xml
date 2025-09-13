@@ -3,6 +3,18 @@
 
     <!-- ANIMATION COMMON -->
 
+    <include name="Animation_Common">
+        <param name="animation_include">Animation_Common_Views</param>
+        <param name="visible_infodialogs">!$EXP[View_Info_Dialog]</param>
+        <param name="visible_widgets">!Integer.IsEqual(Container.NumItems,0)</param>
+        <definition>
+            <visible>$PARAM[visible_infodialogs]</visible>
+            <!-- <animation effect="fade" start="100" end="0" time="400" condition="Window.IsVisible(script-tmdbhelper-recommendations.xml) | ![$PARAM[visible_widgets]]">Conditional</animation> -->
+            <!-- <visible>String.IsEmpty(Window(Home).Property(TMDbHelper.HideView))</visible> -->
+            <include>$PARAM[animation_include]</include>
+        </definition>
+    </include>
+
     <include name="Animation_Common_Settings">
         <animation type="WindowOpen" reversible="false">
             <effect type="fade" start="0" end="100" time="300" delay="300" tween="sine" easing="in" />
@@ -37,17 +49,159 @@
         </animation>
     </include>
 
-    <include name="Animation_Common">
-        <param name="animation_include">Animation_Common_Views</param>
-        <param name="visible_infodialogs">!$EXP[View_Info_Dialog]</param>
-        <param name="visible_widgets">!Integer.IsEqual(Container.NumItems,0)</param>
-        <definition>
-            <visible>$PARAM[visible_infodialogs]</visible>
-            <!-- <animation effect="fade" start="100" end="0" time="400" condition="Window.IsVisible(script-tmdbhelper-recommendations.xml) | ![$PARAM[visible_widgets]]">Conditional</animation> -->
-            <!-- <visible>String.IsEmpty(Window(Home).Property(TMDbHelper.HideView))</visible> -->
-            <include>$PARAM[animation_include]</include>
-        </definition>
+    <!-- ANIMATION - VIEW FLIX WITH WALL -->
+
+    <include name="Animation_Fade_In_Slide_View_Flix">
+        <animation type="Visible">
+            <effect type="slide" end="0,0" start="0,-250" delay="100" time="400" tween="quadratic" />
+            <effect type="fade" end="100" start="0" time="400" delay="100" tween="sine" easing="out" />
+        </animation>
+        <animation type="Hidden">
+            <effect type="slide" end="0,250" start="0,0" delay="100" time="400" tween="quadratic" />
+            <effect type="fade" end="0" start="100" time="400" delay="100" tween="sine" easing="out" />
+        </animation>
     </include>
+
+    <include name="Animation_Fade_In_Slide_Wall">
+        <!-- <animation type="WindowOpen"> -->
+            <!-- <effect type="slide" end="0,0" start="0,500" delay="100" time="400" tween="quadratic" /> -->
+            <!-- <effect type="fade" end="100" start="0" time="600" delay="100" tween="sine" easing="out" /> -->
+        <!-- </animation> -->
+        <!-- <animation type="WindowClose"> -->
+            <!-- <effect type="slide" end="0,-500" start="0,0" delay="100" time="400" tween="quadratic" /> -->
+            <!-- <effect type="fade" end="0" start="100" time="600" delay="100" tween="sine" easing="out" /> -->
+        <!-- </animation> -->
+        <animation type="Visible">
+            <effect type="slide" end="0,0" start="0,500" delay="100" time="400" tween="quadratic" />
+            <effect type="fade" end="100" start="0" time="600" delay="100" tween="sine" easing="out" />
+        </animation>
+        <animation type="Hidden">
+            <effect type="slide" end="0,500" start="0,0" delay="100" time="400" tween="quadratic" />
+            <effect type="fade" end="0" start="100" time="600" delay="100" tween="sine" easing="out" />
+        </animation>
+    </include>
+
+    <!-- ANIMATION - DIALOG - BUTTON MENU  -->
+
+    <include name="Animation_Dialog_Menu_TopSide">
+        <animation type="WindowOpen">
+            <effect type="slide" start="0,-1280" end="0" delay="0" time="400" tween="quadratic" easing="out" />
+            <effect type="fade" end="100" start="0" time="200" tween="sine" easing="out" />
+        </animation>
+        <animation type="WindowClose">
+            <effect type="slide" start="0" end="0,-1280" time="300" tween="quadratic" easing="in" />
+            <effect type="fade" end="0" start="100" time="200" tween="sine" easing="out" />
+        </animation>
+        <animation type="Visible">
+            <effect type="slide" start="0,-1280" end="0" delay="0" time="400" tween="quadratic" easing="out" />
+            <effect type="fade" end="100" start="0" time="200" tween="sine" easing="out" />
+        </animation>
+        <animation type="Hidden">
+            <effect type="slide" start="0" end="0,-1280" time="300" tween="quadratic" easing="in" />
+            <effect type="fade" end="0" start="100" time="200" tween="sine" easing="out" />
+        </animation>
+    </include>
+
+    <!-- ANIMATION - DIALOG - CONTEXT MENU  -->
+
+    <include name="Animation_Dialog_Menu_RightSide">
+        <animation type="WindowOpen">
+            <effect type="slide" start="1920" end="0" time="400" tween="quadratic" easing="out" />
+            <effect type="fade" end="100" start="0" time="200" tween="sine" easing="out" />
+        </animation>
+        <animation type="WindowClose">
+            <effect type="slide" start="0" end="1920" time="300" tween="quadratic" easing="in" />
+            <effect type="fade" end="0" start="100" time="200" tween="sine" easing="out" />
+        </animation>
+    </include>
+
+    <!-- ANIMATION - DIALOG - INFO - DELAY - 400 -->
+
+    <include name="Animation_Dialog_Info_RightSide_Delay_400">
+        <animation type="WindowOpen">
+            <effect type="slide" start="1920" end="0" time="400" tween="quadratic" easing="out" delay="400" />
+            <effect type="fade" end="100" start="0" time="200" tween="sine" easing="out" delay="400" />
+        </animation>
+        <animation type="WindowClose">
+            <effect type="slide" start="0" end="1920" time="300" tween="quadratic" easing="in" />
+            <effect type="fade" end="0" start="100" time="200" tween="sine" easing="out" />
+        </animation>
+        <!-- <animation type="Visible"> -->
+            <!-- <effect type="slide" start="1920" end="0" delay="0" time="400" tween="quadratic" easing="out" /> -->
+            <!-- <effect type="fade" end="100" start="0" time="200" tween="sine" easing="out" /> -->
+        <!-- </animation> -->
+        <!-- <animation type="Hidden"> -->
+            <!-- <effect type="slide" start="0" end="1920" time="300" tween="quadratic" easing="in" /> -->
+            <!-- <effect type="fade" end="0" start="100" time="200" tween="sine" easing="out" /> -->
+        <!-- </animation> -->
+    </include>
+
+    <include name="Animation_Dialog_Info_LeftSide_Delay_400">
+        <animation type="WindowOpen">
+            <effect type="slide" start="-1920" end="0" time="400" tween="quadratic" easing="out" delay="400" />
+            <effect type="fade" end="100" start="0" time="200" tween="sine" easing="out" delay="400" />
+        </animation>
+        <animation type="WindowClose">
+            <effect type="slide" start="0" end="-1920" time="300" tween="quadratic" easing="in"/>
+            <effect type="fade" end="0" start="100" time="200" tween="sine" easing="out"/>
+        </animation>
+        <!-- <animation type="Visible"> -->
+            <!-- <effect type="slide" start="-1920" end="0" delay="0" time="400" tween="quadratic" easing="out"/> -->
+            <!-- <effect type="fade" end="100" start="0" time="200" tween="sine" easing="out"/> -->
+        <!-- </animation> -->
+        <!-- <animation type="Hidden"> -->
+            <!-- <effect type="slide" start="0" end="-1920" time="300" tween="quadratic" easing="in"/> -->
+            <!-- <effect type="fade" end="0" start="100" time="200" tween="sine" easing="out"/> -->
+        <!-- </animation> -->
+    </include>
+    
+    <include name="Animation_Dialog_Info_Background_Delay_400">
+        <animation effect="fade" start="0" end="100" time="600" delay="400" reversible="false">WindowOpen</animation>
+        <animation effect="fade" start="100" end="0" time="600" reversible="false">WindowClose</animation>
+    </include>
+    
+    <!-- ANIMATION - HOME - VERTICAL  -->
+
+    <include name="Animation_Vertical_Menu_RightSide">
+        <animation effect="slide" start="0,0" end="-230,0" time="0" condition="$EXP[Home_Is_Vertical] + Skin.HasSetting(home.show.menu.icons)">Conditional</animation>
+
+        <animation type="WindowOpen" reversible="false">
+            <effect type="fade" start="0" end="100" time="200" tween="sine" easing="in" />
+            <effect type="slide" start="1920" end="0" time="350" center="auto" tween="sine" easing="out" />
+        </animation>
+        <animation type="WindowClose" reversible="false">
+            <effect type="fade" end="0" start="100" time="200" tween="sine" easing="out" />
+            <effect type="slide" end="1920" start="0" time="300" center="auto" tween="quadratic" easing="in" />
+        </animation>
+        <animation type="Visible" reversible="false">
+            <effect type="fade" start="0" end="100" time="200" tween="sine" easing="in" />
+            <effect type="slide" start="1920" end="0" time="350" center="auto" tween="sine" easing="out" />
+        </animation>
+        <animation type="Hidden" reversible="false">
+            <effect type="fade" end="0" start="100" time="200" tween="sine" easing="out" />
+            <effect type="slide" end="1920" start="0" time="300" center="auto" tween="quadratic" easing="in" />
+        </animation>
+    </include>
+
+    <include name="Animation_Vertical_Menu_LeftSide">
+        <animation type="WindowOpen" reversible="false">
+            <effect type="fade" start="0" end="100" time="200" tween="sine" easing="in" />
+            <effect type="slide" start="-1920" end="0" time="350" center="auto" tween="quadratic" easing="out" />
+        </animation>
+        <animation type="WindowClose" reversible="false">
+            <effect type="fade" end="0" start="100" time="200" tween="sine" easing="out" />
+            <effect type="slide" end="-1920" start="0" time="300" center="auto" tween="quadratic" easing="in" />
+        </animation>
+        <animation type="Visible" reversible="false">
+            <effect type="fade" start="0" end="100" time="200" tween="sine" easing="in" />
+            <effect type="slide" start="-1920" end="0" time="350" center="auto" tween="quadratic" easing="out" />
+        </animation>
+        <animation type="Hidden" reversible="false">
+            <effect type="fade" end="0" start="100" time="200" tween="sine" easing="out" />
+            <effect type="slide" end="-1920" start="0" time="300" center="auto" tween="quadratic" easing="in" />
+        </animation>
+    </include>
+
 
     <include name="Animation_Select_Focus">
         <animation type="Focus">
@@ -258,164 +412,6 @@
         <animation type="WindowOpen" reversible="false">
             <effect type="fade" start="0" end="100" time="300" delay="150" />
             <effect type="slide" start="0,-48" end="0" center="auto" tween="back" easing="out" time="450" delay="150" />
-        </animation>
-    </include>
-
-    <!-- ANIMATION - VIEW FLIX WITH WALL -->
-
-    <include name="Animation_Fade_In_Slide_View_Flix">
-        <animation type="Visible">
-            <effect type="slide" end="0,0" start="0,-250" delay="100" time="400" tween="quadratic" />
-            <effect type="fade" end="100" start="0" time="400" delay="100" tween="sine" easing="out" />
-        </animation>
-        <animation type="Hidden">
-            <effect type="slide" end="0,250" start="0,0" delay="100" time="400" tween="quadratic" />
-            <effect type="fade" end="0" start="100" time="400" delay="100" tween="sine" easing="out" />
-        </animation>
-    </include>
-
-    <include name="Animation_Fade_In_Slide_Wall">
-        <!-- <animation type="WindowOpen"> -->
-            <!-- <effect type="slide" end="0,0" start="0,500" delay="100" time="400" tween="quadratic" /> -->
-            <!-- <effect type="fade" end="100" start="0" time="600" delay="100" tween="sine" easing="out" /> -->
-        <!-- </animation> -->
-        <!-- <animation type="WindowClose"> -->
-            <!-- <effect type="slide" end="0,-500" start="0,0" delay="100" time="400" tween="quadratic" /> -->
-            <!-- <effect type="fade" end="0" start="100" time="600" delay="100" tween="sine" easing="out" /> -->
-        <!-- </animation> -->
-        <animation type="Visible">
-            <effect type="slide" end="0,0" start="0,500" delay="100" time="400" tween="quadratic" />
-            <effect type="fade" end="100" start="0" time="600" delay="100" tween="sine" easing="out" />
-        </animation>
-        <animation type="Hidden">
-            <effect type="slide" end="0,500" start="0,0" delay="100" time="400" tween="quadratic" />
-            <effect type="fade" end="0" start="100" time="600" delay="100" tween="sine" easing="out" />
-        </animation>
-    </include>
-
-    <!-- ANIMATION - DIALOG - MENU -->
-
-    <include name="Animation_Slide_OnFocus_Global_Settings">
-        <animation effect="slide" start="0" end="-265" time="200" condition="Window.IsVisible(1110)">Conditional</animation>
-    </include>
-
-    <include name="Animation_Dialog_Menu_RightSide">
-        <animation type="WindowOpen">
-            <effect type="slide" start="1920" end="0" delay="0" time="400" tween="quadratic" easing="out" />
-            <effect type="fade" end="100" start="0" time="200" tween="sine" easing="out" />
-        </animation>
-        <animation type="WindowClose">
-            <effect type="slide" start="0" end="1920" time="300" tween="quadratic" easing="in" />
-            <effect type="fade" end="0" start="100" time="200" tween="sine" easing="out" />
-        </animation>
-        <!-- <animation type="Visible"> -->
-            <!-- <effect type="slide" start="1920" end="0" delay="0" time="400" tween="quadratic" easing="out" /> -->
-            <!-- <effect type="fade" end="100" start="0" time="200" tween="sine" easing="out" /> -->
-        <!-- </animation> -->
-        <!-- <animation type="Hidden"> -->
-            <!-- <effect type="slide" start="0" end="1920" time="300" tween="quadratic" easing="in" /> -->
-            <!-- <effect type="fade" end="0" start="100" time="200" tween="sine" easing="out" /> -->
-        <!-- </animation> -->
-    </include>
-
-    <include name="Animation_Dialog_Menu_LeftSide">
-        <animation type="WindowOpen">
-            <effect type="slide" start="-1920" end="0" delay="0" time="400" tween="quadratic" easing="out" />
-            <effect type="fade" end="100" start="0" time="200" tween="sine" easing="out" />
-        </animation>
-        <animation type="WindowClose">
-            <effect type="slide" start="0" end="-1920" time="300" tween="quadratic" easing="in" />
-            <effect type="fade" end="0" start="100" time="200" tween="sine" easing="out" />
-        </animation>
-        <animation type="Visible">
-            <effect type="slide" start="-1920" end="0" delay="0" time="400" tween="quadratic" easing="out" />
-            <effect type="fade" end="100" start="0" time="200" tween="sine" easing="out" />
-        </animation>
-        <animation type="Hidden">
-            <effect type="slide" start="0" end="-1920" time="300" tween="quadratic" easing="in" />
-            <effect type="fade" end="0" start="100" time="200" tween="sine" easing="out" />
-        </animation>
-    </include>
-
-    <include name="Animation_Dialog_Menu_TopSide">
-        <animation type="WindowOpen">
-            <effect type="slide" start="0,-1280" end="0" delay="0" time="400" tween="quadratic" easing="out" />
-            <effect type="fade" end="100" start="0" time="200" tween="sine" easing="out" />
-        </animation>
-        <animation type="WindowClose">
-            <effect type="slide" start="0" end="0,-1280" time="300" tween="quadratic" easing="in" />
-            <effect type="fade" end="0" start="100" time="200" tween="sine" easing="out" />
-        </animation>
-        <animation type="Visible">
-            <effect type="slide" start="0,-1280" end="0" delay="0" time="400" tween="quadratic" easing="out" />
-            <effect type="fade" end="100" start="0" time="200" tween="sine" easing="out" />
-        </animation>
-        <animation type="Hidden">
-            <effect type="slide" start="0" end="0,-1280" time="300" tween="quadratic" easing="in" />
-            <effect type="fade" end="0" start="100" time="200" tween="sine" easing="out" />
-        </animation>
-    </include>
-
-    <!-- ANIMATION - POSTER -->
-
-    <include name="Animation_SidePoster">
-        <animation type="WindowOpen">
-            <effect type="slide" start="-1920" end="0" delay="0" time="400" tween="quadratic" easing="out"/>
-            <effect type="fade" end="100" start="0" time="200" tween="sine" easing="out"/>
-        </animation>
-        <animation type="WindowClose">
-            <effect type="slide" start="0" end="-1920" time="300" tween="quadratic" easing="in"/>
-            <effect type="fade" end="0" start="100" time="200" tween="sine" easing="out"/>
-        </animation>
-        <!-- <animation type="Visible"> -->
-            <!-- <effect type="slide" start="-1920" end="0" delay="0" time="400" tween="quadratic" easing="out"/> -->
-            <!-- <effect type="fade" end="100" start="0" time="200" tween="sine" easing="out"/> -->
-        <!-- </animation> -->
-        <!-- <animation type="Hidden"> -->
-            <!-- <effect type="slide" start="0" end="-1920" time="300" tween="quadratic" easing="in"/> -->
-            <!-- <effect type="fade" end="0" start="100" time="200" tween="sine" easing="out"/> -->
-        <!-- </animation> -->
-    </include>
-
-    <!-- ANIMATION - HOME - VERTICAL  -->
-
-    <include name="Animation_Vertical_Menu_RightSide">
-        <animation effect="slide" start="0,0" end="-230,0" time="0" condition="$EXP[Home_Is_Vertical] + Skin.HasSetting(home.show.menu.icons)">Conditional</animation>
-
-        <animation type="WindowOpen" reversible="false">
-            <effect type="fade" start="0" end="100" time="200" tween="sine" easing="in" />
-            <effect type="slide" start="1920" end="0" time="350" center="auto" tween="sine" easing="out" />
-        </animation>
-        <animation type="WindowClose" reversible="false">
-            <effect type="fade" end="0" start="100" time="200" tween="sine" easing="out" />
-            <effect type="slide" end="1920" start="0" time="300" center="auto" tween="quadratic" easing="in" />
-        </animation>
-        <animation type="Visible" reversible="false">
-            <effect type="fade" start="0" end="100" time="200" tween="sine" easing="in" />
-            <effect type="slide" start="1920" end="0" time="350" center="auto" tween="sine" easing="out" />
-        </animation>
-        <animation type="Hidden" reversible="false">
-            <effect type="fade" end="0" start="100" time="200" tween="sine" easing="out" />
-            <effect type="slide" end="1920" start="0" time="300" center="auto" tween="quadratic" easing="in" />
-        </animation>
-    </include>
-
-    <include name="Animation_Vertical_Menu_LeftSide">
-        <animation type="WindowOpen" reversible="false">
-            <effect type="fade" start="0" end="100" time="200" tween="sine" easing="in" />
-            <effect type="slide" start="-1920" end="0" time="350" center="auto" tween="quadratic" easing="out" />
-        </animation>
-        <animation type="WindowClose" reversible="false">
-            <effect type="fade" end="0" start="100" time="200" tween="sine" easing="out" />
-            <effect type="slide" end="-1920" start="0" time="300" center="auto" tween="quadratic" easing="in" />
-        </animation>
-        <animation type="Visible" reversible="false">
-            <effect type="fade" start="0" end="100" time="200" tween="sine" easing="in" />
-            <effect type="slide" start="-1920" end="0" time="350" center="auto" tween="quadratic" easing="out" />
-        </animation>
-        <animation type="Hidden" reversible="false">
-            <effect type="fade" end="0" start="100" time="200" tween="sine" easing="out" />
-            <effect type="slide" end="-1920" start="0" time="300" center="auto" tween="quadratic" easing="in" />
         </animation>
     </include>
 
