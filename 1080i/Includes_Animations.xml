@@ -49,35 +49,28 @@
         </animation>
     </include>
 
+    <include name="Animation_Fade_Out">
+        <animation effect="fade" end="0" start="100" time="150">Hidden</animation>
+        <animation effect="fade" end="0" start="100" time="150">WindowClose</animation>
+    </include>
+
     <!-- ANIMATION - VIEW FLIX WITH WALL -->
 
     <include name="Animation_Fade_In_Slide_View_Flix">
         <animation type="Visible">
-            <effect type="slide" end="0,0" start="0,-250" delay="100" time="400" tween="quadratic" />
-            <effect type="fade" end="100" start="0" time="400" delay="100" tween="sine" easing="out" />
+            <effect type="slide" end="0,0" start="0,-1250" delay="100" time="500" tween="quadratic" />
         </animation>
         <animation type="Hidden">
-            <effect type="slide" end="0,250" start="0,0" delay="100" time="400" tween="quadratic" />
-            <effect type="fade" end="0" start="100" time="400" delay="100" tween="sine" easing="out" />
+            <effect type="slide" end="0,1250" start="0,0" delay="100" time="500" tween="quadratic" />
         </animation>
     </include>
 
     <include name="Animation_Fade_In_Slide_Wall">
-        <!-- <animation type="WindowOpen"> -->
-            <!-- <effect type="slide" end="0,0" start="0,500" delay="100" time="400" tween="quadratic" /> -->
-            <!-- <effect type="fade" end="100" start="0" time="600" delay="100" tween="sine" easing="out" /> -->
-        <!-- </animation> -->
-        <!-- <animation type="WindowClose"> -->
-            <!-- <effect type="slide" end="0,-500" start="0,0" delay="100" time="400" tween="quadratic" /> -->
-            <!-- <effect type="fade" end="0" start="100" time="600" delay="100" tween="sine" easing="out" /> -->
-        <!-- </animation> -->
         <animation type="Visible">
-            <effect type="slide" end="0,0" start="0,500" delay="100" time="400" tween="quadratic" />
-            <effect type="fade" end="100" start="0" time="600" delay="100" tween="sine" easing="out" />
+            <effect type="slide" end="0,0" start="0,2500" delay="100" time="500" tween="quadratic" />
         </animation>
         <animation type="Hidden">
-            <effect type="slide" end="0,500" start="0,0" delay="100" time="400" tween="quadratic" />
-            <effect type="fade" end="0" start="100" time="600" delay="100" tween="sine" easing="out" />
+            <effect type="slide" end="0,2500" start="0,0" delay="100" time="500" tween="quadratic" />
         </animation>
     </include>
 
@@ -154,12 +147,97 @@
             <!-- <effect type="fade" end="0" start="100" time="200" tween="sine" easing="out"/> -->
         <!-- </animation> -->
     </include>
-    
+
+    <!-- ANIMATION - DIALOG - INFO - DELAY - 400 -->
+
     <include name="Animation_Dialog_Info_Background_Delay_400">
         <animation effect="fade" start="0" end="100" time="600" delay="400" reversible="false">WindowOpen</animation>
-        <animation effect="fade" start="100" end="0" time="600" reversible="false">WindowClose</animation>
+        <animation effect="fade" start="100" end="0" time="300" reversible="false">WindowClose</animation>
     </include>
-    
+
+    <!-- ANIMATION - DIALOG - INFO -->
+
+    <include name="Animation_Fade_In_DialogInfo">
+        <animation effect="fade" start="0" end="100" time="250" delay="100" tween="cubic" easing="inout">Visible</animation>
+    </include>
+
+    <include name="Animation_Fade_Out_DialogInfo">
+        <animation effect="fade" end="0" start="100" time="150">Hidden</animation>
+    </include>
+
+    <include name="Animation_Fade_In_Dialog_250">
+        <animation effect="fade" start="0" end="100" time="250" delay="200">Visible</animation>
+    </include>
+
+    <include name="Animation_Fade_In_Dialog_350">
+        <animation effect="fade" start="0" end="100" time="350" delay="300">Visible</animation>
+    </include>
+
+    <include name="Animation_cast">
+        <animation center="1842,975" condition="!ControlGroup(9600).HasFocus() + !Control.HasFocus(9501) + !Control.HasFocus(9502) + !Control.HasFocus(50) + !Control.HasFocus(9503) + !Control.HasFocus(9504) + !Control.HasFocus(10054)" effect="zoom" end="77" tween="sine" easing="inout" start="100" time="300">Conditional</animation>
+    </include>
+
+    <include name="Animation_CastInfo">
+        <param name="controlid" value="$PARAM[controlid]" />
+        <definition>
+            <animation center="90,975" condition="Control.HasFocus($PARAM[controlid])" effect="zoom" end="130" start="100" time="150">Conditional</animation>
+        </definition>
+    </include>
+
+    <include name="Animation_CastInfo2">
+        <param name="controlid" value="$PARAM[controlid]" />
+        <definition>
+            <animation center="200,931" condition="Control.HasFocus($PARAM[controlid])" effect="zoom" end="132.2" start="100" time="150">Conditional</animation>
+        </definition>
+    </include>
+
+    <include name="Animation_Extended_Cast_Info">
+        <param name="controlid" value="$PARAM[controlid]" />
+        <definition>
+            <animation center="676,975" condition="Control.HasFocus($PARAM[controlid]) | Control.HasFocus(160)" effect="zoom" end="130" start="100" time="150">Conditional</animation>
+        </definition>
+    </include>
+
+    <include name="Animation_Extended_Cast_Info_Music">
+        <param name="controlid" value="$PARAM[controlid]" />
+        <definition>
+            <animation center="1096,933" condition="Control.HasFocus($PARAM[controlid]) | Control.HasFocus(160)" effect="zoom" end="132.2" start="100" time="150">Conditional</animation>
+        </definition>
+    </include>
+
+    <include name="Animation_Extended_Info_Yt">
+        <param name="controlid" value="$PARAM[controlid]" />
+        <definition>
+            <animation center="756,930" condition="Control.HasFocus($PARAM[controlid])" effect="zoom" end="132.2" start="100" time="150">Conditional</animation>
+        </definition>
+    </include>
+
+    <include name="Animation_Music_Fade_Out">
+        <animation condition="Control.HasFocus(9501) | Control.HasFocus(160) | Control.HasFocus(9502) | Control.HasFocus(9508) | Control.HasFocus(9511) | Control.HasFocus(95087) | Control.HasFocus(95027) | Control.HasFocus(95017) | Control.HasFocus(95117) | Control.HasFocus(9669) | Control.HasFocus(50) | Control.HasFocus(507)" effect="fade" end="0" start="100" time="300">Conditional</animation>
+    </include>
+
+    <include name="Animation_Video_Fade_Out">
+        <animation condition="[ControlGroup(9600).HasFocus() | Control.HasFocus(160) | Control.HasFocus(9501) | Control.HasFocus(9506) | Control.HasFocus(9552) | Control.HasFocus(9553) | Control.HasFocus(9554) | Control.HasFocus(9514) | Control.HasFocus(9515) | Control.HasFocus(9560) | Control.HasFocus(50) | Control.HasFocus(507) | Control.HasFocus(9550) | Control.HasFocus(9556) | Control.HasFocus(9518) | Control.HasFocus(9503) | Control.HasFocus(9504) | Control.HasFocus(9579) | Control.HasFocus(9517) | Control.HasFocus(9557) | Control.HasFocus(95577) | Control.HasFocus(9517) | Control.HasFocus(9557) | Control.HasFocus(9558) | Control.HasFocus(9559) | Control.HasFocus(9520) | Control.HasFocus(95507) | Control.HasFocus(95797) | Control.HasFocus(95207) | Control.HasFocus(95067) | Control.HasFocus(95567) | Control.HasFocus(95147) | Control.HasFocus(95157) | Control.HasFocus(95187) | Control.HasFocus(95177) | Control.HasFocus(95037) | Control.HasFocus(95527) | Control.HasFocus(95537) | Control.HasFocus(95587) | Control.HasFocus(95597) | Control.HasFocus(95607) | Control.HasFocus(95047) | Control.HasFocus(95547) | Control.HasFocus(9669)]" effect="fade" end="0" start="100" time="300">Conditional</animation>
+    </include>
+
+    <!-- WIP 1 -->
+
+    <!-- <include name="Animation_Video_Fade_Out"> -->
+        <!-- <animation condition="[ControlGroup(9600).HasFocus() | Control.HasFocus(160) | Control.HasFocus(9501) | Control.HasFocus(9506) | Control.HasFocus(9552) | Control.HasFocus(9553) | Control.HasFocus(9554) | Control.HasFocus(9514) | Control.HasFocus(9515) | Control.HasFocus(9560) | Control.HasFocus(50) | Control.HasFocus(507) | Control.HasFocus(9550) | Control.HasFocus(9556) | Control.HasFocus(9518) | Control.HasFocus(9503) | Control.HasFocus(9504) | Control.HasFocus(9579) | Control.HasFocus(9517) | Control.HasFocus(9557) | Control.HasFocus(95577) | Control.HasFocus(9517) | Control.HasFocus(9557) | Control.HasFocus(9558) | Control.HasFocus(9559) | Control.HasFocus(9520) | Control.HasFocus(95507) | Control.HasFocus(95797) | Control.HasFocus(95207) | Control.HasFocus(95067) | Control.HasFocus(95567) | Control.HasFocus(95147) | Control.HasFocus(95157) | Control.HasFocus(95187) | Control.HasFocus(95177) | Control.HasFocus(95037) | Control.HasFocus(95527) | Control.HasFocus(95537) | Control.HasFocus(95587) | Control.HasFocus(95597) | Control.HasFocus(95607) | Control.HasFocus(95047) | Control.HasFocus(95547)] + !Control.HasFocus(9669)" effect="fade" end="0" start="100" time="0">Conditional</animation> -->
+    <!-- </include> -->
+
+    <include name="Animation_Video_Fade_Out_Clearlogo">
+        <animation condition="[ControlGroup(9600).HasFocus() | Control.HasFocus(160) | Control.HasFocus(9501) | Control.HasFocus(9506) | Control.HasFocus(9552) | Control.HasFocus(9553) | Control.HasFocus(9554) | Control.HasFocus(9514) | Control.HasFocus(9515) | Control.HasFocus(9560) | Control.HasFocus(9550) | Control.HasFocus(9556) | Control.HasFocus(9518) | Control.HasFocus(9503) | Control.HasFocus(9504) | Control.HasFocus(9579) | Control.HasFocus(9517) | Control.HasFocus(9517) | Control.HasFocus(9558) | Control.HasFocus(9559) | Control.HasFocus(9520) | Control.HasFocus(95507) | Control.HasFocus(95797) | Control.HasFocus(95207) | Control.HasFocus(95067) | Control.HasFocus(95567) | Control.HasFocus(95147) | Control.HasFocus(95157) | Control.HasFocus(95187) | Control.HasFocus(95177) | Control.HasFocus(95037) | Control.HasFocus(95527) | Control.HasFocus(95537) | Control.HasFocus(95587) | Control.HasFocus(95597) | Control.HasFocus(95607) | Control.HasFocus(95047) | Control.HasFocus(95547) | Control.HasFocus(9669)]" effect="fade" end="0" start="100" time="300">Conditional</animation>
+    </include>
+
+    <include name="Animation_Video_Fade_In_Clearlogo">
+        <animation condition="Control.HasFocus(9501) | Control.HasFocus(9506) | Control.HasFocus(9552) | Control.HasFocus(9553) | Control.HasFocus(9554) | Control.HasFocus(9514) | Control.HasFocus(9515) | Control.HasFocus(9560) | Control.HasFocus(9518) | Control.HasFocus(9503) | Control.HasFocus(9504) | Control.HasFocus(9556) | Control.HasFocus(9579) | Control.HasFocus(9517) | Control.HasFocus(9557) | Control.HasFocus(9558) | Control.HasFocus(9559) | Control.HasFocus(9520) | Control.HasFocus(95507) | Control.HasFocus(95797) | Control.HasFocus(95207) | Control.HasFocus(95067) | Control.HasFocus(95567) | Control.HasFocus(95147) | Control.HasFocus(95157) | Control.HasFocus(95187) | Control.HasFocus(95177) | Control.HasFocus(95037) | Control.HasFocus(95527) | Control.HasFocus(95537) | Control.HasFocus(95587) | Control.HasFocus(95597) | Control.HasFocus(95607) | Control.HasFocus(95047) | Control.HasFocus(95547)" effect="fade" end="100" start="0" time="300">Conditional</animation>
+    </include>
+
+    <include name="Animation_Wiki_Fade_Out">
+        <animation condition="[Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hide.button.video.wiki)]" effect="fade" end="0" start="100" time="300">Conditional</animation>
+    </include>
+
     <!-- ANIMATION - HOME - VERTICAL  -->
 
     <include name="Animation_Vertical_Menu_RightSide">
@@ -383,27 +461,6 @@
         <animation effect="fade" end="0" start="100" time="150" reversible="false">Hidden</animation>
     </include>
 
-    <include name="Animation_Fade_In_DialogInfo">
-        <animation effect="fade" start="0" end="100" time="250" delay="100" tween="cubic" easing="inout">Visible</animation>
-    </include>
-
-    <include name="Animation_Fade_Out_DialogInfo">
-        <animation effect="fade" end="0" start="100" time="150">Hidden</animation>
-    </include>
-
-    <include name="Animation_Fade_In_Dialog_350">
-        <animation effect="fade" start="0" end="100" time="350" delay="300">Visible</animation>
-    </include>
-
-    <include name="Animation_Fade_In_Dialog_250">
-        <animation effect="fade" start="0" end="100" time="250" delay="200">Visible</animation>
-    </include>
-
-    <include name="Animation_Fade_Out">
-        <animation effect="fade" end="0" start="100" time="150">Hidden</animation>
-        <animation effect="fade" end="0" start="100" time="150">WindowClose</animation>
-    </include>
-
     <include name="Animation_Fade_In_Slide">
         <animation type="Visible" reversible="false">
             <effect type="fade" start="0" end="100" time="300" delay="150" />
@@ -617,45 +674,6 @@
         <animation effect="fade" end="0" start="100" time="150">Hidden</animation>
     </include>
 
-    <include name="Animation_cast">
-        <animation center="1842,975" condition="!ControlGroup(9600).HasFocus() + !Control.HasFocus(9501) + !Control.HasFocus(9502) + !Control.HasFocus(50) + !Control.HasFocus(9503) + !Control.HasFocus(9504) + !Control.HasFocus(10054)" effect="zoom" end="77" tween="sine" easing="inout" start="100" time="300">Conditional</animation>
-    </include>
-
-    <include name="Animation_CastInfo">
-        <param name="controlid" value="$PARAM[controlid]" />
-        <definition>
-            <animation center="90,975" condition="Control.HasFocus($PARAM[controlid])" effect="zoom" end="130" start="100" time="150">Conditional</animation>
-        </definition>
-    </include>
-
-    <include name="Animation_CastInfo2">
-        <param name="controlid" value="$PARAM[controlid]" />
-        <definition>
-            <animation center="200,931" condition="Control.HasFocus($PARAM[controlid])" effect="zoom" end="132.2" start="100" time="150">Conditional</animation>
-        </definition>
-    </include>
-
-    <include name="Animation_Extended_Cast_Info">
-        <param name="controlid" value="$PARAM[controlid]" />
-        <definition>
-            <animation center="676,975" condition="Control.HasFocus($PARAM[controlid]) | Control.HasFocus(160)" effect="zoom" end="130" start="100" time="150">Conditional</animation>
-        </definition>
-    </include>
-
-    <include name="Animation_Extended_Cast_Info_Music">
-        <param name="controlid" value="$PARAM[controlid]" />
-        <definition>
-            <animation center="1096,933" condition="Control.HasFocus($PARAM[controlid]) | Control.HasFocus(160)" effect="zoom" end="132.2" start="100" time="150">Conditional</animation>
-        </definition>
-    </include>
-
-    <include name="Animation_Extended_Info_Yt">
-        <param name="controlid" value="$PARAM[controlid]" />
-        <definition>
-            <animation center="756,930" condition="Control.HasFocus($PARAM[controlid])" effect="zoom" end="132.2" start="100" time="150">Conditional</animation>
-        </definition>
-    </include>
-
 <!--            Sets                                                -->
 <!--            ===========================================         -->
 <!--            9550    SETS (SET TYPE)                             -->
@@ -695,32 +713,6 @@
 <!--            commun                                              -->
 <!--            ===========================================         -->
 <!--            9504    YOUTUBE                                     -->
-
-    <include name="Animation_Music_Fade_Out">
-        <animation condition="Control.HasFocus(9501) | Control.HasFocus(160) | Control.HasFocus(9502) | Control.HasFocus(9508) | Control.HasFocus(9511) | Control.HasFocus(95087) | Control.HasFocus(95027) | Control.HasFocus(95017) | Control.HasFocus(95117) | Control.HasFocus(9669) | Control.HasFocus(50) | Control.HasFocus(507)" effect="fade" end="0" start="100" time="300">Conditional</animation>
-    </include>
-
-    <include name="Animation_Video_Fade_Out">
-        <animation condition="[ControlGroup(9600).HasFocus() | Control.HasFocus(160) | Control.HasFocus(9501) | Control.HasFocus(9506) | Control.HasFocus(9552) | Control.HasFocus(9553) | Control.HasFocus(9554) | Control.HasFocus(9514) | Control.HasFocus(9515) | Control.HasFocus(9560) | Control.HasFocus(50) | Control.HasFocus(507) | Control.HasFocus(9550) | Control.HasFocus(9556) | Control.HasFocus(9518) | Control.HasFocus(9503) | Control.HasFocus(9504) | Control.HasFocus(9579) | Control.HasFocus(9517) | Control.HasFocus(9557) | Control.HasFocus(95577) | Control.HasFocus(9517) | Control.HasFocus(9557) | Control.HasFocus(9558) | Control.HasFocus(9559) | Control.HasFocus(9520) | Control.HasFocus(95507) | Control.HasFocus(95797) | Control.HasFocus(95207) | Control.HasFocus(95067) | Control.HasFocus(95567) | Control.HasFocus(95147) | Control.HasFocus(95157) | Control.HasFocus(95187) | Control.HasFocus(95177) | Control.HasFocus(95037) | Control.HasFocus(95527) | Control.HasFocus(95537) | Control.HasFocus(95587) | Control.HasFocus(95597) | Control.HasFocus(95607) | Control.HasFocus(95047) | Control.HasFocus(95547) | Control.HasFocus(9669)]" effect="fade" end="0" start="100" time="300">Conditional</animation>
-    </include>
-
-    <!-- WIP 1 -->
-
-    <!-- <include name="Animation_Video_Fade_Out"> -->
-        <!-- <animation condition="[ControlGroup(9600).HasFocus() | Control.HasFocus(160) | Control.HasFocus(9501) | Control.HasFocus(9506) | Control.HasFocus(9552) | Control.HasFocus(9553) | Control.HasFocus(9554) | Control.HasFocus(9514) | Control.HasFocus(9515) | Control.HasFocus(9560) | Control.HasFocus(50) | Control.HasFocus(507) | Control.HasFocus(9550) | Control.HasFocus(9556) | Control.HasFocus(9518) | Control.HasFocus(9503) | Control.HasFocus(9504) | Control.HasFocus(9579) | Control.HasFocus(9517) | Control.HasFocus(9557) | Control.HasFocus(95577) | Control.HasFocus(9517) | Control.HasFocus(9557) | Control.HasFocus(9558) | Control.HasFocus(9559) | Control.HasFocus(9520) | Control.HasFocus(95507) | Control.HasFocus(95797) | Control.HasFocus(95207) | Control.HasFocus(95067) | Control.HasFocus(95567) | Control.HasFocus(95147) | Control.HasFocus(95157) | Control.HasFocus(95187) | Control.HasFocus(95177) | Control.HasFocus(95037) | Control.HasFocus(95527) | Control.HasFocus(95537) | Control.HasFocus(95587) | Control.HasFocus(95597) | Control.HasFocus(95607) | Control.HasFocus(95047) | Control.HasFocus(95547)] + !Control.HasFocus(9669)" effect="fade" end="0" start="100" time="0">Conditional</animation> -->
-    <!-- </include> -->
-
-    <include name="Animation_Video_Fade_Out_Clearlogo">
-        <animation condition="[ControlGroup(9600).HasFocus() | Control.HasFocus(160) | Control.HasFocus(9501) | Control.HasFocus(9506) | Control.HasFocus(9552) | Control.HasFocus(9553) | Control.HasFocus(9554) | Control.HasFocus(9514) | Control.HasFocus(9515) | Control.HasFocus(9560) | Control.HasFocus(9550) | Control.HasFocus(9556) | Control.HasFocus(9518) | Control.HasFocus(9503) | Control.HasFocus(9504) | Control.HasFocus(9579) | Control.HasFocus(9517) | Control.HasFocus(9517) | Control.HasFocus(9558) | Control.HasFocus(9559) | Control.HasFocus(9520) | Control.HasFocus(95507) | Control.HasFocus(95797) | Control.HasFocus(95207) | Control.HasFocus(95067) | Control.HasFocus(95567) | Control.HasFocus(95147) | Control.HasFocus(95157) | Control.HasFocus(95187) | Control.HasFocus(95177) | Control.HasFocus(95037) | Control.HasFocus(95527) | Control.HasFocus(95537) | Control.HasFocus(95587) | Control.HasFocus(95597) | Control.HasFocus(95607) | Control.HasFocus(95047) | Control.HasFocus(95547) | Control.HasFocus(9669)]" effect="fade" end="0" start="100" time="300">Conditional</animation>
-    </include>
-
-    <include name="Animation_Video_Fade_In_Clearlogo">
-        <animation condition="Control.HasFocus(9501) | Control.HasFocus(9506) | Control.HasFocus(9552) | Control.HasFocus(9553) | Control.HasFocus(9554) | Control.HasFocus(9514) | Control.HasFocus(9515) | Control.HasFocus(9560) | Control.HasFocus(9518) | Control.HasFocus(9503) | Control.HasFocus(9504) | Control.HasFocus(9556) | Control.HasFocus(9579) | Control.HasFocus(9517) | Control.HasFocus(9557) | Control.HasFocus(9558) | Control.HasFocus(9559) | Control.HasFocus(9520) | Control.HasFocus(95507) | Control.HasFocus(95797) | Control.HasFocus(95207) | Control.HasFocus(95067) | Control.HasFocus(95567) | Control.HasFocus(95147) | Control.HasFocus(95157) | Control.HasFocus(95187) | Control.HasFocus(95177) | Control.HasFocus(95037) | Control.HasFocus(95527) | Control.HasFocus(95537) | Control.HasFocus(95587) | Control.HasFocus(95597) | Control.HasFocus(95607) | Control.HasFocus(95047) | Control.HasFocus(95547)" effect="fade" end="100" start="0" time="300">Conditional</animation>
-    </include>
-
-    <include name="Animation_Wiki_Fade_Out">
-        <animation condition="[Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hide.button.video.wiki)]" effect="fade" end="0" start="100" time="300">Conditional</animation>
-    </include>
 
     <include name="Animation_Home_Is_Horizontal">
         <visible>!$EXP[View_Info_Dialog]</visible>
