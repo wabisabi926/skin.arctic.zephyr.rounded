@@ -3,7 +3,7 @@
 
     <!-- ANIMATION COMMON -->
 
-    <include name="Animation_Common">
+    <include name="Animation_Common_Settings">
         <animation type="WindowOpen" reversible="false">
             <effect type="fade" start="0" end="100" time="300" delay="300" tween="sine" easing="in" />
         </animation>
@@ -17,6 +17,39 @@
             <effect type="fade" start="100" end="0" tween="cubic" easing="out" delay="0" time="300" />
         </animation>
     </include>
+
+    <include name="Animation_Common_Views">
+        <animation type="Visible" reversible="false">
+            <effect type="fade" start="0" end="100" time="300" delay="300" tween="sine" easing="in" />
+            <effect type="zoom" start="85" end="100" time="300" delay="300" center="auto" tween="sine" easing="out" />
+        </animation>
+        <animation type="Hidden" reversible="false">
+            <effect type="zoom" start="100" end="85" center="auto" tween="sine" delay="0" easing="out" time="300" />
+            <effect type="fade" start="100" end="0" tween="cubic" easing="out" delay="0" time="300" />
+        </animation>
+        <animation type="WindowOpen" reversible="false">
+            <effect type="fade" start="0" end="100" time="300" delay="300" tween="sine" easing="in" />
+            <effect type="zoom" start="85" end="100" time="300" delay="300" center="auto" tween="sine" easing="out" />
+        </animation>
+        <animation type="WindowClose" reversible="false">
+            <effect type="zoom" start="100" end="85" center="auto" tween="sine" delay="0" easing="out" time="300" />
+            <effect type="fade" start="100" end="0" tween="cubic" easing="out" delay="0" time="300" />
+        </animation>
+    </include>
+
+    <include name="Animation_Common">
+        <param name="animation_include">Animation_Common_Views</param>
+        <param name="visible_infodialogs">!$EXP[View_Info_Dialog]</param>
+        <param name="visible_widgets">!Integer.IsEqual(Container.NumItems,0)</param>
+        <definition>
+            <visible>$PARAM[visible_infodialogs]</visible>
+            <!-- <animation effect="fade" start="100" end="0" time="400" condition="Window.IsVisible(script-tmdbhelper-recommendations.xml) | ![$PARAM[visible_widgets]]">Conditional</animation> -->
+            <!-- <visible>String.IsEmpty(Window(Home).Property(TMDbHelper.HideView))</visible> -->
+            <include>$PARAM[animation_include]</include>
+        </definition>
+    </include>
+
+
 
     <include name="Animation_Select_Focus">
         <animation type="Focus">

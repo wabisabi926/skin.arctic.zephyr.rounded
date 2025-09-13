@@ -87,9 +87,14 @@
 
     <controls>
         <include condition="!Skin.HasSetting(show.global.visualisation.background.video)">Hidden_Video_Window</include>
-        <include>Background_Global</include>
-        <include condition="!Skin.HasSetting(hide.furniture.nowplaying.views)">Furniture_Header_NowPlaying</include>
 
+        <control type="group">
+            <animation effect="fade" start="0" end="100" time="600" delay="400" reversible="false">WindowOpen</animation>
+            <animation effect="fade" start="100" end="0" time="600" reversible="false">WindowClose</animation>
+            <include>Background_Global</include>
+        </control>
+
+        <include condition="!Skin.HasSetting(hide.furniture.nowplaying.views)">Furniture_Header_NowPlaying</include>
         <include>Dialog_Video_Info</include>
         <include condition="!Skin.HasSetting(disable.all.hidden.list)">Hidden_List_Set_Count</include>
         <include content="Def_Dialog_Info_Overlay">

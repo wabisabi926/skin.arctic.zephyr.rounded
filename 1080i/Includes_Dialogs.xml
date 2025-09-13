@@ -471,6 +471,7 @@
                             <width>100%</width>
                             <height>100%</height>
                             <texture border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png</texture>
+                            <include condition="true">Animation_View_List_Focus_Scroll</include>
                         </control>
                         <control type="image">
                             <left>16</left>
@@ -662,6 +663,7 @@
         <param name="onclick1" value="$PARAM[onclick1]" default="" />
         <param name="textcolor" value="$PARAM[textcolor]" default="Black70" />
         <param name="colordiffuse_texturenofocus" value="$PARAM[colordiffuse_texturenofocus]" default="Black12" />
+
         <definition>
             <control type="button" id="$PARAM[id]">
                 <width>$PARAM[width]</width>
@@ -847,6 +849,7 @@
         <height>70</height>
         <alttexturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png</alttexturefocus>
         <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png</texturefocus>
+        <include condition="true">Animation_View_List_Focus_Scroll</include>
     </include>
 
     <include name="Def_Settings_Label_Title_Right_Side">
@@ -869,6 +872,7 @@
         <height>70</height>
         <alttexturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png</alttexturefocus>
         <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png</texturefocus>
+        <include condition="true">Animation_View_List_Focus_Scroll</include>
     </include>
 
     <!-- DEF - DIALOG SETTINGS - CUSTOM - 1260 - 1149  ( HEIGHT 66 )-->
@@ -884,20 +888,25 @@
     </include>
 
     <include name="Def_Custom_Settings_Button_Gradient_Select_Left_Side">
-        <radioposx>611</radioposx>
-        <left>0</left>
-        <align>left</align>
-        <textwidth>600</textwidth>
-        <width>668</width>
-        <height>66</height>
-        <font>Small</font>
-        <disabledcolor>Black12</disabledcolor>
-        <textcolor>Black70</textcolor>
-        <textureradiofocus colordiffuse="Black70">buttons/radio-on.png</textureradiofocus>
-        <textureradionofocus colordiffuse="Black30">buttons/radio-off.png</textureradionofocus>
-        <focusedcolor>Selected</focusedcolor>
-        <alttexturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png</alttexturefocus>
-        <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png</texturefocus>
+        <param name="condition_scroll_anim" value="$PARAM[condition_scroll_anim]" default="true" />
+
+        <definition>
+            <radioposx>611</radioposx>
+            <left>0</left>
+            <align>left</align>
+            <textwidth>600</textwidth>
+            <width>668</width>
+            <height>66</height>
+            <font>Small</font>
+            <disabledcolor>Black12</disabledcolor>
+            <textcolor>Black70</textcolor>
+            <textureradiofocus colordiffuse="Black70">buttons/radio-on.png</textureradiofocus>
+            <textureradionofocus colordiffuse="Black30">buttons/radio-off.png</textureradionofocus>
+            <focusedcolor>Selected</focusedcolor>
+            <alttexturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png</alttexturefocus>
+            <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png</texturefocus>
+            <include condition="$PARAM[condition_scroll_anim]">Animation_View_List_Focus_Scroll</include>
+        </definition>
     </include>
 
     <!-- DEF - DIALOG - SKIN SETTINGS -->
@@ -944,6 +953,7 @@
         <textureradioonnofocus colordiffuse="Dark3">buttons/radio-on.png</textureradioonnofocus>
         <alttexturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png</alttexturefocus>
         <texturefocus border="12">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/box_h.png</texturefocus>
+        <include condition="true">Animation_View_List_Focus_Scroll</include>
     </include>
 
     <!-- DEF - DIALOG - SETTINGS - SYSTEM INFO -->
