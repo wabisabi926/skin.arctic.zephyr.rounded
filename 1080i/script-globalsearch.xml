@@ -9,7 +9,6 @@
     <controls>
         <include condition="!Skin.HasSetting(show.global.visualisation.background.video)">Hidden_Video_Window</include>
         <include>Background_Global</include>
-        <include>Animation_Common_Settings</include>
 
         <include condition="!Skin.HasSetting(hide.furniture.nowplaying.views)">Furniture_Header_NowPlaying</include>
         <include>Furniture_Header_Clock_Right</include>
@@ -29,6 +28,12 @@
         <!-- ICON HEADER -->
 
         <control type="group">
+            <visible>String.IsEmpty(Window(Home).Property(Hide_On_Reload_Dialog_Info))</visible>
+            <include>Animation_Dialog_Info_Visible_Fade_Conditional</include>
+
+            <include>Animation_Fade_In_Delay_Zoom</include>
+            <include>Animation_Common_Fade_Out</include>
+
             <top>40</top>
             <left>40</left>
 
@@ -88,7 +93,7 @@
         </control>
 
         <control type="group">
-            <visible>![Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml)]</visible>
+            <include>Animation_Common_Global</include>
 
             <animation condition="!Control.HasFocus(9000) + !Control.HasFocus(990)" effect="slide" end="-466,0" start="0,0" reversible="true" time="300" tween="sine">Conditional</animation>
 
