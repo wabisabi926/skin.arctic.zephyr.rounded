@@ -1244,96 +1244,101 @@
 
     <include name="Furniture_Home_NowPlaying">
         <control type="group">
+            <include>Animation_Common</include>
 
-            <animation effect="slide" start="0" end="0,-34" time="150" condition="Skin.HasSetting(home.style.horizontal.clean) + Skin.HasSetting(hide.home.menu) + !Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + !$EXP[Home_Menu_Is_Focus] + !Control.HasFocus(9099)">Conditional</animation>
+            <control type="group">
 
-            <animation effect="slide" start="0" end="0,129" time="150" condition="Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + !$EXP[Home_Menu_Is_Focus] + !Control.HasFocus(9099)">Conditional</animation>
+                <animation effect="slide" start="0" end="0,-34" time="150" condition="Skin.HasSetting(home.style.horizontal.clean) + Skin.HasSetting(hide.home.menu) + !Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + !$EXP[Home_Menu_Is_Focus] + !Control.HasFocus(9099)">Conditional</animation>
 
-            <animation effect="fade" start="100" end="0" tween="sine" reversible="false" easing="out" time="350" condition="!$EXP[Extended_Now_Playing_Is_Visible]">Conditional</animation>
+                <animation effect="slide" start="0" end="0,129" time="150" condition="Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + !$EXP[Home_Menu_Is_Focus] + !Control.HasFocus(9099)">Conditional</animation>
 
-            <animation effect="fade" start="0" end="100" tween="sine" reversible="false" easing="in" delay="350" time="450" condition="$EXP[Extended_Now_Playing_Is_Visible]">Conditional</animation>
-            <height>770</height>
-            <bottom>200</bottom>
-            <width>1270</width>
-            <include content="Def_Left" condition="$EXP[Home_Is_Vertical]"><param name="left" value="446" /></include>
-            <left>View_SidePad</left>
+                <animation effect="fade" start="100" end="0" tween="sine" reversible="false" easing="out" time="350" condition="!$EXP[Extended_Now_Playing_Is_Visible]">Conditional</animation>
 
-            <!-- BASICS -->
+                <animation effect="fade" start="0" end="100" tween="sine" reversible="false" easing="in" delay="350" time="450" condition="$EXP[Extended_Now_Playing_Is_Visible]">Conditional</animation>
 
-            <include>NowPlaying_TopBottomInfo</include>
-            <include>NowPlaying_AudioDiscArt</include>
-            <include condition="Skin.HasSetting(show.home.nowplaying.extended.video.windows)">NowPlaying_VideoWindow</include>
-            <include>NowPlaying_ClearArt</include>
+                <height>770</height>
+                <bottom>200</bottom>
+                <width>1270</width>
+                <include content="Def_Left" condition="$EXP[Home_Is_Vertical]"><param name="left" value="446" /></include>
+                <left>View_SidePad</left>
 
-            <!-- DISCART -->
+                <!-- BASICS -->
 
-            <include content="NowPlaying_Image_DiscArt_Video">
-                <param name="visible" value="!Skin.HasSetting(show.home.nowplaying.extended.video.windows)" />
-            </include>
-            <include content="NowPlaying_Image_DiscArt_Video">
-                <param name="left" value="679" />
-                <param name="visible" value="Skin.HasSetting(show.home.nowplaying.extended.video.windows)" />
-            </include>
+                <include>NowPlaying_TopBottomInfo</include>
+                <include>NowPlaying_AudioDiscArt</include>
+                <include condition="Skin.HasSetting(show.home.nowplaying.extended.video.windows)">NowPlaying_VideoWindow</include>
+                <include>NowPlaying_ClearArt</include>
 
-            <!-- POSTER / SQUARE -->
+                <!-- DISCART -->
 
-            <include content="NowPlaying_Poster">
-                <param name="visible" value="!Skin.HasSetting(show.home.nowplaying.extended.video.windows)" />
-            </include>
-            <include content="NowPlaying_Poster">
-                <param name="left" value="573" />
-                <param name="visible" value="Skin.HasSetting(show.home.nowplaying.extended.video.windows)" />
-            </include>
-            <include content="NowPlaying_Square">
-                <param name="visible" value="Player.HasAudio" />
-                <param name="fallback_image" value="DefaultAudio.png" />
-            </include>
-            <include content="NowPlaying_Square">
-                <param name="left" value="573" />
-                <param name="visible" value="$EXP[IsPVRVideo] + Skin.HasSetting(show.home.nowplaying.extended.video.windows)" />
-            </include>
-            <include content="NowPlaying_Square">
-                <param name="left" value="0" />
-                <param name="visible" value="$EXP[IsPVRAudio] + Skin.HasSetting(show.home.nowplaying.extended.video.windows)" />
-            </include>
+                <include content="NowPlaying_Image_DiscArt_Video">
+                    <param name="visible" value="!Skin.HasSetting(show.home.nowplaying.extended.video.windows)" />
+                </include>
+                <include content="NowPlaying_Image_DiscArt_Video">
+                    <param name="left" value="679" />
+                    <param name="visible" value="Skin.HasSetting(show.home.nowplaying.extended.video.windows)" />
+                </include>
 
-            <!-- INFO RIGHT -->
+                <!-- POSTER / SQUARE -->
 
-            <include content="NowPlaying_InfoRight">
-                <param name="left" value="561" />
-                <param name="visible" value="$EXP[IsVideo] + Skin.HasSetting(show.home.nowplaying.extended.video.windows) + Skin.HasSetting(hide.home.nowplaying.extended.video.cd)" />
-            </include>
-            <include content="NowPlaying_InfoRight">
-                <param name="left" value="641" />
-                <param name="visible" value="$EXP[IsVideo] + Skin.HasSetting(show.home.nowplaying.extended.video.windows) + !Skin.HasSetting(hide.home.nowplaying.extended.video.cd)" />
-            </include>
-            <include content="NowPlaying_InfoRight">
-                <param name="left" value="0" />
-                <param name="visible" value="[$EXP[IsVideo] + !Skin.HasSetting(show.home.nowplaying.extended.video.windows) + Skin.HasSetting(hide.home.nowplaying.extended.video.cd)] | [$EXP[IsAudio] + Skin.HasSetting(hide.home.nowplaying.extended.music.cd)] | [$EXP[IsPVRAudio] + Skin.HasSetting(hide.home.nowplaying.extended.video.cd)]" />
-            </include>
-            <include content="NowPlaying_InfoRight">
-                <param name="left" value="661" />
-                <param name="visible" value="$EXP[IsPVRVideo] + Skin.HasSetting(show.home.nowplaying.extended.video.windows) + Skin.HasSetting(hide.home.nowplaying.extended.video.cd)" />
-            </include>
-            <include content="NowPlaying_InfoRight">
-                <param name="left" value="140" />
-                <param name="visible" value="[$EXP[IsPVRAudio] + !Skin.HasSetting(hide.home.nowplaying.extended.video.cd)] | [$EXP[IsAudio] + !Skin.HasSetting(hide.home.nowplaying.extended.music.cd)]" />
-            </include>
-            <include content="NowPlaying_InfoRight">
-                <param name="left" value="100" />
-                <param name="visible" value="$EXP[IsPVRVideo] + !Skin.HasSetting(show.home.nowplaying.extended.video.windows)" />
-            </include>
+                <include content="NowPlaying_Poster">
+                    <param name="visible" value="!Skin.HasSetting(show.home.nowplaying.extended.video.windows)" />
+                </include>
+                <include content="NowPlaying_Poster">
+                    <param name="left" value="573" />
+                    <param name="visible" value="Skin.HasSetting(show.home.nowplaying.extended.video.windows)" />
+                </include>
+                <include content="NowPlaying_Square">
+                    <param name="visible" value="Player.HasAudio" />
+                    <param name="fallback_image" value="DefaultAudio.png" />
+                </include>
+                <include content="NowPlaying_Square">
+                    <param name="left" value="573" />
+                    <param name="visible" value="$EXP[IsPVRVideo] + Skin.HasSetting(show.home.nowplaying.extended.video.windows)" />
+                </include>
+                <include content="NowPlaying_Square">
+                    <param name="left" value="0" />
+                    <param name="visible" value="$EXP[IsPVRAudio] + Skin.HasSetting(show.home.nowplaying.extended.video.windows)" />
+                </include>
 
-            <control type="list" id="999">
-                <include>Def_Hidden_ListControl</include>
-                <onfocus>SetProperty(shownowplayinginfo,1,Home)</onfocus>
-                <content limit="1">$VAR[Def_Dialog_Info_Currently_Playing_Item_MusicOSD]</content>
-            </control>
+                <!-- INFO RIGHT -->
 
-            <control type="button" id="4000" description="Helper">
-                <include>Def_Hidden_Button</include>
-                <include content="Object_OnDirection_Action"><param name="ondirection" value="300" /></include>
-                <onfocus>SetFocus(25)</onfocus>
+                <include content="NowPlaying_InfoRight">
+                    <param name="left" value="561" />
+                    <param name="visible" value="$EXP[IsVideo] + Skin.HasSetting(show.home.nowplaying.extended.video.windows) + Skin.HasSetting(hide.home.nowplaying.extended.video.cd)" />
+                </include>
+                <include content="NowPlaying_InfoRight">
+                    <param name="left" value="641" />
+                    <param name="visible" value="$EXP[IsVideo] + Skin.HasSetting(show.home.nowplaying.extended.video.windows) + !Skin.HasSetting(hide.home.nowplaying.extended.video.cd)" />
+                </include>
+                <include content="NowPlaying_InfoRight">
+                    <param name="left" value="0" />
+                    <param name="visible" value="[$EXP[IsVideo] + !Skin.HasSetting(show.home.nowplaying.extended.video.windows) + Skin.HasSetting(hide.home.nowplaying.extended.video.cd)] | [$EXP[IsAudio] + Skin.HasSetting(hide.home.nowplaying.extended.music.cd)] | [$EXP[IsPVRAudio] + Skin.HasSetting(hide.home.nowplaying.extended.video.cd)]" />
+                </include>
+                <include content="NowPlaying_InfoRight">
+                    <param name="left" value="661" />
+                    <param name="visible" value="$EXP[IsPVRVideo] + Skin.HasSetting(show.home.nowplaying.extended.video.windows) + Skin.HasSetting(hide.home.nowplaying.extended.video.cd)" />
+                </include>
+                <include content="NowPlaying_InfoRight">
+                    <param name="left" value="140" />
+                    <param name="visible" value="[$EXP[IsPVRAudio] + !Skin.HasSetting(hide.home.nowplaying.extended.video.cd)] | [$EXP[IsAudio] + !Skin.HasSetting(hide.home.nowplaying.extended.music.cd)]" />
+                </include>
+                <include content="NowPlaying_InfoRight">
+                    <param name="left" value="100" />
+                    <param name="visible" value="$EXP[IsPVRVideo] + !Skin.HasSetting(show.home.nowplaying.extended.video.windows)" />
+                </include>
+
+                <control type="list" id="999">
+                    <include>Def_Hidden_ListControl</include>
+                    <onfocus>SetProperty(shownowplayinginfo,1,Home)</onfocus>
+                    <content limit="1">$VAR[Def_Dialog_Info_Currently_Playing_Item_MusicOSD]</content>
+                </control>
+
+                <control type="button" id="4000" description="Helper">
+                    <include>Def_Hidden_Button</include>
+                    <include content="Object_OnDirection_Action"><param name="ondirection" value="300" /></include>
+                    <onfocus>SetFocus(25)</onfocus>
+                </control>
             </control>
         </control>
     </include>
