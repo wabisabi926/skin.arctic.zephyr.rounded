@@ -167,7 +167,7 @@
                         <include>Animation_Dialog_Info_Fade_In_250_Delay_200</include>
                         <include>Animation_Dialog_Info_Fade_Out_150</include>
 
-                        <animation condition="Control.HasFocus(9669)" effect="fade" end="0" start="100" time="300">Conditional</animation>
+                        <animation condition="Control.HasFocus(9669)" effect="fade" start="100" end="0" time="150">Conditional</animation>
 
                         <include content="$PARAM[Animation_new]">
                             <param name="controlid" value="$PARAM[controlid]" />
@@ -377,7 +377,7 @@
                         <include>Animation_Dialog_Info_Fade_In_250_Delay_200</include>
                         <include>Animation_Dialog_Info_Fade_Out_150</include>
 
-                        <animation condition="Control.HasFocus(9669)" effect="fade" end="0" start="100" time="300">Conditional</animation>
+                        <animation condition="Control.HasFocus(9669)" effect="fade" start="100" end="0" time="150">Conditional</animation>
 
                         <include content="$PARAM[Animation_new]">
                             <param name="controlid" value="$PARAM[controlid]" />
@@ -541,36 +541,40 @@
 
                 <!-- BACKGROUND LIST -->
 
-                <control type="grouplist">
-                    <visible>$PARAM[visible]</visible>
-                    <visible>!Container($PARAM[controlid]).IsUpdating</visible>
-                    <visible>!Control.HasFocus($PARAM[controlid]) + !Control.HasFocus($PARAM[controlid]7)</visible>
+                <control type="group">
+                    <include>Animation_Dialog_Info_Right_Side_Delay_400</include>
 
-                    <include>Animation_Dialog_Info_Fade_In_250_Delay_200</include>
-                    <include>Animation_Dialog_Info_Fade_Out_150</include>
+                    <control type="grouplist">
+                        <visible>$PARAM[visible]</visible>
+                        <visible>!Container($PARAM[controlid]).IsUpdating</visible>
+                        <visible>!Control.HasFocus($PARAM[controlid]) + !Control.HasFocus($PARAM[controlid]7)</visible>
 
-                    <animation condition="Control.HasFocus(9669)" effect="fade" end="0" start="100" time="300">Conditional</animation>
+                        <include>Animation_Dialog_Info_Fade_In_250_Delay_200</include>
+                        <include>Animation_Dialog_Info_Fade_Out_150</include>
 
-                    <include content="$PARAM[Animation_new]">
-                        <param name="controlid" value="$PARAM[controlid]" />
-                    </include>
+                        <animation condition="Control.HasFocus(9669)" effect="fade" start="100" end="0" time="150">Conditional</animation>
 
-                    <top>361</top>
-                    <left>$PARAM[leftbackgroundlist]</left>
-                    <height>400</height>
-                    <width>1400</width>
+                        <include content="$PARAM[Animation_new]">
+                            <param name="controlid" value="$PARAM[controlid]" />
+                        </include>
 
-                    <itemgap>-9.66</itemgap>
-                    <orientation>horizontal</orientation>
+                        <top>361</top>
+                        <left>$PARAM[leftbackgroundlist]</left>
+                        <height>400</height>
+                        <width>1400</width>
 
-                    <include content="Layout_Dialog_Info_UnFocus_Poster_Square">
-                        <param name="id" value="0" />
-                        <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
-                        <param name="controlid" value="$PARAM[controlid]" />
-                        <param name="aspectbox" value="$PARAM[aspectbox]" />
-                        <param name="aspectposter" value="$PARAM[aspectposter]" />
-                        <param name="colordiffuse" value="$PARAM[colordiffuse]" />
-                    </include>
+                        <itemgap>-9.66</itemgap>
+                        <orientation>horizontal</orientation>
+
+                        <include content="Layout_Dialog_Info_UnFocus_Poster_Square">
+                            <param name="id" value="0" />
+                            <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
+                            <param name="controlid" value="$PARAM[controlid]" />
+                            <param name="aspectbox" value="$PARAM[aspectbox]" />
+                            <param name="aspectposter" value="$PARAM[aspectposter]" />
+                            <param name="colordiffuse" value="$PARAM[colordiffuse]" />
+                        </include>
+                    </control>
                 </control>
 
                 <!-- FOCUSED LIST -->
@@ -709,7 +713,7 @@
         <definition>
             <control type="group">
                 <top>200</top>
-                <left>785</left>
+                <left>788</left>
 
                 <!-- BACKGROUND LIST -->
 
@@ -723,6 +727,8 @@
 
                         <include>Animation_Dialog_Info_Fade_In_250_Delay_200</include>
                         <include>Animation_Dialog_Info_Fade_Out_150</include>
+
+                        <animation condition="Control.HasFocus(9669)" effect="fade" start="100" end="0" time="150">Conditional</animation>
 
                         <include content="$PARAM[Animation_new]">
                             <param name="controlid" value="$PARAM[controlid]" />
