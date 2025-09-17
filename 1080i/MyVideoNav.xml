@@ -61,7 +61,13 @@
         <include condition="$EXP[Exp_View_59_Include]">View_59_BannerWall</include>
 
         <include>Furniture_Header</include>
-        <include condition="!Skin.HasSetting(hide.furniture.nowplaying.views)">Furniture_Header_NowPlaying</include>
+
+        <control type="group">
+            <visible>!$EXP[View_Info_Dialog]</visible>
+            <include>Animation_Feature_NowPlaying</include>
+            <include condition="!Skin.HasSetting(hide.furniture.nowplaying.views)">Furniture_Header_NowPlaying</include>
+        </control>
+
         <include>Furniture_Jumpbar_Horizontal</include>
         <include condition="Skin.HasSetting(show.furniture.footer)">Furniture_Footer_Info</include>
         <include condition="!Skin.HasSetting(hide.furniture.flags)">Furniture_Footer_Video_Flags</include>
@@ -412,7 +418,7 @@
                 </control>
 
                 <!-- LIST, FIXEDLIST -->
-                
+
                 <control type="radiobutton" id="9036" description="SELECT LISTTYPE">
                     <include>Def_Dialog_Menu_Button_Gradient_Select</include>
                     <label>31258</label>

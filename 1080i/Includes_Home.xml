@@ -61,16 +61,11 @@
         </control>
     </include>
 
-    <!-- =================================== -->
-    <!--           HORIZONTAL                -->
-    <!-- =================================== -->
-
-    <!-- HORIZONTAL - HEADER -->
+    <!-- HEADER -->
 
     <include name="Home_Header">
         <control type="group">
-            <visible>Window.IsVisible(Home) + !$EXP[View_Info_Dialog]</visible>
-            <animation effect="slide" start="0" end="0,-39" time="0" condition="true">Conditional</animation>
+            <animation effect="slide" start="0" end="0,-40" time="0" condition="true">Conditional</animation>
 
             <include>Animation_Common_Fade_In</include>
             <include>Animation_Common_Fade_Out</include>
@@ -80,114 +75,9 @@
                 <include>Furniture_Header_Clock_Right</include>
             </control>
             <control type="group">
+                <visible>!$EXP[View_Info_Dialog]</visible>
+                <include>Animation_Feature_NowPlaying</include>
                 <include condition="!Skin.HasSetting(show.furniture.nowplaying.extended.home) + !Skin.HasSetting(hide.furniture.nowplaying.home)">Furniture_Header_NowPlaying</include>
-            </control>
-        </control>
-    </include>
-
-    <!-- HORIZONTAL - MAIN MENU -->
-
-    <include name="Home_Horizontal_Row">
-        <control type="group">
-            <visible>String.IsEmpty(Window(Home).Property(Hide_On_Reload_Dialog_Info))</visible>
-            <include>Animation_Dialog_Info_Visible_Fade_Conditional</include>
-
-            <include>Animation_Fade_In_Delay_Zoom</include>
-            <include>Animation_Common_Fade_Out</include>
-
-            <!-- HOME CLEAN ONLY - HIDE MENU -->
-
-            <animation effect="slide" start="0" end="0,163" time="150" condition="!$EXP[Home_Menu_Is_Focus] + !Control.HasFocus(9099) + Skin.HasSetting(home.style.horizontal.clean) + Skin.HasSetting(hide.home.menu)">Conditional</animation>
-
-            <animation effect="slide" start="0" end="0,30" time="0" condition="true">Conditional</animation>
-
-            <include condition="!Skin.HasSetting(show.home.header.clock.left)">Furniture_Footer_Clock_Right</include>
-
-            <control type="group">
-                <animation effect="slide" start="0" end="0,163" time="150" condition="!$EXP[Home_Menu_Is_Focus] + !Control.HasFocus(9099) + [Skin.HasSetting(hide.home.menu) | [Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + $EXP[Extended_Now_Playing_Is_Enable]] + !ControlGroup(301).HasFocus()] + $EXP[Home_Is_Horizontal]">Conditional</animation>
-
-                <!-- ARROWS (LEFT / RIGHT) - ICON -->
-
-                <control type="group">
-                    <visible>Skin.HasSetting(home.show.menu.icons)</visible>
-
-                    <control type="image">
-                        <visible>[Integer.IsGreater(Container(300).NumItems,12) + ![Skin.HasSetting(show.home.header.clock.left) | !Skin.HasSetting(show.furniture.clock.date.weather)]] | [Integer.IsGreater(Container(300).NumItems,16) + [Skin.HasSetting(show.home.header.clock.left) | !Skin.HasSetting(show.furniture.clock.date.weather)]]</visible>
-                        <top>962</top>
-                        <left>52</left>
-                        <include>Def_Arrow_Size</include>
-                        <texture colordiffuse="Dark2" flipx="true">common/arrow_small_right.png</texture>
-                    </control>
-                    <control type="image">
-                        <visible>Integer.IsGreater(Container(300).NumItems,12)</visible>
-                        <visible>![Skin.HasSetting(show.home.header.clock.left) | !Skin.HasSetting(show.furniture.clock.date.weather)]</visible>
-                        <top>962</top>
-                        <right>480</right>
-                        <include>Def_Arrow_Size</include>
-                        <texture colordiffuse="Dark2" flipx="false">common/arrow_small_right.png</texture>
-                    </control>
-                    <control type="image">
-                        <visible>Integer.IsGreater(Container(300).NumItems,16)</visible>
-                        <visible>[Skin.HasSetting(show.home.header.clock.left) | !Skin.HasSetting(show.furniture.clock.date.weather)]</visible>
-                        <top>962</top>
-                        <right>42</right>
-                        <include>Def_Arrow_Size</include>
-                        <texture colordiffuse="Dark2" flipx="false">common/arrow_small_right.png</texture>
-                    </control>
-                </control>
-
-                <!-- ARROWS (LEFT / RIGHT) - TEXT -->
-
-                <control type="group">
-                    <visible>!Skin.HasSetting(home.show.menu.icons)</visible>
-
-                    <control type="image">
-                        <visible>[Integer.IsGreater(Container(300).NumItems,6) + ![Skin.HasSetting(show.home.header.clock.left) | !Skin.HasSetting(show.furniture.clock.date.weather)]] | [Integer.IsGreater(Container(300).NumItems,8) + [Skin.HasSetting(show.home.header.clock.left) | !Skin.HasSetting(show.furniture.clock.date.weather)]]</visible>
-                        <top>962</top>
-                        <left>52</left>
-                        <include>Def_Arrow_Size</include>
-                        <texture colordiffuse="Dark2" flipx="true">common/arrow_small_right.png</texture>
-                    </control>
-                    <control type="image">
-                        <visible>Integer.IsGreater(Container(300).NumItems,6)</visible>
-                        <visible>![Skin.HasSetting(show.home.header.clock.left) | !Skin.HasSetting(show.furniture.clock.date.weather)]</visible>
-                        <top>962</top>
-                        <right>480</right>
-                        <include>Def_Arrow_Size</include>
-                        <texture colordiffuse="Dark2" flipx="false">common/arrow_small_right.png</texture>
-                    </control>
-                    <control type="image">
-                        <visible>Integer.IsGreater(Container(300).NumItems,8)</visible>
-                        <visible>[Skin.HasSetting(show.home.header.clock.left) | !Skin.HasSetting(show.furniture.clock.date.weather)]</visible>
-                        <top>962</top>
-                        <right>42</right>
-                        <include>Def_Arrow_Size</include>
-                        <texture colordiffuse="Dark2" flipx="false">common/arrow_small_right.png</texture>
-                    </control>
-                </control>
-
-                <!-- MAIN MENU 300 -->
-
-                <control type="list" id="300">
-                    <include>Animation_Scrolltime_Views_List</include>
-
-                    <include condition="![Skin.HasSetting(show.home.header.clock.left) | !Skin.HasSetting(show.furniture.clock.date.weather)]">Def_Home_Menu_Row_width_Reduce</include>
-                    <include condition="[Skin.HasSetting(show.home.header.clock.left) | !Skin.HasSetting(show.furniture.clock.date.weather)]">Def_Home_Menu_Row_width_Max</include>
-
-                    <left>View_SidePad</left>
-                    <orientation>horizontal</orientation>
-
-                    <onfocus condition="String.IsEmpty(Window.Property(MenuSelect))">SetFocus(399)</onfocus>
-                    <onfocus>ClearProperty(ContainerPosition,Home)</onfocus>
-                    <onfocus>ClearProperty(ListItem_Trailer_Path,Home)</onfocus>
-                    <onfocus>ClearProperty(controlsvisible,Home)</onfocus>
-                    <onfocus>ClearProperty(Set_User_Rating,Home)</onfocus>
-                    <onfocus>ClearProperty(LaunchSearch,Home)</onfocus>
-                    <onfocus>ClearProperty(SetBackMenu300AfterSubMenu302,Home)</onfocus>
-
-                    <include condition="Skin.HasSetting(home.show.menu.icons)">Home_Horizontal_Content_Icon</include>
-                    <include condition="!Skin.HasSetting(home.show.menu.icons)">Home_Horizontal_Content_No_Icon</include>
-                </control>
             </control>
         </control>
     </include>
@@ -694,10 +584,126 @@
         </control>
     </include>
 
-    <!-- HORIZONTAL - WIDGETS - BEHAVIOUR -->
 
-    <include name="Home_Horizontal_Widget_Info_Widgets">
+    <!-- =================================== -->
+    <!--           HORIZONTAL                -->
+    <!-- =================================== -->
+
+    <include name="Home_Horizontal_Menu_Widgets">
+        <include>Home_Header</include>
         <include condition="Skin.HasSetting(home.style.horizontal.clean)">Home_Widgets_Item_Position</include>
+
+        <!-- HORIZONTAL - MAIN MENU -->
+
+        <control type="group">
+            <visible>String.IsEmpty(Window(Home).Property(Hide_On_Reload_Dialog_Info))</visible>
+            <include>Animation_Dialog_Info_Visible_Fade_Conditional</include>
+
+            <include>Animation_Fade_In_Delay_Zoom</include>
+            <include>Animation_Common_Fade_Out</include>
+
+            <!-- HOME CLEAN ONLY - HIDE MENU -->
+
+            <animation effect="slide" start="0" end="0,163" time="150" condition="!$EXP[Home_Menu_Is_Focus] + !Control.HasFocus(9099) + Skin.HasSetting(home.style.horizontal.clean) + Skin.HasSetting(hide.home.menu)">Conditional</animation>
+
+            <animation effect="slide" start="0" end="0,30" time="0" condition="true">Conditional</animation>
+
+            <include condition="!Skin.HasSetting(show.home.header.clock.left)">Furniture_Footer_Clock_Right</include>
+
+            <control type="group">
+                <animation effect="slide" start="0" end="0,163" time="150" condition="!$EXP[Home_Menu_Is_Focus] + !Control.HasFocus(9099) + [Skin.HasSetting(hide.home.menu) | [Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + $EXP[Extended_Now_Playing_Is_Enable]] + !ControlGroup(301).HasFocus()] + $EXP[Home_Is_Horizontal]">Conditional</animation>
+
+                <!-- ARROWS (LEFT / RIGHT) - ICON -->
+
+                <control type="group">
+                    <visible>Skin.HasSetting(home.show.menu.icons)</visible>
+
+                    <control type="image">
+                        <visible>[Integer.IsGreater(Container(300).NumItems,12) + ![Skin.HasSetting(show.home.header.clock.left) | !Skin.HasSetting(show.furniture.clock.date.weather)]] | [Integer.IsGreater(Container(300).NumItems,16) + [Skin.HasSetting(show.home.header.clock.left) | !Skin.HasSetting(show.furniture.clock.date.weather)]]</visible>
+                        <top>962</top>
+                        <left>52</left>
+                        <include>Def_Arrow_Size</include>
+                        <texture colordiffuse="Dark2" flipx="true">common/arrow_small_right.png</texture>
+                    </control>
+                    <control type="image">
+                        <visible>Integer.IsGreater(Container(300).NumItems,12)</visible>
+                        <visible>![Skin.HasSetting(show.home.header.clock.left) | !Skin.HasSetting(show.furniture.clock.date.weather)]</visible>
+                        <top>962</top>
+                        <right>480</right>
+                        <include>Def_Arrow_Size</include>
+                        <texture colordiffuse="Dark2" flipx="false">common/arrow_small_right.png</texture>
+                    </control>
+                    <control type="image">
+                        <visible>Integer.IsGreater(Container(300).NumItems,16)</visible>
+                        <visible>[Skin.HasSetting(show.home.header.clock.left) | !Skin.HasSetting(show.furniture.clock.date.weather)]</visible>
+                        <top>962</top>
+                        <right>42</right>
+                        <include>Def_Arrow_Size</include>
+                        <texture colordiffuse="Dark2" flipx="false">common/arrow_small_right.png</texture>
+                    </control>
+                </control>
+
+                <!-- ARROWS (LEFT / RIGHT) - TEXT -->
+
+                <control type="group">
+                    <visible>!Skin.HasSetting(home.show.menu.icons)</visible>
+
+                    <control type="image">
+                        <visible>[Integer.IsGreater(Container(300).NumItems,6) + ![Skin.HasSetting(show.home.header.clock.left) | !Skin.HasSetting(show.furniture.clock.date.weather)]] | [Integer.IsGreater(Container(300).NumItems,8) + [Skin.HasSetting(show.home.header.clock.left) | !Skin.HasSetting(show.furniture.clock.date.weather)]]</visible>
+                        <top>962</top>
+                        <left>52</left>
+                        <include>Def_Arrow_Size</include>
+                        <texture colordiffuse="Dark2" flipx="true">common/arrow_small_right.png</texture>
+                    </control>
+                    <control type="image">
+                        <visible>Integer.IsGreater(Container(300).NumItems,6)</visible>
+                        <visible>![Skin.HasSetting(show.home.header.clock.left) | !Skin.HasSetting(show.furniture.clock.date.weather)]</visible>
+                        <top>962</top>
+                        <right>480</right>
+                        <include>Def_Arrow_Size</include>
+                        <texture colordiffuse="Dark2" flipx="false">common/arrow_small_right.png</texture>
+                    </control>
+                    <control type="image">
+                        <visible>Integer.IsGreater(Container(300).NumItems,8)</visible>
+                        <visible>[Skin.HasSetting(show.home.header.clock.left) | !Skin.HasSetting(show.furniture.clock.date.weather)]</visible>
+                        <top>962</top>
+                        <right>42</right>
+                        <include>Def_Arrow_Size</include>
+                        <texture colordiffuse="Dark2" flipx="false">common/arrow_small_right.png</texture>
+                    </control>
+                </control>
+
+                <!-- MAIN MENU 300 -->
+
+                <control type="list" id="300">
+                    <include>Animation_Scrolltime_Views_List</include>
+
+                    <include condition="![Skin.HasSetting(show.home.header.clock.left) | !Skin.HasSetting(show.furniture.clock.date.weather)]">Def_Home_Menu_Row_width_Reduce</include>
+                    <include condition="[Skin.HasSetting(show.home.header.clock.left) | !Skin.HasSetting(show.furniture.clock.date.weather)]">Def_Home_Menu_Row_width_Max</include>
+
+                    <left>View_SidePad</left>
+                    <orientation>horizontal</orientation>
+
+                    <onfocus condition="String.IsEmpty(Window.Property(MenuSelect))">SetFocus(399)</onfocus>
+                    <onfocus>ClearProperty(ContainerPosition,Home)</onfocus>
+                    <onfocus>ClearProperty(ListItem_Trailer_Path,Home)</onfocus>
+                    <onfocus>ClearProperty(controlsvisible,Home)</onfocus>
+                    <onfocus>ClearProperty(Set_User_Rating,Home)</onfocus>
+                    <onfocus>ClearProperty(LaunchSearch,Home)</onfocus>
+                    <onfocus>ClearProperty(SetBackMenu300AfterSubMenu302,Home)</onfocus>
+
+                    <include condition="Skin.HasSetting(home.show.menu.icons)">Home_Horizontal_Content_Icon</include>
+                    <include condition="!Skin.HasSetting(home.show.menu.icons)">Home_Horizontal_Content_No_Icon</include>
+                </control>
+            </control>
+        </control>
+
+        <!-- HORIZONTAL - SUBMENU -->
+
+        <include condition="Skin.HasSetting(home.show.sub.menu.horizontal) + !Skin.HasSetting(home.show.menu.icons)">Home_Horizontal_Sub_Menu_Horizontal</include>
+        <include condition="[!Skin.HasSetting(home.show.sub.menu.horizontal) | Skin.HasSetting(home.show.menu.icons)]">Home_Horizontal_Sub_Menu_Vertical</include>
+
+        <!-- HORIZONTAL - WIDGETS - BEHAVIOUR -->
 
         <control type="group">
             <include condition="Skin.HasSetting(home.style.horizontal.clean) + Skin.HasSetting(hide.home.menu)">Animation_Home_Clean</include>
@@ -737,6 +743,7 @@
             <onfocus>SetFocus($INFO[Window(Home).Property(BackToId)])</onfocus>
             <onfocus>SetFocus(300)</onfocus>
         </control>
+
         <control type="button" id="8888">
             <include>Def_Hidden_Button</include>
             <onfocus condition="String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId)) + Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">SetFocus(4567)</onfocus>
@@ -744,7 +751,8 @@
             <onfocus condition="!String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId)) + !String.IsEmpty(Window(Home).Property(BackToId))">SetFocus($INFO[Window(Home).Property(LastId)])</onfocus>
             <onfocus condition="String.IsEmpty(Window(Home).Property(BackToId))">SetFocus(300)</onfocus>
         </control>
-         <control type="button" id="8808">
+
+        <control type="button" id="8808">
             <include>Def_Hidden_Button</include>
 
             <onfocus condition="String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId)) + Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">SetFocus(4567)</onfocus>
@@ -872,14 +880,9 @@
     <!-- =================================== -->
 
     <include name="Home_Vertical_Menu_Widgets">
-        <control type="group">
-            <animation effect="slide" start="0,0" end="0,-40" time="0" condition="true">Conditional</animation>
-            <include>Furniture_Home_Header</include>
-            <include>Furniture_Header_Clock_Right</include>
-            <include condition="!Skin.HasSetting(show.furniture.nowplaying.extended.home) + !Skin.HasSetting(hide.furniture.nowplaying.home)">Furniture_Header_NowPlaying</include>
-        </control>
-
+        <include>Home_Header</include>
         <include>Furniture_Footer_Clock_Right</include>
+        <include condition="!Skin.HasSetting(hide.furniture.flags.vertical.widgets)">Home_Vertical_Widget_Flags</include>
 
         <control type="group">
             <visible>String.IsEmpty(Window(Home).Property(Hide_On_Reload_Dialog_Info))</visible>
@@ -2568,9 +2571,9 @@
         </control>
     </include>
 
-    <!-- HORIZONTAL - VERTICAL - SHOW LABEL MENU/ SUBMENU - ONLY ICON -->
+    <!-- FEATURE - SHOW LABEL MENU/ SUBMENU - ONLY ICON -->
 
-    <include name="Home_Vertical_Menu_Icon_Label">
+    <include name="Furniture_Home_Menu_Icon_Label_Tip">
 
         <!-- HOME - HORIZONTAL - MAIN MENU 300 -->
 

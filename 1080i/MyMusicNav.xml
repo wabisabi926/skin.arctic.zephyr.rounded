@@ -55,7 +55,13 @@
         <include condition="$EXP[Exp_View_503_Include]">View_503_Poster_Square</include>
 
         <include>Furniture_Header</include>
-        <include condition="!Skin.HasSetting(hide.furniture.nowplaying.views)">Furniture_Header_NowPlaying</include>
+
+        <control type="group">
+            <visible>!$EXP[View_Info_Dialog]</visible>
+            <include>Animation_Feature_NowPlaying</include>
+            <include condition="!Skin.HasSetting(hide.furniture.nowplaying.views)">Furniture_Header_NowPlaying</include>
+        </control>
+
         <include>Furniture_Jumpbar_Horizontal</include>
         <include condition="Skin.HasSetting(show.furniture.footer)">Furniture_Footer_Info</include>
         <include condition="!Skin.HasSetting(hide.furniture.flags)">Furniture_Footer_Audio_Flags</include>
