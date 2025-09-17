@@ -371,10 +371,6 @@
         </animation>
     </include>
 
-    <include name="Animation_Visible_Sub_Menu_Vertical_Fade_In_Widgets">
-        <animation effect="fade" start="100" end="30" time="100" condition="Control.HasFocus(302) + !$EXP[Home_Is_Sub_Menu_Horizontal]">Conditional</animation>
-    </include>
-
     <!--  ANIMATION - HOME - HORIZONTAL -->
 
     <include name="Animation_SlideIn_Dialog">
@@ -392,6 +388,14 @@
                 <effect type="slide" start="0,-48" end="0" center="auto" tween="back" easing="out" time="400" delay="$PARAM[windowopen_delay]"/>
             </animation>
         </definition>
+    </include>
+
+    <include name="Animation_Visible_Sub_Menu_Vertical_Fade_Conditional_Widgets">
+        <animation effect="fade" start="100" end="30" time="200" condition="Control.HasFocus(302) + !$EXP[Home_Is_Sub_Menu_Horizontal]">Conditional</animation>
+    </include>
+
+    <include name="Animation_Visible_Sub_Menu_Vertical_Fade_Conditional_Window_Flix">
+        <animation effect="fade" start="100" end="50" time="200" condition="Control.HasFocus(302) + $EXP[Home_Is_Horizontal] + !$EXP[Home_Is_Sub_Menu_Horizontal]">Conditional</animation>
     </include>
 
     <!-- HORIZONTAL - SUB MENU -->
@@ -472,6 +476,10 @@
                 <effect type="slide" start="0,0" end="$PARAM[left],0" time="150" tween="sine" easing="out" />
             </animation>
         </definition>
+    </include>
+
+    <include name="Animation_Visible_Label_Tip_Fade_Conditional_Widgets">
+        <animation effect="fade" start="100" end="50" time="200" condition="!ControlGroup(301).HasFocus() + $EXP[Home_Is_Vertical] + Skin.HasSetting(home.show.menu.icons) + Skin.HasSetting(home.show.menu.label.onfocus.icon) + !String.IsEmpty(Window(Home).Property(ShowMenuLabel))">Conditional</animation>
     </include>
 
 
