@@ -4006,7 +4006,6 @@
 
     <include name="Furniture_DialogInfo_Extended_Header">
         <control type="group">
-            <!-- <visible>!Window.IsVisible(DialogBusy.xml)</visible> -->
             <visible>!Window.IsVisible(script-wikipedia.xml)</visible>
             <visible>Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7)</visible>
 
@@ -4032,7 +4031,6 @@
                 <width>88</width>
                 <height>88</height>
                 <texture colordiffuse="PanelWhite100" border="8">$VAR[Image_Header_Dialog_Info_Icon]</texture>
-                <visible>!Window.IsVisible(DialogBusy.xml)</visible>
             </control>
 
             <!-- DIRECTOR PICTURE -->
@@ -4147,20 +4145,22 @@
                 <!-- CONTAINER IS UPDATING -->
 
                 <control type="image">
+                    <description>Busy animation</description>
+                    <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating)) | String.IsEmpty(Window(Home).Property(Init_Value_TMDb)) | Container($PARAM[controlid]).IsUpdating</visible>
+                    <visible>!Control.IsVisible(50) + !Control.IsVisible(9557) + !Control.IsVisible(9554) + !Control.IsVisible(9550)</visible>
+
+                    <animation effect="rotate" condition="true" start="360" end="0" loop="true" time="1000" center="auto">Conditional</animation>
                     <include content="Animation_Common_Delay_Fade_In"><param name="delay" value="200" /></include>
+                    <include>Animation_Vertical_Widgets_Title_Loading</include>
                     <include>Animation_Common_Fade_Out</include>
+
                     <bottom>144</bottom>
                     <aligny>center</aligny>
                     <left>10</left>
-                    <description>Busy animation</description>
                     <width>45</width>
                     <height>45</height>
-                    <animation effect="rotate" condition="true" start="360" end="0" loop="true" time="1000" center="auto">Conditional</animation>
-                    <texture colordiffuse="$VAR[Color_Loading_Spinner]">dialog/loading-spinner.png</texture>
                     <aspectratio align="left">keep</aspectratio>
-                    <include>Animation_Vertical_Widgets_Title_Loading</include>
-                    <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating)) | String.IsEmpty(Window(Home).Property(Init_Value_TMDb)) | Container($PARAM[controlid]).IsUpdating</visible>
-                    <visible>!Control.IsVisible(50) + !Control.IsVisible(9557) + !Control.IsVisible(9554) + !Control.IsVisible(9550)</visible>
+                    <texture colordiffuse="$VAR[Color_Loading_Spinner]">dialog/loading-spinner.png</texture>
                 </control>
             </control>
 

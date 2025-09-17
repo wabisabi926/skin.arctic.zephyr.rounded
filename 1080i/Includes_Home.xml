@@ -2214,13 +2214,17 @@
 
         <control type="image">
             <description>Busy animation</description>
+            <visible>$PARAM[busy_visible] | !String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))</visible>
+
+            <animation effect="rotate" condition="true" start="360" end="0" loop="true" time="1000" center="auto">Conditional</animation>
+            <include content="Animation_Common_Delay_Fade_In"><param name="delay" value="200" /></include>
+            <include>Animation_Vertical_Widgets_Title_Loading</include>
+            <include>Animation_Common_Fade_Out</include>
+
             <width>45</width>
             <height>45</height>
-            <animation effect="rotate" condition="true" start="360" end="0" loop="true" time="1000" center="auto">Conditional</animation>
-            <texture colordiffuse="$VAR[Color_Loading_Spinner]">dialog/loading-spinner.png</texture>
             <aspectratio>keep</aspectratio>
-            <include>Animation_Vertical_Widgets_Title_Loading</include>
-            <visible>$PARAM[busy_visible]</visible>
+            <texture colordiffuse="$VAR[Color_Loading_Spinner]">dialog/loading-spinner.png</texture>
         </control>
     </include>
 
