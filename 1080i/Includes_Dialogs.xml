@@ -232,28 +232,6 @@
 
     <!-- DEF - DIALOG - BACKGROUND -->
 
-    <include name="Def_Dialog_InfoPanel">
-        <param name="width" default="1320" />
-        <param name="height" default="840" />
-        <param name="colordiffuse" default="White100" />
-        <param name="pad_shadow" value="$PARAM[pad_shadow]" default="-9" />
-        <param name="pad_image" value="$PARAM[pad_image]" default="0" />
-        <definition>
-            <include>Animation_Common_Fade_In</include>
-            <include>Animation_Common_Fade_Out</include>
-            <centertop>50%</centertop>
-            <centerleft>50%</centerleft>
-            <height>$PARAM[height]</height>
-            <width>$PARAM[width]</width>
-            <include content="Def_Dialog_Background_Image">
-                <param name="colordiffuse" value="$PARAM[colordiffuse]" />
-                <param name="pad_shadow" value="$PARAM[pad_shadow]" />
-                <param name="pad_image" value="$PARAM[pad_image]" />
-                <param name="condition_fade" value="false" />
-            </include>
-        </definition>
-    </include>
-
     <include name="Def_Dialog_Background">
         <param name="height" default="882" />
         <param name="width" default="1320" />
@@ -266,7 +244,7 @@
         <definition>
             <visible>$PARAM[visible]</visible>
 
-            <include>Animation_Zoom_Fade_In</include>
+            <include>Animation_Dialog_Fade_In_Zoom</include>
             <include>Animation_Common_Fade_Out</include>
 
             <centerleft>$PARAM[centerleft]</centerleft>
@@ -325,7 +303,9 @@
         <definition>
             <control type="group">
                 <visible>$PARAM[visible]</visible>
+
                 <height>$PARAM[height]</height>
+
                 <include content="Def_Dialog_Background_Image">
                     <param name="colordiffuse" value="$PARAM[colordiffuse]" />
                     <param name="pad_shadow" value="$PARAM[pad_shadow]" />
@@ -372,7 +352,7 @@
             <include>Background_Overlay</include>
 
             <control type="group">
-                <include>Animation_Zoom_Fade_In</include>
+                <include>Animation_Dialog_Fade_In_Zoom</include>
                 <include>Animation_Common_Fade_Out</include>
 
                 <top>200</top>

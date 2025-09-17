@@ -197,7 +197,8 @@
     <include name="Home_Horizontal_Content_No_Icon">
         <animation type="Conditional" condition="!Control.HasFocus(302) + Skin.HasSetting(home.show.sub.menu.horizontal)" reversible="false">
             <effect type="fade" start="0" end="100" time="150" tween="sine" easing="in" delay="150" />
-            <effect type="slide" start="0,30" end="0,0" time="200" tween="sine" easing="out" delay="150" />
+            <!-- <effect type="slide" start="0,30" end="0,0" time="200" tween="sine" easing="out" delay="150" /> -->
+            <effect type="slide" start="0,-50" end="0,0" center="auto" tween="back" easing="out" time="450" delay="150" />
         </animation>
         <animation type="Conditional" condition="Control.HasFocus(302) + Skin.HasSetting(home.show.sub.menu.horizontal)" reversible="false">
             <effect type="fade" start="100" end="0" time="100" tween="sine" easing="out" />
@@ -219,6 +220,9 @@
             </control>
         </itemlayout>
         <focusedlayout width="222" height="64">
+
+            <!-- MAIN MENU - ONLY LABEL - NOT UNDERLINED -->
+
             <control type="group">
                 <visible>!Skin.HasSetting(home.show.menu.onfocus.underlined)</visible>
                 <control type="label">
@@ -242,6 +246,9 @@
                     <texture colordiffuse="$VAR[Color_Focus]">common/arrow_small_down.png</texture>
                 </control>
             </control>
+
+            <!-- MAIN MENU - ONLY LABEL - UNDERLINED -->
+
             <control type="group">
                 <visible>Skin.HasSetting(home.show.menu.onfocus.underlined)</visible>
                 <control type="label">
@@ -584,9 +591,8 @@
             <control type="list" id="302">
                 <left>View_SidePad</left>
 
-                <include condition="!Skin.HasSetting(show.home.header.clock.left) + [[Skin.HasSetting(show.furniture.clock.date.weather) + Skin.HasSetting(home.style.flix)] | !Skin.HasSetting(show.furniture.clock.date.weather)] + Skin.HasSetting(show.furniture.clock.date.weather)">Def_Home_Menu_Row_width_Reduce</include>
-
-                <include condition="Skin.HasSetting(show.home.header.clock.left) | [Skin.HasSetting(show.furniture.clock.date.weather) + !Skin.HasSetting(home.style.flix)] | !Skin.HasSetting(show.furniture.clock.date.weather)">Def_Home_Menu_Row_width_Max</include>
+                <include condition="![Skin.HasSetting(show.home.header.clock.left) | !Skin.HasSetting(show.furniture.clock.date.weather)]">Def_Home_Menu_Row_width_Reduce</include>
+                <include condition="[Skin.HasSetting(show.home.header.clock.left) | !Skin.HasSetting(show.furniture.clock.date.weather)]">Def_Home_Menu_Row_width_Max</include>
 
                 <top>952</top>
                 <onup>300</onup>
@@ -937,33 +943,40 @@
                 <!-- MAIN MENU 300 -->
 
                 <control type="list" id="300">
-                    <include>Animation_Common_Fade_In</include>
-                    <include>Animation_Common_Fade_Out</include>
+                    <visible allowhiddenfocus="true">!Control.HasFocus(302)</visible>
 
-                    <animation effect="slide" start="0,0" end="-296,0" time="0" condition="Skin.HasSetting(home.show.menu.icons)">Conditional</animation>
+                    <include>Animation_Scrolltime_Views_List</include>
+                    <include condition="!Skin.HasSetting(home.show.menu.icons)">Animation_Slide_Vertical_Menu</include>
 
                     <animation effect="slide" start="0,0" end="0,-40" time="0" condition="true">Conditional</animation>
+                    <animation effect="slide" start="0,0" end="-296,0" time="0" condition="Skin.HasSetting(home.show.menu.icons)">Conditional</animation>
 
                     <animation effect="fade" start="100" end="0" time="400" condition="!$EXP[Home_Menu_Is_Focus] + !Skin.HasSetting(home.show.menu.icons) + [Skin.HasSetting(hide.home.menu) | [Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + $EXP[Extended_Now_Playing_Is_Enable]]] + !Control.HasFocus(9099)">Conditional</animation>
-
-                    <include condition="!Skin.HasSetting(home.show.menu.icons)">Animation_Slide_Vertical_Menu</include>
 
                     <include condition="Skin.HasSetting(home.show.menu.icons)" content="Animation_Slide_Vertical_Menu">
                         <param name="left" value="-50" />
                     </include>
 
-                    <visible allowhiddenfocus="true">!Control.HasFocus(302)</visible>
+                    <!-- <animation type="Conditional" condition="!Control.HasFocus(302)" reversible="false"> -->
+                        <!-- <effect type="fade" start="0" end="100" time="150" tween="sine" easing="in" delay="150" /> -->
+                        <!-- <effect type="slide" start="30,0" end="0,0" time="200" tween="sine" easing="out" delay="150" /> -->
+                    <!-- </animation> -->
+                    <!-- <animation type="Conditional" condition="Control.HasFocus(302)" reversible="false"> -->
+                        <!-- <effect type="fade" start="100" end="0" time="100" tween="sine" easing="out" /> -->
+                        <!-- <effect type="slide" start="0,0" end="30,0" time="150" tween="sine" easing="out" /> -->
+                    <!-- </animation> -->
 
-                    <left>View_SidePad</left>
+                    <include>Animation_Common_Fade_In</include>
+                    <include>Animation_Common_Fade_Out</include>
 
                     <top>View_Top</top>
+                    <left>View_SidePad</left>
                     <width>PosterW</width>
                     <height>720</height>
 
-                    <orientation>vertical</orientation>
-                    <include>Animation_Scrolltime_Views_List</include>
-
                     <onfocus condition="String.IsEmpty(Window.Property(MenuSelect))">SetFocus(399)</onfocus>
+
+                    <orientation>vertical</orientation>
 
                     <!-- MAIN MENU NOT FOCUSED -->
 
@@ -1007,7 +1020,7 @@
                             <top>1</top>
                             <height>80</height>
                             <texture colordiffuse="$VAR[Color_Focus]">$INFO[Container(300).ListItem.Icon]</texture>
-                            <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!$EXP[Home_Menu_Is_Focus]">Conditional</animation>
+                            <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!$EXP[Home_Menu_Is_Focus] + !Window.IsVisible(DialogButtonMenu.xml)">Conditional</animation>
                             <visible>Skin.HasSetting(home.show.menu.icons) + !Skin.HasSetting(home.show.menu.onfocus.underlined)</visible>
                         </control>
 
@@ -1019,7 +1032,7 @@
                             <top>1</top>
                             <height>80</height>
                             <texture colordiffuse="Dark1">$INFO[ListItem.Icon]</texture>
-                            <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!$EXP[Home_Menu_Is_Focus]">Conditional</animation>
+                            <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!$EXP[Home_Menu_Is_Focus] + !Window.IsVisible(DialogButtonMenu.xml)">Conditional</animation>
                             <visible>Skin.HasSetting(home.show.menu.icons) + Skin.HasSetting(home.show.menu.onfocus.underlined)</visible>
                         </control>
                         <control type="group">
@@ -1030,11 +1043,11 @@
                             <control type="image">
                                 <texture border="4">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/scrollh_h.png</texture>
                             </control>
-                            <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!$EXP[Home_Menu_Is_Focus]">Conditional</animation>
+                            <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!$EXP[Home_Menu_Is_Focus] + !Window.IsVisible(DialogButtonMenu.xml)">Conditional</animation>
                             <visible>Skin.HasSetting(home.show.menu.icons) + Skin.HasSetting(home.show.menu.onfocus.underlined)</visible>
                         </control>
 
-                         <!-- MAIN MENU - ONLY LABEL - NOT UNDERLINED -->
+                        <!-- MAIN MENU - ONLY LABEL - NOT UNDERLINED -->
 
                         <control type="label">
                             <left>30</left>
@@ -1044,7 +1057,7 @@
                             <textcolor>$VAR[Color_Focus]</textcolor>
                             <font>Home</font>
                             <label>$INFO[Container(300).ListItem.Label]</label>
-                            <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!$EXP[Home_Menu_Is_Focus]">Conditional</animation>
+                            <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!$EXP[Home_Menu_Is_Focus] + !Window.IsVisible(DialogButtonMenu.xml)">Conditional</animation>
                             <visible>!Skin.HasSetting(home.show.menu.icons) + !Skin.HasSetting(home.show.menu.onfocus.underlined)</visible>
                         </control>
 
@@ -1066,7 +1079,7 @@
                                 <texturenofocus border="4">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/underline_h.png</texturenofocus>
                                 <label>$INFO[Container(300).ListItem.Label]</label>
                             </control>
-                            <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!$EXP[Home_Menu_Is_Focus]">Conditional</animation>
+                            <animation effect="fade" start="100" end="30" delay="0" time="150" condition="!$EXP[Home_Menu_Is_Focus] + !Window.IsVisible(DialogButtonMenu.xml)">Conditional</animation>
                             <visible>!Skin.HasSetting(home.show.menu.icons) + Skin.HasSetting(home.show.menu.onfocus.underlined)</visible>
                         </control>
 
@@ -1092,6 +1105,8 @@
 
                 <control type="list" id="302">
                     <visible allowhiddenfocus="true">Control.HasFocus(302)</visible>
+
+                    <include>Animation_Scrolltime_Views_List</include>
                     <animation effect="slide" start="0,0" end="0,-40" time="0" condition="true">Conditional</animation>
                     <animation effect="fade" start="100" end="33" time="400" condition="Control.HasFocus(301)">Conditional</animation>
                     <include condition="!Skin.HasSetting(home.show.menu.icons)">Animation_Slide_Vertical_Menu</include>
@@ -1104,7 +1119,6 @@
 
                     <include>Animation_Common_Fade_In</include>
                     <include>Animation_Common_Fade_Out</include>
-                    <description>Home Wraplist</description>
 
                     <left>View_SidePad</left>
 
@@ -1112,13 +1126,14 @@
                     <width>PosterW</width>
                     <height>720</height>
                     <orientation>vertical</orientation>
-                    <include>Animation_Scrolltime_Views_List</include>
+
 
                     <onright>300</onright>
-                    <!-- <onleft>300</onleft> -->
+                    <onleft>300</onleft>
                     <ondown>302</ondown>
                     <onup>302</onup>
                     <onback>300</onback>
+
                     <onfocus>SetProperty(SetBackMenu300AfterSubMenu302,1,Home)</onfocus>
 
                     <!-- NOWPLAYING : AUTO SLIDE / DISPLAY  IF WIDGET IS FOCUS -->
@@ -1130,8 +1145,6 @@
 
                     <onfocus condition="Window.IsVisible(Home) + Skin.HasSetting(homemenu.auto.back.to.main)">SetProperty(focus.main.menu.timer,1,Home)</onfocus>
                     <onunfocus>ClearProperty(focus.main.menu.timer,Home)</onunfocus>
-
-                    <include>Animation_Scrolltime_Views_List</include>
 
                     <!-- SUB MENU - LABEL / ICON - NOT FOCUSED -->
 
