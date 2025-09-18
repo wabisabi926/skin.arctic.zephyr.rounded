@@ -371,7 +371,6 @@
 
             <include condition="!Skin.HasSetting(show.clock.date.weather.home.only) + !Skin.HasSetting(show.furniture.footer)">Furniture_Footer_Clock_Right</include>
 
-
             <control type="group">
                 <include condition="!Skin.HasSetting(views_control_type_list)">Control_50_List_Square_Fixed_List</include>
                 <include condition="Skin.HasSetting(views_control_type_list)">Control_50_List_Square_List</include>
@@ -454,6 +453,62 @@
 
     <!-- VIEW 50 - PLAYLIST -->
 
+    <include name="Control_50_List_Square_Playlist_List">
+        <control type="list" id="50">
+            <include>Layout_50_List_Square_Playlist</include>
+        </control>
+    </include>
+
+    <include name="Control_50_List_Square_Playlist_Fixed_List">
+        <control type="fixedlist" id="50">
+            <include>Layout_50_List_Square_Playlist</include>
+        </control>
+    </include>
+
+    <include name="Layout_50_List_Square_Playlist">
+        <visible>$EXP[Exp_View_50]</visible>
+        <include>Animation_Scrolltime_Views_List</include>
+
+        <top>View_Top</top>
+        <height>PosterH</height>
+        <left>ListSquareX</left>
+        <right>View_SidePad</right>
+
+        <include>Def_View_Focus_Dialog_Menu_On_Right</include>
+        <onleft>1658</onleft>
+        <onup>50</onup>
+        <ondown>50</ondown>
+
+        <pagecontrol>1658</pagecontrol>
+
+        <focusposition>1</focusposition>
+
+        <include content="Def_Focus_Position" condition="!Skin.HasSetting(views_control_type_list)">
+            <param name="focusposition" value="1" />
+        </include>
+        <include content="Def_Movement" condition="!Skin.HasSetting(enable.view.5x.51x.extended.list) + !Skin.HasSetting(views_control_type_list)">
+            <param name="movement" value="8" />
+        </include>
+        <include content="Def_Movement" condition="Skin.HasSetting(enable.view.5x.51x.extended.list) + !Skin.HasSetting(views_control_type_list)">
+            <param name="movement" value="5" />
+        </include>
+
+        <viewtype label="535">list</viewtype>
+
+        <itemlayout condition="!Skin.HasSetting(enable.view.5x.51x.extended.list)" width="ListSquareW" height="64">
+            <include>layout_list_item_playlist</include>
+        </itemlayout>
+        <focusedlayout condition="!Skin.HasSetting(enable.view.5x.51x.extended.list)" width="ListSquareW" height="64">
+            <include content="layout_list_focus_playlist"><param name="list_id" value="50" /></include>
+        </focusedlayout>
+        <itemlayout condition="Skin.HasSetting(enable.view.5x.51x.extended.list)" width="ListSquareW" height="91.4">
+            <include>layout_list_item_playlist_info</include>
+        </itemlayout>
+        <focusedlayout condition="Skin.HasSetting(enable.view.5x.51x.extended.list)" width="ListSquareW" height="91.4">
+            <include content="layout_list_focus_playlist_info"><param name="list_id" value="50" /></include>
+        </focusedlayout>
+    </include>
+
     <include name="View_50_List_Square_Playlist">
         <description>List View (id=50)</description>
         <control type="group">
@@ -463,46 +518,8 @@
             <include condition="!Skin.HasSetting(show.clock.date.weather.home.only) + !Skin.HasSetting(show.furniture.footer)">Furniture_Footer_Clock_Right</include>
 
             <control type="group">
-                <control type="fixedlist" id="50">
-                    <visible>$EXP[Exp_View_50]</visible>
-                    <include>Animation_Scrolltime_Views_List</include>
-
-                    <top>View_Top</top>
-                    <height>PosterH</height>
-                    <left>ListSquareX</left>
-                    <right>View_SidePad</right>
-
-                    <include>Def_View_Focus_Dialog_Menu_On_Right</include>
-                    <onleft>1658</onleft>
-                    <onup>50</onup>
-                    <ondown>50</ondown>
-
-                    <pagecontrol>1658</pagecontrol>
-
-                    <focusposition>1</focusposition>
-
-                    <include content="Def_Movement" condition="!Skin.HasSetting(enable.view.5x.51x.extended.list)">
-                        <param name="movement" value="8" />
-                    </include>
-                    <include content="Def_Movement" condition="Skin.HasSetting(enable.view.5x.51x.extended.list)">
-                        <param name="movement" value="5" />
-                    </include>
-
-                    <viewtype label="535">list</viewtype>
-
-                    <itemlayout condition="!Skin.HasSetting(enable.view.5x.51x.extended.list)" width="ListSquareW" height="64">
-                        <include>layout_list_item_playlist</include>
-                    </itemlayout>
-                    <focusedlayout condition="!Skin.HasSetting(enable.view.5x.51x.extended.list)" width="ListSquareW" height="64">
-                        <include content="layout_list_focus_playlist"><param name="list_id" value="50" /></include>
-                    </focusedlayout>
-                    <itemlayout condition="Skin.HasSetting(enable.view.5x.51x.extended.list)" width="ListSquareW" height="91.4">
-                        <include>layout_list_item_playlist_info</include>
-                    </itemlayout>
-                    <focusedlayout condition="Skin.HasSetting(enable.view.5x.51x.extended.list)" width="ListSquareW" height="91.4">
-                        <include content="layout_list_focus_playlist_info"><param name="list_id" value="50" /></include>
-                    </focusedlayout>
-                </control>
+                <include condition="!Skin.HasSetting(views_control_type_list)">Control_50_List_Square_Playlist_Fixed_List</include>
+                <include condition="Skin.HasSetting(views_control_type_list)">Control_50_List_Square_Playlist_List</include>
 
                 <!-- SCROLLBAR -->
 

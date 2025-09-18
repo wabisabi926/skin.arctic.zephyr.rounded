@@ -1,5 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
+
+    <!-- VIDEO -->
+
+    <include name="Control_524_Flix_List_Video_List">
+        <control type="list" id="524">
+            <include>Layout_524_Flix_List_Video</include>
+        </control>
+    </include>
+
+    <include name="Control_524_Flix_List_Video_Fixed_List">
+        <control type="fixedlist" id="524">
+            <include>Layout_524_Flix_List_Video</include>
+        </control>
+    </include>
+
+    <include name="Layout_524_Flix_List_Video">
+        <visible>$EXP[Exp_View_524]</visible>
+        <include>Animation_Scrolltime_Views_List</include>
+
+        <include>Def_On_Info</include>
+
+        <top>View_Top</top>
+        <height>366</height>
+        <right>View_SidePad</right>
+
+        <include content="Def_Left" condition="Skin.HasSetting(show.view.524.poster.movies)"><param name="left" value="364" /></include>
+        <include content="Def_Left" condition="!Skin.HasSetting(show.view.524.poster.movies)"><param name="left" value="764" /></include>
+
+        <include>Def_View_Focus_Dialog_Menu_On_Right</include>
+
+        <onup>524</onup>
+        <ondown>524</ondown>
+        <onleft>1654</onleft>
+
+        <onunfocus condition="Skin.HasSetting(home.views.flix.autoplay.trailer)">ClearProperty(ListItem_Trailer_Path,Home)</onunfocus>
+        <onfocus condition="Skin.HasSetting(home.views.flix.autoplay.trailer)">ClearProperty(Trailer_Is_Fullscreen_Playing,Home)</onfocus>
+
+        <pagecontrol>1654</pagecontrol>
+
+        <include content="Def_Focus_Position" condition="!Skin.HasSetting(views_control_type_list)">
+            <param name="focusposition" value="1" />
+        </include>
+        <include content="Def_Movement" condition="!Skin.HasSetting(disable.view.524.extended.list.info) + !Skin.HasSetting(views_control_type_list)">
+            <param name="movement" value="2" />
+        </include>
+        <include content="Def_Movement" condition="Skin.HasSetting(disable.view.524.extended.list.info) + !Skin.HasSetting(views_control_type_list)">
+            <param name="movement" value="3" />
+        </include>
+
+        <viewtype label="31556">list</viewtype>
+
+        <itemlayout condition="Skin.HasSetting(disable.view.524.extended.list.info)" height="64">
+            <include>layout_list_item_video</include>
+        </itemlayout>
+        <focusedlayout condition="Skin.HasSetting(disable.view.524.extended.list.info)" height="64">
+            <include content="layout_list_focus_video"><param name="list_id" value="524" /></include>
+            <include condition="Skin.HasSetting(home.views.flix.autoplay.trailer)">Button_Auto_Trailer_Control</include>
+        </focusedlayout>
+
+        <itemlayout condition="!Skin.HasSetting(disable.view.524.extended.list.info)" height="91.4">
+            <include>layout_list_item_video_info</include>
+        </itemlayout>
+        <focusedlayout condition="!Skin.HasSetting(disable.view.524.extended.list.info)" height="91.4">
+            <include content="layout_list_focus_video_info"><param name="list_id" value="524" /></include>
+            <include condition="Skin.HasSetting(home.views.flix.autoplay.trailer)">Button_Auto_Trailer_Control</include>
+        </focusedlayout>
+    </include>
+
     <include name="View_524_Flix_List_Video">
         <description>List View (id=524)</description>
         <control type="group">
@@ -13,57 +81,8 @@
             <control type="group">
                 <top>310</top>
 
-                <control type="fixedlist" id="524">
-                    <visible>$EXP[Exp_View_524]</visible>
-                    <include>Animation_Scrolltime_Views_List</include>
-
-                    <include>Def_On_Info</include>
-
-                    <top>View_Top</top>
-                    <height>366</height>
-                    <right>View_SidePad</right>
-
-                    <include content="Def_Left" condition="Skin.HasSetting(show.view.524.poster.movies)"><param name="left" value="364" /></include>
-                    <include content="Def_Left" condition="!Skin.HasSetting(show.view.524.poster.movies)"><param name="left" value="764" /></include>
-
-                    <include>Def_View_Focus_Dialog_Menu_On_Right</include>
-
-                    <onup>524</onup>
-                    <ondown>524</ondown>
-                    <onleft>1654</onleft>
-
-                    <onunfocus condition="Skin.HasSetting(home.views.flix.autoplay.trailer)">ClearProperty(ListItem_Trailer_Path,Home)</onunfocus>
-                    <onfocus condition="Skin.HasSetting(home.views.flix.autoplay.trailer)">ClearProperty(Trailer_Is_Fullscreen_Playing,Home)</onfocus>
-
-                    <pagecontrol>1654</pagecontrol>
-
-                    <focusposition>1</focusposition>
-
-                    <include content="Def_Movement" condition="!Skin.HasSetting(disable.view.524.extended.list.info)">
-                        <param name="movement" value="2" />
-                    </include>
-                    <include content="Def_Movement" condition="Skin.HasSetting(disable.view.524.extended.list.info)">
-                        <param name="movement" value="3" />
-                    </include>
-
-                    <viewtype label="31556">list</viewtype>
-
-                    <itemlayout condition="Skin.HasSetting(disable.view.524.extended.list.info)" height="64">
-                        <include>layout_list_item_video</include>
-                    </itemlayout>
-                    <focusedlayout condition="Skin.HasSetting(disable.view.524.extended.list.info)" height="64">
-                        <include content="layout_list_focus_video"><param name="list_id" value="524" /></include>
-                        <include condition="Skin.HasSetting(home.views.flix.autoplay.trailer)">Button_Auto_Trailer_Control</include>
-                    </focusedlayout>
-
-                    <itemlayout condition="!Skin.HasSetting(disable.view.524.extended.list.info)" height="91.4">
-                        <include>layout_list_item_video_info</include>
-                    </itemlayout>
-                    <focusedlayout condition="!Skin.HasSetting(disable.view.524.extended.list.info)" height="91.4">
-                        <include content="layout_list_focus_video_info"><param name="list_id" value="524" /></include>
-                        <include condition="Skin.HasSetting(home.views.flix.autoplay.trailer)">Button_Auto_Trailer_Control</include>
-                    </focusedlayout>
-                </control>
+                <include condition="!Skin.HasSetting(views_control_type_list)">Control_524_Flix_List_Video_Fixed_List</include>
+                <include condition="Skin.HasSetting(views_control_type_list)">Control_524_Flix_List_Video_List</include>
 
                 <!-- SCROLLBAR -->
 
@@ -97,6 +116,68 @@
         </control>
     </include>
 
+    <!-- MUSIC -->
+
+    <include name="Control_524_Flix_List_Music_List">
+        <control type="list" id="524">
+            <include>Layout_524_Flix_List_Music</include>
+        </control>
+    </include>
+
+    <include name="Control_524_Flix_List_Music_Fixed_List">
+        <control type="fixedlist" id="524">
+            <include>Layout_524_Flix_List_Music</include>
+        </control>
+    </include>
+
+    <include name="Layout_524_Flix_List_Music">
+        <visible>$EXP[Exp_View_524]</visible>
+        <include>Animation_Scrolltime_Views_List</include>
+
+        <include>Def_On_Info</include>
+
+        <top>View_Top</top>
+        <height>366</height>
+        <right>View_SidePad</right>
+
+        <include content="Def_Left" condition="Skin.HasSetting(show.view.524.fanart.artist)"><param name="left" value="764" /></include>
+        <include content="Def_Left" condition="!Skin.HasSetting(show.view.524.fanart.artist)"><param name="left" value="478" /></include>
+
+        <include>Def_View_Focus_Dialog_Menu_On_Right</include>
+
+        <onup>524</onup>
+        <ondown>524</ondown>
+        <onleft>1655</onleft>
+
+        <pagecontrol>1655</pagecontrol>
+
+        <include content="Def_Focus_Position" condition="!Skin.HasSetting(views_control_type_list)">
+            <param name="focusposition" value="1" />
+        </include>
+        <include content="Def_Movement" condition="!Skin.HasSetting(disable.view.524.extended.list.info) + !Skin.HasSetting(views_control_type_list)">
+            <param name="movement" value="2" />
+        </include>
+        <include content="Def_Movement" condition="Skin.HasSetting(disable.view.524.extended.list.info) + !Skin.HasSetting(views_control_type_list)">
+            <param name="movement" value="3" />
+        </include>
+
+        <viewtype label="31556">list</viewtype>
+
+        <itemlayout condition="Skin.HasSetting(disable.view.524.extended.list.info)" height="64">
+            <include>layout_list_item_music</include>
+        </itemlayout>
+        <focusedlayout condition="Skin.HasSetting(disable.view.524.extended.list.info)" height="64">
+            <include content="layout_list_focus_music"><param name="list_id" value="524" /></include>
+        </focusedlayout>
+
+        <itemlayout condition="!Skin.HasSetting(disable.view.524.extended.list.info)" height="91.4">
+            <include>layout_list_item_music_info</include>
+        </itemlayout>
+        <focusedlayout condition="!Skin.HasSetting(disable.view.524.extended.list.info)" height="91.4">
+            <include content="layout_list_focus_music_info"><param name="list_id" value="524" /></include>
+        </focusedlayout>
+    </include>
+
     <include name="View_524_Flix_List_Music">
         <description>List View (id=524)</description>
         <control type="group">
@@ -109,52 +190,9 @@
 
             <control type="group">
                 <top>310</top>
-                <control type="fixedlist" id="524">
-                    <visible>$EXP[Exp_View_524]</visible>
-                    <include>Animation_Scrolltime_Views_List</include>
 
-                    <include>Def_On_Info</include>
-
-                    <top>View_Top</top>
-                    <height>366</height>
-                    <right>View_SidePad</right>
-
-                    <include content="Def_Left" condition="Skin.HasSetting(show.view.524.fanart.artist)"><param name="left" value="764" /></include>
-                    <include content="Def_Left" condition="!Skin.HasSetting(show.view.524.fanart.artist)"><param name="left" value="478" /></include>
-
-                    <include>Def_View_Focus_Dialog_Menu_On_Right</include>
-
-                    <onup>524</onup>
-                    <ondown>524</ondown>
-                    <onleft>1655</onleft>
-
-                    <pagecontrol>1655</pagecontrol>
-
-                    <focusposition>1</focusposition>
-
-                    <include content="Def_Movement" condition="!Skin.HasSetting(disable.view.524.extended.list.info)">
-                        <param name="movement" value="2" />
-                    </include>
-                    <include content="Def_Movement" condition="Skin.HasSetting(disable.view.524.extended.list.info)">
-                        <param name="movement" value="3" />
-                    </include>
-
-                    <viewtype label="31556">list</viewtype>
-
-                    <itemlayout condition="Skin.HasSetting(disable.view.524.extended.list.info)" height="64">
-                        <include>layout_list_item_music</include>
-                    </itemlayout>
-                    <focusedlayout condition="Skin.HasSetting(disable.view.524.extended.list.info)" height="64">
-                        <include content="layout_list_focus_music"><param name="list_id" value="524" /></include>
-                    </focusedlayout>
-
-                    <itemlayout condition="!Skin.HasSetting(disable.view.524.extended.list.info)" height="91.4">
-                        <include>layout_list_item_music_info</include>
-                    </itemlayout>
-                    <focusedlayout condition="!Skin.HasSetting(disable.view.524.extended.list.info)" height="91.4">
-                        <include content="layout_list_focus_music_info"><param name="list_id" value="524" /></include>
-                    </focusedlayout>
-                </control>
+                <include condition="!Skin.HasSetting(views_control_type_list)">Control_524_Flix_List_Music_Fixed_List</include>
+                <include condition="Skin.HasSetting(views_control_type_list)">Control_524_Flix_List_Music_List</include>
 
                 <control type="scrollbar" id="1655">
                     <include content="Object_Scrollbar_Views_Vertical" condition="!Skin.HasSetting(show.view.524.fanart.artist)">
@@ -187,6 +225,65 @@
         </control>
     </include>
 
+    <!-- PLAYLIST -->
+
+    <include name="Control_524_Flix_List_Playlist_List">
+        <control type="list" id="524">
+            <include>Layout_524_Flix_List_Playlist</include>
+        </control>
+    </include>
+
+    <include name="Control_524_Flix_List_Playlist_Fixed_List">
+        <control type="fixedlist" id="524">
+            <include>Layout_524_Flix_List_Playlist</include>
+        </control>
+    </include>
+
+    <include name="Layout_524_Flix_List_Playlist">
+        <visible>$EXP[Exp_View_524]</visible>
+        <include>Animation_Scrolltime_Views_List</include>
+
+        <include>Def_On_Info</include>
+
+        <top>View_Top</top>
+        <height>366</height>
+        <right>View_SidePad</right>
+        <left>764</left>
+
+        <include>Def_View_Focus_Dialog_Menu_On_Right</include>
+
+        <onup>524</onup>
+        <ondown>524</ondown>
+        <onleft>1623</onleft>
+
+        <pagecontrol>1623</pagecontrol>
+
+        <include content="Def_Focus_Position" condition="!Skin.HasSetting(views_control_type_list)">
+            <param name="focusposition" value="1" />
+        </include>
+        <include content="Def_Movement" condition="!Skin.HasSetting(disable.view.524.extended.list.info) + !Skin.HasSetting(views_control_type_list)">
+            <param name="movement" value="2" />
+        </include>
+        <include content="Def_Movement" condition="Skin.HasSetting(disable.view.524.extended.list.info) + !Skin.HasSetting(views_control_type_list)">
+            <param name="movement" value="3" />
+        </include>
+
+        <viewtype label="31556">list</viewtype>
+
+        <itemlayout condition="Skin.HasSetting(disable.view.524.extended.list.info)" height="64">
+            <include>layout_list_item_playlist</include>
+        </itemlayout>
+        <focusedlayout condition="Skin.HasSetting(disable.view.524.extended.list.info)" height="64">
+            <include content="layout_list_focus_playlist"><param name="list_id" value="524" /></include>
+        </focusedlayout>
+        <itemlayout condition="!Skin.HasSetting(disable.view.524.extended.list.info)" height="91.4">
+            <include>layout_list_item_playlist_info</include>
+        </itemlayout>
+        <focusedlayout condition="!Skin.HasSetting(disable.view.524.extended.list.info)" height="91.4">
+            <include content="layout_list_focus_playlist_info"><param name="list_id" value="524" /></include>
+        </focusedlayout>
+    </include>
+
     <include name="View_524_Flix_List_Playlist">
         <description>List View (id=524)</description>
         <control type="group">
@@ -198,48 +295,9 @@
 
             <control type="group">
                 <top>310</top>
-                <control type="fixedlist" id="524">
-                    <visible>$EXP[Exp_View_524]</visible>
-                    <include>Animation_Scrolltime_Views_List</include>
 
-                    <include>Def_On_Info</include>
-
-                    <top>View_Top</top>
-                    <height>366</height>
-                    <right>View_SidePad</right>
-                    <left>764</left>
-
-                    <include>Def_View_Focus_Dialog_Menu_On_Right</include>
-
-                    <onup>524</onup>
-                    <ondown>524</ondown>
-                    <onleft>1623</onleft>
-
-                    <pagecontrol>1623</pagecontrol>
-
-                    <focusposition>1</focusposition>
-                    <include content="Def_Movement" condition="!Skin.HasSetting(disable.view.524.extended.list.info)">
-                        <param name="movement" value="2" />
-                    </include>
-                    <include content="Def_Movement" condition="Skin.HasSetting(disable.view.524.extended.list.info)">
-                        <param name="movement" value="3" />
-                    </include>
-
-                    <viewtype label="31556">list</viewtype>
-
-                    <itemlayout condition="Skin.HasSetting(disable.view.524.extended.list.info)" height="64">
-                        <include>layout_list_item_playlist</include>
-                    </itemlayout>
-                    <focusedlayout condition="Skin.HasSetting(disable.view.524.extended.list.info)" height="64">
-                        <include content="layout_list_focus_playlist"><param name="list_id" value="524" /></include>
-                    </focusedlayout>
-                    <itemlayout condition="!Skin.HasSetting(disable.view.524.extended.list.info)" height="91.4">
-                        <include>layout_list_item_playlist_info</include>
-                    </itemlayout>
-                    <focusedlayout condition="!Skin.HasSetting(disable.view.524.extended.list.info)" height="91.4">
-                        <include content="layout_list_focus_playlist_info"><param name="list_id" value="524" /></include>
-                    </focusedlayout>
-                </control>
+                <include condition="!Skin.HasSetting(views_control_type_list)">Control_524_Flix_List_Playlist_Fixed_List</include>
+                <include condition="Skin.HasSetting(views_control_type_list)">Control_524_Flix_List_Playlist_List</include>
 
                 <!-- SCROLLBAR -->
 
@@ -267,6 +325,8 @@
             </include>
         </control>
     </include>
+
+    <!-- ARTWORK -->
 
     <include name="524_Poster">
         <param name="top" value="$PARAM[top]" default="528" />

@@ -1,5 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
+    <!-- VIDEO -->
+
+    <include name="Control_56_List_MediaInfo_List">
+        <control type="list" id="56">
+            <include>Layout_56_List_MediaInfo</include>
+        </control>
+    </include>
+
+    <include name="Control_56_List_MediaInfo_Fixed_List">
+        <control type="fixedlist" id="56">
+            <include>Layout_56_List_MediaInfo</include>
+        </control>
+    </include>
+
+    <include name="Layout_56_List_MediaInfo">
+        <visible>$EXP[Exp_View_56]</visible>
+        <include>Animation_Scrolltime_Views_List</include>
+
+        <include>Def_On_Info</include>
+
+        <top>View_Top</top>
+        <right>732</right>
+        <width>648</width>
+        <height>PosterH</height>
+
+        <include>Def_View_Focus_Dialog_Menu_On_Right</include>
+        <onleft>1609</onleft>
+        <onup>56</onup>
+        <ondown>56</ondown>
+
+        <pagecontrol>1609</pagecontrol>
+
+        <include content="Def_Focus_Position" condition="!Skin.HasSetting(views_control_type_list)">
+            <param name="focusposition" value="1" />
+        </include>
+        <include content="Def_Movement" condition="!Skin.HasSetting(enable.view.5x.51x.extended.list) + !Skin.HasSetting(views_control_type_list)">
+            <param name="movement" value="8" />
+        </include>
+        <include content="Def_Movement" condition="Skin.HasSetting(enable.view.5x.51x.extended.list) + !Skin.HasSetting(views_control_type_list)">
+            <param name="movement" value="5" />
+        </include>
+
+        <viewtype label="544">list</viewtype>
+
+        <itemlayout condition="!Skin.HasSetting(enable.view.5x.51x.extended.list)" width="648" height="64">
+            <include>layout_list_item_56</include>
+        </itemlayout>
+        <focusedlayout condition="!Skin.HasSetting(enable.view.5x.51x.extended.list)" width="648" height="64">
+            <include content="layout_list_focus_56"><param name="list_id" value="56" /></include>
+        </focusedlayout>
+        <itemlayout condition="Skin.HasSetting(enable.view.5x.51x.extended.list)" width="648" height="91.4">
+            <include>layout_list_item_56_info</include>
+        </itemlayout>
+        <focusedlayout condition="Skin.HasSetting(enable.view.5x.51x.extended.list)" width="648" height="91.4">
+            <include content="layout_list_focus_56_info"><param name="list_id" value="56" /></include>
+        </focusedlayout>
+    </include>
+
     <include name="View_56_List_MediaInfo">
         <description>List View (id=56)</description>
         <control type="group">
@@ -9,48 +67,8 @@
             <include condition="!Skin.HasSetting(show.clock.date.weather.home.only) + !Skin.HasSetting(show.furniture.footer)">Furniture_Footer_Clock_Right</include>
 
             <control type="group">
-                <control type="fixedlist" id="56">
-                    <visible>$EXP[Exp_View_56]</visible>
-                    <include>Animation_Scrolltime_Views_List</include>
-
-                    <include>Def_On_Info</include>
-
-                    <top>View_Top</top>
-                    <right>732</right>
-                    <width>648</width>
-                    <height>PosterH</height>
-
-                    <include>Def_View_Focus_Dialog_Menu_On_Right</include>
-                    <onleft>1609</onleft>
-                    <onup>56</onup>
-                    <ondown>56</ondown>
-
-                    <pagecontrol>1609</pagecontrol>
-
-                    <focusposition>1</focusposition>
-
-                    <include content="Def_Movement" condition="!Skin.HasSetting(enable.view.5x.51x.extended.list)">
-                        <param name="movement" value="8" />
-                    </include>
-                    <include content="Def_Movement" condition="Skin.HasSetting(enable.view.5x.51x.extended.list)">
-                        <param name="movement" value="5" />
-                    </include>
-
-                    <viewtype label="544">list</viewtype>
-
-                    <itemlayout condition="!Skin.HasSetting(enable.view.5x.51x.extended.list)" width="648" height="64">
-                        <include>layout_list_item_56</include>
-                    </itemlayout>
-                    <focusedlayout condition="!Skin.HasSetting(enable.view.5x.51x.extended.list)" width="648" height="64">
-                        <include content="layout_list_focus_56"><param name="list_id" value="56" /></include>
-                    </focusedlayout>
-                    <itemlayout condition="Skin.HasSetting(enable.view.5x.51x.extended.list)" width="648" height="91.4">
-                        <include>layout_list_item_56_info</include>
-                    </itemlayout>
-                    <focusedlayout condition="Skin.HasSetting(enable.view.5x.51x.extended.list)" width="648" height="91.4">
-                        <include content="layout_list_focus_56_info"><param name="list_id" value="56" /></include>
-                    </focusedlayout>
-                </control>
+                <include condition="!Skin.HasSetting(views_control_type_list)">Control_56_List_MediaInfo_Fixed_List</include>
+                <include condition="Skin.HasSetting(views_control_type_list)">Control_56_List_MediaInfo_List</include>
 
                 <!-- SCROLLBAR -->
 
@@ -58,7 +76,7 @@
                     <include content="Object_Scrollbar_Views_Vertical">
                         <param name="scrollid" value="1609" />
                         <param name="idlayout" value="56" />
-                        <param name="centerleft" value="530" />
+                        <param name="centerleft" value="526" />
                     </include>
                 </control>
             </control>
@@ -70,7 +88,7 @@
             <!-- FANART -->
 
             <include content="524_Fanart">
-                <param name="left" value="1205" />
+                <param name="left" value="1215" />
                 <param name="top" value="216" />
             </include>
 

@@ -146,7 +146,7 @@
                     <onclick condition="!System.HasAddon(script.globalsearch)">InstallAddon(script.globalsearch)</onclick>
                 </control>
 
-                <!-- ALL VIEWS -->
+            <!-- ALL VIEWS -->
 
                 <control type="button" id="55550">
                     <include>Def_Dialog_Menu_Button_Title</include>
@@ -178,13 +178,16 @@
                     <label2>$INFO[Container.SortOrder]</label2>
                 </control>
 
-                <!-- THIS VIEW  -->
+            <!-- THIS VIEW  -->
 
                 <control type="button" id="55551">
                     <include>Def_Dialog_Menu_Button_Title</include>
                     <label>31051</label>
                     <visible>Control.IsVisible(57) | Control.IsVisible(514) | Control.IsVisible(50) | Container.Content(songs) | Control.IsVisible(51) | Control.IsVisible(523) | Control.IsVisible(507) | Control.IsVisible(522) | Control.IsVisible(555) | Control.IsVisible(557) | Control.IsVisible(5228) | Control.IsVisible(5238) | Control.IsVisible(524) | Control.IsVisible(515)</visible>
                 </control>
+
+                <!-- VIEW WALL -->
+
                 <control type="radiobutton" id="90445">
                     <include>Def_Dialog_Menu_Button_Gradient_Select</include>
                     <label>31503</label>
@@ -192,6 +195,9 @@
                     <onclick>Skin.ToggleSetting(enable.view.flix.scroll.wall.music)</onclick>
                     <visible>Control.IsVisible(523) | Control.IsVisible(522)</visible>
                 </control>
+
+                <!-- EXTENDED INFO -->
+
                 <control type="radiobutton" id="9027">
                     <include>Def_Dialog_Menu_Button_Gradient_Select</include>
                     <label>31192</label>
@@ -216,6 +222,9 @@
                     <onclick>SetProperty(reloadskin,1,Home)</onclick>
                     <visible>Control.IsVisible(57)</visible>
                 </control>
+
+                <!-- CENTER INFO -->
+
                 <control type="button" id="9025">
                     <include>Def_Dialog_Menu_Button_Gradient_Select</include>
                     <label>31286</label>
@@ -225,6 +234,9 @@
                     <visible>Control.IsVisible(514)</visible>
                     <onclick>SetProperty(reloadskin,1,Home)</onclick>
                 </control>
+
+                <!-- CLEARLOGO / TITLE -->
+
                 <control type="radiobutton" id="9025788">
                     <include>Def_Dialog_Menu_Button_Gradient_Select</include>
                     <label>31414</label>
@@ -243,6 +255,9 @@
                     <!-- <onclick>SetProperty(reloadskin,1,Home)</onclick> -->
                     <!-- <visible>Control.IsVisible(523)</visible> -->
                 <!-- </control> -->
+
+                <!-- CHOOSE ARTWORK SIZE -->
+
                 <control type="button" id="90701" description="522 Landscape Size">
                     <include>Def_Dialog_Menu_Button_Gradient_Select</include>
                     <label>$LOCALIZE[31285]:</label>
@@ -287,7 +302,7 @@
                     <selected>Skin.HasSetting(views_control_type_list)</selected>
                     <onclick>Skin.ToggleSetting(views_control_type_list)</onclick>
                     <onclick>SetProperty(reloadskin,1,Home)</onclick>
-                    <visible>Control.IsVisible(50)</visible>
+                    <visible>Control.IsVisible(50) | Control.IsVisible(56) | Control.IsVisible(57) | Control.IsVisible(524)</visible>
                 </control>
                 <control type="radiobutton" id="9034" description="SELECT LISTTYPE">
                     <include>Def_Dialog_Menu_Button_Gradient_Select</include>
@@ -314,21 +329,27 @@
                     <visible>Control.IsVisible(522)</visible>
                 </control>
 
+                <!-- RATING -->
+
                 <control type="radiobutton" id="9031">
                     <include>Def_Dialog_Menu_Button_Gradient_Select</include>
                     <label>31453</label>
                     <selected>!Skin.HasSetting(hide.music.ratings)</selected>
                     <onclick>Skin.ToggleSetting(hide.music.ratings)</onclick>
-                    <visible>Control.IsVisible(50) | Control.IsVisible(57)</visible>
+                    <visible>Control.IsVisible(50) | Control.IsVisible(57) | Control.IsVisible(524)</visible>
                 </control>
+
+                <!-- WATCHED -->
+
                 <control type="radiobutton" id="9032">
                     <include>Def_Dialog_Menu_Button_Gradient_Select</include>
                     <!-- <label>$LOCALIZE[31518] ($LOCALIZE[36918]/$LOCALIZE[36920])</label> -->
                     <label>$LOCALIZE[31356]</label>
                     <selected>Skin.HasSetting(show.markers.watched.music)</selected>
                     <onclick>Skin.ToggleSetting(show.markers.watched.music)</onclick>
-                    <visible>Control.IsVisible(50) | Control.IsVisible(57)</visible>
+                    <visible>Control.IsVisible(50) | Control.IsVisible(57) | Control.IsVisible(524)</visible>
                 </control>
+
                 <control type="radiobutton" id="903">
                     <include>Def_Dialog_Menu_Button_Gradient_Select</include>
                     <label>$LOCALIZE[31090]</label>
