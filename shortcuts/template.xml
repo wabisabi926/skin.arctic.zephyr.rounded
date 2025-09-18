@@ -247,7 +247,42 @@
                     </control>
                 </control>
 
-                <!-- WIDGET - LABEL - TITLE -->
+                <!-- WIDGET - INFO - HOME FLIX -->
+
+                <control type="group" id="$PYTHON[int(mainmenuid) * 1000 + 700 + int(id)]">
+                    <visible>[String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility]) + [Integer.IsGreater(Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).IsUpdating]]</visible>
+                    <visible>Skin.HasSetting(home.style.flix)</visible>
+
+                    <include content="Animation_Fade_Out_Home_Fullscreen_Widget">
+                        <param name="condition" value="!Control.HasFocus($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)])"/>
+                    </include>
+
+                    <include content="Animation_Widget_Direction" condition="$EXP[Home_Is_Vertical]">
+                        <param name="visible" value="[String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility])]" />
+                    </include>
+
+                    <control type="group">
+                        <include content="Home_Flix_Widgets_Item_Info" condition="$SKINSHORTCUTS[isnormallayout]">
+                            <param name="id" value="$PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]"/>
+                            <param name="labelisvisible" value="$SKINSHORTCUTS[labelisvisible]"/>
+                            <param name="submenuVisibility">$SKINSHORTCUTS[submenuVisibility]</param>
+                            <!-- <param name="isfullscreenwidget">$SKINSHORTCUTS[isfullscreenwidget]</param> -->
+                        </include>
+                    </control>
+
+                    <control type="grouplist">
+                        <include condition="$SKINSHORTCUTS[isweatherlayout]">Home_Flix_Widgets_Weather_Info</include>
+                    </control>
+
+                    <control type="grouplist">
+                        <include content="Home_Flix_Widgets_System_Info" condition="$SKINSHORTCUTS[issystemlayout] | $SKINSHORTCUTS[issettingslayout]">
+                            <param name="issettingslayout" value="$SKINSHORTCUTS[issettingslayout]"/>
+                            <param name="id" value="$PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]"/>
+                        </include>
+                    </control>
+                </control>
+
+                <!-- WIDGET - TITLE - LABEL -->
 
                 <control type="group"  id="$PYTHON[int(mainmenuid) * 1000 + 900 + int(id)]">
                     <visible>[String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility]) + [Integer.IsGreater(Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).IsUpdating]]</visible>
@@ -265,41 +300,6 @@
                             <!-- <param name="isfullscreenwidget">$SKINSHORTCUTS[isfullscreenwidget]</param> -->
                             <param name="widget_label" value="$SKINSHORTCUTS[widgetName]" />
                             <param name="busy_visible" value="Integer.IsEqual(Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).IsUpdating" />
-                        </include>
-                    </control>
-                </control>
-
-                <!-- WIDGET - INFO SUB -->
-
-                <control type="group" id="$PYTHON[int(mainmenuid) * 1000 + 700 + int(id)]">
-                    <visible>[String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility]) + [Integer.IsGreater(Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).IsUpdating]]</visible>
-                    <visible>Skin.HasSetting(home.style.flix)</visible>
-
-                    <include content="Animation_Fade_Out_Home_Fullscreen_Widget">
-                        <param name="condition" value="!Control.HasFocus($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)])"/>
-                    </include>
-
-                    <include content="Animation_Widget_Direction" condition="$EXP[Home_Is_Vertical]">
-                        <param name="visible" value="[String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility])]" />
-                    </include>
-
-                    <control type="group">
-                        <include content="Home_Widgets_Info_Sub" condition="$SKINSHORTCUTS[isnormallayout]">
-                            <param name="id" value="$PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]"/>
-                            <param name="labelisvisible" value="$SKINSHORTCUTS[labelisvisible]"/>
-                            <param name="submenuVisibility">$SKINSHORTCUTS[submenuVisibility]</param>
-                            <!-- <param name="isfullscreenwidget">$SKINSHORTCUTS[isfullscreenwidget]</param> -->
-                        </include>
-                    </control>
-
-                    <control type="grouplist">
-                        <include condition="$SKINSHORTCUTS[isweatherlayout]">Home_Widget_Weather_Info_Sub</include>
-                    </control>
-
-                    <control type="grouplist">
-                        <include content="Home_Widget_System_Info_Sub" condition="$SKINSHORTCUTS[issystemlayout] | $SKINSHORTCUTS[issettingslayout]">
-                            <param name="issettingslayout" value="$SKINSHORTCUTS[issettingslayout]"/>
-                            <param name="id" value="$PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]"/>
                         </include>
                     </control>
                 </control>

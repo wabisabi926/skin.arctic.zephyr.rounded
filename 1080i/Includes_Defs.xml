@@ -435,6 +435,547 @@
         <value>$INFO[ListItem.PercentPlayed]</value>
     </variable>
 
+
+    <!-- ================  -->
+    <!--      HEADER       -->
+    <!-- ================= -->
+
+    <include name="Def_Header_Sub_Info">
+        <control type="group">
+            <centertop>60</centertop>
+            <width>auto</width>
+            <height min="51" max="51">auto</height>
+
+            <!-- ARTISTS / ALBUMS / SONGS / MYPLAILIST MUSIC -->
+
+            <control type="grouplist">
+                <visible>!String.IsEmpty(Container.NumItems) + [Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
+                <itemgap>0</itemgap>
+                <orientation>horizontal</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
+
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>$INFO[Container.CurrentItem] / $INFO[Container.NumItems,,]</label>
+                </control>
+                <control type="label">
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>$VAR[Label_Icon_Container_Type]</label>
+                </control>
+
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>$INFO[Control.GetLabel(3),  •  ,]</label>
+                </control>
+
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>$INFO[Container.TotalTime,  •  ,]</label>
+                    <visible>Window.IsActive(musicplaylist)</visible>
+                </control>
+
+                <control type="label">
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>   &#61968;</label>
+                    <visible>Window.IsActive(musicplaylist)</visible>
+                </control>
+            </control>
+
+            <!-- MOVIES / TVSHOWS / SEASONS / EPISODES -->
+
+            <!-- FILTER + UNWATCHED ONLY -->
+
+            <control type="grouplist">
+                <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
+                <visible>!String.IsEmpty(Container.NumItems) + Container.Filtered + String.IsEqual(Control.GetLabel(10),$LOCALIZE[16101])</visible>
+                <itemgap>0</itemgap>
+                <orientation>horizontal</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>$INFO[Container.CurrentItem] / $INFO[Container.NumItems,,]</label>
+                </control>
+
+                <control type="label">
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>$VAR[Label_Icon_Container_Type]</label>
+                </control>
+
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>  •  $LOCALIZE[16101]</label>
+                </control>
+                <control type="label">
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>   &#62593;</label>
+                </control>
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>  •  </label>
+                </control>
+                <control type="label">
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>&#61532;</label>
+                </control>
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>   $INFO[Control.GetLabel(19).index(1)]</label>
+                </control>
+            </control>
+
+            <!-- FILTER + WATCHED ONLY -->
+
+            <control type="grouplist">
+                <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
+                <visible>!String.IsEmpty(Container.NumItems) + Container.Filtered + String.IsEqual(Control.GetLabel(10),$LOCALIZE[16102])</visible>
+                <itemgap>0</itemgap>
+                <orientation>horizontal</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>$INFO[Container.CurrentItem] / $INFO[Container.NumItems,,]</label>
+                </control>
+
+                <control type="label">
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>$VAR[Label_Icon_Container_Type]</label>
+                </control>
+
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>  •  $LOCALIZE[16102]</label>
+                </control>
+                <control type="label">
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>   &#62133;</label>
+                </control>
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>  •  </label>
+                </control>
+                <control type="label">
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>&#61532;</label>
+                </control>
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>   $INFO[Control.GetLabel(19).index(1)]</label>
+                </control>
+            </control>
+
+            <!-- FILTER + ALL VIDEO -->
+
+            <control type="grouplist">
+                <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
+                <visible>!String.IsEmpty(Container.NumItems) + Container.Filtered + String.IsEqual(Control.GetLabel(10),$LOCALIZE[16100])</visible>
+                <itemgap>0</itemgap>
+                <orientation>horizontal</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>$INFO[Container.CurrentItem] / $INFO[Container.NumItems,,]</label>
+                </control>
+                <control type="label">
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>$VAR[Label_Icon_Container_Type]</label>
+                </control>
+
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>$INFO[Control.GetLabel(3),  •  ,]  •  </label>
+                </control>
+
+                <control type="label">
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>&#61532;</label>
+                </control>
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>   $INFO[Control.GetLabel(19).index(1)]</label>
+                </control>
+            </control>
+
+            <!-- UNWATCHED ONLY -->
+
+            <control type="grouplist">
+                <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
+                <visible>!String.IsEmpty(Container.NumItems) + !Container.Filtered + String.IsEqual(Control.GetLabel(10),$LOCALIZE[16101])</visible>
+                <itemgap>0</itemgap>
+                <orientation>horizontal</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>$INFO[Container.CurrentItem] / $INFO[Container.NumItems,,]</label>
+                </control>
+                <control type="label">
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>$VAR[Label_Icon_Container_Type]</label>
+                </control>
+
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>  •  $LOCALIZE[16101]</label>
+                </control>
+                <control type="label">
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>   &#62593;</label>
+                </control>
+            </control>
+
+            <!-- WATCHED ONLY -->
+
+            <control type="grouplist">
+                <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
+                <visible>!String.IsEmpty(Container.NumItems) + !Container.Filtered + String.IsEqual(Control.GetLabel(10),$LOCALIZE[16102])</visible>
+                <itemgap>0</itemgap>
+                <orientation>horizontal</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>$INFO[Container.CurrentItem] / $INFO[Container.NumItems,,]</label>
+                </control>
+                <control type="label">
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>$VAR[Label_Icon_Container_Type]</label>
+                </control>
+
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>  •  $LOCALIZE[16102]</label>
+                </control>
+                <control type="label">
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>   &#62133;</label>
+                </control>
+            </control>
+
+            <!-- VIDEOVERSIONS -->
+
+            <control type="grouplist">
+                <visible>Container.Content(videoversions)</visible>
+                <itemgap>0</itemgap>
+                <orientation>horizontal</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>$INFO[Container.CurrentItem] / $INFO[Container.NumItems,,]</label>
+                </control>
+
+                <control type="label">
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>$VAR[Label_Icon_Container_Type]</label>
+                </control>
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>$INFO[Control.GetLabel(3),  •  ,]</label>
+                </control>
+            </control>
+
+            <!-- VIDEOPLAYLIST -->
+
+            <control type="grouplist">
+                <visible>Window.IsActive(videoplaylist)</visible>
+                <itemgap>0</itemgap>
+                <orientation>horizontal</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>$INFO[Container.CurrentItem] / $INFO[Container.NumItems,,]</label>
+                </control>
+
+                <control type="label">
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>$VAR[Label_Icon_Container_Type]</label>
+                </control>
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>$INFO[Container.TotalTime,  •  ,]</label>
+                </control>
+
+                <control type="label">
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>   &#61968;</label>
+                </control>
+            </control>
+
+            <!-- ADDONS -->
+
+            <control type="grouplist">
+                <visible>Window.IsVisible(AddonBrowser.xml)</visible>
+                <visible>!String.IsEmpty(Container.NumItems) + !Container.Filtered + !String.Contains(Control.GetLabel(10),$LOCALIZE[16101])</visible>
+                <itemgap>0</itemgap>
+                <orientation>horizontal</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>$INFO[Container.NumItems]</label>
+                </control>
+
+                <control type="label">
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>$VAR[Label_Icon_Container_Type]</label>
+                </control>
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>$INFO[System.AddonUpdateCount,  •  , $LOCALIZE[24043]]</label>
+                    <visible>Integer.IsGreater(System.AddonUpdateCount,0)</visible>
+                </control>
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>$INFO[Control.GetLabel(3),  •  ,]</label>
+                </control>
+
+                <!-- <control type="label"> -->
+                    <!-- <include>Def_Header_Sub_Info_Definition</include> -->
+                    <!-- <label>$INFO[Control.GetLabel(3),  •  ,]$INFO[Control.GetLabel(28),  •  ,]</label> -->
+                <!-- </control> -->
+            </control>
+
+            <!-- LOGIN SCREEN -->
+
+            <control type="grouplist">
+                <visible>Window.IsVisible(LoginScreen.xml)</visible>
+                <visible>!String.IsEmpty(Container.NumItems) + !Container.Filtered + !String.Contains(Control.GetLabel(10),$LOCALIZE[16101])</visible>
+                <itemgap>0</itemgap>
+                <orientation>horizontal</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>$LOCALIZE[10029]</label>
+                </control>
+                <control type="label">
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>$VAR[Label_Icon_Container_Type]</label>
+                </control>
+            </control>
+
+            <!-- MY WEATHER -->
+
+            <control type="grouplist">
+                <visible>Window.IsVisible(MyWeather.xml)</visible>
+                <!-- <visible>!String.IsEmpty(Window(Weather).Property(Location))</visible> -->
+                <itemgap>0</itemgap>
+                <orientation>horizontal</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
+
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>$INFO[Window(Weather).Property(WeatherProvider)]</label>
+                </control>
+                <control type="label">
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>   &#63097;</label>
+                </control>
+
+                <control type="label">
+                    <visible>![String.Contains(Weather.Data(Current.Temperature),$LOCALIZE[503]) | String.IsEmpty(Window(Weather).Property(Updated))]</visible>
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>$INFO[Window(Weather).Property(Location),  •  ,]</label>
+                </control>
+                <control type="label">
+                    <visible>![String.Contains(Weather.Data(Current.Temperature),$LOCALIZE[503]) | String.IsEmpty(Window(Weather).Property(Updated))]</visible>
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>   &#61984;</label>
+                </control>
+            </control>
+
+            <!-- PVR -->
+
+            <!-- NO FILTER -->
+
+            <control type="grouplist">
+                <visible>$EXP[IsPvrDialog]</visible>
+                <visible>!String.IsEmpty(Container.NumItems) + !Container.Filtered + !String.Contains(Control.GetLabel(10),$LOCALIZE[16101])</visible>
+                <itemgap>0</itemgap>
+                <orientation>horizontal</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>$INFO[Container.CurrentItem] / $INFO[Container.NumItems,,]</label>
+                </control>
+                <control type="label">
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>$VAR[Label_Icon_Container_Type]</label>
+                </control>
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>$INFO[Control.GetLabel(3),  •  ,]</label>
+                </control>
+            </control>
+
+            <!-- FILTER -->
+
+            <control type="grouplist">
+                <visible>$EXP[IsPvrDialog]</visible>
+                <visible>!String.IsEmpty(Container.NumItems) + Container.Filtered</visible>
+                <itemgap>0</itemgap>
+                <orientation>horizontal</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>$INFO[Container.CurrentItem] / $INFO[Container.NumItems,,]</label>
+                </control>
+                <control type="label">
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>$VAR[Label_Icon_Container_Type]</label>
+                </control>
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>$INFO[Control.GetLabel(3),  •  ,]  •  </label>
+                </control>
+                <control type="label">
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>&#61532;</label>
+                </control>
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>   $INFO[Control.GetLabel(31)]</label>
+                </control>
+            </control>
+
+            <!-- ALL -->
+
+            <control type="grouplist">
+                <visible>Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
+                <visible>!String.IsEmpty(Container.NumItems) + !Container.Filtered + !String.Contains(Control.GetLabel(10),$LOCALIZE[16101]) + !String.Contains(Control.GetLabel(10),$LOCALIZE[16102]) + !Window.IsActive(videoplaylist)</visible>
+
+                <itemgap>0</itemgap>
+                <orientation>horizontal</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
+
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>$INFO[Container.CurrentItem] / $INFO[Container.NumItems,,]</label>
+                </control>
+
+                <control type="label">
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>$VAR[Label_Icon_Container_Type]</label>
+                </control>
+
+                <!-- <control type="label"> -->
+                    <!-- <include>Def_Header_Sub_Info_Definition</include> -->
+                    <!-- <label>$INFO[Container.TotalWatched,  •  ,]</label> -->
+                <!-- </control> -->
+                <!-- <control type="label"> -->
+                    <!-- <include>Def_Label_Header_Sub_Icon_Definition</include> -->
+                    <!-- <label>   &#62080;</label> -->
+                <!-- </control> -->
+
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>$INFO[Container.TotalUnWatched,  •  ,]</label>
+                </control>
+                <control type="label">
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>   &#62593;</label>
+                </control>
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>$INFO[Control.GetLabel(3),  •  ,]</label>
+                </control>
+            </control>
+
+            <!-- FALLBACK -->
+
+            <control type="grouplist">
+                <visible>![Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | $EXP[IsPvrDialog] | Window.IsVisible(AddonBrowser.xml) | Window.IsVisible(LoginScreen.xml) | Window.IsActive(videoplaylist)]</visible>
+                <visible>![Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(videoversions) | Container.Content(sets)]</visible>
+                <visible>!Window.IsVisible(MyWeather.xml)</visible>
+
+                <itemgap>0</itemgap>
+                <orientation>horizontal</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>$INFO[Window(Home).Property(Movies.Count)]</label>
+                </control>
+                <control type="label">
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>   &#61853;</label>
+                </control>
+
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>$INFO[Window(Home).Property(TVShows.Count),  •  ,]</label>
+                </control>
+                <control type="label">
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>   &#61656;</label>
+                </control>
+
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>$INFO[Window(Home).Property(Music.AlbumsCount),  •  ,]</label>
+                </control>
+                <control type="label">
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>   &#62292;</label>
+                </control>
+
+                <control type="label">
+                    <include>Def_Header_Sub_Info_Definition</include>
+                    <label>$INFO[Pvr.BackendChannels,  •  ,]</label>
+                </control>
+                <control type="label">
+                    <include>Def_Label_Header_Sub_Icon_Definition</include>
+                    <label>   &#61860;</label>
+                </control>
+            </control>
+        </control>
+    </include>
+
+    <include name="Def_Header_Sub_Info_Definition">
+        <font>Flag</font>
+        <width>auto</width>
+        <height>46</height>
+        <align>left</align>
+        <textcolor>Dark2</textcolor>
+    </include>
+
+    <include name="Def_Label_Header_Sub_Icon_Definition">
+        <font>SymbolList</font>
+        <width>auto</width>
+        <height>46</height>
+        <align>left</align>
+        <textcolor>Dark2</textcolor>
+    </include>
+
+    <include name="Def_Home_Furniture_Header_Image_Clearlogo">
+        <visible>Skin.HasSetting(show.home.header.clearlogo)</visible>
+        <visible>Window.IsVisible(Home) + !Skin.HasSetting(home.style.flix)</visible>
+        <visible>!Window.IsVisible(DialogExtendedProgressBar.xml)</visible>
+
+        <visible>String.IsEmpty(Window(Home).Property(Hide_On_Reload_Dialog_Info))</visible>
+        <include>Animation_Dialog_Info_Visible_Fade_Conditional</include>
+
+        <visible>Skin.HasSetting(hide.furniture.nowplaying.home) | [!Skin.HasSetting(hide.furniture.nowplaying.home) + !Player.HasAudio] | [$EXP[Extended_Now_Playing_Is_Enable] + !$EXP[Extended_Now_Playing_Is_Visible] + Player.HasAudio]</visible>
+
+        <!-- <visible>ControlGroup(301).HasFocus()</visible> -->
+
+        <animation effect="slide" start="0" end="0,60" time="0" condition="[$EXP[Home_Is_Vertical] | $EXP[Home_Is_Horizontal]] + Window.IsVisible(Home.xml)">Conditional</animation>
+
+        <!-- HIDE WITH NOWPLAYING -->
+
+        <animation type="Conditional" condition="Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + $EXP[Extended_Now_Playing_Is_Enable] + [ControlGroup(777).HasFocus() | !$EXP[Extended_Now_Playing_Helper_AutoShow]] + !ControlGroup(301).HasFocus() + Window.IsVisible(Home) + !$EXP[View_Info_Dialog] + !Window.IsVisible(DialogContextMenu.xml)" reversible="true">
+            <effect type="slide" start="0,0" end="350,0" tween="sine" easing="out" time="300" delay="0" />
+            <effect type="fade" start="100" end="0" time="150" delay="0" />
+        </animation>
+
+        <animation effect="fade" start="0" end="100" time="200" delay="0" reversible="true">WindowOpen</animation>
+        <animation effect="fade" start="0" end="100" time="200" delay="0" reversible="true">Visible</animation>
+        <animation effect="fade" start="100" end="0" delay="400" time="200" reversible="true">WindowClose</animation>
+        <animation effect="fade" start="100" end="0" delay="400" time="200" reversible="true">Hidden</animation>
+
+        <centertop>60</centertop>
+        <right>View_SidePad</right>
+        <height>ClearLogoMaxHeight</height>
+        <width>ClearLogoMaxWidth</width>
+        <fadetime>ClearArtFadetime</fadetime>
+        <aspectratio align="right">keep</aspectratio>
+    </include>
+
+
     <!-- ================  -->
     <!--        HOME       -->
     <!-- ================= -->
@@ -461,30 +1002,30 @@
             <visible>!$EXP[IsYoutubeItem] + !$EXP[IsPluginRadio] + ControlGroup(301).HasFocus()</visible>
 
             <control type="label">
-                <include>Widgets_Sub_Title_Definition</include>
+                <include>Widgets_Item_Sub_Title_Definition</include>
                 <label>$INFO[Container($PARAM[id]).ListItem.UserRating,  •  ,.0]</label>
                 <visible>Integer.IsGreater(Container($PARAM[id]).ListItem.UserRating,0) + Skin.HasSetting(userrating.override.kodi.rating.num)</visible>
             </control>
             <control type="label">
-                <include>Widgets_Sub_Title_Definition</include>
+                <include>Widgets_Item_Sub_Title_Definition</include>
                 <label>$INFO[Container($PARAM[id]).ListItem.Rating(imdb),  •  IMDb ]</label>
                 <visible>!Integer.IsGreater(Container($PARAM[id]).ListItem.UserRating,0) | !Skin.HasSetting(userrating.override.kodi.rating.num)</visible>
                 <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Rating(imdb))</visible>
             </control>
             <control type="label">
-                <include>Widgets_Sub_Title_Definition</include>
+                <include>Widgets_Item_Sub_Title_Definition</include>
                 <label>$INFO[Container($PARAM[id]).ListItem.Rating(themoviedb),  •  TMDb ]</label>
                 <visible>!Integer.IsGreater(Container($PARAM[id]).ListItem.UserRating,0) | !Skin.HasSetting(userrating.override.kodi.rating.num)</visible>
                 <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Rating(themoviedb))</visible>
             </control>
             <control type="label">
-                <include>Widgets_Sub_Title_Definition</include>
+                <include>Widgets_Item_Sub_Title_Definition</include>
                 <label>$INFO[Container($PARAM[id]).ListItem.Rating(trakt),  •  TrakT ]</label>
                 <visible>!Integer.IsGreater(Container($PARAM[id]).ListItem.UserRating,0) | !Skin.HasSetting(userrating.override.kodi.rating.num)</visible>
                 <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Rating(trakt))</visible>
             </control>
             <control type="label">
-                <include>Widgets_Sub_Title_Definition</include>
+                <include>Widgets_Item_Sub_Title_Definition</include>
                 <label>$INFO[Container($PARAM[id]).ListItem.Rating,  •  TMDb ]</label>
                 <visible>!Integer.IsGreater(Container($PARAM[id]).ListItem.UserRating,0) | !Skin.HasSetting(userrating.override.kodi.rating.num)</visible>
                 <visible>String.IsEmpty(Container($PARAM[id]).ListItem.Rating(imdb)) + String.IsEmpty(Container($PARAM[id]).ListItem.Rating(themoviedb)) + String.IsEmpty(Container($PARAM[id]).ListItem.Rating(trakt)) + String.IsEmpty(TMDbHelper.Container($PARAM[id]).ListItem.IMDb_Rating)</visible>
@@ -494,17 +1035,17 @@
 
     <include name="Def_Home_Label_Widget_Sub_Title_Duration">
         <control type="label" description="Duration">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Duration(mins)) + !Skin.HasSetting(show.time.format.hh.mm)</visible>
             <label>$INFO[Container($PARAM[id]).ListItem.Duration(mins),  •  , $LOCALIZE[31074]]</label>
         </control>
         <control type="label" description="Duration">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Duration(mins)) + Skin.HasSetting(show.time.format.hh.mm) + Integer.IsGreater(Container($PARAM[id]).ListItem.Duration(h),0)</visible>
             <label>$INFO[Container($PARAM[id]).ListItem.Duration(h),  •  ,$LOCALIZE[31061]] $INFO[Container($PARAM[id]).ListItem.Duration(mm),,$LOCALIZE[31062]]</label>
         </control>
         <control type="label" description="Duration">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Duration(mins)) + Skin.HasSetting(show.time.format.hh.mm) + !Integer.IsGreater(Container($PARAM[id]).ListItem.Duration(h),0)</visible>
             <label>$INFO[Container($PARAM[id]).ListItem.Duration(m),  •  ,$LOCALIZE[31062]]</label>
         </control>
@@ -512,12 +1053,12 @@
 
     <include name="Def_Home_Label_Widget_Sub_Title_Genre">
         <control type="label">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.Genre.1.Name),  •  ,]$INFO[Window(Home).Property(TMDbHelper.ListItem.Genre.2.Name), / ,]</label>
             <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Genre.1.Name))</visible>
         </control>
         <control type="label">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <label>$INFO[Container($PARAM[id]).ListItem.Genre,  •  ,]</label>
             <visible>String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Genre.1.Name)) + !String.IsEmpty(Container($PARAM[id]).ListItem.Genre)</visible>
         </control>
@@ -525,7 +1066,7 @@
 
     <include name="Def_Home_Label_Widget_Sub_Title_Year">
         <control type="label">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <label>$INFO[Container($PARAM[id]).ListItem.Year]</label>
             <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Year)</visible>
         </control>
@@ -533,7 +1074,7 @@
 
     <include name="Def_Home_Label_Widget_Sub_Title_DateAdded">
         <control type="label">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <label>$INFO[Container($PARAM[id]).ListItem.DateAdded,  •  ,]</label>
             <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.DateAdded)</visible>
         </control>
@@ -541,7 +1082,7 @@
 
     <include name="Def_Home_Label_Widget_Sub_Title_Num_Episode">
         <control type="label">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <label>$INFO[Container($PARAM[id]).ListItem.Episode,  •  , $LOCALIZE[20360]]</label>
             <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Episode)</visible>
         </control>
@@ -549,7 +1090,7 @@
 
     <include name="Def_Home_Label_Widget_Sub_Title_TvShowTitle">
         <control type="label">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <label>$INFO[Container($PARAM[id]).ListItem.TvShowTitle,,  •  ]</label>
             <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.TvShowTitle) + !Skin.HasSetting(home.style.flix) + !Skin.HasSetting(home.style.horizontal.clean)</visible>
         </control>
@@ -557,7 +1098,7 @@
 
     <include name="Def_Home_Label_Widget_Sub_Title_Season_X">
         <control type="label">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <label>$INFO[Container($PARAM[id]).ListItem.Season,$LOCALIZE[20373] ,  •  ]</label>
             <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Season)</visible>
         </control>
@@ -565,7 +1106,7 @@
 
     <include name="Def_Home_Label_Widget_Sub_Title_Episode_X">
         <control type="label">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <label>$INFO[Container($PARAM[id]).ListItem.Episode,$LOCALIZE[20359] ,  •  ]</label>
             <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Episode)</visible>
         </control>
@@ -573,12 +1114,12 @@
 
     <include name="Def_Home_Label_Widget_Sub_Title_Premiered">
         <control type="label">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <label>$INFO[Container($PARAM[id]).ListItem.Premiered]</label>
             <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Premiered)</visible>
         </control>
         <control type="label">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <label>$INFO[Container($PARAM[id]).ListItem.Year]</label>
             <visible>String.IsEmpty(Container($PARAM[id]).ListItem.Premiered) + !String.IsEmpty(Container($PARAM[id]).ListItem.Year)</visible>
         </control>
@@ -586,7 +1127,7 @@
 
     <include name="Def_Home_Label_Widget_Sub_Title_Tagline">
         <control type="label">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <label>$INFO[Container($PARAM[id]).ListItem.Tagline]</label>
             <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Tagline)</visible>
         </control>
@@ -594,7 +1135,7 @@
 
     <include name="Def_Home_Label_Widget_Sub_Title_AddonVersion">
         <control type="label">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <label>$INFO[Container($PARAM[id]).ListItem.AddonType]$INFO[Container($PARAM[id]).ListItem.AddonVersion,  •  v ]</label>
             <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.AddonVersion)</visible>
         </control>
@@ -602,7 +1143,7 @@
 
     <include name="Def_Home_Label_Widget_Sub_Title_Games">
         <control type="label">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <label>$INFO[Container($PARAM[id]).ListItem.Label]</label>
             <visible>String.Contains(Container($PARAM[id]).ListItem.FolderPath,plugin://plugin.program.ael) | String.Contains(Container($PARAM[id]).ListItem.FolderPath,plugin://plugin.program.advanced.launcher) | String.Contains(Container($PARAM[id]).ListItem.FolderPath,plugin://plugin.program.advanced.emulator.launcher) | String.Contains(Container($PARAM[id]).ListItem.FolderPath,plugin://plugin.program.akl) | String.Contains(Container($PARAM[id]).ListItem.FolderPath,plugin://plugin.program.advanced.MAME.launcher) | String.Contains(Container($PARAM[id]).ListItem.FolderPath,plugin://plugin.program.iagl) | String.Contains(Container($PARAM[id]).ListItem.FolderPath,addons://sources/game)</visible>
             <visible>String.IsEmpty(Container($PARAM[id]).ListItem.AddonVersion)</visible>
@@ -611,7 +1152,7 @@
 
     <include name="Def_Home_Label_Widget_Sub_Title_Gender">
         <control type="label">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <label fallback="19055">$INFO[Window(Home).Property(TMDbHelper.ListItem.Gender),,  •  ]</label>
             <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Gender))</visible>
         </control>
@@ -619,7 +1160,7 @@
 
     <include name="Def_Home_Label_Widget_Sub_Title_Age">
         <control type="label">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <label fallback="19055">$INFO[Window(Home).Property(TMDbHelper.ListItem.Age),, $LOCALIZE[31530]  •  ]</label>
             <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Age))</visible>
         </control>
@@ -627,7 +1168,7 @@
 
     <include name="Def_Home_Label_Widget_Sub_Title_Department">
         <control type="label">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <label fallback="19055">$INFO[Window(Home).Property(TMDbHelper.ListItem.Department)]</label>
             <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Department))</visible>
         </control>
@@ -635,12 +1176,12 @@
 
     <include name="Def_Home_Label_Widget_Sub_Title_TotalAlbum">
         <control type="label">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <label>$INFO[Control.GetLabel(9968)]</label>
             <visible>Integer.IsGreater(Container(44024).NumItems,1)</visible>
         </control>
         <control type="label">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <label>$INFO[Control.GetLabel(9969)]</label>
             <visible>Integer.IsEqual(Container(44024).NumItems,1)</visible>
         </control>
@@ -648,17 +1189,17 @@
 
     <include name="Def_Home_Label_Widget_Sub_Title_ArtistStyle">
         <control type="label">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <label>  •  </label>
             <visible>Integer.IsGreater(Container(44024).NumItems,0) + [!String.IsEmpty(Container($PARAM[id]).ListItem.Property(Artist_Style)) | !String.IsEmpty(Container($PARAM[id]).ListItem.Genre)]</visible>
         </control>
         <control type="label">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <label>$INFO[Container($PARAM[id]).ListItem.Property(Artist_Style)]</label>
             <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Property(Artist_Style))</visible>
         </control>
         <control type="label">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <label>$INFO[Container($PARAM[id]).ListItem.Genre]</label>
             <visible>String.IsEmpty(Container($PARAM[id]).ListItem.Property(Artist_Style))</visible>
         </control>
@@ -666,7 +1207,7 @@
 
     <include name="Def_Home_Label_Widget_Sub_Title_Favourite_Type">
         <control type="label">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <label>$VAR[Label_Favourites_Type]</label>
             <visible>String.IsEqual(Container($PARAM[id]).ListItem.Path,favourites://)</visible>
         </control>
@@ -674,7 +1215,7 @@
 
     <include name="Def_Home_Label_Widget_Sub_Title_Song">
         <control type="label">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <label>$INFO[Container($PARAM[id]).ListItem.Album]$INFO[Container($PARAM[id]).ListItem.Year,  •  ,]$INFO[Container($PARAM[id]).ListItem.TrackNumber,  •  ,.  ]$INFO[Container($PARAM[id]).ListItem.Title]</label>
             <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,song)</visible>
         </control>
@@ -682,13 +1223,13 @@
 
     <include name="Def_Home_Label_Widget_Sub_Title_Sets">
         <control type="label">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Years),,  •  ]$INFO[Container(44023).NumItems]$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.NumItems),/,] $LOCALIZE[31014]</label>
             <visible>Integer.IsGreater(Container(44023).NumItems,0)</visible>
             <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,set)</visible>
         </control>
         <control type="label">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Years)]</label>
             <visible>!Integer.IsGreater(Container(44023).NumItems,0)</visible>
             <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,set)</visible>
@@ -697,7 +1238,7 @@
 
     <include name="Def_Home_Label_Widget_Sub_Title_Label">
         <control type="label">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <label>$INFO[Container($PARAM[id]).ListItem.Label]</label>
             <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Label)</visible>
         </control>
@@ -705,7 +1246,7 @@
 
     <include name="Def_Home_Label_Widget_Sub_Title_TotalDisc">
         <control type="label">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <label> $INFO[Control.GetLabel(9967)]</label>
             <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Label)</visible>
             <visible>ControlGroup(301).HasFocus()</visible>
@@ -713,7 +1254,7 @@
             <visible>Integer.IsGreater(Container(44022).NumItems,0)</visible>
         </control>
         <control type="label">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <label> $INFO[Control.GetLabel(9970)]</label>
             <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Label)</visible>
             <visible>ControlGroup(301).HasFocus()</visible>
@@ -724,14 +1265,14 @@
 
     <include name="Def_Home_Label_Widget_Sub_Title_AlbumYear">
         <control type="label">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <label>$INFO[Container($PARAM[id]).ListItem.Year,  •  ]</label>
         </control>
     </include>
 
     <include name="Def_Home_Label_Widget_Sub_Title_EPG">
         <control type="label">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <label>$INFO[Container($PARAM[id]).ListItem.Label]$INFO[Container($PARAM[id]).ListItem.Genre,  •  ,]$INFO[Container($PARAM[id]).ListItem.StartTime,  •  ,]$INFO[Container($PARAM[id]).ListItem.EndTime, - ]$INFO[Container($PARAM[id]).ListItem.Duration(mins),  •  , $LOCALIZE[31074]]</label>
             <visible>![String.IsEmpty(ListItem.StartTime) | String.IsEmpty(ListItem.EndTime)]</visible>
             <visible>!String.IsEqual(Container($PARAM[id]).ListItem.Path,pvr://channels/tv/)</visible>
@@ -740,7 +1281,7 @@
 
     <include name="Def_Home_Label_Widget_Sub_Title_PVR">
         <control type="label">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <label>$INFO[Container($PARAM[id]).ListItem.PVRClientName]$INFO[Container($PARAM[id]).ListItem.PVRInstanceName,  •  ,]</label>
             <visible>[String.IsEmpty(ListItem.StartTime) | String.IsEmpty(ListItem.EndTime)]</visible>
             <visible>!String.IsEqual(Container($PARAM[id]).ListItem.Path,pvr://channels/tv/)</visible>
@@ -749,17 +1290,18 @@
 
     <include name="Def_Home_Label_Widget_Sub_Title_Group_Channel">
         <control type="label">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <label>$LOCALIZE[19173]</label>
             <visible>String.IsEqual(Container($PARAM[id]).ListItem.Path,pvr://channels/tv/) + Integer.IsEqual(Container(44028).NumItems,1)</visible>
         </control>
         <control type="label">
-            <include>Widgets_Sub_Title_Definition</include>
+            <include>Widgets_Item_Sub_Title_Definition</include>
             <label>$INFO[Control.GetLabel(9972)]</label>
             <visible>String.IsEqual(Container($PARAM[id]).ListItem.Path,pvr://channels/tv/) + Integer.IsGreater(Container(44028).NumItems,1)</visible>
             <visible>!$EXP[Home_Menu_Is_Focus]</visible>
         </control>
     </include>
+
 
     <!-- OSD MUSIC RATING -->
 
