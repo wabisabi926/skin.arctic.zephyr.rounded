@@ -176,7 +176,7 @@
             <visible>$EXP[Show_Video_Background_Not_Enable]</visible>
             <visible>$EXP[Show_Music_Visualisation_Background_Not_Enable]</visible>
 
-            <visible>Skin.HasSetting(enable.blur.effect) + Skin.HasSetting(enable.blur.effect.fake) + !$EXP[View_Blur_Disable]</visible>
+            <visible>Skin.HasSetting(enable.blur.effect.fake) + !$EXP[View_Blur_Disable]</visible>
 
             <visible>!Skin.HasSetting(enabled.tmdb.helper.blur) | [Skin.HasSetting(enabled.tmdb.helper.blur) + [$EXP[Background_Home_Extended_Now_Playing] | Control.HasFocus(9099) | $EXP[IsViewPlaylistMusicArtistSlideShow] | $EXP[Background_Home_On_Menu_Background_Setting_Menu] | [Skin.HasSetting(hide.global.fanart) + [[!$EXP[Home_Is_Flix] + !$EXP[View_Flix]] | $EXP[View_Info_Dialog]]]]]</visible>
 
@@ -212,7 +212,7 @@
 
             <visible>!Skin.HasSetting(hide.global.fanart) | [Skin.HasSetting(hide.global.fanart) + [$EXP[View_Flix] | [Window.IsVisible(Home) + $EXP[Home_Is_Flix] + !$EXP[View_Info_Dialog]]]]</visible>
 
-            <visible>Skin.HasSetting(enable.blur.effect) + Skin.HasSetting(enabled.tmdb.helper.blur) + !$EXP[View_Blur_Disable]</visible>
+            <visible>Skin.HasSetting(enabled.tmdb.helper.blur) + !$EXP[View_Blur_Disable]</visible>
 
             <visible>[Window.IsVisible(Home) + !Skin.HasSetting(home.style.horizontal.clean)] | [Window.IsVisible(Home) + $EXP[View_Info_Dialog]] | !Window.IsVisible(Home)</visible>
 
@@ -367,7 +367,6 @@
             <visible>$EXP[Show_Music_Visualisation_Background_Not_Enable]</visible>
 
             <visible>[Window.IsVisible(Home) + $EXP[Home_Is_Horizontal_Clean] + !$EXP[View_Info_Dialog]]</visible>
-            <visible>!Skin.HasSetting(enable.blur.effect) | [Window.IsVisible(Home) + !$EXP[Home_Is_Flix] + !$EXP[View_Info_Dialog]]</visible>
 
             <include>Animation_Animate_Fanart</include>
             <include>Animation_AutoTrailer_Fade_Out_Background</include>
@@ -429,8 +428,6 @@
     <!-- ================= -->
 
     <include name="Background_Global">
-        <!-- <include condition="Skin.HasSetting(enable.blur.effect)">Image_Path_Blur_TMDb</include> -->
-
         <include condition="$EXP[ShowMusicVisualisation]">Global_Music_Visualisation</include>
         <include>Global_Background_Full_Screen_Video</include>
 
@@ -468,9 +465,6 @@
         <control type="multiimage" description="Fanart">
             <visible>$EXP[Show_Video_Background_Not_Enable]</visible>
             <visible>$EXP[Show_Music_Visualisation_Background_Not_Enable]</visible>
-
-            <visible>Skin.HasSetting(enable.blur.effect)</visible>
-            <visible>!Skin.HasSetting(hide.view.flix.preview)</visible>
 
             <visible>[Window.IsVisible(Home) + $EXP[Home_Is_Flix]] | [!Window.IsVisible(Home) + $EXP[View_Flix]]</visible>
 
@@ -510,9 +504,6 @@
         <control type="multiimage" description="Fanart">
             <visible>$EXP[Show_Video_Background_Not_Enable]</visible>
             <visible>$EXP[Show_Music_Visualisation_Background_Not_Enable]</visible>
-
-            <visible>Skin.HasSetting(enable.blur.effect)</visible>
-            <visible>!Skin.HasSetting(hide.view.flix.preview)</visible>
 
             <visible>[Window.IsVisible(Home) + !$EXP[Home_Is_Flix] + !$EXP[Home_Is_Horizontal_Clean]] | [Window.IsVisible(Home) + $EXP[View_Info_Dialog]] | [!Window.IsVisible(Home) + !$EXP[View_Flix]]</visible>
 
