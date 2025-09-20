@@ -4,6 +4,8 @@
     <onunload>ClearProperty(ShowArtistInfo,Home)</onunload>
     <onunload>ClearProperty(OSDArtistDetails,Home)</onunload>
 
+    <!-- <onunload>SetFocus(9991)</onunload> -->
+
     <include condition="!Player.PauseEnabled">Def_OSD_FocusStop</include>
     <include condition="Player.PauseEnabled">Def_OSD_FocusPause</include>
     <controls>
@@ -233,7 +235,8 @@
                     <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
                     <include>Def_OSD_UpDown_Music_Info</include>
                     <onclick>Close</onclick>
-                    <onclick>ActivateWindow(musicplaylist)</onclick>
+                    <onclick condition="Player.ShowInfo">AlarmClock(delayCloseInfo,Action(Info),00:01,silent)</onclick>
+                    <onclick>AlarmClock(delayplaylist,ActivateWindow(musicplaylist),00:01,silent)</onclick>
                 </include>
 
                 <!-- VOLUME -->
