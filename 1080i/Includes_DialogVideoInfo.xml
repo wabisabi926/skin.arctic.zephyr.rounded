@@ -285,7 +285,7 @@
 
                 <control type="group" description="clearlogo">
                     <visible>Skin.HasSetting(show.dialog.info.clearlogo.video)</visible>
-                    <visible>!Player.HasMedia | Skin.HasSetting(hide.furniture.nowplaying.views)</visible>
+                    <visible>!Player.HasMedia | [Skin.HasSetting(hide.furniture.nowplaying.views) | !String.IsEmpty(Window(Home).Property(TrailerFullscreenIsPlaying))]</visible>
                     <visible>!String.IsEqual(ListItem.Property(tmdb_type),person) + !Window.IsActive(DialogNotification.xml)</visible>
 
                     <include>Animation_Wiki_Fade_Out</include>
