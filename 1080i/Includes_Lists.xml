@@ -168,11 +168,11 @@
                         <include>Animation_Dialog_Info_Fade_In_250_Delay_200</include>
                         <include>Animation_Dialog_Info_Fade_Out_150</include>
 
-                        <animation condition="Control.HasFocus(9669)" effect="fade" start="100" end="0" time="150">Conditional</animation>
-
                         <include content="$PARAM[Animation_new]">
                             <param name="controlid" value="$PARAM[controlid]" />
                         </include>
+
+                        <animation condition="Control.HasFocus(9669)" effect="fade" start="100" end="0" time="150">Conditional</animation>
 
                         <top>361</top>
                         <left>$PARAM[left_background_list]</left>
@@ -211,12 +211,12 @@
                         <visible>$PARAM[visible]</visible>
                         <visible allowhiddenfocus="true">!Container($PARAM[controlid]).IsUpdating</visible>
 
-                        <!-- <animation effect="fade" start="100" end="0" time="0" delay="0" condition="[[Window.IsVisible(script-wikipedia.xml) | Window.IsVisible(DialogBusy.xml)] + !Skin.HasSetting(hide.button.video.wiki)]">Conditional</animation> -->
-
-                        <include>Animation_Scrolltime_Details_List</include>
+                        <animation effect="fade" start="100" end="0" time="0" delay="0" condition="[[Window.IsVisible(script-wikipedia.xml) | Window.IsVisible(DialogBusy.xml)] + !Skin.HasSetting(hidebutton.video.wiki)]">Conditional</animation>
 
                         <include>Animation_Extended_Info_Focus_Fade_In_350_Delay_300</include>
                         <include>Animation_Dialog_Info_Fade_Out_150</include>
+
+                        <include>Animation_Scrolltime_Details_List</include>
 
                         <bottom>$PARAM[list_bottom]</bottom>
                         <left>$PARAM[list_left]</left>
@@ -284,7 +284,7 @@
                         <itemlayout height="$PARAM[height]" width="$PARAM[width]">
                             <control type="group">
                                 <visible>$PARAM[visible.layouts]</visible>
-                                <animation effect="fade" tween="sine" easing="inout" start="0" end="100" time="450" delay="50">Visible</animation>
+                                <animation effect="fade" tween="sine" easing="inout" start="0" end="100" time="200" delay="50">Visible</animation>
                                 <include content="Layout_Dialog_Info_Poster">
                                     <param name="aspectratio" value="$PARAM[aspectratio]" default="scale" />
                                     <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
@@ -296,7 +296,7 @@
                         <focusedlayout height="$PARAM[height]" width="$PARAM[width]">
                             <control type="group">
                                 <visible>$PARAM[visible.layouts]</visible>
-                                <animation effect="fade" start="0" end="100" time="0" delay="150">Visible</animation>
+                                <animation effect="fade" tween="sine" easing="inout" start="0" end="100" time="200" delay="50">Visible</animation>
                                 <include content="Layout_Dialog_Info_Poster_Focus">
                                     <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
                                     <param name="aspectratio" value="$PARAM[aspectratio]" default="scale" />
@@ -411,10 +411,10 @@
                         <visible>$PARAM[visible]</visible>
                         <visible allowhiddenfocus="true">!Container($PARAM[controlid]).IsUpdating</visible>
 
-                        <include>Animation_Scrolltime_Views_List</include>
-
                         <include>Animation_Extended_Info_Focus_Fade_In_350_Delay_300</include>
                         <include>Animation_Dialog_Info_Fade_Out_150</include>
+
+                        <include>Animation_Scrolltime_Views_List</include>
 
                         <right>48</right>
                         <width>1800</width>
@@ -458,7 +458,7 @@
                         <itemlayout height="335" width="222">
                             <control type="group">
                                 <visible>$PARAM[visible.layouts]</visible>
-                                <animation effect="fade" start="0" end="100" time="0" delay="200">Visible</animation>
+                                <animation effect="fade" tween="sine" easing="inout" start="0" end="100" time="300" delay="50">Visible</animation>
                                 <include content="Layout_Dialog_Info_Poster">
                                     <param name="aspectratio" value="$PARAM[aspectratio]" default="scale" />
                                     <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
@@ -470,7 +470,7 @@
                         <focusedlayout height="335" width="222">
                             <control type="group">
                                 <visible>$PARAM[visible.layouts]</visible>
-                                <animation effect="fade" start="0" end="100" time="0" delay="200">Visible</animation>
+                                <animation effect="fade" tween="sine" easing="inout" start="0" end="100" time="300" delay="50">Visible</animation>
                                 <include content="Layout_Dialog_Info_Poster_Focus">
                                     <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
                                     <param name="aspectratio" value="$PARAM[aspectratio]" default="scale" />
@@ -638,7 +638,7 @@
                         <itemlayout height="$PARAM[height]" width="$PARAM[width]">
                             <control type="group">
                                 <visible>$PARAM[visible.layouts]</visible>
-                                <animation effect="fade" tween="sine" easing="inout" start="0" end="100" time="450" delay="50">Visible</animation>
+                                <animation effect="fade" tween="sine" easing="inout" start="0" end="100" time="200" delay="50">Visible</animation>
                                 <include content="Layout_Dialog_Info_Square">
                                     <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
                                     <param name="thumb" value="$PARAM[thumb]" default="false" />
@@ -650,7 +650,7 @@
                         <focusedlayout height="$PARAM[height]" width="$PARAM[width]">
                             <control type="group">
                                 <visible>$PARAM[visible.layouts]</visible>
-                                <animation effect="fade" start="0" end="100" time="0" delay="150">Visible</animation>
+                                <animation effect="fade" tween="sine" easing="inout" start="0" end="100" time="200" delay="50">Visible</animation>
                                 <include content="Layout_Dialog_Info_Square_Focus">
                                     <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
                                     <param name="controlid" value="$PARAM[controlid]" />
@@ -796,7 +796,7 @@
                         <itemlayout height="$PARAM[height]" width="$PARAM[width]">
                             <control type="group">
                                 <visible>$PARAM[visible.layouts]</visible>
-                                <animation effect="fade" tween="sine" easing="inout" start="0" end="100" time="450" delay="50">Visible</animation>
+                                <animation effect="fade" tween="sine" easing="inout" start="0" end="100" time="200" delay="50">Visible</animation>
                                 <include content="Layout_Dialog_Info_Square">
                                     <param name="aspectratio" value="$PARAM[aspectratio]" default="scale" />
                                     <param name="colordiffuse" value="$PARAM[colordiffuse]" default="White100" />
@@ -807,7 +807,7 @@
                         <focusedlayout height="$PARAM[height]" width="$PARAM[width]">
                             <control type="group">
                                 <visible>$PARAM[visible.layouts]</visible>
-                                <animation effect="fade" start="0" end="100" time="0" delay="150">Visible</animation>
+                                <animation effect="fade" tween="sine" easing="inout" start="0" end="100" time="200" delay="50">Visible</animation>
                                 <include content="Layout_Dialog_Info_Square_Focus">
                                     <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
                                     <param name="aspectratio" value="$PARAM[aspectratio]" default="scale" />
