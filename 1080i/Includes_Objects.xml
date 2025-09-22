@@ -425,7 +425,6 @@
     <!-- SCROLLBAR -->
 
     <include name="Object_Scrollbar_Dialog_Vertical">
-        <param name="visible" value="$PARAM[visible]" default="true" />
         <param name="height" value="$PARAM[height]" default="700" />
         <param name="top" value="$PARAM[top]" default="112" />
         <param name="centerright" value="$PARAM[centerright]" default="360" />
@@ -433,27 +432,22 @@
         <param name="texturesliderbarfocus" value="$PARAM[texturesliderbarfocus]" default="special://profile/addon_data/script.texturemaker/ArcticZephirRounded/scrollv_v.png" />
         <param name="texturesliderbarfocus_colordiffuse" value="$PARAM[texturesliderbarfocus_colordiffuse]" default="" />
         <param name="animation_fade_hide" value="$PARAM[animation_fade_hide]" default="true" />
+        <param name="visible" value="$PARAM[visible]" default="true" />
 
         <definition>
             <control type="scrollbar" id="$PARAM[scrollid]">
                 <visible>$PARAM[visible]</visible>
-                <centerright>$PARAM[centerright]</centerright>
+
+                <width>8</width>
                 <top>$PARAM[top]</top>
                 <height>$PARAM[height]</height>
-                <width>8</width>
+                <centerright>$PARAM[centerright]</centerright>
+
                 <onleft>$PARAM[onleft]</onleft>
                 <onright>$PARAM[onright]</onright>
-
                 <onback>$PARAM[onback]</onback>
-                <onback>$PARAM[onback1]</onback>
-                <onback>$PARAM[onback2]</onback>
-
-                <!-- USEFULL ONLY FOR DIALOG VIDEO INFO -->
-
-                <onback condition="Control.IsVisible(9556) | Control.IsVisible(9514) | Control.IsVisible(9515) | Control.IsVisible(9502) | Control.IsVisible(9517) | Control.IsVisible(9518) | Control.IsVisible(9503) | Control.IsVisible(9557) | Control.IsVisible(9506) | Control.IsVisible(9579) | Control.IsVisible(9520)">$PARAM[onback3]</onback>
-                <onback condition="Control.IsVisible(9560) | Control.IsVisible(9552) | Control.IsVisible(9553) | Control.IsVisible(9558) | Control.IsVisible(9559)">$PARAM[onback4]</onback>
-
-                <!-- ================================== -->
+                <!-- <onback>$PARAM[onback1]</onback> -->
+                <!-- <onback>$PARAM[onback2]</onback> -->
 
                 <texturesliderbackground border="4" colordiffuse="$PARAM[colordiffuse_texturesliderbackground]">scrollbar/scrollv.png</texturesliderbackground>
                 <texturesliderbar border="4" colordiffuse="Dark3">scrollbar/scrollv.png</texturesliderbar>
@@ -478,25 +472,15 @@
         <definition>
             <control type="scrollbar" id="$PARAM[scrollid]">
                 <visible>$PARAM[visible]</visible>
+
+                <height>8</height>
                 <right>$PARAM[right]</right>
                 <width>$PARAM[width]</width>
                 <bottom>$PARAM[bottom]</bottom>
-                <height>8</height>
+
                 <onup>$PARAM[onup]</onup>
-
                 <ondown>$PARAM[ondown]</ondown>
-                <ondown>$PARAM[ondown1]</ondown>
-                <ondown>$PARAM[ondown2]</ondown>
-                <ondown condition="Control.IsVisible(50) | Control.IsVisible(9550) | Control.IsVisible(9554)">$PARAM[ondown3]</ondown>
-                <ondown condition="Control.IsVisible(9557) | Control.IsVisible(9504)">$PARAM[ondown4]</ondown>
-                <ondown condition="!Control.IsVisible(50)">$PARAM[ondown5]</ondown>
-
                 <onback>$PARAM[onback]</onback>
-                <onback>$PARAM[onback1]</onback>
-                <onback>$PARAM[onback2]</onback>
-                <onback condition="Control.IsVisible(50) | Control.IsVisible(9550) | Control.IsVisible(9554)">$PARAM[onback3]</onback>
-                <onback condition="Control.IsVisible(9557) | Control.IsVisible(9504)">$PARAM[onback4]</onback>
-                <onback condition="!Control.IsVisible(50)">$PARAM[onback5]</onback>
 
                 <orientation>horizontal</orientation>
                 <!-- <showonepage>false</showonepage> -->
