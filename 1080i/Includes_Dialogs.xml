@@ -1162,7 +1162,7 @@
             <include>Def_List_Dimension</include>
             <orientation>horizontal</orientation>
 
-            <ondown condition="Control.HasFocus(9092) + String.IsEqual(Window(Home).Property(Show_Disc),1) + !String.IsEmpty(ListItem.Art(discart)) + String.IsEmpty(Window(Home).Property(Rotate_Cover))">clearProperty(Show_Disc,Home)</ondown>
+            <ondown condition="Control.HasFocus(9092) + String.IsEqual(Window(Home).Property(Show_Disc),1) + !String.IsEmpty(ListItem.Art(discart)) + String.IsEmpty(Window(Home).Property(Rotate_Cover))">ClearProperty(Show_Disc,Home)</ondown>
             <ondown condition="Control.HasFocus(9092) + String.IsEqual(Window(Home).Property(Show_Disc),1) + !String.IsEmpty(ListItem.Art(discart))">ClearProperty(Rotate_Cover,Home)</ondown>
 
             <ondown condition="!String.IsEqual(Window(Home).Property(Show_Disc),1) + !String.IsEqual(Window(Home).Property(Rotate_Cover),1)">9669</ondown>
@@ -1186,9 +1186,9 @@
 
             <onup condition="Control.HasFocus(9092) + !String.IsEqual(Window(Home).Property(Show_Disc),1) + !String.IsEmpty(ListItem.Art(discart))">SetProperty(Show_Disc,1,Home)</onup>
             <onup condition="Control.HasFocus(9092) + String.IsEqual(Window(Home).Property(Show_Disc),1) + !String.IsEmpty(ListItem.Art(discart)) + !String.IsEmpty(ListItem.Art(back))">SetProperty(Rotate_Cover,1,Home)</onup>
-            <onup condition="Control.HasFocus(9092) + String.IsEqual(Window(Home).Property(Show_Disc),1) + !String.IsEmpty(ListItem.Art(discart)) + String.IsEmpty(ListItem.Art(back))">clearProperty(Show_Disc,Home)</onup>
+            <onup condition="Control.HasFocus(9092) + String.IsEqual(Window(Home).Property(Show_Disc),1) + !String.IsEmpty(ListItem.Art(discart)) + String.IsEmpty(ListItem.Art(back))">ClearProperty(Show_Disc,Home)</onup>
             <onup condition="Control.HasFocus(9092) + String.IsEqual(Window(Home).Property(Show_Disc),1) + String.IsEqual(Window(Home).Property(Rotate_Cover),1) + !String.IsEmpty(ListItem.Art(discart))">ClearProperty(Rotate_Cover,Home)</onup>
-            <onup condition="Control.HasFocus(9092) + String.IsEqual(Window(Home).Property(Show_Disc),1) + String.IsEqual(Window(Home).Property(Rotate_Cover),1) + !String.IsEmpty(ListItem.Art(discart))">clearProperty(Show_Disc,Home)</onup>
+            <onup condition="Control.HasFocus(9092) + String.IsEqual(Window(Home).Property(Show_Disc),1) + String.IsEqual(Window(Home).Property(Rotate_Cover),1) + !String.IsEmpty(ListItem.Art(discart))">ClearProperty(Show_Disc,Home)</onup>
             <onup condition="String.IsEmpty(Window(Home).Property(musiccontent))">9010</onup>
 
             <onup condition="String.IsEqual(Window(Home).Property(musiccontent),2) | String.IsEqual(Window(Home).Property(musiccontent),8) | String.IsEqual(Window(Home).Property(musiccontent),5)">Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onup>
@@ -1197,7 +1197,7 @@
 
             <onback condition="Window.Is(songinformation) + !Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))">ClearProperty(show_info_song,Home)</onback>
 
-            <onback condition="!String.IsEmpty(Window(Home).Property(show_info_song)) + !String.IsEmpty(Window(Home).Property(show_info_album)) + String.IsEmpty(Window(Home).Property(show_info_artist))">AlarmClock(Delay_focus90921,SetFocus(129),00:00,silent)</onback>
+            <onback condition="!String.IsEmpty(Window(Home).Property(show_info_song)) + !String.IsEmpty(Window(Home).Property(show_info_album)) + String.IsEmpty(Window(Home).Property(show_info_artist))">AlarmClock(Delay_focus90921,SetFocus(129),00:01,silent)</onback>
 
             <onback condition="!String.IsEmpty(Window(Home).Property(show_info_song)) + !String.IsEmpty(Window(Home).Property(show_info_album)) + String.IsEmpty(Window(Home).Property(show_info_artist))">ClearProperty(show_info_album,Home)</onback>
 
@@ -1221,7 +1221,7 @@
 
                 <onfocus condition="![Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))]">ClearProperty(show_info_artist,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
                 <onfocus>ClearProperty(Rotate_Cover,Home)</onfocus>
                 <include>Def_Button_Dimensions_Square</include>
                 <onclick condition="Player.HasVideo">close</onclick>
@@ -1248,7 +1248,7 @@
 
                 <onfocus condition="![Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))]">ClearProperty(show_info_artist,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
                 <onfocus>ClearProperty(Rotate_Cover,Home)</onfocus>
 
                 <onclick condition="String.IsEmpty(ListItem.DBID)">PlayMedia($INFO[ListItem.FilenameAndPath])</onclick>
@@ -1271,7 +1271,7 @@
 
                 <onfocus condition="![Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))]">ClearProperty(show_info_artist,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
                 <onfocus>ClearProperty(Rotate_Cover,Home)</onfocus>
 
                 <include>Def_Button_Dimensions_Square</include>
@@ -1334,7 +1334,7 @@
 
                 <onfocus condition="![Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))]">ClearProperty(show_info_artist,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
                 <onfocus>ClearProperty(Rotate_Cover,Home)</onfocus>
 
                 <include>Def_Button_Dimensions_Square</include>
@@ -1354,7 +1354,7 @@
                 <onfocus>ClearProperty(musiccontent,Home)</onfocus>
 
                 <onfocus condition="![Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))]">ClearProperty(show_info_artist,Home)</onfocus>
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
                 <onfocus>ClearProperty(Rotate_Cover,Home)</onfocus>
 
                 <onclick>SetProperty(Set_User_Rating,mixed,Home)</onclick>
@@ -1386,7 +1386,7 @@
 
                 <onfocus condition="![Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))]">ClearProperty(show_info_artist,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
                 <onfocus>ClearProperty(Rotate_Cover,Home)</onfocus>
 
                 <include>Def_Button_Dimensions_Square</include>
@@ -1409,7 +1409,7 @@
                 <onfocus>SetProperty(musiccontent,12,Home)</onfocus>
 
                 <onfocus condition="![Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))]">ClearProperty(show_info_artist,Home)</onfocus>
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
                 <onfocus>ClearProperty(Rotate_Cover,Home)</onfocus>
 
                 <include>Def_Button_Dimensions_Square</include>
@@ -1436,7 +1436,7 @@
 
                 <onfocus condition="![Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))]">ClearProperty(show_info_artist,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
                 <onfocus>ClearProperty(Rotate_Cover,Home)</onfocus>
 
                 <include>Def_Button_Dimensions_Square</include>
@@ -1461,7 +1461,7 @@
                 <onfocus>SetProperty(musiccontent,8,Home)</onfocus>
 
                 <onfocus condition="![Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))]">ClearProperty(show_info_artist,Home)</onfocus>
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
                 <onfocus>ClearProperty(Rotate_Cover,Home)</onfocus>
 
                 <font>Button</font>
@@ -1489,7 +1489,7 @@
                 <onfocus>SetProperty(musiccontent,5,Home)</onfocus>
 
                 <onfocus condition="![Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))]">ClearProperty(show_info_artist,Home)</onfocus>
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
                 <onfocus>ClearProperty(Rotate_Cover,Home)</onfocus>
 
                 <include>Def_Button_Dimensions_Square</include>
@@ -1513,7 +1513,7 @@
                 <onfocus>SetProperty(musiccontent,4,Home)</onfocus>
 
                 <onfocus condition="![Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))]">ClearProperty(show_info_artist,Home)</onfocus>
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
                 <onfocus>ClearProperty(Rotate_Cover,Home)</onfocus>
 
                 <font>Button</font>
@@ -1536,7 +1536,7 @@
                 <onfocus>SetProperty(last_music_focus,9005,Home)</onfocus>
                 <onfocus>SetProperty(musiccontent,3,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
                 <onfocus>ClearProperty(Rotate_Cover,Home)</onfocus>
 
                 <include>Def_Button_Dimensions_Square</include>
@@ -1557,7 +1557,7 @@
                 <onfocus>SetProperty(last_music_focus,9008,Home)</onfocus>
                 <onfocus>ClearProperty(musiccontent,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
                 <onfocus>ClearProperty(Rotate_Cover,Home)</onfocus>
 
                 <include>Def_Button_Dimensions</include>
@@ -1596,7 +1596,7 @@
 
             <!-- HIDE DISCART -->
 
-            <ondown condition="String.IsEqual(Window(Home).Property(moviecontent),1) + String.IsEqual(Window(Home).Property(Show_Disc),1) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.Art(discart))">clearProperty(Show_Disc,Home)</ondown>
+            <ondown condition="String.IsEqual(Window(Home).Property(moviecontent),1) + String.IsEqual(Window(Home).Property(Show_Disc),1) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.Art(discart))">ClearProperty(Show_Disc,Home)</ondown>
 
             <!-- FOCUS SECOND ROW BUTTON NAVIGATION -->
 
@@ -1672,7 +1672,7 @@
             <!-- DISCART -->
 
             <onup condition="String.IsEqual(Window(Home).Property(moviecontent),1) + !String.IsEqual(Window(Home).Property(Show_Disc),1) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.Art(discart))">SetProperty(Show_Disc,1,Home)</onup>
-            <onup condition="String.IsEqual(Window(Home).Property(moviecontent),1) + String.IsEqual(Window(Home).Property(Show_Disc),1) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.Art(discart))">clearProperty(Show_Disc,Home)</onup>
+            <onup condition="String.IsEqual(Window(Home).Property(moviecontent),1) + String.IsEqual(Window(Home).Property(Show_Disc),1) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.Art(discart))">ClearProperty(Show_Disc,Home)</onup>
 
             <!-- <onup condition="String.IsEqual(Window(Home).Property(moviecontent),10)">9550</onup> -->
             <!-- <onup condition="String.IsEqual(Window(Home).Property(moviecontent),10)">SetProperty(TMDbHelper.WidgetContainer,9550,Home)</onup> -->
@@ -1703,7 +1703,7 @@
                 <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
                 <onfocus condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetProperty(moviecontent,13,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
                 <include>Def_Button_Dimensions</include>
 
                 <onclick condition="Player.HasVideo">close</onclick>
@@ -1731,7 +1731,7 @@
                 <onfocus>SetProperty(last_video_focus,8008,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
 
                 <include>Def_Button_Dimensions</include>
                 <texturenofocus colordiffuse="Dark4" border="12">common/boxsquare.png</texturenofocus>
@@ -1756,7 +1756,7 @@
                 <onfocus>SetProperty(last_video_focus,9078,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
 
                 <onclick condition="Skin.HasSetting(home.views.flix.autoplay.trailer) + $EXP[Trailer_Is_Playing] + !Skin.HasSetting(enable.trailer.playing.on.unfocus)">Stop</onclick>
                 <onclick condition="Skin.HasSetting(home.views.flix.autoplay.trailer) + $EXP[Trailer_Is_Playing] + !Skin.HasSetting(enable.trailer.playing.on.unfocus)">ClearProperty(Last_Trailer_Path,Home)</onclick>
@@ -1780,7 +1780,7 @@
                 <onfocus>SetProperty(last_video_focus,9077,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
 
                 <onclick>Dialog.Close(all)</onclick>
                 <onclick condition="Window.IsVisible(1190)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190)</onclick>
@@ -1880,7 +1880,7 @@
                 <onfocus>SetProperty(last_video_focus,1224,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
 
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
@@ -1907,7 +1907,7 @@
                 <onfocus>SetProperty(last_video_focus,1223,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,6,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
 
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
@@ -1937,7 +1937,7 @@
                 <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
                 <onfocus condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetProperty(moviecontent,13,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
 
                 <include>Def_Button_Dimensions</include>
                 <texturenofocus colordiffuse="Dark4" border="12">common/boxsquare.png</texturenofocus>
@@ -1962,7 +1962,7 @@
                 <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
                 <onfocus condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetProperty(moviecontent,13,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
 
                 <include>Def_Button_Dimensions</include>
                 <texturenofocus colordiffuse="Dark4" border="12">common/boxsquare.png</texturenofocus>
@@ -1985,7 +1985,7 @@
                 <!-- <onfocus condition="!String.IsEqual(Window(Home).Property(moviecontent),13)">ClearProperty(moviecontent,Home)</onfocus> -->
                 <!-- <onfocus>SetProperty(moviecontent,13,Home)</onfocus> -->
 
-                <!-- <onfocus>clearProperty(Show_Disc,Home)</onfocus> -->
+                <!-- <onfocus>ClearProperty(Show_Disc,Home)</onfocus> -->
 
                 <!-- <include>Def_Button_Dimensions</include> -->
                 <!-- <include content="Def_Button_Textures"> -->
@@ -2006,7 +2006,7 @@
                 <onfocus>SetProperty(last_video_focus,9060,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,20,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
 
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
@@ -2028,7 +2028,7 @@
                 <onfocus>SetProperty(last_video_focus,9052,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,11,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
 
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
@@ -2050,7 +2050,7 @@
                 <onfocus>SetProperty(last_video_focus,9053,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,12,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
 
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
@@ -2072,7 +2072,7 @@
                 <onfocus>SetProperty(last_video_focus,9058,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,18,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
 
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
@@ -2094,7 +2094,7 @@
                 <onfocus>SetProperty(last_video_focus,9059,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,19,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
 
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
@@ -2120,7 +2120,7 @@
                 <onfocus condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetProperty(moviecontent,13,Home)</onfocus>
                 <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
                 <onfocus>ClearProperty(dontslide,Home)</onfocus>
                 <onclick>SetProperty(dontslide,1,Home)</onclick>
 
@@ -2141,7 +2141,7 @@
                 <onfocus>SetProperty(last_video_focus,49,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
 
                 <onclick>SetProperty(Set_User_Rating,mixed,Home)</onclick>
                 <onfocus>SetProperty(Set_User_Rating,mixed,Home)</onfocus>
@@ -2165,7 +2165,7 @@
                 <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
                 <onfocus condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetProperty(moviecontent,13,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
 
                 <include>Def_Button_Dimensions</include>
                 <texturenofocus colordiffuse="Dark4" border="12">common/boxsquare.png</texturenofocus>
@@ -2192,7 +2192,7 @@
                 <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
                 <onfocus condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetProperty(moviecontent,13,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
 
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
@@ -2219,7 +2219,7 @@
                 <onfocus>SetProperty(last_video_focus,9005,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,5,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
 
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
@@ -2239,7 +2239,7 @@
                 <onfocus>SetProperty(last_video_focus,9004,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,4,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
 
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
@@ -2262,7 +2262,7 @@
                 <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
                 <onfocus condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetProperty(moviecontent,13,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
 
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
@@ -2282,7 +2282,7 @@
                 <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
                 <onfocus condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetProperty(moviecontent,13,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
 
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
@@ -2316,7 +2316,7 @@
             <right>81</right>
             <include>Def_List_Dimension</include>
 
-            <ondown condition="String.IsEqual(Window(Home).Property(moviecontent),1) + String.IsEqual(Window(Home).Property(Show_Disc),1) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.Art(discart))">clearProperty(Show_Disc,Home)</ondown>
+            <ondown condition="String.IsEqual(Window(Home).Property(moviecontent),1) + String.IsEqual(Window(Home).Property(Show_Disc),1) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.Art(discart))">ClearProperty(Show_Disc,Home)</ondown>
             <ondown condition="!String.IsEqual(Window(Home).Property(Show_Disc),1)">9669</ondown>
 
             <orientation>horizontal</orientation>
@@ -2336,7 +2336,7 @@
                 <onfocus>SetProperty(last_video_focus,9012,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
 
                 <include>Def_Button_Dimensions</include>
                 <texturenofocus colordiffuse="Dark4" border="12">common/boxsquare.png</texturenofocus>
@@ -2360,7 +2360,7 @@
                 <onfocus>SetProperty(last_video_focus,90124,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
 
                 <include>Def_Button_Dimensions</include>
                 <texturenofocus colordiffuse="Dark4" border="12">common/boxsquare.png</texturenofocus>
@@ -2386,7 +2386,7 @@
                 <onfocus>SetProperty(last_video_focus,9079,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,15,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
 
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
@@ -2409,7 +2409,7 @@
                 <onfocus>SetProperty(last_video_focus,9057,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,17,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
 
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
@@ -2433,7 +2433,7 @@
                 <onfocus>SetProperty(last_video_focus,9020,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,22,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
 
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
@@ -2459,7 +2459,7 @@
                 <onfocus>SetProperty(last_video_focus,9006,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,7,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
 
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
@@ -2483,7 +2483,7 @@
                 <onfocus>SetProperty(last_video_focus,9056,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,14,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
 
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
@@ -2506,7 +2506,7 @@
                 <onfocus>SetProperty(last_video_focus,9014,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,9,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
 
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
@@ -2530,7 +2530,7 @@
                 <onfocus>SetProperty(last_video_focus,9015,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,8,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
 
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
@@ -2555,7 +2555,7 @@
                 <onfocus>SetProperty(last_video_focus,9018,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,2,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
 
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
@@ -2578,7 +2578,7 @@
                 <onfocus>SetProperty(last_video_focus,9017,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,16,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
 
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
@@ -2602,7 +2602,7 @@
                 <onfocus>SetProperty(last_video_focus,9003,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,3,Home)</onfocus>
 
-                <onfocus>clearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
 
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
