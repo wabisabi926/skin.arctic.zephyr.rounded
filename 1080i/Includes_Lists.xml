@@ -344,6 +344,7 @@
         <param name="fallbackpicture" value="$PARAM[fallbackpicture]" default="pbtmdb.png" />
         <param name="animation_dialog_info_zoom" value="$PARAM[animation_dialog_info_zoom]" default="Animation_Extended_Info_Video_Poster_Zoom" />
         <param name="condition.includecontent" value="$PARAM[condition.includecontent]" default="false" />
+        <param name="time" value="$PARAM[time]" default="200" />
 
         <definition>
             <control type="group">
@@ -445,7 +446,7 @@
                         <itemlayout height="335" width="222">
                             <control type="group">
                                 <visible>$PARAM[visible.layouts]</visible>
-                                <animation effect="fade" tween="sine" easing="inout" start="0" end="100" time="200" delay="50">Visible</animation>
+                                <animation effect="fade" tween="sine" easing="inout" start="0" end="100" time="300" delay="50">Visible</animation>
 
                                 <include content="Layout_Dialog_Info_Poster">
                                     <param name="aspectratio" value="$PARAM[aspectratio]" default="scale" />
@@ -458,7 +459,7 @@
                         <focusedlayout height="335" width="222">
                             <control type="group">
                                 <visible>$PARAM[visible.layouts]</visible>
-                                <animation effect="fade" tween="sine" easing="inout" start="0" end="100" time="200" delay="50">Visible</animation>
+                                <animation effect="fade" tween="sine" easing="inout" start="0" end="100" time="300" delay="50">Visible</animation>
 
                                 <include content="Layout_Dialog_Info_Poster_Focus">
                                     <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
@@ -670,9 +671,9 @@
     </include>
 
     <include name="View_Dialog_Info_Addon">
-        <param name="zoom" value="$PARAM[zoom]" default="130" />
-        <param name="height" value="$PARAM[height]" default="355" />
-        <param name="width" value="$PARAM[width]" default="370" />
+        <param name="zoom" value="$PARAM[zoom]" default="140" />
+        <param name="height" value="$PARAM[height]" default="325" />
+        <param name="width" value="$PARAM[width]" default="325" />
         <param name="left_background_list" value="$PARAM[left_background_list]" default="-10" />
         <param name="aspectposter" value="$PARAM[aspectposter]" default="false" />
         <param name="aspectbox" value="$PARAM[aspectbox]" default="true" />
@@ -729,71 +730,82 @@
                     </control>
                 </control>
 
-                <!-- FOCUSED LIST -->
-
                 <control type="group">
                     <include>Animation_Extended_Info_Focus_Fade_In_350_Delay_300</include>
                     <include>Animation_Dialog_Info_Fade_Out_150</include>
 
-                    <control type="fixedlist" id="$PARAM[controlid]">
-                        <visible allowhiddenfocus="true">!Container($PARAM[controlid]).IsUpdating</visible>
+                    <!-- FOCUSED LIST -->
 
-                        <include>Animation_Scrolltime_Details_List</include>
-
+                    <control type="group">
                         <include>Animation_Extended_Info_Focus_Fade_In_350_Delay_300</include>
                         <include>Animation_Dialog_Info_Fade_Out_150</include>
 
-                        <width>1778</width>
-                        <height>670</height>
-                        <left>$PARAM[list_left]</left>
-                        <bottom>$PARAM[list_bottom]</bottom>
+                        <control type="fixedlist" id="$PARAM[controlid]">
+                            <visible allowhiddenfocus="true">!Container($PARAM[controlid]).IsUpdating</visible>
 
-                        <onleft>$PARAM[controlid]</onleft>
-                        <onright>$PARAM[controlid]</onright>
+                            <include>Animation_Scrolltime_Details_List</include>
 
-                        <onclick>$PARAM[onclick1]</onclick>
-                        <onclick>$PARAM[onclick2]</onclick>
+                            <include>Animation_Extended_Info_Focus_Fade_In_350_Delay_300</include>
+                            <include>Animation_Dialog_Info_Fade_Out_150</include>
 
-                        <ondown>9000</ondown>
-                        <ondown>SetFocus(50,0,absolute)</ondown>
-                        <ondown>ClearProperty(down)</ondown>
+                            <width>1778</width>
+                            <height>670</height>
+                            <left>$PARAM[list_left]</left>
+                            <bottom>$PARAM[list_bottom]</bottom>
 
-                        <onback>9000</onback>
-                        <onback>SetFocus(50,0,absolute)</onback>
-                        <onback>ClearProperty(down)</onback>
+                            <onleft>$PARAM[controlid]</onleft>
+                            <onright>$PARAM[controlid]</onright>
+                            <ondown>$PARAM[controlid]7</ondown>
 
-                        <preloaditems>2</preloaditems>
-                        <focusposition>1</focusposition>
-                        <orientation>horizontal</orientation>
-                        <pagecontrol>$PARAM[controlid]7</pagecontrol>
+                            <onback>9000</onback>
 
-                        <itemlayout height="$PARAM[height]" width="$PARAM[width]">
-                            <control type="group">
-                                <visible>$PARAM[visible.layouts]</visible>
-                                <animation effect="fade" tween="sine" easing="inout" start="0" end="100" time="200" delay="50">Visible</animation>
+                            <preloaditems>2</preloaditems>
+                            <focusposition>1</focusposition>
+                            <orientation>horizontal</orientation>
+                            <pagecontrol>$PARAM[controlid]7</pagecontrol>
 
-                                <include content="Layout_Dialog_Info_Square">
-                                    <param name="aspectratio" value="$PARAM[aspectratio]" default="scale" />
-                                    <param name="colordiffuse" value="$PARAM[colordiffuse]" default="White100" />
-                                    <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
-                                </include>
-                            </control>
-                        </itemlayout>
-                        <focusedlayout height="$PARAM[height]" width="$PARAM[width]">
-                            <control type="group">
-                                <visible>$PARAM[visible.layouts]</visible>
-                                <animation effect="fade" tween="sine" easing="inout" start="0" end="100" time="200" delay="50">Visible</animation>
+                            <itemlayout height="$PARAM[height]" width="$PARAM[width]">
+                                <control type="group">
+                                    <visible>$PARAM[visible.layouts]</visible>
+                                    <animation effect="fade" tween="sine" easing="inout" start="0" end="100" time="200" delay="50">Visible</animation>
 
-                                <include content="Layout_Dialog_Info_Square_Focus">
-                                    <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
-                                    <param name="aspectratio" value="$PARAM[aspectratio]" default="scale" />
-                                    <param name="colordiffuse" value="$PARAM[colordiffuse]" default="White100" />
-                                    <param name="controlid" value="$PARAM[controlid]" />
-                                    <param name="zoom" value="$PARAM[zoom]" />
-                                </include>
-                            </control>
-                        </focusedlayout>
+                                    <include content="Layout_Dialog_Info_Square">
+                                        <param name="aspectratio" value="$PARAM[aspectratio]" default="scale" />
+                                        <param name="colordiffuse" value="$PARAM[colordiffuse]" default="White100" />
+                                        <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
+                                    </include>
+                                </control>
+                            </itemlayout>
+                            <focusedlayout height="$PARAM[height]" width="$PARAM[width]">
+                                <control type="group">
+                                    <visible>$PARAM[visible.layouts]</visible>
+                                    <animation effect="fade" tween="sine" easing="inout" start="0" end="100" time="200" delay="50">Visible</animation>
+
+                                    <include content="Layout_Dialog_Info_Square_Focus">
+                                        <param name="fallbackpicture" value="$PARAM[fallbackpicture]" />
+                                        <param name="aspectratio" value="$PARAM[aspectratio]" default="scale" />
+                                        <param name="colordiffuse" value="$PARAM[colordiffuse]" default="White100" />
+                                        <param name="controlid" value="$PARAM[controlid]" />
+                                        <param name="zoom" value="$PARAM[zoom]" />
+                                    </include>
+                                </control>
+                            </focusedlayout>
+                        </control>
                     </control>
+
+                    <!-- SCROLLBAR  -->
+
+                    <include content="Object_Scrollbar_Dialog_Horizontal">
+                        <param name="scrollid" value="$PARAM[controlid]7" />
+
+                        <param name="onup" value="$PARAM[controlid]" />
+                        <param name="ondown" value="$PARAM[controlid]" />
+                        <param name="onback" value="$PARAM[controlid]" />
+
+                        <param name="width" value="1730" />
+                        <param name="bottom" value="310" />
+                        <param name="right" value="100" />
+                    </include>
                 </control>
             </control>
         </definition>
