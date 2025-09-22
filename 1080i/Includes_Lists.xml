@@ -560,10 +560,7 @@
                 <!-- FOCUSED LIST -->
 
                 <control type="group">
-                    <visible>$PARAM[visible]</visible>
-
-                    <animation effect="fade" start="0" end="100" time="350" tween="sine" easing="out" reversible="false">Visible</animation>
-                    <animation effect="fade" start="100" end="0" tween="cubic" easing="out" time="650" reversible="false">Hidden</animation>
+                    <visible>String.IsEmpty(Window(Home).Property(title_tempo)) + !Control.HasFocus(9092) + !Control.HasFocus(9002)</visible>
 
                     <include>Animation_Extended_Info_Focus_Fade_In_350_Delay_300</include>
                     <include>Animation_Dialog_Info_Fade_Out_150</include>
@@ -735,10 +732,8 @@
                 <!-- FOCUSED LIST -->
 
                 <control type="group">
-                    <visible>$PARAM[visible]</visible>
-
-                    <animation effect="fade" start="0" end="100" time="350" tween="sine" easing="out" reversible="false">Visible</animation>
-                    <animation effect="fade" start="100" end="0" tween="cubic" easing="out" time="650" reversible="false">Hidden</animation>
+                    <include>Animation_Extended_Info_Focus_Fade_In_350_Delay_300</include>
+                    <include>Animation_Dialog_Info_Fade_Out_150</include>
 
                     <control type="fixedlist" id="$PARAM[controlid]">
                         <visible allowhiddenfocus="true">!Container($PARAM[controlid]).IsUpdating</visible>

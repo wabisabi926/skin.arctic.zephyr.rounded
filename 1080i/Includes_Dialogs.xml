@@ -1195,6 +1195,8 @@
 
             <onup condition="String.IsEqual(Window(Home).Property(musiccontent),2) | String.IsEqual(Window(Home).Property(musiccontent),3) | String.IsEqual(Window(Home).Property(musiccontent),5) | String.IsEqual(Window(Home).Property(musiccontent),8) | String.IsEqual(Window(Home).Property(musiccontent),12) | String.IsEmpty(Window(Home).Property(musiccontent))">SetProperty(view_extended,1,Home)</onup>
 
+            <include>Def_Dialog_Info_On_Back_Music_Set_Absolute_0</include>
+
             <onback condition="Window.Is(songinformation) + !Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))">ClearProperty(show_info_song,Home)</onback>
 
             <onback condition="!String.IsEmpty(Window(Home).Property(show_info_song)) + !String.IsEmpty(Window(Home).Property(show_info_album)) + String.IsEmpty(Window(Home).Property(show_info_artist))">AlarmClock(Delay_focus90921,SetFocus(129),00:01,silent)</onback>
@@ -1306,6 +1308,9 @@
 
                 <!-- <onclick>AlarmClock(Delay_sendclic12,SendClick(12),00:01,silent)</onclick> -->
                 <!-- <onclick>AlarmClock(Delay_sendclic12,SendClick(12),00:00,silent)</onclick> -->
+
+                <include>Def_Dialog_Info_On_Click_Music_Set_Absolute_0</include>
+
                 <onclick>SetFocus(290)</onclick>
                 <onclick>SetProperty(title_tempo,1,Home)</onclick>
                 <onclick>SetProperty(Hide_On_Reload_Dialog_Info,1,Home)</onclick>
