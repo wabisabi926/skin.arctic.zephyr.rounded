@@ -523,6 +523,142 @@
         </definition>
     </include>
 
+    <!-- LAYOUT -->
+
+    <include name="Layout_Weather_Today">
+        <control type="group">
+            <visible>String.IsEqual(ListItem.Label2,View_Today)</visible>
+            <include>Def_Weather_Today</include>
+        </control>
+    </include>
+
+    <include name="Layout_Weather_Next_Day">
+        <control type="group">
+            <visible>String.IsEqual(ListItem.Label2,View_Daily)</visible>
+
+            <include content="Def_Weather_List_Daily">
+                <param name="Daily_ID" value="2" />
+                <param name="Def_Weather_List_Daily_Left" value="10" />
+                <param name="Def_Weather_List_Daily_Label" value="$INFO[Window.Property(Daily.2.LongDay)]" />
+            </include>
+            <include content="Def_Weather_List_Daily">
+                <param name="Daily_ID" value="3" />
+                <param name="Def_Weather_List_Daily_Left" value="308.4" />
+                <param name="Def_Weather_List_Daily_Label" value="$INFO[Window.Property(Daily.3.LongDay)]" />
+            </include>
+            <include content="Def_Weather_List_Daily">
+                <param name="Daily_ID" value="4" />
+                <param name="Def_Weather_List_Daily_Left" value="606.8" />
+                <param name="Def_Weather_List_Daily_Label" value="$INFO[Window.Property(Daily.4.LongDay)]" />
+            </include>
+            <include content="Def_Weather_List_Daily">
+                <param name="Daily_ID" value="5" />
+                <param name="Def_Weather_List_Daily_Left" value="905.2" />
+                <param name="Def_Weather_List_Daily_Label" value="$INFO[Window.Property(Daily.5.LongDay)]" />
+            </include>
+            <include content="Def_Weather_List_Daily">
+                <param name="Daily_ID" value="6" />
+                <param name="Def_Weather_List_Daily_Left" value="1203.6" />
+                <param name="Def_Weather_List_Daily_Label" value="$INFO[Window.Property(Daily.6.LongDay)]" />
+            </include>
+            <include content="Def_Weather_List_Daily">
+                <param name="Daily_ID" value="7" />
+                <param name="Def_Weather_List_Daily_Left" value="1502" />
+                <param name="Def_Weather_List_Daily_Label" value="$INFO[Window.Property(Daily.7.LongDay)]" />
+            </include>
+        </control>
+    </include>
+
+    <include name="Layout_Weather_Hour">
+        <control type="group">
+            <visible>String.IsEqual(ListItem.Label2,View_Hourly)</visible>
+
+            <control type="group">
+                <include content="Def_Weather_List_Hourly_Background">
+                    <param name="weather_width" value="410" />
+                    <param name="weather_left" value="10" />
+                    <param name="weather_fanart_code" value="1" />
+                </include>
+
+                <include content="Def_Weather_List_Hourly_Item">
+                    <param name="Hourly_ID" value="1" />
+                    <param name="top" value="0" />
+                </include>
+                <include content="Def_Weather_List_Hourly_Item">
+                    <param name="Hourly_ID" value="2" />
+                    <param name="top" value="212" />
+                </include>
+                <include content="Def_Weather_List_Hourly_Item">
+                    <param name="Hourly_ID" value="3" />
+                    <param name="top" value="424" />
+                </include>
+            </control>
+
+            <control type="group">
+                <include content="Def_Weather_List_Hourly_Background">
+                    <param name="weather_width" value="410" />
+                    <param name="weather_left" value="460" />
+                    <param name="weather_fanart_code" value="4" />
+                </include>
+
+                <include content="Def_Weather_List_Hourly_Item">
+                    <param name="Hourly_ID" value="4" />
+                    <param name="top" value="0" />
+                </include>
+                <include content="Def_Weather_List_Hourly_Item">
+                    <param name="Hourly_ID" value="5" />
+                    <param name="top" value="212" />
+                </include>
+                <include content="Def_Weather_List_Hourly_Item">
+                    <param name="Hourly_ID" value="6" />
+                    <param name="top" value="424" />
+                </include>
+            </control>
+
+            <control type="group">
+                <include content="Def_Weather_List_Hourly_Background">
+                    <param name="weather_width" value="410" />
+                    <param name="weather_left" value="910" />
+                    <param name="weather_fanart_code" value="7" />
+                </include>
+
+                <include content="Def_Weather_List_Hourly_Item">
+                    <param name="Hourly_ID" value="7" />
+                    <param name="top" value="0" />
+                </include>
+                <include content="Def_Weather_List_Hourly_Item">
+                    <param name="Hourly_ID" value="8" />
+                    <param name="top" value="212" />
+                </include>
+                <include content="Def_Weather_List_Hourly_Item">
+                    <param name="Hourly_ID" value="9" />
+                    <param name="top" value="424" />
+                </include>
+            </control>
+
+            <control type="group">
+                <include content="Def_Weather_List_Hourly_Background">
+                    <param name="weather_width" value="410" />
+                    <param name="weather_left" value="1360" />
+                    <param name="weather_fanart_code" value="10" />
+                </include>
+
+                <include content="Def_Weather_List_Hourly_Item">
+                    <param name="Hourly_ID" value="10" />
+                    <param name="top" value="0" />
+                </include>
+                <include content="Def_Weather_List_Hourly_Item">
+                    <param name="Hourly_ID" value="11" />
+                    <param name="top" value="212" />
+                </include>
+                <include content="Def_Weather_List_Hourly_Item">
+                    <param name="Hourly_ID" value="12" />
+                    <param name="top" value="424" />
+                </include>
+            </control>
+        </control>
+    </include>
+
     <!-- LABEL - WIDGETS -->
 
     <variable name="Label_Weather_Sunrise">
