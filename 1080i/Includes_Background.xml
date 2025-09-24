@@ -1091,7 +1091,7 @@
 
         <!-- MOVIES -->
 
-        <value condition="$EXP[Background_Fallback_Home_Flix_Or_All_Views] + !String.IsEmpty(Skin.String(fanart.fallback.movie)) + [Container.Content(movies) | Container.Content(videoversions) | [Window.IsVisible(MyVideoNav.xml) + Container.Content(files)] | [Window.IsVisible(MyVideoNav.xml) + Container.Content(playlists)] | String.IsEqual(Container.FolderPath,library://video/movies/) | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,video) | String.StartsWith(Container.FolderPath,videodb://movies/) | String.IsEqual(Container.FolderPath,sources://video/) | String.IsEqual(Container.FolderPath,addons://sources/video) | [Container.Content() + String.StartsWith(ListItem.FolderPath,library://video_flat/)]]">$INFO[Skin.String(fanart.fallback.movie)]</value>
+        <value condition="$EXP[Background_Fallback_Home_Flix_Or_All_Views] + !String.IsEmpty(Skin.String(fanart.fallback.movie)) + [Container.Content(movies) | Container.Content(videoversions) | [Window.IsVisible(MyVideoNav.xml) + Container.Content(files)] | [Window.IsVisible(MyVideoNav.xml) + Container.Content(playlists)] | String.IsEqual(Container.FolderPath,library://video/movies/) | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,video) | String.StartsWith(Container.FolderPath,videodb://movies/) | String.StartsWith(ListItem.FolderPath,videodb://movies/) | String.IsEqual(Container.FolderPath,sources://video/) | String.IsEqual(Container.FolderPath,addons://sources/video) | [Container.Content() + String.StartsWith(ListItem.FolderPath,library://video_flat/)]]">$INFO[Skin.String(fanart.fallback.movie)]</value>
 
         <!-- SETTINGS -->
 
@@ -1168,7 +1168,7 @@
 
         <!-- FALLBACK -->
 
-        <value condition="!String.IsEmpty(Skin.String(fanart.fallback)) + Skin.HasSetting(hide.global.fanart) + Skin.HasSetting(global.show.fallback.only)">$INFO[Skin.String(fanart.fallback)]</value>
+        <value condition="!String.IsEmpty(Skin.String(fanart.fallback)) + Skin.HasSetting(global.show.fallback.only)">$INFO[Skin.String(fanart.fallback)]</value>
 
         <!-- LAST CHANCE -->
 
