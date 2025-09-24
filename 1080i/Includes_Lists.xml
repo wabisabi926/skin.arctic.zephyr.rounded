@@ -133,11 +133,6 @@
 
                     <include content="Animation_Common_Delay_Fade_In"><param name="delay" value="200" /></include>
 
-                    <animation type="Conditional" condition="!String.IsEmpty(Window.Property(down)) + Control.HasFocus($PARAM[controlid])" reversible="false">
-                        <effect type="slide" end="0,-20" time="60" tween="sine" />
-                        <effect type="slide" end="0,20" time="180" tween="sine" delay="80" />
-                    </animation>
-
                     <animation effect="fade" start="100" end="0" time="0" delay="0" condition="[[Window.IsVisible(script-wikipedia.xml) | Window.IsVisible(DialogBusy.xml)] + !Skin.HasSetting(hide.button.video.wiki)]">Conditional</animation>
 
                     <top>70</top>
@@ -227,51 +222,38 @@
 
                         <onleft>$PARAM[controlid]</onleft>
                         <onright>$PARAM[controlid]</onright>
+                        <ondown>$PARAM[controlid]7</ondown>
 
                         <!-- INFO ON LINE WITH TMDB  -->
 
-                        <!-- ON UP  -->
+                        <!-- ON UP -->
 
                         <onup>ClearProperty(ListVideoForCast,Home)</onup>
                         <onup>ClearProperty(ListVideoForCastIcon,Home)</onup>
 
-                        <onup condition="Control.HasFocus(50)">$VAR[Path_Actor_Dialog_Info]</onup>
                         <onup condition="!Skin.HasSetting(filter.video.cast.on.line)">SetProperty(SelectPerson,1,home)</onup>
+                        <onup condition="Control.HasFocus(50)">$VAR[Path_Actor_Dialog_Info]</onup>
 
                         <onup condition="Control.HasFocus(9550) | Control.HasFocus(9557)">$VAR[Path_Actor_Dialog_Info_TMDb]</onup>
                         <onup condition="Control.HasFocus(9550) | Control.HasFocus(9557)">SetProperty(Hide_On_Reload_Dialog_Info,1,Home)</onup>
-                        <onup condition="[Control.HasFocus(50) | Control.HasFocus(9550) | Control.HasFocus(9557)] + !ListItem.IsCollection">SetProperty(down,1)</onup>
 
-                        <!-- ON CLICK  -->
+                        <!-- ON CLICK -->
 
-                        <onclick condition="Control.HasFocus(9554)">SetFocus(160)</onclick>
-                        <onclick condition="Control.HasFocus(9550) | Control.HasFocus(9557)">$VAR[Path_Actor_Dialog_Info_TMDb]</onclick>
-                        <onclick condition="Control.HasFocus(9550) | Control.HasFocus(9557)">SetProperty(Hide_On_Reload_Dialog_Info,1,Home)</onclick>
                         <onclick condition="[Control.HasFocus(9550) | Control.HasFocus(9557)] + !Skin.HasSetting(filter.video.cast.on.line)">SetProperty(SelectPerson,1,home)</onclick>
+                        <onclick>$PARAM[onclick1]</onclick>
+                        <onclick>$PARAM[onclick2]</onclick>
 
-                        <!-- ON DOWN  -->
-
-                        <ondown>ClearProperty(ListVideoForCast,Home)</ondown>
-                        <ondown>ClearProperty(ListVideoForCastIcon,Home)</ondown>
-                        <ondown condition="Control.IsVisible(9557) | Control.IsVisible(9550) | Control.IsVisible(50) | Control.IsVisible(9554)">$PARAM[controlid]7</ondown>
-                        <ondown condition="![Control.IsVisible(9557) | Control.IsVisible(9550) | Control.IsVisible(50) | Control.IsVisible(9554)]">9000</ondown>
-                        <ondown>ClearProperty(view_extended,Home)</ondown>
-
-                        <!-- ON BACK  -->
+                        <!-- ON BACK -->
 
                         <onback>ClearProperty(ListVideoForCast,Home)</onback>
                         <onback>ClearProperty(ListVideoForCastIcon,Home)</onback>
 
-                        <!-- <include>Def_Dialog_Info_On_Back_Video_Set_Absolute_0</include> -->
+                        <onback>ClearProperty(view_extended,Home)</onback>
+                        <onback condition="!Control.IsVisible(50)">Skin.Reset(TMDbHelper.ForceWidgetContainer)</onback>
 
                         <onback condition="Control.IsVisible(9556) | Control.IsVisible(9514) | Control.IsVisible(9515) | Control.IsVisible(9502) | Control.IsVisible(9517) | Control.IsVisible(9503) | Control.IsVisible(9557) | Control.IsVisible(9506) | Control.IsVisible(9579) | Control.IsVisible(9520)">9090</onback>
 
                         <onback condition="![Control.IsVisible(9556) | Control.IsVisible(9514) | Control.IsVisible(9515) | Control.IsVisible(9502) | Control.IsVisible(9517) | Control.IsVisible(9503) | Control.IsVisible(9557) | Control.IsVisible(9506) | Control.IsVisible(9579) | Control.IsVisible(9520)]">9000</onback>
-
-                        <onback condition="!Control.IsVisible(50)">Skin.Reset(TMDbHelper.ForceWidgetContainer)</onback>
-
-                        <onback>ClearProperty(view_extended,Home)</onback>
-                        <onback>ClearProperty(down)</onback>
 
                         <focusposition>2</focusposition>
                         <pagecontrol>$PARAM[controlid]7</pagecontrol>
@@ -411,6 +393,8 @@
                         <onright>$PARAM[controlid]</onright>
                         <onleft>$PARAM[controlid]7</onleft>
 
+                        <!-- ON BACK -->
+
                         <!-- MOVIES / TVSHOWS / SEASONS / EPISODES -->
 
                         <onback condition="Control.IsVisible(9556) | Control.IsVisible(9514) | Control.IsVisible(9515) | Control.IsVisible(9502) | Control.IsVisible(9517) | Control.IsVisible(9518) | Control.IsVisible(9503) | Control.IsVisible(9557) | Control.IsVisible(9506) | Control.IsVisible(9579) | Control.IsVisible(9520)">9090</onback>
@@ -423,11 +407,14 @@
 
                         <onback>Skin.Reset(TMDbHelper.ForceWidgetContainer)</onback>
                         <onback>ClearProperty(view_extended,Home)</onback>
-                        <onback>ClearProperty(down)</onback>
+
+                        <!-- ON CLICK -->
 
                         <onclick condition="String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))">$PARAM[onclick1]</onclick>
                         <onclick condition="String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))">$PARAM[onclick2]</onclick>
                         <onclick condition="String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))">$PARAM[onclick3]</onclick>
+
+                        <onclick condition="String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))">ClearProperty(view_extended,Home)</onclick>
                         <onclick condition="String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))">SetProperty(Hide_On_Reload_Dialog_Info,1,Home)</onclick>
 
                         <preloaditems>2</preloaditems>
@@ -497,12 +484,17 @@
         <param name="left_background_list" value="$PARAM[left_background_list]" default="-10" />
         <param name="aspectposter" value="$PARAM[aspectposter]" default="false" />
         <param name="aspectbox" value="$PARAM[aspectbox]" default="true" />
+
         <param name="music_info_onclick" value="$PARAM[music_info_onclick]" default="true" />
         <param name="music_info_album" value="$PARAM[music_info_album]" default="false" />
+
         <param name="animation_dialog_info_zoom" value="$PARAM[animation_dialog_info_zoom]" default="Animation_Extended_Info_Music_Addon_Square_Zoom" />
-        <param name="list_bottom" value="$PARAM[list_bottom]" default="30" />
+
         <param name="list_left" value="$PARAM[list_left]" default="-716" />
-        <param name="alignleft" value="$PARAM[alignleft]" default="500" />
+        <param name="list_width" value="$PARAM[list_width]" default="2000" />
+        <param name="list_height" value="$PARAM[list_height]" default="670" />
+        <param name="list_bottom" value="$PARAM[list_bottom]" default="30" />
+
         <param name="aspectratio" value="$PARAM[aspectratio]" default="scale" />
         <param name="colordiffuse" value="$PARAM[colordiffuse]" default="White100" />
 
@@ -559,29 +551,25 @@
                     <include>Animation_Dialog_Info_Fade_Out_150</include>
 
                     <control type="fixedlist" id="$PARAM[controlid]">
+                        <visible>$PARAM[visible]</visible>
                         <visible allowhiddenfocus="true">!Container($PARAM[controlid]).IsUpdating + !Control.HasFocus(7011)</visible>
 
                         <include>Animation_Scrolltime_Details_List</include>
 
-                        <width>2000</width>
-                        <height>670</height>
+                        <width>$PARAM[list_width]</width>
+                        <height>$PARAM[list_height]</height>
                         <left>$PARAM[list_left]</left>
                         <bottom>$PARAM[list_bottom]</bottom>
 
                         <onleft>$PARAM[controlid]</onleft>
                         <onright>$PARAM[controlid]</onright>
+                        <ondown>$PARAM[controlid]7</ondown>
 
                         <!-- ON BACK -->
 
                         <onback>Skin.Reset(TMDbHelper.ForceWidgetContainer)</onback>
                         <onback>ClearProperty(view_extended,Home)</onback>
                         <onback>9000</onback>
-
-                        <!-- ON DOWN -->
-
-                        <ondown condition="Control.IsVisible(50) | Control.IsVisible(9508) | Control.IsVisible(9511) | Control.IsVisible(9501) | Control.IsVisible(9502) | Control.IsVisible(9504)">$PARAM[controlid]7</ondown>
-
-                        <ondown condition="![Control.IsVisible(50) | Control.IsVisible(9508) | Control.IsVisible(9511) | Control.IsVisible(9501) | Control.IsVisible(9502) | Control.IsVisible(9504)]">9000</ondown>
 
                         <!-- ON CLICK -->
 
@@ -669,7 +657,7 @@
         <param name="animation_dialog_info_zoom" value="$PARAM[animation_dialog_info_zoom]" default="Animation_Extended_Info_Music_Addon_Square_Zoom" />
         <param name="list_bottom" value="$PARAM[list_bottom]" default="30" />
         <param name="list_left" value="$PARAM[list_left]" default="-716" />
-        <param name="alignleft" value="$PARAM[alignleft]" default="500" />
+
         <param name="aspectratio" value="$PARAM[aspectratio]" default="scale" />
         <param name="colordiffuse" value="$PARAM[colordiffuse]" default="White100" />
 
@@ -728,6 +716,7 @@
                         <include>Animation_Dialog_Info_Fade_Out_150</include>
 
                         <control type="fixedlist" id="$PARAM[controlid]">
+                            <visible>$PARAM[visible]</visible>
                             <visible allowhiddenfocus="true">!Container($PARAM[controlid]).IsUpdating</visible>
 
                             <include>Animation_Scrolltime_Details_List</include>
