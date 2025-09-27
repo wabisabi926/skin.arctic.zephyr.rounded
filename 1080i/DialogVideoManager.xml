@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
     <defaultcontrol always="true">50</defaultcontrol>
+
     <onload condition="!String.IsEmpty(Container(50).ListItem.Art(poster))">SetProperty(poster,$ESCINFO[Container(50).ListItem.Art(poster)],Home)</onload>
     <onload condition="String.IsEmpty(Container(50).ListItem.Art(poster))">SetProperty(thumb,$ESCINFO[Container(50).ListItem.Art(thumb)],Home)</onload>
 
     <onunload>ClearProperty(poster,Home)</onunload>
     <onunload>ClearProperty(thumb,Home)</onunload>
+
     <controls>
         <include>Background_Overlay</include>
 
