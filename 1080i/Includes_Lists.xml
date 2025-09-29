@@ -154,7 +154,7 @@
 
                     <control type="grouplist">
                         <visible>$PARAM[visible]</visible>
-                        <visible>!Container($PARAM[controlid]).IsUpdating</visible>
+                        <visible>!Container($PARAM[controlid]).IsUpdating | !String.IsEmpty(Window(Home).Property(Init_Value_TMDb))</visible>
 
                         <visible>!Control.HasFocus($PARAM[controlid]) + !Control.HasFocus($PARAM[controlid]7)</visible>
 
