@@ -409,6 +409,9 @@
         <param name="bottom" value="$PARAM[bottom]" default="-10" />
 
         <definition>
+
+            <!-- LEFT -->
+
             <control type="group">
                 <visible>Skin.HasSetting(enable.view.video.rating.num)</visible>
 
@@ -473,11 +476,11 @@
                     <label>$INFO[ListItem.Label]</label>
                 </control>
 
-                <!-- RATING IMDb -->
+                <!-- RATING - IMDb -->
 
                 <control type="group">
                     <visible>!String.IsEmpty(ListItem.Rating)</visible>
-                    <visible>!String.IsEmpty(ListItem.DBID)</visible>
+                    <visible>!String.IsEmpty(ListItem.DBID) | $EXP[IsPluginShortlist] | $EXP[IsLibraryGenie]</visible>
                     <visible>!String.IsEmpty(ListItem.Rating(imdb)) | String.IsEqual(Skin.String(Value_Kodi_Rating_Provider),IMDb)</visible>
                     <visible>!String.IsEqual(ListItem.DBType,album) + !String.IsEqual(ListItem.DBType,set) + !$EXP[IsYoutubeItem]</visible>
 
@@ -491,11 +494,12 @@
                     </control>
                 </control>
 
-                <!-- RATING TMDb - KODI -->
+                <!-- RATING - TMDb - KODI -->
 
                 <control type="group">
                     <visible>!String.IsEmpty(ListItem.Rating)</visible>
-                    <visible>!String.IsEmpty(ListItem.DBID) + String.IsEmpty(ListItem.Rating(imdb))</visible>
+                    <visible>!String.IsEmpty(ListItem.DBID) | $EXP[IsPluginShortlist] | $EXP[IsLibraryGenie]</visible>
+                    <visible>String.IsEmpty(ListItem.Rating(imdb))</visible>
                     <visible>String.IsEqual(Skin.String(Value_Kodi_Rating_Provider),TMDb) | String.IsEqual(Skin.String(Value_Kodi_Rating_Provider),Kodi)</visible>
                     <visible>!String.IsEqual(ListItem.DBType,album) + !String.IsEqual(ListItem.DBType,set) + !$EXP[IsYoutubeItem]</visible>
 
@@ -511,12 +515,13 @@
                     </control>
                 </control>
 
-                <!-- RATING TMDb - ON LINE -->
+                <!-- RATING - TMDb - ON LINE -->
 
                 <control type="group">
                     <visible>!String.IsEmpty(ListItem.Rating)</visible>
                     <visible>String.IsEmpty(ListItem.DBID)</visible>
                     <visible>!String.IsEqual(ListItem.DBType,album) + !String.IsEqual(ListItem.DBType,set) + !$EXP[IsYoutubeItem]</visible>
+                    <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.DBType))</visible>
 
                     <control type="image">
                         <include>Def_Image_Poster_Rating_Info_Left</include>
@@ -529,6 +534,8 @@
                     </control>
                 </control>
             </control>
+
+            <!-- RIGHT -->
 
             <control type="group">
                 <visible>Skin.HasSetting(enable.view.video.rating.num)</visible>
