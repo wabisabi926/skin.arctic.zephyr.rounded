@@ -410,11 +410,9 @@
 
         <definition>
 
-            <!-- LEFT -->
+            <!-- LABEL -->
 
             <control type="group">
-                <visible>Skin.HasSetting(enable.view.video.rating.num)</visible>
-
                 <include content="Def_Bottom" condition="$PARAM[small]">
                    <param name="bottom" value="$PARAM[bottom_small]" />
                 </include>
@@ -475,6 +473,19 @@
                     <autoscroll>true</autoscroll>
                     <label>$INFO[ListItem.Label]</label>
                 </control>
+            </control>
+
+            <!-- LEFT - RATING -->
+
+            <control type="group">
+                <visible>Skin.HasSetting(enable.view.video.rating.num)</visible>
+
+                <include content="Def_Bottom" condition="$PARAM[small]">
+                   <param name="bottom" value="$PARAM[bottom_small]" />
+                </include>
+
+                <left>$PARAM[left]</left>
+                <bottom>$PARAM[bottom]</bottom>
 
                 <!-- RATING - IMDb -->
 
@@ -521,7 +532,7 @@
                     <visible>!String.IsEmpty(ListItem.Rating)</visible>
                     <visible>String.IsEmpty(ListItem.DBID)</visible>
                     <visible>!String.IsEqual(ListItem.DBType,album) + !String.IsEqual(ListItem.DBType,set) + !$EXP[IsYoutubeItem]</visible>
-                    <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.DBType))</visible>
+                    <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.DBType)) | $EXP[IsTMDbHelperItem]</visible>
 
                     <control type="image">
                         <include>Def_Image_Poster_Rating_Info_Left</include>
@@ -535,7 +546,7 @@
                 </control>
             </control>
 
-            <!-- RIGHT -->
+            <!-- RIGHT - SETS / VERSION -->
 
             <control type="group">
                 <visible>Skin.HasSetting(enable.view.video.rating.num)</visible>
