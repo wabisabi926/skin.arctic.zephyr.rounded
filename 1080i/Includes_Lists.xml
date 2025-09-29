@@ -948,7 +948,7 @@
                         <aspectratio scalediffuse="false">keep</aspectratio>
                         <texture diffuse="diffuse/poster_w190_h272.png" colordiffuse="Dark2" background="true" fallback="DefaultMovies.png">$INFO[Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Icon]</texture>
                         <visible>$PARAM[poster] + String.IsEmpty(Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Art(poster))</visible>
-                        <visible>![!Skin.HasSetting(filter.video.only.local) | Skin.HasSetting(filter.video.cast.on.line) | String.IsEmpty(ListItem.DBID)]</visible>
+                        <visible>![!Skin.HasSetting(filter.video.only.local) | Skin.HasSetting(filter.video.cast.on.line) | String.IsEmpty(ListItem.DBID) | String.IsEqual(ListItem.DBType,season)]</visible>
                     </control>
 
                     <!-- Poster - Movies / TvShows - without picture - on line -->
@@ -958,7 +958,7 @@
                         <aspectratio scalediffuse="false">scale</aspectratio>
                         <texture diffuse="diffuse/poster_w190_h272.png" background="true" fallback="$PARAM[fallbackpicture].png">$INFO[Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Icon]</texture>
                         <visible>$PARAM[poster] + String.IsEmpty(Container($PARAM[controlid]).ListItemNoWrap($PARAM[id]).Art(poster))</visible>
-                        <visible>[!Skin.HasSetting(filter.video.only.local) | Skin.HasSetting(filter.video.cast.on.line) | String.IsEmpty(ListItem.DBID)]</visible>
+                        <visible>[!Skin.HasSetting(filter.video.only.local) | Skin.HasSetting(filter.video.cast.on.line) | String.IsEmpty(ListItem.DBID) | String.IsEqual(ListItem.DBType,season)]</visible>
                     </control>
                 </control>
             </control>

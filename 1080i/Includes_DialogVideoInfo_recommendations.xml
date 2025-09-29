@@ -83,7 +83,7 @@
                 <param name="controlid" value="$PARAM[controlid]" />
             </include>
             <include content="View_Dialog_Info_Cast">
-                <param name="visible" value="$PARAM[visible] + [Skin.HasSetting(filter.video.cast.on.line) | String.IsEmpty(ListItem.DBID)] + String.IsEmpty(Window(Home).Property(moviecontent)) + ![Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hide.button.video.wiki)] + !String.IsEqual(ListItem.DBType,set)" />
+                <param name="visible" value="$PARAM[visible] + [Skin.HasSetting(filter.video.cast.on.line) | String.IsEmpty(ListItem.DBID) | String.IsEqual(ListItem.DBType,season)] + String.IsEmpty(Window(Home).Property(moviecontent)) + ![Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hide.button.video.wiki)] + !String.IsEqual(ListItem.DBType,set)" />
                 <param name="animation_dialog_info_zoom" value="Animation_Extended_Info_Video_Cast_Zoom" />
                 <param name="controlid" value="$PARAM[controlid]" />
                 <param name="condition.includecontent" value="true" />
