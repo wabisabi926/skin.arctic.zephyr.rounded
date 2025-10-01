@@ -128,6 +128,7 @@
                     <visible>!Container($PARAM[controlid]).IsUpdating</visible>
                     <visible>!Control.HasFocus(9554) + !Control.HasFocus(95547) + !Control.HasFocus($PARAM[controlid]7)</visible>
                     <visible>!Container($PARAM[controlid]).OnNext + !Container($PARAM[controlid]).OnPrevious + !ListItem.IsCollection</visible>
+                    <visible>String.IsEmpty(Window(Home).Property(Hide_On_Reload_Dialog_Info))</visible>
 
                     <include content="Animation_Common_Delay_Fade_In"><param name="delay" value="200" /></include>
 
@@ -155,6 +156,8 @@
                     <control type="grouplist">
                         <visible>$PARAM[visible]</visible>
                         <visible>!Container($PARAM[controlid]).IsUpdating | !String.IsEmpty(Window(Home).Property(Init_Value_TMDb))</visible>
+
+                        <visible>String.IsEmpty(Window(Home).Property(Hide_On_Reload_Dialog_Info))</visible>
 
                         <visible>!Control.HasFocus($PARAM[controlid]) + !Control.HasFocus($PARAM[controlid]7)</visible>
 
@@ -198,6 +201,7 @@
                     <control type="fixedlist" id="$PARAM[controlid]">
                         <visible>$PARAM[visible]</visible>
                         <visible allowhiddenfocus="true">!Container($PARAM[controlid]).IsUpdating</visible>
+                        <visible>String.IsEmpty(Window(Home).Property(Hide_On_Reload_Dialog_Info))</visible>
 
                         <include>Animation_Scrolltime_Details_List</include>
 

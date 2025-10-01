@@ -3491,6 +3491,7 @@
         <control type="group">
             <include>Animation_Wiki_Fade_Out</include>
             <visible>Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7)</visible>
+            <visible>String.IsEmpty(Window(Home).Property(Hide_On_Reload_Dialog_Info))</visible>
             <visible>!Window.IsVisible(DialogBusy.xml)</visible>
 
             <include content="Animation_Common_Delay_Fade_In"><param name="delay" value="200" /></include>
@@ -3563,6 +3564,7 @@
             <visible>Window.IsVisible(DialogVideoInfo.xml) + Skin.HasSetting(show.dialog.info.clearlogo.video)</visible>
             <visible>Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7)</visible>
             <visible>!Player.HasMedia | Skin.HasSetting(hide.furniture.nowplaying.views)</visible>
+            <visible>String.IsEmpty(Window(Home).Property(Hide_On_Reload_Dialog_Info))</visible>
 
             <include>Animation_Wiki_Fade_Out</include>
 
@@ -3610,6 +3612,7 @@
             <visible>!Window.IsVisible(script-wikipedia.xml)</visible>
             <visible>!Container($PARAM[controlid]).IsUpdating</visible>
             <visible>Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7)</visible>
+            <visible>String.IsEmpty(Window(Home).Property(Hide_On_Reload_Dialog_Info))</visible>
 
             <include content="Animation_Common_Delay_Fade_In"><param name="delay" value="200" /></include>
             <include>Animation_Dialog_Info_Fade_Out_150</include>
