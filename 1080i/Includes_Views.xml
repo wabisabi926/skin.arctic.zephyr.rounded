@@ -921,4 +921,181 @@
         <value condition="!String.IsEmpty(Skin.String(HubLimit))">$INFO[Skin.String(HubLimit)]</value>
         <value>$NUMBER[25]</value>
     </variable>
+
+    <!-- =================================== -->
+    <!--       VIEW - GLOBAL SETTINGS        -->
+    <!-- =================================== -->
+
+    <include name="Def_Views_Global_Settings">
+        <control type="group">
+            <include content="Animation_Common_Context_Menu_Slide_Left"><param name="left" value="-490" /></include>
+
+            <top>20</top>
+            <centerleft>745</centerleft>
+
+            <include content="Def_Dialog_Menu_Box"><param name="height" value="1039" /><param name="visible" value="ControlGroup(9001).HasFocus() | Control.HasFocus(9071)" /></include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="31053" />
+                <param name="icon" value="settings" />
+            </include>
+
+            <control type="grouplist" id="9001">
+                <visible allowhiddenfocus="true">ControlGroup(9001).HasFocus() | Control.HasFocus(9071)</visible>
+
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <onup>9001</onup>
+                <ondown>9001</ondown>
+                <onback>9000</onback>
+
+                <!-- <onleft condition="String.IsEmpty(Window(Home).Property(reloadskin))">$PARAM[idlayout]</onleft> -->
+                <!-- <onleft condition="!String.IsEmpty(Window(Home).Property(reloadskin))">SetFocus(3033)</onleft> -->
+                <!-- <onback condition="!String.IsEmpty(Window(Home).Property(reloadskin))">3033</onback> -->
+
+                <top>112</top>
+                <left>0</left>
+                <width>470</width>
+                <height>910</height>
+
+                <itemgap>0</itemgap>
+                <pagecontrol>9071</pagecontrol>
+                <orientation>vertical</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
+
+                <onright>9071</onright>
+                <onleft>9000</onleft>
+
+            <!-- VIEW -->
+
+                <control type="button" id="55524">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>31226</label>
+                </control>
+                <control type="radiobutton" id="9082">
+                    <include>Def_Dialog_Menu_Button_Gradient_Select</include>
+                    <label>31421</label>
+                    <selected>Skin.HasSetting(items.focus.zoom)</selected>
+                    <onclick>Skin.ToggleSetting(items.focus.zoom)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                </control>
+                <control type="radiobutton" id="9083">
+                    <include>Def_Dialog_Menu_Button_Gradient_Select</include>
+                    <label>$LOCALIZE[31423]:</label>
+                    <selected>Skin.HasSetting(enable.items.focus.glow)</selected>
+                    <onclick>Skin.ToggleSetting(enable.items.focus.glow)</onclick>
+                </control>
+                <control type="radiobutton" id="9586">
+                    <include>Def_Dialog_Menu_Button_Gradient_Select</include>
+                    <label>31011</label>
+                    <selected>Skin.HasSetting(show.header.clearlogo)</selected>
+                    <onclick>Skin.ToggleSetting(show.header.clearlogo)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                </control>
+                <control type="radiobutton" id="90872">
+                    <include>Def_Dialog_Menu_Button_Gradient_Select</include>
+                    <label>$LOCALIZE[31504]</label>
+                    <selected>Skin.HasSetting(show.furniture.footer)</selected>
+                    <onclick>Skin.ToggleSetting(show.furniture.footer)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                </control>
+                <control type="button" id="9590">
+                    <include>Def_Dialog_Menu_Button_Gradient_Select</include>
+                    <label>$LOCALIZE[31356]</label>
+                    <label2>$VAR[Label_Setting_Type_Marker]</label2>
+                    <onclick condition="!Skin.HasSetting(hide.markers) + !Skin.HasSetting(furniture.markers.alternative)">Skin.ToggleSetting(furniture.markers.alternative)</onclick>
+                    <onclick condition="!Skin.HasSetting(hide.markers) + Skin.HasSetting(furniture.markers.alternative)">Skin.ToggleSetting(hide.markers)</onclick>
+                    <onclick condition="!Skin.HasSetting(hide.markers) + Skin.HasSetting(furniture.markers.alternative)">Skin.Reset(furniture.markers.alternative)</onclick>
+                    <onclick condition="Skin.HasSetting(hide.markers)">Skin.Reset(hide.markers)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                </control>
+                <control type="radiobutton" id="9585">
+                    <include>Def_Dialog_Menu_Button_Gradient_Select</include>
+                    <label>31163</label>
+                    <selected>Skin.HasSetting(enable.view.video.rating.num)</selected>
+                    <onclick>Skin.ToggleSetting(enable.view.video.rating.num)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                </control>
+                <control type="radiobutton" id="9088" description="Enable Extra Fanart">
+                    <include>Def_Dialog_Menu_Button_Gradient_Select</include>
+                    <label>31187</label>
+                    <selected>Skin.HasSetting(enable.extra.fanart)</selected>
+                    <onclick>Skin.ToggleSetting(enable.extra.fanart)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                    <onclick condition="Skin.HasSetting(enable.extra.fanart)">Skin.SetBool(enabled.tmdb.helper.blur)</onclick>
+                    <onclick condition="!Skin.HasSetting(enable.extra.fanart)">Skin.Reset(enabled.tmdb.helper.blur)</onclick>
+                </control>
+
+            <!-- MENU - NOW PLAYING -->
+
+                <control type="button" id="55528">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>$LOCALIZE[31447]</label>
+                </control>
+                <control type="radiobutton" id="9089">
+                    <include>Def_Dialog_Menu_Button_Gradient_Select</include>
+                    <label>$LOCALIZE[31113]</label>
+                    <selected>!Skin.HasSetting(hide.furniture.nowplaying.views)</selected>
+                    <onclick>Skin.ToggleSetting(hide.furniture.nowplaying.views)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                </control>
+                <control type="radiobutton" id="9743">
+                    <include>Def_Dialog_Menu_Button_Gradient_Select</include>
+                    <label>$LOCALIZE[31564]</label>
+                    <selected>Skin.HasSetting(show.nowplaying.video.view.flix)</selected>
+                    <onclick>Skin.ToggleSetting(show.nowplaying.video.view.flix)</onclick>
+                </control>
+                <control type="button" id="97429">
+                    <include>Def_Dialog_Menu_Button_Gradient_Select</include>
+                    <label>$LOCALIZE[31426]</label>
+                    <label2>$VAR[Label_Setting_Flix_Trailer_Black_Bars]</label2>
+                    <onclick condition="!Skin.HasSetting(home.views.flix.autoplay.trailer.custom.window) + !Skin.HasSetting(home.views.flix.autoplay.trailer.custom.window.force)">Skin.SetBool(home.views.flix.autoplay.trailer.custom.window)</onclick>
+                    <onclick condition="Skin.HasSetting(home.views.flix.autoplay.trailer.custom.window)">Skin.SetBool(home.views.flix.autoplay.trailer.custom.window.force)</onclick>
+                    <onclick condition="Skin.HasSetting(home.views.flix.autoplay.trailer.custom.window)">Skin.Reset(home.views.flix.autoplay.trailer.custom.window)</onclick>
+                    <onclick condition="Skin.HasSetting(home.views.flix.autoplay.trailer.custom.window.force)">Skin.Reset(home.views.flix.autoplay.trailer.custom.window.force)</onclick>
+                    <enable>Skin.HasSetting(show.nowplaying.video.view.flix)</enable>
+                </control>
+
+            <!-- DISPLAY MEDIA FLAG -->
+
+                <control type="button" id="55529">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>31229</label>
+                </control>
+                <control type="radiobutton" id="9260">
+                    <include>Def_Dialog_Menu_Button_Gradient_Select</include>
+                    <label>31112</label>
+                    <selected>!Skin.HasSetting(hide.furniture.flags)</selected>
+                    <onclick>Skin.ToggleSetting(hide.furniture.flags)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                </control>
+                <control type="button" id="9584">
+                    <include>Def_Dialog_Menu_Button_Gradient_Select</include>
+                    <label>$LOCALIZE[467]:</label>
+                    <label2>$VAR[Label_Setting_View_Flag_Color]</label2>
+                    <selected>Skin.HasSetting(enable.furniture.flags.colored)</selected>
+                    <onclick>Skin.ToggleSetting(enable.furniture.flags.colored)</onclick>
+                    <visible>!Skin.HasSetting(hide.furniture.flags) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                </control>
+                <control type="button" id="9263">
+                    <include>Def_Dialog_Menu_Button_Gradient_Select</include>
+                    <label>$LOCALIZE[31329]</label>
+                    <onclick>ActivateWindow(1149)</onclick>
+                    <enable>!Skin.HasSetting(hide.furniture.flags)</enable>
+                </control>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="9071" />
+                <param name="top" value="112" />
+                <param name="onleft" value="9001" />
+                <param name="onright" value="9001" />
+                <param name="onback" value="9001" />
+                <param name="height" value="910" />
+                <param name="centerright" value="4" />
+            </include>
+        </control>
+    </include>
 </includes>

@@ -623,9 +623,9 @@
 
     <include name="Def_Dialog_Menu_Background_Overlay">
         <control type="group">
+            <visible>$EXP[View_Context_Menu_Visible]</visible>
             <include>Animation_Common_Fade_In</include>
             <include>Animation_Common_Fade_Out</include>
-            <visible>$EXP[View_Context_Menu_Visible]</visible>
             <include content="Background_Overlay"><param name="fade_end" value="70" /></include>
         </control>
     </include>
@@ -634,6 +634,7 @@
         <param name="height" default="366" />
         <param name="width" default="470" />
         <param name="visible" default="$EXP[View_Context_Menu_Visible]" />
+
         <definition>
             <visible allowhiddenfocus="true">$PARAM[visible]</visible>
 
@@ -710,6 +711,9 @@
 
             <onright>$PARAM[scrollid]</onright>
 
+            <onup>9000</onup>
+            <ondown>9000</ondown>
+            
             <onleft condition="String.IsEmpty(Window(Home).Property(reloadskin))">$PARAM[idlayout]</onleft>
             <onleft condition="!String.IsEmpty(Window(Home).Property(reloadskin))">SetFocus(3033)</onleft>
 
@@ -722,6 +726,7 @@
             <height>$PARAM[height]</height>
 
             <itemgap>0</itemgap>
+            <orientation>vertical</orientation>
             <pagecontrol>$PARAM[scrollid]</pagecontrol>
             <usecontrolcoords>true</usecontrolcoords>
         </definition>

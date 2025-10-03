@@ -154,7 +154,7 @@
 
                 <!-- OPEN CUSTOM_SETVIEWTYPE -->
 
-                <control type="button" id="9001">
+                <control type="button" id="9011">
                     <include>Def_Dialog_Menu_Button_Gradient_Select</include>
                     <label>$LOCALIZE[582]:</label>
                     <label2>$INFO[Container.Viewmode]</label2>
@@ -380,38 +380,25 @@
                     <visible>Control.IsVisible(57) | Control.IsVisible(522) | Control.IsVisible(557) | Control.IsVisible(5228) | [Control.IsVisible(524) + Skin.HasSetting(show.view.524.fanart.artist)] | Control.IsVisible(515)</visible>
                 </control>
 
-                <!-- GLOBAL -->
-
-                <!-- <control type="button" id="55552"> -->
-                    <!-- <include>Def_Dialog_Menu_Button_Title</include> -->
-                    <!-- <label>31381</label> -->
-                <!-- </control> -->
-
-                <!-- <control type="button" id="9305"> -->
-                    <!-- <include>Def_Dialog_Menu_Button_Gradient_Select</include> -->
-                    <!-- <label>$LOCALIZE[5]</label> -->
-                    <!-- <align>left</align> -->
-                    <!-- <onclick>ActivateWindow(1110)</onclick> -->
-                <!-- </control> -->
-
                 <!-- OTHER OPTIONS -->
 
                 <control type="button" id="55554">
                     <include>Def_Dialog_Menu_Button_Title</include>
-                    <label>31052</label>
+                    <label>14230</label>
+                    <!-- <visible>!Container.Content(files)</visible> -->
                 </control>
 
-                <control type="button" id="9099">
-                    <include>Def_Dialog_Menu_Button_Gradient_Select</include>
-                    <label>14247</label>
-                    <onclick>CleanLibrary(music)</onclick>
-                </control>
                 <control type="togglebutton" id="20">
                     <description>Update</description>
                     <label>653</label>
                     <altlabel>13353</altlabel>
                     <include>Def_Dialog_Menu_Button_Gradient_Select</include>
                     <usealttexture>Library.IsScanningMusic</usealttexture>
+                </control>
+                <control type="button" id="9099">
+                    <include>Def_Dialog_Menu_Button_Gradient_Select</include>
+                    <label>14247</label>
+                    <onclick>CleanLibrary(music)</onclick>
                 </control>
             </control>
 
@@ -421,12 +408,16 @@
                 <param name="scrollid" value="9070" />
                 <param name="top" value="112" />
                 <param name="onleft" value="9000" />
-                <param name="onright" value="ActivateWindow(1110)" />
+                <param name="onright" value="9001" />
                 <param name="onback" value="9000" />
                 <param name="height" value="910" />
                 <param name="centerright" value="4" />
             </include>
         </control>
+
+        <!-- GLOBAL SETTINGS -->
+
+        <include>Def_Views_Global_Settings</include>
 
         <!-- DEBUG -->
 
