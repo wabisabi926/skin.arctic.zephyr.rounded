@@ -9,7 +9,7 @@
     <include condition="!Player.PauseEnabled">Def_OSD_FocusStop</include>
     <include condition="Player.PauseEnabled">Def_OSD_FocusPause</include>
     <controls>
-        <control type="group" id="6002">
+        <control type="group" id="6000">
 
             <animation type="WindowOpen">
                 <effect type="fade" start="0" end="100" time="150" delay="150" />
@@ -23,7 +23,7 @@
 
             <!-- LEFT SIDE BUTTONS -->
 
-            <control type="grouplist" id="6000">
+            <control type="grouplist" id="6001">
                 <left>130</left>
                 <height>48</height>
                 <bottom>118</bottom>
@@ -104,7 +104,7 @@
 
             <!-- CENTER BUTTONS -->
 
-            <control type="grouplist" id="6003">
+            <control type="grouplist" id="6002">
                 <left>0</left>
                 <height>48</height>
                 <bottom>118</bottom>
@@ -210,7 +210,7 @@
 
             <!-- RIGHT SIDE BUTTONS -->
 
-            <control type="grouplist" id="6001">
+            <control type="grouplist" id="6003">
                 <bottom>118</bottom>
                 <right>112</right>
                 <height>48</height>
@@ -307,10 +307,10 @@
                 <param name="scrollid" value="9803" />
             </include>
 
-            <!-- OSD FOOTER INFO TIPS -->
+            <!-- OSD FOOTER INFO TIPS - LEFT -->
 
-            <control type="grouplist" id="6060">
-                <visible>[ControlGroup(6002).HasFocus() + !String.IsEmpty(MusicPlayer.DBID)] | Control.HasFocus(8200)</visible>
+            <control type="grouplist">
+                <visible>ControlGroup(6001).HasFocus() | [ControlGroup(6002).HasFocus() + !String.IsEmpty(MusicPlayer.DBID)] | Control.HasFocus(8200)</visible>
                 <visible>!Control.HasFocus(9803)</visible>
 
                 <top>958</top>
@@ -339,6 +339,28 @@
                 </control>
                 <control type="label">
                     <height>50</height>
+                    <font>Mini</font>
+                    <scroll>false</scroll>
+                    <textcolor>$VAR[Color_OSD_Button_Background]</textcolor>
+                    <label>$VAR[Label_OSD_Footer_Tip_Music]</label>
+                    <aligny>center</aligny>
+                </control>
+            </control>
+
+            <!-- OSD FOOTER INFO TIPS - LEFT -->
+
+            <control type="group">
+                <visible>ControlGroup(6003).HasFocus()</visible>
+                <visible>!Control.HasFocus(9803)</visible>
+
+                <top>958</top>
+                <right>OSD_SidePad</right>
+                <width>1400</width>
+                <height>50</height>
+
+                <control type="label">
+                    <height>50</height>
+                    <align>right</align>
                     <font>Mini</font>
                     <scroll>false</scroll>
                     <textcolor>$VAR[Color_OSD_Button_Background]</textcolor>

@@ -1906,7 +1906,7 @@
         <value condition="Control.HasFocus(50)">$INFO[Container(50).NumItems] $LOCALIZE[1]</value>
     </variable>
 
-    <!-- LABEL - INFO DIALOG - FOOTER - TIP -->
+    <!-- LABEL - INFO DIALOG - FOOTER - TIPS -->
 
     <variable name="Label_Dialog_Info_Footer_Tip_Right">
         <value condition="Window.IsVisible(DialogVideoInfo.xml)">$VAR[Label_Dialog_Info_Video_Footer_Tip_Right]</value>
@@ -2413,9 +2413,38 @@
     </variable>
 
     <variable name="Label_OSD_Footer_Tip_Music">
+
+        <!-- ON FOCUS -->
+
+        <value condition="Control.HasFocus(1) + !String.IsEmpty(MusicPlayer.DBID)">$LOCALIZE[486]$INFO[Playlist.Repeat, : ]</value>
+        <value condition="Control.HasFocus(6) + !String.IsEmpty(MusicPlayer.DBID)">$VAR[Label_OSD_Shuffle_Tip]</value>
+        <value condition="Control.HasFocus(2) + !String.IsEmpty(MusicPlayer.DBID)">$LOCALIZE[24013]</value>
+        <value condition="Control.HasFocus(3) + !String.IsEmpty(MusicPlayer.DBID)">$VAR[Label_OSD_Info_Tip]</value>
+
+        <value condition="Control.HasFocus(21) + !String.IsEmpty(MusicPlayer.DBID)">$LOCALIZE[10500]</value>
+        <value condition="Control.HasFocus(23) + !String.IsEmpty(MusicPlayer.DBID)">$LOCALIZE[638]</value>
+        <value condition="Control.HasFocus(25) + !String.IsEmpty(MusicPlayer.DBID)">$ADDON[script.audio.profiles 32106]</value>
+        <value condition="Control.HasFocus(22) + !String.IsEmpty(MusicPlayer.DBID)">$LOCALIZE[38023]</value>
+        <value condition="Control.HasFocus(24) + !String.IsEmpty(MusicPlayer.DBID)">$LOCALIZE[5]</value>
+
+        <!-- ON DOWN -->
+
         <value condition="ControlGroup(6002).HasFocus() + !String.IsEmpty(MusicPlayer.DBID)">$LOCALIZE[31516] $LOCALIZE[31521]</value>
+
+        <!-- ON UP -->
+
         <value condition="Control.HasFocus(8200) + !String.IsEmpty(MusicPlayer.DBID)">$LOCALIZE[31557] $LOCALIZE[21891]</value>
         <value condition="Control.HasFocus(8200) + String.IsEmpty(MusicPlayer.DBID)">$LOCALIZE[31557] $LOCALIZE[544]</value>
+    </variable>
+
+    <variable name="Label_OSD_Shuffle_Tip">
+		<value condition="Playlist.IsRandom">$LOCALIZE[590]: $LOCALIZE[16041]</value>
+		<value>$LOCALIZE[590]: $LOCALIZE[16039]</value>
+    </variable>
+
+    <variable name="Label_OSD_Info_Tip">
+        <value condition="!Skin.HasSetting(auto.hide.OSD.music.info)">$LOCALIZE[31106]: $LOCALIZE[34122]</value>
+        <value>$LOCALIZE[31106]: $LOCALIZE[34123]</value>
     </variable>
 
 	<variable name="Label_OSD_Video_Stream">
