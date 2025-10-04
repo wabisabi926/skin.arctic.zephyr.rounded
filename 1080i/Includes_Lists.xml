@@ -403,12 +403,16 @@
 
                         <!-- ON CLICK -->
 
-                        <onclick condition="String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))">$PARAM[onclick1]</onclick>
-                        <onclick condition="String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))">$PARAM[onclick2]</onclick>
-                        <onclick condition="String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))">$PARAM[onclick3]</onclick>
+                        <!-- <onclick condition="!String.IsEqual(Window(Home).Property(Set_Movie_TvShow_TMDb_id),Window(Home).Property(TMDbHelper.ListItem.tmdb_id)) + String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))" >ClearProperty(Init_Value_TMDb,Home)</onclick> -->
 
-                        <onclick condition="String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))">ClearProperty(view_extended,Home)</onclick>
-                        <onclick condition="String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))">SetProperty(Hide_On_Reload_Dialog_Info,1,Home)</onclick>
+                        <onclick condition="!String.IsEqual(Window(Home).Property(Set_Movie_TvShow_TMDb_id),Window(Home).Property(TMDbHelper.ListItem.tmdb_id)) + String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))">AlarmClock(Delay_Hide_Info,SetProperty(Hide_On_Reload_Dialog_Info,1,Home),00:00,silent)</onclick>
+
+                        <onclick condition="!String.IsEqual(Window(Home).Property(Set_Movie_TvShow_TMDb_id),Window(Home).Property(TMDbHelper.ListItem.tmdb_id)) + String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))" >ClearProperty(view_extended,Home)</onclick>
+
+                        <onclick condition="!String.IsEqual(Window(Home).Property(Set_Movie_TvShow_TMDb_id),Window(Home).Property(TMDbHelper.ListItem.tmdb_id)) + String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))">$PARAM[onclick1]</onclick>
+
+                        <onclick>$PARAM[onclick2]</onclick>
+                        <onclick>$PARAM[onclick3]</onclick>
 
                         <preloaditems>2</preloaditems>
                         <orientation>vertical</orientation>

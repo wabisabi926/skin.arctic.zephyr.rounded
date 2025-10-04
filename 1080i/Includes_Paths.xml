@@ -213,81 +213,6 @@
     </variable>
 
     <!-- =================================== -->
-    <!--           DIRECTORS                 -->
-    <!-- =================================== -->
-
-    <variable name="Path_Director_Dialog_Info">
-        <value>RunScript(plugin.video.themoviedb.helper,add_query=$INFO[Container(50).ListItem.Label],tmdb_type=person,call_auto=1190)</value>
-    </variable>
-
-    <variable name="Path_Director_On_Info">
-        <value>RunScript(plugin.video.themoviedb.helper,add_query=$INFO[ListItem.Label],tmdb_type=person,call_auto=1190)</value>
-    </variable>
-
-    <!-- =================================== -->
-    <!--              ACTORS                 -->
-    <!-- =================================== -->
-
-    <variable name="Path_Actor_On_Info">
-        <value>RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=person&amp;tmdb_id=$INFO[Window(Home).Property(TMDbHelper.ListItem.tmdb_id)],call_auto=1190)</value>
-    </variable>
-
-    <variable name="Path_Actor">
-        <value condition="ListItem.IsFolder + String.IsEqual(ListItem.DBType,actor)">$INFO[ListItem.FolderPath]</value>
-    </variable>
-
-    <!-- =================================== -->
-    <!--             CAST - TMDB               -->
-    <!-- =================================== -->
-
-    <variable name="Def_List_Cast">
-
-        <!-- DIALOG INFO  -->
-
-        <!-- MOVIE -->
-
-        <value condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=movie&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]$VAR[Path_Param_Widget_Cache_Only]</value>
-        <value condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.tmdb_id))">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=movie&amp;tmdb_id=$INFO[Window(Home).Property(TMDbHelper.ListItem.tmdb_id)]$VAR[Path_Param_Widget_Cache_Only]</value>
-
-        <!-- TV SHOW -->
-
-        <value condition="String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=tv&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]$VAR[Path_Param_Widget_Cache_Only]$VAR[Path_Param_AggregateCast]</value>
-        <value condition="String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.tmdb_id))">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=tv&amp;tmdb_id=$INFO[Window(Home).Property(TMDbHelper.ListItem.tmdb_id)]$VAR[Path_Param_Widget_Cache_Only]$VAR[Path_Param_AggregateCast]</value>
-
-        <!-- SEASON -->
-
-        <value condition="String.IsEqual(ListItem.DBType,season) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=tv&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]&amp;season=$INFO[ListItem.Season]$VAR[Path_Param_Widget_Cache_Only]</value>
-        <value condition="String.IsEqual(ListItem.DBType,season) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.tmdb_id))">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=tv&amp;tmdb_id=$INFO[Window(Home).Property(TMDbHelper.ListItem.tmdb_id)]&amp;season=$INFO[ListItem.Season]$VAR[Path_Param_Widget_Cache_Only]</value>
-
-        <!-- EPISODE -->
-
-        <value condition="String.IsEqual(ListItem.DBType,episode) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=tv&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]&amp;season=$INFO[ListItem.Season]&amp;episode=$INFO[ListItem.Episode]$VAR[Path_Param_Widget_Cache_Only]</value>
-        <value condition="String.IsEqual(ListItem.DBType,episode) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.tmdb_id))">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=tv&amp;tmdb_id=$INFO[Window(Home).Property(TMDbHelper.ListItem.tmdb_id)]&amp;season=$INFO[ListItem.Season]&amp;episode=$INFO[ListItem.Episode]$VAR[Path_Param_Widget_Cache_Only]</value>
-
-        <!-- VIDEO PLAYER -->
-
-        <value condition="VideoPlayer.Content(movies) + !String.IsEmpty(Window(Home).Property(TMDbHelper.Player.TMDb_id)) + String.IsEqual(Window(Home).Property(TMDbHelper.Player.Title),VideoPlayer.Title)">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=movie$INFO[Window(Home).Property(TMDbHelper.Player.TMDb_id),&amp;tmdb_id=,]</value>
-
-        <value condition="VideoPlayer.Content(movies) + !String.IsEmpty(VideoPlayer.IMDBNumber) + String.StartsWith(VideoPlayer.IMDBNumber,tt)">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=movie$INFO[VideoPlayer.IMDBNumber,&amp;imdb_id=,]</value>
-
-        <value condition="VideoPlayer.Content(movies)">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=movie$INFO[Player.Title,&amp;query=,]$INFO[VideoPlayer.Year,&amp;year=,]</value>
-
-        <value condition="VideoPlayer.Content(episodes) + !String.IsEmpty(Window(Home).Property(TMDbHelper.Player.TVShow.TMDb_ID)) + String.IsEqual(Window(Home).Property(TMDbHelper.Player.Title),VideoPlayer.Title)">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=tv$INFO[Window(Home).Property(TMDbHelper.Player.TVShow.TMDb_ID),&amp;tmdb_id=,]$INFO[VideoPlayer.Season,&amp;season=,]$INFO[VideoPlayer.Episode,&amp;episode=,]</value>
-    </variable>
-
-    <!-- =================================== -->
-    <!--              CAST                   -->
-    <!-- =================================== -->
-
-    <variable name="Path_Actor_Dialog_Info">
-        <value>RunScript(plugin.video.themoviedb.helper,add_query=$INFO[Container(50).ListItem.Label],tmdb_type=person,call_auto=1190$VAR[Path_Info_First_Item],return)</value>
-    </variable>
-
-    <variable name="Path_Actor_Dialog_Info_TMDb">
-        <value>RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=person&amp;tmdb_id=$INFO[Container($PARAM[controlid]).ListItem.Property(tmdb_id)],call_auto=1190$VAR[Path_Info_First_Item],return)</value>
-    </variable>
-
-    <!-- =================================== -->
     <!--              TRAKT                   -->
     <!-- =================================== -->
 
@@ -382,7 +307,7 @@
 
 
     <!-- =================================== -->
-    <!--              DEF TMDb               -->
+    <!--              TMDb ID                -->
     <!-- =================================== -->
 
     <variable name="Def_TMDb_ID">
@@ -406,32 +331,117 @@
         <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.tmdb_id))">$INFO[Window(Home).Property(TMDbHelper.ListItem.tmdb_id)]</value>
     </variable>
 
+
     <!-- =================================== -->
-    <!--               ITEM                  -->
+    <!--            VIDEO - BROWSE           -->
     <!-- =================================== -->
-
-    <variable name="Def_Open_Info_Item">
-
-        <!-- TMDB HELPER -->
-
-        <value condition="String.IsEmpty(Container.ListItem.DBID) + String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))">RunScript(plugin.video.themoviedb.helper,add_path=$INFO[ListItem.FolderPath],call_auto=1190$VAR[Path_Info_First_Item],return)</value>
-
-        <!-- SEASON -->
-
-        <value condition="String.IsEqual(ListItem.DBType,season) + String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,call_path=$INFO[ListItem.FolderPath])</value>
-
-        <!-- LOCAL ONLY -->
-
-        <value condition="!String.IsEmpty(Container.ListItem.DBID) + String.IsEqual(ListItem.DBType,movie) + String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))">RunScript(plugin.video.themoviedb.helper,add_dbid=$INFO[ListItem.DBID],tmdb_type=movie,call_auto=1190$VAR[Path_Info_First_Item],return)</value>
-
-        <value condition="!String.IsEmpty(Container.ListItem.DBID) + String.IsEqual(ListItem.DBType,tvshow) + String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))">RunScript(plugin.video.themoviedb.helper,add_dbid=$INFO[ListItem.DBID],tmdb_type=tv,call_auto=1190$VAR[Path_Info_First_Item],return)</value>
-
-        <value condition="!String.IsEmpty(Container.ListItem.DBID) + String.IsEqual(ListItem.DBType,episode) + String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))">RunScript(plugin.video.themoviedb.helper,add_dbid=$INFO[ListItem.DBID],tmdb_type=episode,call_auto=1190$VAR[Path_Info_First_Item],return)</value>
-    </variable>
 
     <variable name="Def_Browse_List_Season_Episode_Set">
         <value>AlarmClock(call_list_browse,RunScript(plugin.video.themoviedb.helper,close_dialog=1190,"call_path=$INFO[ListItem.FolderPath]"),00:00,silent)</value>
     </variable>
+
+
+    <!-- =================================== -->
+    <!--            VIDEO - INFO             -->
+    <!-- =================================== -->
+
+    <variable name="Def_Open_Info_Video">
+
+        <!-- TMDB HELPER -->
+
+        <value condition="String.IsEmpty(Container.ListItem.DBID) + String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))">AlarmClock(Delay_Open_Info,RunScript(plugin.video.themoviedb.helper,add_path=$INFO[ListItem.FolderPath],call_auto=1190$VAR[Path_Info_First_Item],return),00:00,silent)</value>
+
+        <!-- SEASON -->
+
+        <value condition="String.IsEqual(ListItem.DBType,season) + String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))">AlarmClock(Delay_Open_Info,RunScript(plugin.video.themoviedb.helper,close_dialog=1190,call_path=$INFO[ListItem.FolderPath]),00:00,silent)</value>
+
+        <!-- LOCAL ONLY -->
+
+        <value condition="!String.IsEmpty(Container.ListItem.DBID) + String.IsEqual(ListItem.DBType,movie) + String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))">AlarmClock(Delay_Open_Info,RunScript(plugin.video.themoviedb.helper,add_dbid=$INFO[ListItem.DBID],tmdb_type=movie,call_auto=1190$VAR[Path_Info_First_Item],return),00:00,silent)</value>
+
+        <value condition="!String.IsEmpty(Container.ListItem.DBID) + String.IsEqual(ListItem.DBType,tvshow) + String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))">AlarmClock(Delay_Open_Info,RunScript(plugin.video.themoviedb.helper,add_dbid=$INFO[ListItem.DBID],tmdb_type=tv,call_auto=1190$VAR[Path_Info_First_Item],return),00:00,silent)</value>
+
+        <value condition="!String.IsEmpty(Container.ListItem.DBID) + String.IsEqual(ListItem.DBType,episode) + String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))">AlarmClock(Delay_Open_Info,RunScript(plugin.video.themoviedb.helper,add_dbid=$INFO[ListItem.DBID],tmdb_type=episode,call_auto=1190$VAR[Path_Info_First_Item],return),00:00,silent)</value>
+    </variable>
+
+    <!-- =================================== -->
+    <!--           ACTORS - INFO             -->
+    <!-- =================================== -->
+
+    <variable name="Path_Actor_On_Info">
+        <value>RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=person&amp;tmdb_id=$INFO[Window(Home).Property(TMDbHelper.ListItem.tmdb_id)],call_auto=1190)</value>
+    </variable>
+
+    <variable name="Path_Actor">
+        <value condition="ListItem.IsFolder + String.IsEqual(ListItem.DBType,actor)">$INFO[ListItem.FolderPath]</value>
+    </variable>
+
+
+    <!-- =================================== -->
+    <!--           IRECTORS - INFO           -->
+    <!-- =================================== -->
+
+    <variable name="Path_Director_Dialog_Info">
+        <value>RunScript(plugin.video.themoviedb.helper,add_query=$INFO[Container(50).ListItem.Label],tmdb_type=person,call_auto=1190)</value>
+    </variable>
+
+    <variable name="Path_Director_On_Info">
+        <value>RunScript(plugin.video.themoviedb.helper,add_query=$INFO[ListItem.Label],tmdb_type=person,call_auto=1190)</value>
+    </variable>
+
+
+    <!-- =================================== -->
+    <!--           CAST - INFO               -->
+    <!-- =================================== -->
+
+    <variable name="Path_Actor_Dialog_Info">
+        <value>RunScript(plugin.video.themoviedb.helper,add_query=$INFO[Container(50).ListItem.Label],tmdb_type=person,call_auto=1190$VAR[Path_Info_First_Item],return)</value>
+    </variable>
+
+    <variable name="Path_Actor_Dialog_Info_TMDb">
+        <value>RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=person&amp;tmdb_id=$INFO[Container($PARAM[controlid]).ListItem.Property(tmdb_id)],call_auto=1190$VAR[Path_Info_First_Item],return)</value>
+    </variable>
+
+    <!-- =================================== -->
+    <!--          CAST - LIST - TMDB         -->
+    <!-- =================================== -->
+
+    <variable name="Def_List_Cast">
+
+        <!-- DIALOG INFO  -->
+
+        <!-- MOVIE -->
+
+        <value condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=movie&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]$VAR[Path_Param_Widget_Cache_Only]</value>
+
+        <value condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.tmdb_id))">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=movie&amp;tmdb_id=$INFO[Window(Home).Property(TMDbHelper.ListItem.tmdb_id)]$VAR[Path_Param_Widget_Cache_Only]</value>
+
+        <!-- TV SHOW -->
+
+        <value condition="String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=tv&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]$VAR[Path_Param_Widget_Cache_Only]$VAR[Path_Param_AggregateCast]</value>
+        <value condition="String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.tmdb_id))">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=tv&amp;tmdb_id=$INFO[Window(Home).Property(TMDbHelper.ListItem.tmdb_id)]$VAR[Path_Param_Widget_Cache_Only]$VAR[Path_Param_AggregateCast]</value>
+
+        <!-- SEASON -->
+
+        <value condition="String.IsEqual(ListItem.DBType,season) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=tv&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]&amp;season=$INFO[ListItem.Season]$VAR[Path_Param_Widget_Cache_Only]</value>
+        <value condition="String.IsEqual(ListItem.DBType,season) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.tmdb_id))">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=tv&amp;tmdb_id=$INFO[Window(Home).Property(TMDbHelper.ListItem.tmdb_id)]&amp;season=$INFO[ListItem.Season]$VAR[Path_Param_Widget_Cache_Only]</value>
+
+        <!-- EPISODE -->
+
+        <value condition="String.IsEqual(ListItem.DBType,episode) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=tv&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]&amp;season=$INFO[ListItem.Season]&amp;episode=$INFO[ListItem.Episode]$VAR[Path_Param_Widget_Cache_Only]</value>
+        <value condition="String.IsEqual(ListItem.DBType,episode) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.tmdb_id))">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=tv&amp;tmdb_id=$INFO[Window(Home).Property(TMDbHelper.ListItem.tmdb_id)]&amp;season=$INFO[ListItem.Season]&amp;episode=$INFO[ListItem.Episode]$VAR[Path_Param_Widget_Cache_Only]</value>
+
+        <!-- VIDEO PLAYER -->
+
+        <value condition="VideoPlayer.Content(movies) + !String.IsEmpty(Window(Home).Property(TMDbHelper.Player.TMDb_id)) + String.IsEqual(Window(Home).Property(TMDbHelper.Player.Title),VideoPlayer.Title)">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=movie$INFO[Window(Home).Property(TMDbHelper.Player.TMDb_id),&amp;tmdb_id=,]</value>
+
+        <value condition="VideoPlayer.Content(movies) + !String.IsEmpty(VideoPlayer.IMDBNumber) + String.StartsWith(VideoPlayer.IMDBNumber,tt)">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=movie$INFO[VideoPlayer.IMDBNumber,&amp;imdb_id=,]</value>
+
+        <value condition="VideoPlayer.Content(movies)">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=movie$INFO[Player.Title,&amp;query=,]$INFO[VideoPlayer.Year,&amp;year=,]</value>
+
+        <value condition="VideoPlayer.Content(episodes) + !String.IsEmpty(Window(Home).Property(TMDbHelper.Player.TVShow.TMDb_ID)) + String.IsEqual(Window(Home).Property(TMDbHelper.Player.Title),VideoPlayer.Title)">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=tv$INFO[Window(Home).Property(TMDbHelper.Player.TVShow.TMDb_ID),&amp;tmdb_id=,]$INFO[VideoPlayer.Season,&amp;season=,]$INFO[VideoPlayer.Episode,&amp;episode=,]</value>
+    </variable>
+
 
     <!-- =================================== -->
     <!--              PERSON                 -->
