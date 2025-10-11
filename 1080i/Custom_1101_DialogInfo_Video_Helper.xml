@@ -13,6 +13,7 @@
     <onload condition="Skin.HasSetting(filter.video.only.local)">AlarmClock(Dialog_Info_Init_Value_TMDb,SetProperty(Init_Value_TMDb,1,Home),00:01,silent)</onload>
     <onload condition="!Skin.HasSetting(filter.video.only.local)">AlarmClock(Dialog_Info_Init_Value_TMDb,SetProperty(Init_Value_TMDb,1,Home),00:01,silent)</onload>
 
+
     <!-- ============ -->
     <!-- TMDB ON LINE -->
     <!-- ============ -->
@@ -20,6 +21,12 @@
     <!-- SEASONS / INFO / RECOMMENDED / SIMILAR / CREW -->
 
     <onload condition="String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">SetProperty(Set_Movie_TvShow_TMDb_id,$VAR[Def_TMDb_ID],Home)</onload>
+
+    <!-- ============ -->
+    <!--   YOUTUBE    -->
+    <!-- ============ -->
+
+    <onload condition="String.IsEmpty(Window(Home).Property(SetYoutubeTermToSearch))">SetProperty(SetYoutubeTermToSearch,$VAR[Path_Youtube_Query],Home)</onload>
 
     <!-- ============ -->
     <!--  LOCAL ONLY  -->

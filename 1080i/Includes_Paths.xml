@@ -93,7 +93,7 @@
     </variable>
 
     <variable name="Def_Content_Youtube_Video">
-        <value condition="!String.IsEmpty(Window(Home).Property(SetYoutubeSearch))">$VAR[Path_Youtube_Query,plugin://plugin.video.youtube/search/?q=,&amp;search_type=notvalid&amp;hide_channels=true&amp;hide_videos=true&amp;hide_folders=true]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(SetYoutubeSearch)) + !String.IsEmpty(Window(Home).Property(SetYoutubeTermToSearch))">$INFO[Window(Home).Property(SetYoutubeTermToSearch),plugin://plugin.video.youtube/search/?q=,&amp;search_type=notvalid&amp;hide_channels=true&amp;hide_videos=true&amp;hide_folders=true]</value>
     </variable>
 
     <variable name="Def_Content_Youtube_Music">
