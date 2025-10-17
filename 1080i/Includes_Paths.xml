@@ -783,7 +783,7 @@
     </variable>
 
     <variable name="Path_Param_Page_6">
-        <value>&amp;page=1&amp;length=6</value>
+        <value>&amp;page=1&amp;length=$VAR[Value_TMDb_Page_Limit]</value>
     </variable>
 
     <variable name="Path_Param_Page_3">
@@ -791,7 +791,7 @@
     </variable>
 
     <variable name="Path_Param_Limit">
-        <value>&amp;limit=140</value>
+        <value>&amp;limit=$VAR[Value_TMDb_Item_Limit]</value>
     </variable>
 
     <variable name="Path_Param_AggregateCast">
@@ -908,5 +908,25 @@
     <variable name="Path_SearchTerm">
         <value condition="!String.IsEmpty(Control.GetLabel(312).index(1))">$INFO[Control.GetLabel(312).index(1)]</value>
         <!-- <value condition="![Window.IsVisible(1105) | Window.IsVisible(1185)]">$INFO[Control.GetLabel(19).index(1)]</value> -->
+    </variable>
+
+    <!-- =================================== -->
+    <!--         TMDb Item Limit             -->
+    <!-- =================================== -->
+
+    <variable name="Value_TMDb_Item_Limit">
+        <value condition="!String.IsEmpty(Skin.String(TMDbLimit))">$INFO[Skin.String(TMDbLimit)]</value>
+        <value>80</value>
+    </variable>
+
+    <variable name="Value_TMDb_Page_Limit">
+        <value condition="String.IsEmpty(Skin.String(TMDbLimit))">4</value>
+        <value condition="String.IsEqual(Skin.String(TMDbLimit),20)">1</value>
+        <value condition="String.IsEqual(Skin.String(TMDbLimit),40)">2</value>
+        <value condition="String.IsEqual(Skin.String(TMDbLimit),60)">3</value>
+        <value condition="String.IsEqual(Skin.String(TMDbLimit),80)">4</value>
+        <value condition="String.IsEqual(Skin.String(TMDbLimit),100)">5</value>
+        <value condition="String.IsEqual(Skin.String(TMDbLimit),120)">6</value>
+        <value condition="String.IsEqual(Skin.String(TMDbLimit),140)">7</value>
     </variable>
 </includes>

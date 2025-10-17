@@ -32,7 +32,7 @@
 
     <onload condition="String.IsEmpty(ListItem.DBID) + String.IsEmpty(ListItem.TvShowDBID)">SetProperty(origin_tmdb_id,$VAR[Path_InfoParams_TMDbID],Home)</onload>
     <onload condition="String.IsEmpty(ListItem.DBID) + String.IsEmpty(ListItem.TvShowDBID) + !String.IsEmpty(ListItem.Season)">SetProperty(origin_season,$INFO[ListItem.Season],Home)</onload>
-    <onload condition="String.IsEmpty(ListItem.DBID) + String.IsEmpty(ListItem.TvShowDBID) + !String.IsEmpty(ListItem.Episode)">SetProperty(origin_episode,$INFO[ListItem.Episode],Home)</onload>
+    <onload condition="String.IsEmpty(ListItem.DBID) + String.IsEmpty(ListItem.TvShowDBID) + String.IsEmpty(ListItem.Season) + !String.IsEmpty(ListItem.Episode)">SetProperty(origin_episode,$INFO[ListItem.Episode],Home)</onload>
 
     <onload condition="!String.IsEmpty(ListItem.DBID) | !String.IsEmpty(ListItem.TvShowDBID)">SetProperty(origin_dbid,$VAR[Path_InfoParams_DBID],Home)</onload>
 
