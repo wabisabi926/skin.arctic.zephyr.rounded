@@ -27,10 +27,15 @@
     <onload>ClearProperty(origin_tmdb_type,Home)</onload>
     <onload>ClearProperty(origin_dbid,Home)</onload>
     <onload>ClearProperty(origin_tmdb_id,Home)</onload>
+    <onload>ClearProperty(origin_season,Home)</onload>
+    <onload>ClearProperty(origin_episode,Home)</onload>
 
     <onload condition="String.IsEmpty(ListItem.DBID) + String.IsEmpty(ListItem.TvShowDBID)">SetProperty(origin_tmdb_id,$VAR[Path_InfoParams_TMDbID],Home)</onload>
+    <onload condition="String.IsEmpty(ListItem.DBID) + String.IsEmpty(ListItem.TvShowDBID) + !String.IsEmpty(ListItem.Season)">SetProperty(origin_season,$INFO[ListItem.Season],Home)</onload>
+    <onload condition="String.IsEmpty(ListItem.DBID) + String.IsEmpty(ListItem.TvShowDBID) + !String.IsEmpty(ListItem.Episode)">SetProperty(origin_episode,$INFO[ListItem.Episode],Home)</onload>
+
     <onload condition="!String.IsEmpty(ListItem.DBID) | !String.IsEmpty(ListItem.TvShowDBID)">SetProperty(origin_dbid,$VAR[Path_InfoParams_DBID],Home)</onload>
-    
+
     <onload>SetProperty(origin_tmdb_type,$VAR[Path_InfoParams_TMDbType],Home)</onload>
 
     <onload>ClearProperty(filemanager_back_video_info_type,Home)</onload>
