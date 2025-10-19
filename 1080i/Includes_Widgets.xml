@@ -1269,7 +1269,7 @@
             <onfocus condition="Integer.IsGreater(Container($PARAM[idshort]2).NumItems,0) + Control.IsVisible($PARAM[idshort]2)">SetProperty(BackToId,$PARAM[idshort]2,Home)</onfocus>
             <onfocus condition="Integer.IsGreater(Container($PARAM[idshort]1).NumItems,0) + Control.IsVisible($PARAM[idshort]1)">SetProperty(BackToId,$PARAM[idshort]1,Home)</onfocus>
 
-            <onfocus condition="$EXP[Has_Home_Menu_Auto_Slide_Out_Animation]">CancelAlarm(slide_out,true)</onfocus>
+            <onfocus condition="$EXP[Has_Home_Menu_Auto_Slide_Out_Animation]">CancelAlarm(slide_out_setfocus_2011,true)</onfocus>
 
             <!-- NowPlaying : Auto slide / Display  if Widget is focus -->
             <onfocus condition="Skin.HasSetting(show.furniture.nowplaying.extended.home) + Window.IsVisible(Home) + Skin.HasSetting(enable.home.auto.show.nowplaying.extended)">SetProperty(nowplaying.auto.show.timer,1,Home)</onfocus>
@@ -1277,8 +1277,8 @@
             <onunfocus>ClearProperty(nowplaying.auto.show.timer,Home)</onunfocus>
 
             <!-- Main Menu : Focus if inactivity -->
-            <onfocus condition="Window.IsVisible(Home) + Skin.HasSetting(homemenu.auto.back.to.main) + !Skin.HasSetting(homemenu.auto.back.to.main.only.from.submenu)">SetProperty(focus.main.menu.timer,1,Home)</onfocus>
-            <onunfocus>ClearProperty(focus.main.menu.timer,Home)</onunfocus>
+            <onfocus condition="Window.IsVisible(Home) + Skin.HasSetting(homemenu.auto.back.to.main) + !Skin.HasSetting(homemenu.auto.back.to.main.only.from.submenu)">SetProperty(focus_main_menu_timer,1,Home)</onfocus>
+            <onunfocus>ClearProperty(focus_main_menu_timer,Home)</onunfocus>
 
             <onfocus condition="Integer.IsGreater(Container($PARAM[idshort]1).NumItems,0) + Control.IsVisible($PARAM[idshort]1)">SetProperty(LastId,$PARAM[idshort]1,Home)</onfocus>
             <onfocus condition="Integer.IsGreater(Container($PARAM[idshort]2).NumItems,0) + Control.IsVisible($PARAM[idshort]2)">SetProperty(LastId,$PARAM[idshort]2,Home)</onfocus>
