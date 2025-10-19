@@ -430,33 +430,28 @@
 
                 <onfocus>ClearProperty(backtoslidehome_2011,Home)</onfocus>
 
-                <onclick>SetProperty(backtoslidehome_2011,1,Home)</onclick>
-                <onclick condition="!String.IsEmpty(Container(300).ListItem.Property(id))">SetFocus($INFO[Container(300).ListItem.Property(id)]601)</onclick>
-                <onclick condition="String.IsEmpty(Container(300).ListItem.Property(id))">301</onclick>
-                <onclick>Action(info)</onclick>
+                <!-- HOME - CLEAN -->
 
-                <!-- <onleft condition="!String.IsEmpty(Window(Home).Property(LastMenuItem))">SetFocus($INFO[Window(Home).Property(LastMenuItem)])</onleft> -->
-                <!-- <onright condition="!String.IsEmpty(Window(Home).Property(LastMenuItem))">SetFocus($INFO[Window(Home).Property(LastMenuItem)])</onright> -->
-
-                <onup condition="!String.IsEmpty(Window(Home).Property(LastMenuItem))">SetFocus($INFO[Window(Home).Property(LastMenuItem)])</onup>
-                <ondown condition="!String.IsEmpty(Window(Home).Property(LastMenuItem))">SetFocus($INFO[Window(Home).Property(LastMenuItem)])</ondown>
-                <onback condition="!String.IsEmpty(Window(Home).Property(LastMenuItem))">SetFocus($INFO[Window(Home).Property(LastMenuItem)])</onback>
+                <onclick condition="$EXP[Home_Is_Horizontal_Clean]">SetProperty(backtoslidehome_2011,1,Home)</onclick>
+                <onclick condition="$EXP[Home_Is_Horizontal_Clean] + !String.IsEmpty(Container(300).ListItem.Property(id))">SetFocus($INFO[Container(300).ListItem.Property(id)]601)</onclick>
+                <onclick condition="$EXP[Home_Is_Horizontal_Clean] + String.IsEmpty(Container(300).ListItem.Property(id))">301</onclick>
+                <onclick condition="$EXP[Home_Is_Horizontal_Clean]">Action(info)</onclick>
 
                 <onleft condition="$EXP[Home_Is_Horizontal_Clean]">Control.Move($INFO[Container(300).ListItem.Property(id)]601,-1)</onleft>
                 <onright condition="$EXP[Home_Is_Horizontal_Clean]">Control.Move($INFO[Container(300).ListItem.Property(id)]601,1)</onright>
 
-                <onleft condition="!$EXP[Home_Is_Horizontal_Clean]">300</onleft>
-                <onright condition="!$EXP[Home_Is_Horizontal_Clean]">300</onright>
+                <!-- HOME - HORIZONTAL - VERTICAL -->
 
-                <!-- <onleft>Control.Move($PARAM[backid],-1)</onleft> -->
-                <!-- <onright>Control.Move($PARAM[backid],1)</onright> -->
+                <onclick condition="!$EXP[Home_Is_Horizontal_Clean]">SetFocus(399)</onclick>
 
-                <!-- <onleft condition="String.IsEmpty(Window(Home).Property(LastMenuItem))">300</onleft> -->
-                <!-- <onright condition="String.IsEmpty(Window(Home).Property(LastMenuItem))">300</onright> -->
+                <onleft condition="!$EXP[Home_Is_Horizontal_Clean]">399</onleft>
+                <onright condition="!$EXP[Home_Is_Horizontal_Clean]">399</onright>
 
-                <onup condition="String.IsEmpty(Window(Home).Property(LastMenuItem))">300</onup>
-                <ondown condition="String.IsEmpty(Window(Home).Property(LastMenuItem))">300</ondown>
-                <onback condition="String.IsEmpty(Window(Home).Property(LastMenuItem))">300</onback>
+                <!-- HOME - ALL -->
+
+                <onup>399</onup>
+                <ondown>399</ondown>
+                <onback>399</onback>
             </control>
         </controls>
     </other>
