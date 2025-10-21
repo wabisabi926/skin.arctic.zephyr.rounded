@@ -58,7 +58,7 @@
             <include condition="!Skin.HasSetting(show.home.header.clock.left)">Furniture_Footer_Clock_Right</include>
 
             <control type="group">
-                <animation effect="slide" start="0" end="0,163" time="150" condition="!$EXP[Home_Menu_Is_Focus] + !Control.HasFocus(9099) + [Skin.HasSetting(hide.home.menu) | [Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + $EXP[Extended_Now_Playing_Is_Enable]] + !ControlGroup(301).HasFocus()] + $EXP[Home_Is_Horizontal]">Conditional</animation>
+                <animation effect="slide" start="0" end="0,163" time="150" condition="!$EXP[Home_Menu_Is_Focus] + !Control.HasFocus(9099) + [Skin.HasSetting(hide.home.menu) | [Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + $EXP[Extended_Now_Playing_Is_Enable]] + !ControlGroup(301).HasFocus()]">Conditional</animation>
 
                 <!-- ARROWS (LEFT / RIGHT) - ICON -->
 
@@ -427,7 +427,7 @@
                     <animation effect="slide" start="0,0" end="0,-40" time="0" condition="true">Conditional</animation>
                     <animation effect="slide" start="0,0" end="-296,0" time="0" condition="Skin.HasSetting(home.show.menu.icons)">Conditional</animation>
 
-                    <animation effect="fade" start="100" end="0" time="400" condition="!$EXP[Home_Menu_Is_Focus] + !Skin.HasSetting(home.show.menu.icons) + [Skin.HasSetting(hide.home.menu) | [Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + $EXP[Extended_Now_Playing_Is_Enable]]] + !Control.HasFocus(9099)">Conditional</animation>
+                    <animation effect="fade" start="100" end="0" time="400" condition="!$EXP[Home_Menu_Is_Focus] + [[Skin.HasSetting(hide.home.menu) + !Skin.HasSetting(home.show.menu.icons)] | [Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + $EXP[Extended_Now_Playing_Is_Enable]]] + !Control.HasFocus(9099)">Conditional</animation>
 
                     <include condition="Skin.HasSetting(home.show.menu.icons)" content="Animation_Slide_Vertical_Menu">
                         <param name="left" value="-50" />
@@ -457,7 +457,7 @@
                     <onfocus>ClearProperty(Set_User_Rating,Home)</onfocus>
                     <onfocus>ClearProperty(Launch_Search,Home)</onfocus>
                     <onfocus>ClearProperty(Set_Back_Menu_300_After_SubMenu_302,Home)</onfocus>
-                    
+
                     <orientation>vertical</orientation>
 
                     <!-- MAIN MENU NOT FOCUSED -->
