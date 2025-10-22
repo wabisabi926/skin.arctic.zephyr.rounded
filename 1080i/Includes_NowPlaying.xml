@@ -71,19 +71,25 @@
 
             <!-- <animation effect="slide" start="0,150" end="0" time="150" reversible="false">WindowOpen</animation> -->
 
+            <!-- VIDEO - CLEARART -->
+
             <control type="image">
                 <width>400</width>
+                <bottom>0</bottom>
                 <texture>$VAR[Image_NowPlaying_ClearArt]</texture>
-                <aspectratio scalediffuse="true" align="left" aligny="bottom">keep</aspectratio>
+                <aspectratio scalediffuse="true" align="right" aligny="bottom">keep</aspectratio>
                 <visible>Skin.HasSetting(show.home.nowplaying.extended.video.clearart) + Player.HasVideo</visible>
             </control>
+
+            <!-- AUDIO - CLEARLOGO -->
+
             <control type="image">
+                <height>150</height>
                 <width>400</width>
-                <include content="Def_Bottom" condition="Skin.HasSetting(show.home.nowplaying.extended.music.clearlogo)">
-                    <param name="bottom" value="15" />
-                </include>
+                <bottom>0</bottom>
+                <fadetime>ClearArtFadetime</fadetime>
                 <texture>$VAR[Image_NowPlaying_Art_Music]</texture>
-                <aspectratio scalediffuse="true" align="left" aligny="bottom">keep</aspectratio>
+                <aspectratio scalediffuse="true" align="right" aligny="bottom">keep</aspectratio>
                 <visible>Skin.HasSetting(show.home.nowplaying.extended.music.clearlogo) + Player.HasAudio</visible>
             </control>
         </control>
