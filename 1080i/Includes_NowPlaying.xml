@@ -51,14 +51,14 @@
         </control>
     </include>
 
-    <!-- DEF - CLEARLOGO -->
+    <!-- DEF - CLEARLOGO / CLEARART -->
 
     <include name="NowPlaying_ClearArt">
         <control type="group">
             <visible>![Skin.HasSetting(show.home.nowplaying.extended.video.windows) + !Skin.HasSetting(hide.home.nowplaying.extended.video.cd)]</visible>
 
             <left>1360</left>
-            <bottom>10</bottom>
+            <bottom>0</bottom>
 
             <animation effect="slide" start="0" end="-37,0" time="0" condition="$EXP[Home_Is_Vertical] + Skin.HasSetting(home.show.menu.icons)">Conditional</animation>
 
@@ -148,11 +148,11 @@
 
                 <width>100%</width>
 
-                <include content="Def_Top" condition="!Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button)">
-                    <param name="top" value="516" />
+                <include content="Def_Top" condition="Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button)">
+                    <param name="top" value="580" />
                 </include>
 
-                <top>580</top>
+                <top>527</top>
                 <left>$PARAM[left]</left>
                 <visible>$PARAM[visible]</visible>
 
@@ -539,9 +539,9 @@
                 <top>32</top>
                 <width>NetflixPlotWidth</width>
                 <orientation>vertical</orientation>
-                <itemgap>15</itemgap>
+                <itemgap>18</itemgap>
 
-                <!-- CLEARLOGO -->
+                <!-- VIDEO - CLEARLOGO -->
 
                 <control type="image" description="clearlogo">
                     <height>ClearLogoTitleMaxHeight</height>
@@ -560,12 +560,12 @@
                     <param name="visible" value="Player.HasVideo + ![Skin.HasSetting(show.home.nowplaying.extended.video.title.clearlogo) + $EXP[Title_Clearlogo_PlayingNow_Available]]" />
                 </include>
 
+                <!-- AUDIO - MAIN TILE -->
+
                 <include content="NowPlaying_Header_Label">
                     <param name="label" value="$VAR[Label_NowPlaying_Header]" />
                     <param name="visible" value="!Player.HasVideo" />
                 </include>
-
-                <include condition="[Skin.HasSetting(home.style.flix) + !Skin.HasSetting(show.home.flix.title.clearlogo)] | Skin.HasSetting(home.style.horizontal.clean)">Button_Intent</include>
 
                 <!-- VIDEO - SUB TILE + PLOT -->
 
@@ -576,16 +576,13 @@
                     <width>100%</width>
                     <itemgap>0</itemgap>
 
-                    <usecontrolcoords>true</usecontrolcoords>
-                    <include condition="[Skin.HasSetting(home.style.flix) + !Skin.HasSetting(show.home.flix.title.clearlogo)] | Skin.HasSetting(home.style.horizontal.clean)">Button_Intent</include>
-
                     <control type="label">
                         <include>Widgets_Item_Sub_Title_Definition</include>
                         <label>$VAR[Label_NowPlaying_Video_Sub_Header]</label>
                     </control>
 
                     <control type="textbox">
-                        <top>68</top>
+                        <top>66</top>
                         <include>Widgets_Widgets_Plot_Definition_ClearLogo</include>
                         <label>$VAR[Label_NowPlaying_Plot]</label>
                         <visible>!String.IsEmpty(VideoPlayer.Plot)</visible>
@@ -593,7 +590,7 @@
                     </control>
 
                     <control type="textbox">
-                        <top>68</top>
+                        <top>66</top>
                         <include>Widgets_Plot_Definition_Netflix</include>
                         <label>$VAR[Label_NowPlaying_Plot]</label>
                         <visible>!String.IsEmpty(VideoPlayer.Plot)</visible>
@@ -617,18 +614,10 @@
                     </control>
 
                     <control type="textbox">
-                        <top>70</top>
-                        <include condition="Skin.HasSetting(show.home.nowplaying.extended.video.title.clearlogo)">Widgets_Widgets_Plot_Definition_ClearLogo</include>
-                        <label>$VAR[Label_NowPlaying_Plot]</label>
                         <visible>!String.IsEmpty(MusicPlayer.Property(Artist_Description)) | !String.IsEmpty(MusicPlayer.Property(Album_Description))</visible>
-                        <visible>Skin.HasSetting(show.home.nowplaying.extended.video.title.clearlogo) + $EXP[Title_Clearlogo_PlayingNow_Available]</visible>
-                    </control>
-                    <control type="textbox">
-                        <top>70</top>
+                        <top>66</top>
                         <include>Widgets_Plot_Definition_Netflix</include>
                         <label>$VAR[Label_NowPlaying_Plot]</label>
-                        <visible>!String.IsEmpty(MusicPlayer.Property(Artist_Description)) | !String.IsEmpty(MusicPlayer.Property(Album_Description))</visible>
-                        <visible>![Skin.HasSetting(show.home.nowplaying.extended.video.title.clearlogo) + $EXP[Title_Clearlogo_PlayingNow_Available]]</visible>
                     </control>
                 </control>
 
@@ -802,12 +791,12 @@
             <control type="grouplist">
                 <usecontrolcoords>true</usecontrolcoords>
                 <height>40</height>
-                <top>395</top>
+                <top>402</top>
                 <orientation>horizontal</orientation>
                 <itemgap>10</itemgap>
 
                 <include content="Widget_Bullet_Hightlight">
-                    <param name="top" value="5" />
+                    <param name="top" value="6" />
                     <param name="left" value="0" />
                     <param name="dimensions" value="30" />
                     <param name="visible" value="!$EXP[Home_Menu_Is_Focus]" />
@@ -848,7 +837,7 @@
 
     <include name="NowPlaying_AudioDiscArt">
         <control type="group">
-            <top>460</top>
+            <top>471</top>
             <left>158</left>
             <animation type="WindowClose" reversible="false">
                 <effect type="slide" start="0,0" end="-115,0" tween="sine" easing="out" time="300" delay="0" />
@@ -907,7 +896,7 @@
                     <effect type="fade" start="0" end="100" time="1" delay="500" />
                 </animation>
 
-                <top>560</top>
+                <top>571</top>
                 <left>$PARAM[left]</left>
 
                 <include content="Def_NowPlaying_DiscArt">
@@ -933,7 +922,7 @@
 
             <height>305</height>
             <width>553</width>
-            <top>455</top>
+            <top>466</top>
 
             <include content="Def_Art_Full_Background_b12">
                 <param name="colordiffuse" value="black" />
@@ -972,7 +961,7 @@
                 <visible>$PARAM[visible]</visible>
                 <visible>Player.HasVideo + !VideoPlayer.Content(files) + !VideoPlayer.Content(livetv)</visible>
 
-                <top>455</top>
+                <top>466</top>
                 <left>$PARAM[left]</left>
                 <height>305</height>
                 <width>222</width>
@@ -1017,7 +1006,7 @@
                 <visible>$PARAM[visible]</visible>
                 <visible>Player.HasAudio | !VideoPlayer.Content(files) | VideoPlayer.Content(livetv)</visible>
 
-                <top>455</top>
+                <top>466</top>
                 <left>$PARAM[left]</left>
                 <height>305</height>
                 <width>305</width>
@@ -1252,9 +1241,15 @@
 
                 <animation effect="slide" start="0" end="0,-34" time="150" condition="Skin.HasSetting(home.style.horizontal.clean) + Skin.HasSetting(hide.home.menu) + !Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + !$EXP[Home_Menu_Is_Focus] + !Control.HasFocus(9099)">Conditional</animation>
 
-                <animation effect="slide" start="0" end="0,129" time="150" condition="Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + !$EXP[Home_Menu_Is_Focus] + !Control.HasFocus(9099)">Conditional</animation>
+                <!-- SLIDE DOWN - HIDDEN HEADER / MENU ENABLE -->
+
+                <animation effect="slide" start="0" end="0,118" time="150" condition="Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + !$EXP[Home_Menu_Is_Focus] + !Control.HasFocus(9099)">Conditional</animation>
+
+                <!-- FADE - HIDDEN - NOWPLAYING -->
 
                 <animation effect="fade" start="100" end="0" tween="sine" reversible="false" easing="out" time="350" condition="!$EXP[Extended_Now_Playing_Is_Visible]">Conditional</animation>
+
+                <!-- FADE - VISIBLE - NOWPLAYING -->
 
                 <animation effect="fade" start="0" end="100" tween="sine" reversible="false" easing="in" delay="350" time="450" condition="$EXP[Extended_Now_Playing_Is_Visible]">Conditional</animation>
 
