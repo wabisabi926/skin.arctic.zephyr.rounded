@@ -126,6 +126,16 @@
 
     <!-- DEF - SHADOW -->
 
+    <variable name="texture_box12">
+        <value>common/box12.png</value>
+    </variable>
+
+    <variable name="texture_box24">
+        <value>common/box24.png</value>
+    </variable>
+
+    <!-- DEF - SHADOW -->
+
     <variable name="shadow20">
         <value>common/shadow20.png</value>
     </variable>
@@ -154,7 +164,7 @@
 
     <include name="Def_Art_Full_Background_b12">
         <param name="pad_shadow" value="$PARAM[pad_shadow]" default="-9" />
-        <param name="border_shadow" value="$PARAM[border_shadow]" default="18" />
+        <param name="border_shadow" value="$PARAM[border_shadow]" default="22" />
         <param name="texture_shadow" value="$PARAM[texture_shadow]" default="$VAR[shadow12]" />
         <param name="visible_shadow" value="$PARAM[visible_shadow]" default="true" />
 
@@ -184,7 +194,7 @@
             </control>
             <control type="image">
                 <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
-                <texture border="12" colordiffuse="$PARAM[colordiffuse]">common/box12.png</texture>
+                <texture border="12" colordiffuse="$PARAM[colordiffuse]">$VAR[texture_box12]</texture>
                 <animation effect="fade" start="100" end="90" condition="$PARAM[condition_fade]">Conditional</animation>
                 <visible>$PARAM[visible]</visible>
             </control>
@@ -193,7 +203,7 @@
 
     <include name="Def_Art_Full_Background_b24">
         <param name="pad_shadow" value="$PARAM[pad_shadow]" default="-9" />
-        <param name="border_shadow" value="$PARAM[border_shadow]" default="40" />
+        <param name="border_shadow" value="$PARAM[border_shadow]" default="34" />
         <param name="texture_shadow" value="$PARAM[texture_shadow]" default="$VAR[shadow24]" />
         <param name="visible_shadow" value="$PARAM[visible_shadow]" default="true" />
 
@@ -224,7 +234,7 @@
             </control>
             <control type="image">
                 <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
-                <texture border="24" colordiffuse="$PARAM[colordiffuse]">common/box24.png</texture>
+                <texture border="24" colordiffuse="$PARAM[colordiffuse]">$VAR[texture_box24]</texture>
                 <animation effect="fade" start="100" end="90" condition="$PARAM[condition_fade]">Conditional</animation>
                 <visible>$PARAM[visible]</visible>
             </control>
@@ -390,7 +400,7 @@
         <definition>
             <control type="image">
                 <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
-                <texture border="12" colordiffuse="$PARAM[colordiffuse_background]">common/box12.png</texture>
+                <texture border="12" colordiffuse="$PARAM[colordiffuse_background]">$VAR[texture_box12]</texture>
                 <animation effect="fade" start="100" end="80" condition="$PARAM[condition_fade_background]">Conditional</animation>
                 <visible>$PARAM[visible]</visible>
             </control>
@@ -407,7 +417,7 @@
         <definition>
             <control type="image">
                 <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
-                <texture border="24" colordiffuse="$PARAM[colordiffuse_background]">common/box24.png</texture>
+                <texture border="24" colordiffuse="$PARAM[colordiffuse_background]">$VAR[texture_box24]</texture>
                 <animation effect="fade" start="100" end="80" condition="$PARAM[condition_fade_background]">Conditional</animation>
                 <visible>$PARAM[visible]</visible>
             </control>
@@ -1398,14 +1408,14 @@
                 <control type="image">
                     <width>$PARAM[width]</width>
                     <height>$PARAM[height]</height>
-                    <texture border="12">common/box12.png</texture>
+                    <texture border="12">$VAR[texture_box12]</texture>
                     <colordiffuse>$INFO[Container(6).ListItem.Label2]</colordiffuse>
                     <visible>Control.HasFocus(6)</visible>
                 </control>
                 <control type="image">
                     <width>$PARAM[width]</width>
                     <height>$PARAM[height]</height>
-                    <texture border="12">common/box12.png</texture>
+                    <texture border="12">$VAR[texture_box12]</texture>
                     <colordiffuse>$INFO[Container(6).ListItem.Label2]</colordiffuse>
                     <!-- <animation effect="fade" start="100" end="50" time="0" condition="true">Conditional</animation> -->
                     <visible>Control.HasFocus(6)</visible>
@@ -1413,7 +1423,7 @@
                 <control type="image">
                     <width>$PARAM[width]</width>
                     <height>$PARAM[height]</height>
-                    <texture border="12" colordiffuse="$VAR[Color_ColorPicker_Selected]">common/box12.png</texture>
+                    <texture border="12" colordiffuse="$VAR[Color_ColorPicker_Selected]">$VAR[texture_box12]</texture>
                     <visible>!Control.HasFocus(6)</visible>
                 </control>
             </control>

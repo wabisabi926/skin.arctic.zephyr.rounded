@@ -45,8 +45,8 @@
 
     <include name="Def_Game_Image_Background">
         <param name="pad_shadow" value="$PARAM[pad_shadow]" default="7" />
+        <param name="border_shadow" value="$PARAM[border_shadow]" default="22" />
         <param name="texture_shadow" value="$PARAM[texture_shadow]" default="$VAR[shadow12]" />
-        <param name="border_shadow" value="$PARAM[border_shadow]" default="18" />
         <param name="texture_border" value="$PARAM[texture_border]" default="$VAR[border12]" />
 
         <param name="pad_image" value="$PARAM[pad_image]" default="16" />
@@ -69,14 +69,14 @@
             </control>
             <control type="image">
                 <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
-                <texture border="12" colordiffuse="black">common/box12.png</texture>
+                <texture border="12" colordiffuse="black">$VAR[texture_box12]</texture>
                 <animation effect="fade" start="100" end="90" condition="$PARAM[condition_fade]">Conditional</animation>
                 <visible>!String.IsEqual(ListItem.Icon,DefaultAddSource.png)</visible>
                 <visible>$PARAM[visible]</visible>
             </control>
             <control type="image">
                 <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
-                <texture border="12" colordiffuse="$PARAM[colordiffuse]">common/box12.png</texture>
+                <texture border="12" colordiffuse="$PARAM[colordiffuse]">$VAR[texture_box12]</texture>
                 <animation effect="fade" start="100" end="90" condition="$PARAM[condition_fade]">Conditional</animation>
                 <visible>String.IsEqual(ListItem.Icon,DefaultAddSource.png)</visible>
                 <visible>$PARAM[visible]</visible>
@@ -154,7 +154,7 @@
                 <!-- <top>18</top> -->
                 <!-- <height>64</height> -->
                 <!-- <width>300</width> -->
-                <!-- <texture border="12" colordiffuse="$VAR[Color_Background]">common/box12.png</texture> -->
+                <!-- <texture border="12" colordiffuse="$VAR[Color_Background]">$VAR[texture_box12]</texture> -->
             <!-- </control> -->
 
             <control type="grouplist">
