@@ -723,19 +723,18 @@
                     <onclick>Addon.OpenSettings($INFO[Container.PluginName])</onclick>
                     <visible>!String.IsEmpty(Container.PluginName)</visible>
                 </control>
-
-                <control type="button" id="9099">
-                    <include>Def_Dialog_Menu_Button_Gradient_Select</include>
-                    <label>14247</label>
-                    <onclick>CleanLibrary(video)</onclick>
-                    <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
-                </control>
                 <control type="togglebutton" id="20">
                     <description>Update</description>
                     <label>653</label>
                     <altlabel>13353</altlabel>
                     <include>Def_Dialog_Menu_Button_Gradient_Select</include>
                     <usealttexture>Library.IsScanningVideo</usealttexture>
+                    <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
+                </control>
+                <control type="button" id="9099">
+                    <include>Def_Dialog_Menu_Button_Gradient_Select</include>
+                    <label>14247</label>
+                    <onclick>CleanLibrary(video)</onclick>
                     <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
                 </control>
             </control>
