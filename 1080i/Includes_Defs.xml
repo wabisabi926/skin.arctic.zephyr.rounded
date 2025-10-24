@@ -255,9 +255,19 @@
         <param name="fallback" value="$PARAM[fallback]" default="DefaultMovies" />
         <param name="aspectratio" value="$PARAM[aspectratio]" default="scale" />
 
+        <param name="condition_fade_background" value="$PARAM[condition_fade_background]" default="false" />
+        <param name="colordiffuse_background" value="$PARAM[colordiffuse_background]" default="Fallback" />
+        <param name="visible_background_b12" value="$PARAM[visible_background_b12]" default="false" />
+
         <param name="visible" value="$PARAM[visible]" default="true" />
 
         <definition>
+            <include content="Def_Image_Background_Only_b12" condition="$PARAM[visible_background_b12]">
+                <param name="pad_image" value="$PARAM[pad_image]" />
+                <param name="colordiffuse_background" value="$PARAM[colordiffuse_background]" />
+                <param name="condition_fade_background" value="$PARAM[condition_fade_background]" />
+                <param name="visible" value="$PARAM[visible]" />
+            </include>
             <control type="image">
                 <include content="Def_Padding"><param name="pad">$PARAM[pad_image]</param></include>
                 <include content="Def_Fadetime" condition="$PARAM[condition_fadetime]"><param name="fadetime">$PARAM[fadetime]</param></include>
