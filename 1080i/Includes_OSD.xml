@@ -298,7 +298,7 @@
 
                 <control type="label">
                     <right>60%</right>
-                    <left>80</left>
+                    <left>70</left>
                     <height>80</height>
                     <align>center</align>
                     <aligny>center</aligny>
@@ -310,7 +310,7 @@
                 <!-- TIME ACTUAL -->
 
                 <control type="label">
-                    <left>220</left>
+                    <left>210</left>
                     <height>80</height>
                     <aligny>center</aligny>
                     <font>Consensus</font>
@@ -319,7 +319,7 @@
                 </control>
 
                 <control type="image">
-                    <left>380</left>
+                    <left>390</left>
                     <centertop>40</centertop>
                     <width>48</width>
                     <height>48</height>
@@ -331,7 +331,7 @@
                 <!-- TIME FINISH -->
 
                 <control type="label">
-                    <left>460</left>
+                    <left>450</left>
                     <height>80</height>
                     <font>Consensus</font>
                     <textcolor>$VAR[Color_OSD_Panel_White100]</textcolor>
@@ -1688,7 +1688,7 @@
             <!-- OSD FOOTER INFO TIPS - LEFT -->
 
             <control type="grouplist">
-                <visible>ControlGroup(100).HasFocus() | [ControlGroup(101).HasFocus() + [!String.IsEmpty(VideoPlayer.DBID) | !String.IsEmpty(MusicPlayer.DBID) | VideoPlayer.Content(livetv)]]</visible>
+                <visible>ControlGroup(100).HasFocus() | [ControlGroup(101).HasFocus() + [!String.IsEmpty(VideoPlayer.DBID) | !String.IsEmpty(MusicPlayer.DBID) | VideoPlayer.Content(livetv)]] | Control.HasFocus(8207)</visible>
 
                 <top>64</top>
                 <left>OSD_SidePad</left>
@@ -1712,7 +1712,7 @@
                     <height>50</height>
                     <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
                     <texture flipy="false" colordiffuse="$VAR[Color_OSD_Button_Background]">special://skin/extras/icons/angle-up.png</texture>
-                    <visible>ControlGroup(100).HasFocus()</visible>
+                    <visible>ControlGroup(100).HasFocus() | Control.HasFocus(8207)</visible>
                 </control>
                 <control type="label">
                     <height>50</height>
