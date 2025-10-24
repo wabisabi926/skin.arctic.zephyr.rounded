@@ -519,6 +519,7 @@
             <height>$PARAM[height]</height>
             <width>$PARAM[width]</width>
             <include content="Def_Dialog_Image_Background">
+                <param name="colordiffuse_border" value="$VAR[Color_OSD_Dialog_Border]" />
                 <param name="colordiffuse" value="$PARAM[colordiffuse]" />
                 <param name="pad_shadow" value="$PARAM[pad_shadow]" />
                 <param name="pad_image" value="$PARAM[pad_image]" />
@@ -532,11 +533,13 @@
         <param name="pad_image" value="$PARAM[pad_image]" default="0" />
         <param name="pad_shadow" value="$PARAM[pad_shadow]" default="-9" />
         <param name="colordiffuse" value="$PARAM[colordiffuse]" default="$VAR[Color_OSD_Background_Dialog]" />
+        <param name="colordiffuse_border" value="$PARAM[colordiffuse_border]" default="$VAR[Color_OSD_Dialog_Border]" />
         <definition>
             <control type="group">
                 <visible>$PARAM[visible]</visible>
                 <height>$PARAM[height]</height>
                 <include content="Def_Dialog_Image_Background">
+                    <param name="colordiffuse_border" value="$VAR[Color_OSD_Dialog_Border]" />
                     <param name="colordiffuse" value="$PARAM[colordiffuse]" />
                     <param name="pad_shadow" value="$PARAM[pad_shadow]" />
                     <param name="pad_image" value="$PARAM[pad_image]" />
@@ -1481,6 +1484,7 @@
 
                 <!-- <include content="Def_Dialog_Image_Background"> -->
                     <!-- <param name="colordiffuse" value="$VAR[Color_OSD_Background_Dialog]" /> -->
+                    <!-- <param name="colordiffuse_border" value="$VAR[Color_OSD_Dialog_Border]" /> -->
                     <!-- <param name="condition_fade" value="true" /> -->
                 <!-- </include> -->
 
@@ -1509,6 +1513,7 @@
 
                 <include content="Def_Dialog_Image_Background">
                     <param name="colordiffuse" value="$VAR[Color_OSD_Background_Dialog]" />
+                    <param name="colordiffuse_border" value="$VAR[Color_OSD_Dialog_Border]" />
                     <param name="condition_fade" value="true" />
                 </include>
 
@@ -1537,6 +1542,7 @@
 
                 <include content="Def_Dialog_Image_Background">
                     <param name="colordiffuse" value="$VAR[Color_OSD_Background_Dialog]" />
+                    <param name="colordiffuse_border" value="$VAR[Color_OSD_Dialog_Border]" />
                     <param name="condition_fade" value="true" />
                 </include>
 
@@ -1679,7 +1685,7 @@
                 <include condition="VideoPlayer.Content(livetv)">OSD_Right_PVR</include>
             </control>
 
-            <!-- OSD FOOTER INFO TIPS -->
+            <!-- OSD FOOTER INFO TIPS - LEFT -->
 
             <control type="grouplist">
                 <visible>ControlGroup(100).HasFocus() | [ControlGroup(101).HasFocus() + [!String.IsEmpty(VideoPlayer.DBID) | !String.IsEmpty(MusicPlayer.DBID) | VideoPlayer.Content(livetv)]]</visible>
@@ -1713,7 +1719,28 @@
                     <font>Mini</font>
                     <scroll>false</scroll>
                     <textcolor>$VAR[Color_OSD_Button_Background]</textcolor>
-                    <label>$VAR[Label_OSD_Footer_Tip_Video]</label>
+                    <label>$VAR[Label_OSD_Footer_Tip_Video_Left]</label>
+                    <aligny>center</aligny>
+                </control>
+            </control>
+
+            <!-- OSD FOOTER INFO TIPS - RIGHT -->
+
+            <control type="group">
+                <visible>ControlGroup(102).HasFocus()</visible>
+
+                <top>64</top>
+                <right>OSD_SidePad</right>
+                <width>1400</width>
+                <height>50</height>
+
+                <control type="label">
+                    <height>50</height>
+                    <align>right</align>
+                    <font>Mini</font>
+                    <scroll>false</scroll>
+                    <textcolor>$VAR[Color_OSD_Button_Background]</textcolor>
+                    <label>$VAR[Label_OSD_Footer_Tip_Video_Right]</label>
                     <aligny>center</aligny>
                 </control>
             </control>

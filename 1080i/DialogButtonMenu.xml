@@ -14,13 +14,13 @@
         <control type="group">
             <include>Animation_Dialog_Menu_Top_Side</include>
 
-            <top>184</top>
+            <top>114</top>
             <centerleft>50%</centerleft>
             <width>566</width>
 
             <!-- ARROWS -->
 
-            <include content="Object_Arrows_Dialog_Multi_Row"><param name="container_id">3110</param></include>
+            <include content="Object_Arrows_Dialog_Vertical"><param name="container_id">3110</param></include>
 
             <!-- BACKGROUND -->
 
@@ -61,7 +61,17 @@
 
             <include content="Def_Dialog_Multi_Row_Background">
                 <param name="height">689</param>
-                <param name="visible">Integer.IsGreater(Container(3110).NumItems,7)</param>
+                <param name="visible">Integer.IsEqual(Container(3110).NumItems,8)</param>
+            </include>
+
+            <include content="Def_Dialog_Multi_Row_Background">
+                <param name="height">759</param>
+                <param name="visible">Integer.IsEqual(Container(3110).NumItems,9)</param>
+            </include>
+
+            <include content="Def_Dialog_Multi_Row_Background">
+                <param name="height">829</param>
+                <param name="visible">Integer.IsGreater(Container(3110).NumItems,9)</param>
             </include>
 
             <include content="Def_Dialog_Header">
@@ -76,7 +86,7 @@
 
                 <top>112</top>
                 <left>16</left>
-                <height min="100" max="560">auto</height>
+                <height min="100" max="700">auto</height>
                 <width>534</width>
                 <bottom>17</bottom>
 
@@ -173,7 +183,7 @@
                 <param name="scrollid" value="1799" />
                 <param name="onleft" value="3110" />
                 <param name="onright" value="3110" />
-                <param name="height" value="560" />
+                <param name="height" value="700" />
                 <param name="centerright" value="4" />
             </include>
         </control>
