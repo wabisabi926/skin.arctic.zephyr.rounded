@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
-    <!-- <onload condition="!String.IsEmpty(Window(Home).Property(TMDBHelper.WidgetContainer))">SetProperty(TMDB_LastWidgetContainer,$INFO[Window(Home).Property(TMDBHelper.WidgetContainer)],Home)</onload> -->
-    <!-- <onload>ClearProperty(TMDbHelper.WidgetContainer,Home)</onload> -->
+    <onload condition="!String.IsEmpty(Window(Home).Property(TMDBHelper.WidgetContainer))">SetProperty(TMDB_LastWidgetContainer,$INFO[Window(Home).Property(TMDBHelper.WidgetContainer)],Home)</onload>
+    <onload>ClearProperty(TMDbHelper.WidgetContainer,Home)</onload>
     <!-- <onload>Skin.Reset(TMDbHelper.ForceWidgetContainer)</onload> -->
 
     <onload condition="Skin.HasSetting(show.osd.video.info.at.start) + String.IsEmpty(Window(Home).Property(OSDVideo_Show_AT_START_INFO))">SetProperty(OSDVideo_Show_AT_START_INFO,1,Home)</onload>
@@ -14,7 +14,7 @@
 
     <onunload condition="!Player.HasMedia | String.IsEmpty(VideoPlayer.DBID)">AlarmClock(ResetValue,ClearProperty(OSDVideo_DIALOG_VIDEO_INFO,Home),00:00,silent)</onunload>
 
-    <!-- <onunload condition="!String.IsEmpty(Window(home).Property(TMDB_LastWidgetContainer))">SetProperty(TMDbHelper.WidgetContainer,$INFO[Window(home).Property(TMDB_LastWidgetContainer)],Home)</onunload> -->
+    <onunload condition="!String.IsEmpty(Window(home).Property(TMDB_LastWidgetContainer))">SetProperty(TMDbHelper.WidgetContainer,$INFO[Window(home).Property(TMDB_LastWidgetContainer)],Home)</onunload>
 
     <controls>
         <control type="group" id="0">
