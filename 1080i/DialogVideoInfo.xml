@@ -3,11 +3,12 @@
     <defaultcontrol always="true">9000</defaultcontrol>
     <menucontrol>9000</menucontrol>
 
-    <onload>ClearProperty(TMDbHelper.WidgetContainer)</onload>
+    <onload condition="!String.IsEmpty(Window(Home).Property(TMDBHelper.WidgetContainer))">SetProperty(TMDB_LastWidgetContainer,$INFO[Window(Home).Property(TMDBHelper.WidgetContainer)],Home)</onload>
+    <onload>ClearProperty(TMDbHelper.WidgetContainer,Home)</onload>
     <onload>Skin.Reset(TMDbHelper.ForceWidgetContainer)</onload>
 
     <onload condition="Skin.HasSetting(lock.video.only.local)">Skin.SetBool(filter.video.only.local)</onload>
-    <onload condition="!String.IsEmpty(Window(Home).Property(TMDBHelper.WidgetContainer))">SetProperty(TMDB_LastWidgetContainer,$INFO[Window(Home).Property(TMDBHelper.WidgetContainer)],Home)</onload>
+
 
     <!-- SKINVARIABLES - DBID LOOKUP -->
 
