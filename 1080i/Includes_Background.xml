@@ -49,11 +49,6 @@
         <control type="videowindow">
             <include>Def_Dimensions_Fullscreen</include>
         </control>
-        <control type="image" description="Background">
-            <visible>Player.HasVideo</visible>
-            <include>Def_Dimensions_Fullscreen</include>
-            <texture colordiffuse="Background">background/bg.jpg</texture>
-        </control>
     </include>
 
     <include name="Windows_Video_Flix">
@@ -131,11 +126,16 @@
 
     <!-- DEF GLOBAL -->
 
-    <include name="Global_Background_Full_Screen_Video">
-        <control type="image" description="Background">
+    <include name="Hidden_Video_Window_Prevent_Audio_Lag">
+
+        <!--HIDDEN VIDEO WINDOW TO PREVENT AUDIO ERRORS-->
+
+        <control type="videowindow">
             <include>Def_Dimensions_Fullscreen</include>
-            <texture colordiffuse="Background">background/bg.jpg</texture>
         </control>
+    </include>
+
+    <include name="Global_Background_Full_Screen_Video">
         <control type="group" description="Background">
             <visible>Player.HasVideo</visible>
             <control type="image" description="Background">
@@ -402,19 +402,26 @@
 
     <include name="Background_Global">
 
-        <!-- SHOW VIDEO ONLY FOR PREVENT AUDIO LAG -->
+        <!-- SHOW HIDDEN VIDEO WINDOW ONLY FOR PREVENT AUDIO LAG -->
 
         <include condition="!Skin.HasSetting(show.global.visualisation.background.video)">Hidden_Video_Window_Prevent_Audio_Lag</include>
 
-        <!-- SHOW VIDEO ON BACKGROUND -->
+        <!-- GLOBAL FIRST DEFAULT BACKGROUND -->
+
+        <control type="image" description="Background">
+            <include>Def_Dimensions_Fullscreen</include>
+            <texture colordiffuse="Background">background/bg.jpg</texture>
+        </control>
+
+        <!-- VISUALISATION - SHOW VIDEO ON BACKGROUND -->
 
         <include condition="Skin.HasSetting(show.global.visualisation.background.video)">Global_Background_Full_Screen_Video</include>
 
-        <!-- SHOW MUSIC VISUALISATION ON BACKGROUND -->
+        <!-- VISUALISATION - SHOW MUSIC VISUALISATION ON BACKGROUND -->
 
         <include condition="$EXP[ShowMusicVisualisation]">Global_Music_Visualisation</include>
 
-        <!-- VISUALISATION OVERLAY -->
+        <!-- VISUALISATION - OVERLAY -->
 
         <control type="image" description="Background">
             <visible>[Player.HasVideo + Skin.HasSetting(show.global.visualisation.background.video)] | [Player.HasAudio + Skin.HasSetting(show.global.visualisation.background.music) + !String.IsEmpty(Visualisation.Name)]</visible>
