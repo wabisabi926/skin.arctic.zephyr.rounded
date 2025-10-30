@@ -8,12 +8,13 @@
             <param name="left" value="$PARAM[left]" default="0" />
             <param name="visible" value="$PARAM[visible]" default="true" />
             <control type="label">
+
                 <include content="Def_Height" condition="Player.HasVideo + Skin.HasSetting(show.home.nowplaying.extended.video.title.clearlogo) + $EXP[Title_Clearlogo_PlayingNow_Available]">
                     <param name="height" value="ClearLogoTitleMaxHeight" />
                 </include>
-                <include content="Def_Height" condition="Player.HasAudio | !Skin.HasSetting(show.home.nowplaying.extended.video.title.clearlogo) | !$EXP[Title_Clearlogo_PlayingNow_Available]">
-                    <param name="height" value="56" />
-                </include>
+
+                <height>56</height>
+
                 <include content="Def_Font">
                     <param name="font" value="LargeNetflix" />
                 </include>
