@@ -27,7 +27,7 @@
     </variable>
 
     <include name="_Action_Blur_Onload">
-        <param name="sourceimage">Art(fanart)</param>
+        <param name="sourceimage" value="Art(fanart)" />
         <definition>
             <onload>SetProperty(TMDbHelper.Blur.SourceImage,$PARAM[sourceimage],Home)</onload>
             <onload>SetProperty(TMDbHelper.Blur.Fallback,$VAR[Global_Fanart_Fallback_Background_Blur],Home)</onload>
@@ -36,10 +36,10 @@
 
     <include name="Action_Blur_Onload">
         <include content="_Action_Blur_Onload" condition="!Skin.HasSetting(enable.extra.fanart)">
-            <param name="sourceimage">Art(fanart)|Property(fanart)||EPGEventIcon||PicturePath</param>
+            <param name="sourceimage" value="Art(fanart)|Property(fanart)||EPGEventIcon||PicturePath" />
         </include>
         <!-- <include content="_Action_Blur_Onload" condition="Skin.HasSetting(enable.extra.fanart)"> -->
-            <!-- <param name="sourceimage">Art(artist.fanart{x})|Art(tvshow.fanart{x})|Art(fanart{x})|Property(fanart)||EPGEventIcon||PicturePath</param> -->
+            <!-- <param name="sourceimage" value="Art(artist.fanart{x})|Art(tvshow.fanart{x})|Art(fanart{x})|Property(fanart)||EPGEventIcon||PicturePath" /> -->
         <!-- </include> -->
     </include>
 
