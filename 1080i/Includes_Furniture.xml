@@ -1606,14 +1606,14 @@
 
                         <control type="image">
                             <description>Busy animation</description>
-                            <texture>dialog/loading-back.png</texture>
                             <aspectratio>keep</aspectratio>
+                            <texture>dialog/loading-back.png</texture>
                         </control>
                         <control type="image">
                             <description>Busy animation</description>
                             <animation effect="rotate" condition="true" start="360" end="0" loop="true" time="1000" center="auto">Conditional</animation>
-                            <texture colordiffuse="$VAR[Color_Loading_Spinner]">dialog/loading-spinner.png</texture>
                             <aspectratio>keep</aspectratio>
+                            <texture colordiffuse="$VAR[Color_Loading_Spinner]">dialog/loading-spinner.png</texture>
                         </control>
                     </control>
                 </control>
@@ -1796,14 +1796,14 @@
 
                         <control type="image">
                             <description>Busy animation</description>
-                            <texture>dialog/loading-back.png</texture>
                             <aspectratio>keep</aspectratio>
+                            <texture>dialog/loading-back.png</texture>
                         </control>
                         <control type="image">
                             <description>Busy animation</description>
                             <animation effect="rotate" condition="true" start="360" end="0" loop="true" time="1000" center="auto">Conditional</animation>
-                            <texture colordiffuse="$VAR[Color_Loading_Spinner]">dialog/loading-spinner.png</texture>
                             <aspectratio>keep</aspectratio>
+                            <texture colordiffuse="$VAR[Color_Loading_Spinner]">dialog/loading-spinner.png</texture>
                         </control>
                     </control>
                 </control>
@@ -3044,7 +3044,11 @@
             <orientation>horizontal</orientation>
             <usecontrolcoords>true</usecontrolcoords>
 
+            <!-- NUMBBER DISC / SONGS -->
+
             <include>Number_Album_Disc_Count</include>
+
+            <!-- CODEC -->
 
             <control type="image">
                 <width min="20" max="90">auto</width>
@@ -3052,6 +3056,9 @@
                 <texture colordiffuse="Dark1" fallback="flags/fallback.png">$INFO[ListItem.FileExtension,flags/video/white/audiocodec/,.png]</texture>
                 <visible>Skin.HasSetting(enable.furniture.flags.icons) + !String.IsEmpty(ListItem.FileExtension) + !Skin.HasSetting(hide.flags.music.codec)</visible>
             </control>
+
+            <!-- BIT RATE -->
+
             <control type="grouplist">
                 <width min="20" max="100">auto</width>
                 <height>64</height>
@@ -3073,6 +3080,9 @@
                     <texture colordiffuse="Dark1">flags/audio/white/bit.png</texture>
                 </control>
             </control>
+
+            <!-- SAMPLE RATE -->
+
             <control type="grouplist">
                 <width min="20" max="100">auto</width>
                 <height>64</height>
@@ -3092,9 +3102,11 @@
                     <height>44</height>
                     <aspectratio>keep</aspectratio>
                     <texture colordiffuse="Dark1">flags/audio/white/khz.png</texture>
-                    <aspectratio>keep</aspectratio>
                 </control>
             </control>
+
+            <!-- BPM -->
+
             <control type="grouplist">
                 <width min="20" max="100">auto</width>
                 <height>64</height>
@@ -3114,9 +3126,11 @@
                     <height>44</height>
                     <aspectratio>keep</aspectratio>
                     <texture colordiffuse="Dark1">flags/audio/white/bpm.png</texture>
-                    <aspectratio>keep</aspectratio>
                 </control>
             </control>
+
+            <!-- USER RATING -->
+
             <control type="image">
                 <visible>!String.IsEmpty(ListItem.UserRating) + Skin.HasSetting(show.flags.music.rating.user) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
                 <centertop>50%</centertop>
@@ -3136,7 +3150,6 @@
                 <label>$INFO[ListItem.UserRating].0</label>
             </control>
 
-
             <!-- DURATION -->
 
             <control type="image">
@@ -3152,11 +3165,16 @@
                 <visible>![Container.Content(tvshows) | Container.Content(seasons)]</visible>
             </control>
 
+            <!-- RATING - STAR -->
+
             <include content="Def_Flags_Furniture_Small" condition="!Skin.HasSetting(hide.flags.music.rating)">
                 <param name="Star" value="FlagstarSong" />
                 <param name="visible" value="!Skin.HasSetting(enable.flags.rating.numeric)" />
                 <param name="color" value="Dark1" />
             </include>
+
+            <!-- RATING - LABEL -->
+
             <control type="label">
                 <left>-6</left>
                 <include>Def_Flag_Label</include>
@@ -3203,7 +3221,11 @@
             <orientation>horizontal</orientation>
             <usecontrolcoords>true</usecontrolcoords>
 
+            <!-- NUMBBER DISC / SONGS -->
+
             <include>Number_Album_Disc_Count</include>
+
+            <!-- CODEC -->
 
             <control type="image">
                 <width min="20" max="90">auto</width>
@@ -3211,6 +3233,9 @@
                 <texture fallback="flags/fallback.png">$INFO[ListItem.FileExtension,flags/video/color/audiocodec/,.png]</texture>
                 <visible>Skin.HasSetting(enable.furniture.flags.icons) + !String.IsEmpty(ListItem.FileExtension) + !Skin.HasSetting(hide.flags.music.codec)</visible>
             </control>
+
+            <!-- BIT RATE -->
+
             <control type="grouplist">
                 <width min="20" max="100">auto</width>
                 <height>64</height>
@@ -3230,9 +3255,11 @@
                     <height>44</height>
                     <aspectratio>keep</aspectratio>
                     <texture colordiffuse="Dark1">flags/audio/white/bit.png</texture>
-                    <aspectratio>keep</aspectratio>
                 </control>
             </control>
+
+            <!-- SAMPLE RATE -->
+
             <control type="grouplist">
                 <width min="20" max="100">auto</width>
                 <height>64</height>
@@ -3252,9 +3279,11 @@
                     <height>44</height>
                     <aspectratio>keep</aspectratio>
                     <texture colordiffuse="Dark1">flags/audio/white/khz.png</texture>
-                    <aspectratio>keep</aspectratio>
                 </control>
             </control>
+
+            <!-- BPM -->
+
             <control type="grouplist">
                 <width min="20" max="100">auto</width>
                 <height>64</height>
@@ -3274,9 +3303,11 @@
                     <height>44</height>
                     <aspectratio>keep</aspectratio>
                     <texture colordiffuse="Dark1">flags/audio/white/bpm.png</texture>
-                    <aspectratio>keep</aspectratio>
                 </control>
             </control>
+
+            <!-- USER RATING -->
+
             <control type="image">
                 <visible>!String.IsEmpty(ListItem.UserRating) + Skin.HasSetting(show.flags.music.rating.user) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
                 <centertop>50%</centertop>
@@ -3311,11 +3342,16 @@
                 <visible>![Container.Content(tvshows) | Container.Content(seasons)]</visible>
             </control>
 
+            <!-- RATING - STAR -->
+
             <include content="Def_Flags_Furniture_Small" condition="!Skin.HasSetting(hide.flags.music.rating)">
                 <param name="Star" value="FlagstarSong" />
                 <param name="visible" value="!Skin.HasSetting(enable.flags.rating.numeric)" />
                 <param name="color" value="$VAR[Color_Stars_User_Rating_Override]" />
             </include>
+
+            <!-- RATING - LABEL -->
+
             <control type="label">
                 <left>-6</left>
                 <include>Def_Flag_Label</include>
@@ -4454,9 +4490,6 @@
             <include content="Animation_Common_Delay_Fade_In"><param name="delay" value="200" /></include>
             <include>Animation_Dialog_Info_Fade_Out_150</include>
 
-            <!-- <animation effect="fade" start="100" end="0" time="300" reversible="false">WindowClose</animation>  -->
-            <!-- <include>Animation_Extended_Info_Focus_Fade_In_350_Delay_300</include> -->
-
             <top>910</top>
             <align>left</align>
             <left>View_List_Side</left>
@@ -4474,7 +4507,11 @@
                 <orientation>horizontal</orientation>
                 <usecontrolcoords>true</usecontrolcoords>
 
+                <!-- NUMBBER DISC / SONGS -->
+
                 <include content="Number_Album_Disc_Count_Ext"><param name="controlid" value="$PARAM[controlid]" /></include>
+
+                <!-- CODEC -->
 
                 <control type="image">
                     <width min="20" max="90">auto</width>
@@ -4482,6 +4519,9 @@
                     <texture colordiffuse="Dark1" fallback="flags/fallback.png">$INFO[Container($PARAM[controlid]).ListItem.FileExtension,flags/video/white/audiocodec/,.png]</texture>
                     <visible>Skin.HasSetting(enable.furniture.flags.icons) + !String.IsEmpty(ListItem.FileExtension) + !Skin.HasSetting(hide.flags.music.codec)</visible>
                 </control>
+
+                <!-- BIT RATE -->
+
                 <control type="grouplist">
                     <visible>Skin.HasSetting(enable.furniture.flags.icons) + !String.IsEmpty(Container($PARAM[controlid]).ListItem.BitRate) + !Skin.HasSetting(hide.flags.music.bitrate)</visible>
 
@@ -4506,6 +4546,9 @@
                         <texture colordiffuse="Dark1">flags/audio/white/bit.png</texture>
                     </control>
                 </control>
+
+                <!-- SAMPLE RATE -->
+
                 <control type="grouplist">
                     <width min="20" max="100">auto</width>
                     <height>64</height>
@@ -4525,9 +4568,11 @@
                         <height>44</height>
                         <aspectratio>keep</aspectratio>
                         <texture colordiffuse="Dark1">flags/audio/white/khz.png</texture>
-                        <aspectratio>keep</aspectratio>
                     </control>
                 </control>
+
+                <!-- BPM -->
+
                 <control type="grouplist">
                     <visible>Skin.HasSetting(enable.furniture.flags.icons) + !String.IsEmpty(Container($PARAM[controlid]).ListItem.BPM) + Skin.HasSetting(show.flags.music.bpm)</visible>
 
@@ -4549,10 +4594,12 @@
                     <control type="image">
                         <height>44</height>
                         <aspectratio>keep</aspectratio>
-                        <texture>flags/audio/white/bpm.png</texture>
-                        <aspectratio>keep</aspectratio>
+                        <texture colordiffuse="Dark1">flags/audio/white/bpm.png</texture>
                     </control>
                 </control>
+
+                <!-- USER RATING -->
+
                 <control type="image">
                     <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.UserRating) + Skin.HasSetting(show.flags.music.rating.user) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
                     <centertop>50%</centertop>
@@ -4587,6 +4634,8 @@
                     <visible>![Container.Content(tvshows) | Container.Content(seasons)]</visible>
                 </control>
 
+                <!-- RATING - STAR -->
+
                 <include condition="!Skin.HasSetting(hide.flags.music.rating)">Def_Flags_Furniture_Small_Ext</include>
 
                 <!-- <include content="Def_Flags_Furniture_Small" condition="!Skin.HasSetting(hide.flags.music.rating)"> -->
@@ -4594,6 +4643,8 @@
                     <!-- <param name="visible" value="!Skin.HasSetting(enable.flags.rating.numeric)" /> -->
                     <!-- <param name="color" value="Dark1" /> -->
                 <!-- </include> -->
+
+                <!-- RATING - LABEL -->
 
                 <control type="label">
                     <left>-6</left>
@@ -4623,7 +4674,11 @@
                 <orientation>horizontal</orientation>
                 <usecontrolcoords>true</usecontrolcoords>
 
+                <!-- NUMBBER DISC / SONGS -->
+
                 <include content="Number_Album_Disc_Count_Ext"><param name="controlid" value="$PARAM[controlid]" /></include>
+
+                <!-- CODEC -->
 
                 <control type="image">
                     <width min="20" max="90">auto</width>
@@ -4631,6 +4686,9 @@
                     <texture fallback="flags/fallback.png">$INFO[Container($PARAM[controlid]).ListItem.FileExtension,flags/video/color/audiocodec/,.png]</texture>
                     <visible>Skin.HasSetting(enable.furniture.flags.icons) + !String.IsEmpty(Container($PARAM[controlid]).ListItem.FileExtension) + !Skin.HasSetting(hide.flags.music.codec)</visible>
                 </control>
+
+                <!-- BIT RATE -->
+
                 <control type="grouplist">
                     <visible>Skin.HasSetting(enable.furniture.flags.icons) + !String.IsEmpty(Container($PARAM[controlid]).ListItem.BitRate) + !Skin.HasSetting(hide.flags.music.bitrate)</visible>
 
@@ -4653,9 +4711,11 @@
                         <height>44</height>
                         <aspectratio>keep</aspectratio>
                         <texture colordiffuse="Dark1">flags/audio/white/bit.png</texture>
-                        <aspectratio>keep</aspectratio>
                     </control>
                 </control>
+
+                <!-- SAMPLE RATE -->
+
                 <control type="grouplist">
                     <visible>Skin.HasSetting(enable.furniture.flags.icons) + !String.IsEmpty(Container($PARAM[controlid]).ListItem.Samplerate) + Skin.HasSetting(show.flags.music.samplerate)</visible>
 
@@ -4678,9 +4738,11 @@
                         <height>44</height>
                         <aspectratio>keep</aspectratio>
                         <texture colordiffuse="Dark1">flags/audio/white/khz.png</texture>
-                        <aspectratio>keep</aspectratio>
                     </control>
                 </control>
+
+                <!-- BPM -->
+
                 <control type="grouplist">
                     <visible>Skin.HasSetting(enable.furniture.flags.icons) + !String.IsEmpty(Container($PARAM[controlid]).ListItem.BPM) + Skin.HasSetting(show.flags.music.bpm)</visible>
 
@@ -4702,10 +4764,12 @@
                     <control type="image">
                         <height>44</height>
                         <aspectratio>keep</aspectratio>
-                        <texture>flags/audio/white/bpm.png</texture>
-                        <aspectratio>keep</aspectratio>
+                        <texture colordiffuse="Dark1">flags/audio/white/bpm.png</texture>
                     </control>
                 </control>
+
+                <!-- USER RATING -->
+
                 <control type="image">
                     <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.UserRating) + Skin.HasSetting(show.flags.music.rating.user) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
                     <centertop>50%</centertop>
@@ -4740,6 +4804,8 @@
                     <visible>![Container.Content(tvshows) | Container.Content(seasons)]</visible>
                 </control>
 
+                <!-- RATING - STAR -->
+
                 <include condition="!Skin.HasSetting(hide.flags.music.rating)">Def_Flags_Furniture_Small_Ext</include>
 
                 <!-- <include content="Def_Flags_Furniture_Small" condition="!Skin.HasSetting(hide.flags.music.rating)"> -->
@@ -4747,6 +4813,8 @@
                     <!-- <param name="visible" value="!Skin.HasSetting(enable.flags.rating.numeric)" /> -->
                     <!-- <param name="color" value="$VAR[Color_Stars_User_Rating_Override]" /> -->
                 <!-- </include> -->
+
+                <!-- RATING - LABEL -->
 
                 <control type="label">
                     <left>-6</left>
