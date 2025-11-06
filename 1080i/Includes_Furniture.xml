@@ -245,6 +245,7 @@
                 <control type="label">
                    <include>Def_Media_Status_Icon_Background</include>
                    <label>$VAR[Label_Indicator_Status_Background_Icon]</label>
+                   <include>Animation_Fade_Background_Marker_Icon</include>
                 </control>
 
                 <!-- ICON -->
@@ -611,6 +612,7 @@
                     <visible>ListItem.IsCollection</visible>
                     <include>Def_Background_Poster_Rating_Info_Right</include>
                     <texture background="true" colordiffuse="FF081C24">diffuse/circle_64.png</texture>
+                    <include>Animation_Fade_Background_Marker_Icon</include>
                 </control>
                 <control type="image">
                     <visible>ListItem.IsCollection</visible>
@@ -630,6 +632,7 @@
                     <visible>!Container.Content(videoversions) + !String.StartsWith(Container.FolderPath,videodb://movies/videoversions)</visible>
                     <include>Def_Background_Poster_Rating_Info_Right</include>
                     <texture background="true" colordiffuse="FF081C24">diffuse/circle_64.png</texture>
+                    <include>Animation_Fade_Background_Marker_Icon</include>
                 </control>
                 <control type="image">
                     <visible>ListItem.HasVideoVersions + [!$EXP[View_Info_Dialog] | !String.IsEmpty(Window(Home).Property(view_extended))]</visible>
@@ -651,6 +654,7 @@
                     <visible>Control.IsVisible(9506) | Control.IsVisible(9556) | Control.IsVisible(9560) | [Control.IsVisible(6) + !String.IsEmpty(Window(Home).Property(ListVideoForCast))] | $EXP[IsTMDbHelper_User_Movies_Tvshows_List]</visible>
                     <include>Def_Background_Poster_Rating_Info_Right</include>
                     <texture background="true" colordiffuse="FF081C24">diffuse/circle_64.png</texture>
+                    <include>Animation_Fade_Background_Marker_Icon</include>
                 </control>
                 <control type="image">
                     <visible>String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)</visible>
