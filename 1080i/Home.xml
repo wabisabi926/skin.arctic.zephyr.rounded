@@ -38,24 +38,27 @@
     <onload condition="!String.IsEmpty(Window(Home).Property(HomeLastWidgetFocus))">SetFocus($INFO[Window(Home).Property(HomeLastWidgetFocus)])</onload>
     <onload condition="String.IsEmpty(Window(Home).Property(HomeLastWidgetFocus))">SetFocus(399)</onload>
 
-    <!-- START TMDBH SERVICE -->
+    <!-- ENABLE - TMDB HELPER -->
 
     <onload condition="Skin.HasSetting(enabled.tmdb.helper.service)">Skin.SetBool(TMDbHelper.Service)</onload>
-    <onload condition="Skin.HasSetting(disable.tmdb.helper.cacheOnly)">Skin.SetBool(TMDbHelper.DisableDefaultCacheOnly)</onload>
     <onload condition="Skin.HasSetting(enabled.tmdb.helper.crop)">Skin.SetBool(TMDbHelper.EnableCrop)</onload>
     <onload condition="Skin.HasSetting(enabled.tmdb.helper.blur)">Skin.SetBool(TMDbHelper.EnableBlur)</onload>
     <onload condition="[Skin.HasSetting(enabled.tmdb.helper.crop) | Skin.HasSetting(enabled.tmdb.helper.blur)]">Skin.Reset(TMDbHelper.DisableArtwork)</onload>
-
-    <!-- STOP TMDBH SERVICE -->
-
-    <onload condition="!Skin.HasSetting(enabled.tmdb.helper.service)">Skin.Reset(TMDbHelper.Service)</onload>
     <onload condition="!Skin.HasSetting(disable.tmdb.helper.cacheOnly)">Skin.Reset(TMDbHelper.DisableDefaultCacheOnly)</onload>
+
+    <onload>Skin.SetBool(TMDbHelper.DirectCallAuto)</onload>
+    <onload>Skin.Reset(TMDbHelper.MonitorContainer)</onload>
+
+    <!-- DISABLE - TMDB HELPER - BLUR / CROP / ARTWORK -->
+
     <onload condition="!Skin.HasSetting(enabled.tmdb.helper.crop)">Skin.Reset(TMDbHelper.EnableCrop)</onload>
     <onload condition="!Skin.HasSetting(enabled.tmdb.helper.blur)">Skin.Reset(TMDbHelper.EnableBlur)</onload>
     <onload condition="!Skin.HasSetting(enabled.tmdb.helper.crop) + !Skin.HasSetting(enabled.tmdb.helper.blur)">Skin.SetBool(TMDbHelper.DisableArtwork)</onload>
 
-    <!-- <onload>Skin.Reset(TMDbHelper.DirectCallAuto)</onload> -->
-    <!-- <onload>Skin.SetBool(TMDbHelper.DirectCallAuto)</onload> -->
+    <!-- DISABLE - TMDB HELPER - FOR DEBUG ONLY -->
+
+    <onload condition="!Skin.HasSetting(enabled.tmdb.helper.service)">Skin.Reset(TMDbHelper.Service)</onload>
+    <onload condition="Skin.HasSetting(disable.tmdb.helper.cacheOnly)">Skin.SetBool(TMDbHelper.DisableDefaultCacheOnly)</onload>
 
     <!-- AUTO SLIDE OUT MAIN MENU -->
 
