@@ -101,42 +101,39 @@
                 <!-- CLERALOGO -->
 
                 <control type="image" description="clearlogo">
+                    <visible>$EXP[View_Flix_Show_Clearlogo_Enable]</visible>
+                    <visible>$EXP[Title_Clearlogo_Available]</visible>
+                    <visible>$PARAM[show_clearlogo]</visible>
                     <height>ClearLogoTitleMaxHeight</height>
                     <width>ClearLogoTitleMaxWidth</width>
                     <aspectratio scalediffuse="true" align="left">keep</aspectratio>
                     <texture background="true">$VAR[Image_Crop_ClearLogo]</texture>
-                    <!-- <animation effect="fade" start="0" end="100" time="200" delay="0" reversible="true">Visible</animation> -->
-                    <!-- <animation effect="fade" start="100" end="0" delay="400" time="200" reversible="true">Hidden</animation> -->
-                    <!-- <fadetime>ClearArtFadetime</fadetime> -->
-                    <visible>$EXP[View_Flix_Show_Clearlogo_Enable]</visible>
-                    <visible>$EXP[Title_Clearlogo_Available]</visible>
-                    <visible>$PARAM[show_clearlogo]</visible>
                 </control>
 
                 <!-- MAIN TITLE - TEXT - SHOW CLEARLOGO - DISABLE -->
 
                 <control type="label">
+                    <visible>[$EXP[View_Flix_Show_Clearlogo_Enable] + !$EXP[Title_Clearlogo_Available]] | !$EXP[View_Flix_Show_Clearlogo_Enable] | !$PARAM[show_clearlogo]</visible>
+                    <visible>![$EXP[View_Flix_Show_Clearlogo_Enable] + $PARAM[show_clearlogo]]</visible>
                     <top>0</top>
                     <height>40</height>
                     <textcolor>Dark1</textcolor>
                     <font>LargeNetflix</font>
-                    <label fallback="19055">$VAR[Label_View_Flix_Main_Title]</label>
                     <include condition="Skin.HasSetting(labels.autoscroll)">LabelScroll</include>
-                    <visible>[$EXP[View_Flix_Show_Clearlogo_Enable] + !$EXP[Title_Clearlogo_Available]] | !$EXP[View_Flix_Show_Clearlogo_Enable] | !$PARAM[show_clearlogo]</visible>
-                    <visible>![$EXP[View_Flix_Show_Clearlogo_Enable] + $PARAM[show_clearlogo]]</visible>
+                    <label fallback="19055">$VAR[Label_View_Flix_Main_Title]</label>
                 </control>
 
                 <!-- MAIN TITLE - TEXT - SHOW CLEARLOGO - ENABLE -->
 
                 <control type="label">
+                    <visible>[$EXP[View_Flix_Show_Clearlogo_Enable] + !$EXP[Title_Clearlogo_Available]] | !$EXP[View_Flix_Show_Clearlogo_Enable] | !$PARAM[show_clearlogo]</visible>
+                    <visible>$EXP[View_Flix_Show_Clearlogo_Enable] + $PARAM[show_clearlogo]</visible>
                     <top>32</top>
                     <height>ClearLogoTitleMaxHeight</height>
                     <textcolor>Dark1</textcolor>
                     <font>LargeNetflix</font>
-                    <label fallback="19055">$VAR[Label_View_Flix_Main_Title]</label>
                     <include condition="Skin.HasSetting(labels.autoscroll)">LabelScroll</include>
-                    <visible>[$EXP[View_Flix_Show_Clearlogo_Enable] + !$EXP[Title_Clearlogo_Available]] | !$EXP[View_Flix_Show_Clearlogo_Enable] | !$PARAM[show_clearlogo]</visible>
-                    <visible>$EXP[View_Flix_Show_Clearlogo_Enable] + $PARAM[show_clearlogo]</visible>
+                    <label fallback="19055">$VAR[Label_View_Flix_Main_Title]</label>
                 </control>
             </control>
         </definition>
@@ -165,6 +162,9 @@
                 <!-- SUB TITLE - FILES -->
 
                 <control type="label">
+                    <visible>Container.Content(files) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType) + !$EXP[IsAnPlugin]] | Container.Content(images)</visible>
+                    <visible>Integer.IsGreater(Container(44025).NumItems,0)</visible>
+                    <visible>ListItem.IsFolder</visible>
                     <aligny>center</aligny>
                     <align>$PARAM[align]</align>
                     <width>$PARAM[width]</width>
@@ -172,13 +172,24 @@
                     <textcolor>PanelWhite70</textcolor>
                     <selectedcolor>PanelWhite70</selectedcolor>
                     <label>$LOCALIZE[19076] $INFO[Container(44025).NumItems,  •  , $LOCALIZE[31073]]</label>
+                </control>
+                <control type="label">
                     <visible>Container.Content(files) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType) + !$EXP[IsAnPlugin]] | Container.Content(images)</visible>
+                    <visible>Integer.IsEqual(Container(44025).NumItems,0)</visible>
                     <visible>ListItem.IsFolder</visible>
+                    <aligny>center</aligny>
+                    <align>$PARAM[align]</align>
+                    <width>$PARAM[width]</width>
+                    <font>InfoNetflix</font>
+                    <textcolor>PanelWhite70</textcolor>
+                    <selectedcolor>PanelWhite70</selectedcolor>
+                    <label>$LOCALIZE[19076]</label>
                 </control>
 
                 <!-- SUB TITLE - PVR -->
 
                 <control type="label">
+                    <visible>String.StartsWith(ListItem.Path,pvr://channels)</visible>
                     <aligny>center</aligny>
                     <align>$PARAM[align]</align>
                     <width>$PARAM[width]</width>
@@ -186,12 +197,12 @@
                     <textcolor>PanelWhite70</textcolor>
                     <selectedcolor>PanelWhite70</selectedcolor>
                     <label>$VAR[Label_View_Flix_Sub_Title_PVR]</label>
-                    <visible>String.StartsWith(ListItem.Path,pvr://channels)</visible>
                 </control>
 
                 <!-- SUB TITLE - PLUGIN -->
 
                 <control type="label">
+                    <visible>$EXP[IsAnPlugin] + Container.Content()</visible>
                     <aligny>center</aligny>
                     <align>$PARAM[align]</align>
                     <width>$PARAM[width]</width>
@@ -199,13 +210,12 @@
                     <textcolor>PanelWhite70</textcolor>
                     <selectedcolor>PanelWhite70</selectedcolor>
                     <label>$LOCALIZE[20094]$INFO[System.AddonVersion(Container.PluginName),  •  v ]</label>
-                    <visible>$EXP[IsAnPlugin]</visible>
-                    <visible>Container.Content()</visible>
                 </control>
 
                 <!-- SUB TITLE - ADDONS -->
 
                 <control type="label">
+                    <visible>Container.Content(addons)</visible>
                     <aligny>center</aligny>
                     <align>$PARAM[align]</align>
                     <width>$PARAM[width]</width>
@@ -213,12 +223,12 @@
                     <textcolor>PanelWhite70</textcolor>
                     <selectedcolor>PanelWhite70</selectedcolor>
                     <label>$INFO[ListItem.AddonType]$INFO[ListItem.AddonVersion,  •  v ]</label>
-                    <visible>Container.Content(addons)</visible>
                 </control>
 
                 <!-- SUB TITLE - ALBUMS / SONGS -->
 
                 <control type="label">
+                    <visible>Container.Content(albums) | Container.Content(songs) | container.content(artists)</visible>
                     <aligny>center</aligny>
                     <align>$PARAM[align]</align>
                     <width>$PARAM[width]</width>
@@ -226,12 +236,12 @@
                     <textcolor>PanelWhite70</textcolor>
                     <selectedcolor>PanelWhite70</selectedcolor>
                     <label>$VAR[Label_View_Flix_Sub_Title_Music]</label>
-                    <visible>Container.Content(albums) | Container.Content(songs) | container.content(artists)</visible>
                 </control>
 
                 <!-- SUB TITLE - IMAGES -->
 
                 <control type="label">
+                    <visible>Container.Content(images) + !ListItem.IsFolder</visible>
                     <aligny>center</aligny>
                     <align>$PARAM[align]</align>
                     <width>$PARAM[width]</width>
@@ -239,12 +249,14 @@
                     <textcolor>PanelWhite70</textcolor>
                     <selectedcolor>PanelWhite70</selectedcolor>
                     <label>$VAR[Label_Picture]</label>
-                    <visible>Container.Content(images) + !ListItem.IsFolder</visible>
                 </control>
 
                 <!-- SUB TITLE - OTHERS -->
 
                 <control type="label">
+                    <visible>![Container.Content(albums) | Container.Content(songs) | container.content(artists) | Container.Content(images) | String.StartsWith(ListItem.Path,pvr://channels)]</visible>
+                    <visible>!container.content(files) | String.IsEqual(Container.FolderPath,playlistvideo://)</visible>
+                    <visible>![Container.Content(addons) | [$EXP[IsAnPlugin] + Container.Content()]]</visible>
                     <aligny>center</aligny>
                     <align>$PARAM[align]</align>
                     <width>$PARAM[width]</width>
@@ -252,9 +264,6 @@
                     <textcolor>PanelWhite70</textcolor>
                     <selectedcolor>PanelWhite70</selectedcolor>
                     <label>$VAR[Label_View_Flix_Sub_Title]</label>
-                    <visible>![Container.Content(addons) | [$EXP[IsAnPlugin] + Container.Content()]]</visible>
-                    <visible>![Container.Content(albums) | Container.Content(songs) | container.content(artists) | Container.Content(images) | String.StartsWith(ListItem.Path,pvr://channels)]</visible>
-                    <visible>!container.content(files) | String.IsEqual(Container.FolderPath,playlistvideo://)</visible>
                 </control>
             </control>
         </definition>
@@ -283,6 +292,7 @@
                 <!-- SUB TITLE - ALBUMS / SONGS -->
 
                 <control type="label">
+                    <visible>String.IsEqual(ListItem.DBType,song)</visible>
                     <aligny>center</aligny>
                     <align>$PARAM[align]</align>
                     <width>$PARAM[width]</width>
@@ -290,12 +300,12 @@
                     <textcolor>PanelWhite70</textcolor>
                     <selectedcolor>PanelWhite70</selectedcolor>
                     <label>$VAR[Label_View_Flix_Sub_Title_Music]</label>
-                    <visible>String.IsEqual(ListItem.DBType,song)</visible>
                 </control>
 
                 <!-- SUB TITLE - OTHERS -->
 
                 <control type="label">
+                    <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,video) | String.IsEqual(ListItem.DBType,episode)</visible>
                     <aligny>center</aligny>
                     <align>$PARAM[align]</align>
                     <width>$PARAM[width]</width>
@@ -303,7 +313,6 @@
                     <textcolor>PanelWhite70</textcolor>
                     <selectedcolor>PanelWhite70</selectedcolor>
                     <label>$VAR[Label_View_Flix_Sub_Title]</label>
-                    <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,video) | String.IsEqual(ListItem.DBType,episode)</visible>
                 </control>
             </control>
         </definition>
