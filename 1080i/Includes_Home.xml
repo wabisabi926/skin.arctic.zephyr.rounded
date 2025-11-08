@@ -259,21 +259,21 @@
 
             <!-- SET TMDBHELPER WIDGET CONTAINER -->
 
-            <onfocus condition="$EXP[TMDbHelper_Is_Needed] + String.IsEmpty(Window(Home).Property(AnimationDirection)) + String.IsEmpty(Window(Home).Property(first_menu)) + String.IsEmpty(Window(Home).Property(end_menu))">$VAR[Set_TMDB_Helper_Widget_Container_left_up]</onfocus>
+            <onfocus condition="$EXP[TMDbHelper_Is_Needed_In_Home] + String.IsEmpty(Window(Home).Property(AnimationDirection)) + String.IsEmpty(Window(Home).Property(first_menu)) + String.IsEmpty(Window(Home).Property(end_menu))">$VAR[Set_TMDB_Helper_Widget_Container_left_up]</onfocus>
 
-            <onfocus condition="$EXP[TMDbHelper_Is_Needed] + String.IsEqual(Window(Home).Property(AnimationDirection),Left) + String.IsEmpty(Window(Home).Property(end_menu))">$VAR[Set_TMDB_Helper_Widget_Container_left_up]</onfocus>
-            <onfocus condition="$EXP[TMDbHelper_Is_Needed] + String.IsEqual(Window(Home).Property(AnimationDirection),Left) + !String.IsEmpty(Window(Home).Property(end_menu))">$VAR[Set_TMDB_Helper_Widget_Container_right_down]</onfocus>
-            <onfocus condition="$EXP[TMDbHelper_Is_Needed] + String.IsEqual(Window(Home).Property(AnimationDirection),Left) + !String.IsEmpty(Window(Home).Property(end_menu))">ClearProperty(end_menu,Home)</onfocus>
+            <onfocus condition="$EXP[TMDbHelper_Is_Needed_In_Home] + String.IsEqual(Window(Home).Property(AnimationDirection),Left) + String.IsEmpty(Window(Home).Property(end_menu))">$VAR[Set_TMDB_Helper_Widget_Container_left_up]</onfocus>
+            <onfocus condition="$EXP[TMDbHelper_Is_Needed_In_Home] + String.IsEqual(Window(Home).Property(AnimationDirection),Left) + !String.IsEmpty(Window(Home).Property(end_menu))">$VAR[Set_TMDB_Helper_Widget_Container_right_down]</onfocus>
+            <onfocus condition="$EXP[TMDbHelper_Is_Needed_In_Home] + String.IsEqual(Window(Home).Property(AnimationDirection),Left) + !String.IsEmpty(Window(Home).Property(end_menu))">ClearProperty(end_menu,Home)</onfocus>
 
-            <onfocus condition="$EXP[TMDbHelper_Is_Needed] + String.IsEqual(Window(Home).Property(AnimationDirection),Right) + String.IsEmpty(Window(Home).Property(first_menu))">$VAR[Set_TMDB_Helper_Widget_Container_right_down]</onfocus>
-            <onfocus condition="$EXP[TMDbHelper_Is_Needed] + String.IsEqual(Window(Home).Property(AnimationDirection),Right) + !String.IsEmpty(Window(Home).Property(first_menu))">$VAR[Set_TMDB_Helper_Widget_Container_left_up]</onfocus>
-            <onfocus condition="$EXP[TMDbHelper_Is_Needed] + String.IsEqual(Window(Home).Property(AnimationDirection),Right) + !String.IsEmpty(Window(Home).Property(first_menu))">ClearProperty(first_menu,Home)</onfocus>
+            <onfocus condition="$EXP[TMDbHelper_Is_Needed_In_Home] + String.IsEqual(Window(Home).Property(AnimationDirection),Right) + String.IsEmpty(Window(Home).Property(first_menu))">$VAR[Set_TMDB_Helper_Widget_Container_right_down]</onfocus>
+            <onfocus condition="$EXP[TMDbHelper_Is_Needed_In_Home] + String.IsEqual(Window(Home).Property(AnimationDirection),Right) + !String.IsEmpty(Window(Home).Property(first_menu))">$VAR[Set_TMDB_Helper_Widget_Container_left_up]</onfocus>
+            <onfocus condition="$EXP[TMDbHelper_Is_Needed_In_Home] + String.IsEqual(Window(Home).Property(AnimationDirection),Right) + !String.IsEmpty(Window(Home).Property(first_menu))">ClearProperty(first_menu,Home)</onfocus>
 
             <!-- SET FOCUS BUTTON 222 -->
 
-            <onright condition="[$EXP[TMDbHelper_Is_Needed] | [Skin.HasSetting(home.show.menu.icons) + Skin.HasSetting(home.show.menu.label.onfocus.icon)]] + !String.IsEmpty(Container(300).ListItemNoWrap(1).Label)">AlarmClock(setfocus_222,SetFocus(222),00:00,silent)</onright>
+            <onright condition="[$EXP[TMDbHelper_Is_Needed_In_Home] | [Skin.HasSetting(home.show.menu.icons) + Skin.HasSetting(home.show.menu.label.onfocus.icon)]] + !String.IsEmpty(Container(300).ListItemNoWrap(1).Label)">AlarmClock(setfocus_222,SetFocus(222),00:00,silent)</onright>
 
-            <onleft condition="[$EXP[TMDbHelper_Is_Needed] | [Skin.HasSetting(home.show.menu.icons) + Skin.HasSetting(home.show.menu.label.onfocus.icon)]] + !String.IsEmpty(Container(300).ListItemNoWrap(-1).Label)">AlarmClock(setfocus_222,SetFocus(222),00:00,silent)</onleft>
+            <onleft condition="[$EXP[TMDbHelper_Is_Needed_In_Home] | [Skin.HasSetting(home.show.menu.icons) + Skin.HasSetting(home.show.menu.label.onfocus.icon)]] + !String.IsEmpty(Container(300).ListItemNoWrap(-1).Label)">AlarmClock(setfocus_222,SetFocus(222),00:00,silent)</onleft>
 
             <onfocus>SetProperty(WindowTitle,$INFO[Container(300).ListItem.Label],Home)</onfocus>
             <onleft>SetProperty(WindowTitle,$INFO[Container(300).ListItem.Label],Home)</onleft>
@@ -845,24 +845,24 @@
 
             <!-- SET TMDBHELPER WIDGET CONTAINER -->
 
-            <onfocus condition="$EXP[TMDbHelper_Is_Needed] + String.IsEmpty(Window(Home).Property(AnimationDirection)) + String.IsEmpty(Window(Home).Property(first_menu)) + String.IsEmpty(Window(Home).Property(end_menu))">$VAR[Set_TMDB_Helper_Widget_Container_left_up]</onfocus>
+            <onfocus condition="$EXP[TMDbHelper_Is_Needed_In_Home] + String.IsEmpty(Window(Home).Property(AnimationDirection)) + String.IsEmpty(Window(Home).Property(first_menu)) + String.IsEmpty(Window(Home).Property(end_menu))">$VAR[Set_TMDB_Helper_Widget_Container_left_up]</onfocus>
 
-            <onfocus condition="$EXP[TMDbHelper_Is_Needed] + String.IsEqual(Window(Home).Property(AnimationDirection),Up) + String.IsEmpty(Window(Home).Property(end_menu))">$VAR[Set_TMDB_Helper_Widget_Container_left_up]</onfocus>
+            <onfocus condition="$EXP[TMDbHelper_Is_Needed_In_Home] + String.IsEqual(Window(Home).Property(AnimationDirection),Up) + String.IsEmpty(Window(Home).Property(end_menu))">$VAR[Set_TMDB_Helper_Widget_Container_left_up]</onfocus>
 
-            <onfocus condition="$EXP[TMDbHelper_Is_Needed] + String.IsEqual(Window(Home).Property(AnimationDirection),Up) + !String.IsEmpty(Window(Home).Property(end_menu))">$VAR[Set_TMDB_Helper_Widget_Container_right_down]</onfocus>
-            <onfocus condition="$EXP[TMDbHelper_Is_Needed] + String.IsEqual(Window(Home).Property(AnimationDirection),Up) + !String.IsEmpty(Window(Home).Property(end_menu))">ClearProperty(end_menu,Home)</onfocus>
-            <onfocus condition="$EXP[TMDbHelper_Is_Needed] + String.IsEqual(Window(Home).Property(AnimationDirection),Up) + !String.IsEmpty(Window(Home).Property(end_menu))">ClearProperty(first_menu,Home)</onfocus>
+            <onfocus condition="$EXP[TMDbHelper_Is_Needed_In_Home] + String.IsEqual(Window(Home).Property(AnimationDirection),Up) + !String.IsEmpty(Window(Home).Property(end_menu))">$VAR[Set_TMDB_Helper_Widget_Container_right_down]</onfocus>
+            <onfocus condition="$EXP[TMDbHelper_Is_Needed_In_Home] + String.IsEqual(Window(Home).Property(AnimationDirection),Up) + !String.IsEmpty(Window(Home).Property(end_menu))">ClearProperty(end_menu,Home)</onfocus>
+            <onfocus condition="$EXP[TMDbHelper_Is_Needed_In_Home] + String.IsEqual(Window(Home).Property(AnimationDirection),Up) + !String.IsEmpty(Window(Home).Property(end_menu))">ClearProperty(first_menu,Home)</onfocus>
 
-            <onfocus condition="$EXP[TMDbHelper_Is_Needed] + String.IsEqual(Window(Home).Property(AnimationDirection),Down) + String.IsEmpty(Window(Home).Property(first_menu))">$VAR[Set_TMDB_Helper_Widget_Container_right_down]</onfocus>
+            <onfocus condition="$EXP[TMDbHelper_Is_Needed_In_Home] + String.IsEqual(Window(Home).Property(AnimationDirection),Down) + String.IsEmpty(Window(Home).Property(first_menu))">$VAR[Set_TMDB_Helper_Widget_Container_right_down]</onfocus>
 
-            <onfocus condition="$EXP[TMDbHelper_Is_Needed] + String.IsEqual(Window(Home).Property(AnimationDirection),Down) + !String.IsEmpty(Window(Home).Property(first_menu))">$VAR[Set_TMDB_Helper_Widget_Container_left_up]</onfocus>
-            <onfocus condition="$EXP[TMDbHelper_Is_Needed] + String.IsEqual(Window(Home).Property(AnimationDirection),Down) + !String.IsEmpty(Window(Home).Property(first_menu))">ClearProperty(first_menu,Home)</onfocus>
-            <onfocus condition="$EXP[TMDbHelper_Is_Needed] + String.IsEqual(Window(Home).Property(AnimationDirection),Down) + !String.IsEmpty(Window(Home).Property(first_menu))">ClearProperty(end_menu,Home)</onfocus>
+            <onfocus condition="$EXP[TMDbHelper_Is_Needed_In_Home] + String.IsEqual(Window(Home).Property(AnimationDirection),Down) + !String.IsEmpty(Window(Home).Property(first_menu))">$VAR[Set_TMDB_Helper_Widget_Container_left_up]</onfocus>
+            <onfocus condition="$EXP[TMDbHelper_Is_Needed_In_Home] + String.IsEqual(Window(Home).Property(AnimationDirection),Down) + !String.IsEmpty(Window(Home).Property(first_menu))">ClearProperty(first_menu,Home)</onfocus>
+            <onfocus condition="$EXP[TMDbHelper_Is_Needed_In_Home] + String.IsEqual(Window(Home).Property(AnimationDirection),Down) + !String.IsEmpty(Window(Home).Property(first_menu))">ClearProperty(end_menu,Home)</onfocus>
 
             <!-- SET FOCUS BUTTON 222 -->
 
-            <ondown condition="[$EXP[TMDbHelper_Is_Needed] | [Skin.HasSetting(home.show.menu.icons) + Skin.HasSetting(home.show.menu.label.onfocus.icon)]] + !String.IsEmpty(Container(300).ListItemNoWrap(1).Label)">AlarmClock(setfocus_222,SetFocus(222),00:00,silent)</ondown>
-            <onup condition="[$EXP[TMDbHelper_Is_Needed] | [Skin.HasSetting(home.show.menu.icons) + Skin.HasSetting(home.show.menu.label.onfocus.icon)]] + !String.IsEmpty(Container(300).ListItemNoWrap(-1).Label)">AlarmClock(setfocus_222,SetFocus(222),00:00,silent)</onup>
+            <ondown condition="[$EXP[TMDbHelper_Is_Needed_In_Home] | [Skin.HasSetting(home.show.menu.icons) + Skin.HasSetting(home.show.menu.label.onfocus.icon)]] + !String.IsEmpty(Container(300).ListItemNoWrap(1).Label)">AlarmClock(setfocus_222,SetFocus(222),00:00,silent)</ondown>
+            <onup condition="[$EXP[TMDbHelper_Is_Needed_In_Home] | [Skin.HasSetting(home.show.menu.icons) + Skin.HasSetting(home.show.menu.label.onfocus.icon)]] + !String.IsEmpty(Container(300).ListItemNoWrap(-1).Label)">AlarmClock(setfocus_222,SetFocus(222),00:00,silent)</onup>
 
             <onfocus>SetProperty(WindowTitle,$INFO[Container(300).ListItem.Label],Home)</onfocus>
             <ondown>SetProperty(WindowTitle,$INFO[Container(300).ListItem.Label],Home)</ondown>
