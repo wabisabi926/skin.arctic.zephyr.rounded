@@ -1266,46 +1266,10 @@
             <include content="Animation_Common_Delay_Fade_In"><param name="delay" value="200" /></include>
             <include>Animation_Common_Fade_Out</include>
 
-            <!-- VIEWS - HEADER - CLEARLOGO - CROP - NO CROP -->
-
-            <control type="image" description="clearlogo">
-                <visible>[!Window.IsVisible(Home) + Skin.HasSetting(show.header.clearlogo)]</visible>
-                <visible>![Window.IsVisible(Home) + Window.IsVisible(DialogVideoInfo.xml)]</visible>
-                <visible>![Window.IsVisible(Home) + Skin.HasSetting(show.home.flix.title.clearlogo) + $EXP[Home_Is_Vertical]]</visible>
-                <visible>![Control.IsVisible(509) + Skin.HasSetting(show.view.509.title.clearlogo)]</visible>
-                <visible>![Control.IsVisible(511) + Skin.HasSetting(show.view.511.title.clearlogo)]</visible>
-                <visible>![Control.IsVisible(512) + Skin.HasSetting(show.view.511.title.clearlogo)]</visible>
-                <visible>![Control.IsVisible(514) + Skin.HasSetting(show.view.514.title.clearlogo)]</visible>
-
-                <visible>!Window.IsVisible(FileManager.xml)</visible>
-                <visible>![Container.Content(actors) | Container.Content(directors)]</visible>
-
-                <visible>!$EXP[View_Clock_In_Footer_Always]</visible>
-
-                <animation effect="slide" start="0" end="0,60" time="0" condition="$EXP[Home_Is_Horizontal] + Window.IsVisible(Home.xml)">Conditional</animation>
-
-                <!-- <include>Animation_Feature_Fade_In_Out</include> -->
-                <!-- <include>Animation_Feature_Visible</include> -->
-
-                <centertop>120</centertop>
-                <centerleft>50%</centerleft>
-                <width>ClearLogoMaxWidth</width>
-                <height>ClearLogoMaxHeight</height>
-
-                <fadetime>ClearArtFadetime</fadetime>
-                <aspectratio align="center">keep</aspectratio>
-                <texture background="true">$VAR[Image_Crop_ClearLogo]</texture>
-            </control>
-
             <!-- HEADER - LEFT - ICON - MAIN TITLE - SUB TILE -->
 
             <control type="group">
-                <top>40</top>
-                <left>40</left>
-                <visible>[!Skin.HasSetting(hide.furniture.header) + !Window.IsActive(Home)] | Window.IsActive(Home)</visible>
-                <visible>!Window.IsVisible(DialogBusy.xml) | [Window.IsVisible(DialogBusy.xml) + [$EXP[Trailer_Window_Is_Active] | $EXP[Trailer_Waiting_For_Player] | $EXP[Trailer_Is_Playing]]]</visible>
-
-                <include condition="!Window.IsVisible(MyFavourites.xml)">Animation_Feature_Home_Label</include>
+                <visible>!Window.IsVisible(DialogBusy.xml) | [Window.IsVisible(DialogBusy.xml) + [$EXP[Trailer_Window_Is_Active] | $EXP[Trailer_Waiting_For_Player] | $EXP[Trailer_Is_Playing] | [Player.HasMedia + !Skin.HasSetting(hide.furniture.nowplaying.views)]]]</visible>
 
                 <!-- SLIDE LEFT - HOME - HIDE WITH NOWPLAYING - ENABLE -->
 
@@ -1313,6 +1277,9 @@
                     <effect type="slide" start="0,0" end="-115,0" tween="sine" easing="out" time="250" delay="0" />
                     <effect type="fade" start="100" end="0" time="150" delay="0" />
                 </animation>
+
+                <top>40</top>
+                <left>40</left>
 
                 <!-- HEADER - ICON LEFT -->
 
@@ -1381,6 +1348,37 @@
                         <param name="id" value="$PARAM[id]" />
                     </include>
                 </control>
+            </control>
+
+            <!-- VIEWS - HEADER - CLEARLOGO - CROP - NO CROP -->
+
+            <control type="image" description="clearlogo">
+                <visible>[!Window.IsVisible(Home) + Skin.HasSetting(show.header.clearlogo)]</visible>
+                <visible>![Window.IsVisible(Home) + Window.IsVisible(DialogVideoInfo.xml)]</visible>
+                <visible>![Window.IsVisible(Home) + Skin.HasSetting(show.home.flix.title.clearlogo) + $EXP[Home_Is_Vertical]]</visible>
+                <visible>![Control.IsVisible(509) + Skin.HasSetting(show.view.509.title.clearlogo)]</visible>
+                <visible>![Control.IsVisible(511) + Skin.HasSetting(show.view.511.title.clearlogo)]</visible>
+                <visible>![Control.IsVisible(512) + Skin.HasSetting(show.view.511.title.clearlogo)]</visible>
+                <visible>![Control.IsVisible(514) + Skin.HasSetting(show.view.514.title.clearlogo)]</visible>
+
+                <visible>!Window.IsVisible(FileManager.xml)</visible>
+                <visible>![Container.Content(actors) | Container.Content(directors)]</visible>
+
+                <visible>!$EXP[View_Clock_In_Footer_Always]</visible>
+
+                <animation effect="slide" start="0" end="0,60" time="0" condition="$EXP[Home_Is_Horizontal] + Window.IsVisible(Home.xml)">Conditional</animation>
+
+                <!-- <include>Animation_Feature_Fade_In_Out</include> -->
+                <!-- <include>Animation_Feature_Visible</include> -->
+
+                <centertop>120</centertop>
+                <centerleft>50%</centerleft>
+                <width>ClearLogoMaxWidth</width>
+                <height>ClearLogoMaxHeight</height>
+
+                <fadetime>ClearArtFadetime</fadetime>
+                <aspectratio align="center">keep</aspectratio>
+                <texture background="true">$VAR[Image_Crop_ClearLogo]</texture>
             </control>
         </control>
     </include>
@@ -1508,18 +1506,19 @@
             <visible>String.IsEmpty(Window(Home).Property(Hide_On_Reload_Dialog_Info))</visible>
             <include>Animation_Dialog_Info_Visible_Fade_Conditional</include>
 
+            <visible>Skin.HasSetting(show.furniture.clock.date.weather)</visible>
+            <visible>[!Window.IsActive(Home) + !$EXP[View_Flix] + Skin.HasSetting(show.furniture.footer)] | Window.IsVisible(FileManager.xml)</visible>
+
+            <visible>!Window.IsVisible(DialogVolumeBar.xml)</visible>
+            <visible>!Window.IsVisible(DialogNotification.xml)</visible>
+            <visible>!Window.IsVisible(DialogExtendedProgressBar.xml)</visible>
+            <visible>!Window.IsActive(DialogNotification.xml)</visible>
+            <visible>[Window.IsActive(Home) + $EXP[Extended_Now_Playing_Is_Enable]] | [!Skin.HasSetting(hide.furniture.nowplaying.views) + !Player.HasMedia] | Skin.HasSetting(hide.furniture.nowplaying.views)</visible>
+
             <include content="Animation_Common_Delay_Fade_In"><param name="delay" value="200" /></include>
             <include>Animation_Common_Fade_Out</include>
 
             <control type="grouplist">
-                <visible>Skin.HasSetting(show.furniture.clock.date.weather)</visible>
-                <visible>[!Window.IsActive(Home) + !$EXP[View_Flix] + Skin.HasSetting(show.furniture.footer)] | Window.IsVisible(FileManager.xml)</visible>
-
-                <visible>!Window.IsVisible(DialogVolumeBar.xml)</visible>
-                <visible>!Window.IsVisible(DialogNotification.xml)</visible>
-                <visible>!Window.IsVisible(DialogExtendedProgressBar.xml)</visible>
-                <visible>!Window.IsActive(DialogNotification.xml)</visible>
-                <visible>[Window.IsActive(Home) + $EXP[Extended_Now_Playing_Is_Enable]] | [!Skin.HasSetting(hide.furniture.nowplaying.views) + !Player.HasMedia] | Skin.HasSetting(hide.furniture.nowplaying.views)</visible>
 
                 <!-- SLIDE RIGHT - HOME - HIDE WITH NOWPLAYING - ENABLE -->
 
