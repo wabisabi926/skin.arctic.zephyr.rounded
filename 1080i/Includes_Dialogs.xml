@@ -1996,7 +1996,7 @@
 
              <control type="radiobutton" id="90122">
                 <visible>String.IsEqual(ListItem.Property(tmdb_type),person) | [ListItem.IsCollection + !String.IsEmpty(ListItem.DBID)]</visible>
-                <visible>System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(TMDbHelper.Service)</visible>
+                <visible>System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)</visible>
 
                 <onfocus>SetProperty(last_video_focus,90122,Home)</onfocus>
                 <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
@@ -2022,7 +2022,7 @@
 
              <control type="radiobutton" id="90123">
                 <visible>String.IsEqual(ListItem.Property(tmdb_type),person) | String.IsEqual(ListItem.DBType,set)</visible>
-                <visible>![System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(TMDbHelper.Service)]</visible>
+                <visible>![System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)]</visible>
 
                 <onfocus>SetProperty(last_video_focus,90123,Home)</onfocus>
                 <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
@@ -2334,7 +2334,7 @@
             <control type="radiobutton" id="9011">
                 <visible>!Skin.HasSetting(hide.button.video.trakt)</visible>
                 <visible>[!String.IsEmpty(ListItem.Property(tmdb_id)) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.tmdb_id))] + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)] + !String.IsEmpty(Window(Home).Property(TMDbHelper.TraktIsAuth))</visible>
-                <enable>System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(TMDbHelper.Service)</enable>
+                <enable>System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)</enable>
 
                 <onfocus>SetProperty(last_video_focus,9011,Home)</onfocus>
                 <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
@@ -2410,7 +2410,7 @@
             <!-- LOCAL ONLY / ON LINE -->
 
              <control type="radiobutton" id="9012">
-                <visible>System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(TMDbHelper.Service)</visible>
+                <visible>System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)</visible>
                 <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)</visible>
                 <visible>!$EXP[IsAnPlugin] | $EXP[IsTMDbHelper] | $EXP[IsPluginShortlist] | $EXP[IsLibraryGenie]</visible>
 
@@ -2437,7 +2437,7 @@
 
              <control type="radiobutton" id="90124">
                 <visible>![String.IsEqual(ListItem.Property(tmdb_type),person) | String.IsEqual(ListItem.DBType,set)]</visible>
-                <visible>![System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(TMDbHelper.Service)]</visible>
+                <visible>![System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)]</visible>
 
                 <onfocus>SetProperty(last_video_focus,90124,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent,Home)</onfocus>
