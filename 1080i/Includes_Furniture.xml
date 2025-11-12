@@ -1873,7 +1873,7 @@
 
             <control type="label">
                 <include>Def_Info_Left_Line1</include>
-                <label>$INFO[ListItem.Label]$VAR[Label_Year,  •  ,]</label>
+                <label>$INFO[ListItem.Label]$VAR[Label_Footer_Year,  •  ,]</label>
                 <visible>[Container.Content(movies) | String.IsEqual(ListItem.DBtype,movie) | String.IsEqual(ListItem.DBtype,tvshow) | String.IsEqual(ListItem.DBtype,video)]</visible>
                 <visible>!$EXP[IsYoutube_Comments] + !$EXP[IsYoutubeItem] + !ListItem.IsParentFolder</visible>
                 <visible>![Container.Content(files) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType) + !$EXP[IsAnPlugin]]]</visible>
@@ -1884,7 +1884,7 @@
 
             <control type="label">
                 <include>Def_Info_Left_Line1</include>
-                <label>$INFO[ListItem.Title]$VAR[Label_Year,  •  ]$INFO[ListItem.VideoVersionName,  •  ,]</label>
+                <label>$INFO[ListItem.Title]$VAR[Label_Footer_Year,  •  ]$INFO[ListItem.VideoVersionName,  •  ,]</label>
                 <visible>Container.Content(movies) | String.IsEqual(ListItem.DBtype,movie)</visible>
                 <visible>ListItem.HasVideoVersions</visible>
             </control>
@@ -1896,7 +1896,7 @@
                 <height>64</height>
                 <align>left</align>
                 <font>MediumBold3</font>IsYoutubeItem
-                <label>$INFO[ListItem.TVShowTitle]$INFO[ListItem.Label,  •  ]$VAR[Label_Year,  •  ]</label>
+                <label>$INFO[ListItem.TVShowTitle]$INFO[ListItem.Label,  •  ]$VAR[Label_Footer_Year,  •  ]</label>
                 <visible>String.IsEqual(ListItem.DBtype,season)</visible>
             </control>
 
@@ -2090,7 +2090,7 @@
 
             <control type="label">
                 <include>Def_Info_Right_Line1</include>
-                <label>$VAR[Label_Year]$VAR[Label_Duration_Time_Check, • ,]</label>
+                <label>$VAR[Label_Footer_Year]$VAR[Label_Duration_Time_Check, • ,]</label>
                 <visible>!Control.IsVisible(50) + !Control.IsVisible(550) + !Control.IsVisible(56) + !Control.IsVisible(57)</visible>
                 <visible>$EXP[IsYoutubeItem]</visible>
             </control>
