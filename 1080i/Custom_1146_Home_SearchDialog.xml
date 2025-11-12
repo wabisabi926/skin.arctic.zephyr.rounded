@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<window type="dialog" id="1107">
+<window type="dialog" id="1146">
     <defaultcontrol always="true">9000</defaultcontrol>
 
     <!-- TMDBHELPER.WIDGETCONTAINER -->
@@ -7,9 +7,13 @@
     <include>Def_Clear_TMDbHelper_WidgetContainer_On_Load</include>
 
     <onload>ClearProperty(Launch_Search,Home)</onload>
+
+    <!-- HOME - CANCEL CLOCK - SLIDE OUT HOME MAIN MENU -->
+
+    <onload>CancelAlarm(power_menu_setfocus_399,true)</onload>
     <onload condition="$EXP[Has_Home_Menu_Auto_Slide_Out_Animation]">CancelAlarm(slide_out_setfocus_2011,true)</onload>
 
-    <onunload condition="!Window.IsVisible(DialogConfirm.xml) + Window.IsVisible(Home)">SetFocus(300)</onunload>
+    <onunload condition="!Window.IsVisible(DialogConfirm.xml) + Window.IsVisible(Home)">SetFocus(399)</onunload>
 
     <!-- <onunload condition="!String.IsEmpty(Control.GetLabel(9099).index(1))">RunScript(script.skinvariables,add_skinstring_history=SearchHistory,value=$INFO[Control.GetLabel(9099).index(1)])</onunload> -->
 

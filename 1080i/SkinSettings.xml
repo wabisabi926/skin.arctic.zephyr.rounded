@@ -4,6 +4,11 @@
 
     <onload>AlarmClock(SkinSettings,Control.SetFocus(3000,1,absolute),00:00,silent)</onload>
 
+    <!-- HOME - CANCEL CLOCK - SLIDE OUT HOME MAIN MENU -->
+
+    <onload>CancelAlarm(power_menu_setfocus_399,true)</onload>
+    <onload condition="$EXP[Has_Home_Menu_Auto_Slide_Out_Animation]">CancelAlarm(slide_out_setfocus_2011,true)</onload>
+
     <!-- TMDBHELPER.WIDGETCONTAINER -->
 
     <include>Def_Clear_TMDbHelper_WidgetContainer_On_Load</include>
@@ -1081,6 +1086,7 @@
                     <onclick condition="Skin.HasSetting(enabled.tmdb.helper.blur)">Skin.Reset(TMDbHelper.EnableBlur)</onclick>
                     <onclick condition="!Skin.HasSetting(enabled.tmdb.helper.blur)">Skin.SetBool(TMDbHelper.EnableBlur)</onclick>
                     <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                    <enable>Skin.HasSetting(enabled.tmdb.helper.service)</enable>
                 </control>
 
                 <!-- FADE TIME -->
