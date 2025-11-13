@@ -1820,7 +1820,11 @@
                 <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
 
                 <onclick condition="Skin.HasSetting(home.views.flix.autoplay.trailer) + $EXP[Trailer_Is_Playing] + !Skin.HasSetting(enable.trailer.playing.on.unfocus)">Stop</onclick>
+
+                <onclick condition="Skin.HasSetting(home.views.flix.autoplay.trailer) + $EXP[Trailer_Is_Playing] + !Skin.HasSetting(enable.trailer.playing.on.unfocus)">ClearProperty(Current_Trailer_Path,Home)</onclick>
+
                 <!-- <onclick condition="Skin.HasSetting(home.views.flix.autoplay.trailer) + $EXP[Trailer_Is_Playing] + !Skin.HasSetting(enable.trailer.playing.on.unfocus)">ClearProperty(Last_Trailer_Path,Home)</onclick> -->
+
                 <!-- <onclick>Close</onclick> -->
                 <onclick>Dialog.Close(all)</onclick>
                 <onclick condition="Window.IsVisible(1190)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190)</onclick>
@@ -1954,7 +1958,7 @@
                 <onclick condition="Player.HasMedia">PlayerControl(Stop)</onclick>
                 <onclick>SetProperty(TrailerFullscreenIsPlaying,1,Home)</onclick>
                 <onclick>SetFocus(7011)</onclick>
-                <onclick>$VAR[Path_Trailer]</onclick>
+                <onclick>$VAR[PlayMedia_Trailer]</onclick>
 
                 <!-- <onclick>Close</onclick> -->
                 <!-- <onclick condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.Path.Current))">RunScript(plugin.video.themoviedb.helper,close_dialog=1190)</onclick> -->
@@ -1979,13 +1983,12 @@
                     <param name="icon" value="buttonsdialogs/trailer.png" />
                 </include>
 
-                <onup condition="String.IsEmpty(ListItem.Trailer)">PlayMedia($ESCINFO[Window(Home).Property(TMDbHelper.ListItem.Trailer)],False,1)</onup>
-                <onup condition="!String.IsEmpty(ListItem.Trailer)">PlayMedia($INFO[ListItem.Trailer],1)</onup>
+                <onup>$VAR[PlayMedia_Trailer]</onup>
                 <onup condition="!Player.HasVideo">SetProperty(TrailerFullscreenIsPlaying,1,Home)</onup>
                 <onup>SetFocus(7012)</onup>
 
                 <onclick condition="Player.HasMedia">PlayerControl(Stop)</onclick>
-                <onclick>$VAR[Path_Trailer]</onclick>
+                <onclick>$VAR[PlayMedia_Trailer]</onclick>
                 <onclick>SetProperty(TrailerFullscreenIsPlaying,1,Home)</onclick>
                 <onclick>SetFocus(7012)</onclick>
             </control>

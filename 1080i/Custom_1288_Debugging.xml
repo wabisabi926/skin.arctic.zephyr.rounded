@@ -148,6 +148,8 @@
                     <label>$LOCALIZE[449] - TMDb CacheOnly</label>
                     <selected>!Skin.HasSetting(disable.tmdb.helper.cacheOnly)</selected>
                     <onclick>Skin.ToggleSetting(disable.tmdb.helper.cacheOnly)</onclick>
+                    <onclick condition="Skin.HasSetting(disable.tmdb.helper.cacheOnly)">Skin.Reset(TMDbHelper.DisableDefaultCacheOnly)</onclick>
+                    <onclick condition="!Skin.HasSetting(disable.tmdb.helper.cacheOnly)">Skin.SetBool(TMDbHelper.DisableDefaultCacheOnly)</onclick>
                     <onclick>SetProperty(reloadskin,1,Home)</onclick>
                     <enable>Skin.HasSetting(enabled.tmdb.helper.service)</enable>
                 </control>

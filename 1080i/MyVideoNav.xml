@@ -14,8 +14,12 @@
     <onunload condition="Control.HasFocus(5218)">Container.SetViewMode(521)</onunload>
     <onunload condition="Control.HasFocus(5228)">Container.SetViewMode(522)</onunload>
 
-    <onunload condition="Skin.HasSetting(home.views.flix.autoplay.trailer) + $EXP[Trailer_Is_Playing] + !Skin.HasSetting(enable.trailer.playing.on.unfocus) + !Window.Next(FullScreenVideo)">ClearProperty(Last_Trailer_Path,Home)</onunload>
+    <onunload condition="Skin.HasSetting(home.views.flix.autoplay.trailer) + $EXP[Trailer_Is_Playing] + !Skin.HasSetting(enable.trailer.playing.on.unfocus) + !Window.Next(FullScreenVideo)">ClearProperty(Current_Trailer_Path,Home)</onunload>
+
+    <!-- <onunload condition="Skin.HasSetting(home.views.flix.autoplay.trailer) + $EXP[Trailer_Is_Playing] + !Skin.HasSetting(enable.trailer.playing.on.unfocus) + !Window.Next(FullScreenVideo)">ClearProperty(Last_Trailer_Path,Home)</onunload> -->
+
     <onunload condition="Skin.HasSetting(home.views.flix.autoplay.trailer) + $EXP[Trailer_Is_Playing] + !Skin.HasSetting(enable.trailer.playing.on.unfocus) + !Window.Next(FullScreenVideo)">Stop</onunload>
+
     <onunload condition="Skin.HasSetting(home.views.flix.autoplay.trailer)">ClearProperty(ListItem_Trailer_Path,Home)</onunload>
     <onunload>ClearProperty(WallMode,Home)</onunload>
 

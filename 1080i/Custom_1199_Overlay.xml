@@ -2782,11 +2782,6 @@
             <!-- </include> -->
 
             <!-- <include content="Overlay_InfoLabel"> -->
-                <!-- <label> - Window(Home).Property(Current_Trailer_Path) : $INFO[Window(Home).Property(Current_Trailer_Path)]</label> -->
-                <!-- <textcolor>cyan</textcolor> -->
-            <!-- </include> -->
-
-            <!-- <include content="Overlay_InfoLabel"> -->
                 <!-- <label> - System.HasActiveModalDialog : TRUE</label> -->
                 <!-- <textcolor>magenta</textcolor> -->
                 <!-- <visible>System.HasActiveModalDialog</visible> -->
@@ -3354,6 +3349,17 @@
                 <!-- <label> - Window(Home).Property(WikiSearch) : $INFO[Window(Home).Property(WikiSearch)]</label> -->
                 <!-- <textcolor>magenta</textcolor> -->
             <!-- </include> -->
+
+            <include content="Overlay_InfoLabel">
+                <label> - TMDbHelper.DisableDefaultCacheOnly : FALSE</label>
+                <textcolor>green</textcolor>
+                <visible>!Skin.HasSetting(TMDbHelper.DisableDefaultCacheOnly)</visible>
+            </include>
+            <include content="Overlay_InfoLabel">
+                <label> - TMDbHelper.DisableDefaultCacheOnly : TRUE</label>
+                <textcolor>red</textcolor>
+                <visible>Skin.HasSetting(TMDbHelper.DisableDefaultCacheOnly)</visible>
+            </include>
 
             <include content="Overlay_InfoLabel">
                 <label> - Window(Home).Property(TrailerFullscreenIsPlaying) : $INFO[Window(Home).Property(TrailerFullscreenIsPlaying)]</label>

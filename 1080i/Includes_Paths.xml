@@ -124,9 +124,14 @@
     <!--        INFO DIALOG - TRAILER         -->
     <!-- =================================== -->
 
-    <variable name="Path_Trailer">
+    <variable name="PlayMedia_Trailer">
         <value condition="String.IsEmpty(ListItem.Trailer)">PlayMedia($ESCINFO[Window(Home).Property(TMDbHelper.ListItem.Trailer)],False,1)</value>
         <value>PlayMedia($INFO[ListItem.Trailer],1)</value>
+    </variable>
+
+    <variable name="Path_Trailer">
+        <value condition="String.IsEmpty(ListItem.Trailer)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Trailer)]</value>
+        <value>$INFO[ListItem.Trailer]</value>
     </variable>
 
     <!-- =================================== -->
