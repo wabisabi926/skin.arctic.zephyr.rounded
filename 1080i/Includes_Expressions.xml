@@ -95,7 +95,7 @@
 
     <!-- SHOW VIDEO IN HOME IN WINDOWS FLIX -->
 
-    <expression name="Video_Window_Home_Flix_Is_Active">!$EXP[Extended_Now_Playing_Is_Enable] + Skin.HasSetting(show.nowplaying.video.home.flix) + !Skin.HasSetting(hide.furniture.nowplaying.home)  + [[Window.IsVisible(Home) + [$EXP[Home_Is_Horizontal_Flix] | $EXP[Home_Is_Horizontal_Clean] | $EXP[Home_Is_Vertical_Flix]]] | Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(524)] + !$EXP[View_Info_Dialog] + !$EXP[Trailer_Window_Is_Active]</expression>
+    <expression name="Video_Window_Home_Flix_Is_Active">!$EXP[Extended_Now_Playing_Is_Enable] + Skin.HasSetting(show.nowplaying.video.home.flix) + !Skin.HasSetting(hide.furniture.nowplaying.home)  + [[Window.IsVisible(Home) + [$EXP[Home_Is_Horizontal_Flix] | $EXP[Home_Is_Horizontal_Clean] | $EXP[Home_Is_Vertical_Flix]]] | Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(524)] + !$EXP[View_Info_Dialog] + !$EXP[Trailer_Window_Is_Active] + !$EXP[Context_Menu_Trailer_Is_Launched]</expression>
 
     <!-- SHOW VIDEO IN WINDOWS VIEWS FLIX -->
 
@@ -400,15 +400,19 @@
     <expression name="IsVideo">Player.HasVideo + !VideoPlayer.Content(livetv)</expression>
     <expression name="MusicSeekbarIsVisible">!Window.IsVisible(musicosd) + [Player.ShowInfo | Player.Seeking | Player.HasPerformedSeek(3) | Player.Paused | Player.Forwarding | Player.Rewinding]</expression>
 
+    <!-- TRAILER FROM CONTEXT MENU -->
+
+    <expression name="Context_Menu_Trailer_Is_Launched">!String.IsEmpty(Window(Home).Property(TrailerFullscreenIsLaunched))</expression>
+
     <!-- AUTO TRAILER -->
 
-    <expression name="Trailer_Window_Is_Active">Skin.HasSetting(home.views.flix.autoplay.trailer) + [[Window.IsVisible(Home) + [$EXP[Home_Is_Horizontal_Flix] | $EXP[Home_Is_Horizontal_Clean] | $EXP[Home_Is_Vertical_Flix]]] | Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(524)] + !$EXP[View_Info_Dialog] + String.IsEqual(Window(Home).Property(Current_Trailer_Path),Player.FileNameAndPath) + !String.IsEmpty(Player.FileNameAndPath)</expression>
+    <expression name="Trailer_Window_Is_Active">Skin.HasSetting(home.views.flix.autoplay.trailer) + [[Window.IsVisible(Home) + [$EXP[Home_Is_Horizontal_Flix] | $EXP[Home_Is_Horizontal_Clean] | $EXP[Home_Is_Vertical_Flix]]] | Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(524)] + !$EXP[View_Info_Dialog] + String.IsEqual(Window(Home).Property(Current_Trailer_Path),Player.FileNameAndPath) + !String.IsEmpty(Player.FileNameAndPath) + !$EXP[Context_Menu_Trailer_Is_Launched]</expression>
 
     <expression name="Trailer_Is_Ready">Skin.HasSetting(home.views.flix.autoplay.trailer) + [Window.IsVisible(Home) | Window.IsVisible(MyVideoNav.xml) | $EXP[IsGameMode]] + !Control.HasFocus(300) + !Control.HasFocus(399) + !Player.HasMedia + !String.IsEmpty(Window(Home).Property(ListItem_Trailer_Path)) + !Window.IsVisible(script-globalsearch.xml) + !String.IsEqual(Window(Home).Property(Last_Trailer_Path),Window(Home).Property(ListItem_Trailer_Path)) + !System.IdleTime(30)</expression>
 
-    <expression name="Trailer_Waiting_For_Player">!String.IsEmpty(Window(Home).Property(Current_Trailer_Path)) + !String.IsEmpty(Window(Home).Property(Last_Trailer_Path)) + String.IsEmpty(Player.FileNameAndPath)</expression>
+    <expression name="Trailer_Waiting_For_Player">!String.IsEmpty(Window(Home).Property(Current_Trailer_Path)) + !String.IsEmpty(Window(Home).Property(Last_Trailer_Path)) + String.IsEmpty(Player.FileNameAndPath) + !$EXP[Context_Menu_Trailer_Is_Launched]</expression>
 
-    <expression name="Trailer_Is_Playing">String.IsEqual(Window(Home).Property(Current_Trailer_Path),Player.FileNameAndPath) + !String.IsEmpty(Player.FileNameAndPath)</expression>
+    <expression name="Trailer_Is_Playing">String.IsEqual(Window(Home).Property(Current_Trailer_Path),Player.FileNameAndPath) + !String.IsEmpty(Player.FileNameAndPath) + !$EXP[Context_Menu_Trailer_Is_Launched]</expression>
 
 
     <expression name="Debugging_AutoTrailer">Skin.HasSetting(home.views.flix.autoplay.trailer) + Skin.HasSetting(DebugInfo.extended)</expression>
