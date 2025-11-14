@@ -1263,8 +1263,8 @@
             <visible>String.IsEmpty(Window(Home).Property(Hide_On_Reload_Dialog_Info))</visible>
             <include>Animation_Dialog_Info_Visible_Fade_Conditional</include>
 
-            <include content="Animation_Common_Delay_Fade_In"><param name="delay" value="200" /></include>
-            <include>Animation_Common_Fade_Out</include>
+            <include condition="!$EXP[View_Kodi_Settings]" content="Animation_Common_Delay_Fade_In"><param name="delay" value="200" /></include>
+            <include condition="!$EXP[View_Kodi_Settings]">Animation_Common_Fade_Out</include>
 
             <!-- HEADER - LEFT - ICON - MAIN TITLE - SUB TILE -->
 
@@ -1515,8 +1515,8 @@
             <visible>!Window.IsActive(DialogNotification.xml)</visible>
             <visible>[Window.IsActive(Home) + $EXP[Extended_Now_Playing_Is_Enable]] | [!Skin.HasSetting(hide.furniture.nowplaying.views) + !Player.HasMedia] | Skin.HasSetting(hide.furniture.nowplaying.views)</visible>
 
-            <include content="Animation_Common_Delay_Fade_In"><param name="delay" value="200" /></include>
-            <include>Animation_Common_Fade_Out</include>
+            <include condition="!$EXP[View_Kodi_Settings]" content="Animation_Common_Delay_Fade_In"><param name="delay" value="200" /></include>
+            <include condition="!$EXP[View_Kodi_Settings]">Animation_Common_Fade_Out</include>
 
             <control type="grouplist">
 
@@ -1718,8 +1718,8 @@
             <include>Animation_Dialog_Info_Visible_Fade_Conditional</include>
             <include>Animation_Jumpbar_Visible_Fade_Conditional</include>
 
-            <include content="Animation_Common_Delay_Fade_In"><param name="delay" value="200" /></include>
-            <include>Animation_Common_Fade_Out</include>
+            <include condition="!$EXP[View_Kodi_Settings]" content="Animation_Common_Delay_Fade_In"><param name="delay" value="200" /></include>
+            <include condition="!$EXP[View_Kodi_Settings]">Animation_Common_Fade_Out</include>
 
             <!-- SLIDE DOWN - HOME - HIDE WITH NOWPLAYING - ENABLE -->
 
