@@ -75,6 +75,10 @@
 
     <expression name="Icon_Container_Addons">[Container.Content() | String.IsEqual(ListItem.FolderPath,addons://all/) | String.StartsWith(ListItem.Icon,DefaultFolder) | [String.StartsWith(Container.FolderPath,addons://) + String.IsEqual(ListItem.Icon,DefaultAddon.png)]]</expression>
 
+    <!-- SHOW WEATHER VIEWS -->
+
+    <expression name="Show_Weather_All_Views">Skin.HasSetting(show.furniture.clock.date.weather) + !Skin.HasSetting(show.clock.date.weather.home.only)</expression>
+
     <!-- SHOW SCRIPT SKINSHORTCUTS WIDGET MENU -->
 
     <expression name="Script_SkinShortcuts_Widget">[String.EndsWith(Window.Property(groupname),.1) | String.EndsWith(Window.Property(groupname),.3) | String.EndsWith(Window.Property(groupname),.4) | String.EndsWith(Window.Property(groupname),.5) | String.EndsWith(Window.Property(groupname),.6) | String.EndsWith(Window.Property(groupname),.7) | String.EndsWith(Window.Property(groupname),.8) | String.EndsWith(Window.Property(groupname),.9) | String.EndsWith(Window.Property(groupname),.10)]</expression>

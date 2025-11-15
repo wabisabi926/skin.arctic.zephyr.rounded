@@ -13,7 +13,7 @@
         <include>Background_Global</include>
         <include>Furniture_Header_Info</include>
         <include condition="!Skin.HasSetting(hide.furniture.nowplaying.views)">Furniture_Header_NowPlaying</include>
-        <include condition="!Skin.HasSetting(show.clock.date.weather.home.only)">Furniture_Footer_Clock_Right</include>
+        <include condition="$EXP[Show_Weather_All_Views]">Furniture_Footer_Clock_Right</include>
 
         <include>Hidden_Button_ReloadSkin</include>
 
@@ -342,6 +342,9 @@
                     <onclick condition="!Skin.HasSetting(show.home.header.clock.left)">Skin.Reset(home.show.menu.label.onfocus.icon)</onclick>
                     <enable>Skin.HasSetting(show.furniture.clock.date.weather)</enable>
                 </control>
+
+                <!-- ENABLE HOME HEADER LEFT CLOCK WEATHER - HOME ONLY -->
+
                 <control type="radiobutton" id="9268" description="Weather Bottom Clock Left">
                     <width>1278</width>
                     <visible>Container(3000).HasFocus(2)</visible>
@@ -1247,6 +1250,9 @@
                     <selected>Skin.HasSetting(show.time.format.hh.mm)</selected>
                     <onclick>Skin.ToggleSetting(show.time.format.hh.mm)</onclick>
                 </control>
+
+                <!-- SHOW WEATHER ALL VIEW -->
+
                 <control type="radiobutton" id="92633" description="Weather Bottom Clock Left">
                     <width>1278</width>
                     <visible>Container(3000).HasFocus(4)</visible>
@@ -1256,6 +1262,9 @@
                     <onclick>Skin.ToggleSetting(show.clock.date.weather.home.only)</onclick>
                     <enable>Skin.HasSetting(show.furniture.clock.date.weather)</enable>
                 </control>
+
+                <!-- SHOW - RATING - INFO TYPE OVER POSTER       -->
+
                 <control type="radiobutton" id="92631" description="Select media flags">
                     <width>1278</width>
                     <visible>Container(3000).HasFocus(4)</visible>
@@ -1265,6 +1274,9 @@
                     <onclick>Skin.ToggleSetting(show.furniture.video.rating.num.set.version)</onclick>
                     <onclick>SetProperty(reloadskin,1,Home)</onclick>
                 </control>
+
+                <!-- AUTOSCROLL - MAIN TITLE -->
+
                 <control type="radiobutton" id="92761">
                     <width>1278</width>
                     <visible>Container(3000).HasFocus(4)</visible>
@@ -1273,6 +1285,9 @@
                     <selected>Skin.HasSetting(labels.autoscroll)</selected>
                     <onclick>Skin.ToggleSetting(labels.autoscroll)</onclick>
                 </control>
+
+                <!-- AUTOSCROLL - PLOT -->
+
                 <control type="radiobutton" id="9850">
                     <width>1278</width>
                     <visible>Container(3000).HasFocus(4)</visible>
