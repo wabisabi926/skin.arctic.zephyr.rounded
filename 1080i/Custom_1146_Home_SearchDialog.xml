@@ -21,10 +21,6 @@
     <!-- <onunload condition="!String.IsEmpty(Control.GetLabel(312).index(1))">RunScript(script.skinvariables,add_skinstring_history=SearchHistory,value=$INFO[Control.GetLabel(312).index(1)])</onunload> -->
 
     <controls>
-        <!-- <include content="Background_Custom"> -->
-            <!-- <param name="Fanart_Custom" value="$INFO[Skin.String(fanart.fallback.search)]" /> -->
-        <!-- </include> -->
-
         <include>Background_Overlay</include>
 
         <control type="group">
@@ -251,7 +247,7 @@
 
             <control type="group">
                 <visible>[Control.HasFocus(9099) | Control.HasFocus(340) | Window.IsVisible(DialogSelect.xml)]</visible>
-                <top>562</top>
+                <top>542</top>
                 <left>30</left>
                 <width>80</width>
                 <height>80</height>
@@ -281,7 +277,7 @@
             <!-- EDIT BAR WIKIPEDIA -->
 
             <control type="grouplist">
-                <top>562</top>
+                <top>542</top>
                 <left>32</left>
                 <orientation>horizontal</orientation>
                 <control type="edit" id="9099">
@@ -317,19 +313,42 @@
 
             <!-- TIPS - FOOTER -->
 
-            <control type="label">
-                <top>638</top>
-                <right>987</right>
-                <height>50</height>
-                <font>Mini</font>
-                <scroll>true</scroll>
-                <scrollspeed>40</scrollspeed>
-                <scrollsuffix>  ••  </scrollsuffix>
-                <textcolor>Dark3</textcolor>
-                <label>31540</label>
-                <aligny>center</aligny>
-                <align>right</align>
+            <control type="grouplist">
                 <visible>[Control.HasFocus(9099) | Control.HasFocus(340)]</visible>
+                <visible>!String.IsEmpty(Control.GetLabel(9099).index(1))</visible>
+
+                <include>Animation_OSD_Fade_Tips</include>
+
+                <top>618</top>
+                <left>40</left>
+                <width>1400</width>
+                <height>50</height>
+                <align>left</align>
+
+                <itemgap>0</itemgap>
+                <orientation>horizontal</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
+
+                <!-- FOCUS SEEK BAR -->
+
+                <control type="image">
+                    <top>5</top>
+                    <width>40</width>
+                    <height>40</height>
+                    <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                    <texture flipy="false" colordiffuse="Dark3">special://skin/extras/icons/lightbulb.png</texture>
+                </control>
+                <control type="label">
+                    <height>50</height>
+                    <font>Mini</font>
+                    <scroll>true</scroll>
+                    <scrollspeed>40</scrollspeed>
+                    <scrollsuffix>  ••  </scrollsuffix>
+                    <textcolor>Dark3</textcolor>
+                    <label>31540</label>
+                    <aligny>center</aligny>
+                    <align>left</align>
+                </control>
             </control>
         </control>
     </controls>
