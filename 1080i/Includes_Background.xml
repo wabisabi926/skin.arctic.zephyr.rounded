@@ -43,16 +43,29 @@
     </variable>
 
     <include name="Windows_Video_Flix">
+
+        <!-- WINDOW VIDEO    -->
+
         <control type="videowindow">
-            <visible>[[$EXP[Trailer_Window_Is_Active] | $EXP[Video_Window_Home_Flix_Is_Active] | $EXP[Video_Window_Views_Flix_Is_Active]] + !$EXP[Extended_Now_Playing_Is_Visible]]</visible>
+            <visible>$EXP[Trailer_Window_Is_Active] | $EXP[Video_Window_Home_Flix_Is_Active] | $EXP[Video_Window_Views_Flix_Is_Active] | !String.IsEmpty(Window(Home).Property(Trailer_Fade_Background))</visible>
+            <!-- <visible>!$EXP[Extended_Now_Playing_Is_Visible] | !Skin.HasSetting(show.furniture.nowplaying.extended.home)</visible> -->
+
             <include condition="![$EXP[Home_Is_Horizontal_Clean] + Window.IsVisible(Home)]">Def_Trailer_Video_Window_Small</include>
             <include condition="$EXP[Home_Is_Horizontal_Clean] + Window.IsVisible(Home)">Def_Trailer_Video_Window_Full_Screen</include>
         </control>
-        <control type="image" description="Background">
+
+        <!-- BACKGROUND -->
+
+        <control type="image">
+            <visible>$EXP[Trailer_Window_Is_Active] | $EXP[Video_Window_Home_Flix_Is_Active] | $EXP[Video_Window_Views_Flix_Is_Active] | !String.IsEmpty(Window(Home).Property(Trailer_Fade_Background))</visible>
+            <!-- <visible>!$EXP[Extended_Now_Playing_Is_Visible] | !Skin.HasSetting(show.furniture.nowplaying.extended.home)</visible> -->
+
+            <visible>![$EXP[Home_Is_Horizontal_Clean] + Window.IsVisible(Home)]</visible>
+
             <animation effect="slide" start="0,0" end="0,-90" time="0" condition="Skin.HasSetting(home.views.flix.autoplay.trailer.custom.window.force)">Conditional</animation>
             <animation effect="slide" start="0,0" end="0,-50" time="0" condition="Skin.HasSetting(home.views.flix.autoplay.trailer.custom.window) + String.IsEqual(VideoPlayer.VideoAspect,1.85) + !String.IsEmpty(VideoPlayer.VideoAspect)">Conditional</animation>
             <animation effect="slide" start="0,0" end="0,-90" time="0" condition="Skin.HasSetting(home.views.flix.autoplay.trailer.custom.window) + !String.IsEqual(VideoPlayer.VideoAspect,1.85) + !String.IsEqual(VideoPlayer.VideoAspect,1.78) + !String.IsEqual(VideoPlayer.VideoAspect,1.66) + !String.IsEqual(VideoPlayer.VideoAspect,1.37) + !String.IsEqual(VideoPlayer.VideoAspect,1.33) + !String.IsEmpty(VideoPlayer.VideoAspect)">Conditional</animation>
-            <visible>[$EXP[Trailer_Window_Is_Active] | $EXP[Video_Window_Home_Flix_Is_Active] | $EXP[Video_Window_Views_Flix_Is_Active]] + !$EXP[Extended_Now_Playing_Is_Visible] + ![$EXP[Home_Is_Horizontal_Clean] + Window.IsVisible(Home)]</visible>
+
             <top>0</top>
             <include>Def_Dimensions_Fullscreen</include>
             <texture colordiffuse="Background">background/trailerwindow.png</texture>
