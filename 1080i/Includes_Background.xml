@@ -48,7 +48,7 @@
 
         <control type="videowindow">
             <visible>$EXP[Trailer_Window_Is_Active] | $EXP[Video_Window_Home_Flix_Is_Active] | $EXP[Video_Window_Views_Flix_Is_Active] | !String.IsEmpty(Window(Home).Property(Trailer_Fade_Background))</visible>
-            <visible>!$EXP[View_Info_Dialog]</visible>
+            <visible>!$EXP[View_Info_Dialog] + [[[$EXP[Home_Is_Flix] | $EXP[Home_Is_Horizontal_Clean]] + Window.IsVisible(Home)] | $EXP[View_Flix]]</visible>
 
             <include condition="![$EXP[Home_Is_Horizontal_Clean] + Window.IsVisible(Home)]">Def_Trailer_Video_Window_Small</include>
             <include condition="$EXP[Home_Is_Horizontal_Clean] + Window.IsVisible(Home)">Def_Trailer_Video_Window_Full_Screen</include>
@@ -58,7 +58,7 @@
 
         <control type="image">
             <visible>$EXP[Trailer_Window_Is_Active] | $EXP[Video_Window_Home_Flix_Is_Active] | $EXP[Video_Window_Views_Flix_Is_Active] | !String.IsEmpty(Window(Home).Property(Trailer_Fade_Background))</visible>
-            <visible>!$EXP[View_Info_Dialog]</visible>
+            <visible>!$EXP[View_Info_Dialog] + [$EXP[Home_Is_Flix] | $EXP[View_Flix]]</visible>
 
             <visible>![$EXP[Home_Is_Horizontal_Clean] + Window.IsVisible(Home)]</visible>
 

@@ -498,18 +498,13 @@
 
     <expression name="View_PVR">[Window.IsVisible(MyPVRGuide.xml) | Window.IsVisible(MyPVRChannels.xml) | Window.IsVisible(MyPVRTimers.xml) | Window.IsVisible(MyPVRRecordings.xml) | Window.IsVisible(MyPVRSearch.xml) | Window.IsVisible(MyPVRProviders.xml)]</expression>
 
-
-
-
-
-
     <expression name="MusicSeekbarIsVisible">!Window.IsVisible(musicosd) + [Player.ShowInfo | Player.Seeking | Player.HasPerformedSeek(3) | Player.Paused | Player.Forwarding | Player.Rewinding]</expression>
+
 
 
     <!-- ================================== -->
     <!--             CODEC AUDIO            -->
     <!-- ================================== -->
-
 
     <expression name="IsAudioCodecATMOS">String.Contains(ListItem.FileNameAndPath,atmos) | [[VideoPlayer.IsFullscreen | $EXP[Extended_Now_Playing_Is_Visible]] + String.Contains(Player.FileNameAndPath,atmos)]</expression>
 
