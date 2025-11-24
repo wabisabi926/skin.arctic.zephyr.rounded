@@ -1871,7 +1871,7 @@
     </variable>
 
     <include name="Object_TextureFocus">
-        <texturefocus colordiffuse="$PARAM[colordiffuse]" border="$PARAM[border]">$PARAM[texture]</texturefocus>
+        <texturefocus border="$PARAM[border]">$PARAM[texture]</texturefocus>
     </include>
 
     <include name="Texture_Shadow_20">
@@ -1886,9 +1886,11 @@
     </include>
 
     <include name="Texture_Button_confirm">
-        <texturenofocus border="12" colordiffuse="Black12">common/box12.png</texturenofocus>        <include content="Object_TextureFocus" condition="String.IsEmpty(Window(Home).Property(ReloadDone))">
+        <texturenofocus border="12" colordiffuse="Black12">common/box12.png</texturenofocus>
+
+        <include content="Object_TextureFocus" condition="String.IsEmpty(Window(Home).Property(ReloadDone))">
             <param name="border" value="12" />
-            <param name="texture" value="buttonsdialogs/box_v.png" />
+            <param name="texture" value="special://skin/extras/init/box_v.png" />
         </include>
         <include content="Object_TextureFocus" condition="!String.IsEmpty(Window(Home).Property(ReloadDone))">
             <param name="border" value="12" />
