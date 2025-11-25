@@ -20,8 +20,6 @@
 
     <onunload condition="Skin.HasSetting(home.views.flix.autoplay.trailer) + $EXP[Trailer_Is_Playing] + !Skin.HasSetting(enable.trailer.playing.on.unfocus) + !Window.Next(FullScreenVideo)">ClearProperty(Current_Trailer_Path,Home)</onunload>
 
-    <!-- <onunload condition="Skin.HasSetting(home.views.flix.autoplay.trailer) + $EXP[Trailer_Is_Playing] + !Skin.HasSetting(enable.trailer.playing.on.unfocus) + !Window.Next(FullScreenVideo)">ClearProperty(Last_Trailer_Path,Home)</onunload> -->
-
     <onunload condition="Skin.HasSetting(home.views.flix.autoplay.trailer) + $EXP[Trailer_Is_Playing] + !Skin.HasSetting(enable.trailer.playing.on.unfocus) + !Window.Next(FullScreenVideo)">Stop</onunload>
 
     <onunload condition="Skin.HasSetting(home.views.flix.autoplay.trailer)">ClearProperty(ListItem_Trailer_Path,Home)</onunload>
@@ -104,6 +102,7 @@
             </include>
 
             <!-- WORKAROUND FOR MYVIDEONAV.XML SELECT "SORT" FOR "LABAEL" -->
+
             <include>Def_Dialog_Menu_Hidden_Button_id2_id3</include>
 
             <control type="grouplist" id="9000">
@@ -207,7 +206,6 @@
                     <label>$LOCALIZE[582]:</label>
                     <label2>$INFO[Container.Viewmode]</label2>
                     <onclick>Runscript(script.skinvariables,action=buildviews,contentid=$VAR[Items_ViewMode_Switch],pluginname=$INFO[Container.PluginName])</onclick>
-                    <!-- <visible>!Control.IsVisible(5218) + !Control.IsVisible(5228)</visible> -->
                 </control>
 
             <!-- ALL VIEWS -->
@@ -494,16 +492,6 @@
                     <onclick>SetProperty(reloadskin,1,Home)</onclick>
                     <visible>Control.IsVisible(524)</visible>
                 </control>
-                <!-- <control type="radiobutton" id="90339" description="No Wrap"> -->
-                    <!-- <include>Def_Dialog_Menu_Button_Gradient_Select</include> -->
-                    <!-- <align>left</align> -->
-                    <!-- <label>$LOCALIZE[31555]</label> -->
-                    <!-- <selected>Skin.HasSetting(show.view.524.poster.tvshows)</selected> -->
-                    <!-- <onclick>Skin.ToggleSetting(show.view.524.poster.tvshows)</onclick> -->
-                    <!-- <onclick>SetProperty(reloadskin,1,Home)</onclick> -->
-                    <!-- <visible>Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible> -->
-                    <!-- <visible>Control.IsVisible(524)</visible> -->
-                <!-- </control> -->
                 <control type="radiobutton" id="90334" description="No Wrap">
                     <include>Def_Dialog_Menu_Button_Gradient_Select</include>
                     <label>$LOCALIZE[31473]</label>
@@ -681,20 +669,6 @@
                     <onclick>Skin.ToggleSetting(flip512rightleft)</onclick>
                     <visible>Control.IsVisible(512)</visible>
                 </control>
-
-                <!-- GLOBAL -->
-
-                <!-- <control type="button" id="55552"> -->
-                    <!-- <include>Def_Dialog_Menu_Button_Title</include> -->
-                    <!-- <label>31381</label> -->
-                <!-- </control> -->
-
-                <!-- <control type="button" id="9305"> -->
-                    <!-- <include>Def_Dialog_Menu_Button_Gradient_Select</include> -->
-                    <!-- <label>$LOCALIZE[5]</label> -->
-                    <!-- <align>left</align> -->
-                    <!-- <onclick>ActivateWindow(1109)</onclick> -->
-                <!-- </control> -->
 
                 <!-- ACTION -->
 

@@ -724,7 +724,6 @@
                 <align>left</align>
                 <textoffsetx>60</textoffsetx>
                 <radioposx>250</radioposx>
-                <!-- <textoffsety>78</textoffsety> -->
                 <font>Button</font>
                 <label>$PARAM[label]</label>
                 <visible>$PARAM[visible]</visible>
@@ -1230,10 +1229,6 @@
             <onup condition="String.IsEqual(Window(Home).Property(musiccontent),1)">9119</onup>
             <onup condition="String.IsEqual(Window(Home).Property(musiccontent),1)">SetProperty(focus_tracklist,1,Home)</onup>
 
-            <!-- <onup condition="String.IsEmpty(Window(Home).Property(musiccontent))">50</onup> -->
-
-            <!-- <onup condition="String.IsEqual(Window(Home).Property(musiccontent),8) + Integer.IsGreater(Container(9508).NumItems,1)">9508</onup> -->
-
             <onup condition="Control.HasFocus(9092) + !String.IsEqual(Window(Home).Property(Show_Disc),1) + !String.IsEmpty(ListItem.Art(discart)) + String.IsEqual(ListItem.DBType,album)">SetProperty(Show_Disc,1,Home)</onup>
             <onup condition="Control.HasFocus(9092) + String.IsEqual(Window(Home).Property(Show_Disc),1) + !String.IsEmpty(ListItem.Art(discart)) + !String.IsEmpty(ListItem.Art(back)) + String.IsEqual(ListItem.DBType,album)">SetProperty(Rotate_Cover,1,Home)</onup>
             <onup condition="Control.HasFocus(9092) + String.IsEqual(Window(Home).Property(Show_Disc),1) + !String.IsEmpty(ListItem.Art(discart)) + String.IsEmpty(ListItem.Art(back)) + String.IsEqual(ListItem.DBType,album)">ClearProperty(Show_Disc,Home)</onup>
@@ -1359,7 +1354,6 @@
 
                 <onclick>Dialog.Close(all)</onclick>
                 <onclick condition="String.IsEqual(ListItem.DBType,album)">AlarmClock(delay_activatewindow2,ActivateWindow(music,musicdb://albums/$INFO[ListItem.DBID]/,return),00:01,silent)</onclick>
-                <!-- <onclick condition="String.IsEqual(ListItem.DBType,song)">AlarmClock(delay_activatewindow2,ActivateWindow(music,$INFO[Container.FolderPath],return),00:01,silent)</onclick> -->
 
                 <include>Def_Button_Dimensions</include>
                 <include content="Def_Button_Textures">
@@ -1385,16 +1379,11 @@
                 <onclick condition="!String.IsEmpty(Window(Home).Property(show_info_song)) + String.IsEmpty(Window(Home).Property(show_info_album))">SetProperty(show_info_album,1,Home)</onclick>
                 <onclick condition="!String.IsEmpty(Window(Home).Property(show_info_song)) + !String.IsEmpty(Window(Home).Property(show_info_album))">SetProperty(show_info_artist,1,Home)</onclick>
 
-                <!-- <onclick>AlarmClock(Delay_sendclic12,SendClick(12),00:01,silent)</onclick> -->
-                <!-- <onclick>AlarmClock(Delay_sendclic12,SendClick(12),00:00,silent)</onclick> -->
-
                 <include>Def_Dialog_Info_On_Click_Music_Set_Absolute_0</include>
 
                 <onclick>SetFocus(290)</onclick>
                 <onclick>SetProperty(title_tempo,1,Home)</onclick>
-                <!-- <onclick>SetProperty(Hide_On_Reload_Dialog_Info,1,Home)</onclick> -->
                 <onclick>ClearProperty(last_music_focus,Home)</onclick>
-                <!-- <onclick>AlarmClock(Clear_last_music_focus,ClearProperty(last_music_focus,Home),00:01,silent)</onclick> -->
             </control>
             <control type="radiobutton" id="9002">
                 <visible>String.IsEqual(ListItem.DBType,artist)</visible>
@@ -1739,12 +1728,6 @@
             <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + !Container(9550).IsUpdating + String.IsEqual(ListItem.DBType,set)">9550</onup>
             <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + !Container(9550).IsUpdating + String.IsEqual(ListItem.DBType,set)">SetProperty(TMDbHelper.WidgetContainer,9550,Home)</onup>
 
-            <!-- CAST LIST - ON LINE - ONLY FOR SEASON -->
-
-            <!-- <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + !Container(9550).IsUpdating + string.IsEqual(ListItem.DBType,season)">SetProperty(last_video_focus,9550,Home)</onup> -->
-            <!-- <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + !Container(9550).IsUpdating + string.IsEqual(ListItem.DBType,season)">9550</onup> -->
-            <!-- <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + !Container(9550).IsUpdating + String.IsEqual(ListItem.DBType,season)">SetProperty(TMDbHelper.WidgetContainer,9550,Home)</onup> -->
-
             <!-- CAST LIST - ON LINE - WITH TMDB ONLINE -->
 
             <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + !Container(9550).IsUpdating + $EXP[CastOnLine] + [!$EXP[IsPluginItem] | $EXP[IsTMDbHelperItem] | $EXP[IsPluginShortlist] | $EXP[IsLibraryGenie]]">SetProperty(last_video_focus,9550,Home)</onup>
@@ -1768,12 +1751,6 @@
 
             <onup condition="String.IsEqual(Window(Home).Property(moviecontent),1) + !String.IsEqual(Window(Home).Property(Show_Disc),1) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.Art(discart))">SetProperty(Show_Disc,1,Home)</onup>
             <onup condition="String.IsEqual(Window(Home).Property(moviecontent),1) + String.IsEqual(Window(Home).Property(Show_Disc),1) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.Art(discart))">ClearProperty(Show_Disc,Home)</onup>
-
-            <!-- <onup condition="String.IsEqual(Window(Home).Property(moviecontent),10)">9550</onup> -->
-            <!-- <onup condition="String.IsEqual(Window(Home).Property(moviecontent),10)">SetProperty(TMDbHelper.WidgetContainer,9550,Home)</onup> -->
-
-            <!-- <onup condition="!String.IsEqual(ListItem.DBType,set) + String.IsEqual(Window(Home).Property(moviecontent),10)">9550</onup> -->
-            <!-- <onup condition="String.IsEqual(ListItem.DBType,set) + [String.IsEmpty(Window(Home).Property(moviecontent)) | String.IsEqual(Window(Home).Property(moviecontent),10)]">50</onup> -->
 
             <onup condition="String.IsEqual(Window(Home).Property(moviecontent),11) | String.IsEqual(Window(Home).Property(moviecontent),12) | String.IsEqual(Window(Home).Property(moviecontent),18) | String.IsEqual(Window(Home).Property(moviecontent),19) | [String.IsEmpty(Window(Home).Property(moviecontent)) + !Container(9550).IsUpdating + String.IsEqual(ListItem.DBType,set)]">Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onup>
 
@@ -1859,9 +1836,6 @@
 
                 <onclick condition="Skin.HasSetting(home.views.flix.autoplay.trailer) + $EXP[Trailer_Is_Playing] + !Skin.HasSetting(enable.trailer.playing.on.unfocus)">ClearProperty(Current_Trailer_Path,Home)</onclick>
 
-                <!-- <onclick condition="Skin.HasSetting(home.views.flix.autoplay.trailer) + $EXP[Trailer_Is_Playing] + !Skin.HasSetting(enable.trailer.playing.on.unfocus)">ClearProperty(Last_Trailer_Path,Home)</onclick> -->
-
-                <!-- <onclick>Close</onclick> -->
                 <onclick>Dialog.Close(all)</onclick>
                 <onclick condition="Window.IsVisible(1190)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190)</onclick>
                 <onclick condition="Window.IsVisible(1190) | [ListItem.IsCollection + String.IsEmpty(ListItem.DBID)]">$VAR[Def_Browse_List_Season_Episode_Set]</onclick>
@@ -1920,13 +1894,9 @@
 
                 <onclick condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(SetDirectorSelected))">SetProperty(SelectPerson,1,Home)</onclick>
 
-                <!-- <onclick condition="!String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(SetDirectorSelected))">SetProperty(isoninfo_director,1,Home)</onclick> -->
-
                 <onclick condition="!String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(SetDirectorSelected))">RunScript(plugin.video.themoviedb.helper,add_query=$INFO[Window(Home).Property(SetDirectorSelected)],tmdb_type=person,call_auto=1190$VAR[Path_Info_First_Item],return)</onclick>
 
                 <!-- SEARCH DIRECTOR INFO -->
-
-                <!-- <onclick condition="String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(Director_Query))">SetProperty(isoninfo_director,1,Home)</onclick> -->
 
                 <onclick condition="String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(Director_Query))">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=person&amp;tmdb_id=$INFO[Window(Home).Property(Director_Query)],call_auto=1190$VAR[Path_Info_First_Item],return)</onclick>
 
@@ -1995,9 +1965,6 @@
                 <onclick>SetProperty(TrailerFullscreenIsPlaying,1,Home)</onclick>
                 <onclick>SetFocus(7011)</onclick>
                 <onclick>$VAR[PlayMedia_Trailer]</onclick>
-
-                <!-- <onclick>Close</onclick> -->
-                <!-- <onclick condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.Path.Current))">RunScript(plugin.video.themoviedb.helper,close_dialog=1190)</onclick> -->
             </control>
 
             <!-- TRAILER - WINDOWED -->
@@ -2081,26 +2048,6 @@
 
                 <onfocus condition="!Skin.HasSetting(filter.video.only.local)">Skin.ToggleSetting(filter.video.only.local)</onfocus>
             </control>
-
-            <!-- CAST PICTURES -->
-
-            <!-- <control type="radiobutton" id="9054"> -->
-                <!-- <visible>String.IsEqual(ListItem.Property(tmdb_type),person)</visible> -->
-
-                <!-- <onfocus>SetProperty(last_video_focus,9054,Home)</onfocus>                 -->
-                <!-- <onfocus condition="!String.IsEqual(Window(Home).Property(moviecontent),13)">ClearProperty(moviecontent,Home)</onfocus> -->
-                <!-- <onfocus>SetProperty(moviecontent,13,Home)</onfocus> -->
-
-                <!-- <onfocus>ClearProperty(Show_Disc,Home)</onfocus> -->
-
-                <!-- <include>Def_Button_Dimensions</include> -->
-                <!-- <include content="Def_Button_Textures"> -->
-                    <!-- <param name="icon" value="buttonsdialogs/thumb.png" /> -->
-                <!-- </include> -->
-
-                <!-- <onclick>SetFocus(9554)</onclick> -->
-                <!-- <onclick>SetProperty(view_extended,1,Home)</onclick> -->
-            <!-- </control> -->
 
             <!-- MOVIES LIST BY DIRECTOR -->
 
@@ -2329,7 +2276,6 @@
                 <visible>!String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEmpty(ListItem.DBType)</visible>
                 <visible>[!String.IsEmpty(ListItem.Art(fanart)) + !Skin.HasSetting(hide.artwork.video.fanart)] | [!String.IsEmpty(ListItem.Art(landscape)) + !Skin.HasSetting(hide.artwork.video.landscape)] | Skin.HasSetting(showartwork.video.tmdbhelper)</visible>
                 <visible>!Container.Content(seasons)</visible>
-                <!-- <visible>!Integer.IsEqual(Container(9505).NumItems,0) + !Container(9505).IsUpdating</visible> -->
 
                 <onfocus>SetProperty(last_video_focus,9005,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,5,Home)</onfocus>
@@ -2350,7 +2296,6 @@
             <control type="radiobutton" id="9004">
                 <visible>!Skin.HasSetting(hide.button.video.youtube) + System.AddonIsEnabled(plugin.video.youtube)</visible>
                 <visible>[!String.IsEqual(ListItem.DBType,set) + !String.IsEqual(ListItem.DBType,video) + !String.IsEmpty(ListItem.DBType)] | String.IsEqual(ListItem.Property(tmdb_type),person) | $EXP[IsTMDbHelperItem]</visible>
-                <!-- <visible>!Integer.IsEqual(Container(9504).NumItems,0) + !Container(9504).IsUpdating</visible> -->
 
                 <onfocus>SetProperty(last_video_focus,9004,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,4,Home)</onfocus>
@@ -2728,7 +2673,6 @@
                 <visible>!Skin.HasSetting(hide.button.video.studio)</visible>
                 <visible>!Integer.IsEqual(Container(9503).NumItems,0) + !Container(9503).IsUpdating</visible>
                 <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)</visible>
-                <!-- <visible>!String.IsEmpty(Window(Home).Property(SetStudioSelected))</visible> -->
 
                 <onfocus>SetProperty(last_video_focus,9003,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,3,Home)</onfocus>
@@ -2775,23 +2719,9 @@
                 <onright>ClearProperty(OSDVideo_DONT_AUTO_CLOSE,Home)</onright>
             </control>
 
-            <!-- <control type="group"> -->
-                <!-- <visible>$PARAM[visible]</visible> -->
-                <!-- <include>Background_Global</include> -->
-                <!-- <include condition="!Skin.HasSetting(hide.furniture.nowplaying.views)">Furniture_Header_NowPlaying</include> -->
-
-                <!-- <control type="image" description="Background"> -->
-                    <!-- <include>Def_Dimensions_Fullscreen</include> -->
-                    <!-- <texture colordiffuse="Background">background/bg.jpg</texture> -->
-                    <!-- <animation effect="fade" start="100" end="85" condition="true">Conditional</animation> -->
-                    <!-- <visible>!Player.HasMedia + !$EXP[View_Info_Dialog]</visible> -->
-                <!-- </control> -->
-            <!-- </control> -->
-
             <control type="group">
                 <visible>$PARAM[visible]</visible>
                 <include>Animation_Common_Fade_In_Slide_Down_Bounce</include>
-                <!-- <include>Animation_Common_Fade_Out</include> -->
 
                 <top>View_List_Top</top>
                 <height>630</height>
@@ -2866,7 +2796,6 @@
             <include>Animation_Common_Fade_Out</include>
 
             <control type="image" description="Background">
-               <!-- <visible>String.IsEmpty(Skin.String(fanart.fallback))</visible> -->
                <include>Def_Dimensions_Fullscreen</include>
                <texture colordiffuse="Background">background/bg.jpg</texture>
                <animation effect="fade" start="100" end="95" condition="true">Conditional</animation>
@@ -2907,22 +2836,6 @@
             <visible>Player.HasVideo</visible>
             <visible>!String.IsEmpty(Window(Home).Property(VideoYoutubeIsPlaying)) | !String.IsEmpty(Window(Home).Property(TrailerFullscreenIsPlaying))</visible>
 
-            <!-- V1 -->
-
-            <!-- <include>Animation_Dialog_Info_Fade_In_250_Delay_200</include> -->
-            <!-- <include>Animation_Dialog_Info_Fade_Out_150</include> -->
-
-            <!-- V2 -->
-
-            <!-- <include>Animation_Dialog_Fade_In_Zoom</include> -->
-
-            <!-- <animation type="Hidden" reversible="false"> -->
-                <!-- <effect type="fade" start="100" end="0" time="200" delay="150" tween="sine" easing="in" /> -->
-                <!-- <effect type="zoom" start="100" end="80" time="200" delay="150" center="auto" tween="quadratic" easing="out" /> -->
-            <!-- </animation> -->
-
-            <!-- V3 -->
-
             <animation type="Visible" reversible="false">
                 <effect type="fade" start="0" end="100" time="300" delay="150" tween="sine" easing="in" />
                 <effect type="zoom" start="80" end="100" time="300" delay="150" center="auto" tween="sine" easing="out" />
@@ -2931,11 +2844,6 @@
                 <effect type="fade" start="100" end="0" time="300" delay="250" tween="cubic" easing="out" />
                 <effect type="zoom" start="100" end="80" time="300" delay="250" center="auto" tween="sine" easing="out" />
             </animation>
-
-            <!-- V4 -->
-
-            <!-- <include>Animation_Dialog_Menu_Top_Side</include> -->
-
 
             <control type="image">
                 <texture colordiffuse="black">common/white.png</texture>
@@ -2962,16 +2870,6 @@
                 <include>Def_Hidden_Button</include>
                 <texturenofocus />
                 <texturefocus />
-
-                <!-- <oninfo>9000</oninfo> -->
-                <!-- <oninfo>ClearProperty(VideoYoutubeIsPlaying,Home)</oninfo> -->
-                <!-- <oninfo condition="Player.HasVideo">Stop</oninfo> -->
-                <!-- <onclick condition="!Player.HasVideo">SetFocus(9000)</onclick> -->
-                <!-- <onclick condition="!Player.HasVideo">ClearProperty(VideoYoutubeIsPlaying,Home)</onclick> -->
-                <!-- <onfocus condition="!Player.HasVideo">SetFocus(9000)</onfocus> -->
-                <!-- <onunfocus>SetFocus(9000)</onunfocus> -->
-                <!-- <onunfocus>ClearProperty(VideoYoutubeIsPlaying,Home)</onunfocus> -->
-                <!-- <onunfocus condition="Player.HasVideo">Stop</onunfocus> -->
 
                 <!-- ON CLICK -->
 

@@ -93,9 +93,6 @@
                     <item id="5">
                         <label>31447</label>
                     </item>
-                    <!-- <item id="6"> -->
-                        <!-- <label>31222</label> -->
-                    <!-- </item> -->
                     <item id="7">
                         <label>31197</label>
                     </item>
@@ -375,9 +372,7 @@
                     <label>$LOCALIZE[31112]</label>
                     <selected>!Skin.HasSetting(hide.furniture.flags.vertical.widgets)</selected>
                     <onclick>Skin.ToggleSetting(hide.furniture.flags.vertical.widgets)</onclick>
-                    <!-- <onclick>SetProperty(reloadskin,1,Home)</onclick> -->
                     <visible>Skin.HasSetting(home.vertical)</visible>
-                    <!-- <enable>Skin.HasSetting(hide.home.menu)</enable> -->
                 </control>
                 <control type="radiobutton" id="9822">
                     <width>1278</width>
@@ -489,7 +484,6 @@
                     <label>$LOCALIZE[31501]</label>
                     <selected>Skin.HasSetting(homemenu.auto.back.to.main)</selected>
                     <onclick>Skin.ToggleSetting(homemenu.auto.back.to.main)</onclick>
-                    <!-- <enable>[$EXP[Home_Is_Horizontal] + !Skin.HasSetting(home.style.horizontal.clean)] | [$EXP[Home_Is_Vertical] + Skin.HasSetting(hide.home.menu)]</enable> -->
                 </control>
 
                 <!-- AUTO BACK TO MAIN FROM SUB MENU ONLY -->
@@ -887,15 +881,6 @@
                     <onclick>SetProperty(SelectType,genre_icons,Home)</onclick>
                     <onclick>RunScript(script.image.resource.select,property=genre.icons&amp;type=resource.images.moviegenreicons)</onclick>
                 </control>
-                <!-- <control type="button" id="9584" description="Studios"> -->
-                    <!-- <width>1278</width> -->
-                    <!-- <visible>Container(3000).HasFocus(13)</visible> -->
-                    <!-- <include>Def_Settings_Button_Gradient_Select_Right_Side</include> -->
-                    <!-- <label>31263</label> -->
-                    <!-- <label2>$VAR[Label_Setting_Studio_Icons]</label2> -->
-                    <!-- <onclick>SetProperty(SelectType,studio_logos,Home)</onclick> -->
-                    <!-- <onclick>RunScript(script.image.resource.select,property=studio.logos&amp;type=resource.images.studios)</onclick> -->
-                <!-- </control> -->
                 <control type="button" id="95841" description="Countries">
                     <width>1278</width>
                     <visible>Container(3000).HasFocus(13)</visible>
@@ -955,11 +940,6 @@
                     <include>Def_Settings_Button_Gradient_Select_Right_Side</include>
                     <label>31180</label>
                     <label2>$INFO[Skin.String(startupfanart.fallback)]</label2>
-                    <!-- <onclick>SetProperty(Dialog.1.Label,$LOCALIZE[16018])</onclick> -->
-                    <!-- <onclick>SetProperty(Dialog.1.BuiltIn,Skin.Reset(startupfanart.fallback))</onclick> -->
-                    <!-- <onclick>SetProperty(Dialog.2.Label,$LOCALIZE[31198])</onclick> -->
-                    <!-- <onclick>SetProperty(Dialog.2.BuiltIn,Skin.SetImage(startupfanart.fallback))</onclick> -->
-                    <!-- <onclick>RunScript(script.embuary.helper,action=createselect,header=$LOCALIZE[31180])</onclick> -->
                     <onclick>Skin.SetImage(startupfanart.fallback)</onclick>
                     <enable>!Skin.HasSetting(disable.startup.window)</enable>
                 </control>
@@ -1008,36 +988,6 @@
                     <selected>Skin.HasSetting(hide.global.shadows)</selected>
                     <onclick>Skin.ToggleSetting(hide.global.shadows)</onclick>
                 </control>
-
-            <!-- ============================= -->
-            <!--       MENU - BACKGROUND       -->
-            <!-- ============================= -->
-
-
-                <!--  MENU TITLE - Effect presets -->
-
-                <!-- <control type="label" id="97101" description="Backup"> -->
-                    <!-- <visible>Container(3000).HasFocus(3)</visible> -->
-                    <!-- <textoffsetx>14</textoffsetx> -->
-                    <!-- <font>Button</font> -->
-                    <!-- <align>left</align> -->
-                    <!-- <width>1278</width> -->
-                    <!-- <textcolor>$VAR[Color_Label_Settings_Title]</textcolor> -->
-                    <!-- <height>70</height> -->
-                   <!-- <label>31507</label> -->
-                <!-- </control> -->
-
-                <!-- SET CUSTOM SETTINS -->
-
-                <!-- <control type="button" id="97102" description="Set Custom Colour"> -->
-                    <!-- <width>1278</width> -->
-                    <!-- <visible>Container(3000).HasFocus(3)</visible> -->
-                    <!-- <include>Def_Settings_Button_Gradient_Select_Right_Side</include> -->
-                    <!-- <label>$LOCALIZE[31457]</label> -->
-                    <!-- <label2>$VAR[Label_Setting_Color]</label2> -->
-                    <!-- <onclick>SetProperty(includesetting,Value_Color_Settings,Home)</onclick> -->
-                    <!-- <onclick>ActivateWindow(1248)</onclick> -->
-                <!-- </control> -->
 
             <!-- ============================= -->
             <!--      BACKGROUND - GLOBAL      -->
@@ -1150,7 +1100,6 @@
                     <label>$LOCALIZE[31519] ($LOCALIZE[10000])</label>
                     <selected>Skin.HasSetting(home.enable.menu.background)</selected>
                     <onclick>Skin.ToggleSetting(home.enable.menu.background)</onclick>
-                    <!-- <enable>Skin.HasSetting(hide.global.fanart)</enable> -->
                 </control>
 
             <!--  MENU TITLE - HOME FLIX SETTINGS -->
@@ -1895,7 +1844,6 @@
                     <label>$LOCALIZE[31564]</label>
                     <selected>Skin.HasSetting(show.nowplaying.video.view.flix)</selected>
                     <onclick>Skin.ToggleSetting(show.nowplaying.video.view.flix)</onclick>
-                    <!-- <visible>!Skin.HasSetting(hide.furniture.nowplaying.home)</visible> -->
                 </control>
                 <control type="button" id="97430" description="Auto Trailer Black Bars">
                     <width>1278</width>
@@ -2068,33 +2016,6 @@
                     <onclick>Skin.ToggleSetting(enable.artist.slideshow.animate)</onclick>
                     <enable>Skin.HasSetting(enable.osd.music.visualisation.fanart) | [!Skin.HasSetting(disable.artist.slideshow) + System.AddonIsEnabled(script.artistslideshow)]</enable>
                 </control>
-
-                <!-- <control type="button" id="92281" description="Animate Artist slideshow"> -->
-                    <!-- <width>1278</width> -->
-                    <!-- <visible>Container(3000).HasFocus(7)</visible> -->
-                    <!-- <include>Def_Settings_Button_Gradient_Select_Right_Side</include> -->
-                    <!-- <label>$LOCALIZE[250]:</label> -->
-                    <!-- <label2 fallback="424">$VAR[Label_OSD_Music_Visualisation]</label2> -->
-                    <!-- <onclick>SendClick(500)</onclick> -->
-                <!-- </control> -->
-                <!-- <control type="button" id="92282" description="Animate Artist slideshow"> -->
-                    <!-- <width>1278</width> -->
-                    <!-- <visible>Container(3000).HasFocus(7)</visible> -->
-                    <!-- <include>Def_Settings_Button_Gradient_Select_Right_Side</include> -->
-                    <!-- <label>$LOCALIZE[13388]:</label> -->
-                    <!-- <label2>$VAR[Label_Setting_OSD_Music_Visualisation_Present]</label2> -->
-                    <!-- <onclick>ActivateWindow(visualisationpresetlist)</onclick> -->
-                    <!-- <enable>Visualisation.HasPresets</enable> -->
-                <!-- </control> -->
-                <!-- <control type="button" id="92283" description="Animate Artist slideshow"> -->
-                    <!-- <width>1278</width> -->
-                    <!-- <visible>Container(3000).HasFocus(7)</visible> -->
-                    <!-- <include>Def_Settings_Button_Gradient_Select_Right_Side</include> -->
-                    <!-- <label>$LOCALIZE[5]</label> -->
-                    <!-- <onclick>Addon.Default.OpenSettings(xbmc.player.musicviz)</onclick> -->
-                    <!-- <enable>!String.IsEmpty(Visualisation.Name)</enable> -->
-                <!-- </control> -->
-
                 <control type="radiobutton" id="9227" description="Show slideshow in background">
                     <width>1278</width>
                     <visible>Container(3000).HasFocus(7)</visible>
