@@ -2009,7 +2009,6 @@
                 <label>$LOCALIZE[19076] $INFO[Container(44025).NumItems,  •  , $LOCALIZE[31073]]</label>
                 <visible>[Container.Content(movies) + String.IsEmpty(ListItem.DBType)] | Container.Content(genres) | Container.Content(years) | Container.Content(countries) | Container.Content(studios) | Container.Content(videoversions) | Container.Content(tags) | Container.Content(files) | Container.Content(images)</visible>
                 <visible>ListItem.IsFolder + !ListItem.IsParentFolder</visible>
-                <!-- <visible>ListItem.IsFolder</visible> -->
                 <visible>Integer.IsGreater(Container(44025).NumItems,1)</visible>
                 <visible>!Control.IsVisible(523) + !Control.IsVisible(521)</visible>
             </control>
@@ -2803,7 +2802,6 @@
                 <visible>!ListItem.IsCollection + Skin.HasSetting(show.flags.rating.imdb) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
                 <visible>$EXP[Condition_Flag_IMDb_Rating]</visible>
                 <width>70</width>
-                <!-- <left>30</left> -->
                 <include>Def_Flag_Image</include>
                 <texture background="true">flags/rating/color/imdb/imdb.png</texture>
             </control>
@@ -2892,27 +2890,6 @@
                 <texture>$INFO[ListItem.Property(SubtitleLanguage.2),flags/lang/32x32/,.png]</texture>
                 <visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.2))</visible>
             </control>
-            <!-- <control type="image"> -->
-                <!-- <top>20</top> -->
-                <!-- <width>32</width> -->
-                <!-- <height>28</height> -->
-                <!-- <texture>$INFO[ListItem.Property(SubtitleLanguage.3),flags/lang/32x32/,.png]</texture> -->
-                <!-- <visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.3))</visible> -->
-            <!-- </control> -->
-            <!-- <control type="image"> -->
-                <!-- <top>20</top> -->
-                <!-- <width>32</width> -->
-                <!-- <height>28</height> -->
-                <!-- <texture>$INFO[ListItem.Property(SubtitleLanguage.4),flags/lang/32x32/,.png]</texture> -->
-                <!-- <visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.4))</visible> -->
-            <!-- </control> -->
-            <!-- <control type="image"> -->
-                <!-- <top>20</top> -->
-                <!-- <width>32</width> -->
-                <!-- <height>28</height> -->
-                <!-- <texture>$INFO[ListItem.Property(SubtitleLanguage.5),flags/lang/32x32/,.png]</texture> -->
-                <!-- <visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.5))</visible> -->
-            <!-- </control> -->
             <control type="image">
                 <top>20</top>
                 <width>20</width>
@@ -2955,27 +2932,6 @@
                 <texture>$INFO[ListItem.Property(AudioLanguage.2),flags/lang/32x32/,.png]</texture>
                 <visible>!String.IsEmpty(ListItem.Property(AudioLanguage.2)) + !String.IsEqual(ListItem.Property(AudioLanguage.1),und)</visible>
             </control>
-            <!-- <control type="image"> -->
-                <!-- <top>20</top> -->
-                <!-- <width>32</width> -->
-                <!-- <height>28</height> -->
-                <!-- <texture>$INFO[ListItem.Property(AudioLanguage.3),flags/lang/32x32/,.png]</texture> -->
-                <!-- <visible>!String.IsEmpty(ListItem.Property(AudioLanguage.3)) + !String.IsEqual(ListItem.Property(AudioLanguage.1),und)</visible> -->
-            <!-- </control> -->
-            <!-- <control type="image"> -->
-                <!-- <top>20</top> -->
-                <!-- <width>32</width> -->
-                <!-- <height>28</height> -->
-                <!-- <texture>$INFO[ListItem.Property(AudioLanguage.4),flags/lang/32x32/,.png]</texture> -->
-                <!-- <visible>!String.IsEmpty(ListItem.Property(AudioLanguage.4)) + !String.IsEqual(ListItem.Property(AudioLanguage.1),und)</visible> -->
-            <!-- </control> -->
-            <!-- <control type="image"> -->
-                <!-- <top>20</top> -->
-                <!-- <width>32</width> -->
-                <!-- <height>28</height> -->
-                <!-- <texture>$INFO[ListItem.Property(AudioLanguage.5),flags/lang/32x32/,.png]</texture> -->
-                <!-- <visible>!String.IsEmpty(ListItem.Property(AudioLanguage.5)) + !String.IsEqual(ListItem.Property(AudioLanguage.1),und)</visible> -->
-            <!-- </control> -->
             <control type="image">
                 <top>20</top>
                 <width>20</width>
@@ -3565,9 +3521,6 @@
             <include content="Animation_Common_Delay_Fade_In"><param name="delay" value="200" /></include>
             <include>Animation_Dialog_Info_Fade_Out_150</include>
 
-            <!-- <animation effect="fade" start="100" end="0" time="300" reversible="false">WindowClose</animation> -->
-            <!-- <include>Animation_Extended_Info_Focus_Fade_In_350_Delay_300</include> -->
-
             <top>40</top>
             <left>40</left>
 
@@ -3586,18 +3539,6 @@
                 <height>88</height>
                 <texture colordiffuse="PanelWhite100" border="8">$VAR[Image_Header_Dialog_Info_Icon]</texture>
             </control>
-
-            <!-- DIRECTOR PICTURE -->
-
-             <!-- <control type="image"> -->
-                <!-- <top>76</top> -->
-                <!-- <left>76</left> -->
-                <!-- <width>88</width> -->
-                <!-- <height>88</height> -->
-                <!-- <bordersize>2</bordersize> -->
-                <!-- <aspectratio scalediffuse="false">scale</aspectratio> -->
-                <!-- <texture diffuse="diffuse/circle_50.png" colordiffuse="PanelWhite100">$VAR[Image_Director_Icon]</texture> -->
-            <!-- </control>                -->
 
             <!-- HEADER - MAIN TITLE -->
 
@@ -3639,8 +3580,6 @@
             <include>Animation_Extended_Info_Focus_Fade_In_350_Delay_300</include>
             <include>Animation_Dialog_Info_Fade_Out_150</include>
 
-            <!-- <include>Animation_Extended_Info_Video_Clearlogo_Fade_In</include> -->
-
             <centertop>110</centertop>
             <right>View_List_Side</right>
             <height>ClearLogoMaxHeight</height>
@@ -3671,7 +3610,6 @@
 
             <aspectratio align="right">keep</aspectratio>
             <texture background="true">$VAR[Image_Dialog_Info_Music_Ext_Crop_ClearLogo]</texture>
-            <!-- <texture background="true">$INFO[Container($PARAM[controlid]).ListItem.Art(artist.clearlogo)]</texture> -->
         </control>
     </include>
 
@@ -3684,9 +3622,6 @@
 
             <include content="Animation_Common_Delay_Fade_In"><param name="delay" value="200" /></include>
             <include>Animation_Dialog_Info_Fade_Out_150</include>
-
-            <!-- <animation effect="fade" start="100" end="0" time="300" reversible="false">WindowClose</animation>  -->
-            <!-- <include>Animation_Extended_Info_Focus_Fade_In_350_Delay_300</include> -->
 
             <align>left</align>
             <left>View_List_Side</left>
@@ -3905,9 +3840,6 @@
             <include content="Animation_Common_Delay_Fade_In"><param name="delay" value="200" /></include>
             <include>Animation_Dialog_Info_Fade_Out_150</include>
 
-            <!-- <animation effect="fade" start="100" end="0" time="300" reversible="false">WindowClose</animation>      -->
-            <!-- <include>Animation_Extended_Info_Focus_Fade_In_350_Delay_300</include> -->
-
             <top>910</top>
             <align>left</align>
             <left>View_List_Side</left>
@@ -4076,7 +4008,6 @@
                 <control type="image">
                     <visible>[!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating)) | !String.IsEmpty(Container($PARAM[controlid]).ListItem.Rating(imdb))] + !Container($PARAM[controlid]).ListItem.IsCollection + Skin.HasSetting(show.flags.rating.imdb) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
                     <width>70</width>
-                    <!-- <left>30</left> -->
                     <include>Def_Flag_Image</include>
                     <texture colordiffuse="Dark2" background="true">flags/rating/white/imdb/imdb_white.png</texture>
                     <visible>![Control.HasFocus(9579) | Control.HasFocus(95797)]</visible>
@@ -4291,7 +4222,6 @@
                 <control type="image">
                     <visible>[!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating)) | !String.IsEmpty(Container($PARAM[controlid]).ListItem.Rating(imdb))] + !Container($PARAM[controlid]).ListItem.IsCollection + Skin.HasSetting(show.flags.rating.imdb) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
                     <width>70</width>
-                    <!-- <left>30</left> -->
                     <include>Def_Flag_Image</include>
                     <texture background="true">flags/rating/color/imdb/imdb.png</texture>
                     <visible>![Control.HasFocus(9579) | Control.HasFocus(95797)]</visible>
@@ -4377,27 +4307,6 @@
                 <texture>$INFO[Container($PARAM[controlid]).ListItem.Property(SubtitleLanguage.2),flags/lang/32x32/,.png]</texture>
                 <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Property(SubtitleLanguage.2))</visible>
             </control>
-            <!-- <control type="image"> -->
-                <!-- <top>20</top> -->
-                <!-- <width>32</width> -->
-                <!-- <height>28</height> -->
-                <!-- <texture>$INFO[Container($PARAM[controlid]).ListItem.Property(SubtitleLanguage.3),flags/lang/32x32/,.png]</texture> -->
-                <!-- <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Property(SubtitleLanguage.3))</visible> -->
-            <!-- </control> -->
-            <!-- <control type="image"> -->
-                <!-- <top>20</top> -->
-                <!-- <width>32</width> -->
-                <!-- <height>28</height> -->
-                <!-- <texture>$INFO[Container($PARAM[controlid]).ListItem.Property(SubtitleLanguage.4),flags/lang/32x32/,.png]</texture> -->
-                <!-- <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Property(SubtitleLanguage.4))</visible> -->
-            <!-- </control> -->
-            <!-- <control type="image"> -->
-                <!-- <top>20</top> -->
-                <!-- <width>32</width> -->
-                <!-- <height>28</height> -->
-                <!-- <texture>$INFO[Container($PARAM[controlid]).ListItem.Property(SubtitleLanguage.5),flags/lang/32x32/,.png]</texture> -->
-                <!-- <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Property(SubtitleLanguage.5))</visible> -->
-            <!-- </control> -->
             <control type="image">
                 <top>20</top>
                 <width>20</width>
@@ -4440,27 +4349,6 @@
                 <texture>$INFO[Container($PARAM[controlid]).ListItem.Property(AudioLanguage.2),flags/lang/32x32/,.png]</texture>
                 <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Property(AudioLanguage.2)) + !String.IsEqual(Container($PARAM[controlid]).ListItem.Property(AudioLanguage.1),und)</visible>
             </control>
-            <!-- <control type="image"> -->
-                <!-- <top>20</top> -->
-                <!-- <width>32</width> -->
-                <!-- <height>28</height> -->
-                <!-- <texture>$INFO[Container($PARAM[controlid]).ListItem.Property(AudioLanguage.3),flags/lang/32x32/,.png]</texture> -->
-                <!-- <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Property(AudioLanguage.3)) + !String.IsEqual(Container($PARAM[controlid]).ListItem.Property(AudioLanguage.1),und)</visible> -->
-            <!-- </control> -->
-            <!-- <control type="image"> -->
-                <!-- <top>20</top> -->
-                <!-- <width>32</width> -->
-                <!-- <height>28</height> -->
-                <!-- <texture>$INFO[Container($PARAM[controlid]).ListItem.Property(AudioLanguage.4),flags/lang/32x32/,.png]</texture> -->
-                <!-- <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Property(AudioLanguage.4)) + !String.IsEqual(Container($PARAM[controlid]).ListItem.Property(AudioLanguage.1),und)</visible> -->
-            <!-- </control> -->
-            <!-- <control type="image"> -->
-                <!-- <top>20</top> -->
-                <!-- <width>32</width> -->
-                <!-- <height>28</height> -->
-                <!-- <texture>$INFO[Container($PARAM[controlid]).ListItem.Property(AudioLanguage.5),flags/lang/32x32/,.png]</texture> -->
-                <!-- <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Property(AudioLanguage.5)) + !String.IsEqual(Container($PARAM[controlid]).ListItem.Property(AudioLanguage.1),und)</visible> -->
-            <!-- </control> -->
             <control type="image">
                 <top>20</top>
                 <width>20</width>
@@ -4637,12 +4525,6 @@
 
                 <include condition="!Skin.HasSetting(hide.flags.music.rating)">Def_Flags_Furniture_Small_Ext</include>
 
-                <!-- <include content="Def_Flags_Furniture_Small" condition="!Skin.HasSetting(hide.flags.music.rating)"> -->
-                    <!-- <param name="Star" value="FlagstarSong" /> -->
-                    <!-- <param name="visible" value="!Skin.HasSetting(enable.flags.rating.numeric)" /> -->
-                    <!-- <param name="color" value="Dark1" /> -->
-                <!-- </include> -->
-
                 <!-- RATING - LABEL -->
 
                 <control type="label">
@@ -4806,12 +4688,6 @@
                 <!-- RATING - STAR -->
 
                 <include condition="!Skin.HasSetting(hide.flags.music.rating)">Def_Flags_Furniture_Small_Ext</include>
-
-                <!-- <include content="Def_Flags_Furniture_Small" condition="!Skin.HasSetting(hide.flags.music.rating)"> -->
-                    <!-- <param name="Star" value="FlagstarSong" /> -->
-                    <!-- <param name="visible" value="!Skin.HasSetting(enable.flags.rating.numeric)" /> -->
-                    <!-- <param name="color" value="$VAR[Color_Stars_User_Rating_Override]" /> -->
-                <!-- </include> -->
 
                 <!-- RATING - LABEL -->
 

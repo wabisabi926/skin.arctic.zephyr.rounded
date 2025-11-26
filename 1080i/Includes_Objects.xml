@@ -9,7 +9,6 @@
         <texturefocus />
         <texturenofocus />
         <font />
-        <!-- <visible allowhiddenfocus="true">False</visible> -->
     </include>
 
     <include name="Def_Hidden_ListControl">
@@ -311,40 +310,6 @@
                 <width>$PARAM[size]</width>
                 <height>$PARAM[size]</height>
 
-                <!-- PLAYING -->
-
-                <!-- <control type="image" description="Back"> -->
-                    <!-- <left>0</left> -->
-                    <!-- <centertop>50%</centertop> -->
-                    <!-- <width>100</width> -->
-                    <!-- <height>100</height> -->
-                    <!-- <aspectratio align="center" aligny="center">keep</aspectratio> -->
-                    <!-- <texture>dialog/loading-back.png</texture> -->
-                    <!-- <animation effect="fade" start="100" end="0" time="500" condition="Player.Playing">Conditional</animation> -->
-                    <!-- <visible>Player.Playing</visible> -->
-                <!-- </control> -->
-                <!-- <control type="image" description="Play"> -->
-                    <!-- <left>0</left> -->
-                    <!-- <centertop>50%</centertop> -->
-                    <!-- <width>100</width> -->
-                    <!-- <height>100</height> -->
-                    <!-- <aspectratio align="center" aligny="center">keep</aspectratio> -->
-                    <!-- <texture colordiffuse="FFFFFFFF">nowplaying/play.png</texture> -->
-                    <!-- <animation effect="fade" start="100" end="0" time="500" condition="Player.Playing">Conditional</animation> -->
-                    <!-- <visible>Player.Playing</visible> -->
-                    <!-- <include>Animation_Rotate_Icon_Play</include> -->
-                <!-- </control> -->
-                <!-- <control type="image"> -->
-                    <!-- <left>0</left> -->
-                    <!-- <centertop>50%</centertop> -->
-                    <!-- <width>100</width> -->
-                    <!-- <height>100</height> -->
-                    <!-- <texture colordiffuse="$VAR[Color_Loading_Spinner]">$INFO[Control.GetLabel(933),progress/circle_info/p,.png]</texture> -->
-                    <!-- <aspectratio align="center">keep</aspectratio> -->
-                    <!-- <animation effect="fade" start="100" end="0" time="500" condition="Player.Playing">Conditional</animation> -->
-                    <!-- <visible>Player.Playing</visible> -->
-                <!-- </control> -->
-
                 <!-- BACKGROUND -->
 
                 <control type="image" description="Back">
@@ -506,7 +471,6 @@
                 <texturesliderbarfocus border="4" colordiffuse="$PARAM[texturesliderbarfocus_colordiffuse]">$PARAM[texturesliderbarfocus]</texturesliderbarfocus>
                 <orientation>vertical</orientation>
                 <showonepage>false</showonepage>
-                <!-- <animation effect="fade" start="0" end="100" time="400" condition="Container.Scrolling | Control.HasFocus($PARAM[scrollid])">Conditional</animation> -->
                 <animation effect="fade" start="100" end="0" time="400" condition="!Control.HasFocus($PARAM[scrollid]) + !Container.Scrolling + $PARAM[animation_fade_hide]">Conditional</animation>
             </control>
         </definition>
@@ -535,15 +499,10 @@
                 <onback>$PARAM[onback]</onback>
 
                 <orientation>horizontal</orientation>
-                <!-- <showonepage>false</showonepage> -->
 
                 <texturesliderbackground border="4" colordiffuse="$PARAM[colordiffuse_texturesliderbackground]">scrollbar/scrollh.png</texturesliderbackground>
                 <texturesliderbar border="4" colordiffuse="$PARAM[colordiffuse_texturesliderbar]">scrollbar/scrollh.png</texturesliderbar>
                 <texturesliderbarfocus border="4">special://profile/addon_data/script.texturemaker/ArcticZephirRounded/scrollh_h.png</texturesliderbarfocus>
-
-                <!-- <animation effect="fade" start="0" end="100" time="400" condition="Container.Scrolling | Control.HasFocus($PARAM[scrollid]7)">Conditional</animation> -->
-                <!-- <animation effect="fade" start="100" end="0" time="400" condition="!Container.Scrolling + !Control.HasFocus($PARAM[scrollid])">Conditional</animation> -->
-
                 <animation effect="fade" start="100" end="0" time="100" condition="!Control.HasFocus($PARAM[scrollid]) + $PARAM[animation_fade_hide]">Conditional</animation>
             </control>
         </definition>
@@ -747,7 +706,6 @@
 
             <control type="button" id="390001">
                 <include>Def_Hidden_Button</include>
-                <!-- <visible allowhiddenfocus="true">false</visible> -->
                 <onup>50</onup>
                 <ondown>50</ondown>
                 <onback>50</onback>

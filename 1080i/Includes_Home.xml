@@ -919,8 +919,6 @@
                 <include>Animation_Home_Clean_Fade_Video_Is_Displaying</include>
 
                 <control type="group">
-                    <!-- <visible>!String.IsEqual(ListItem.Property(LabelMore),more)</visible> -->
-
                     <left>View_List_Side</left>
 
                     <!-- HOME CLEAN -->
@@ -1036,7 +1034,6 @@
                 <include content="Def_Home_Label_Widget_Sub_Title_Year"><param name="id" value="$PARAM[id]" /></include>
                 <include content="Def_Home_Label_Widget_Sub_Title_Genre"><param name="id" value="$PARAM[id]" /></include>
                 <include content="Def_Home_Label_Widget_Sub_Title_Duration"><param name="id" value="$PARAM[id]" /></include>
-                <!-- <include content="Def_Home_Label_Widget_Sub_Title_Rating"><param name="id" value="$PARAM[id]" /></include> -->
 
                 <include content="Home_Clean_Movies_Indicator" condition="!Skin.HasSetting(hide.markers) + Skin.HasSetting(home.style.horizontal.clean)">
                     <param name="id" value="$PARAM[id]" />
@@ -1055,7 +1052,6 @@
                 <include content="Def_Home_Label_Widget_Sub_Title_Year"><param name="id" value="$PARAM[id]" /></include>
                 <include content="Def_Home_Label_Widget_Sub_Title_Num_Episode"><param name="id" value="$PARAM[id]" /></include>
                 <include content="Def_Home_Label_Widget_Sub_Title_Genre"><param name="id" value="$PARAM[id]" /></include>
-                <!-- <include content="Def_Home_Label_Widget_Sub_Title_Rating"><param name="id" value="$PARAM[id]" /></include> -->
 
                 <include content="Home_Clean_TvShows_Indicator" condition="!Skin.HasSetting(hide.markers) + Skin.HasSetting(home.style.horizontal.clean)">
                     <param name="id" value="$PARAM[id]" />
@@ -1076,7 +1072,6 @@
                 <include content="Def_Home_Label_Widget_Sub_Title_Episode_X"><param name="id" value="$PARAM[id]" /></include>
                 <include content="Def_Home_Label_Widget_Sub_Title_Premiered"><param name="id" value="$PARAM[id]" /></include>
                 <include content="Def_Home_Label_Widget_Sub_Title_Duration"><param name="id" value="$PARAM[id]" /></include>
-                <!-- <include content="Def_Home_Label_Widget_Sub_Title_Rating"><param name="id" value="$PARAM[id]" /></include> -->
 
                 <include content="Home_Clean_Movies_Indicator" condition="!Skin.HasSetting(hide.markers) + Skin.HasSetting(home.style.horizontal.clean)">
                     <param name="id" value="$PARAM[id]" />
@@ -1190,7 +1185,6 @@
                 <include content="Def_Home_Label_Widget_Sub_Title_DateAdded"><param name="id" value="$PARAM[id]" /></include>
                 <include content="Def_Home_Label_Widget_Sub_Title_Genre"><param name="id" value="$PARAM[id]" /></include>
                 <include content="Def_Home_Label_Widget_Sub_Title_Duration"><param name="id" value="$PARAM[id]" /></include>
-                <!-- <include content="Def_Home_Label_Widget_Sub_Title_Rating"><param name="id" value="$PARAM[id]" /></include> -->
                 <include content="Def_Home_Label_Widget_Sub_Title_Tagline"><param name="id" value="$PARAM[id]" /></include>
 
                 <include content="Home_Clean_Movies_Indicator" condition="!Skin.HasSetting(hide.markers) + Skin.HasSetting(home.style.horizontal.clean)">
@@ -1319,7 +1313,6 @@
                     <width>100%</width>
                     <left>$PARAM[left]</left>
                     <align>left</align>
-                    <!-- <aligny>bottom</aligny> -->
                     <top>26</top>
 
                     <font>LargeNetflix</font>
@@ -1342,7 +1335,6 @@
                     <width>100%</width>
                     <left>$PARAM[left]</left>
                     <align>left</align>
-                    <!-- <aligny>bottom</aligny> -->
                     <top>26</top>
 
                     <font>LargeNetflix</font>
@@ -1363,9 +1355,6 @@
                     <texture background="true">$VAR[Image_Home_ClearLogo_Crop]</texture>
                     <visible>$PARAM[visible] + $EXP[Title_Clearlogo_Home_Crop]</visible>
                     <visible>Skin.HasSetting(show.home.flix.title.clearlogo)</visible>
-                    <!-- <animation effect="fade" start="0" end="100" time="200" delay="100" reversible="true">Visible</animation> -->
-                    <!-- <animation effect="fade" start="100" end="0" delay="100" time="200" reversible="true">Hidden</animation> -->
-                    <!-- <fadetime>ClearArtFadetime</fadetime> -->
                 </control>
 
                  <!-- CLEARLOGO - HEADER - MOVIE / VIDEO / TVSHOW / ARTIST -->
@@ -1378,9 +1367,6 @@
                     <visible>$PARAM[visible] + !$EXP[Title_Clearlogo_Home_Crop]</visible>
                     <visible>Skin.HasSetting(show.home.flix.title.clearlogo) + !String.IsEmpty(Container($PARAM[id]).ListItem.Art(clearlogo))</visible>
                     <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,movie) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,video) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,tvshow) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,artist) | String.IsEmpty(Container($PARAM[id]).ListItem.DBType) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,set)</visible>
-                    <!-- <animation effect="fade" start="0" end="100" time="200" delay="100" reversible="true">Visible</animation> -->
-                    <!-- <animation effect="fade" start="100" end="0" delay="100" time="200" reversible="true">Hidden</animation> -->
-                    <!-- <fadetime>ClearArtFadetime</fadetime> -->
                 </control>
 
                  <!-- CLEARLOGO - HEADER - SEASON / EPISODE -->
@@ -1393,9 +1379,6 @@
                     <visible>$PARAM[visible] + !$EXP[Title_Clearlogo_Home_Crop]</visible>
                     <visible>Skin.HasSetting(show.home.flix.title.clearlogo) + !String.IsEmpty(Container($PARAM[id]).ListItem.Art(tvshow.clearlogo))</visible>
                     <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,season) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode)</visible>
-                    <!-- <animation effect="fade" start="0" end="100" time="200" delay="100" reversible="true">Visible</animation> -->
-                    <!-- <animation effect="fade" start="100" end="0" delay="100" time="200" reversible="true">Hidden</animation> -->
-                    <!-- <fadetime>ClearArtFadetime</fadetime> -->
                 </control>
 
                  <!-- CLEARLOGO - HEADER - ALBUM -->
@@ -1408,9 +1391,6 @@
                     <visible>$PARAM[visible] + !$EXP[Title_Clearlogo_Home_Crop]</visible>
                     <visible>Skin.HasSetting(show.home.flix.title.clearlogo) + !String.IsEmpty(Container($PARAM[id]).ListItem.Art(artist.clearlogo))</visible>
                     <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,album) | $PARAM[visible] + String.IsEqual(Container($PARAM[id]).ListItem.DBType,song)</visible>
-                    <!-- <animation effect="fade" start="0" end="100" time="200" delay="100" reversible="true">Visible</animation> -->
-                    <!-- <animation effect="fade" start="100" end="0" delay="100" time="200" reversible="true">Hidden</animation> -->
-                    <!-- <fadetime>ClearArtFadetime</fadetime> -->
                 </control>
             </control>
         </definition>
@@ -1534,7 +1514,6 @@
 
         <control type="label">
             <include content="Def_Home_Label_Widget_Title"><param name="focusid" value="$PARAM[focusid]" /></include>
-            <!-- <label>$INFO[Container($PARAM[focusid]).ListItem.Label,  •  ]$INFO[Container($PARAM[focusid]).ListItem.Year,  •  ]$INFO[Window(Home).Property(TMDbHelper.ListItem.Genre.1.Name),  •  ]$INFO[Window(Home).Property(TMDbHelper.ListItem.Genre.2.Name), / ,]</label> -->
             <label>$INFO[Container($PARAM[focusid]).ListItem.Label,  •  ]$INFO[Container($PARAM[focusid]).ListItem.Year,  •  ]$INFO[Window(Home).Property(TMDbHelper.ListItem.Genre.1.Name),  •  ]$INFO[Window(Home).Property(TMDbHelper.ListItem.Genre.2.Name), / ,]</label>
             <include>Animation_Vertical_Widgets_Title</include>
             <visible>Control.HasFocus($PARAM[focusid])</visible>
@@ -1673,7 +1652,6 @@
             <include content="Def_Home_Label_Widget_Title"><param name="focusid" value="$PARAM[focusid]" /></include>
             <label>$INFO[Weather.Data(Location),  •  ,]</label>
             <include>Animation_Vertical_Widgets_Title</include>
-            <!-- <visible>Control.HasFocus($PARAM[focusid])</visible> -->
             <visible>String.IsEqual(Container($PARAM[focusid]).ListItem.Property(WidgetType),Widget_Type_Weather_Daily) | String.IsEqual(Container($PARAM[focusid]).ListItem.Property(WidgetType),Widget_Type_Weather_Hourly)</visible>
             <visible>!Skin.HasSetting(home.style.flix)</visible>
         </control>
@@ -1899,7 +1877,6 @@
         <animation type="Conditional" condition="!Control.HasFocus(302) + Skin.HasSetting(home.show.sub.menu.horizontal)" reversible="false">
             <effect type="fade" start="0" end="100" time="150" tween="sine" easing="in" delay="150" />
             <effect type="slide" start="0,30" end="0,0" time="200" tween="sine" easing="out" delay="150" />
-            <!-- <effect type="slide" start="0,-50" end="0,0" center="auto" tween="back" easing="out" time="450" delay="150" /> -->
         </animation>
         <animation type="Conditional" condition="Control.HasFocus(302) + Skin.HasSetting(home.show.sub.menu.horizontal)" reversible="false">
             <effect type="fade" start="100" end="0" time="100" tween="sine" easing="out" />
@@ -2573,7 +2550,6 @@
             <visible>!String.IsEmpty(Window(Home).Property(home_clean_show_container_position))</visible>
 
             <include content="Animation_Common_Delay_Fade_In"><param name="delay" value="300" /></include>
-            <!-- <include>Animation_Vertical_Widgets_Label_Focus_Search</include> -->
 
             <animation effect="slide" start="0" end="0,286" time="0" condition="!Skin.HasSetting(hide.home.menu)">Conditional</animation>
             <animation effect="slide" start="0" end="0,408" time="0" condition="Skin.HasSetting(hide.home.menu)">Conditional</animation>

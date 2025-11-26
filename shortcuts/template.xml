@@ -40,10 +40,6 @@
 
         <controls>
             <control type="grouplist" id="$PYTHON[int(mainmenuid) * 1000 + 400]">
-
-                <!-- <visible>String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility])</visible> -->
-                <!-- <visible>[String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility]) + [Integer.IsGreater(Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).IsUpdating]]</visible> -->
-
                 <include>Animation_Common_Global</include>
 
                 <include>Animation_NowPlaying_Widget_Fade</include>
@@ -137,13 +133,7 @@
             <property name="layoutheight" tag="property" attribute="name|widgetaspect" value="SquareMediumSubmenu">175</property>
             <property name="layoutheight" tag="property" attribute="name|widgetaspect" value="SquareSmallSubmenu">125</property>
             <property name="layoutheight" tag="property" attribute="name|widget" value="mysubmenu">325</property>
-            <!-- <property name="layoutheight" tag="property" attribute="name|widgetFullscreen" value="yes">710</property> -->
             <property name="layoutheight">325</property>
-
-            <!--- LAYOUT FULLSCREEN ? -->
-
-            <!-- <property name="isfullscreenwidget" tag="property" attribute="name|widgetFullscreen" value="yes">true</property> -->
-            <!-- <property name="isfullscreenwidget">false</property> -->
 
             <!--- LABEL VISIBLE ? -->
 
@@ -242,7 +232,6 @@
                             <param name="idshort" value="$PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]" />
                             <param name="animation_condition" value="!Control.HasFocus($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)])" />
                             <param name="submenuVisibility" value="$SKINSHORTCUTS[submenuVisibility]" />
-                            <!-- <param name="isfullscreenwidget" value="$SKINSHORTCUTS[isfullscreenwidget]" /> -->
                         </include>
                     </control>
                 </control>
@@ -266,7 +255,6 @@
                             <param name="id" value="$PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]" />
                             <param name="labelisvisible" value="$SKINSHORTCUTS[labelisvisible]" />
                             <param name="submenuVisibility" value="$SKINSHORTCUTS[submenuVisibility]" />
-                            <!-- <param name="isfullscreenwidget" value="$SKINSHORTCUTS[isfullscreenwidget]" /> -->
                         </include>
                     </control>
 
@@ -297,7 +285,6 @@
                             <param name="idshort" value="$PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]" />
                             <param name="animation_condition" value="!Control.HasFocus($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)])" />
                             <param name="submenuVisibility" value="$SKINSHORTCUTS[submenuVisibility]" />
-                            <!-- <param name="isfullscreenwidget" value="$SKINSHORTCUTS[isfullscreenwidget]" /> -->
                             <param name="widget_label" value="$SKINSHORTCUTS[widgetName]" />
                             <param name="busy_visible" value="Integer.IsEqual(Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).IsUpdating" />
                         </include>
@@ -327,9 +314,6 @@
                         <param name="animation_condition" value="!Control.HasFocus($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)])" />
 
                         <param name="visible" value="[String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility]) + [Integer.IsGreater(Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).IsUpdating]]" />
-                        <!-- <param name="submenuVisibility" value="$SKINSHORTCUTS[submenuVisibility]" /> -->
-
-                        <!-- <param name="isfullscreenwidget" value="$SKINSHORTCUTS[isfullscreenwidget]" /> -->
                     </include>
 
                     <!-- ITEM LAYOUTS -->
@@ -461,75 +445,4 @@
             </control>
         </controls>
     </other>
-
-    <!-- BACKGROUND HOME CLEAN -->
-
-    <!-- <other include="Background_Home_Clean"> -->
-        <!-- <property name="mainmenuid" tag="mainmenuid" /> -->
-        <!-- <controls> -->
-            <!-- <control type="group"> -->
-                <!-- <visible>$EXP[Show_Video_Background_Not_Enable]</visible> -->
-                <!-- <visible>!Skin.HasSetting(hide.global.fanart)</visible> -->
-                <!-- <visible>Skin.HasSetting(home.style.horizontal.clean) + Window.IsVisible(Home) + !$EXP[View_Info_Dialog]</visible> -->
-
-                <!-- <animation effect="fade" start="0" end="100" time="400" reversible="false">Visible</animation> -->
-                <!-- <animation effect="fade" start="100" end="0" time="400" reversible="false">Hidden</animation> -->
-
-                <!-- <control type="group"> -->
-                    <!-- <visible>!$EXP[Home_Menu_Is_Focus]</visible> -->
-
-                    <!-- <animation condition="!Container($INFO[Container(300).ListItem.Property(id)]601).OnNext" effect="slide" start="0" end="-1920" delay="0" time="400" tween="quadratic" easing="out" reversible="false">Conditional</animation> -->
-                    <!-- <animation condition="!Container($INFO[Container(300).ListItem.Property(id)]601).OnPrevious" effect="slide" start="0" end="1920" delay="0" time="400" tween="quadratic" easing="out" reversible="false">Conditional</animation> -->
-
-                    <!-- <control type="image"> -->
-                        <!-- <left>-1920</left> -->
-                        <!-- <width>1920</width> -->
-                        <!-- <height>1080</height> -->
-                        <!-- <texture background="true">$VAR[Image_FullscreenWidget_Artwork-1]</texture> -->
-                        <!-- <aspectratio>scale</aspectratio> -->
-                        <!-- <visible>Container($INFO[Container(300).ListItem.Property(id)]601).OnNext | Container($INFO[Container(300).ListItem.Property(id)]601).OnPrevious</visible> -->
-                        <!-- <animation effect="fade" start="100" end="0" delay="400" time="1" reversible="false">Hidden</animation> -->
-                    <!-- </control> -->
-                    <!-- <control type="image"> -->
-                        <!-- <width>1920</width> -->
-                        <!-- <height>1080</height> -->
-                        <!-- <texture background="true">$VAR[Image_FullscreenWidget_Artwork]</texture> -->
-                        <!-- <aspectratio>scale</aspectratio> -->
-                        <!-- <fadetime>400</fadetime> -->
-                    <!-- </control> -->
-                    <!-- <control type="image"> -->
-                        <!-- <left>1920</left> -->
-                        <!-- <width>1920</width> -->
-                        <!-- <height>1080</height> -->
-                        <!-- <texture background="true">$VAR[Image_FullscreenWidget_Artwork+1]</texture> -->
-                        <!-- <aspectratio>scale</aspectratio> -->
-                        <!-- <visible>Container($INFO[Container(300).ListItem.Property(id)]601).OnNext | Container($INFO[Container(300).ListItem.Property(id)]601).OnPrevious</visible> -->
-                        <!-- <animation effect="fade" start="100" end="0" delay="400" time="1" reversible="false">Hidden</animation> -->
-                    <!-- </control> -->
-                <!-- </control> -->
-
-                <!-- <control type="multiimage" description="Fanart"> -->
-                    <!-- <visible>$EXP[Home_Menu_Is_Focus]</visible> -->
-                    <!-- <include>Animation_Animate_Fanart</include> -->
-                    <!-- <include>Animation_AutoTrailer_Fade_Out_Background</include> -->
-                    <!-- <include>Animation_VideoHomeWindowsFlix_Fade_Out_Background</include> -->
-
-                    <!-- <include>Background_Fanart_Fade_time</include> -->
-                    <!-- <timeperimage>Background_Fanart_Time_Before_Next_Image</timeperimage> -->
-                    <!-- <randomize>true</randomize> -->
-
-                    <!-- <include>Def_Dimensions_Fullscreen</include> -->
-
-                    <!-- <aspectratio>scale</aspectratio> -->
-                    <!-- <imagepath background="true">$VAR[Global_Fanart_Background]</imagepath> -->
-                <!-- </control> -->
-
-                <!-- <control type="image"> -->
-                    <!-- <include>Def_Dimensions_Fullscreen</include> -->
-                    <!-- <texture colordiffuse="FloorFade">background/full_clean2.png</texture> -->
-                <!-- </control> -->
-            <!-- </control> -->
-        <!-- </controls> -->
-    <!-- </other> -->
-
 </template>

@@ -316,12 +316,10 @@
         <value condition="[String.IsEqual(ListItem.AddonLifecycleType,$LOCALIZE[24170]) | String.IsEqual(ListItem.AddonLifecycleType,$LOCALIZE[24171])] + !ListItem.Property(addon.isenabled)">addonstatus/disable.png</value>
         <value condition="ListItem.Property(addon.orphaned)">addonstatus/orphan.png</value>
         <value condition="ListItem.Property(addon.downloading)">addonstatus/install.png</value>
-        <!-- <value condition="ListItem.Property(addon.isinstalled) + !ListItem.Property(addon.isenabled) + Window.IsActive(addonbrowser)">addonstatus/disable.png</value> -->
         <value condition="ListItem.Property(addon.hasupdate) | ListItem.Property(addon.isupdate)">addonstatus/update.png</value>
         <value condition="ListItem.Property(addon.isenabled) + String.IsEqual(ListItem.AddonLifecycleType,$LOCALIZE[24169])">addonstatus/enabled-normal.png</value>
         <value condition="ListItem.Property(addon.isenabled) + String.IsEqual(ListItem.AddonLifecycleType,$LOCALIZE[24170])">addonstatus/enabled-deprecated.png</value>
         <value condition="ListItem.Property(addon.isenabled) + String.IsEqual(ListItem.AddonLifecycleType,$LOCALIZE[24171])">addonstatus/enabled-broken.png</value>
-        <!-- <value condition="!ListItem.IsParentFolder">addonstatus/OverlayUnwatched.png</value> -->
     </variable>
 
     <variable name="Image_Addons_Status_Icon_Disable">
@@ -444,11 +442,9 @@
 
     <variable name="Image_PVR_Icon">
         <value condition="String.Empty(ListItem.Icon) + Window.IsVisible(TVRecordings)">defaultpvrrecordings.png</value>
-
         <value condition="String.StartsWith(ListItem.Icon,Default) + Window.IsVisible(TVRecordings)">defaultpvrrecordings.png</value>
         <value condition="String.StartsWith(ListItem.Icon,Default) + Window.IsVisible(TVTimers)">defaultpvrtimers.png</value>
         <value condition="String.StartsWith(ListItem.Icon,Default) + Window.IsVisible(TvTimerRules)">defaultpvrtimerrules.png</value>
-
         <value condition="String.IsEqual(ListItem.Icon,defaultpvrsearch.png) + Window.IsVisible(TVSearch)">defaultpvrsearch.png</value>
         <value condition="String.IsEqual(ListItem.Icon,DefaultFolder.png) + Window.IsVisible(TVSearch)">DefaultFolder.png</value>
         <value>$INFO[ListItem.Icon]</value>
@@ -460,31 +456,7 @@
         <value condition="!String.IsEmpty(Listitem.Art(poster))">$INFO[Listitem.Art(poster)]</value>
         <value condition="String.IsEqual(ListItem.DBType,country)">$VAR[Image_Thumb_Countries]</value>
         <value condition="String.IsEqual(ListItem.DBType,genre) | String.EndsWith(Container.FolderPath,Genres)">$VAR[Image_Thumb_Genres]</value>
-
-        <!-- <value condition="Container.Content(countries)">$VAR[Image_Thumb_Countries]</value> -->
-        <!-- <value condition="ListItem.IsParentFolder">DefaultFolderBack.png</value> -->
-        <!-- <value>$INFO[ListItem.Icon]</value> -->
-
-
-
-
         <value condition="!String.IsEmpty(ListItem.Art(season.poster)) + !Window.IsVisible(Home) + !Container.Content(files)">$INFO[ListItem.Art(season.poster)]</value>
-
-        <!-- <value condition="!String.IsEmpty(ListItem.Art(poster)) + !Container.Content(files)">$INFO[ListItem.Art(poster)]</value> -->
-        <!-- <value condition="!String.IsEmpty(ListItem.Art(tvshow.poster)) + !Container.Content(files)">$INFO[ListItem.Art(tvshow.poster)]</value> -->
-
-
-        <!-- <value condition="String.IsEqual(ListItem.DBType,studio)">$VAR[Image_Thumb_Studios]</value> -->
-
-        <!-- <value condition="String.IsEqual(ListItem.DBType,director)">DefaultDirector.png</value> -->
-
-        <!-- <value condition="String.IsEqual(ListItem.DBType,tag)">DefaultTags.png</value> -->
-        <!-- <value condition="String.IsEqual(ListItem.DBType,set)">DefaultSets.png</value> -->
-        <!-- <value condition="Container.Content(years) + !ListItem.IsParentFolder">DefaultYear.png</value> -->
-        <!-- <value condition="Container.Content(events) + ListItem.IsParentFolder">defaultpvrtimerrules.png</value> -->
-
-        <!-- <value condition="!String.IsEmpty(ListItem.EpgEventIcon) + String.StartsWith(ListItem.FolderPath,pvr://timers)">$INFO[ListItem.EpgEventIcon]</value> -->
-
         <value>$INFO[ListItem.Icon]</value>
     </variable>
 
@@ -515,27 +487,12 @@
         <value condition="!String.IsEmpty(ListItem.Art(season.poster))">$INFO[ListItem.Art(season.poster)]</value>
         <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.poster))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Poster)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(thumb))">$INFO[ListItem.Art(thumb)]</value>
-
-        <!-- <value condition="!String.IsEmpty(ListItem.thumb) + Window.IsVisible(DialogPVRChannelsOSD.xml)">$INFO[ListItem.Thumb]</value> -->
-
-        <!-- <value>$INFO[Window(Home).Property(TMDbHelper.ListItem.base_icon)]</value> -->
-        <!-- <value>$INFO[ListItem.Thumb]</value> -->
-        <!-- <value>$INFO[ListItem.EpgEventIcon]</value> -->
-        <!-- <value>$INFO[ListItem.Icon]</value> -->
     </variable>
 
     <variable name="Image_Context_Menu_Square">
-
-        <!-- <value>$INFO[Window(Home).Property(TMDbHelper.ListItem.base_icon)]</value> -->
-        <!-- <value>$INFO[ListItem.Thumb]</value> -->
-        <!-- <value>$INFO[ListItem.EpgEventIcon]</value> -->
-        <!-- <value>$INFO[ListItem.Icon]</value> -->
-
         <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_icon)) + Window.IsVisible(DialogPVRChannelsOSD.xml)">$INFO[Window(Home).Property(TMDbHelper.ListItem.base_icon)]</value>
-
         <value condition="!String.IsEmpty(ListItem.Icon) + Container.Content(addons)">$INFO[ListItem.Icon]</value>
         <value condition="String.StartsWith(Window(Home).Property(TMDbHelper.ListItem.base_icon),DefaultArtist) + [String.IsEqual(ListItem.DBType,artist) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),artist)] + !String.IsEmpty(Skin.String(fanart.fallback.music))">$INFO[Skin.String(fanart.fallback.music)]</value>
-
         <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_icon))">$INFO[Window(Home).Property(TMDbHelper.ListItem.base_icon)]</value>
         <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Icon))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Icon)]</value>
         <value condition="!String.IsEmpty(ListItem.Icon)">$INFO[ListItem.Icon]</value>
@@ -545,7 +502,6 @@
     <variable name="Image_Context_Menu_Icon">
         <value condition="Window.IsActive(filemanager) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_icon))">$INFO[Window(Home).Property(TMDbHelper.ListItem.base_icon)]</value>
         <value condition="Window.IsActive(filemanager) + String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_icon))">DefaultFolder.png</value>
-
         <value condition="String.StartsWith(ListItem.Icon,Default) + !String.IsEmpty(ListItem.Icon) + String.IsEqual(ListItem.DBType,director)">DefaultDirector.png</value>
         <value condition="String.StartsWith(ListItem.Icon,Default) + !String.IsEmpty(ListItem.Icon) + String.IsEqual(ListItem.DBType,country)">DefaultCountry.png</value>
         <value condition="String.StartsWith(ListItem.Icon,Default) + !String.IsEmpty(ListItem.Icon) + String.IsEqual(ListItem.DBType,studio)">DefaultStudios.png</value>
@@ -553,7 +509,6 @@
         <value condition="String.StartsWith(ListItem.Icon,Default) + !String.IsEmpty(ListItem.Icon) + String.IsEqual(ListItem.DBType,tag)">DefaultTags.png</value>
         <value condition="String.StartsWith(ListItem.Icon,Default) + !String.IsEmpty(ListItem.Icon) + Container.Content(years)">DefaultYear.png</value>
         <value condition="String.StartsWith(ListItem.Icon,Default) + !String.IsEmpty(ListItem.Icon)">$INFO[ListItem.Icon]</value>
-        <!-- <value condition="Window.IsVisible(DialogPVRChannelsOSD.xml)">special://skin/extras/icons/livetv.png</value> -->
         <value condition="Window.IsVisible(GameOSD.xml)">DefaultAddonGame.png</value>
     </variable>
 
@@ -568,65 +523,71 @@
 
     <variable name="Image_Fanart">
 
-        <!-- DEBUG -->
-        <!-- <value>$INFO[ListItem.Thumb]</value> -->
-        <!-- <value>$INFO[ListItem.Art(fanart)]</value> -->
-        <!-- <value>$INFO[ListItem.Art(landscape)]</value> -->
-        <!-- <value>$INFO[ListItem.Icon]</value> -->
+        <!-- APPLE PODCASTS -->
 
-        <!-- Apple Podcasts -->
         <value condition="!String.IsEmpty(Skin.String(fanart.fallback.podcasts)) + $EXP[IsItunesItem] + !ListItem.IsParentFolder + !String.StartsWith(ListItem.Icon,Default)">$INFO[Skin.String(fanart.fallback.podcasts)]</value>
 
-        <!-- Youtube -->
+        <!-- YOUTUBE -->
+
         <value condition="!String.IsEmpty(ListItem.Art(fanart)) + Container.Content() + $EXP[IsYoutube] + !String.IsEqual(ListItem.DBType,video) + [$EXP[Exp_View_56] | $EXP[Exp_View_57] | $EXP[Exp_View_524]]">$INFO[ListItem.Art(fanart)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(fanart)) + [Container.Content() | String.IsEqual(ListItem.DBType,video) | String.IsEqual(ListItem.DBType,movie)] + $EXP[IsYoutube] + ![$EXP[Exp_View_56] | $EXP[Exp_View_57] | $EXP[Exp_View_524]]">$INFO[ListItem.Thumb]</value>
         <value condition="!String.IsEmpty(ListItem.Thumb) + Container.Content(movies) + $EXP[IsYoutubeItem]">$INFO[ListItem.Thumb]</value>
 
-        <!-- set -->
+        <!-- SET -->
+
         <value condition="!String.IsEmpty(ListItem.Art(landscape)) + String.IsEqual(ListItem.DBType,set)">$INFO[ListItem.Art(landscape)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(fanart)) + String.IsEqual(ListItem.DBType,set)">$INFO[ListItem.Art(fanart)]</value>
 
-        <!-- tvshows -->
+        <!-- TVSHOWS -->
+
         <value condition="!String.IsEmpty(ListItem.Art(landscape)) + Container.Content(tvshows) + !Skin.HasSetting(dont.use.landscape.tvshows)">$INFO[ListItem.Art(landscape)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(fanart)) + Container.Content(tvshows)">$INFO[ListItem.Art(fanart)]</value>
 
-        <!-- season -->
+        <!-- SEASON -->
+
         <value condition="!String.IsEmpty(ListItem.Art(landscape)) + Container.Content(seasons) + !Skin.HasSetting(dont.use.landscape.seasons)">$INFO[ListItem.Art(landscape)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(tvshow.landscape)) + Container.Content(seasons) + !Skin.HasSetting(dont.use.landscape.seasons)">$INFO[ListItem.Art(tvshow.landscape)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(fanart)) + Container.Content(seasons)">$INFO[ListItem.Art(fanart)]</value>
 
-        <!-- movie -->
+        <!-- MOVIE -->
+
         <value condition="!String.IsEmpty(ListItem.Art(landscape)) + [Container.Content(movies) | Container.Content(videoversions)] + !Skin.HasSetting(dont.use.landscape.movies)">$INFO[ListItem.Art(landscape)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(fanart)) + [Container.Content(movies) | Container.Content(videoversions)] + String.IsEqual(ListItem.DBType,movie)">$INFO[ListItem.Art(fanart)]</value>
 
-        <!-- PVR epg event-->
+        <!-- PVR EPG EVENT-->
+
         <value condition="!String.IsEmpty(ListItem.EpgEventIcon) + String.StartsWith(ListItem.FolderPath,pvr://)">$INFO[ListItem.EpgEventIcon]</value>
 
-        <!-- game mode -->
+        <!-- GAME MODE -->
+
         <value condition="!String.IsEmpty(ListItem.Art(title)) + $EXP[IsGameMode]">$INFO[ListItem.Art(title)]</value>
 
-        <!-- fanart - songs / albums -->
+        <!-- FANART - SONGS / ALBUMS -->
+
         <value condition="!String.IsEmpty(ListItem.Art(artist.fanart)) + [Container.Content(songs) | Container.Content(albums)]">$INFO[ListItem.Art(artist.fanart)]</value>
 
-        <!-- fanart - artists -->
+        <!-- FANART - ARTISTS -->
+
         <value condition="!String.IsEmpty(ListItem.Art(fanart)) + Container.Content(artists)">$INFO[ListItem.Art(fanart)]</value>
 
-        <!-- fanart - plugin -->
+        <!-- FANART - PLUGIN -->
+
         <value condition="!String.IsEmpty(ListItem.Art(fanart)) + Container.Content() + !$EXP[IsYoutubeItem] ">$INFO[ListItem.Art(fanart)]</value>
 
-        <!-- <value condition="!String.IsEmpty(ListItem.Icon) + Container.Content(files) + $EXP[IsYoutubeItem]">$INFO[ListItem.Icon]</value> -->
-
         <!-- fanart - TMDb Helper -->
+
         <value condition="!String.IsEmpty(ListItem.Art(fanart)) + Container.Content(movies) + $EXP[IsTMDbHelperItem]">$INFO[ListItem.Art(fanart)]</value>
 
-        <!-- Thumb - all others  -->
-        <!-- <value condition="!String.IsEmpty(ListItem.Art(thumb))">$INFO[ListItem.Art(thumb)]</value> -->
+        <!-- THUMB - ALL OTHERS  -->
+
         <value condition="!String.IsEmpty(ListItem.Thumb)">$INFO[ListItem.Thumb]</value>
 
-        <!-- addon -->
+        <!-- ADDON -->
+
         <value condition="!String.IsEmpty(ListItem.Icon) + Container.Content(addons)">$INFO[ListItem.Icon]</value>
 
-        <!-- all others -->
+        <!-- ALL OTHERS -->
+
         <value condition="String.IsEqual(ListItem.DBType,genre) | String.EndsWith(Container.FolderPath,Genres)">$VAR[Image_Thumb_Genres]</value>
         <value condition="String.IsEqual(ListItem.DBType,country)">$VAR[Image_Thumb_Countries]</value>
         <value condition="String.IsEqual(ListItem.DBType,studio)">$VAR[Image_Thumb_Studios]</value>
@@ -635,8 +596,6 @@
         <value condition="String.IsEqual(ListItem.DBType,set)">DefaultSets.png</value>
         <value condition="Container.Content(years)">DefaultYear.png</value>
         <value>$INFO[ListItem.Icon]</value>
-
-        <!-- <value condition="!String.IsEmpty(ListItem.Art(landscape)) + Container.Content(seasons) + !Skin.HasSetting(dont.use.landscape.seasons)">$INFO[ListItem.Art(landscape)]</value> -->
     </variable>
 
     <variable name="Image_Playlist_Fanart">
@@ -650,12 +609,14 @@
 
     <variable name="Image_Widget_Fanart">
 
-        <!-- Youtube -->
+        <!-- YOUTUBE -->
+
         <value condition="!String.IsEmpty(ListItem.Art(fanart)) + [Container.Content() | String.IsEqual(ListItem.DBType,video) | String.IsEqual(ListItem.DBType,movie)] + $EXP[IsYoutube]">$INFO[ListItem.Thumb]</value>
 
         <value condition="!String.IsEmpty(ListItem.Thumb) + String.IsEqual(ListItem.DBType,movie) + $EXP[IsYoutubeItem]">$INFO[ListItem.Thumb]</value>
 
-        <!-- all others -->
+        <!-- ALL OTHERS -->
+
         <value condition="!String.IsEmpty(ListItem.Art(fanart)) + String.IsEqual(ListItem.DBType,set)">$INFO[ListItem.Art(fanart)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(fanart)) + String.IsEqual(ListItem.DBType,tvshow)">$INFO[ListItem.Art(fanart)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(fanart)) + String.IsEqual(ListItem.DBType,season)">$INFO[ListItem.Art(fanart)]</value>
@@ -663,22 +624,28 @@
         <value condition="!String.IsEmpty(ListItem.Art(fanart)) + String.IsEqual(ListItem.DBType,artist)">$INFO[ListItem.Art(fanart)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(artist.fanart)) + [String.IsEqual(ListItem.DBType,song) | String.IsEqual(ListItem.DBType,album)]">$INFO[ListItem.Art(artist.fanart)]</value>
 
-        <!-- game mode -->
+        <!-- GAME MODE -->
+
         <value condition="!String.IsEmpty(ListItem.Art(title)) + $EXP[IsGameMode]">$INFO[ListItem.Art(title)]</value>
 
-        <!-- fanart - plugin -->
+        <!-- FANART - PLUGIN -->
+
         <value condition="!String.IsEmpty(ListItem.Art(fanart)) + Container.Content() + !$EXP[IsYoutubeItem] ">$INFO[ListItem.Art(fanart)]</value>
 
-        <!-- fanart - TMDb Helper -->
+        <!-- FANART - TMDB HELPER -->
+
         <value condition="!String.IsEmpty(ListItem.Art(fanart)) + Container.Content(movies) + $EXP[IsTMDbHelperItem]">$INFO[ListItem.Art(fanart)]</value>
 
-        <!-- Thumb - all others  -->
+        <!-- THUMB - ALL OTHERS  -->
+
         <value condition="!String.IsEmpty(ListItem.Thumb)">$INFO[ListItem.Thumb]</value>
 
-        <!-- addon -->
+        <!-- ADDON -->
+
         <value condition="!String.IsEmpty(ListItem.Icon) + Container.Content(addons)">$INFO[ListItem.Icon]</value>
 
-        <!-- all others -->
+        <!-- ALL OTHERS -->
+
         <value condition="String.IsEqual(ListItem.DBType,genre) | String.EndsWith(Container.FolderPath,Genres)">$VAR[Image_Thumb_Genres]</value>
         <value condition="String.IsEqual(ListItem.DBType,country)">$VAR[Image_Thumb_Countries]</value>
         <value condition="String.IsEqual(ListItem.DBType,studio)">$VAR[Image_Thumb_Studios]</value>
@@ -686,7 +653,6 @@
         <value condition="String.IsEqual(ListItem.DBType,tag)">DefaultTags.png</value>
         <value condition="String.IsEqual(ListItem.DBType,set)">DefaultSets.png</value>
         <value condition="Container.Content(years)">DefaultYear.png</value>
-
         <value>$INFO[ListItem.Icon]</value>
     </variable>
 
@@ -724,7 +690,6 @@
     <variable name="Image_Thumb_Genres">
         <value condition="[Window.IsVisible(Home) | Window.IsVisible(MyVideoNav.xml)] + !String.IsEmpty(Skin.String(genre.icons.path)) + String.IsEqual(Skin.String(genre.icons.ext),.jpg)">$INFO[Skin.String(genre.icons.path)]$INFO[ListItem.Label,,.jpg]</value>
         <value condition="[Window.IsVisible(Home) | Window.IsVisible(MyVideoNav.xml)] + !String.IsEmpty(Skin.String(genre.icons.path)) + String.IsEqual(Skin.String(genre.icons.ext),.png)">$INFO[Skin.String(genre.icons.path)]$INFO[ListItem.Label,,.png]</value>
-        <!-- <value condition="Container.Content(genres) + Window.IsVisible(MyMusicNav.xml) + !String.IsEmpty(Skin.String(genre.music.path)) + String.IsEqual(Skin.String(genre.music.ext),.jpg)">$INFO[Skin.String(genre.music.path)]$INFO[ListItem.Label,,.jpg]</value> -->
         <value>DefaultGenre.png</value>
     </variable>
 
@@ -805,7 +770,6 @@
         <value condition="!String.IsEmpty(Window(Home).Property(view_extended))">$INFO[Container($PARAM[controlid]).ListItem.Art(artist.clearlogo)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(artist.clearlogo))">$INFO[ListItem.Art(artist.clearlogo)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(clearlogo))">$INFO[ListItem.Art(clearlogo)]</value>
-        <!-- <value>$INFO[Container($PARAM[controlid]).ListItem.Art(artist.clearlogo)]</value> -->
     </variable>
 
     <!-- IMAGE - NOWPLAYING -->
@@ -851,8 +815,6 @@
     <!-- IMAGE - BACKGROUND -->
 
     <variable name="Image_Background_Player_Plot_Overlay">
-        <!-- <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.cropimage))">$INFO[Window(Home).Property(TMDbHelper.ListItem.cropimage)]</value> -->
-        <!-- <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_clearlogo))">$INFO[Window(Home).Property(TMDbHelper.ListItem.base_clearlogo)]</value> -->
         <value condition="!String.IsEmpty(Player.Art(fanart))">$INFO[Player.Art(fanart)]</value>
         <value condition="!String.IsEmpty(Player.Art(tvshow.fanart))">$INFO[Player.Art(tvshow.fanart)]</value>
         <value condition="!String.IsEmpty(Player.Art(artist.fanart))">$INFO[Player.Art(artist.fanart)]</value>
@@ -913,12 +875,6 @@
         <value condition="[VideoPlayer.IsFullscreen | $EXP[Extended_Now_Playing_Is_Visible]]">$INFO[VideoPlayer.AudioCodec]</value>
         <value>$INFO[ListItem.AudioCodec]</value>
     </variable>
-
-    <!-- <variable name="Image_Media_Flag_Audio_Codec2"> -->
-        <!-- <value condition="$EXP[IsAudioCodecATMOS2]">atmos</value> -->
-        <!-- <value condition="$EXP[IsAudioCodecDTSX2]">dts-x</value> -->
-        <!-- <value>$INFO[Container($PARAM[controlid]).ListItem.AudioCodec]</value> -->
-    <!-- </variable> -->
 
     <!-- IMAGE - STAR FLAG -->
 
