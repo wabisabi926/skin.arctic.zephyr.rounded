@@ -1998,34 +1998,35 @@
         <scroll>true</scroll>
     </include>
 
-    <include name="Container_NumItems">
+    <include name="Def_Container_NumItems">
         <param name="id" value="$PARAM[id]" default="9505" />
         <param name="visible" value="$PARAM[visible]" default="false" />
+
         <definition>
-        <control type="group">
-            <include content="Animation_Common_Delay_Fade_In"><param name="delay" value="1200" /></include>
-            <visible>$PARAM[visible]</visible>
-            <control type="label">
-                <align>right</align>
-                <right>125</right>
-                <bottom>80</bottom>
-                <font>InfoNetflix</font>
-                <height>34</height>
-                <width>200</width>
-                <textcolor>Selected</textcolor>
-                <label>$INFO[Container($PARAM[id]).CurrentItem] / $INFO[Container($PARAM[id]).NumItems]</label>
-                <animation effect="slide" start="0,0" end="45,0" time="0" condition="!Integer.IsGreater(Container($PARAM[id]).NumItems,1)">Conditional</animation>
+            <control type="group">
+                <include content="Animation_Common_Delay_Fade_In"><param name="delay" value="1200" /></include>
+                <visible>$PARAM[visible]</visible>
+                <control type="label">
+                    <align>right</align>
+                    <right>125</right>
+                    <bottom>80</bottom>
+                    <font>InfoNetflix</font>
+                    <height>34</height>
+                    <width>200</width>
+                    <textcolor>Selected</textcolor>
+                    <label>$INFO[Container($PARAM[id]).CurrentItem] / $INFO[Container($PARAM[id]).NumItems]</label>
+                    <animation effect="slide" start="0,0" end="45,0" time="0" condition="!Integer.IsGreater(Container($PARAM[id]).NumItems,1)">Conditional</animation>
+                </control>
+                <control type="grouplist">
+                    <orientation>horizontal</orientation>
+                    <height>22</height>
+                    <align>right</align>
+                    <right>View_List_Side</right>
+                    <width>100</width>
+                    <bottom>View_List_Side</bottom>
+                    <visible>Integer.IsGreater(Container($PARAM[id]).NumItems,1)</visible>
+                </control>
             </control>
-            <control type="grouplist">
-                <orientation>horizontal</orientation>
-                <height>22</height>
-                <align>right</align>
-                <right>View_List_Side</right>
-                <width>100</width>
-                <bottom>View_List_Side</bottom>
-                <visible>Integer.IsGreater(Container($PARAM[id]).NumItems,1)</visible>
-            </control>
-        </control>
         </definition>
     </include>
 

@@ -890,7 +890,7 @@
                 <!-- ALBUMS -->
 
                 <include content="Recommendation_Album" condition="!Skin.HasSetting(hide.button.music.artist.albums)">
-                    <param name="controlid" value="9501" />
+                    <param name="controlid" value="9509" />
                     <param name="visible" value="String.IsEqual(Window(Home).Property(musiccontent),2)" />
                 </include>
 
@@ -929,18 +929,8 @@
         </control>
         <control type="button" id="292">
             <include>Def_Hidden_Button</include>
-            <!-- <onfocus>SetFocus(129)</onfocus> -->
             <onfocus>AlarmClock(delay_Click_12,SendClick(12),00:00,silent)</onfocus>
-            <!-- <onfocus>AlarmClock(delay_button_3,SetFocus(293),00:00,silent)</onfocus> -->
         </control>
-        <!-- <control type="button" id="293"> -->
-            <!-- <include>Def_Hidden_Button</include> -->
-            <!-- <onfocus>AlarmClock(delay_button_4,SetFocus(294),00:00,silent)</onfocus> -->
-        <!-- </control> -->
-        <!-- <control type="button" id="294"> -->
-            <!-- <include>Def_Hidden_Button</include> -->
-            <!-- <onfocus>AlarmClock(delay_Click_12,SendClick(12),00:00,silent)</onfocus> -->
-        <!-- </control> -->
 
         <control type="button" id="129">
             <visible allowhiddenfocus="true">False</visible>
@@ -957,36 +947,7 @@
             <include>Def_Hidden_Button</include>
         </control>
 
-        <control type="button" id="160">
-            <include>Def_Hidden_Button</include>
-            <ondown>SetFocus(9501)</ondown>
-            <onback>9501</onback>
-            <onleft>SetFocus(9501)</onleft>
-            <onleft>LEFT</onleft>
-            <onleft>SetFocus(160)</onleft>
-            <onright>SetFocus(9501)</onright>
-            <onright>RIGHT</onright>
-            <onright>SetFocus(160)</onright>
-        </control>
-
-        <control type="group">
-            <visible>Control.HasFocus(160)</visible>
-            <animation effect="fade" end="100" start="20" time="200" tween="sine" easing="in">Visible</animation>
-            <animation effect="fade" end="0" start="100" time="200" tween="sine" easing="in">Hidden</animation>
-            <control type="image">
-                <left>0</left>
-                <top>0</top>
-                <width>1920</width>
-                <height>1080</height>
-                <texture>common/black.png</texture>
-            </control>
-            <control type="image">
-                <height>1080</height>
-                <fadetime>ImageViewerFadetime</fadetime>
-                <aspectratio align="center">keep</aspectratio>
-                <texture fallback="DefaultAddonPicture.png" background="true">$INFO[Container(9501).ListItem.Icon]</texture>
-            </control>
-        </control>
+        <!-- ARTIST - FANART - WINDOW -->
 
         <control type="button" id="95031">
             <include>Def_Hidden_Button</include>
@@ -1005,6 +966,8 @@
             <onright>SetFocus(95031)</onright>
         </control>
 
+        <!-- ARTIST - FANART - FULL SCREEN -->
+
         <control type="button" id="161">
             <include>Def_Hidden_Button</include>
             <ondown>SetFocus(9503,0,absolute)</ondown>
@@ -1019,7 +982,6 @@
             <onright>RIGHT</onright>
             <onright>SetFocus(161)</onright>
         </control>
-
         <control type="group">
             <visible>Control.HasFocus(161)</visible>
             <animation effect="fade" end="100" start="20" time="200" tween="sine" easing="in">Visible</animation>
@@ -1038,8 +1000,7 @@
                 <texture fallback="DefaultPicture.png" background="true">$INFO[Container(9503).ListItem.Label]</texture>
             </control>
         </control>
-
-        <include content="Container_NumItems">
+        <include content="Def_Container_NumItems">
             <param name="id" value="9503" />
             <param name="visible" value="Control.HasFocus(161)" />
         </include>
