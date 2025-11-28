@@ -3084,27 +3084,6 @@
                 </control>
             </control>
 
-            <!-- USER RATING -->
-
-            <control type="image">
-                <visible>!String.IsEmpty(ListItem.UserRating) + Skin.HasSetting(show.flags.music.rating.user) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
-                <centertop>50%</centertop>
-                <width>37</width>
-                <height>37</height>
-                <left>15</left>
-                <texture colordiffuse="Dark1" background="true">flags/star/userrating/userrating_white.png</texture>
-            </control>
-            <control type="label">
-                <visible>!String.IsEmpty(ListItem.UserRating) + Skin.HasSetting(show.flags.music.rating.user) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
-                <centertop>50%</centertop>
-                <width>auto</width>
-                <height>64</height>
-                <font>Tiny</font>
-                <left>5</left>
-                <textcolor>Dark2</textcolor>
-                <label>$INFO[ListItem.UserRating].0</label>
-            </control>
-
             <!-- DURATION -->
 
             <control type="image">
@@ -3118,6 +3097,22 @@
                 <label>$INFO[ListItem.Duration(mins:ss),, $LOCALIZE[31074]  ]</label>
                 <visible>!String.IsEmpty(ListItem.Duration)</visible>
                 <visible>![Container.Content(tvshows) | Container.Content(seasons)]</visible>
+            </control>
+
+            <!-- USER RATING -->
+
+            <control type="image">
+                <visible>!String.IsEmpty(ListItem.UserRating) + Skin.HasSetting(show.flags.music.rating.user) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                <centertop>50%</centertop>
+                <width>37</width>
+                <height>37</height>
+                <left>15</left>
+                <texture colordiffuse="Dark1" background="true">flags/star/userrating/userrating_white.png</texture>
+            </control>
+            <control type="label">
+                <visible>!String.IsEmpty(ListItem.UserRating) + Skin.HasSetting(show.flags.music.rating.user) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                <include>Def_Flag_Label</include>
+                <label>$INFO[ListItem.UserRating].0</label>
             </control>
 
             <!-- RATING - STAR -->
@@ -3261,27 +3256,6 @@
                 </control>
             </control>
 
-            <!-- USER RATING -->
-
-            <control type="image">
-                <visible>!String.IsEmpty(ListItem.UserRating) + Skin.HasSetting(show.flags.music.rating.user) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
-                <centertop>50%</centertop>
-                <width>37</width>
-                <height>37</height>
-                <left>15</left>
-                <texture colordiffuse="$VAR[Color_Rating_User_Star]" background="true">flags/star/userrating/userrating_white.png</texture>
-            </control>
-            <control type="label">
-                <visible>!String.IsEmpty(ListItem.UserRating) + Skin.HasSetting(show.flags.music.rating.user) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
-                <centertop>50%</centertop>
-                <width>auto</width>
-                <height>64</height>
-                <font>Tiny</font>
-                <left>5</left>
-                <textcolor>Dark2</textcolor>
-                <label>$INFO[ListItem.UserRating].0</label>
-            </control>
-
             <!-- DURATION -->
 
             <control type="image">
@@ -3295,6 +3269,22 @@
                 <label>$INFO[ListItem.Duration(mins:ss),, $LOCALIZE[31074]  ]</label>
                 <visible>!String.IsEmpty(ListItem.Duration)</visible>
                 <visible>![Container.Content(tvshows) | Container.Content(seasons)]</visible>
+            </control>
+
+            <!-- USER RATING -->
+
+            <control type="image">
+                <visible>!String.IsEmpty(ListItem.UserRating) + Skin.HasSetting(show.flags.music.rating.user) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                <centertop>50%</centertop>
+                <width>37</width>
+                <height>37</height>
+                <left>15</left>
+                <texture colordiffuse="$VAR[Color_Rating_User_Star]" background="true">flags/star/userrating/userrating_white.png</texture>
+            </control>
+            <control type="label">
+                <visible>!String.IsEmpty(ListItem.UserRating) + Skin.HasSetting(show.flags.music.rating.user) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                <include>Def_Flag_Label</include>
+                <label>$INFO[ListItem.UserRating].0</label>
             </control>
 
             <!-- RATING - STAR -->
@@ -4485,27 +4475,6 @@
                     </control>
                 </control>
 
-                <!-- USER RATING -->
-
-                <control type="image">
-                    <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.UserRating) + Skin.HasSetting(show.flags.music.rating.user) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
-                    <centertop>50%</centertop>
-                    <width>37</width>
-                    <height>37</height>
-                    <left>15</left>
-                    <texture colordiffuse="Dark1" background="true">flags/star/userrating/userrating_white.png</texture>
-                </control>
-                <control type="label">
-                    <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.UserRating) + Skin.HasSetting(show.flags.music.rating.user) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
-                    <centertop>50%</centertop>
-                    <width>auto</width>
-                    <height>64</height>
-                    <font>Tiny</font>
-                    <left>5</left>
-                    <textcolor>Dark2</textcolor>
-                    <label>$INFO[Container($PARAM[controlid]).ListItem.UserRating].0</label>
-                </control>
-
                 <!-- DURATION -->
 
                 <control type="image">
@@ -4519,6 +4488,22 @@
                     <label>$INFO[Container($PARAM[controlid]).ListItem.Duration(mins:ss),, $LOCALIZE[31074]  ]</label>
                     <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Duration)</visible>
                     <visible>![Container.Content(tvshows) | Container.Content(seasons)]</visible>
+                </control>
+
+                <!-- USER RATING -->
+
+                <control type="image">
+                    <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.UserRating) + Skin.HasSetting(show.flags.music.rating.user) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                    <centertop>50%</centertop>
+                    <width>37</width>
+                    <height>37</height>
+                    <left>15</left>
+                    <texture colordiffuse="Dark1" background="true">flags/star/userrating/userrating_white.png</texture>
+                </control>
+                <control type="label">
+                    <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.UserRating) + Skin.HasSetting(show.flags.music.rating.user) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                    <include>Def_Flag_Label</include>
+                    <label>$INFO[Container($PARAM[controlid]).ListItem.UserRating].0</label>
                 </control>
 
                 <!-- RATING - STAR -->
@@ -4649,27 +4634,6 @@
                     </control>
                 </control>
 
-                <!-- USER RATING -->
-
-                <control type="image">
-                    <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.UserRating) + Skin.HasSetting(show.flags.music.rating.user) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
-                    <centertop>50%</centertop>
-                    <width>37</width>
-                    <height>37</height>
-                    <left>15</left>
-                    <texture colordiffuse="$VAR[Color_Rating_User_Star]" background="true">flags/star/userrating/userrating_white.png</texture>
-                </control>
-                <control type="label">
-                    <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.UserRating) + Skin.HasSetting(show.flags.music.rating.user) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
-                    <centertop>50%</centertop>
-                    <width>auto</width>
-                    <height>64</height>
-                    <font>Tiny</font>
-                    <left>5</left>
-                    <textcolor>Dark2</textcolor>
-                    <label>$INFO[Container($PARAM[controlid]).ListItem.UserRating].0</label>
-                </control>
-
                 <!-- DURATION -->
 
                 <control type="image">
@@ -4683,6 +4647,22 @@
                     <label>$INFO[Container($PARAM[controlid]).ListItem.Duration(mins:ss),, $LOCALIZE[31074]  ]</label>
                     <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.Duration)</visible>
                     <visible>![Container.Content(tvshows) | Container.Content(seasons)]</visible>
+                </control>
+
+                <!-- USER RATING -->
+
+                <control type="image">
+                    <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.UserRating) + Skin.HasSetting(show.flags.music.rating.user) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                    <centertop>50%</centertop>
+                    <width>37</width>
+                    <height>37</height>
+                    <left>15</left>
+                    <texture colordiffuse="$VAR[Color_Rating_User_Star]" background="true">flags/star/userrating/userrating_white.png</texture>
+                </control>
+                <control type="label">
+                    <visible>!String.IsEmpty(Container($PARAM[controlid]).ListItem.UserRating) + Skin.HasSetting(show.flags.music.rating.user) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                    <include>Def_Flag_Label</include>
+                    <label>$INFO[Container($PARAM[controlid]).ListItem.UserRating].0</label>
                 </control>
 
                 <!-- RATING - STAR -->

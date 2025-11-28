@@ -1418,9 +1418,9 @@
                 </include>
             </control>
 
-            <!-- RATING -->
+            <!-- USER RATING -->
 
-            <control type="radiobutton" id="9007">
+            <control type="radiobutton" id="7">
                 <visible>!String.IsEqual(ListItem.DBType,artist)</visible>
                 <visible>!Skin.HasSetting(hide.button.music.rating)</visible>
 
@@ -1431,10 +1431,6 @@
                 <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
                 <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
                 <onfocus>ClearProperty(Rotate_Cover,Home)</onfocus>
-
-                <onclick>SetProperty(Set_User_Rating,mixed,Home)</onclick>
-                <onfocus>SetProperty(Set_User_Rating,mixed,Home)</onfocus>
-                <onunfocus>ClearProperty(Set_User_Rating,Home)</onunfocus>
 
                 <include>Def_Button_Dimensions_Square</include>
                 <texturenofocus colordiffuse="Dark4" border="12">common/boxsquare.png</texturenofocus>
@@ -1447,7 +1443,7 @@
                 <textcolor>Dark4</textcolor>
                 <font>Null</font>
 
-                <onclick>SendClick(7)</onclick>
+                <include>Def_On_User_Rating</include>
             </control>
 
             <!-- TRACKLIST -->
