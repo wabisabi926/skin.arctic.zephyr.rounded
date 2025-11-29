@@ -62,13 +62,6 @@
 
             <animation effect="fade" start="100" end="0" time="400" condition="$EXP[Home_Is_Vertical] + [[$EXP[Home_Menu_Is_Focus] | Control.HasFocus(9099)] | [!Skin.HasSetting(hide.home.menu) + !Skin.HasSetting(hide.home.menu.with.nowplaying.extended)]] + !Skin.HasSetting(home.show.menu.icons)">Conditional</animation>
 
-            <!-- <animation type="WindowClose" condition="!$EXP[Home_Is_Vertical]"> -->
-                <!-- <effect type="slide" start="0" end="0,250" time="150" /> -->
-                <!-- <effect type="fade" start="100" end="20" time="150" /> -->
-            <!-- </animation> -->
-
-            <!-- <animation effect="slide" start="0,150" end="0" time="150" reversible="false">WindowOpen</animation> -->
-
             <!-- VIDEO - CLEARART -->
 
             <control type="image">
@@ -213,7 +206,6 @@
                         <!-- FLAG BLACK / WHITE -->
 
                         <control type="grouplist">
-                            <!-- <visible>!Skin.HasSetting(enable.furniture.flags.colored)</visible> -->
                             <visible>[VideoPlayer.Content(files) + !VideoPlayer.Content(livetv)] | [VideoPlayer.Content(livetv) + !$EXP[Label_PVR_Info_Available]]</visible>
 
                             <top>55</top>
@@ -266,57 +258,6 @@
                                 <visible>!String.IsEmpty(VideoPlayer.AudioChannels)</visible>
                             </control>
                         </control>
-
-                        <!-- FLAG COLORED -->
-
-                        <!-- <control type="grouplist"> -->
-                            <!-- <visible>Skin.HasSetting(enable.furniture.flags.colored)</visible> -->
-                            <!-- <visible>VideoPlayer.Content(files) + !VideoPlayer.Content(livetv)</visible> -->
-                            <!-- <top>55</top> -->
-                            <!-- <left>-12</left> -->
-                            <!-- <width>450</width> -->
-                            <!-- <height>64</height> -->
-                            <!-- <orientation>horizontal</orientation> -->
-                            <!-- <align>left</align> -->
-                            <!-- <itemgap>12</itemgap> -->
-                            <!-- <usecontrolcoords>true</usecontrolcoords> -->
-
-                            <!-- <control type="image"> -->
-                                <!-- <width min="20" max="70">auto</width> -->
-                                <!-- <centertop>50%</centertop> -->
-                                <!-- <texture fallback="flags/fallback.png">$INFO[VideoPlayer.VideoResolution,flags/video/color/resolution/,.png]</texture> -->
-                                <!-- <aspectratio align="left">keep</aspectratio> -->
-                                <!-- <visible>!String.IsEmpty(VideoPlayer.VideoResolution)</visible> -->
-                            <!-- </control> -->
-                            <!-- <control type="image"> -->
-                                <!-- <width min="20" max="80">auto</width> -->
-                                <!-- <centertop>50%</centertop> -->
-                                <!-- <texture fallback="flags/fallback.png">$INFO[VideoPlayer.VideoCodec,flags/video/color/videocodec/,.png]</texture> -->
-                                <!-- <aspectratio align="center">keep</aspectratio> -->
-                                <!-- <visible>!String.IsEmpty(VideoPlayer.VideoCodec)</visible> -->
-                            <!-- </control> -->
-                            <!-- <control type="image"> -->
-                                <!-- <width min="20" max="80">auto</width> -->
-                                <!-- <centertop>50%</centertop> -->
-                                <!-- <texture fallback="flags/fallback.png">$INFO[VideoPlayer.VideoAspect,flags/video/color/aspectratio/,.png]</texture> -->
-                                <!-- <aspectratio align="center">keep</aspectratio> -->
-                                <!-- <visible>!String.IsEmpty(VideoPlayer.VideoAspect)</visible> -->
-                            <!-- </control> -->
-                            <!-- <control type="image"> -->
-                                <!-- <width min="20" max="98">auto</width> -->
-                                <!-- <centertop>50%</centertop> -->
-                                <!-- <texture fallback="flags/fallback.png">$INFO[VideoPlayer.AudioCodec,flags/video/color/audiocodec/,.png]</texture> -->
-                                <!-- <aspectratio align="center">keep</aspectratio> -->
-                                <!-- <visible>!String.IsEmpty(VideoPlayer.AudioCodec)</visible> -->
-                            <!-- </control> -->
-                            <!-- <control type="image"> -->
-                                <!-- <width min="20" max="70">auto</width> -->
-                                <!-- <centertop>50%</centertop> -->
-                                <!-- <texture fallback="flags/fallback.png">$INFO[VideoPlayer.AudioChannels,flags/video/color/audiochannels/,.png]</texture> -->
-                                <!-- <aspectratio align="center">keep</aspectratio> -->
-                                <!-- <visible>!String.IsEmpty(VideoPlayer.AudioChannels)</visible> -->
-                            <!-- </control> -->
-                        <!-- </control> -->
                     </control>
                     <control type="group">
                         <width>452</width>
@@ -447,75 +388,6 @@
                                 </control>
                             </control>
                         </control>
-
-                        <!-- FLAG COLORED -->
-
-                        <!-- <control type="grouplist"> -->
-                            <!-- <visible>Skin.HasSetting(enable.furniture.flags.colored)</visible> -->
-                            <!-- <visible>String.IsEmpty(MusicPlayer.Album)</visible> -->
-                            <!-- <top>55</top> -->
-                            <!-- <left>-12</left> -->
-                            <!-- <width>450</width> -->
-                            <!-- <height>64</height> -->
-                            <!-- <orientation>horizontal</orientation> -->
-                            <!-- <align>left</align> -->
-                            <!-- <itemgap>12</itemgap> -->
-                            <!-- <usecontrolcoords>true</usecontrolcoords> -->
-
-                            <!-- <control type="image"> -->
-                                <!-- <width min="20" max="100">auto</width> -->
-                                <!-- <centertop>50%</centertop> -->
-                                <!-- <texture fallback="flags/fallback.png">$INFO[MusicPlayer.Codec,flags/video/color/audiocodec/,.png]</texture> -->
-                                <!-- <aspectratio align="left">keep</aspectratio> -->
-                                <!-- <visible>!String.IsEmpty(MusicPlayer.Codec)</visible> -->
-                            <!-- </control> -->
-
-                            <!-- <control type="grouplist"> -->
-                                <!-- <width min="20" max="100">auto</width> -->
-                                <!-- <height>64</height> -->
-                                <!-- <orientation>vertical</orientation> -->
-                                <!-- <centertop>57%</centertop> -->
-                                <!-- <itemgap>-17</itemgap> -->
-                                <!-- <visible>!String.IsEmpty(MusicPlayer.BitRate)</visible> -->
-                                <!-- <control type="label"> -->
-                                    <!-- <height>28</height> -->
-                                    <!-- <align>center</align> -->
-                                    <!-- <aligny>bottom</aligny> -->
-                                    <!-- <label>$INFO[MusicPlayer.BitRate]</label> -->
-                                    <!-- <font>Small20</font> -->
-                                    <!-- <textcolor>Dark1</textcolor> -->
-                                <!-- </control> -->
-                                <!-- <control type="image"> -->
-                                    <!-- <height>44</height> -->
-                                    <!-- <aspectratio>keep</aspectratio> -->
-                                    <!-- <texture colordiffuse="Dark1">flags/audio/white/bit.png</texture> -->
-                                    <!-- <aspectratio>keep</aspectratio> -->
-                                <!-- </control> -->
-                            <!-- </control> -->
-
-                            <!-- <control type="grouplist"> -->
-                                <!-- <width min="20" max="100">auto</width> -->
-                                <!-- <height>64</height> -->
-                                <!-- <orientation>vertical</orientation> -->
-                                <!-- <centertop>57%</centertop> -->
-                                <!-- <itemgap>-17</itemgap> -->
-                                <!-- <visible>!String.IsEmpty(MusicPlayer.Samplerate)</visible> -->
-                                <!-- <control type="label"> -->
-                                    <!-- <height>28</height> -->
-                                    <!-- <align>center</align> -->
-                                    <!-- <aligny>bottom</aligny> -->
-                                    <!-- <label>$INFO[MusicPlayer.Samplerate]</label> -->
-                                    <!-- <font>Small20</font> -->
-                                    <!-- <textcolor>Dark1</textcolor> -->
-                                <!-- </control> -->
-                                <!-- <control type="image"> -->
-                                    <!-- <height>44</height> -->
-                                    <!-- <aspectratio>keep</aspectratio> -->
-                                    <!-- <texture colordiffuse="Dark1">flags/audio/white/khz.png</texture> -->
-                                    <!-- <aspectratio>keep</aspectratio> -->
-                                <!-- </control> -->
-                            <!-- </control> -->
-                        <!-- </control> -->
                     </control>
                     <control type="group">
                         <width>452</width>
