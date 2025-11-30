@@ -199,6 +199,13 @@
             <include>Def_Hidden_Button</include>
             <visible allowhiddenfocus="true">False</visible>
 
+            <!-- MAIN MENU TEXT - ARROW -->
+
+            <onfocus>SetProperty(399IsFocus,1,Home)</onfocus>
+            <onunfocus>ClearProperty(399IsFocus,Home)</onunfocus>
+            <onleft>ClearProperty(399IsFocus,Home)</onleft>
+            <onright>ClearProperty(399IsFocus,Home)</onright>
+
             <!-- TRAILER FULL SCREEN -->
 
             <onfocus>ClearProperty(TrailerFullscreenIsLaunched,Home)</onfocus>
@@ -1916,9 +1923,9 @@
                     <label>$INFO[ListItem.Label]</label>
                 </control>
                 <control type="image">
-                    <visible>Control.HasFocus(399)</visible>
+                    <visible>$EXP[Home_Main_Menu_Is_Focus] + !String.IsEmpty(Window(Home).Property(399IsFocus))</visible>
                     <visible>Integer.IsGreater(Container(302).NumItems,0) + [!Skin.HasSetting(show.submenu.on.click.main.menu) | [Skin.HasSetting(show.submenu.on.click.main.menu) + !String.StartsWith(Container(300).ListItem.Property(path),SetFocus(302,0))]]</visible>
-                    <animation effect="fade" end="100" start="0" delay="300" time="400" reversible="false" condition="Control.HasFocus(399)">Conditional</animation>
+                    <animation effect="fade" end="100" start="0" delay="300" time="400" reversible="false" condition="$EXP[Home_Main_Menu_Is_Focus] + !String.IsEmpty(Window(Home).Property(399IsFocus))">Conditional</animation>
                     <top>50</top>
                     <centerleft>45.7%</centerleft>
                     <include>Def_Arrow_Size</include>
@@ -1955,9 +1962,9 @@
                 <!-- ARROWS - IF SUB MENU 302 CONTENT -->
 
                 <control type="image">
-                    <visible>Control.HasFocus(399)</visible>
+                    <visible>$EXP[Home_Main_Menu_Is_Focus] + !String.IsEmpty(Window(Home).Property(399IsFocus))</visible>
                     <visible>Integer.IsGreater(Container(302).NumItems,0) + [!Skin.HasSetting(show.submenu.on.click.main.menu) | [Skin.HasSetting(show.submenu.on.click.main.menu) + !String.StartsWith(Container(300).ListItem.Property(path),SetFocus(302,0))]]</visible>
-                    <animation effect="fade" end="100" start="0" delay="300" time="400" reversible="false" condition="Control.HasFocus(399)">Conditional</animation>
+                    <animation effect="fade" end="100" start="0" delay="300" time="400" reversible="false" condition="$EXP[Home_Main_Menu_Is_Focus] + !String.IsEmpty(Window(Home).Property(399IsFocus))">Conditional</animation>
                     <top>66</top>
                     <centerleft>45.7%</centerleft>
                     <include>Def_Arrow_Size</include>
