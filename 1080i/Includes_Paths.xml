@@ -72,34 +72,31 @@
     <!-- =================================== -->
 
     <variable name="Path_Youtube_Query">
-        <value condition="$EXP[IsTMDbHelperItem] + !String.IsEmpty(ListItem.Label)">$INFO[ListItem.Label] Movie</value>
-
         <value condition="[String.IsEqual(ListItem.DBType,set) | ListItem.IsCollection] + !String.IsEmpty(ListItem.Set)">$INFO[ListItem.Set]</value>
-        <value condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.Title)">$INFO[ListItem.Title]$INFO[ListItem.Year, ,] Movie</value>
-        <value condition="String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(ListItem.Title)">$INFO[ListItem.Title]$INFO[ListItem.Year, ,]</value>
-        <value condition="String.IsEqual(ListItem.DBType,season) + !String.IsEmpty(ListItem.TVShowTitle)">$INFO[ListItem.TVShowTitle]$INFO[ListItem.Season, Season ,]</value>
-        <value condition="String.IsEqual(ListItem.DBType,episode) + !String.IsEmpty(ListItem.Title)">$INFO[ListItem.TVShowTitle,, ]$INFO[ListItem.Title]</value>
+        <value condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.Title)">$INFO[Window(Home).Property(Encoded.ListItem.Title)]$INFO[ListItem.Year, ,] Movie</value>
+        <value condition="String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(ListItem.Title)">$INFO[Window(Home).Property(Encoded.ListItem.Title)]$INFO[ListItem.Year, ,]</value>
+        <value condition="String.IsEqual(ListItem.DBType,season) + !String.IsEmpty(ListItem.TVShowTitle)">$INFO[Window(Home).Property(Encoded.ListItem.TVShowTitle)]$INFO[ListItem.Season, Season ,]</value>
+        <value condition="String.IsEqual(ListItem.DBType,episode) + !String.IsEmpty(ListItem.Title)">$INFO[Window(Home).Property(Encoded.ListItem.TVShowTitle),, ]$INFO[Window(Home).Property(Encoded.ListItem.Title)]</value>
         <value condition="[String.IsEqual(ListItem.DBType,actor) | String.IsEqual(ListItem.Property(tmdb_type),person)] + !String.IsEmpty(ListItem.Label)">$INFO[ListItem.Label]</value>
-        <value condition="String.IsEqual(ListItem.DBType,artist) + !String.IsEmpty(ListItem.AlbumArtist)">$INFO[ListItem.AlbumArtist] Music</value>
-        <value condition="String.IsEqual(ListItem.DBType,artist) + !String.IsEmpty(ListItem.Artist)">$INFO[ListItem.Artist] Music</value>
-        <value condition="String.IsEqual(ListItem.DBType,album) + !String.IsEmpty(ListItem.Album)">$INFO[ListItem.AlbumArtist,, ]$INFO[ListItem.Album] Music</value>
-        <value condition="String.IsEqual(ListItem.DBType,song) + !String.IsEmpty(ListItem.Title) + !String.IsEmpty(ListItem.AlbumArtist)">$INFO[ListItem.AlbumArtist,, ]$INFO[ListItem.Title] Music</value>
-        <value condition="String.IsEqual(ListItem.DBType,song) + !String.IsEmpty(ListItem.Title)">$INFO[ListItem.Artist,, ]$INFO[ListItem.Title] Music</value>
-        <value condition="!String.IsEmpty(ListItem.TvShowTitle)">$INFO[ListItem.TvShowTitle]</value>
-        <value condition="!String.IsEmpty(ListItem.AlbumArtist)">$INFO[ListItem.AlbumArtist]</value>
-        <value condition="!String.IsEmpty(ListItem.Artist)">$INFO[ListItem.Artist]</value>
-        <value condition="!String.IsEmpty(ListItem.Title)">$INFO[ListItem.Title]</value>
-        <value condition="!String.IsEmpty(ListItem.Label)">$INFO[ListItem.Label]</value>
     </variable>
 
     <variable name="Def_Content_Youtube_Video">
-        <value condition="!String.IsEmpty(Window(Home).Property(SetYoutubeSearch)) + !String.IsEmpty(Window(Home).Property(SetYoutubeTermToSearch))">$INFO[Window(Home).Property(SetYoutubeTermToSearch),plugin://plugin.video.youtube/search/?q=,&amp;search_type=notvalid&amp;hide_channels=true&amp;hide_videos=true&amp;hide_folders=true]</value>
+        <!-- <value condition="String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper/?info=videos&amp;nextpage=false&amp;cacheonly=true&amp;length=1&amp;tmdb_type=tv&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]</value> -->
+
+        <!-- <value condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper/?info=videos&amp;nextpage=false&amp;cacheonly=true&amp;length=1&amp;tmdb_type=movie&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]</value> -->
+
+
+        <value condition="!String.IsEmpty(Window(Home).Property(SetYoutubeSearch)) + !String.IsEmpty(Window(Home).Property(SetYoutubeTermToSearch))">$INFO[Window(Home).Property(SetYoutubeTermToSearch),plugin://plugin.video.youtube/kodion/search/query/?q=,&amp;search_type=notvalid&amp;hide_channels=true&amp;hide_videos=true&amp;hide_folders=true]</value>
     </variable>
 
     <variable name="Def_Content_Youtube_Music">
-        <value condition="!String.IsEmpty(Window(Home).Property(SetYoutubeSearch)) + Container.Content(artists) + !String.IsEmpty(ListItem.Artist)">plugin://plugin.video.youtube/search/?q=$INFO[ListItem.Artist]&amp;hide_channels=true&amp;hide_videos=true&amp;hide_folders=true</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(SetYoutubeSearch)) + Container.Content(albums) + !String.IsEmpty(ListItem.Album)">plugin://plugin.video.youtube/search/?q=$INFO[ListItem.Artist] $INFO[ListItem.Album] Album&amp;hide_channels=true&amp;hide_videos=true&amp;hide_folders=true</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(SetYoutubeSearch)) + Container.Content(songs) + !String.IsEmpty(ListItem.Title)">plugin://plugin.video.youtube/search/?q=$INFO[ListItem.Artist] $INFO[ListItem.Title]&amp;hide_channels=true&amp;hide_videos=true&amp;hide_folders=true</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(SetYoutubeSearch)) + Container.Content(artists) + !String.IsEmpty(ListItem.AlbumArtist)">plugin://plugin.video.youtube/kodion/search/query/?q==$INFO[ListItem.AlbumArtist]&amp;hide_channels=true&amp;hide_videos=true&amp;hide_folders=true</value>
+
+        <value condition="!String.IsEmpty(Window(Home).Property(SetYoutubeSearch)) + Container.Content(artists) + !String.IsEmpty(ListItem.Artist)">plugin://plugin.video.youtube/kodion/search/query/?q==$INFO[ListItem.Artist]&amp;hide_channels=true&amp;hide_videos=true&amp;hide_folders=true</value>
+
+        <value condition="!String.IsEmpty(Window(Home).Property(SetYoutubeSearch)) + Container.Content(albums) + !String.IsEmpty(ListItem.Album)">plugin://plugin.video.youtube/kodion/search/query/?q==$INFO[ListItem.Artist] $INFO[ListItem.Album] Album&amp;hide_channels=true&amp;hide_videos=true&amp;hide_folders=true</value>
+
+        <value condition="!String.IsEmpty(Window(Home).Property(SetYoutubeSearch)) + Container.Content(songs) + !String.IsEmpty(ListItem.Title)">plugin://plugin.video.youtube/kodion/search/query/?q==$INFO[ListItem.Artist] $INFO[ListItem.Title]&amp;hide_channels=true&amp;hide_videos=true&amp;hide_folders=true</value>
     </variable>
 
     <!-- =================================== -->
