@@ -114,7 +114,6 @@
                 <action>seek</action>
                 <texturesliderbar colordiffuse="$VAR[Color_OSD_Progress_Bar_Background]">progress/slider_bg.png</texturesliderbar>
                 <textureslidernib />
-                <!-- <textureslidernib colordiffuse="red">progress/slider_nib.png</textureslidernib> -->
                 <textureslidernibfocus colordiffuse="FFEDEDED">progress/slider_nib.png</textureslidernibfocus>
                 <visible>Player.SeekEnabled + Pvr.IsPlayingTv + !Player.ChannelPreviewActive</visible>
             </control>
@@ -363,8 +362,8 @@
         <param name="height" default="560" />
         <param name="left" default="620" />
         <param name="right" default="OSD_SidePad" />
-        <!-- <param name="animation_fade_hide" default="false" /> -->
         <param name="visible" default="true" />
+
         <definition>
             <control type="group">
                 <visible>$PARAM[visible]</visible>
@@ -391,10 +390,8 @@
 
                 <include content="Object_Scrollbar_Dialog_Vertical">
                     <param name="colordiffuse_texturesliderbackground" value="E62D2E2E" />
-                    <!-- <param name="texturesliderbackground" value="$VAR[Color_OSD_Panel_White70]" /> -->
                     <param name="texturesliderbarfocus" value="scrollbar/scrollv.png" />
                     <param name="texturesliderbarfocus_colordiffuse" value="4ddddddd" />
-                    <!-- <param name="animation_fade_hide" value="$PARAM[animation_fade_hide]" /> -->
                     <param name="scrollid" value="$PARAM[scrollid]" />
                     <param name="onleft" value="$PARAM[onleft]" />
                     <param name="onright" value="$PARAM[onright])" />
@@ -886,36 +883,6 @@
         </definition>
     </include>
 
-    <variable name="Color_OSD_Background_Overlay">
-        <value>B3000000</value>
-    </variable>
-
-    <variable name="Color_OSD_Background_Dialog">
-        <value>FF2D2E2E</value>
-        <!-- <value>FF5A5757</value> -->
-        <!-- <value>White100</value> -->
-    </variable>
-
-    <variable name="Color_OSD_Dialog_Header">
-        <value>CCC5C5C5</value>
-    </variable>
-
-    <variable name="Color_OSD_Dialog_Line">
-        <value>1FBBBBBB</value>
-    </variable>
-
-    <variable name="Color_OSD_Label_Line1">
-        <value>FFC5C5C5</value>
-    </variable>
-
-    <variable name="Color_OSD_Label_Line2">
-        <value>CCC5C5C5</value>
-    </variable>
-
-    <variable name="Color_OSD_Button_Background">
-        <value>33ffffff</value>
-    </variable>
-
     <!-- OSD - VIDEO - SUB MENU -->
 
     <include name="Def_OSD_Context_Audio_Gradient">
@@ -1268,10 +1235,6 @@
 
         <!-- MOVIES / TV SHOWS DETAILED INFO -->
 
-        <!-- <ondown condition="String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO)) + String.IsEmpty(Window(Home).Property(OSDVideo_DONT_AUTO_CLOSE)) + !VideoPlayer.Content(livetv)">SetProperty(OSDVideo_DONT_AUTO_CLOSE,1,Home)</ondown> -->
-
-        <!-- MOVIES / TV SHOWS DETAILED INFO -->
-
         <ondown condition="String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO)) + String.IsEmpty(Window(Home).Property(OSDVideo_DONT_AUTO_CLOSE)) + !String.IsEmpty(VideoPlayer.DBID)">Close</ondown>
 
         <ondown condition="String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO)) + String.IsEmpty(Window(Home).Property(OSDVideo_DONT_AUTO_CLOSE)) + !String.IsEmpty(VideoPlayer.DBID)">SetProperty(OSDVideo_DIALOG_VIDEO_INFO,1,Home)</ondown>
@@ -1279,8 +1242,6 @@
         <ondown condition="String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO)) + String.IsEmpty(Window(Home).Property(OSDVideo_DONT_AUTO_CLOSE)) + !String.IsEmpty(VideoPlayer.DBID)">$VAR[Def_Dialog_Info_Currently_Playing_Item_VideoOSD]</ondown>
 
         <ondown condition="String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO)) + String.IsEmpty(Window(Home).Property(OSDVideo_DONT_AUTO_CLOSE)) + !String.IsEmpty(VideoPlayer.DBID) + !Player.Paused">PlayerControl(Play)</ondown>
-
-        <!-- <ondown condition="!String.IsEmpty(Window(Home).Property(OSDVideo_DONT_AUTO_CLOSE))">ClearProperty(OSDVideo_DONT_AUTO_CLOSE,Home)</ondown> -->
 
         <!-- PVR - SHOWS GROUP CHANNEL LIST -->
 
@@ -1345,7 +1306,6 @@
                 <height>100%</height>
                 <aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
                 <texture diffuse="diffuse/square_w154_h154.png">$VAR[Image_OSD_Channel_Logo]</texture>
-                <!-- <visible>VideoPlayer.Content(livetv) + !String.IsEmpty(VideoPlayer.ChannelLogo) + String.IsEmpty(PVR.EpgEventIcon)</visible> -->
                 <visible>VideoPlayer.Content(livetv)</visible>
             </control>
         </control>
@@ -1393,8 +1353,6 @@
             <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
             <include>Def_OSD_UpDown_Video_Info</include>
             <onclick>SetFocus(9912)</onclick>
-            <!-- <onclick>PlayerControl(Rewind)</onclick> -->
-            <!-- <onup>9912</onup> -->
             <enable>Player.SeekEnabled</enable>
             <animation effect="fade" start="100" end="33" time="100" condition="!Player.SeekEnabled">Conditional</animation>
         </include>
@@ -1435,8 +1393,6 @@
             <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
             <include>Def_OSD_UpDown_Video_Info</include>
             <onclick>SetFocus(9912)</onclick>
-            <!-- <onclick>PlayerControl(Forward)</onclick> -->
-            <!-- <onup>9912</onup> -->
             <enable>Player.SeekEnabled</enable>
             <animation effect="fade" start="100" end="33" time="100" condition="!Player.SeekEnabled">Conditional</animation>
         </include>
@@ -1879,9 +1835,6 @@
                     <align>left</align>
                     <onclick>dialogselectaudio</onclick>
                     <onup>9401</onup>
-                    <!-- <onup>9403</onup> -->
-                    <!-- <ondown>9401</ondown> -->
-                    <!-- <onclick>AudioNextLanguage</onclick> -->
                 </include>
 
                 <!-- SUBTITLE SETTINGS -->
@@ -1897,9 +1850,7 @@
                     <align>left</align>
                     <onclick>DialogSelectSubtitle</onclick>
                     <onup>9301</onup>
-                    <!-- <onup>9303</onup> -->
-                    <!-- <ondown>9301</ondown> -->
-                    <!-- <onclick>NextSubtitle</onclick> -->
+
                 </include>
             </control>
 
@@ -2124,13 +2075,6 @@
 
                     <!-- FOCUS BUTTONS CENTER -->
 
-                    <!-- <control type="image"> -->
-                        <!-- <width>50</width> -->
-                        <!-- <height>50</height> -->
-                        <!-- <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio> -->
-                        <!-- <texture flipy="false" colordiffuse="$VAR[Color_OSD_Button_Background]">special://skin/extras/icons/angle-down.png</texture> -->
-                        <!-- <visible>ControlGroup(100).HasFocus() | [Control.HasFocus(8207) + !String.IsEmpty(VideoPlayer.Plot)]</visible> -->
-                    <!-- </control> -->
                     <control type="image">
                         <width>50</width>
                         <height>50</height>
@@ -2184,7 +2128,6 @@
                     </control>
                     <control type="label">
                         <height>50</height>
-                        <!-- <width min="20" max="150">auto</width> -->
                         <align>right</align>
                         <font>Mini</font>
                         <scroll>false</scroll>
@@ -2563,8 +2506,6 @@
 
     <include name="OSD_Video_SeekBar">
         <control type="group">
-            <!-- <animation effect="fade" start="100" end="0" time="150" condition="[Window.IsVisible(DialogSlider.xml) | [!Player.Paused + !Window.IsVisible(videoosd) + String.IsEmpty(Window(Home).Property(OSDVideo_Show_AT_START_INFO))]] + !Window.IsVisible(DialogFullScreenInfo.xml) + !Player.Seeking + !Player.Forwarding + !Player.Rewinding + !Window.IsVisible(videoosd)">Conditional</animation> -->
-
             <animation effect="fade" start="100" end="0" time="250" condition="Window.IsVisible(DialogSlider.xml) + !Window.IsVisible(DialogFullScreenInfo.xml) + !Player.Seeking + !Player.Forwarding + !Player.Rewinding + !Window.IsVisible(videoosd)">Conditional</animation>
 
             <animation effect="fade" start="100" end="0" time="250" condition="[Window.IsVisible(DialogPlayerProcessInfo.xml) | [Skin.HasSetting(hide.osd.video.on.pause) + Player.Paused] | [Skin.HasSetting(hide.osd.video.on.pause) + !String.IsEmpty(Window(Home).Property(OSDVideo_Hide_OSD_ON_PAUSE)) + !Player.Paused]] + !Player.Seeking + !Player.Forwarding + !Player.Rewinding + !Window.IsVisible(videoosd) + String.IsEmpty(Window(Home).Property(OSDVideo_Show_AT_START_INFO)) + !Window.IsVisible(DialogFullScreenInfo.xml)">Conditional</animation>
@@ -2574,28 +2515,6 @@
             <control type="group">
                 <animation effect="fade" start="0" end="100" time="250">WindowOpen</animation>
                 <animation effect="fade" end="0" start="100" time="250">WindowClose</animation>
-
-                <!-- <control type="image"> -->
-                    <!-- <visible>Window.IsVisible(videoosd)</visible> -->
-                    <!-- <top>340r</top> -->
-                    <!-- <left>80</left> -->
-                    <!-- <right>80</right> -->
-                    <!-- <height>270</height> -->
-                    <!-- <texture border="24" colordiffuse="D2222222">$VAR[texture_box24]</texture> -->
-                    <!-- <texture border="24" colordiffuse="$VAR[Color_OSD_Background_Dialog]">$VAR[texture_box24]</texture> -->
-                    <!-- <animation effect="fade" start="100" end="90" condition="true">Conditional</animation> -->
-                <!-- </control> -->
-
-                <!-- <control type="image"> -->
-                    <!-- <visible>!Window.IsVisible(videoosd)</visible> -->
-                    <!-- <top>270r</top> -->
-                    <!-- <left>80</left> -->
-                    <!-- <right>80</right> -->
-                    <!-- <height>190</height> -->
-                    <!-- <texture border="24" colordiffuse="D2222222">$VAR[texture_box24]</texture> -->
-                    <!-- <texture border="24" colordiffuse="$VAR[Color_OSD_Background_Dialog]">$VAR[texture_box24]</texture> -->
-                    <!-- <animation effect="fade" start="100" end="90" condition="true">Conditional</animation> -->
-                <!-- </control> -->
 
                 <control type="image">
                     <top>830r</top>

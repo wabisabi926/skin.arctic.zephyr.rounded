@@ -259,15 +259,6 @@
                     <height>88</height>
                     <texture colordiffuse="Selected" border="12">special://skin/extras/icons/search.png</texture>
                 </control>
-                <!-- <control type="image"> -->
-                    <!-- <top>6</top> -->
-                    <!-- <left>465</left> -->
-                    <!-- <width>68</width> -->
-                    <!-- <height>68</height> -->
-                    <!-- <texture colordiffuse="Selected" border="12">special://skin/extras/icons/plex.png</texture> -->
-                    <!-- <visible>Control.HasFocus(9099)</visible> -->
-                    <!-- <visible>!Window.IsVisible(DialogBusy.xml)</visible> -->
-                <!-- </control> -->
             </control>
 
             <!-- EDIT BAR WIKIPEDIA -->
@@ -297,8 +288,6 @@
                 </control>
                 <control type="button" id="340" description="Helper">
                     <include>Def_Hidden_Button</include>
-                    <!-- <onfocus>Dialog.Close(all)</onfocus> -->
-                    <!-- <onfocus>SetProperty(SearchString,$INFO[Control.GetLabel(9099).index(1)],Home)</onfocus> -->
                     <onfocus condition="!String.IsEmpty(Control.GetLabel(9099).index(1))">RunScript(script.skinvariables,add_skinstring_history=SearchHistory,value=$INFO[Control.GetLabel(9099).index(1)])</onfocus>
                     <onfocus condition="!String.IsEmpty(Control.GetLabel(9099).index(1))">RunScript(script.wikipedia,wikipedia=$INFO[Control.GetLabel(9099).index(1)],language=$VAR[Path_Wikipedia_Language])</onfocus>
                     <onfocus>SetFocus(9099)</onfocus>
