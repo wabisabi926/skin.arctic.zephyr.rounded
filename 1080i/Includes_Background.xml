@@ -964,7 +964,7 @@
 
         <!-- FROM TMDB HELPER -->
 
-        <value condition="$EXP[Background_Home_Flix_Or_All_Views] + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.fanart)) + [!Window.IsVisible(Home) | ![Window.IsVisible(Home) + Skin.HasSetting(home.enable.menu.background)]] + !$EXP[Home_More_Item]">$INFO[Window(Home).Property(TMDbHelper.ListItem.Fanart)]</value>
+        <value condition="$EXP[Background_Home_Flix_Or_All_Views] + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.fanart)) + [!Window.IsVisible(Home) | ![Window.IsVisible(Home) + Skin.HasSetting(home.enable.menu.background)]] + !$EXP[Home_More_Item] + [Window.IsVisible(Home) + !String.IsEmpty(ListItem.FolderPath) + !$EXP[Home_Menu_Is_Focus]]">$INFO[Window(Home).Property(TMDbHelper.ListItem.Fanart)]</value>
 
         <!-- FALLBACK -->
 
