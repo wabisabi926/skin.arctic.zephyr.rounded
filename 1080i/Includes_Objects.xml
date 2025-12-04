@@ -134,32 +134,6 @@
 
         <definition>
             <control type="group">
-                <visible>Container($PARAM[idtextbox]).HasNext + $PARAM[visible]</visible>
-                <include>Animation_Common_Fade_In</include>
-                <include>Animation_Common_Fade_Out</include>
-
-                <top>$PARAM[bottom]</top>
-                <left>$PARAM[left]</left>
-
-                <control type="image" description="button back">
-                    <top>-7</top>
-                    <left>-12</left>
-                    <width>40</width>
-                    <height>40</height>
-                    <texture border="0" colordiffuse="Dark4">common/circle.png</texture>
-                </control>
-                <control type="image">
-                    <top>0</top>
-                    <include>Def_Arrow_Size</include>
-                    <texture colordiffuse="Dark2" flipy="false">common/arrow_small_down.png</texture>
-                </control>
-                <control type="image">
-                    <top>12</top>
-                    <include>Def_Arrow_Size</include>
-                    <texture colordiffuse="Dark2" flipy="false">common/arrow_small_down.png</texture>
-                </control>
-            </control>
-            <control type="group">
                 <visible>Container($PARAM[idtextbox]).HasPrevious + $PARAM[visible]</visible>
                 <include>Animation_Common_Fade_In</include>
                 <include>Animation_Common_Fade_Out</include>
@@ -167,25 +141,59 @@
                 <top>$PARAM[top]</top>
                 <left>$PARAM[left]</left>
 
-                <control type="image" description="button back">
-                    <top>-6</top>
-                    <left>-12</left>
-                    <width>40</width>
-                    <height>40</height>
-                    <texture border="0" colordiffuse="Dark4">common/circle.png</texture>
-                </control>
-                <control type="image">
-                    <top>0</top>
-                    <include>Def_Arrow_Size</include>
-                    <texture colordiffuse="Dark2" flipy="true">common/arrow_small_down.png</texture>
-                </control>
-                <control type="image">
-                    <top>12</top>
-                    <include>Def_Arrow_Size</include>
-                    <texture colordiffuse="Dark2" flipy="true">common/arrow_small_down.png</texture>
-                </control>
+                <include>Object_Arrows_Up</include>
+            </control>
+            <control type="group">
+                <visible>Container($PARAM[idtextbox]).HasNext + $PARAM[visible]</visible>
+                <include>Animation_Common_Fade_In</include>
+                <include>Animation_Common_Fade_Out</include>
+
+                <top>$PARAM[bottom]</top>
+                <left>$PARAM[left]</left>
+
+                <include>Object_Arrows_Down</include>
             </control>
         </definition>
+    </include>
+
+    <include name="Object_Arrows_Up">
+        <control type="image" description="button back">
+            <top>-6</top>
+            <left>-12</left>
+            <width>40</width>
+            <height>40</height>
+            <texture border="0" colordiffuse="Dark4">common/circle.png</texture>
+        </control>
+        <control type="image">
+            <top>0</top>
+            <include>Def_Arrow_Size</include>
+            <texture colordiffuse="Dark2" flipy="true">common/arrow_small_down.png</texture>
+        </control>
+        <control type="image">
+            <top>12</top>
+            <include>Def_Arrow_Size</include>
+            <texture colordiffuse="Dark2" flipy="true">common/arrow_small_down.png</texture>
+        </control>
+    </include>
+
+    <include name="Object_Arrows_Down">
+        <control type="image" description="button back">
+            <top>-7</top>
+            <left>-12</left>
+            <width>40</width>
+            <height>40</height>
+            <texture border="0" colordiffuse="Dark4">common/circle.png</texture>
+        </control>
+        <control type="image">
+            <top>0</top>
+            <include>Def_Arrow_Size</include>
+            <texture colordiffuse="Dark2" flipy="false">common/arrow_small_down.png</texture>
+        </control>
+        <control type="image">
+            <top>12</top>
+            <include>Def_Arrow_Size</include>
+            <texture colordiffuse="Dark2" flipy="false">common/arrow_small_down.png</texture>
+        </control>
     </include>
 
     <!-- SPINNER -->

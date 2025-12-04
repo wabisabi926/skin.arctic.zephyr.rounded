@@ -121,26 +121,20 @@
 
                 <control type="group">
                     <visible>$PARAM[visible.layouts]</visible>
+                    <visible>!String.IsEmpty(Window(Home).Property(ActorIsFocus))</visible>
                     <visible>!Container($PARAM[controlid]).IsUpdating</visible>
                     <visible>!Control.HasFocus(9554) + !Control.HasFocus(95547) + !Control.HasFocus($PARAM[controlid]7)</visible>
                     <visible>!Container($PARAM[controlid]).OnNext + !Container($PARAM[controlid]).OnPrevious + !ListItem.IsCollection</visible>
                     <visible>String.IsEmpty(Window(Home).Property(Hide_On_Reload_Dialog_Info))</visible>
 
-                    <include content="Animation_Common_Delay_Fade_In"><param name="delay" value="200" /></include>
+                    <include content="Animation_Common_Delay_Fade_In"><param name="delay" value="400" /></include>
+
                     <animation effect="fade" start="100" end="0" time="0" delay="0" condition="[[Window.IsVisible(script-wikipedia.xml) | Window.IsVisible(DialogBusy.xml)] + !Skin.HasSetting(hide.button.video.wiki)]">Conditional</animation>
 
-                    <top>70</top>
+                    <top>60</top>
                     <left>-166</left>
 
-                    <control type="image">
-                        <include>Def_Arrow_Size</include>
-                        <texture colordiffuse="Dark1" flipy="true">common/arrow_small_down.png</texture>
-                    </control>
-                    <control type="image">
-                        <top>12</top>
-                        <include>Def_Arrow_Size</include>
-                        <texture colordiffuse="Dark1" flipy="true">common/arrow_small_down.png</texture>
-                    </control>
+                    <include>Object_Arrows_Up</include>
                 </control>
 
                 <!-- BACKGROUND LIST -->
@@ -239,9 +233,9 @@
 
                         <onback condition="![Control.IsVisible(9556) | Control.IsVisible(9514) | Control.IsVisible(9515) | Control.IsVisible(9502) | Control.IsVisible(9517) | Control.IsVisible(9503) | Control.IsVisible(9557) | Control.IsVisible(9506) | Control.IsVisible(9579) | Control.IsVisible(9520)]">9000</onback>
 
-                        <focusposition>2</focusposition>
                         <pagecontrol>$PARAM[controlid]7</pagecontrol>
                         <orientation>horizontal</orientation>
+                        <focusposition>2</focusposition>
                         <preloaditems>2</preloaditems>
 
                         <itemlayout height="$PARAM[height]" width="$PARAM[width]">
@@ -273,8 +267,20 @@
                             </control>
                             <control type="button">
                                 <visible>false</visible>
+
+                                <!-- LOCAL ONLY - SET PERSON - NAME / PICTURE -->
+
                                 <onfocus condition="Control.IsVisible(50)">SetProperty(ListVideoForCast,$INFO[Container(50).ListItem.Label],Home)</onfocus>
                                 <onfocus condition="Control.IsVisible(50)">SetProperty(ListVideoForCastIcon,$INFO[Container(50).ListItem.Icon],Home)</onfocus>
+
+                                <!-- ARROW UP -->
+
+                                <onleft>ClearProperty(ActorIsFocus,Home)</onleft>
+                                <onright>ClearProperty(ActorIsFocus,Home)</onright>
+                                <onup>ClearProperty(ActorIsFocus,Home)</onup>
+                                <ondown>ClearProperty(ActorIsFocus,Home)</ondown>
+                                <onunfocus>ClearProperty(ActorIsFocus,Home)</onunfocus>
+                                <onfocus>AlarmClock(delay_set_ActorIsFocus,SetProperty(ActorIsFocus,1,Home),00:00,silent)</onfocus>
                             </control>
                         </focusedlayout>
 
