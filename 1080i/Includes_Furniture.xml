@@ -234,7 +234,7 @@
 
         <definition>
             <control type="group">
-                <visible>!Container.Content(years) + !String.IsEqual(ListItem.Property(LabelMore),more)</visible>
+                <visible>!Container.Content(years) + !$EXP[Home_More_Item]</visible>
 
                 <visible>String.IsEqual(ListItem.DBType,video) | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,song)</visible>
 
@@ -299,7 +299,7 @@
                 <control type="image">
                     <visible>!ListItem.IsResumable + !$EXP[IsTVShowInProgress] + !ListItem.IsPlaying + !$EXP[IsAlbumIsPlaying] + Integer.IsEqual(ListItem.Playcount,0) + Skin.HasSetting(show.markers.unwatched.banner)</visible>
                     <visible>String.IsEqual(ListItem.DBType,video) | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)</visible>
-                    <visible>!String.IsEqual(ListItem.Property(LabelMore),more)</visible>
+                    <visible>!$EXP[Home_More_Item]</visible>
                     <visible>![String.IsEqual(ListItem.Overlay,OverlayUnwatched.png) + [$EXP[IsNewMovie] | $EXP[IsNewTVShow] | $EXP[IsNewEpisode]]]</visible>
                     <visible>![Control.IsVisible(9550) | Control.IsVisible(9557)]</visible>
                     <visible>[Container.Content(actors) + Window.IsVisible(DialogVideoInfo.xml)] | !Container.Content(actors)</visible>
@@ -359,7 +359,7 @@
                 <control type="label">
                     <visible>!Skin.HasSetting(hide.markers) + !ListItem.IsResumable + Integer.IsEqual(ListItem.Playcount,0) + Skin.HasSetting(show.markers.unwatched.banner)</visible>
                     <visible>String.IsEqual(ListItem.DBType,video) | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)</visible>
-                    <visible>!String.IsEqual(ListItem.Property(LabelMore),more)</visible>
+                    <visible>!$EXP[Home_More_Item]</visible>
                     <visible>![String.IsEqual(ListItem.Overlay,OverlayUnwatched.png) + [$EXP[IsNewMovie] | $EXP[IsNewTVShow] | $EXP[IsNewEpisode]]]</visible>
                     <visible>!ListItem.IsPlaying</visible>
                     <visible>![Control.IsVisible(9550) | Control.IsVisible(9557)]</visible>
