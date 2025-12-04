@@ -1622,9 +1622,18 @@
 
         <!-- ARTIST - COUNT 1 ALBUM -->
 
+        <control type="label">
+            <include content="Def_Home_Label_Widget_Title"><param name="focusid" value="$PARAM[focusid]" /></include>
+            <label>  •  </label>
+            <include>Animation_Vertical_Widgets_Title</include>
+            <visible>Control.HasFocus($PARAM[focusid])</visible>
+            <visible>Integer.IsGreater(Container(44024).NumItems,1)</visible>
+            <visible>String.IsEqual(ListItem.DBType,artist)</visible>
+            <visible>!Skin.HasSetting(home.style.flix)</visible>
+        </control>
         <control type="label" id="9968">
             <include content="Def_Home_Label_Widget_Title"><param name="focusid" value="$PARAM[focusid]" /></include>
-            <label>$VAR[Label_Home_Widget_Artist_One_Album,  •  ,]</label>
+            <label>$VAR[Label_Home_Widget_Artist_One_Album]</label>
             <include>Animation_Vertical_Widgets_Title</include>
             <visible>Control.HasFocus($PARAM[focusid])</visible>
             <visible>Integer.IsGreater(Container(44024).NumItems,1)</visible>
@@ -1634,15 +1643,26 @@
 
         <!-- ARTIST - COUNT MORE 1 ALBUM -->
 
-        <control type="label" id="9969">
+        <control type="label">
             <include content="Def_Home_Label_Widget_Title"><param name="focusid" value="$PARAM[focusid]" /></include>
-            <label>$VAR[Label_Home_Widget_Artist_Num_Albums,  •  ,]</label>
+            <label>  •  </label>
             <include>Animation_Vertical_Widgets_Title</include>
             <visible>Control.HasFocus($PARAM[focusid])</visible>
             <visible>Integer.IsEqual(Container(44024).NumItems,1)</visible>
             <visible>String.IsEqual(ListItem.DBType,artist)</visible>
             <visible>!Skin.HasSetting(home.style.flix)</visible>
         </control>
+        <control type="label" id="9969">
+            <include content="Def_Home_Label_Widget_Title"><param name="focusid" value="$PARAM[focusid]" /></include>
+            <label>$VAR[Label_Home_Widget_Artist_Num_Albums]</label>
+            <include>Animation_Vertical_Widgets_Title</include>
+            <visible>Control.HasFocus($PARAM[focusid])</visible>
+            <visible>Integer.IsEqual(Container(44024).NumItems,1)</visible>
+            <visible>String.IsEqual(ListItem.DBType,artist)</visible>
+            <visible>!Skin.HasSetting(home.style.flix)</visible>
+        </control>
+
+        <!-- ARTIST - GENRE -->
 
         <control type="label">
             <include content="Def_Home_Label_Widget_Title"><param name="focusid" value="$PARAM[focusid]" /></include>
