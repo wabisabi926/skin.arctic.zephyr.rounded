@@ -197,14 +197,16 @@
     <!-- ============================================= -->
     <!-- TMDB HELPER - BLUR - BUG 6.11.18 - WORKAROUND -->
     <!-- ============================================= -->
-            
+
     <expression name="TMDb_Blur_Has_Good_Fanart">[[Window.IsVisible(Home) + !String.IsEmpty(ListItem.FolderPath) + !$EXP[Home_Menu_Is_Focus]] | [Window.IsVisible(Home) + $EXP[Home_Menu_Is_Focus]] | !Window.IsVisible(Home)]</expression>
+
+    <expression name="TMDb_Has_Good_Fanart">[[Window.IsVisible(Home) + !String.IsEmpty(ListItem.FolderPath) + !$EXP[Home_Menu_Is_Focus]] | !Window.IsVisible(Home)]</expression>
 
     <!-- ============================================= -->
     <!-- ============================================= -->
-            
+
     <!-- HOME BACKGROUND ON MENU -->
-    
+
     <expression name="Home_Main_Menu_Is_Focus">[Control.HasFocus(300) | Control.HasFocus(222) | Control.HasFocus(399)]</expression>
 
     <expression name="Home_Menu_Is_Focus">[$EXP[Home_Main_Menu_Is_Focus] | Control.HasFocus(302)]</expression>
