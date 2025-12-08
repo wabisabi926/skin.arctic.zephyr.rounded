@@ -994,35 +994,37 @@
         <!-- ALL OTHER -->
 
         <include content="Def_Widgets_Item_Main_Title_Clearlogo">
+            <param name="id" value="$PARAM[id]" />
             <param name="label" value="$INFO[Container($PARAM[id]).ListItem.Label]" />
             <param name="visible" value="!String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://) + !String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode) + !String.IsEmpty(Container($PARAM[id]).ListItem.Label)" />
-            <param name="id" value="$PARAM[id]" />
         </include>
 
         <!-- EPISODES -->
 
         <include content="Def_Widgets_Item_Main_Title_Clearlogo">
+            <param name="id" value="$PARAM[id]" />
             <param name="label" value="$INFO[Container($PARAM[id]).ListItem.TvShowTitle,, - ]$INFO[Container($PARAM[id]).ListItem.Title]" />
             <param name="visible" value="!String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://) + String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode)" />
-            <param name="id" value="$PARAM[id]" />
         </include>
 
         <!-- PVR -->
 
         <include content="Def_Widgets_Item_Main_Title_Clearlogo">
+            <param name="id" value="$PARAM[id]" />
             <param name="label" value="$INFO[Container($PARAM[id]).ListItem.Title]" />
             <param name="visible" value="String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://) + !String.IsEmpty(Container($PARAM[id]).ListItem.Title)" />
-            <param name="id" value="$PARAM[id]" />
         </include>
         <include content="Def_Widgets_Item_Main_Title_Clearlogo">
+            <param name="id" value="$PARAM[id]" />
             <param name="label" value="$INFO[Container($PARAM[id]).ListItem.Label]" />
             <param name="visible" value="String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://) + String.IsEmpty(Container($PARAM[id]).ListItem.Title)" />
-            <param name="id" value="$PARAM[id]" />
         </include>
     </include>
 
     <include name="Widgets_Item_Sub_Title">
         <control type="group">
+            <visible>!Integer.IsEqual(Container($PARAM[id]).NumItems,0) + Integer.IsGreater(Container($PARAM[id]).NumItems,0)</visible>
+
             <animation effect="fade" start="0" end="100" time="200" delay="100" reversible="true">Visible</animation>
             <animation effect="fade" start="100" end="0" delay="100" time="200" reversible="true">Hidden</animation>
 
@@ -1303,25 +1305,29 @@
     </include>
 
     <include name="Def_Widgets_Item_Main_Title_Clearlogo">
+        <param name="left" value="$PARAM[left]" default="0" />
+        <param name="width" value="$PARAM[width]" default="100%" />
+        <param name="height" value="$PARAM[height]" default="40" />
+        <param name="width_clearlogo" value="$PARAM[width_clearlogo]" default="ClearLogoTitleMaxWidth" />
+        <param name="height_clearlogo" value="$PARAM[height_clearlogo]" default="ClearLogoTitleMaxHeight" />
+        <param name="visible" value="$PARAM[visible]" default="true" />
+
         <definition>
             <control type="group">
-                <param name="left" value="$PARAM[left]" default="0" />
-                <param name="height" value="$PARAM[height]" default="46" />
-                <param name="width" value="$PARAM[width]" default="100%" />
-                <param name="visible" value="$PARAM[visible]" default="true" />
+                <visible>!Integer.IsEqual(Container($PARAM[id]).NumItems,0) + Integer.IsGreater(Container($PARAM[id]).NumItems,0)</visible>
 
                 <!-- LABEL - HEADER - VIDEO -->
 
                 <control type="label">
                     <include content="Def_Height" condition="Skin.HasSetting(show.home.flix.title.clearlogo)">
-                        <param name="height" value="ClearLogoTitleMaxHeight" />
+                        <param name="height" value="$PARAM[height_clearlogo]" />
                     </include>
 
-                    <height>40</height>
-                    <width>100%</width>
-                    <left>$PARAM[left]</left>
-                    <align>left</align>
                     <top>26</top>
+                    <align>left</align>
+                    <left>$PARAM[left]</left>
+                    <width>$PARAM[width]</width>
+                    <height>$PARAM[height]</height>
 
                     <font>LargeNetflix</font>
                     <textcolor>Dark1</textcolor>
@@ -1339,11 +1345,11 @@
                         <param name="height" value="ClearLogoTitleMaxHeight" />
                     </include>
 
-                    <height>40</height>
-                    <width>100%</width>
-                    <left>$PARAM[left]</left>
-                    <align>left</align>
                     <top>26</top>
+                    <align>left</align>
+                    <left>$PARAM[left]</left>
+                    <width>$PARAM[width]</width>
+                    <height>$PARAM[height]</height>
 
                     <font>LargeNetflix</font>
                     <textcolor>Dark1</textcolor>
@@ -1357,8 +1363,8 @@
                  <!-- CLEARLOGO CROP - HEADER - MOVIE / TVSHOW / MUSIC / ARTIST -->
 
                 <control type="image">
-                    <height>ClearLogoTitleMaxHeight</height>
-                    <width>ClearLogoTitleMaxWidth</width>
+                    <height>$PARAM[height_clearlogo]</height>
+                    <width>$PARAM[width_clearlogo]</width>
                     <aspectratio scalediffuse="true" align="left">keep</aspectratio>
                     <texture background="true">$VAR[Image_Home_ClearLogo_Crop]</texture>
                     <visible>$PARAM[visible] + $EXP[Title_Clearlogo_Home_Crop]</visible>
@@ -1368,8 +1374,8 @@
                  <!-- CLEARLOGO - HEADER - MOVIE / VIDEO / TVSHOW / ARTIST -->
 
                 <control type="image">
-                    <height>ClearLogoTitleMaxHeight</height>
-                    <width>ClearLogoTitleMaxWidth</width>
+                    <height>$PARAM[height_clearlogo]</height>
+                    <width>$PARAM[width_clearlogo]</width>
                     <aspectratio scalediffuse="true" align="left">keep</aspectratio>
                     <texture background="true">$INFO[Container($PARAM[id]).ListItem.Art(clearlogo)]</texture>
                     <visible>$PARAM[visible] + !$EXP[Title_Clearlogo_Home_Crop]</visible>
@@ -1380,8 +1386,8 @@
                  <!-- CLEARLOGO - HEADER - SEASON / EPISODE -->
 
                 <control type="image">
-                    <height>ClearLogoTitleMaxHeight</height>
-                    <width>ClearLogoTitleMaxWidth</width>
+                    <height>$PARAM[height_clearlogo]</height>
+                    <width>$PARAM[width_clearlogo]</width>
                     <aspectratio scalediffuse="true" align="left">keep</aspectratio>
                     <texture background="true">$INFO[Container($PARAM[id]).ListItem.Art(tvshow.clearlogo)]</texture>
                     <visible>$PARAM[visible] + !$EXP[Title_Clearlogo_Home_Crop]</visible>
@@ -1392,8 +1398,8 @@
                  <!-- CLEARLOGO - HEADER - ALBUM -->
 
                 <control type="image">
-                    <height>ClearLogoTitleMaxHeight</height>
-                    <width>ClearLogoTitleMaxWidth</width>
+                    <height>$PARAM[height_clearlogo]</height>
+                    <width>$PARAM[width_clearlogo]</width>
                     <aspectratio scalediffuse="true" align="left">keep</aspectratio>
                     <texture background="true">$INFO[Container($PARAM[id]).ListItem.Art(artist.clearlogo)]</texture>
                     <visible>$PARAM[visible] + !$EXP[Title_Clearlogo_Home_Crop]</visible>
@@ -1985,9 +1991,9 @@
                 <control type="image">
                     <visible>$EXP[Home_Main_Menu_Is_Focus] + !String.IsEmpty(Window(Home).Property(399IsFocus))</visible>
                     <visible>Integer.IsGreater(Container(302).NumItems,0) + [!Skin.HasSetting(show.submenu.on.click.main.menu) | [Skin.HasSetting(show.submenu.on.click.main.menu) + !String.StartsWith(Container(300).ListItem.Property(path),SetFocus(302,0))]]</visible>
-                    
+
                     <animation effect="fade" end="100" start="0" delay="300" time="400" reversible="false" condition="$EXP[Home_Main_Menu_Is_Focus] + !String.IsEmpty(Window(Home).Property(399IsFocus))">Conditional</animation>
-                    
+
                     <top>66</top>
                     <centerleft>45.7%</centerleft>
                     <include>Def_Arrow_Size</include>
