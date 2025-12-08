@@ -1003,7 +1003,7 @@
 
         <include content="Def_Widgets_Item_Main_Title_Clearlogo">
             <param name="id" value="$PARAM[id]" />
-            <param name="label" value="$INFO[Container($PARAM[id]).ListItem.TvShowTitle,, - ]$INFO[Container($PARAM[id]).ListItem.Title]" />
+            <param name="label" value="$INFO[Container($PARAM[id]).ListItem.TvShowTitle]" />
             <param name="visible" value="!String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://) + String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode)" />
         </include>
 
@@ -1305,6 +1305,8 @@
     </include>
 
     <include name="Def_Widgets_Item_Main_Title_Clearlogo">
+        <param name="id" value="$PARAM[id]" />
+        <param name="label" value="$PARAM[label]" />
         <param name="left" value="$PARAM[left]" default="0" />
         <param name="width" value="$PARAM[width]" default="100%" />
         <param name="height" value="$PARAM[height]" default="40" />
@@ -1429,8 +1431,8 @@
     <!-- WIDGET - INFO SYSTEM - KODI SETTINGS -->
 
     <include name="Home_Flix_Widgets_System_Info">
-        <param name="issettingslayout" value="$PARAM[issettingslayout]" default="false" />
         <param name="id" value="$PARAM[id]" />
+        <param name="issettingslayout" value="$PARAM[issettingslayout]" default="false" />
 
         <definition>
             <include content="Def_Top" condition="Skin.HasSetting(home.style.horizontal.clean) + !Skin.HasSetting(hide.widget.title)">
