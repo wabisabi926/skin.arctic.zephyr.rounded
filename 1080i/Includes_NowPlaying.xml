@@ -998,10 +998,12 @@
             <param name="id" value="13" />
             <param name="groupid" value="6299" />
             <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+            <param name="icon_colordiffuse_disabled" value="$VAR[Color_Icon_Disabled]" />
+            <param name="show_not_enabled" value="true" />
             <include>Def_OSD_UpDown_Home_NowPlaying</include>
             <onclick>PlayerControl(Rewind)</onclick>
             <enable>Player.SeekEnabled</enable>
-            <animation effect="fade" start="100" end="33" time="100" condition="!Player.SeekEnabled">Conditional</animation>
+            <animation effect="fade" start="100" end="66" time="100" condition="!Player.SeekEnabled">Conditional</animation>
         </include>
 
         <include content="Object_OSD_Button">
@@ -1013,10 +1015,12 @@
             <param name="id" value="14" />
             <param name="groupid" value="6399" />
             <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+            <param name="icon_colordiffuse_disabled" value="$VAR[Color_Icon_Disabled]" />
+            <param name="show_not_enabled" value="true" />
             <include>Def_OSD_UpDown_Home_NowPlaying</include>
             <onclick>PlayerControl(Play)</onclick>
             <enable>Player.PauseEnabled</enable>
-            <animation effect="fade" start="100" end="33" time="100" condition="!Player.PauseEnabled">Conditional</animation>
+            <animation effect="fade" start="100" end="66" time="100" condition="!Player.PauseEnabled">Conditional</animation>
         </include>
 
         <include content="Object_OSD_Button">
@@ -1041,10 +1045,12 @@
             <param name="id" value="16" />
             <param name="groupid" value="6599" />
             <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+            <param name="icon_colordiffuse_disabled" value="$VAR[Color_Icon_Disabled]" />
+            <param name="show_not_enabled" value="true" />
             <include>Def_OSD_UpDown_Home_NowPlaying</include>
             <onclick>PlayerControl(Forward)</onclick>
             <enable>Player.SeekEnabled</enable>
-            <animation effect="fade" start="100" end="33" time="100" condition="!Player.SeekEnabled">Conditional</animation>
+            <animation effect="fade" start="100" end="66" time="100" condition="!Player.SeekEnabled">Conditional</animation>
         </include>
 
         <include content="Object_OSD_Button">
@@ -1085,11 +1091,13 @@
             <param name="id" value="18" />
             <param name="groupid" value="6899" />
             <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+            <param name="icon_colordiffuse_disabled" value="$VAR[Color_Icon_Disabled]" />
+            <param name="show_not_enabled" value="true" />
             <include>Def_OSD_UpDown_Home_NowPlaying</include>
             <onclick condition="Integer.IsGreater(Playlist.Length(video),0) + [Player.HasVideo | Integer.IsEqual(Playlist.Length(music),0)]">ActivateWindow(videoplaylist)</onclick>
             <onclick condition="Integer.IsGreater(Playlist.Length(music),0) + !Player.HasVideo">ActivateWindow(musicplaylist)</onclick>
             <enable>!VideoPlayer.Content(livetv)</enable>
-            <animation effect="fade" start="100" end="33" time="100" condition="VideoPlayer.Content(livetv)">Conditional</animation>
+            <animation effect="fade" start="100" end="66" time="100" condition="VideoPlayer.Content(livetv)">Conditional</animation>
         </include>
 
         <include content="Object_OSD_Button" condition="!String.IsEmpty(MusicPlayer.DBID) + [Skin.HasSetting(show.flags.music.rating.user) | Skin.HasSetting(userrating.override.kodi.rating.stars)]">

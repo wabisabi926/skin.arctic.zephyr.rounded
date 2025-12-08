@@ -89,7 +89,6 @@
                     <param name="id" value="3" />
                     <param name="groupid" value="7299" />
                     <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
-
                     <onclick>Action(Info)</onclick>
                     <onclick condition="!Skin.HasSetting(auto.hide.OSD.music.info)">Dialog.Close(musicosd)</onclick>
                     <onclick condition="!Skin.HasSetting(auto.hide.OSD.music.info)">Skin.SetBool(auto.hide.OSD.music.info)</onclick>
@@ -123,10 +122,11 @@
                     <param name="id" value="12" />
                     <param name="groupid" value="6199" />
                     <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
+                    <param name="show_not_enabled" value="true" />
                     <include>Def_OSD_UpDown_Music_Info</include>
                     <onclick>PlayerControl(Previous)</onclick>
                     <enable>Player.PauseEnabled</enable>
-                    <animation effect="fade" start="100" end="33" time="100" condition="!Player.PauseEnabled">Conditional</animation>
+                    <animation effect="fade" start="100" end="66" time="100" condition="!Player.PauseEnabled">Conditional</animation>
                 </include>
 
                 <!-- RAPID RETURN -->
@@ -139,10 +139,11 @@
                     <param name="id" value="13" />
                     <param name="groupid" value="6299" />
                     <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
+                    <param name="show_not_enabled" value="true" />
                     <include>Def_OSD_UpDown_Music_Info</include>
                     <onclick>PlayerControl(Rewind)</onclick>
                     <enable>Player.SeekEnabled</enable>
-                    <animation effect="fade" start="100" end="33" time="100" condition="!Player.SeekEnabled">Conditional</animation>
+                    <animation effect="fade" start="100" end="66" time="100" condition="!Player.SeekEnabled">Conditional</animation>
                 </include>
 
                 <!-- PLAY / PAUSE -->
@@ -154,11 +155,12 @@
                     <param name="id" value="14" />
                     <param name="groupid" value="6399" />
                     <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
+                    <param name="show_not_enabled" value="true" />
                     <include>Def_OSD_UpDown_Music_Info</include>
                     <onclick>PlayerControl(Play)</onclick>
                     <onfocus>ClearProperty(OSDArtistDetails,Home)</onfocus>
                     <enable>Player.PauseEnabled</enable>
-                    <animation effect="fade" start="100" end="33" time="100" condition="!Player.PauseEnabled">Conditional</animation>
+                    <animation effect="fade" start="100" end="66" time="100" condition="!Player.PauseEnabled">Conditional</animation>
                 </include>
 
                 <!-- STOP -->
@@ -183,10 +185,11 @@
                     <param name="id" value="16" />
                     <param name="groupid" value="6599" />
                     <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
+                    <param name="show_not_enabled" value="true" />
                     <include>Def_OSD_UpDown_Music_Info</include>
                     <onclick>PlayerControl(Forward)</onclick>
                     <enable>Player.SeekEnabled</enable>
-                    <animation effect="fade" start="100" end="33" time="100" condition="!Player.SeekEnabled">Conditional</animation>
+                    <animation effect="fade" start="100" end="66" time="100" condition="!Player.SeekEnabled">Conditional</animation>
                 </include>
 
                 <!-- NEXT -->
