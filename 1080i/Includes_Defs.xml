@@ -210,7 +210,6 @@
         <param name="border_border" value="$PARAM[border_border]" default="32" />
         <param name="texture_border" value="$PARAM[texture_border]" default="$VAR[border24]" />
         <param name="colordiffuse_border" value="$PARAM[colordiffuse_border]" default="$VAR[Color_Border]" />
-        <param name="always_only_border" value="$PARAM[always_only_border]" default="false" />
         <param name="visible_border" value="$PARAM[visible_border]" default="true" />
 
         <param name="pad_image" value="$PARAM[pad_image]" default="0" />
@@ -224,14 +223,14 @@
                 <include content="Def_Padding"><param name="pad" value="$PARAM[pad_shadow]" /></include>
                 <texture border="$PARAM[border_shadow]"  colordiffuse="$PARAM[colordiffuse_shadow]" infill="false">$PARAM[texture_shadow]</texture>
                 <animation effect="fade" end="80" start="100" time="0" condition="true">Conditional</animation>
-                <visible>!Skin.HasSetting(hide.global.shadows) + !$PARAM[always_only_border]</visible>
+                <visible>!Skin.HasSetting(hide.global.shadows)</visible>
                 <visible>$PARAM[visible_shadow]</visible>
                 <visible>$PARAM[visible]</visible>
             </control>
             <control type="image">
                 <include content="Def_Padding"><param name="pad" value="$PARAM[pad_border]" /></include>
                 <texture border="$PARAM[border_border]" colordiffuse="$PARAM[colordiffuse_border]" infill="false">$PARAM[texture_border]</texture>
-                <visible>Skin.HasSetting(hide.global.shadows) | $PARAM[always_only_border]</visible>
+                <visible>Skin.HasSetting(hide.global.shadows)</visible>
                 <visible>$PARAM[visible_border]</visible>
                 <visible>$PARAM[visible]</visible>
             </control>
