@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window type="dialog">
-    <onload>AlarmClock(InitFocusPowerMenu,Control.SetFocus(3110,0,absolute),00:00,silent)</onload>
+    <defaultcontrol always="true">3110</defaultcontrol>
+
     <onload condition="$EXP[Has_Home_Menu_Auto_Slide_Out_Animation]">CancelAlarm(slide_out_setfocus_2011,true)</onload>
+    <onload>AlarmClock(InitFocusPowerMenu,Control.SetFocus(3110,0,absolute),00:00,silent)</onload>
 
     <onunload condition="Window.IsVisible(Home) + !String.IsEmpty(Window(Home).Property(HomeLastWidgetFocus))">SetFocus($INFO[Window(Home).Property(HomeLastWidgetFocus)])</onunload>
 
@@ -96,7 +98,9 @@
                 <ondown>3110</ondown>
                 <onleft>Close</onleft>
                 <onright>1799</onright>
-                <onback>300</onback>
+
+                <!-- <onback condition="Window.IsVisible(Home) + !String.IsEmpty(Window(Home).Property(HomeLastWidgetFocus))">SetFocus($INFO[Window(Home).Property(HomeLastWidgetFocus)])</onback> -->
+                <onback condition="Window.IsVisible(Home) + String.IsEmpty(Window(Home).Property(HomeLastWidgetFocus))">AlarmClock(power_menu_setfocus_399,SetFocus(399),00:01,silent)</onback>
 
                 <pagecontrol>1799</pagecontrol>
                 <orientation>vertical</orientation>
