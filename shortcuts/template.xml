@@ -82,20 +82,45 @@
 
             <property name="id" tag="mainmenuid" />
 
-            <!--- WIDGET TYPE -->
+            <!--- ORIENTATATION -->
 
-            <property name="widget" tag="property" attribute="name|widget" />
+            <property name="orientation">horizontal</property>
 
-            <!--- WIDGET CONTENT -->
+            <!--- WIDGET HEIGHT -->
 
-            <property name="widgetTarget" tag="property" attribute="name|widgetTarget" />
-            <property name="widgetTarget">$VAR[Def_Widget_Target]</property>
+            <property name="layoutheight">325</property>
 
-            <property name="widgetSortby" tag="property" attribute="name|widgetSortby" />
-            <property name="widgetSortorder" tag="property" attribute="name|widgetSortorder" />
-            <property name="browse">never</property>
+            <!--- DISTANCE -->
 
-            <!-- NUM ITEM -->
+            <property name="distance">10</property>
+
+            <!--- WIDGET NAME -->
+
+            <property name="widget" tag="property" attribute="name|Widget" />
+
+            <!--- ======================== -->
+            <!---     WIDGET - CONTENT       -->
+            <!--- ======================== -->
+
+            <!--- WIDGET CONTENT - SORT BY -->
+
+            <property name="widgetsortby" tag="property" attribute="name|widgetSortby" />
+
+            <!--- WIDGET CONTENT - SORT ORDER -->
+
+            <property name="widgetsortorder" tag="property" attribute="name|widgetSortorder" />
+
+            <!--- WIDGET CONTENT - TARGET -->
+
+            <property name="widgettarget" tag="property" attribute="name|widgetTarget" />
+            <property name="widgettarget">$VAR[Def_Widget_Target]</property>
+
+            <!--- WIDGET CONTENT - PATH -->
+
+            <property name="widgetpath" tag="property" attribute="name|list" />
+            <property name="widgetpath">$VAR[Def_Widget_Content]</property>
+
+            <!-- WIDGET NUM ITEM -->
 
             <property name="widgetlimit" tag="property" attribute="name|widgetLimit" value="$NUMBER[10]">10</property>
             <property name="widgetlimit" tag="property" attribute="name|widgetLimit" value="$NUMBER[25]">25</property>
@@ -105,8 +130,25 @@
             <property name="widgetlimit" tag="property" attribute="name|widgetLimit" value="$NUMBER[99999]">99999</property>
             <property name="widgetlimit">$VAR[Value_Widget_Limit]</property>
 
-            <property name="widgetPath" tag="property" attribute="name|list" />
-            <property name="widgetPath">$VAR[Def_Widget_Content]</property>
+            <!--- WIDGET CONTENT - BROWSE -->
+
+            <property name="browse">never</property>
+
+            <!--- ======================== -->
+            <!---      WIDGET ASPECT       -->
+            <!--- ======================== -->
+
+            <!-- STYLE -->
+
+            <property name="widgetstyle" tag="property" attribute="name|widgetTarget" value="settings">Square</property>
+            <property name="widgetstyle" tag="property" attribute="name|widgetTarget" value="system">Square</property>
+            <property name="widgetstyle" tag="property" attribute="name|widgetaspect" value="SquareMiddle">SquareMid</property>
+            <property name="widgetstyle" tag="property" attribute="name|widgetaspect" value="SquareSmall">SqSmallTb</property>
+            <property name="widgetstyle" tag="property" attribute="name|widgetaspect" value="ThumbnailSmall">ThumbSmall</property>
+            <property name="widgetstyle" tag="property" attribute="name|widgetaspect" value="FanartSmall">FanSmall</property>
+
+            <property name="widgetstyle" tag="property" attribute="name|widgetaspect" />
+            <property name="widgetstyle">Poster</property>
 
             <!--- WIDGET LAYOUT -->
 
@@ -124,51 +166,37 @@
             <property name="isweatherlayout" tag="property" attribute="name|widgetTarget" value="weather">true</property>
             <property name="isweatherlayout">false</property>
 
-            <!--- HEIGHT -->
-
-            <property name="layoutheight">325</property>
-
-            <!--- LABEL VISIBLE ? -->
+            <!--- HOME FLIX - WIDGET - MAIN TITLE - DISPLAY ?  -->
 
             <property name="labelisvisible" tag="property" attribute="name|widgetTarget" value="weather">false</property>
             <property name="labelisvisible" tag="property" attribute="name|widgetTarget" value="system">false</property>
             <property name="labelisvisible">true</property>
 
-            <!-- LABEL -->
+            <!-- HOME - WIDGET - TITLE - LABEL -->
 
-            <property name="widgetName" tag="label" />
-            <property name="widgetName">$LOCALIZE[31077]</property>
+            <property name="widgetname" tag="label" />
+            <property name="widgetname">$LOCALIZE[31077]</property>
 
-            <!-- ITEM MORE -->
-
-            <property name="morevisible" tag="property" attribute="name|widgetTarget" value="system">false</property>
-            <property name="morevisible" tag="property" attribute="name|widgetTarget" value="weather">false</property>
-            <property name="morevisible" tag="property" attribute="name|widgetTarget" value="pvr">false</property>
-            <property name="morevisible" tag="property" attribute="name|widgetTarget" value="tvguide">false</property>
-            <property name="morevisible">true</property>
-
-            <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[5000]">5000</property>
-            <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[7000]">7000</property>
-            <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[10000]">10000</property>
-            <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[15000]">15000</property>
-            <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[20000]">20000</property>
-            <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[25000]">25000</property>
-
-            <property name="widgetlisttype" tag="property" attribute="name|widgetListType" />
-            <property name="widgetlisttype">fixedlist</property>
+            <!--- CLEARLOGO ON FANART -->
 
             <property name="widgetclearlogofanart" tag="property" attribute="name|widgetClearLogoFanart" value="no">false</property>
             <property name="widgetclearlogofanart">true</property>
 
+            <!--- ASPECT RATIO -->
+
             <property name="aspectratio" tag="property" attribute="name|widgetAspectRatio" />
             <property name="aspectratio">keep</property>
 
-            <property name="distance" tag="property" attribute="name|widgetEdgeDistance" value="yes">30</property>
-            <property name="distance">10</property>
+            <!--- ======================== -->
+            <!---    WIDGET BEHAVIOUR      -->
+            <!--- ======================== -->
 
-            <property name="orientation">horizontal</property>
+            <!--- LIST TYPE -->
 
-            <!-- MOVEMENT -->
+            <property name="widgetlisttype" tag="property" attribute="name|widgetListType" />
+            <property name="widgetlisttype">fixedlist</property>
+
+            <!-- MOVEMENT - HOME HORIZONTAL / VERTICAL -->
 
             <property name="widgetmovementcheck" tag="property" attribute="name|widgetTarget" value="settings">4</property>
             <property name="widgetmovementcheck" tag="property" attribute="name|widgetTarget" value="system">4</property>
@@ -181,6 +209,8 @@
             <property name="widgetmovementcheck" tag="property" attribute="name|widgetaspect" value="FanartSmall">3</property>
             <property name="widgetmovementcheck">7</property>
 
+            <!-- MOVEMENT - HOME VERTICALE - MAIN MENU NEVER HIDE -->
+
             <property name="widgetmovementcheck2" tag="property" attribute="name|widgetTarget" value="settings">3</property>
             <property name="widgetmovementcheck2" tag="property" attribute="name|widgetTarget" value="system">3</property>
             <property name="widgetmovementcheck2" tag="property" attribute="name|widgetaspect" value="Square">3</property>
@@ -192,16 +222,22 @@
             <property name="widgetmovementcheck2" tag="property" attribute="name|widgetaspect" value="FanartSmall">2</property>
             <property name="widgetmovementcheck2">6</property>
 
-            <!-- STYLE -->
+            <!--- AUTO SCROLL TIME -->
 
-            <property name="widgetStyle" tag="property" attribute="name|widgetTarget" value="settings">Square</property>
-            <property name="widgetStyle" tag="property" attribute="name|widgetTarget" value="system">Square</property>
-            <property name="widgetStyle" tag="property" attribute="name|widgetaspect" value="SquareMiddle">SquareMid</property>
-            <property name="widgetStyle" tag="property" attribute="name|widgetaspect" value="SquareSmall">SqSmallTb</property>
-            <property name="widgetStyle" tag="property" attribute="name|widgetaspect" value="ThumbnailSmall">ThumbSmall</property>
-            <property name="widgetStyle" tag="property" attribute="name|widgetaspect" value="FanartSmall">FanSmall</property>
-            <property name="widgetStyle" tag="property" attribute="name|widgetaspect" />
-            <property name="widgetStyle">Poster</property>
+            <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[5000]">5000</property>
+            <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[7000]">7000</property>
+            <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[10000]">10000</property>
+            <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[15000]">15000</property>
+            <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[20000]">20000</property>
+            <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[25000]">25000</property>
+
+            <!-- ITEM MORE -->
+
+            <property name="morevisible" tag="property" attribute="name|widgetTarget" value="system">false</property>
+            <property name="morevisible" tag="property" attribute="name|widgetTarget" value="weather">false</property>
+            <property name="morevisible" tag="property" attribute="name|widgetTarget" value="pvr">false</property>
+            <property name="morevisible" tag="property" attribute="name|widgetTarget" value="tvguide">false</property>
+            <property name="morevisible">true</property>
 
             <controls>
 
@@ -270,7 +306,7 @@
                             <param name="idshort" value="$PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]" />
                             <param name="animation_condition" value="!Control.HasFocus($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)])" />
                             <param name="submenuVisibility" value="$SKINSHORTCUTS[submenuVisibility]" />
-                            <param name="widget_label" value="$SKINSHORTCUTS[widgetName]" />
+                            <param name="widget_label" value="$SKINSHORTCUTS[widgetname]" />
                             <param name="busy_visible" value="Integer.IsEqual(Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).IsUpdating" />
                         </include>
                     </control>
@@ -307,18 +343,18 @@
                         <param name="shortcutsclearlogo" value="$SKINSHORTCUTS[widgetclearlogofanart]" />
                         <param name="aspectratio" value="$SKINSHORTCUTS[aspectratio]" />
                         <param name="distance" value="$SKINSHORTCUTS[distance]" />
-                        <param name="Thumbnail" value="$PYTHON['true' if widgetStyle in 'Thumbnail' else 'false']" />
-                        <param name="Fanart" value="$PYTHON['true' if widgetStyle in 'Fanart' else 'false']" />
-                        <param name="FanartSmall" value="$PYTHON['true' if widgetStyle in 'FanSmall' else 'false']" />
-                        <param name="ThumbnailSmall" value="$PYTHON['true' if widgetStyle in 'ThumbSmall' else 'false']" />
-                        <param name="Square" value="$PYTHON['true' if widgetStyle in 'Square' else 'false']" />
-                        <param name="SquareMiddle" value="$PYTHON['true' if widgetStyle in 'SquareMid' else 'false']" />
-                        <param name="SquareSmall" value="$PYTHON['true' if widgetStyle in 'SqSmallTb' else 'false']" />
+                        <param name="Thumbnail" value="$PYTHON['true' if widgetstyle in 'Thumbnail' else 'false']" />
+                        <param name="Fanart" value="$PYTHON['true' if widgetstyle in 'Fanart' else 'false']" />
+                        <param name="FanartSmall" value="$PYTHON['true' if widgetstyle in 'FanSmall' else 'false']" />
+                        <param name="ThumbnailSmall" value="$PYTHON['true' if widgetstyle in 'ThumbSmall' else 'false']" />
+                        <param name="Square" value="$PYTHON['true' if widgetstyle in 'Square' else 'false']" />
+                        <param name="SquareMiddle" value="$PYTHON['true' if widgetstyle in 'SquareMid' else 'false']" />
+                        <param name="SquareSmall" value="$PYTHON['true' if widgetstyle in 'SqSmallTb' else 'false']" />
                     </include>
 
                     <include content="Def_Weather_Layout_Item" condition="$SKINSHORTCUTS[isweatherlayout]">
-                        <param name="Fanart" value="$PYTHON['true' if widgetStyle in 'Fanart' else 'false']" />
-                        <param name="Square" value="$PYTHON['true' if widgetStyle in 'Square' else 'false']" />
+                        <param name="Fanart" value="$PYTHON['true' if widgetstyle in 'Fanart' else 'false']" />
+                        <param name="Square" value="$PYTHON['true' if widgetstyle in 'Square' else 'false']" />
                     </include>
 
                     <include condition="$SKINSHORTCUTS[issystemlayout]">Def_System_Layout_Item</include>
@@ -332,19 +368,19 @@
                         <param name="shortcutsclearlogo" value="$SKINSHORTCUTS[widgetclearlogofanart]" />
                         <param name="aspectratio" value="$SKINSHORTCUTS[aspectratio]" />
                         <param name="distance" value="$SKINSHORTCUTS[distance]" />
-                        <param name="Thumbnail" value="$PYTHON['true' if widgetStyle in 'Thumbnail' else 'false']" />
-                        <param name="Fanart" value="$PYTHON['true' if widgetStyle in 'Fanart' else 'false']" />
-                        <param name="FanartSmall" value="$PYTHON['true' if widgetStyle in 'FanSmall' else 'false']" />
-                        <param name="ThumbnailSmall" value="$PYTHON['true' if widgetStyle in 'ThumbSmall' else 'false']" />
-                        <param name="Square" value="$PYTHON['true' if widgetStyle in 'Square' else 'false']" />
-                        <param name="SquareMiddle" value="$PYTHON['true' if widgetStyle in 'SquareMid' else 'false']" />
-                        <param name="SquareSmall" value="$PYTHON['true' if widgetStyle in 'SqSmallTb' else 'false']" />
+                        <param name="Thumbnail" value="$PYTHON['true' if widgetstyle in 'Thumbnail' else 'false']" />
+                        <param name="Fanart" value="$PYTHON['true' if widgetstyle in 'Fanart' else 'false']" />
+                        <param name="FanartSmall" value="$PYTHON['true' if widgetstyle in 'FanSmall' else 'false']" />
+                        <param name="ThumbnailSmall" value="$PYTHON['true' if widgetstyle in 'ThumbSmall' else 'false']" />
+                        <param name="Square" value="$PYTHON['true' if widgetstyle in 'Square' else 'false']" />
+                        <param name="SquareMiddle" value="$PYTHON['true' if widgetstyle in 'SquareMid' else 'false']" />
+                        <param name="SquareSmall" value="$PYTHON['true' if widgetstyle in 'SqSmallTb' else 'false']" />
                     </include>
 
                     <include content="Def_Weather_Layout_Item_Focus" condition="$SKINSHORTCUTS[isweatherlayout]">
                         <param name="shortcutsid" value="$PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]" />
-                        <param name="Fanart" value="$PYTHON['true' if widgetStyle in 'Fanart' else 'false']" />
-                        <param name="Square" value="$PYTHON['true' if widgetStyle in 'Square' else 'false']" />
+                        <param name="Fanart" value="$PYTHON['true' if widgetstyle in 'Fanart' else 'false']" />
+                        <param name="Square" value="$PYTHON['true' if widgetstyle in 'Square' else 'false']" />
                     </include>
 
                     <include content="Def_System_Layout_Item_Focus" condition="$SKINSHORTCUTS[issystemlayout]">
@@ -357,14 +393,14 @@
 
                     <!-- CONTENT -->
 
-                    <content limit="$SKINSHORTCUTS[widgetlimit]" target="$SKINSHORTCUTS[widgetTarget]" sortby="$SKINSHORTCUTS[widgetSortby]" sortorder="$SKINSHORTCUTS[widgetSortorder]" browse="$SKINSHORTCUTS[browse]">$SKINSHORTCUTS[widgetPath]</content>
+                    <content limit="$SKINSHORTCUTS[widgetlimit]" target="$SKINSHORTCUTS[widgettarget]" sortby="$SKINSHORTCUTS[widgetsortby]" sortorder="$SKINSHORTCUTS[widgetsortorder]" browse="$SKINSHORTCUTS[browse]">$SKINSHORTCUTS[widgetpath]</content>
 
                     <!-- MORE CONTENT -->
 
                     <include content="Def_Widget_Item_More_Content" condition="Skin.HasSetting(enable.morewidget) + $SKINSHORTCUTS[morevisible]">
                         <param name="id" value="$PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]" />
-                        <param name="target" value="$SKINSHORTCUTS[widgetTarget]" />
-                        <param name="content" value="$SKINSHORTCUTS[widgetPath]" />
+                        <param name="target" value="$SKINSHORTCUTS[widgettarget]" />
+                        <param name="content" value="$SKINSHORTCUTS[widgetpath]" />
                     </include>
                 </control>
             </controls>
