@@ -514,7 +514,16 @@
                                 <icon>special://skin/extras/icons/images.png</icon>
                                 <onclick>SendClick(10)</onclick>
                                 <visible>Control.IsEnabled(10)</visible>
-                                <visible>!String.IsEqual(ListItem.DBType,song)</visible>
+                                <visible>!String.IsEqual(ListItem.DBType,song) + !String.IsEmpty(ListItem.DBType)</visible>
+                            </item>
+
+                            <!-- AKL - CHANGE ARTWORK -->
+
+                            <item>
+                                <label>$LOCALIZE[13511]</label>
+                                <icon>special://skin/extras/icons/images.png</icon>
+                                <onclick>RunPlugin(plugin://plugin.program.akl/execute/command/rom_edit_assets/?rom_id=$INFO[Container(19801).ListItem.Property(entityid)])</onclick>
+                                <visible>Window.IsVisible(script-akl-romdetails.xml)</visible>
                             </item>
 
                             <!-- VERSION -->
