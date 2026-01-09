@@ -1623,7 +1623,8 @@
 
         <!-- RECOMMENDATION -->
 
-        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9017)">$LOCALIZE[31533]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9017) + String.IsEqual(ListItem.DBType,movie)">$LOCALIZE[31605]</value>
+        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9017) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)]">$LOCALIZE[31606]</value>
 
         <!-- STUDIO -->
 
