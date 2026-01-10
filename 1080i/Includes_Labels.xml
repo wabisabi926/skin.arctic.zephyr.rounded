@@ -744,7 +744,8 @@
     </variable>
 
     <variable name="Label_Tagline">
-        <value condition="!String.IsEmpty(ListItem.Tagline)">$INFO[ListItem.Tagline]</value>
+        <value condition="$EXP[IsJlomItem] + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Tagline))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Tagline)]</value>
+        <value condition="!$EXP[IsJlomItem] + !String.IsEmpty(ListItem.Tagline)">$INFO[ListItem.Tagline]</value>
         <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Tagline))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Tagline)]</value>
     </variable>
 
