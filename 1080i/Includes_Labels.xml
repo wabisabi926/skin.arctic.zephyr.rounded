@@ -450,6 +450,7 @@
     </variable>
 
     <variable name="Label_List_Watched">
+        <value condition="$EXP[IsJlomItem]">[COLOR=$VAR[Color_Indicator_JLOM]]&#62229;[/COLOR]</value>
         <value condition="String.IsEmpty(ListItem.DBID)">[COLOR=$VAR[Color_Empty_DBID]]&#61589;[/COLOR]</value>
         <value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[553]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561])"></value>
         <value condition="Skin.HasSetting(hide.markers)"></value>
@@ -466,6 +467,7 @@
     </variable>
 
     <variable name="Label_List_Watched_Focus">
+        <value condition="$EXP[IsJlomItem]">[COLOR=Selected]&#62229;[/COLOR]</value>
         <value condition="String.IsEmpty(ListItem.DBID)">[COLOR=Selected]&#61589;[/COLOR]</value>
         <value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[553]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561])"></value>
         <value condition="Skin.HasSetting(hide.markers)"></value>
@@ -1095,7 +1097,7 @@
         <value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !Control.IsVisible(516)">$INFO[ListItem.Property(TotalEpisodes),, $LOCALIZE[20360]]</value>
         <value condition="Container.Content(songs) + !ListItem.IsParentFolder">$INFO[ListItem.Duration]</value>
         <value condition="$EXP[IsGameMode]">$VAR[Label_Game_Year]</value>
-        <value>$VAR[Label_Duration]</value>
+        <value>$VAR[Label_View_List_Duration]</value>
     </variable>
 
     <variable name="Label_List_Extended_Playlist">
@@ -1144,6 +1146,24 @@
         <value condition="String.IsEqual(Skin.String(label.view.list.rating.fallback),3)">$LOCALIZE[31283]</value>
         <value condition="String.IsEqual(Skin.String(label.view.list.rating.fallback),4)">0.0</value>
         <value/>
+    </variable>
+
+    <variable name="Label_View_List_Duration">
+        <value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[20074])">$INFO[ListItem.MPAA]</value>
+        <value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[570])">$INFO[ListItem.DateAdded]</value>
+        <value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[567])">$INFO[ListItem.PlayCount]</value>
+        <value condition="!String.IsEmpty(ListItem.Duration(mins))">$VAR[Label_Duration_Format_List]</value>
+        <value condition="[Container.Content(tvshows) + !Control.IsVisible(58) + !Control.IsVisible(555)] | Container.Content(episodes)">$VAR[Label_Year]</value>
+    </variable>
+
+    <variable name="Label_Duration_Format_List">
+        <value condition="!Integer.IsGreater(ListItem.Duration(mins),0) + !Skin.HasSetting(show.time.format.hh.mm)">$INFO[ListItem.Duration(mins),, $LOCALIZE[31074]]</value>
+
+        <value condition="Integer.IsGreater(ListItem.Duration(mm),0) + Skin.HasSetting(show.time.format.hh.mm) + Integer.IsGreater(ListItem.Duration(h),0)">$INFO[ListItem.Duration(h),,$LOCALIZE[31061]] $INFO[ListItem.Duration(mm),,$LOCALIZE[31062]]</value>
+
+        <value condition="Integer.IsGreater(ListItem.Duration(mm),0) + Skin.HasSetting(show.time.format.hh.mm) + !Integer.IsGreater(ListItem.Duration(h),0)">$INFO[ListItem.Duration(mm),,$LOCALIZE[31062]]</value>
+
+        <value>$INFO[ListItem.Duration(mins),, $LOCALIZE[31074]]</value>
     </variable>
 
     <variable name="Label_List_Extended_Music">
