@@ -831,7 +831,8 @@
         <value condition="String.StartsWith(ListItem.Path,pvr://channels) + !String.IsEmpty(ListItem.Title)">$INFO[ListItem.Title]</value>
         <value condition="[Container.Content(seasons) | Container.Content(episodes) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(ListItem.TVShowTitle)">$INFO[ListItem.TVShowTitle]</value>
         <value condition="[Container.Content(files) | Container.Content(addons)] + !String.IsEmpty(ListItem.Label)">$INFO[ListItem.Label]</value>
-        <value condition="Container.Content(movies)">$VAR[Label_Title]</value>
+        <value condition="Container.Content(movies) | Container.Content(videos)">$VAR[Label_Title]</value>
+        <value>$INFO[ListItem.Label]</value>
     </variable>
 
     <variable name="Label_View_Flix_Sub_Title">
