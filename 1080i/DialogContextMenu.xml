@@ -426,6 +426,30 @@
                     <param name="value" value="$INFO[Window(Home).Property(TMDbHelper.ListItem.base_album)]" />
                     <param name="visible" value="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),album) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),song)" />
                 </include>
+                <include content="Def_Context_Menu_Information">
+                    <param name="label" value="&#62229;" />
+                    <param name="font" value="Small24" />
+                    <param name="value" value="$INFO[Window(Home).Property(TMDbHelper.ListItem.base_genre)]" />
+                    <param name="visible" value="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),artist) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_genre))" />
+                </include>
+            </control>
+
+            <!-- CLEARLOGO - ARTIST / ALBUM / SONG -->
+
+            <control type="group">
+                <visible>String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),album) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),artist) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),song)</visible>
+                <left>44</left>
+                <bottom>44</bottom>
+                <height>70</height>
+
+                <control type="image" description="clearlogo">
+                    <height>70</height>
+                    <width>PosterW</width>
+
+                    <fadetime>ClearArtFadetime</fadetime>
+                    <aspectratio align="left" aligny="bottom">keep</aspectratio>
+                    <texture background="true">$VAR[Image_Dialog_Info_Music_Ext_Crop_ClearLogo]</texture>
+                </control>
             </control>
         </control>
     </controls>
