@@ -45,7 +45,7 @@
                 <param name="visible" value="true" />
                 <param name="size" value="44" />
                 <param name="left" value="-56" />
-                <param name="icon" value="special://skin/extras/icons/expand.png" />
+                <param name="icon" value="special://skin/extras/icons/folder.png" />
                 <param name="icon_colordiffuse" value="Dark2" />
                 <param name="id" value="6158" />
                 <param name="groupid" value="6899" />
@@ -134,6 +134,25 @@
                 <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
                 <onclick>Dialog.Close(contextmenu)</onclick>
                 <onclick>AlarmClock(DelayCommand,RunScript(plugin.video.themoviedb.helper,related_lists,query=$VAR[Path_ContextParams_Query],tmdb_type=$VAR[Path_ContextParams_TMDbType]),00:01,silent)</onclick>
+            </include>
+
+            <!-- FOLDER ALBUM / ARTIST -->
+
+            <include content="Object_OSD_Button" condition="[String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),album) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),artist) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),tvshow) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),season) | [String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),set) + !$EXP[IsJlomItem]]]">
+                <param name="visible" value="true" />
+                <param name="size" value="44" />
+                <param name="left" value="-56" />
+                <param name="icon" value="special://skin/extras/icons/folder-closed.png" />
+                <param name="icon_colordiffuse" value="Dark2" />
+                <param name="id" value="6159" />
+                <param name="groupid" value="6999" />
+                <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <onclick>Dialog.Close(contextmenu)</onclick>
+                <onclick condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),album)">AlarmClock(delay_activatewindow2,ActivateWindow(music,musicdb://albums/$INFO[ListItem.DBID]/,return),00:00,silent)</onclick>
+                <!-- <onclick>AlarmClock(delay_activatewindow2,ActivateWindow(music,$VAR[Path_MusicInfo_ArtistFolder],return),00:01,silent)</onclick> -->
+                <onclick condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),artist)">AlarmClock(delay_activatewindow2,ActivateWindow(music,musicdb://artists/$INFO[ListItem.DBID]/,return),00:01,silent)</onclick>
+
+                <onclick condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),tvshow) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),season) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),episode) | [String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),set) + !$EXP[IsJlomItem]]">AlarmClock(delay_activatewindow2,$VAR[Def_Browse_List_Season_Episode_Set],return),00:01,silent)</onclick>
             </include>
 
             <!-- FILES MANAGERS -->

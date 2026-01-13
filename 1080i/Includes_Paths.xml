@@ -225,6 +225,11 @@
         <value>Action(Info)</value>
     </variable>
 
+    <variable name="Path_MusicInfo_ArtistFolder">
+        <value condition="String.IsEmpty(ListItem.DBID)">$ESCINFO[ListItem.FolderPath]</value>
+        <value condition="!String.IsEmpty(ListItem.DBID)">musicdb://artists/$INFO[ListItem.DBID]/?albumartistsonly=true</value>
+    </variable>
+
 <!-- &amp;cacheonly=false -->
 
     <!-- =================================== -->
