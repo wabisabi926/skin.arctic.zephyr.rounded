@@ -107,7 +107,7 @@
 
             <!-- MOVIES FROM DIRECTOR -->
 
-            <include content="Object_OSD_Button" condition="[String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),episode) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),movie)] + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_director))">
+            <include content="Object_OSD_Button" condition="[String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),episode) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),movie) | [String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),set) + !$EXP[IsJlomItem]]]">
                 <param name="visible" value="true" />
                 <param name="size" value="44" />
                 <param name="left" value="-56" />
