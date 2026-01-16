@@ -56,6 +56,21 @@
                 <onclick condition="Player.HasAudio">ActivateWindow(visualisation)</onclick>
             </include>
 
+            <!-- MENU CONTEXTUEL -->
+
+            <include content="Object_OSD_Button" condition="Window.IsVisible(MyPVRGuide.xml) + !Window.IsVisible(DialogPVRInfo.xml)">
+                <param name="visible" value="true" />
+                <param name="size" value="44" />
+                <param name="left" value="-56" />
+                <param name="icon" value="special://skin/extras/icons/bars.png" />
+                <param name="icon_colordiffuse" value="Dark2" />
+                <param name="id" value="6160" />
+                <param name="groupid" value="7099" />
+                <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <onclick>Dialog.Close(contextmenu)</onclick>
+                <onclick>AlarmClock(Launch_Search,Action(Menu),00:01,silent)</onclick>
+            </include>
+
             <!-- TRAILER -->
 
             <include content="Object_OSD_Button" condition="[!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Trailer))]">
