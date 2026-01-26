@@ -2,21 +2,9 @@
 <overrides>
     <doNotShareMenu />
 
-    <!-- PLAYLIST -->
-
-    <widgetPlaylists>True</widgetPlaylists>
-    <groupoverride group="powermenu" condition="Window.IsActive(DialogButtonMenu.xml)">Close</groupoverride>
-    <warn heading="31272" message="31273">ActivateWindow(Settings)</warn>
-
-    <override action="RebootToAndroid">
-        <action>System.ExecWait("/usr/sbin/rebootfromnand")</action>
-        <action>Reset()</action>
-    </override>
-
-    <override action="SystemLogOff">
-        <action>Dialog.Close(all,true)</action>
-        <action>System.LogOff</action>
-    </override>
+    <!-- ======================= -->
+    <!--         PROPERTY        -->
+    <!-- ======================= -->
 
     <!-- WIDGET - SORT BY -->
 
@@ -97,7 +85,20 @@
     <property property="widgetListType" label="$LOCALIZE[31258]">list</property>
     <property property="widgetListType" label="$LOCALIZE[31259]">fixedlist</property>
 
-    <!-- OVERRIDE ACTIONS BECAUSE IM A DUMMY WHO DOESNT KNOW THE CORRECT WINDOW IDS TO USE -->
+
+    <!-- ======================= -->
+    <!--         OVERRIDE        -->
+    <!-- ======================= -->
+
+    <override action="RebootToAndroid">
+        <action>System.ExecWait("/usr/sbin/rebootfromnand")</action>
+        <action>Reset()</action>
+    </override>
+
+    <override action="SystemLogOff">
+        <action>Dialog.Close(all,true)</action>
+        <action>System.LogOff</action>
+    </override>
 
     <override action="ActivateWindow(3201)">
         <condition>true</condition>
@@ -119,16 +120,32 @@
         <action>ActivateWindow(1105)</action>
     </override>
 
-    <!-- BROWSE FOR BACKGROUNDS -->
+
+    <!-- ================ -->
+    <!--    BACKGROUNDS   -->
+    <!-- ================ -->
 
     <backgroundBrowse>True</backgroundBrowse>
     <background label="::PLAYLIST::">playlistBackground</background>
+
+
+    <!-- ================ -->
+    <!--       OTHERS     -->
+    <!-- ================ -->
 
     <!-- WARNING TO REMOVE SETTINGS -->
 
     <warn heading="31132" message="31133">ActivateWindow(Settings)</warn>
 
-    <!-- ICON OVERRIDES -->
+    <!-- PLAYLIST -->
+
+    <widgetPlaylists>True</widgetPlaylists>
+    <groupoverride group="powermenu" condition="Window.IsActive(DialogButtonMenu.xml)">Close</groupoverride>
+    <warn heading="31272" message="31273">ActivateWindow(Settings)</warn>
+
+    <!-- ================ -->
+    <!--  ICON OVERRIDES  -->
+    <!-- ================ -->
 
     <icon labelID="135">special://skin/extras/icons/masks-theater.png</icon>
     <icon labelID="342">special://skin/extras/icons/film.png</icon>
@@ -229,7 +246,10 @@
     <icon image="DefaultAddonMusic.png">special://skin/extras/icons/songs.png</icon>
     <icon image="DefaultAddonProgram.png">special://skin/extras/icons/addons.png</icon>
 
-    <!-- THUMBS -->
+
+    <!-- ================ -->
+    <!--       THUMBS     -->
+    <!-- ================ -->
 
     <thumbnail label="3.png">special://skin/extras/icons/3.png</thumbnail>
     <thumbnail label="3dtv.png">special://skin/extras/icons/3dtv.png</thumbnail>
@@ -450,7 +470,9 @@
     <thumbnail label="youtube.png">special://skin/extras/icons/youtube.png</thumbnail>
 
 
-    <!-- MENU - LIST ITEMS  -->
+    <!-- ======================= -->
+    <!--    MENU - LIST ITEMS    -->
+    <!-- ======================= -->
 
     <groupings>
 
@@ -699,7 +721,10 @@
         </node>
     </groupings>
 
-    <!-- WIDGET - GROUPING -->
+
+    <!-- ======================= -->
+    <!--    WIDGET - GROUPING    -->
+    <!-- ======================= -->
 
     <widget-groupings>
 
@@ -850,7 +875,10 @@
         </node>
     </widget-groupings>
 
-    <!-- ONBACK ACTION OVERRIDE -->
+
+    <!-- ======================= -->
+    <!--  ONBACK ACTION OVERRIDE -->
+    <!-- ======================= -->
 
     <onback to="301">313</onback>
     <onback to="301">4001</onback>
