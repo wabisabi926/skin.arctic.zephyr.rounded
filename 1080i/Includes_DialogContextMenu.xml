@@ -35,13 +35,12 @@
                 <param name="show_not_enabled" value="true" />
                 <onclick>Dialog.Close(contextmenu)</onclick>
                 <onclick>AlarmClock(Launch_Search,$VAR[Path_ContextParams_Path_Info],00:01,silent)</onclick>
-                <enable>!Container.Content(files)</enable>
                 <animation effect="fade" start="100" end="66" time="100" condition="Container.Content(files)">Conditional</animation>
             </include>
 
             <!-- BACK FULLSCREEN NOW PLAYING -->
 
-            <include content="Object_OSD_Button" condition="Player.HasMedia + String.IsEmpty(Window(Home).Property(TrailerFullscreenIsPlaying))">
+            <include content="Object_OSD_Button" condition="$EXP[Exp_ContextMenu_Player_Fullscreen]">
                 <param name="visible" value="true" />
                 <param name="size" value="44" />
                 <param name="left" value="-56" />
