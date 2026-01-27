@@ -1186,7 +1186,7 @@
 
     <variable name="label_addon_list">
         <value condition="String.IsEqual(ListItem.Icon,DefaultFolderBack.png)">..</value>
-        <value condition="Container.Content(addons)">$INFO[ListItem.AddonType]$INFO[ListItem.AddonOrigin,  •  ]</value>
+        <value condition="Container.Content(addons) + !String.IsEmpty(ListItem.AddonType)">$INFO[ListItem.AddonType]$INFO[ListItem.AddonOrigin,  •  ]</value>
         <value condition="!String.IsEmpty(ListItem.FolderPath)">$INFO[ListItem.FolderPath]</value>
     </variable>
 
