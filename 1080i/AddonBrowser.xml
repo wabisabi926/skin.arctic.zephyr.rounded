@@ -247,7 +247,7 @@
                 <pagecontrol>9070</pagecontrol>
                 <usecontrolcoords>true</usecontrolcoords>
 
-                <include content="Def_Dialog_Menu_GroupList"><param name="height" value="910" /><param name="idlayout" value="6000" /></include>
+                <include content="Def_Dialog_Menu_GroupList"><param name="height" value="910" /><param name="idlayout" value="50" /></include>
 
                 <!-- NOW PLAYING -->
 
@@ -263,14 +263,12 @@
 
                 <include>Def_Dialog_Menu_MiniPlayer</include>
 
-                <!-- MISC ACTION -->
+            <!-- MANAGE -->
 
                 <control type="button" id="55552">
                     <include>Def_Dialog_Menu_Button_Title</include>
                     <label>16106</label>
                 </control>
-
-                <!-- UPDATE -->
 
                 <control type="button" id="9">
                     <description>Check for updates</description>
@@ -282,6 +280,63 @@
                     <description>Update settings</description>
                     <label>5</label>
                     <include>Def_Dialog_Menu_Button_Gradient_Select</include>
+                </control>
+
+            <!-- VIEWS -->
+
+                <control type="button" id="55550">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>31226</label>
+                </control>
+
+                <control type="button" id="6053">
+                    <description>Sort</description>
+                    <include>Def_Dialog_Menu_Button_Gradient_Select</include>
+                    <label>$LOCALIZE[31511]:</label>
+                    <label2>$INFO[Container.SortMethod]</label2>
+                    <onclick>SendClick(3)</onclick>
+                </control>
+
+                <control type="button" id="6052">
+                    <description>Order Toggle</description>
+                    <include>Def_Dialog_Menu_Button_Gradient_Select</include>
+                    <label>$LOCALIZE[31512]:</label>
+                    <label2>$INFO[Container.SortOrder]</label2>
+                    <onclick>SendClick(4)</onclick>
+                </control>
+
+            <!-- FILTER -->
+
+                <control type="button" id="55553">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>587</label>
+                </control>
+
+                <control type="edit" id="19">
+                    <label>587</label>
+                    <description>Filter (hidden)</description>
+                    <include>Def_Dialog_Menu_Button_Gradient_Select</include>
+                </control>
+
+            <!-- MISC OPTION -->
+
+                <control type="button" id="55558">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>31607</label>
+                    <visible>Control.IsEnabled(7) | Control.IsEnabled(8)</visible>
+                </control>
+
+                <control type="button" id="7">
+                    <description>Hide foreign</description>
+                    <label>25001</label>
+                    <include>Def_Dialog_Menu_Button_Gradient_Select</include>
+                    <visible>Control.IsEnabled(7)</visible>
+                </control>
+                <control type="button" id="8">
+                    <description>Hide incompatible</description>
+                    <label>24999</label>
+                    <include>Def_Dialog_Menu_Button_Gradient_Select</include>
+                    <visible>Control.IsEnabled(8)</visible>
                 </control>
             </control>
         </control>
