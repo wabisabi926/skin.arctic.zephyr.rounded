@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <menus>
     <!-- Main Menu -->
-    <menu name="mainmenu" container="9000">
+    <menu name="mainmenu" container="300">
         <item name="videos" submenu="videos">
             <label>$LOCALIZE[3]</label>
             <label2>Common Shortcut</label2>
             <action>ActivateWindow(Videos,VideoLibrary)</action>
             <icon>special://skin/extras/icons/video-addons.png</icon>
         </item>
-        <item name="movies" submenu="movies.1">
+        <item name="movies" submenu="movies">
             <label>$LOCALIZE[342]</label>
             <label2>Common Shortcut</label2>
             <action>ActivateWindow(Videos,MovieTitles,return)</action>
             <icon>special://skin/extras/icons/film.png</icon>
         </item>
-        <item name="tvshows" submenu="tvshows.1">
+        <item name="tvshows" submenu="tvshows">
             <label>$LOCALIZE[20343]</label>
             <label2>Common Shortcut</label2>
             <action>ActivateWindow(Videos,TVShowTitles,return)</action>
@@ -26,8 +26,8 @@
             <action>ActivateWindow(Music)</action>
             <icon>special://skin/extras/icons/songs.png</icon>
         </item>
-        <item name="livetv" submenu="livetv.1">
-            <label>$LOCALIZE[32022]</label>
+        <item name="livetv" submenu="livetv">
+            <label>$LOCALIZE[31075]</label>
             <label2>Common Shortcut</label2>
             <action>ActivateWindow(Tvchannels)</action>
             <icon>special://skin/extras/icons/livetv.png</icon>
@@ -75,6 +75,7 @@
             <action>ActivateWindow(Settings)</action>
             <icon>special://skin/extras/icons/settings.png</icon>
         </item>
+
         <item name="power" submenu="powermenu">
             <label>$LOCALIZE[33060]</label>
             <label2>Common Shortcut</label2>
@@ -285,6 +286,24 @@
         </item>
     </submenu>
 
+    <!-- Music Widget Submenu -->
+    <submenu name="music.1" type="widgets">
+        <item name="Random-Albums">
+            <label>Random Albums</label>
+            <property name="widgetPath">special://skin/extras/playlists/RandomAlbums.xsp</property>
+            <property name="widgetTarget">music</property>
+            <property name="widgetType">music</property>
+            <property name="widgetaspect">SquareMiddle</property>
+        </item>
+        <item name="New-Albums">
+            <label>New Albums</label>
+            <property name="widgetPath">musicdb://recentlyaddedalbums/</property>
+            <property name="widgetTarget">music</property>
+            <property name="widgetType">music</property>
+            <property name="widgetaspect">SquareMiddle</property>
+        </item>
+    </submenu>
+
     <!-- Live TV Submenu -->
     <submenu name="livetv">
         <item name="livetv-channels">
@@ -328,6 +347,7 @@
             <icon>special://skin/extras/icons/tv.png</icon>
             <property name="widgetPath">pvr://channels/tv/*?view=lastplayed</property>
             <property name="widgetTarget">pvr</property>
+            <property name="widgetaspect">SquareMiddle</property>
         </item>
     </submenu>
 
@@ -409,6 +429,35 @@
     <submenu name="weather">
     </submenu>
 
+    <!-- Weather Widget Submenu -->
+    <submenu name="weather.1" type="widgets">
+        <item name="WeatherDay">
+            <label>Weather Day</label>
+            <property name="widgetPath">$INCLUDE[skinshortcuts-template-WeatherDailyInfoContent]</property>
+            <property name="widgetTarget">weather</property>
+            <property name="widgetType">weather</property>
+            <property name="widgetaspect">Square</property>
+        </item>
+        <item name="WeatherHourly">
+            <label>Weather Hourly</label>
+            <property name="widgetPath">$INCLUDE[skinshortcuts-template-WeatherHourlyInfoContent]</property>
+            <property name="widgetTarget">weather</property>
+            <property name="widgetType">weather</property>
+            <property name="widgetaspect">Square</property>
+        </item>
+    </submenu>
+
+    <!-- Favourites Widget Submenu -->
+    <submenu name="favourites.1" type="widgets">
+        <item name="favourites">
+            <label>favourites</label>
+            <property name="widgetPath">favourites://</property>
+            <property name="widgetTarget">favourites</property>
+            <property name="widgetType">favourites</property>
+            <property name="widgetaspect">SquareMiddle</property>
+        </item>
+    </submenu>
+
     <!-- Programs Submenu -->
     <submenu name="programs">
         <item name="programs-addons">
@@ -440,6 +489,24 @@
             <label2>Programs</label2>
             <action>ActivateWindow(Games,Addons,return)</action>
             <icon>special://skin/extras/icons/gamepad.png</icon>
+        </item>
+    </submenu>
+
+    <!-- Programs Widget Submenu -->
+    <submenu name="programs.1" type="widgets">
+        <item name="Addons-Programs">
+            <label>Addons Programs</label>
+            <property name="widgetPath">addons://sources/executable/</property>
+            <property name="widgetTarget">programs</property>
+            <property name="widgetType">programs</property>
+            <property name="widgetaspect">SquareMiddle</property>
+        </item>
+        <item name="Addons-Videos">
+            <label>Addons Videos</label>
+            <property name="widgetPath">addons://sources/video/</property>
+            <property name="widgetTarget">programs</property>
+            <property name="widgetType">programs</property>
+            <property name="widgetaspect">SquareMiddle</property>
         </item>
     </submenu>
 
@@ -477,6 +544,17 @@
         </item>
     </submenu>
 
+    <!-- Programs Widget Submenu -->
+    <submenu name="settings.1" type="widgets">
+        <item name="Settings">
+            <label>Settings</label>
+            <property name="widgetPath">$INCLUDE[skinshortcuts-template-SettingsInfoContent]</property>
+            <property name="widgetTarget">settings</property>
+            <property name="widgetType">settings</property>
+            <property name="widgetaspect">Square</property>
+        </item>
+    </submenu>
+
     <!-- Disc Submenu -->
     <submenu name="427">
         <item name="disc-play">
@@ -495,6 +573,9 @@
 
     <!-- Power Menu -->
     <submenu name="powermenu">
+        <defaults>
+            <action when="before">Close</action>
+        </defaults>
         <item name="power-skinsettings">
             <label>$LOCALIZE[31114]</label>
             <label2>Power Menu Shortcut</label2>
@@ -608,6 +689,17 @@
             <action>Quit()</action>
             <icon>special://skin/extras/icons/logout.png</icon>
             <visible>System.ShowExitButton</visible>
+        </item>
+    </submenu>
+
+    <!-- Power Widget Submenu -->
+    <submenu name="power.1" type="widgets">
+        <item name="System">
+            <label>System</label>
+            <property name="widgetPath">$INCLUDE[skinshortcuts-template-SystemInfoContent]</property>
+            <property name="widgetTarget">system</property>
+            <property name="widgetType">system</property>
+            <property name="widgetaspect">Square</property>
         </item>
     </submenu>
 
@@ -1102,5 +1194,8 @@
     </dialogs>
 
     <!-- Context menu -->
-    <contextmenu>true</contextmenu>
+    <contextmenu>false</contextmenu>
+
+    <!-- list icon to select -->
+    <icons>special://skin/extras/icons/</icons>
 </menus>

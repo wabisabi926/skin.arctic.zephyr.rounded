@@ -67,7 +67,7 @@
                         <visible>true</visible>
                         <animation effect="fade" start="0" end="100" time="1" delay="1" reversible="false">Visible</animation>
                         <animation effect="fade" start="100" end="50" time="100" condition="String.IsEqual(Container(211).ListItem.Property(skinshortcuts-disabled),True)">Conditional</animation>
-                        <visible>!Control.HasFocus(4000) + !ControlGroup(9200).HasFocus()</visible>
+                        <visible>!Control.HasFocus(306) + !ControlGroup(9200).HasFocus()</visible>
                         <visible>!$EXP[Script_SkinShortcuts_Widget]</visible>
                     </control>
                     <control type="image">
@@ -79,7 +79,7 @@
                         <visible>true</visible>
                         <animation effect="fade" start="0" end="100" time="1" delay="1" reversible="false">Visible</animation>
                         <animation effect="fade" start="100" end="50" time="100" condition="String.IsEqual(Container(211).ListItem.Property(skinshortcuts-disabled),True)">Conditional</animation>
-                        <visible>Control.HasFocus(4000) | ControlGroup(9200).HasFocus()</visible>
+                        <visible>Control.HasFocus(306) | ControlGroup(9200).HasFocus()</visible>
                         <visible>!$EXP[Script_SkinShortcuts_Widget]</visible>
                     </control>
                 </itemlayout>
@@ -106,7 +106,7 @@
                         <texture colordiffuse="Black30" fallback="special://skin/extras/icons/addtile.png">$VAR[Image_SkinShortcut]</texture>
                         <animation effect="fade" start="0" end="100" time="1" delay="1" reversible="false">Visible</animation>
                         <animation effect="fade" start="100" end="50" time="100" condition="String.IsEqual(Container(211).ListItem.Property(skinshortcuts-disabled),True)">Conditional</animation>
-                        <visible>!Control.HasFocus(4000) + !ControlGroup(9200).HasFocus()</visible>
+                        <visible>!Control.HasFocus(306) + !ControlGroup(9200).HasFocus()</visible>
                         <visible>!$EXP[Script_SkinShortcuts_Widget]</visible>
                     </control>
                     <control type="image">
@@ -117,7 +117,7 @@
                         <texture colordiffuse="Selected" fallback="special://skin/extras/icons/addtile.png">$VAR[Image_SkinShortcut]</texture>
                         <animation effect="fade" start="0" end="100" time="1" delay="1" reversible="false">Visible</animation>
                         <animation effect="fade" start="100" end="50" time="100" condition="String.IsEqual(Container(211).ListItem.Property(skinshortcuts-disabled),True)">Conditional</animation>
-                        <visible>Control.HasFocus(4000) | ControlGroup(9200).HasFocus()</visible>
+                        <visible>Control.HasFocus(306) | ControlGroup(9200).HasFocus()</visible>
                         <visible>!$EXP[Script_SkinShortcuts_Widget]</visible>
                     </control>
                 </focusedlayout>
@@ -139,8 +139,8 @@
                 <width>712</width>
                 <align>right</align>
 
-                <onright>4000</onright>
-                <onleft>4000</onleft>
+                <onright>306</onright>
+                <onleft>306</onleft>
                 <onup>Control.Move(211,-1)</onup>
                 <ondown>Control.Move(211,1)</ondown>
                 <onback>ClearProperty(header-widget,Home)</onback>
@@ -208,12 +208,13 @@
                     <texturenofocus colordiffuse="Black30" flipy="true">buttons/moveup.png</texturenofocus>
                     <texturefocus colordiffuse="Selected" flipy="true">buttons/moveup.png</texturefocus>
                     <onfocus condition="!String.IsEqual(Window(Home).Property(custommenu),yes)">ClearProperty(skinshortcuts-Widget,Home)</onfocus>
+                    <onclick>SetProperty(SetIcon,1,Home)</onclick>
                 </control>
             </control>
 
             <!-- LEFT LIST - SELECT ICON -->
 
-            <control type="button" id="4000">
+            <control type="button" id="306">
                 <include>Def_Hidden_Button</include>
                 <onup>Control.Move(211,-1)</onup>
                 <ondown>Control.Move(211,1)</ondown>
@@ -222,7 +223,6 @@
                 <onright>9100</onright>
                 <onback>ClearProperty(header-widget,Home)</onback>
                 <onclick>SetProperty(SetIcon,1,Home)</onclick>
-                <onclick>Sendclick(311)</onclick>
                 <visible>!$EXP[Script_SkinShortcuts_Widget]</visible>
             </control>
 
@@ -242,7 +242,7 @@
 
                 <onup>9100</onup>
                 <ondown>9100</ondown>
-                <onleft>4000</onleft>
+                <onleft>306</onleft>
                 <onright>303</onright>
                 <onback>ClearProperty(header-widget,Home)</onback>
 
@@ -266,9 +266,8 @@
                 <control type="button" id="401" description="Alt chooser">
                     <visible>String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible>
                     <visible>!$EXP[Script_SkinShortcuts_Widget]</visible>
-
                     <include>Def_Skinshortcuts_Button_Menu_Right_Side</include>
-
+                    <label>$ADDON[script.skinshortcuts 32048]</label>
                     <onfocus>SetProperty(TMDbHelper.IsStandardSkinShortcut,1,Home)</onfocus>
                 </control>
 
@@ -276,7 +275,6 @@
 
                 <control type="button" id="4001" description="Choose Widget">
                     <visible>$EXP[Script_SkinShortcuts_Widget]</visible>
-
                     <include>Def_Skinshortcuts_Button_Menu_Right_Side</include>
                     <label>31558</label>
                 </control>
@@ -391,8 +389,8 @@
 
                     <include>Def_Skinshortcuts_Button_Menu_Right_Side</include>
                     <label>31189</label>
-                    <label2>$VAR[Label_Widget_Aspect]</label2>
-                    <!-- <label2>$INFO[Container(211).ListItem.Property(widgetaspect)]</label2> -->
+                    <!-- <label2>$VAR[Label_Widget_Aspect]</label2> -->
+                    <label2>$INFO[Container(212).ListItem.Property(widgetaspect)]</label2>
                 </control>
 
                 <!-- WIDGETS - ENABLE CLEARLOGO WITH FANART -->
