@@ -473,6 +473,10 @@
         <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating))">$INFO[Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating)]</value>
     </variable>
 
+    <variable name="Value_Item_Rating_Douban">
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Douban_Rating)) + !String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Douban_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Douban_Rating)]</value>
+    </variable>
+
     <variable name="Value_Item_Rating_TMDb">
         <value condition="Container.Content(seasons) + !String.IsEmpty(ListItem.Rating) + !String.IsEqual(ListItem.Rating,0)">$INFO[ListItem.Rating]</value>
         <value condition="[Container.Content(sets) |  String.IsEqual(ListItem.DBType,set)] + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Set.Rating)) + !String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Set.Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Rating)]</value>
@@ -2428,6 +2432,7 @@
         <onclick>Skin.SetBool(hide.flags.mpaa)</onclick>
         <onclick>Skin.SetBool(show.flags.rating.tmdb)</onclick>
         <onclick>Skin.SetBool(show.flags.rating.imdb)</onclick>
+        <onclick>Skin.SetBool(show.flags.rating.douban)</onclick>
         <onclick>Skin.SetBool(show.flags.top250.classement)</onclick>
         <onclick>Skin.SetBool(hide.flags.rating)</onclick>
         <onclick>Skin.SetBool(show.flags.subtitles)</onclick>

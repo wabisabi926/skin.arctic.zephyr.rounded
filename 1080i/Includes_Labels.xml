@@ -791,6 +791,7 @@
     <variable name="Label_Rating_Flix">
         <value condition="!String.IsEmpty(ListItem.UserRating) + Skin.HasSetting(userrating.override.kodi.rating.num)">$INFO[ListItem.UserRating,,.0]</value>
         <value condition="$EXP[Condition_Item_IMDb_Rating]">$INFO[ListItem.Rating,IMDb ,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Douban_Rating)) + !String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Douban_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Douban_Rating),Douban ,]</value>
         <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating)) + ![String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,season)] + String.IsEqual(Skin.String(Value_Kodi_Rating_Provider),IMDb)">$INFO[Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating),IMDb ,]</value>
         <value>$INFO[ListItem.Rating,TMDb ,]</value>
     </variable>
@@ -798,6 +799,7 @@
     <variable name="Label_Rating_And_Votes_Info">
         <value condition="!String.IsEmpty(ListItem.UserRating) + Skin.HasSetting(userrating.override.kodi.rating.num)">$INFO[ListItem.UserRating,,.0] ($LOCALIZE[38018])</value>
         <value condition="!String.IsEmpty(ListItem.Rating(imdb))">$INFO[ListItem.Rating(imdb),IMDb ,]$INFO[ListItem.Votes(imdb),  •  $LOCALIZE[205] ,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Douban_Rating))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Douban_Rating),Douban ,]$INFO[Window(Home).Property(TMDbHelper.ListItem.Douban_Votes),  •  $LOCALIZE[205] ,]</value>
         <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating))">$INFO[Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating),IMDb ,]$INFO[Window(Home).Property(TMDbHelper.ListItem.IMDb_Votes),  •  $LOCALIZE[205] ,]</value>
         <value condition="!String.IsEmpty(ListItem.Rating) + !$EXP[IsYoutubeItem]">$INFO[ListItem.Rating,TMDb ,]$INFO[ListItem.Votes,  •  $LOCALIZE[205] ,]</value>
     </variable>
@@ -1494,6 +1496,10 @@
 
         <value condition="!String.IsEmpty(ListItem.Rating(imdb))">$VAR[Label_Rating_IMDb_Votes_Top250,IMDb ,]</value>
         <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating))">$VAR[Label_Rating_IMDb_Votes_Top250,IMDb ,]</value>
+
+        <!-- MOVIES TVSHOWS - DOUBAN RATING -->
+
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Douban_Rating)) + !String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Douban_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Douban_Rating),Douban ,]$INFO[Window(Home).Property(TMDbHelper.ListItem.Douban_Votes),  •  $LOCALIZE[205] ,]</value>
 
         <!-- MOVIES TVSHOWS - TMDB RATING -->
 
