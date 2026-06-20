@@ -89,10 +89,6 @@
 
             <onfocus condition="$EXP[Has_Home_Menu_Auto_Slide_Out_Animation]">CancelAlarm(slide_out_setfocus_2011,true)</onfocus>
 
-            <!-- SEARCH WAS FOCUSED -->
-
-            <onfocus>SetProperty(back_from_search_bar,1,Home)</onfocus>
-
             <!-- MAIN MENU : FOCUS IF INACTIVITY -->
 
             <onfocus condition="String.IsEmpty(Window(Home).Property(Launch_Search))">SetProperty(focus_main_menu_timer_from_search_bar,1,Home)</onfocus>
@@ -110,7 +106,6 @@
             <onup condition="$EXP[Home_Is_Vertical]">SetProperty(AnimationDirection,Up,Home)</onup>
             <onup condition="$EXP[Home_Is_Vertical]">SetFocus(300,$INFO[Container(300).NumItems])</onup>
             <onup condition="$EXP[Home_Is_Vertical]">SetProperty(end_menu,1,Home)</onup>
-            <onup condition="$EXP[Home_Is_Vertical]">ClearProperty(back_from_search_bar,Home)</onup>
 
             <ondown condition="$EXP[Home_Is_Vertical]">SetProperty(AnimationDirection,Down,Home)</ondown>
             <ondown condition="$EXP[Home_Is_Vertical]">SetFocus(300,0,absolute)</ondown>
@@ -129,7 +124,6 @@
             <onleft condition="$EXP[Home_Is_Horizontal]">SetProperty(AnimationDirection,Left,Home)</onleft>
             <onleft condition="$EXP[Home_Is_Horizontal]">SetFocus(300,$INFO[Container(300).NumItems])</onleft>
             <onleft condition="$EXP[Home_Is_Horizontal]">SetProperty(end_menu,1,Home)</onleft>
-            <onleft condition="$EXP[Home_Is_Horizontal]">ClearProperty(back_from_search_bar,Home)</onleft>
 
             <onright condition="$EXP[Home_Is_Horizontal]">SetProperty(AnimationDirection,Right,Home)</onright>
             <onright condition="$EXP[Home_Is_Horizontal]">SetFocus(300,0,absolute)</onright>
@@ -2076,11 +2070,7 @@
         </control>
     </include>
 
-    <!-- DEF MISC -->
-
-    <variable name="Def_Open_Sub_Menu">
-        <value>SetFocus(302,0)</value>
-    </variable>
+    <!-- DEF - TEXTURES -->
 
     <include name="Object_TextureFocus">
         <texturefocus border="$PARAM[border]">$PARAM[texture]</texturefocus>
@@ -2096,6 +2086,12 @@
             <bordertexture border="32" colordiffuse="$PARAM[colordiffuse]">$PARAM[texture_shadow]</bordertexture>
         </definition>
     </include>
+
+    <!-- DEF MISC -->
+
+    <variable name="Def_Open_Sub_Menu">
+        <value>SetFocus(302,0)</value>
+    </variable>
 
     <include name="Def_Watched_Indicators_Clean">
         <aligny>center</aligny>
@@ -2396,7 +2392,7 @@
 
         <!-- On Back -->
         <onclick>Skin.SetBool(widget.items.onback.go.back.to.position.0)</onclick>
-        <onclick>Skin.SetBool(widget.items.onback.go.back.to.position.0.setfocus.home)</onclick>
+        <onclick>Skin.Reset(widget.items.onback.go.back.to.position.0.setfocus.home)</onclick>
         <onclick>Skin.SetBool(home.onback.go.to.first.widget)</onclick>
 
         <!-- HOME FLIX PREVIEW -->
@@ -2608,7 +2604,7 @@
 
         <!-- DAY / NIGHT AUTOCOLOR -->
 
-        <!-- <onclick>Skin.SetBool(daynight.autocolor)</onclick> -->
+        <onclick>Skin.Reset(daynight.autocolor)</onclick>
 
         <!-- VIEWS PLAYLIST -->
 
@@ -2804,7 +2800,7 @@
 
         <!-- On Back -->
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetBool(widget.items.onback.go.back.to.position.0)</onload>
-        <onload condition="!Skin.HasSetting(startup.init)">Skin.SetBool(widget.items.onback.go.back.to.position.0.setfocus.home)</onload>
+        <!-- <onload condition="!Skin.HasSetting(startup.init)">Skin.SetBool(widget.items.onback.go.back.to.position.0.setfocus.home)</onload> -->
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetBool(home.onback.go.to.first.widget)</onload>
 
         <!-- HOME FLIX PREVIEW -->
@@ -3013,7 +3009,7 @@
 
         <!-- DAY / NIGHT AUTOCOLOR -->
 
-        <onload condition="!Skin.HasSetting(startup.init)">Skin.SetBool(daynight.autocolor)</onload>
+        <onload condition="!Skin.HasSetting(startup.init)">Skin.Reset(daynight.autocolor)</onload>
 
         <!-- VIEWS PLAYLIST -->
 
