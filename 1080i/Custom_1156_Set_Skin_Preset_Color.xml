@@ -2,8 +2,6 @@
 <window type="dialog" id="1156">
     <defaultcontrol>11</defaultcontrol>
 
-    <onload>SetProperty(SetSkinPresetColorSelected,$VAR[Label_Skin_Settings_Preset_Color_Selected],Home)</onload>
-    <onunload>ClearProperty(SetSkinPresetColorSelected,Home)</onunload>
     <onunload condition="!String.IsEmpty(Window(Home).Property(reloadskin))">SetFocus(3033)</onunload>
 
     <controls>
@@ -44,7 +42,7 @@
                         <font>Small</font>
                         <textcolor>PanelWhite100</textcolor>
                         <label>$INFO[ListItem.Label]</label>
-                        <visible>!String.IsEqual(Window(Home).property(SetSkinPresetColorSelected),ListItem.Label)</visible>
+                        <visible>String.IsEmpty(ListItem.Property(ItemSelected))</visible>
                     </control>
                     <control type="label">
                         <left>30</left>
@@ -53,12 +51,12 @@
                         <font>Small</font>
                         <textcolor>$VAR[Color_List_Item_Selected]</textcolor>
                         <label>$INFO[ListItem.Label]</label>
-                        <visible>String.IsEqual(Window(Home).property(SetSkinPresetColorSelected),ListItem.Label)</visible>
+                        <visible>!String.IsEmpty(ListItem.Property(ItemSelected))</visible>
                     </control>
                     <include content="Def_Button_Radio">
                         <param name="colordiffuse_off" value="Black70" />
                         <param name="colordiffuse_on" value="$VAR[Color_List_Item_Selected]" />
-                        <param name="visible" value="String.IsEqual(Window(Home).property(SetSkinPresetColorSelected),ListItem.Label)" />
+                        <param name="visible" value="!String.IsEmpty(ListItem.Property(ItemSelected))" />
                     </include>
                 </itemlayout>
                 <focusedlayout width="418" height="70">
@@ -80,7 +78,7 @@
                     <include content="Def_Button_Radio">
                         <param name="colordiffuse_off" value="Selected" />
                         <param name="colordiffuse_on" value="Selected" />
-                        <param name="visible" value="String.IsEqual(Window(Home).property(SetSkinPresetColorSelected),ListItem.Label)" />
+                        <param name="visible" value="!String.IsEmpty(ListItem.Property(ItemSelected))" />
                     </include>
                     <control type="button">
                         <label />
@@ -132,6 +130,7 @@
             <!-- VIEW TYPE ON RIGHT -->
 
             <include content="Def_Dialog_View_Type">
+                <param name="fadetime" value="0" />
                 <param name="texture" value="special://skin/extras/presetcolor/$VAR[Def_Image_Skin_Preset_Color].jpg" />
             </include>
 
