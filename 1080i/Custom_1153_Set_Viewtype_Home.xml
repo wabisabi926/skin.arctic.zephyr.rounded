@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<window type="dialog" id="1152">
-    <defaultcontrol>11</defaultcontrol>
+<window type="dialog" id="1153">
+    <defaultcontrol always="true">11</defaultcontrol>
+
+    <onload>ClearProperty(reloadsetupwizard,Home)</onload>
+    <onload>ClearProperty(SetupWizardDirection,Home)</onload>
+
+    <onload>Skin.SetString(FullInitStarted,1)</onload>
+
+    <onunload condition="!String.IsEmpty(Window(Home).Property(reloadsetupwizard))">SetFocus(3099)</onunload>
+    <onunload condition="String.IsEmpty(Window(Home).Property(reloadsetupwizard))">Skin.SetString(FullInitEnded,1)</onunload>
+
+    <onunload condition="String.IsEmpty(Window(Home).Property(reloadsetupwizard)) + Window.IsVisible(Custom_1100_Startup.xml)">SetFocus(3615)</onunload>
 
     <controls>
         <include>Background_Overlay</include>
@@ -27,7 +37,9 @@
                 <onup>11</onup>
                 <ondown>11</ondown>
 
-                <onleft>close</onleft>
+                <onleft condition="!$EXP[Condition_Show_Button_Setup_Wizard]">close</onleft>
+                <onleft condition="$EXP[Condition_Show_Button_Setup_Wizard]">5</onleft>
+
                 <onright>5</onright>
 
                 <usecontrolcoords>true</usecontrolcoords>
@@ -63,7 +75,7 @@
                     <!-- ITEM FOCUS -->
 
                     <include content="Def_Layout_Item_Focus">
-                        <param name="fade_condition" value="Control.HasFocus(5)" />
+                        <param name="fade_condition" value="!Control.HasFocus(11)" />
                     </include>
 
                     <control type="label">
@@ -96,6 +108,8 @@
                         <onclick condition="Skin.HasSetting(home.show.menu.icons)">Skin.Reset(hide.home.menu)</onclick>
                         <onclick condition="Skin.HasSetting(home.show.menu.icons)">Skin.SetBool(hide.only.if.widgetcontainer.gets.focus)</onclick>
                         <onclick>Skin.SetBool(enable.blur.on.home)</onclick>
+                        <onclick condition="$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(reloadsetupwizard,1153,Home)</onclick>
+                        <onclick condition="$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(SetupWizardDirection,Next,Home)</onclick>
                         <onclick>Close</onclick>
                         <include condition="String.IsEqual(Skin.String(settinghomestyle),1)">Def_Item_Selected</include>
                     </item>
@@ -113,6 +127,8 @@
                         <onclick condition="Skin.HasSetting(home.show.menu.icons)">Skin.Reset(hide.home.menu)</onclick>
                         <onclick condition="Skin.HasSetting(home.show.menu.icons)">Skin.SetBool(hide.only.if.widgetcontainer.gets.focus)</onclick>
                         <onclick>Skin.Reset(enable.blur.on.home)</onclick>
+                        <onclick condition="$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(reloadsetupwizard,1153,Home)</onclick>
+                        <onclick condition="$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(SetupWizardDirection,Next,Home)</onclick>
                         <onclick>Close</onclick>
                         <include condition="String.IsEqual(Skin.String(settinghomestyle),2)">Def_Item_Selected</include>
                     </item>
@@ -128,6 +144,8 @@
                         <onclick>Skin.SetBool(home.style.flix)</onclick>
                         <onclick>Skin.Reset(hide.home.menu)</onclick>
                         <onclick>Skin.SetBool(enable.blur.on.home)</onclick>
+                        <onclick condition="$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(reloadsetupwizard,1153,Home)</onclick>
+                        <onclick condition="$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(SetupWizardDirection,Next,Home)</onclick>
                         <onclick>Close</onclick>
                         <include condition="String.IsEqual(Skin.String(settinghomestyle),3)">Def_Item_Selected</include>
                     </item>
@@ -142,6 +160,8 @@
                         <onclick>Skin.SetBool(home.vertical.widgets)</onclick>
                         <onclick>Skin.Reset(hide.home.menu)</onclick>
                         <onclick>Skin.Reset(enable.blur.on.home)</onclick>
+                        <onclick condition="$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(reloadsetupwizard,1153,Home)</onclick>
+                        <onclick condition="$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(SetupWizardDirection,Next,Home)</onclick>
                         <onclick>Close</onclick>
                         <include condition="String.IsEqual(Skin.String(settinghomestyle),4)">Def_Item_Selected</include>
                     </item>
@@ -158,11 +178,28 @@
                         <onclick>Skin.SetBool(home.style.horizontal.clean)</onclick>
                         <onclick>Skin.Reset(hide.home.menu)</onclick>
                         <onclick>Skin.Reset(enable.blur.on.home)</onclick>
+                        <onclick condition="$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(reloadsetupwizard,1153,Home)</onclick>
+                        <onclick condition="$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(SetupWizardDirection,Next,Home)</onclick>
                         <onclick>Close</onclick>
                         <include condition="String.IsEqual(Skin.String(settinghomestyle),5)">Def_Item_Selected</include>
                     </item>
                 </content>
             </control>
+
+            <!-- LINE VERTICAL -->
+
+            <include content="Def_Dialog_Line_Vertical"><param name="right" value="1272" /></include>
+
+            <!-- VIEW TYPE ON RIGHT -->
+
+            <include content="Def_Dialog_View_Type">
+                <param name="texture" value="special://skin/extras/homemenu/$VAR[Def_Image_Home_Menu_View_type].jpg" />
+                <param name="visible" value="!Skin.HasSetting(home.show.menu.icons)" />
+            </include>
+            <include content="Def_Dialog_View_Type">
+                <param name="texture" value="special://skin/extras/homemenu/$VAR[Def_Image_Home_Menu_View_type]2.jpg" />
+                <param name="visible" value="Skin.HasSetting(home.show.menu.icons)" />
+            </include>
 
             <!-- LINE HORIZONTALE -->
 
@@ -171,23 +208,29 @@
                 <left>30</left>
                 <width>404</width>
                 <height>1</height>
-                <texture colordiffuse="$VAR[Color_Dialog_Line]">common/white.png</texture>
+                <include>Texture_Dialog_Line</include>
             </control>
 
             <!-- BUTTON ON LEFT -->
 
-            <control type="grouplist" id="9001">
+            <control type="grouplist" id="9053">
                 <top>654</top>
                 <left>30</left>
                 <width>388</width>
                 <height>490</height>
 
                 <onup>11</onup>
-                <ondown>11</ondown>
+
                 <onleft>11</onleft>
-                <onright>11</onright>
+
+                <onright condition="!$EXP[Condition_Show_Button_Setup_Wizard]">11</onright>
+                <onright condition="$EXP[Condition_Show_Button_Setup_Wizard]">9020</onright>
+
+                <ondown condition="!$EXP[Condition_Show_Button_Setup_Wizard]">11</ondown>
+                <ondown condition="$EXP[Condition_Show_Button_Setup_Wizard]">9020</ondown>
 
                 <itemgap>0</itemgap>
+
                 <scrolltime tween="quadratic">200</scrolltime>
 
                 <control type="label" id="9050" description="Backup">
@@ -206,20 +249,9 @@
                 </include>
             </control>
 
-            <!-- LINE VERTICAL -->
+            <!-- BUTTON OK / PREV / NEXT -->
 
-            <include content="Def_Dialog_Line_Vertical"><param name="right" value="1272" /></include>
-
-            <!-- VIEW TYPE ON RIGHT -->
-
-            <include content="Def_Dialog_View_Type">
-                <param name="texture" value="special://skin/extras/homemenu/$VAR[Def_Image_Home_Menu_View_type].jpg" />
-                <param name="visible" value="!Skin.HasSetting(home.show.menu.icons)" />
-            </include>
-            <include content="Def_Dialog_View_Type">
-                <param name="texture" value="special://skin/extras/homemenu/$VAR[Def_Image_Home_Menu_View_type]2.jpg" />
-                <param name="visible" value="Skin.HasSetting(home.show.menu.icons)" />
-            </include>
+            <include condition="$EXP[Condition_Show_Button_Setup_Wizard]">Def_Button_Setup_Wizard</include>
 
             <!-- NUM ITEMS -->
 

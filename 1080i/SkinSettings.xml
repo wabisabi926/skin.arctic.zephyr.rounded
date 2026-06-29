@@ -4,6 +4,7 @@
 
     <onload>CancelAlarm(power_menu_setfocus_399,true)</onload>
     <onload>AlarmClock(InitFocusSkinSetting,Control.SetFocus(3000,1,absolute),00:00,silent)</onload>
+    <onload condition="!String.IsEmpty(Window(Home).Property(reloadsetupwizard)">SetFocus(3099)</onload>
     <onload condition="String.IsEmpty(Skin.String(Skin.SettingsLevel))">Skin.SetString(Skin.SettingsLevel,$NUMBER[3])</onload>
 
     <!-- TMDBHELPER.WIDGETCONTAINER -->
@@ -17,6 +18,7 @@
         <include condition="$EXP[Show_Weather_All_Views]">Furniture_Footer_Clock_Right</include>
 
         <include>Hidden_Button_ReloadSkin</include>
+        <include>Hidden_Button_ReloadSetupWizard</include>
 
         <control type="group">
             <include>Animation_Common_Settings</include>
@@ -251,7 +253,8 @@
                     <include>Def_Settings_Button_Focus_Select_Right_Side</include>
                     <label>$LOCALIZE[31181]</label>
                     <label2>$VAR[Label_Skin_Settings_Home_Widget_Style_Selected]</label2>
-                    <onclick>ActivateWindow(1152)</onclick>
+                    <onfocus>ClearProperty(launchsetupwizard,Home)</onfocus>
+                    <onclick>ActivateWindow(1153)</onclick>
                 </control>
 
                 <!-- HOME - CUSTOM HOME MENU -->
@@ -548,7 +551,7 @@
 
                 <control type="label" id="9818" description="Backup">
                     <visible>Container(3000).HasFocus(2)</visible>
-                    <include>Def_Skin_Settings_Level_standard</include>
+                    <include>Def_Skin_Settings_Level_base</include>
                     <include>Def_Settings_Label_Title_Right_Side</include>
                    <label>$LOCALIZE[31225]</label>
                 </control>
@@ -558,7 +561,7 @@
                 <control type="radiobutton" id="9878" description="ClearLogo">
                     <width>1278</width>
                     <visible>Container(3000).HasFocus(2)</visible>
-                    <include>Def_Skin_Settings_Level_standard</include>
+                    <include>Def_Skin_Settings_Level_base</include>
                     <include>Def_Settings_Button_Focus_Select_Right_Side</include>
                     <label>$LOCALIZE[31414]</label>
                     <selected>Skin.HasSetting(show.home.flix.title.clearlogo)</selected>
@@ -610,7 +613,7 @@
                 <control type="radiobutton" id="9844" description="more item">
                     <width>1278</width>
                     <visible>Container(3000).HasFocus(2)</visible>
-                    <include>Def_Skin_Settings_Level_standard</include>
+                    <include>Def_Skin_Settings_Level_base</include>
                     <include>Def_Settings_Button_Focus_Select_Right_Side</include>
                     <label>$LOCALIZE[31548] "$LOCALIZE[31320]"</label>
                     <selected>Skin.HasSetting(enable.morewidget)</selected>
@@ -837,6 +840,7 @@
                     <include>Def_Settings_Button_Focus_Select_Right_Side</include>
                     <label>$LOCALIZE[166] - $LOCALIZE[14078]</label>
                     <label2>$VAR[Label_Skin_Settings_Theme_Color_Selected]</label2>
+                    <onfocus>ClearProperty(launchsetupwizard,Home)</onfocus>
                     <onclick condition="!System.HasAddon(script.skin.info.service)">InstallAddon(script.skin.info.service)</onclick>
                     <onclick condition="!System.HasAddon(script.arctic.zephyr.rounded.autocolors)">InstallAddon(script.arctic.zephyr.rounded.autocolors)</onclick>
                     <onclick>ActivateWindow(1155)</onclick>
@@ -851,6 +855,7 @@
                     <include>Def_Settings_Button_Focus_Select_Right_Side</include>
                     <label>$LOCALIZE[166] - $LOCALIZE[5] / $LOCALIZE[31364]</label>
                     <label2>$VAR[Label_Skin_Settings_Perf_Selected]</label2>
+                    <onfocus>ClearProperty(launchsetupwizard,Home)</onfocus>
                     <onclick>ActivateWindow(1154)</onclick>
                 </control>
 
@@ -932,6 +937,7 @@
                     <include>Def_Settings_Button_Focus_Select_Right_Side</include>
                     <label>$LOCALIZE[31457]</label>
                     <label2>$VAR[Label_Skin_Settings_Preset_Color_Selected]</label2>
+                    <onfocus>ClearProperty(launchsetupwizard,Home)</onfocus>
                     <onclick>ActivateWindow(1156)</onclick>
                 </control>
 
@@ -1294,7 +1300,7 @@
 
                 <control type="label" id="97131" description="Backup">
                     <visible>Container(3000).HasFocus(4)</visible>
-                    <include>Def_Skin_Settings_Level_standard</include>
+                    <include>Def_Skin_Settings_Level_base</include>
                     <include>Def_Settings_Label_Title_Right_Side</include>
                     <label>$LOCALIZE[31108]</label>
                 </control>
@@ -1304,7 +1310,7 @@
                 <control type="button" id="98052">
                     <width>1278</width>
                     <visible>Container(3000).HasFocus(4)</visible>
-                    <include>Def_Skin_Settings_Level_standard</include>
+                    <include>Def_Skin_Settings_Level_base</include>
                     <include>Def_Settings_Button_Focus_Select_Right_Side</include>
                     <label>$LOCALIZE[31108]</label>
                     <onclick>ActivateWindow(1151)</onclick>
@@ -1510,7 +1516,7 @@
                 <control type="button" id="9263" description="Select media flags">
                     <width>1278</width>
                     <visible>Container(3000).HasFocus(5)</visible>
-                    <include>Def_Skin_Settings_Level_standard</include>
+                    <include>Def_Skin_Settings_Level_base</include>
                     <include>Def_Settings_Button_Focus_Select_Right_Side</include>
                     <label>$LOCALIZE[31219]$LOCALIZE[31329]</label>
                     <onclick>ActivateWindow(1149)</onclick>
@@ -2160,7 +2166,7 @@
 
                 <!-- PLAY / PAUSE AUTO WITH OPEN OSD -->
 
-                <control type="button" id="9241" description="Show detailed info on start">
+                <control type="radiobutton" id="9241" description="Show detailed info on start">
                     <width>1278</width>
                     <visible>Container(3000).HasFocus(7)</visible>
                     <include>Def_Skin_Settings_Level_standard</include>
@@ -2228,7 +2234,7 @@
                 <control type="radiobutton" id="9212" description="Show clearart">
                     <width>1278</width>
                     <visible>Container(3000).HasFocus(7)</visible>
-                    <include>Def_Skin_Settings_Level_standard</include>
+                    <include>Def_Skin_Settings_Level_base</include>
                     <include>Def_Settings_Button_Focus_Select_Right_Side</include>
                     <label>$LOCALIZE[31414]</label>
                     <selected>Skin.HasSetting(show.osd.video.clearlogo)</selected>
@@ -2419,7 +2425,7 @@
                 <control type="radiobutton" id="9229" description="Show clearart">
                     <width>1278</width>
                     <visible>Container(3000).HasFocus(7)</visible>
-                    <include>Def_Skin_Settings_Level_standard</include>
+                    <include>Def_Skin_Settings_Level_base</include>
                     <include>Def_Settings_Button_Focus_Select_Right_Side</include>
                     <label>$LOCALIZE[31248]</label>
                     <selected>Skin.HasSetting(show.osd.music.clearlogo)</selected>
@@ -2837,35 +2843,47 @@
                     <!-- <onclick>SetProperty(reloadskin,1,Home)</onclick> -->
                 </control>
 
-                <control type="button" id="9442">
+                <control type="button" id="9442" description="Settings to Defaults">
                     <width>1278</width>
                     <visible>Container(3000).HasFocus(10)</visible>
                     <include>Def_Skin_Settings_Level_advanced</include>
                     <include>Def_Settings_Button_Focus_Select_Right_Side</include>
-                    <label>$LOCALIZE[31181]</label>
-                    <label2>$VAR[Label_Skin_Settings_Home_Widget_Style_Selected]</label2>
-                    <onclick>ActivateWindow(1152)</onclick>
+                    <label>$LOCALIZE[31622]</label>
+                    <onfocus condition="String.IsEmpty(Window(Home).Property(launchsetupwizard)">ClearProperty(launchsetupwizard,Home)</onfocus>
+                    <onunfocus condition="String.IsEmpty(Window(Home).Property(launchsetupwizard)">ClearProperty(launchsetupwizard,Home)</onunfocus>
+                    <onclick>SetProperty(launchsetupwizard,1,Home)</onclick>
+                    <onclick>ActivateWindow(1153)</onclick>
                 </control>
 
-                <control type="button" id="9443" description="Settings to Defaults">
-                    <width>1278</width>
-                    <visible>Container(3000).HasFocus(10)</visible>
-                    <include>Def_Skin_Settings_Level_advanced</include>
-                    <include>Def_Settings_Button_Focus_Select_Right_Side</include>
-                    <label>$LOCALIZE[166] - $LOCALIZE[5] / $LOCALIZE[31364]</label>
-                    <label2>$VAR[Label_Skin_Settings_Perf_Selected]</label2>
-                    <onclick>ActivateWindow(1154)</onclick>
-                </control>
+                <!-- <control type="button" id="9442"> -->
+                    <!-- <width>1278</width> -->
+                    <!-- <visible>Container(3000).HasFocus(10)</visible> -->
+                    <!-- <include>Def_Skin_Settings_Level_advanced</include> -->
+                    <!-- <include>Def_Settings_Button_Focus_Select_Right_Side</include> -->
+                    <!-- <label>$LOCALIZE[31181]</label> -->
+                    <!-- <label2>$VAR[Label_Skin_Settings_Home_Widget_Style_Selected]</label2> -->
+                    <!-- <onclick>ActivateWindow(1153)</onclick> -->
+                <!-- </control> -->
 
-                <control type="button" id="9441" description="Settings to Defaults">
-                    <width>1278</width>
-                    <visible>Container(3000).HasFocus(10)</visible>
-                    <include>Def_Skin_Settings_Level_advanced</include>
-                    <include>Def_Settings_Button_Focus_Select_Right_Side</include>
-                    <label>$LOCALIZE[166] - $LOCALIZE[14078]</label>
-                    <label2>$VAR[Label_Skin_Settings_Theme_Color_Selected]</label2>
-                    <onclick>ActivateWindow(1155)</onclick>
-                </control>
+                <!-- <control type="button" id="9443" description="Settings to Defaults"> -->
+                    <!-- <width>1278</width> -->
+                    <!-- <visible>Container(3000).HasFocus(10)</visible> -->
+                    <!-- <include>Def_Skin_Settings_Level_advanced</include> -->
+                    <!-- <include>Def_Settings_Button_Focus_Select_Right_Side</include> -->
+                    <!-- <label>$LOCALIZE[166] - $LOCALIZE[5] / $LOCALIZE[31364]</label> -->
+                    <!-- <label2>$VAR[Label_Skin_Settings_Perf_Selected]</label2> -->
+                    <!-- <onclick>ActivateWindow(1154)</onclick> -->
+                <!-- </control> -->
+
+                <!-- <control type="button" id="9441" description="Settings to Defaults"> -->
+                    <!-- <width>1278</width> -->
+                    <!-- <visible>Container(3000).HasFocus(10)</visible> -->
+                    <!-- <include>Def_Skin_Settings_Level_advanced</include> -->
+                    <!-- <include>Def_Settings_Button_Focus_Select_Right_Side</include> -->
+                    <!-- <label>$LOCALIZE[166] - $LOCALIZE[14078]</label> -->
+                    <!-- <label2>$VAR[Label_Skin_Settings_Theme_Color_Selected]</label2> -->
+                    <!-- <onclick>ActivateWindow(1155)</onclick> -->
+                <!-- </control> -->
             </control>
 
             <!-- SCROLLBAR -->
