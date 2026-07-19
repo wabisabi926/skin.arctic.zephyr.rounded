@@ -1444,27 +1444,6 @@
                 </include>
             </control>
 
-            <!-- WIKIPEDIA -->
-
-            <control type="radiobutton" id="9030">
-                <visible>!Skin.HasSetting(hide.button.music.wiki) + System.AddonIsEnabled(script.wikipedia)</visible>
-
-                <onfocus>SetProperty(last_music_focus,9030,Home)</onfocus>
-                <onfocus>ClearProperty(musiccontent,Home)</onfocus>
-
-                <onfocus condition="![Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))]">ClearProperty(show_info_artist,Home)</onfocus>
-
-                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
-                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
-                <onfocus>ClearProperty(Rotate_Cover,Home)</onfocus>
-
-                <include>Def_Button_Dimensions_Square</include>
-                <onclick>$VAR[Path_Dialog_Info_Wikipedia]</onclick>
-                <include content="Texture_RadioButton_Dialog_Info">
-                    <param name="icon" value="buttonsdialogs/wiki.png" />
-                </include>
-            </control>
-
             <!-- USER RATING -->
 
             <control type="radiobutton" id="7">
@@ -2199,30 +2178,6 @@
             </control>
 
         <!-- OTHERS -->
-
-            <!-- WIKIPEDIA -->
-
-            <control type="radiobutton" id="9013">
-                <visible>String.IsEqual(ListItem.DBType,video) | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)</visible>
-                <visible>[!String.IsEqual(ListItem.DBType,video) + !String.IsEmpty(ListItem.DBType)] | String.IsEqual(ListItem.Property(tmdb_type),person)</visible>
-                <visible>!Skin.HasSetting(hide.button.video.wiki) + System.AddonIsEnabled(script.wikipedia)</visible>
-
-                <onfocus>SetProperty(last_video_focus,9013,Home)</onfocus>
-                <onfocus condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetProperty(moviecontent,13,Home)</onfocus>
-                <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
-
-                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
-                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
-                <onfocus>ClearProperty(dontslide,Home)</onfocus>
-                <onclick>SetProperty(dontslide,1,Home)</onclick>
-
-                <include>Def_Button_Dimensions_Poster</include>
-                <include content="Texture_RadioButton_Dialog_Info">
-                    <param name="icon" value="buttonsdialogs/wiki.png" />
-                </include>
-
-                <onclick>$VAR[Path_Dialog_Info_Wikipedia]</onclick>
-            </control>
 
             <!-- CINEMA EXPERIENCE -->
 
@@ -3124,48 +3079,6 @@
                 <param name="visible" value="$PARAM[visible]" />
             </include>
         </definition>
-    </include>
-
-    <!-- DEF - FULL SCREEN WIKIPEDIA OVERLAY -->
-
-    <include name="Def_Dialog_Info_Overlay_Wiki">
-        <control type="group">
-            <visible>Window.IsVisible(script-wikipedia.xml) + !Window.IsVisible(DialogMusicInfo.xml) + !Window.IsVisible(DialogVideoInfo.xml)</visible>
-
-            <include>Animation_Common_Fade_In</include>
-            <include>Animation_Common_Fade_Out</include>
-
-            <control type="image" description="Background">
-               <include>Def_Dimensions_Fullscreen</include>
-               <texture colordiffuse="Background">background/bg.jpg</texture>
-               <animation effect="fade" start="100" end="95" condition="true">Conditional</animation>
-            </control>
-
-            <!-- FANART VIDEO FULLSCREEN -->
-
-            <control type="image" description="Background">
-               <visible>!String.IsEmpty(Player.Art(fanart)) + Window.IsVisible(fullscreenvideo)</visible>
-               <include>Def_Dimensions_Fullscreen</include>
-               <texture>$INFO[Player.Art(fanart)]</texture>
-               <animation effect="fade" start="100" end="30" condition="true">Conditional</animation>
-            </control>
-
-            <!-- FALLBACK -->
-
-            <control type="image" description="Background">
-               <visible>!String.IsEmpty(Skin.String(fanart.fallback)) + [[String.IsEmpty(Player.Art(fanart)) + Window.IsVisible(fullscreenvideo)] | !Window.IsVisible(fullscreenvideo)]</visible>
-               <include>Def_Dimensions_Fullscreen</include>
-               <texture>$INFO[Skin.String(fanart.fallback)]</texture>
-               <animation effect="fade" start="100" end="70" condition="true">Conditional</animation>
-            </control>
-
-            <!-- OVERLAY -->
-
-            <control type="image" description="FanartOverlay">
-                <include>Def_Dimensions_Fullscreen</include>
-                <texture colordiffuse="FloorFade">background/combined_flixart_dialog.png</texture>
-            </control>
-        </control>
     </include>
 
     <!-- DEF - VIDEO TRAILER / YOUTUBE FULLSCREEN -->

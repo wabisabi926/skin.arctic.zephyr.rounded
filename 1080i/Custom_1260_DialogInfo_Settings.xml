@@ -58,30 +58,6 @@
 
     <!-- VIDEO / MUSIC - BUTTONS -->
 
-                <!-- WIKI MUSIC -->
-
-                <control type="radiobutton" id="160">
-                    <include>Def_Custom_Settings_Button_Focus_Select_Left_Side</include>
-                    <label>31477</label>
-                    <selected>!Skin.HasSetting(hide.button.music.wiki)</selected>
-                    <onclick>Skin.ToggleSetting(hide.button.music.wiki)</onclick>
-                    <visible>System.AddonIsEnabled(script.wikipedia)</visible>
-                    <visible>Window.IsVisible(DialogMusicInfo.xml)</visible>
-                </control>
-
-                <!-- WIKI VIDEO -->
-
-                <control type="radiobutton" id="1092">
-                    <include>Def_Custom_Settings_Button_Focus_Select_Left_Side</include>
-                    <label>31477</label>
-                    <selected>!Skin.HasSetting(hide.button.video.wiki)</selected>
-                    <onclick>Skin.ToggleSetting(hide.button.video.wiki)</onclick>
-                    <onclick>System.AddonIsEnabled(script.wikipedia)</onclick>
-                    <visible>System.AddonIsEnabled(script.wikipedia)</visible>
-                    <visible>Window.IsVisible(DialogVideoInfo.xml)</visible>
-                    <visible>!String.IsEqual(ListItem.DBType,set)</visible>
-                </control>
-
     <!-- VIDEO - BUTTONS -->
 
                 <!-- CINEMA -->
@@ -611,19 +587,6 @@
                     <selected>Skin.HasSetting(show.dialog.info.clearlogo.game)</selected>
                     <onclick>Skin.ToggleSetting(show.dialog.info.clearlogo.game)</onclick>
                     <visible>Window.IsVisible(script-akl-romdetails.xml)</visible>
-                </control>
-
-                <!-- LANGUE WIKI -->
-
-                <control type="button" id="1093">
-                    <include>Def_Custom_Settings_Button_Focus_Select_Left_Side</include>
-                    <label>$LOCALIZE[248] $LOCALIZE[31477]:</label>
-                    <label2>$VAR[Label_Setting_Wiki_Language_Dialog_Info]</label2>
-                    <onclick>SetProperty(includesetting,Value_Wiki_Language,Home)</onclick>
-                    <onclick>Addon.OpenSettings(script.wikipedia)</onclick>
-                    <visible>System.AddonIsEnabled(script.wikipedia)</visible>
-                    <visible>!String.IsEqual(ListItem.DBType,set) + !Window.IsVisible(script-akl-romdetails.xml)</visible>
-                    <visible>!Skin.HasSetting(hide.button.video.wiki)</visible>
                 </control>
 
                 <!-- MPAA / CLEARART / LOGO STUDIO -->

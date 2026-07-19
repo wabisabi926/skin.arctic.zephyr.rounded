@@ -24,7 +24,7 @@
             </include>
             <include content="View_Dialog_Info_Poster">
                 <param name="condition.includecontent" value="true" />
-                <param name="visible" value="$PARAM[visible] + ![Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hide.button.video.wiki)]" />
+                <param name="visible" value="$PARAM[visible]" />
                 <param name="controlid" value="$PARAM[controlid]" />
                 <param name="ContentToLoad" value="$VAR[Def_List_Set]" />
                 <param name="sortby" value="year" />
@@ -61,7 +61,7 @@
             </include>
             <include content="View_Dialog_Info_Cast">
                 <param name="fallbackpicture" value="DefaultActor" />
-                <param name="visible" value="$PARAM[visible] + !$EXP[CastOnLine] + String.IsEmpty(Window(Home).Property(moviecontent)) + ![Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hide.button.video.wiki)]" />
+                <param name="visible" value="$PARAM[visible] + !$EXP[CastOnLine] + String.IsEmpty(Window(Home).Property(moviecontent))" />
                 <param name="visible.layouts" value="Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml)]]" />
                 <param name="animation_dialog_info_zoom" value="Animation_Extended_Info_Video_Cast_Zoom" />
                 <param name="controlid" value="$PARAM[controlid]" />
@@ -84,7 +84,7 @@
                 <param name="controlid" value="$PARAM[controlid]" />
             </include>
             <include content="View_Dialog_Info_Cast">
-                <param name="visible" value="$PARAM[visible] + $EXP[CastOnLine] + String.IsEmpty(Window(Home).Property(moviecontent)) + ![Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hide.button.video.wiki)] + !String.IsEqual(ListItem.DBType,set)" />
+                <param name="visible" value="$PARAM[visible] + $EXP[CastOnLine] + String.IsEmpty(Window(Home).Property(moviecontent)) + !String.IsEqual(ListItem.DBType,set)" />
 
                 <param name="visible.layouts" value="Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7) | Control.HasFocus(10) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml)]]" />
 
@@ -124,7 +124,7 @@
                 <param name="visible" value="$PARAM[visible]" />
             </include>
             <include content="View_Dialog_Info_Cast">
-                <param name="visible" value="$PARAM[visible] + ![Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hide.button.video.wiki)]" />
+                <param name="visible" value="$PARAM[visible]" />
                 <param name="animation_dialog_info_zoom" value="Animation_Extended_Info_Video_Cast_Zoom" />
                 <param name="controlid" value="$PARAM[controlid]" />
                 <param name="condition.includecontent" value="true" />

@@ -1682,40 +1682,10 @@
             <param name="visible" value="true" />
             <param name="left" value="-47" />
             <param name="icon" value="osd/world.png" />
-            <param name="id" value="4" />
-            <param name="groupid" value="5899" />
-            <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
-            <param name="show_not_enabled" value="true" />
-            <align>right</align>
-            <onup condition="!Player.Paused">PlayerControl(Play)</onup>
-            <onup>Dialog.Close(VideoOSD)</onup>
-            <onup>SetProperty(wikipedia,1,Home)</onup>
-            <onup>RunScript(script.wikipedia,wikipedia=$INFO[VideoPlayer.TvShowTitle],tmdb_type=tv,language=$VAR[Path_Wikipedia_Language])</onup>
-            <enable>!String.IsEmpty(VideoPlayer.Title) + !String.IsEmpty(VideoPlayer.DBID)</enable>
-            <onclick condition="!String.IsEmpty(VideoPlayer.Title) + String.IsEmpty(Skin.String(Value_OSD_Auto_Hide_Timeout))">Dialog.Close(VideoOSD)</onclick>
-            <onclick condition="!String.IsEmpty(VideoPlayer.Title)">SetProperty(wikipedia,1,Home)</onclick>
-            <onclick condition="!String.IsEmpty(VideoPlayer.Title)">RunScript(script.wikipedia,wikipedia=$INFO[VideoPlayer.Title],tmdb_type=movie,language=$VAR[Path_Wikipedia_Language])</onclick>
         </include>
     </include>
 
     <include name="OSD_Right_ExtraInfo_Movies">
-
-        <!-- MOVIE - WIKIPEDIA -->
-
-        <include content="Object_OSD_Button">
-            <param name="visible" value="true" />
-            <param name="left" value="-47" />
-            <param name="icon" value="osd/world.png" />
-            <param name="id" value="4" />
-            <param name="groupid" value="5899" />
-            <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
-            <param name="show_not_enabled" value="true" />
-            <align>right</align>
-            <enable>!String.IsEmpty(VideoPlayer.Title) + !String.IsEmpty(VideoPlayer.DBID)</enable>
-            <onclick condition="!String.IsEmpty(VideoPlayer.Title) + String.IsEmpty(Skin.String(Value_OSD_Auto_Hide_Timeout))">Dialog.Close(VideoOSD)</onclick>
-            <onclick condition="!String.IsEmpty(VideoPlayer.Title)">SetProperty(wikipedia,1,Home)</onclick>
-            <onclick condition="!String.IsEmpty(VideoPlayer.Title)">RunScript(script.wikipedia,wikipedia=$INFO[VideoPlayer.Title],tmdb_type=movie,language=$VAR[Path_Wikipedia_Language])</onclick>
-        </include>
     </include>
 
     <!-- ========================= -->
@@ -1956,9 +1926,6 @@
 
                 <!-- icon dvd menu -->
                 <onright condition="!VideoPlayer.Content(livetv) + VideoPlayer.HasMenu">4</onright>
-
-                <!-- icon wikipedia -->
-                <onright condition="!VideoPlayer.Content(livetv) + !String.IsEmpty(VideoPlayer.DBID)">4</onright>
 
                 <!-- icon audio profile -->
                 <onright condition="!VideoPlayer.Content(livetv) + String.IsEmpty(VideoPlayer.DBID) + System.HasAddon(script.audio.profiles) + System.AddonIsEnabled(script.audio.profiles)">7</onright>

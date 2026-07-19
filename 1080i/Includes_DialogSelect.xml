@@ -643,11 +643,7 @@
 
             <include content="Def_Dialog_Header_Logo">
                 <param name="texture" value="kodi" />
-                <param name="visible" value="![String.IsEqual(Control.GetLabel(1),Wikipedia) | Window.IsVisible(script-wikipedia.xml) | String.IsEqual(Control.GetLabel(1),$LOCALIZE[13511])]" />
-            </include>
-            <include content="Def_Dialog_Header_Logo">
-                <param name="texture" value="world" />
-                <param name="visible" value="[String.IsEqual(Control.GetLabel(1),Wikipedia) | Window.IsVisible(script-wikipedia.xml)]" />
+                <param name="visible" value="!String.IsEqual(Control.GetLabel(1),$LOCALIZE[13511])]" />
             </include>
             <include content="Def_Dialog_Header_Logo">
                 <param name="texture" value="pictures" />
@@ -832,7 +828,7 @@
                     <height>100%</height>
                     <texture fallback="DefaultPicture.png" colordiffuse="PanelWhite100">$VAR[Image_Dialog_Select_Big]</texture>
                     <aspectratio align="center" aligny="center">keep</aspectratio>
-                    <visible>$EXP[View_Icon_Black_Dialog_Select] + ![String.IsEqual(Control.GetLabel(1),Wikipedia) | String.IsEqual(Control.GetLabel(1),Light IMDb Ratings Update) | Window.IsVisible(script-wikipedia.xml)]</visible>
+                    <visible>$EXP[View_Icon_Black_Dialog_Select] + ![String.IsEqual(Control.GetLabel(1),Light IMDb Ratings Update)]</visible>
                 </control>
             </control>
 
@@ -883,31 +879,6 @@
                         <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
                         <texture diffuse="diffuse/square_w300_h300_b24.png" background="true">logo/light_imdb_ratings_update/icon.png</texture>
                     </control>
-                </control>
-            </control>
-
-            <!-- LOGO WIKIPEDIA -->
-
-            <control type="grouplist">
-                <visible>$EXP[View_Icon_Black_Dialog_Select] + [String.IsEqual(Control.GetLabel(1),Wikipedia) | Window.IsVisible(script-wikipedia.xml)]</visible>
-
-                <top>457</top>
-                <right>30</right>
-                <width>300</width>
-
-                <itemgap>-10</itemgap>
-                <usecontrolcoords>true</usecontrolcoords>
-
-                <control type="image">
-                    <width>300</width>
-                    <height>236</height>
-                    <texture>logo/wikipedia/wikipedia_logo.png</texture>
-                    <aspectratio align="center" aligny="top">keep</aspectratio>
-                </control>
-                <control type="image">
-                    <width>300</width>
-                    <height>84</height>
-                    <texture colordiffuse="Dark2">logo/wikipedia/wikipedia_title.png</texture>
                 </control>
             </control>
 

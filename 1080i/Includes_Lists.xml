@@ -129,7 +129,7 @@
 
                     <include content="Animation_Common_Delay_Fade_In"><param name="delay" value="400" /></include>
 
-                    <animation effect="fade" start="100" end="0" time="0" delay="0" condition="[[Window.IsVisible(script-wikipedia.xml) | Window.IsVisible(DialogBusy.xml)] + !Skin.HasSetting(hide.button.video.wiki)]">Conditional</animation>
+                    <animation effect="fade" start="100" end="0" time="0" delay="0" condition="Window.IsVisible(DialogBusy.xml)">Conditional</animation>
 
                     <top>60</top>
                     <left>-166</left>
@@ -180,7 +180,7 @@
                 <!-- FOCUSED LIST -->
 
                 <control type="group">
-                    <animation effect="fade" start="100" end="0" time="0" delay="0" condition="[[Window.IsVisible(script-wikipedia.xml) | Window.IsVisible(DialogBusy.xml)] + !Skin.HasSetting(hidebutton.video.wiki)]">Conditional</animation>
+                    <animation effect="fade" start="100" end="0" time="0" delay="0" condition="Window.IsVisible(DialogBusy.xml)">Conditional</animation>
 
                     <include>Animation_Extended_Info_Focus_Fade_In_350_Delay_300</include>
                     <include>Animation_Dialog_Info_Fade_Out_150</include>
@@ -320,8 +320,6 @@
 
         <definition>
             <control type="group">
-                <visible>!Window.IsVisible(script-wikipedia.xml)</visible>
-
                 <top>View_Poster_Top</top>
                 <left>788</left>
 
