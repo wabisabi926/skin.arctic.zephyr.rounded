@@ -1391,21 +1391,21 @@
 
             <!-- TEXTBOX -->
 
-            <include content="Layout_Poster_Textbox_Info">
+            <include content="Layout_Poster_Textbox_Info" condition="!Control.IsVisible(55)">
                 <param name="left" value="5" />
                 <param name="bottom" value="-10" />
             </include>
 
             <!-- RATING -->
 
-            <include content="Layout_Poster_Rating_Set_Version_Info" condition="Skin.HasSetting(show.furniture.video.rating.num.set.version)">
+            <include content="Layout_Poster_Rating_Set_Version_Info" condition="Skin.HasSetting(show.furniture.video.rating.num.set.version) + !Control.IsVisible(55)">
                 <param name="left" value="5" />
                 <param name="bottom" value="-10" />
             </include>
 
             <!-- TMDB - DBID -->
 
-            <include content="Layout_Poster_TMDb_Status" condition="!Skin.HasSetting(show.furniture.video.rating.num.set.version)">
+            <include content="Layout_Poster_TMDb_Status" condition="!Skin.HasSetting(show.furniture.video.rating.num.set.version) + !Control.IsVisible(55)">
                 <param name="left" value="5" />
                 <param name="bottom" value="-10" />
             </include>
