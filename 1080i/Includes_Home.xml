@@ -210,8 +210,6 @@
 
             <onfocus condition="$EXP[TMDbHelper_Is_Needed_In_Home] + String.IsEmpty(Window(Home).Property(AnimationDirection)) + String.IsEmpty(Window(Home).Property(first_menu)) + String.IsEmpty(Window(Home).Property(end_menu))">SetProperty(first_menu,1,Home)</onfocus>
 
-            <onfocus condition="$EXP[TMDbHelper_Is_Needed_In_Home] + String.IsEmpty(Window(Home).Property(AnimationDirection)) + String.IsEmpty(Window(Home).Property(first_menu)) + String.IsEmpty(Window(Home).Property(end_menu))">SetProperty(AnimationDirection,Right,Home)</onfocus>
-
             <!-- TRAILER FULL SCREEN -->
 
             <onfocus>ClearProperty(TrailerFullscreenIsLaunched,Home)</onfocus>
@@ -363,7 +361,7 @@
 
                 <!-- SLIDE LEFT - IF MENU ICON -->
 
-                <include>Animation_Vertical_Menu_RightSide</include>
+                <animation effect="slide" start="0,0" end="-230,0" time="0" condition="$EXP[Home_Is_Vertical] + Skin.HasSetting(home.show.menu.icons)">Conditional</animation>
 
                 <include>Animation_Visible_Label_Tip_Fade_Conditional_Widgets</include>
 
@@ -413,8 +411,6 @@
             <!-- VERTICAL - MAIN MENU / SUB MENU -->
 
             <control type="group">
-                <include>Animation_Vertical_Menu_LeftSide</include>
-
                 <left>70</left>
 
                 <!-- ARROWS (UP / DOWN) - MAIN MENU - 300 -->
@@ -818,8 +814,6 @@
             <visible allowhiddenfocus="true">False</visible>
 
             <!-- MAIN MENU - INIT STARTUP -->
-
-            <onfocus condition="$EXP[TMDbHelper_Is_Needed_In_Home] + String.IsEmpty(Window(Home).Property(AnimationDirection)) + String.IsEmpty(Window(Home).Property(first_menu)) + String.IsEmpty(Window(Home).Property(end_menu))">SetProperty(AnimationDirection,Down,Home)</onfocus>
 
             <onfocus condition="$EXP[TMDbHelper_Is_Needed_In_Home] + String.IsEmpty(Window(Home).Property(AnimationDirection)) + String.IsEmpty(Window(Home).Property(first_menu)) + String.IsEmpty(Window(Home).Property(end_menu))">SetProperty(first_menu,1,Home)</onfocus>
 
