@@ -2732,18 +2732,11 @@
             <!-- DOUBAN -->
 
             <control type="image">
-                <visible>!ListItem.IsCollection + Skin.HasSetting(show.flags.rating.douban) + !Skin.HasSetting(enable.furniture.flags.colored)</visible>
+                <visible>!ListItem.IsCollection + Skin.HasSetting(show.flags.rating.douban) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
                 <visible>$EXP[Condition_Flag_Douban_Rating]</visible>
                 <width>42</width>
                 <include>Def_Flag_Image</include>
-                <texture colordiffuse="Dark2" background="true">flags/rating/white/douban/douban.png</texture>
-            </control>
-            <control type="image">
-                <visible>!ListItem.IsCollection + Skin.HasSetting(show.flags.rating.douban) + Skin.HasSetting(enable.furniture.flags.colored) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
-                <visible>$EXP[Condition_Flag_Douban_Rating]</visible>
-                <width>42</width>
-                <include>Def_Flag_Image</include>
-                <texture background="true">flags/rating/color/douban/douban.png</texture>
+                <texture colordiffuse="$VAR[Def_Flag_Colordiffuse_Dark2]" background="true">$VAR[Image_Douban]</texture>
             </control>
             <control type="label">
                 <visible>!ListItem.IsCollection + Skin.HasSetting(show.flags.rating.douban) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
@@ -3886,6 +3879,19 @@
                     <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Letterboxd_Rating)) + Skin.HasSetting(show.flags.rating.letterboxd) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
                     <include>Def_Flag_Label</include>
                     <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.Letterboxd_Rating)]</label>
+                </control>
+
+                <!-- DOUBAN - RATING -->
+
+                <control type="image">
+                    <visible>$EXP[Condition_Flag_Douban_Rating] + Skin.HasSetting(show.flags.rating.douban) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                    <include>Def_Flag_Image</include>
+                    <texture colordiffuse="$VAR[Def_Flag_Colordiffuse_Dark2]" background="true">$VAR[Image_Douban]</texture>
+                </control>
+                <control type="label">
+                    <visible>$EXP[Condition_Flag_Douban_Rating] + Skin.HasSetting(show.flags.rating.douban) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                    <include>Def_Flag_Label</include>
+                    <label>$VAR[Value_Item_Rating_Douban]</label>
                 </control>
 
                 <!-- TRAKT - RATING -->
