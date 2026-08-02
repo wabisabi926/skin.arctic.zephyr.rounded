@@ -76,12 +76,6 @@
 
 		<value condition="Window.IsActive(TVSearch)">$LOCALIZE[19020]  •  $LOCALIZE[137]$INFO[Control.GetLabel(29),  •  ]$INFO[Control.GetLabel(30), ]</value>
 
-        <!-- WEATHER -->
-
-        <value condition="Window.IsVisible(weather) + Control.HasFocus(9100)">$LOCALIZE[8] $VAR[Label_Weather,- ]</value>
-        <value condition="Window.IsVisible(weather) + Control.HasFocus(548)">$LOCALIZE[8] - $LOCALIZE[31066]</value>
-        <value condition="Window.IsVisible(weather)">$LOCALIZE[8]</value>
-
         <!-- HUB -->
 
         <value condition="Window.IsVisible(1104) + String.IsEqual(Window(1104).Property(content),1)">$LOCALIZE[31158]</value>
@@ -231,8 +225,6 @@
     <variable name="Label_Widget_Aspect">
         <value condition="$EXP[Home_Is_Horizontal_Clean]">$LOCALIZE[31398]</value>
 
-        <value condition="String.Contains(Container(211).ListItem.Property(widget),weather) + !String.IsEmpty(Container(211).ListItem.Property(widgetaspect)) + ![String.IsEqual(Container(211).ListItem.Property(widgetaspect),Fanart) | String.IsEqual(Container(211).ListItem.Property(widgetaspect),Poster) | String.IsEqual(Container(211).ListItem.Property(widgetaspect),Square)]">[COLOR=FFFF0000]![/COLOR]</value>
-
         <value condition="String.IsEqual(Container(211).ListItem.Property(widgettarget),system)">$LOCALIZE[31191]</value>
 
         <value condition="String.IsEqual(Container(211).ListItem.Property(widget),epg)">$LOCALIZE[31182]</value>
@@ -269,7 +261,6 @@
         <value condition="String.Contains(Container(211).ListItem.Property(widgetPath),Programs)">$LOCALIZE[0]</value>
         <value condition="String.Contains(Container(211).ListItem.Property(widgetPath),Pictures)">$LOCALIZE[1]</value>
         <value condition="String.Contains(Container(211).ListItem.Property(widgetPath),pvr://)">$LOCALIZE[4]</value>
-        <value condition="String.Contains(Container(211).ListItem.Property(widgetPath),Weather)">$LOCALIZE[8]</value>
         <value condition="String.Contains(Container(211).ListItem.Property(widgetPath),SystemInfoContent)">$LOCALIZE[130]</value>
         <value condition="String.Contains(Container(211).ListItem.Property(widgetPath),SettingsInfoContent)">$LOCALIZE[5]</value>
         <value condition="String.Contains(Container(211).ListItem.Property(widgetPath),favourites)">$LOCALIZE[1036]</value>
@@ -2908,11 +2899,6 @@
         <value>$LOCALIZE[231]</value>
     </variable>
 
-    <variable name="Label_Setting_Weather_Icons">
-        <value condition="!String.IsEmpty(Skin.String(weather.icons.name))">$INFO[Skin.String(weather.icons.name)]</value>
-        <value>$LOCALIZE[231]</value>
-    </variable>
-
     <variable name="Label_Setting_IntroPath">
         <value condition="!String.IsEmpty(Skin.String(IntroPath))">$INFO[Skin.String(IntroPath)]</value>
         <value>$LOCALIZE[231]</value>
@@ -3067,22 +3053,6 @@
         <value>$INFO[Container(9500).ListItem.Rating]</value>
     </variable>
 
-    <!-- LABEL - WEATHER -->
-
-    <variable name="Label_Weather">
-        <value>$INFO[Control.GetLabel(9100)]</value>
-    </variable>
-
-    <variable name="Label_Weather_Location">
-        <value condition="!String.IsEmpty(Weather.location)">$INFO[Weather.location]</value>
-        <value>$LOCALIZE[400]</value>
-    </variable>
-
-    <variable name="Label_Weather_Property">
-        <value condition="String.Contains(ListItem.Property(HighTemp),°)">$INFO[ListItem.Property(HighTemp)] $INFO[ListItem.Property(LowTemp)]</value>
-        <value condition="!String.Contains(ListItem.Property(HighTemp),°)">$INFO[ListItem.Property(HighTemp),,°] $INFO[ListItem.Property(LowTemp),,°]</value>
-    </variable>
-
     <!-- LABEL - PROGRESS -->
 
     <variable name="Label_Progress_Circle">
@@ -3126,8 +3096,6 @@
         <value condition="String.IsEqual(Window(Home).property(SelectType),country_logos)">$LOCALIZE[31500]</value>
         <value condition="String.IsEqual(Window(Home).property(SelectType),recordlabel_logos)">$LOCALIZE[31264]</value>
         <value condition="String.IsEqual(Window(Home).property(SelectType),game_logos)">$LOCALIZE[31471]</value>
-        <value condition="String.IsEqual(Window(Home).property(SelectType),weather_icons)">$LOCALIZE[31188]</value>
-        <value condition="String.IsEqual(Window(Home).property(SelectType),weather_fanart)">$LOCALIZE[31102]</value>
     </variable>
 
     <!-- LABEL - FLAG -->

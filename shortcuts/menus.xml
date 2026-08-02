@@ -145,11 +145,6 @@
             <action>ActivateWindow(Pictures)</action>
             <icon>special://skin/extras/icons/pictures.png</icon>
         </item>
-        <item name="weather" submenu="weather">
-            <label>$LOCALIZE[12600]</label>
-            <action>ActivateWindow(Weather)</action>
-            <icon>special://skin/extras/icons/sun.png</icon>
-        </item>
         <item name="favourites">
             <label>$LOCALIZE[1036]</label>
             <action>ActivateWindow(favouritesbrowser)</action>
@@ -555,32 +550,6 @@
             <visible>System.HasAddon(plugin.program.iagl)</visible>
         </item>
    </submenu>
-
-    <!-- WEATHER - SUBMENU -->
-
-    <submenu name="weather">
-    </submenu>
-
-    <!-- WEATHER - WIDGET -->
-
-    <submenu name="weather.1" type="widgets">
-        <item name="WeatherDay">
-            <label>$LOCALIZE[31213]</label>
-            <property name="widgetPath">$INCLUDE[skinshortcuts-template-WeatherDailyInfoContent]</property>
-            <property name="widgetTarget">weather</property>
-            <property name="widgetType">weather</property>
-            <property name="widgetaspect">Square</property>
-            <visible>!String.IsEmpty(Weather.plugin)</visible>
-        </item>
-        <item name="WeatherHourly">
-            <label>$LOCALIZE[31214]</label>
-            <property name="widgetPath">$INCLUDE[skinshortcuts-template-WeatherHourlyInfoContent]</property>
-            <property name="widgetTarget">weather</property>
-            <property name="widgetType">weather</property>
-            <property name="widgetaspect">Square</property>
-            <visible>!String.IsEmpty(Weather.plugin)</visible>
-        </item>
-    </submenu>
 
     <!-- FAVOURITES - WIDGET -->
 
@@ -1063,9 +1032,6 @@
             <shortcut name="pictures" label="1" type="1" icon="special://skin/extras/icons/pictures.png">
                 <action>ActivateWindow(Pictures)</action>
             </shortcut>
-            <shortcut name="weather" label="12600" type="12600" icon="special://skin/extras/icons/sun.png">
-                <action>ActivateWindow(Weather)</action>
-            </shortcut>
             <shortcut name="power" label="33060" type="33060" icon="special://skin/extras/icons/power.png">
                 <action>ActivateWindow(shutdownmenu)</action>
             </shortcut>
@@ -1295,14 +1261,6 @@
         <group name="games-grp" label="10821" icon="special://skin/extras/icons/gamepad.png">
             <shortcut name="games-window" label="10821" type="32021" icon="special://skin/extras/icons/gamepad.png">
                 <action>ActivateWindow(Games)</action>
-            </shortcut>
-        </group>
-
-        <!-- WEATHER -->
-
-        <group name="weather-grp" label="400" icon="special://skin/extras/icons/sun.png">
-            <shortcut name="weather-window" label="12600" type="400" icon="special://skin/extras/icons/sun.png">
-                <action>ActivateWindow(Weather)</action>
             </shortcut>
         </group>
 

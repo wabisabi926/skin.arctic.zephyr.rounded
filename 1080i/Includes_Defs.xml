@@ -406,40 +406,7 @@
         </definition>
     </include>
 
-    <!-- BACKGROUND - ONLY - WIDGET - WEATHER - SYSINFO - SETTINGS -->
-
-    <include name="Def_Art_Only_Background_Widget_Weather">
-        <param name="pad_image" value="$PARAM[pad_image]" default="10" />
-        <param name="FanartCode" value="$PARAM[FanartCode]" default="" />
-
-        <definition>
-            <!-- Multi Fanart Background -->
-
-            <control type="multiimage" description="Fanart">
-                <visible>!Skin.HasSetting(hide.weather.fanart) + !Skin.HasSetting(hide.weather.fanart.widgets) + String.Contains(Skin.String(weather.fanart.path),multi) + !String.IsEmpty(Skin.String(weather.fanart.path))</visible>
-
-                <fadetime>600</fadetime>
-                <timeperimage>12000</timeperimage>
-                <randomize>true</randomize>
-
-                <include content="Def_Padding"><param name="pad" value="$PARAM[pad_image]" /></include>
-                <animation effect="fade" start="100" end="WeatherFanartTransparency" condition="true">Conditional</animation>
-                <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
-                <imagepath diffuse="diffuse/$PARAM[texture_diffuse].png">$INFO[Skin.String(weather.fanart.path)]$PARAM[FanartCode]$INFO[ListItem.Property(FanartCode)]/</imagepath>
-            </control>
-
-            <!-- Simple Fanart Background -->
-
-            <control type="image" description="Fanart">
-                <visible>!Skin.HasSetting(hide.weather.fanart) + !Skin.HasSetting(hide.weather.fanart.widgets) + !String.Contains(Skin.String(weather.fanart.path),multi) + !String.IsEmpty(Skin.String(weather.fanart.path))</visible>
-
-                <include content="Def_Padding"><param name="pad" value="$PARAM[pad_image]" /></include>
-                <animation effect="fade" start="100" end="WeatherFanartTransparency" condition="true">Conditional</animation>
-                <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
-                <texture diffuse="diffuse/$PARAM[texture_diffuse].png">$INFO[Skin.String(weather.fanart.path)]$PARAM[FanartCode]$INFO[ListItem.Property(FanartCode),,.jpg]</texture>
-            </control>
-        </definition>
-    </include>
+    <!-- BACKGROUND - ONLY - WIDGET - SYSINFO - SETTINGS -->
 
     <include name="Def_Art_Only_Background_Widget_System">
         <param name="pad_image" value="$PARAM[pad_image]" default="10" />
@@ -957,46 +924,6 @@
                 </control>
             </control>
 
-            <!-- MY WEATHER -->
-
-            <control type="grouplist">
-                <visible>Window.IsVisible(MyWeather.xml)</visible>
-
-                <itemgap>0</itemgap>
-                <orientation>horizontal</orientation>
-                <usecontrolcoords>true</usecontrolcoords>
-
-                <control type="label">
-                    <include>Def_Header_Sub_Info_Definition</include>
-                    <label>$LOCALIZE[24029]: $LOCALIZE[231]</label>
-                    <visible>String.IsEmpty(Weather.plugin)</visible>
-                </control>
-
-                <control type="label">
-                    <include>Def_Header_Sub_Info_Definition</include>
-                    <label>$INFO[Window(Weather).Property(WeatherProvider)]</label>
-                    <visible>!String.IsEmpty(Weather.plugin)</visible>
-                </control>
-                <control type="label">
-                    <include>Def_Label_Header_Sub_Icon_Definition</include>
-                    <label>   &#63097;</label>
-                    <visible>!String.IsEmpty(Weather.plugin)</visible>
-                </control>
-
-                <control type="label">
-                    <visible>![String.Contains(Weather.Data(Current.Temperature),$LOCALIZE[503]) | String.IsEmpty(Window(Weather).Property(Updated))]</visible>
-                    <visible>!String.IsEmpty(Weather.plugin)</visible>
-                    <include>Def_Header_Sub_Info_Definition</include>
-                    <label>$INFO[Window(Weather).Property(Location),  •  ,]</label>
-                </control>
-                <control type="label">
-                    <visible>![String.Contains(Weather.Data(Current.Temperature),$LOCALIZE[503]) | String.IsEmpty(Window(Weather).Property(Updated))]</visible>
-                    <visible>!String.IsEmpty(Weather.plugin)</visible>
-                    <include>Def_Label_Header_Sub_Icon_Definition</include>
-                    <label>   &#61984;</label>
-                </control>
-            </control>
-
             <!-- FILEMANAGER -->
 
             <control type="grouplist">
@@ -1115,7 +1042,7 @@
                 <visible>![Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(videoversions) | Container.Content(sets)]</visible>
                 <visible>![Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
                 <visible>![Container.Content(directors) | Container.Content(actors) | Container.Content(countries) | Container.Content(years) | Container.Content(genres) | Container.Content(tags) | Container.Content(studios)]</visible>
-                <visible>![$EXP[IsPvrDialog] | Window.IsVisible(AddonBrowser.xml) | Window.IsVisible(LoginScreen.xml) | Window.IsActive(videoplaylist) | Window.IsVisible(MyWeather.xml) | Container.Content(favourites) | Window.IsVisible(FileManager.xml)]</visible>
+                <visible>![$EXP[IsPvrDialog] | Window.IsVisible(AddonBrowser.xml) | Window.IsVisible(LoginScreen.xml) | Window.IsActive(videoplaylist) | Container.Content(favourites) | Window.IsVisible(FileManager.xml)]</visible>
                 <visible>!$EXP[IsPluginApplePodcasts] + !$EXP[IsGameMode] + !Window.IsVisible(MyGames.xml)</visible>
 
                 <itemgap>0</itemgap>
@@ -2683,7 +2610,6 @@
         <onclick>Skin.SetString(fanart.fallback.settings,special://skin/extras/backgrounds/settings/settings_3.jpg)</onclick>
         <onclick>Skin.SetString(fanart.fallback.programs,special://skin/extras/backgrounds/programs/programs_3.jpg)</onclick>
         <onclick>Skin.SetString(fanart.fallback.exit,special://skin/extras/backgrounds/exit/exit_7.jpg)</onclick>
-        <onclick>Skin.SetString(fanart.fallback.weather,special://skin/extras/backgrounds/weather/weather_12.jpg)</onclick>
         <onclick>Skin.SetString(fanart.fallback.person,special://skin/extras/backgrounds/misc/misc_6.jpg)</onclick>
         <onclick>Skin.SetString(fanart.fallback.image,special://skin/extras/backgrounds/pictures/pictures_5.jpg)</onclick>
         <onclick>Skin.SetString(fanart.fallback.game,special://skin/extras/backgrounds/games/games_3.jpg)</onclick>
@@ -3075,7 +3001,6 @@
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(fanart.fallback.settings,special://skin/extras/backgrounds/settings/settings_3.jpg)</onload>
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(fanart.fallback.programs,special://skin/extras/backgrounds/programs/programs_3.jpg)</onload>
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(fanart.fallback.exit,special://skin/extras/backgrounds/exit/exit_7.jpg)</onload>
-        <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(fanart.fallback.weather,special://skin/extras/backgrounds/weather/weather_12.jpg)</onload>
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(fanart.fallback.person,special://skin/extras/backgrounds/misc/misc_6.jpg)</onload>
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(fanart.fallback.image,special://skin/extras/backgrounds/pictures/pictures_5.jpg)</onload>
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(fanart.fallback.game,special://skin/extras/backgrounds/games/games_3.jpg)</onload>
@@ -3174,20 +3099,6 @@
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(recordlabel.logos.path,resource://resource.images.recordlabels.white/)</onload>
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(recordlabel.logos.name,Recordlabel Icons - White)</onload>
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(recordlabel.logos.ext,.png)</onload>
-
-        <!-- WEATHER -->
-
-        <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(weather.icons.path,resource://resource.images.weathericons.default/)</onload>
-        <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(weather.icons.name,Weather Icons - Default)</onload>
-        <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(weather.icons.ext,.png)</onload>
-
-        <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(weather.fanart.path,resource://resource.images.weatherfanart.single/)</onload>
-        <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(weather.fanart.name,Weather Fanart - Single)</onload>
-        <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(weather.fanart.ext,.jpg)</onload>
-
-        <onload condition="!Skin.HasSetting(startup.init)">Skin.Reset(hide.weather.fanart)</onload>
-        <onload condition="!Skin.HasSetting(startup.init)">Skin.Reset(hide.weather.fanart.widgets)</onload>
-        <onload condition="!Skin.HasSetting(startup.init)">Skin.Reset(weather.fanart.multi)</onload>
 
         <!-- FOCUS GLOW -->
 

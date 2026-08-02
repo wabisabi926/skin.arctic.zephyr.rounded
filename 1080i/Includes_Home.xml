@@ -316,7 +316,7 @@
                 <!-- CONTAINER UPDATING -->
 
                 <control type="group">
-                    <visible>[![String.IsEqual(Container(300).ListItem.Property(widget),weatherdaily) | String.IsEqual(Container(300).ListItem.Property(widget),weatherhourly)] + Container(301).IsUpdating] | [!Weather.IsFetched + [String.IsEqual(Container(300).ListItem.Property(widget),weatherdaily) | String.IsEqual(Container(300).ListItem.Property(widget),weatherhourly)]]</visible>
+                    <visible>Container(301).IsUpdating</visible>
 
                     <include>Animation_Common_Fade_In</include>
                     <include>Animation_Common_Fade_Out</include>
@@ -1449,7 +1449,7 @@
         </definition>
     </include>
 
-    <include name="Def_Widgets_Item_Main_Sys_Info_Weather">
+    <include name="Def_Widgets_Item_Main_Sys_Info_Label">
         <param name="label" value="$PARAM[label]" />
         <param name="left" value="$PARAM[left]" default="0" />
         <param name="width" value="$PARAM[width]" default="100%" />
@@ -1479,22 +1479,6 @@
                 </control>
             </control>
         </definition>
-    </include>
-
-    <!-- WIDGET - WEATHER -->
-
-    <include name="Home_Flix_Widgets_Weather_Info">
-        <include content="Def_Top" condition="Skin.HasSetting(home.style.horizontal.clean) + !Skin.HasSetting(hide.widget.title)">
-            <param name="top" value="-418" />
-        </include>
-        <include content="Def_Top" condition="Skin.HasSetting(home.style.horizontal.clean)">
-            <param name="top" value="-378" />
-        </include>
-
-        <top>-750</top>
-        <left>View_List_Side</left>
-
-        <include>Def_Home_Flix_Widgets_Weather_Info</include>
     </include>
 
     <!-- WIDGET - INFO SYSTEM - KODI SETTINGS -->
@@ -1749,16 +1733,6 @@
             <include>Animation_Vertical_Widgets_Title</include>
             <visible>Control.HasFocus($PARAM[focusid])</visible>
             <visible>String.IsEqual(Container($PARAM[focusid]).ListItem.DBType,artist)</visible>
-            <visible>!Skin.HasSetting(home.style.flix)</visible>
-        </control>
-
-        <!-- WEATHER DAILY HOURLY -->
-
-        <control type="label" id="9971">
-            <include content="Def_Home_Label_Widget_Title"><param name="focusid" value="$PARAM[focusid]" /></include>
-            <label>$INFO[Weather.Data(Location),  •  ,]</label>
-            <include>Animation_Vertical_Widgets_Title</include>
-            <visible>String.IsEqual(Container($PARAM[focusid]).ListItem.Property(WidgetType),Widget_Type_Weather_Daily) | String.IsEqual(Container($PARAM[focusid]).ListItem.Property(WidgetType),Widget_Type_Weather_Hourly)</visible>
             <visible>!Skin.HasSetting(home.style.flix)</visible>
         </control>
 

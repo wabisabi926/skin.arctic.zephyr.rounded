@@ -14,12 +14,11 @@
 
     <presets>
         <preset name="layoutFlags">
-            <values condition="widgetTarget=weather" isNormalLayout="false" isWeatherLayout="true" isSystemLayout="false" isSettingsLayout="false" labelIsVisible="false" moreVisible="false" />
-            <values condition="widgetTarget=system" isNormalLayout="false" isWeatherLayout="false" isSystemLayout="true" isSettingsLayout="false" labelIsVisible="false" moreVisible="false" />
-            <values condition="widgetTarget=settings" isNormalLayout="false" isWeatherLayout="false" isSystemLayout="false" isSettingsLayout="true" labelIsVisible="true" moreVisible="true" />
-            <values condition="widgetTarget=tvguide" isNormalLayout="true" isWeatherLayout="false" isSystemLayout="false" isSettingsLayout="false" labelIsVisible="true" moreVisible="false" />
-            <values condition="widgetTarget=pvr" isNormalLayout="true" isWeatherLayout="false" isSystemLayout="false" isSettingsLayout="false" labelIsVisible="true" moreVisible="false" />
-            <values isNormalLayout="true" isWeatherLayout="false" isSystemLayout="false" isSettingsLayout="false" labelIsVisible="true" moreVisible="true" />
+            <values condition="widgetTarget=system" isNormalLayout="false" isSystemLayout="true" isSettingsLayout="false" labelIsVisible="false" moreVisible="false" />
+            <values condition="widgetTarget=settings" isNormalLayout="false" isSystemLayout="false" isSettingsLayout="true" labelIsVisible="true" moreVisible="true" />
+            <values condition="widgetTarget=tvguide" isNormalLayout="true" isSystemLayout="false" isSettingsLayout="false" labelIsVisible="true" moreVisible="false" />
+            <values condition="widgetTarget=pvr" isNormalLayout="true" isSystemLayout="false" isSettingsLayout="false" labelIsVisible="true" moreVisible="false" />
+            <values isNormalLayout="true" isSystemLayout="false" isSettingsLayout="false" labelIsVisible="true" moreVisible="true" />
         </preset>
 
         <preset name="widgetMovement">
@@ -162,11 +161,6 @@
                     <param name="SquareSmall" value="$PROPERTY[isSquareSmall]" />
                 </include>
 
-                <include content="Def_Weather_Layout_Item" condition="$PROPERTY[isWeatherLayout]">
-                    <param name="Fanart" value="$PROPERTY[isFanart]" />
-                    <param name="Square" value="$PROPERTY[isSquare]" />
-                </include>
-
                 <include condition="$PROPERTY[isSystemLayout]">Def_System_Layout_Item</include>
                 <include condition="$PROPERTY[isSettingsLayout]">Def_System_Layout_Item</include>
 
@@ -183,12 +177,6 @@
                     <param name="Square" value="$PROPERTY[isSquare]" />
                     <param name="SquareMiddle" value="$PROPERTY[isSquareMiddle]" />
                     <param name="SquareSmall" value="$PROPERTY[isSquareSmall]" />
-                </include>
-
-                <include content="Def_Weather_Layout_Item_Focus" condition="$PROPERTY[isWeatherLayout]">
-                    <param name="shortcutsid" value="$MATH[$PARENT[index] * 1000 + 600 + widgetIndex]" />
-                    <param name="Fanart" value="$PROPERTY[isFanart]" />
-                    <param name="Square" value="$PROPERTY[isSquare]" />
                 </include>
 
                 <include content="Def_System_Layout_Item_Focus" condition="$PROPERTY[isSystemLayout]">
@@ -244,10 +232,6 @@
                         <param name="labelisvisible" value="$PROPERTY[labelIsVisible]" />
                         <param name="submenuVisibility" value="$PARENT[name]" />
                     </include>
-                </control>
-
-                <control type="grouplist">
-                    <include condition="$PROPERTY[isWeatherLayout]">Home_Flix_Widgets_Weather_Info</include>
                 </control>
 
                 <control type="grouplist">
@@ -328,20 +312,6 @@
     <!-- ============================================================ -->
     <!--                    OTHER TEMPLATES                            -->
     <!-- ============================================================ -->
-
-    <!-- Weather Daily -->
-    <template include="WeatherDailyInfoContent" build="true">
-        <controls>
-            <include>Def_Content_Widget_Weather_Daily_Items</include>
-        </controls>
-    </template>
-
-    <!-- Weather Hourly -->
-    <template include="WeatherHourlyInfoContent" build="true">
-        <controls>
-            <include>Def_Content_Widget_Weather_Hourly_Items</include>
-        </controls>
-    </template>
 
     <!-- System Info -->
     <template include="SystemInfoContent" build="true">

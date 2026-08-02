@@ -12,9 +12,7 @@
     | [String.IsEqual(Window(Home).property(SelectType),studio_logos) + String.IsEqual(Skin.String(studio.logos.name),ListItem.Label)]
     | [String.IsEqual(Window(Home).property(SelectType),country_logos) + String.IsEqual(Skin.String(country.logos.name),ListItem.Label)]
     | [String.IsEqual(Window(Home).property(SelectType),recordlabel_logos) + String.IsEqual(Skin.String(recordlabel.logos.name),ListItem.Label)]
-    | [String.IsEqual(Window(Home).property(SelectType),game_logos) + String.IsEqual(Skin.String(game.logos.name),ListItem.Label)]
-    | [String.IsEqual(Window(Home).property(SelectType),weather_icons) + String.IsEqual(Skin.String(weather.icons.name),ListItem.Label)]
-    | [String.IsEqual(Window(Home).property(SelectType),weather_fanart) + String.IsEqual(Skin.String(weather.fanart.name),ListItem.Label)]</expression>
+    | [String.IsEqual(Window(Home).property(SelectType),game_logos) + String.IsEqual(Skin.String(game.logos.name),ListItem.Label)]</expression>
 
     <!-- OSD PVR SWITCH CHANNEL -->
 
@@ -204,7 +202,7 @@
     <expression name="View_Fanart">Control.IsVisible(547) | Control.IsVisible(557) | Control.IsVisible(56) | Control.IsVisible(57)</expression>
     <expression name="View_Poster">Control.IsVisible(55) | Control.IsVisible(509) | Control.IsVisible(517) | Control.IsVisible(519)</expression>
 
-    <expression name="View_Settings">[$EXP[View_Kodi_Settings] | Window.IsVisible(MyPVRRecordings.xml) | Window.IsVisible(MyPVRSearch.xml) | Window.IsVisible(MyWeather.xml) | Window.IsVisible(MyPVRTimers.xml) | [Window.IsVisible(MyPVRChannels.xml) + !Control.IsVisible(526) + !Window.IsVisible(DialogPVRInfo.xml)] | Window.IsVisible(MyPVRProviders.xml) | Window.IsVisible(MyMusicPlaylistEditor.xml) | [Window.IsVisible(MyPVRGuide.xml) + !Window.IsVisible(DialogPVRInfo.xml)]]</expression>
+    <expression name="View_Settings">[$EXP[View_Kodi_Settings] | Window.IsVisible(MyPVRRecordings.xml) | Window.IsVisible(MyPVRSearch.xml) | Window.IsVisible(MyPVRTimers.xml) | [Window.IsVisible(MyPVRChannels.xml) + !Control.IsVisible(526) + !Window.IsVisible(DialogPVRInfo.xml)] | Window.IsVisible(MyPVRProviders.xml) | Window.IsVisible(MyMusicPlaylistEditor.xml) | [Window.IsVisible(MyPVRGuide.xml) + !Window.IsVisible(DialogPVRInfo.xml)]]</expression>
 
     <expression name="View_Kodi_Settings">[Window.IsVisible(AddonBrowser.xml) | Window.IsVisible(SettingsSystemInfo.xml) | Window.IsVisible(SettingsCategory.xml) | Window.IsVisible(Settings.xml) | Window.IsVisible(SkinSettings.xml) | Window.IsVisible(service-CoreELEC-Settings-mainWindow.xml) | Window.IsVisible(service-LibreELEC-Settings-mainWindow.xml) | Window.IsVisible(SettingsProfile.xml) | Window.IsVisible(EventLog.xml) | Window.IsVisible(FileManager.xml)]</expression>
 
@@ -443,9 +441,9 @@
 
     <expression name="View_Clock_In_Footer_Always">$EXP[View_Flix] | $EXP[View_Settings]</expression>
 
-    <!-- SHOW WEATHER VIEWS -->
+    <!-- SHOW CLOCK/DATE VIEWS -->
 
-    <expression name="Show_Weather_All_Views">Skin.HasSetting(show.furniture.clock.date.weather) + !Skin.HasSetting(show.clock.date.weather.home.only)</expression>
+    <expression name="Show_Clock_Date_All_Views">Skin.HasSetting(show.furniture.clock.date.weather) + !Skin.HasSetting(show.clock.date.weather.home.only)</expression>
 
     <!-- FOR JUMPBAR -->
 

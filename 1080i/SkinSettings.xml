@@ -15,7 +15,7 @@
         <include>Background_Global</include>
         <include>Furniture_Header_Info</include>
         <include condition="!Skin.HasSetting(hide.furniture.nowplaying.views)">Furniture_Header_NowPlaying</include>
-        <include condition="$EXP[Show_Weather_All_Views]">Furniture_Footer_Clock_Right</include>
+        <include condition="$EXP[Show_Clock_Date_All_Views]">Furniture_Footer_Clock_Right</include>
 
         <include>Hidden_Button_ReloadSkin</include>
         <include>Hidden_Button_ReloadSetupWizard</include>
@@ -321,9 +321,9 @@
                     <onclick>Skin.ToggleSetting(Show.Home.Profile.Image)</onclick>
                 </control>
 
-                <!-- SHOW CLOCK WEATHER -->
+                <!-- SHOW CLOCK -->
 
-                <control type="radiobutton" id="9255" description="Weather Top">
+                <control type="radiobutton" id="9255" description="Clock Top">
                     <width>1278</width>
                     <visible>Container(3000).HasFocus(2)</visible>
                     <include>Def_Skin_Settings_Level_standard</include>
@@ -333,7 +333,7 @@
                     <onclick>Skin.ToggleSetting(show.furniture.clock.date.weather)</onclick>
                 </control>
 
-                <!-- SHOW HOME HEADER LEFT CLOCK WEATHER -->
+                <!-- SHOW HOME HEADER LEFT CLOCK -->
 
                 <control type="radiobutton" id="9267" description="Clock Top Left">
                     <width>1278</width>
@@ -347,9 +347,9 @@
                     <enable>Skin.HasSetting(show.furniture.clock.date.weather)</enable>
                 </control>
 
-                <!-- ENABLE HOME HEADER LEFT CLOCK WEATHER - HOME ONLY -->
+                <!-- ENABLE HOME HEADER LEFT CLOCK - HOME ONLY -->
 
-                <control type="radiobutton" id="9268" description="Weather Bottom Clock Left">
+                <control type="radiobutton" id="9268" description="Clock Bottom Home Only">
                     <width>1278</width>
                     <visible>Container(3000).HasFocus(2)</visible>
                     <include>Def_Skin_Settings_Level_standard</include>
@@ -1057,16 +1057,6 @@
                     <onclick>SetProperty(SelectType,game_logos,Home)</onclick>
                     <onclick>RunScript(script.image.resource.select,property=game.logos&amp;type=resource.images.gamestudios)</onclick>
                 </control>
-                <control type="button" id="95852" description="WeatherIcons">
-                    <width>1278</width>
-                    <visible>Container(3000).HasFocus(3)</visible>
-                    <include>Def_Skin_Settings_Level_advanced</include>
-                    <include>Def_Settings_Button_Focus_Select_Right_Side</include>
-                    <label>$LOCALIZE[31188]</label>
-                    <label2>$VAR[Label_Setting_Weather_Icons]</label2>
-                    <onclick>SetProperty(SelectType,weather_icons,Home)</onclick>
-                    <onclick>RunScript(script.image.resource.select,property=weather.icons&amp;type=resource.images.weathericons)</onclick>
-                </control>
 
             <!-- MENU - APPARENCES - BOX / FOCUS -->
 
@@ -1283,19 +1273,6 @@
                     <onclick>ActivateWindow(1151)</onclick>
                 </control>
 
-                <!--  BACKGROUNG WEATHER -->
-
-                <control type="button" id="9717" description="Set Weather Fanart">
-                    <width>1278</width>
-                    <visible>Container(3000).HasFocus(4)</visible>
-                    <include>Def_Skin_Settings_Level_standard</include>
-                    <include>Def_Settings_Button_Focus_Select_Right_Side</include>
-                    <label>$LOCALIZE[31102]</label>
-                    <label2>$INFO[Skin.String(weather.fanart.name)]</label2>
-                    <onclick>SetProperty(SelectType,weather_fanart,Home)</onclick>
-                    <onclick>RunScript(script.image.resource.select,property=weather.fanart&amp;type=resource.images.weatherfanart)</onclick>
-                </control>
-
             <!-- MENU - BOOT -->
 
                 <control type="label" id="120131" description="Backup">
@@ -1380,9 +1357,9 @@
                     <onclick>Skin.ToggleSetting(show.time.format.hh.mm)</onclick>
                 </control>
 
-                <!-- SHOW WEATHER ALL VIEW -->
+                <!-- SHOW CLOCK ALL VIEW -->
 
-                <control type="radiobutton" id="92633" description="Weather Bottom Clock Left">
+                <control type="radiobutton" id="92633" description="Clock Bottom All View">
                     <width>1278</width>
                     <visible>Container(3000).HasFocus(5)</visible>
                     <include>Def_Skin_Settings_Level_base</include>
@@ -2785,16 +2762,6 @@
                     <param name="id" value="11017" />
                     <param name="visible" value="Container(3000).HasFocus(9)" />
                     <param name="addonname" value="resource.images.moviecountryicons.flags" />
-                </include>
-                <include content="Def_SkinSettings_radiobutton_Addons_Right_Side">
-                    <param name="id" value="11019" />
-                    <param name="visible" value="Container(3000).HasFocus(9)" />
-                    <param name="addonname" value="resource.images.weathericons.white" />
-                </include>
-                <include content="Def_SkinSettings_radiobutton_Addons_Right_Side">
-                    <param name="id" value="11016" />
-                    <param name="visible" value="Container(3000).HasFocus(9)" />
-                    <param name="addonname" value="resource.images.weatherfanart.single" />
                 </include>
 
             <!-- MENU - RECOMMENDED ADDONS -->
