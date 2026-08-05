@@ -1347,7 +1347,7 @@
             <!-- BACK FULLSCREEN NOW PLAYING -->
 
             <control type="radiobutton" id="9202">
-                <visible>Player.HasMedia + String.IsEmpty(Window(Home).Property(VideoYoutubeIsPlaying))</visible>
+                <visible>Player.HasMedia</visible>
 
                 <onfocus>SetProperty(last_music_focus,9202,Home)</onfocus>
                 <onfocus>ClearProperty(musiccontent,Home)</onfocus>
@@ -1663,28 +1663,6 @@
                 <onclick>SetFocus(95031)</onclick>
             </control>
 
-            <!-- YOUTUBE -->
-
-            <control type="radiobutton" id="9005">
-                <visible>!Skin.HasSetting(hide.button.music.youtube) + System.AddonIsEnabled(plugin.video.youtube)</visible>
-
-                <onfocus>SetProperty(last_music_focus,9005,Home)</onfocus>
-                <onfocus>SetProperty(musiccontent,3,Home)</onfocus>
-
-                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
-                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
-                <onfocus>ClearProperty(Rotate_Cover,Home)</onfocus>
-
-                <include>Def_Button_Dimensions_Square</include>
-                <include content="Texture_RadioButton_Dialog_Info">
-                    <param name="icon" value="buttonsdialogs/youtube.png" />
-                </include>
-
-                <onclick>SetProperty(view_extended,1,Home)</onclick>
-                <onclick>SetFocus(9502)</onclick>
-                <onfocus condition="String.IsEmpty(Window(Home).Property(SetYoutubeSearch))">SetProperty(SetYoutubeSearch,1,Home)</onfocus>
-            </control>
-
             <!-- SETTING -->
 
             <control type="radiobutton" id="9008">
@@ -1821,7 +1799,7 @@
             <!-- BACK FULLSCREEN NOW PLAYING -->
 
             <control type="radiobutton" id="9201">
-                <visible>Player.HasMedia + String.IsEmpty(Window(Home).Property(TrailerFullscreenIsPlaying)) + String.IsEmpty(Window(Home).Property(VideoYoutubeIsPlaying))</visible>
+                <visible>Player.HasMedia + String.IsEmpty(Window(Home).Property(TrailerFullscreenIsPlaying))</visible>
 
                 <onfocus>SetProperty(last_video_focus,9201,Home)</onfocus>
                 <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
@@ -1964,8 +1942,6 @@
                 <onclick condition="[String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">ClearProperty(Set_Movie_TvShow_TMDb_id,Home)</onclick>
 
                 <onclick condition="[String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">ClearProperty(Init_Value_TMDb,Home)</onclick>
-
-                <onclick condition="[String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">ClearProperty(SetYoutubeSearch,Home)</onclick>
 
                 <onclick condition="[String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">ClearProperty(SetDirectorSelected,Home)</onclick>
 
@@ -2309,29 +2285,6 @@
                 </include>
 
                 <onclick>SetFocus(95051)</onclick>
-            </control>
-
-            <!-- YOUTUBE -->
-
-            <control type="radiobutton" id="9004">
-                <visible>!Skin.HasSetting(hide.button.video.youtube) + System.AddonIsEnabled(plugin.video.youtube)</visible>
-                <visible>[!String.IsEqual(ListItem.DBType,set) + !String.IsEqual(ListItem.DBType,video) + !String.IsEmpty(ListItem.DBType)] | String.IsEqual(ListItem.Property(tmdb_type),person) | $EXP[IsTMDbHelperItem]</visible>
-
-                <onfocus>SetProperty(last_video_focus,9004,Home)</onfocus>
-                <onfocus>SetProperty(moviecontent,4,Home)</onfocus>
-
-                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
-                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
-
-                <include>Def_Button_Dimensions_Poster</include>
-                <include content="Texture_RadioButton_Dialog_Info">
-                    <param name="icon" value="buttonsdialogs/youtube.png" />
-                </include>
-
-                <onfocus condition="String.IsEmpty(Window(Home).Property(SetYoutubeTermToSearch))">SetProperty(SetYoutubeTermToSearch,$VAR[Path_Youtube_Query],Home)</onfocus>
-                <onfocus condition="String.IsEmpty(Window(Home).Property(SetYoutubeSearch))">SetProperty(SetYoutubeSearch,1,Home)</onfocus>
-                <onclick>SetFocus(9504)</onclick>
-                <onclick>SetProperty(view_extended,1,Home)</onclick>
             </control>
 
             <!-- TRAKT -->
@@ -2848,28 +2801,6 @@
                 <onclick>RunPlugin(plugin://plugin.program.akl/execute/command/scrape_rom/?rom_id=$INFO[Container(19801).ListItem.Property(entityid)])</onclick>
             </control>
 
-            <!-- YOUTUBE -->
-
-            <control type="radiobutton" id="9004">
-                <visible>!Skin.HasSetting(hide.button.video.youtube) + System.AddonIsEnabled(plugin.video.youtube)</visible>
-
-                <onfocus>SetProperty(last_game_focus,9004,Home)</onfocus>
-                <onfocus>SetProperty(gamescontent,4,Home)</onfocus>
-
-                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
-                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
-
-                <include>Def_Button_Dimensions_Poster</include>
-                <include content="Texture_RadioButton_Dialog_Info">
-                    <param name="icon" value="buttonsdialogs/youtube.png" />
-                </include>
-
-                <onfocus condition="String.IsEmpty(Window(Home).Property(SetYoutubeTermToSearch))">SetProperty(SetYoutubeTermToSearch,$VAR[Path_Youtube_Query],Home)</onfocus>
-                <onfocus condition="String.IsEmpty(Window(Home).Property(SetYoutubeSearch))">SetProperty(SetYoutubeSearch,1,Home)</onfocus>
-                <onclick>SetFocus(9504)</onclick>
-                <onclick>SetProperty(view_extended,1,Home)</onclick>
-            </control>
-
             <!-- SETTING -->
 
             <control type="radiobutton" id="9010">
@@ -3124,7 +3055,7 @@
         <control type="group">
             <visible>Control.HasFocus(7011)</visible>
             <visible>Player.HasVideo</visible>
-            <visible>!String.IsEmpty(Window(Home).Property(VideoYoutubeIsPlaying)) | !String.IsEmpty(Window(Home).Property(TrailerFullscreenIsPlaying))</visible>
+            <visible>!String.IsEmpty(Window(Home).Property(TrailerFullscreenIsPlaying))</visible>
 
             <animation type="Visible" reversible="false">
                 <effect type="fade" start="0" end="100" time="300" delay="150" tween="sine" easing="in" />
@@ -3168,50 +3099,40 @@
 
                 <!-- ON BACK -->
 
-                <onback>ClearProperty(VideoYoutubeIsPlaying,Home)</onback>
                 <onback>ClearProperty(show_mini_osd,Home)</onback>
                 <onback condition="Player.HasVideo">Stop</onback>
                 <onback condition="Window.IsVisible(DialogVideoInfo.xml) + !String.IsEmpty(Window(Home).Property(TrailerFullscreenIsPlaying))">1224</onback>
-                <onback condition="Window.IsVisible(DialogVideoInfo.xml) + !String.IsEmpty(Window(Home).Property(VideoYoutubeIsPlaying))">9004</onback>
                 <onback condition="Window.IsVisible(DialogMusicInfo.xml)">9005</onback>
                 <onback condition="!Window.IsVisible(Home) + !Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml)">50</onback>
                 <onback condition="Window.IsVisible(Home) + !Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml)">399</onback>
 
                 <!-- ON UP -->
 
-                <onup>ClearProperty(VideoYoutubeIsPlaying,Home)</onup>
                 <onup>ClearProperty(show_mini_osd,Home)</onup>
                 <onup condition="Player.HasVideo">Stop</onup>
                 <onup condition="Window.IsVisible(DialogVideoInfo.xml) + !String.IsEmpty(Window(Home).Property(TrailerFullscreenIsPlaying))">SetFocus(1224)</onup>
-                <onup condition="Window.IsVisible(DialogVideoInfo.xml) + !String.IsEmpty(Window(Home).Property(VideoYoutubeIsPlaying))">SetFocus(9004)</onup>
                 <onup condition="Window.IsVisible(DialogMusicInfo.xml)">SetFocus(9005)</onup>
                 <onup condition="!Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml)">SetFocus(50)</onup>
 
                 <!-- ON DOWN -->
 
-                <ondown>ClearProperty(VideoYoutubeIsPlaying,Home)</ondown>
                 <ondown>ClearProperty(show_mini_osd,Home)</ondown>
                 <ondown condition="Player.HasVideo">Stop</ondown>
                 <ondown condition="Window.IsVisible(DialogVideoInfo.xml) + !String.IsEmpty(Window(Home).Property(TrailerFullscreenIsPlaying))">SetFocus(1224)</ondown>
-                <ondown condition="Window.IsVisible(DialogVideoInfo.xml) + !String.IsEmpty(Window(Home).Property(VideoYoutubeIsPlaying))">SetFocus(9004)</ondown>
                 <ondown condition="Window.IsVisible(DialogMusicInfo.xml)">SetFocus(9005)</ondown>
                 <ondown condition="!Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml)">SetFocus(50)</ondown>
 
                 <!-- ON LEFT -->
 
-                <onleft condition="!Player.HasVideo">ClearProperty(VideoYoutubeIsPlaying,Home)</onleft>
                 <onleft condition="!Player.HasVideo">ClearProperty(show_mini_osd,Home)</onleft>
                 <onleft condition="!Player.HasVideo + Window.IsVisible(DialogVideoInfo.xml) + !String.IsEmpty(Window(Home).Property(TrailerFullscreenIsPlaying))">SetFocus(1224)</onleft>
-                <onleft condition="!Player.HasVideo + Window.IsVisible(DialogVideoInfo.xml) + !String.IsEmpty(Window(Home).Property(VideoYoutubeIsPlaying))">SetFocus(9004)</onleft>
                 <onleft condition="!Player.HasVideo + Window.IsVisible(DialogMusicInfo.xml)">SetFocus(9005)</onleft>
                 <onleft condition="Player.HasVideo">StepBack</onleft>
 
                 <!-- ON RIGHT -->
 
-                <onright condition="!Player.HasVideo">ClearProperty(VideoYoutubeIsPlaying,Home)</onright>
                 <onright condition="!Player.HasVideo">ClearProperty(show_mini_osd,Home)</onright>
                 <onright condition="!Player.HasVideo + Window.IsVisible(DialogVideoInfo.xml) + !String.IsEmpty(Window(Home).Property(TrailerFullscreenIsPlaying))">SetFocus(1224)</onright>
-                <onright condition="!Player.HasVideo + Window.IsVisible(DialogVideoInfo.xml) + !String.IsEmpty(Window(Home).Property(VideoYoutubeIsPlaying))">SetFocus(9004)</onright>
                 <onright condition="!Player.HasVideo + Window.IsVisible(DialogMusicInfo.xml)">SetFocus(9005)</onright>
                 <onright condition="Player.HasVideo">StepForward</onright>
            </control>

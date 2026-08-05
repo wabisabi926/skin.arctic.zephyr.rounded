@@ -160,49 +160,4 @@
             </include>
         </control>
     </include>
-
-    <!-- YOUTUBE -->
-
-    <include name="Recommendation_Music_Youtube">
-        <control type="group">
-            <include>Animation_Extended_Info_Window_Close_Zoom</include>
-
-            <include content="Furniture_DialogInfo_Extended_Header">
-                <param name="controlid" value="$PARAM[controlid]" />
-                <param name="visible" value="$PARAM[visible]" />
-            </include>
-            <include content="Furniture_DialogInfo_Extended_Footer">
-                <param name="controlid" value="$PARAM[controlid]" />
-                <param name="visible" value="$PARAM[visible]" />
-            </include>
-            <include content="View_Dialog_Info_Square">
-                <param name="fallbackpicture" value="DefaultVideo" />
-                <param name="controlid" value="$PARAM[controlid]" />
-                <param name="visible" value="$PARAM[visible]" />
-                <param name="visible.layouts" value="Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7) | Control.HasFocus(160) | Control.HasFocus(6) | [!String.IsEmpty(Window(Home).Property(view_extended)) + [Window.IsVisible(DialogBusy.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(FileBrowser.xml)]]" />
-                <param name="condition.includecontent" value="true" />
-                <param name="ContentToLoad" value="$VAR[Def_Content_Youtube_Music]" />
-                <param name="target" value="videos" />
-                <param name="sortby" value="file" />
-                <param name="limit" value="25" />
-                <param name="browse" value="never" />
-                <param name="thumb" value="true" />
-                <param name="aspect" value="scale" />
-                <param name="colordiffuse" value="black" />
-                <param name="music_info_onclick" value="true" />
-
-                <param name="onclick0" value="Stop" />
-                <param name="onclick1" value="SetProperty(VideoYoutubeIsPlaying,$INFO[Container($PARAM[controlid]).ListItem.FileNameAndPath],Home)" />
-                <param name="onclick2" value="SetFocus(7011)" />
-                <param name="onclick3" value="AlarmClock(LaunchYoutubeVideo,PlayMedia($ESCINFO[Window(Home).Property(VideoYoutubeIsPlaying)],False,1,playlist_type_hint=1),00:01,silent)" />
-                <param name="onclick4" value="ClearProperty(view_extended,Home)" />
-            </include>
-            <include content="Def_Dialog_Info_List_Updating">
-                <param name="visible" value="$PARAM[visible] + Control.HasFocus(9005)" />
-                <param name="controlid" value="$PARAM[controlid]" />
-                <param name="centerleft" value="526" />
-                <param name="label_spinner" value="$LOCALIZE[31546] Youtube..." />
-            </include>
-        </control>
-    </include>
 </includes>

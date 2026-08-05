@@ -158,7 +158,7 @@
                         <description>Header Label</description>
                         <textcolor>Dark1</textcolor>
                         <label>$INFO[Container(19801).ListItem.Label]</label>
-                        <visible>!Player.HasMedia | Skin.HasSetting(hide.furniture.nowplaying.views) | !String.IsEmpty(Window(Home).Property(VideoYoutubeIsPlaying))</visible>
+                        <visible>!Player.HasMedia | Skin.HasSetting(hide.furniture.nowplaying.views)</visible>
                     </control>
                     <control type="label">
                         <left>104</left>
@@ -167,7 +167,7 @@
                         <description>Header Label</description>
                         <textcolor>Dark1</textcolor>
                         <label>$INFO[Container(19801).ListItem.Label]</label>
-                        <visible>Player.HasMedia + !Skin.HasSetting(hide.furniture.nowplaying.views) + String.IsEmpty(Window(Home).Property(VideoYoutubeIsPlaying))</visible>
+                        <visible>Player.HasMedia + !Skin.HasSetting(hide.furniture.nowplaying.views)</visible>
                     </control>
 
                     <!-- SUB HEADER TITLE -->
@@ -201,7 +201,7 @@
 
                 <control type="group" description="clearlogo">
                     <visible>Skin.HasSetting(show.dialog.info.clearlogo.game)</visible>
-                    <visible>!Player.HasMedia | [Skin.HasSetting(hide.furniture.nowplaying.views) | !String.IsEmpty(Window(Home).Property(TrailerFullscreenIsPlaying)) | !String.IsEmpty(Window(Home).Property(VideoYoutubeIsPlaying))]</visible>
+                    <visible>!Player.HasMedia | [Skin.HasSetting(hide.furniture.nowplaying.views) | !String.IsEmpty(Window(Home).Property(TrailerFullscreenIsPlaying))]</visible>
                     <visible>!Window.IsActive(DialogNotification.xml)</visible>
 
                     
@@ -779,17 +779,6 @@
                         </control>
                     </control>
                 </control>
-            </control>
-            <control type="group">
-
-                <!-- =========================== -->
-                <!--          YOUTUBE            -->
-                <!-- =========================== -->
-
-                <include content="Recommendation_Video_Youtube" condition="!Skin.HasSetting(hide.button.video.youtube)">
-                    <param name="controlid" value="9504" />
-                    <param name="visible" value="String.IsEqual(Window(Home).Property(gamescontent),4)" />
-                </include>
             </control>
         </control>
 

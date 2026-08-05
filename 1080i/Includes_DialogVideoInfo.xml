@@ -253,7 +253,7 @@
                         <description>Header Label</description>
                         <textcolor>Dark1</textcolor>
                         <label>$VAR[Label_Dialog_Info_Header_Main_Title]</label>
-                        <visible>!Player.HasMedia | Skin.HasSetting(hide.furniture.nowplaying.views) | !String.IsEmpty(Window(Home).Property(VideoYoutubeIsPlaying))</visible>
+                        <visible>!Player.HasMedia | Skin.HasSetting(hide.furniture.nowplaying.views)</visible>
                     </control>
                     <control type="label">
                         <left>104</left>
@@ -262,7 +262,7 @@
                         <description>Header Label</description>
                         <textcolor>Dark1</textcolor>
                         <label>$VAR[Label_Dialog_Info_Header_Main_Title]</label>
-                        <visible>Player.HasMedia + !Skin.HasSetting(hide.furniture.nowplaying.views) + String.IsEmpty(Window(Home).Property(VideoYoutubeIsPlaying))</visible>
+                        <visible>Player.HasMedia + !Skin.HasSetting(hide.furniture.nowplaying.views)</visible>
                     </control>
 
                     <!-- SUB HEADER TITLE -->
@@ -294,7 +294,7 @@
 
                 <control type="group" description="clearlogo">
                     <visible>Skin.HasSetting(show.dialog.info.clearlogo.video)</visible>
-                    <visible>!Player.HasMedia | [Skin.HasSetting(hide.furniture.nowplaying.views) | !String.IsEmpty(Window(Home).Property(TrailerFullscreenIsPlaying)) | !String.IsEmpty(Window(Home).Property(VideoYoutubeIsPlaying))]</visible>
+                    <visible>!Player.HasMedia | [Skin.HasSetting(hide.furniture.nowplaying.views) | !String.IsEmpty(Window(Home).Property(TrailerFullscreenIsPlaying))]</visible>
                     <visible>!String.IsEqual(ListItem.Property(tmdb_type),person) + !Window.IsActive(DialogNotification.xml)</visible>
 
                     
@@ -1485,15 +1485,6 @@
                 <include content="Recommendation_Person_Member_Crew_Tvshows" condition="String.IsEqual(ListItem.Property(tmdb_type),person)">
                     <param name="controlid" value="9559" />
                     <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),19)" />
-                </include>
-
-                <!-- =========================== -->
-                <!--          YOUTUBE            -->
-                <!-- =========================== -->
-
-                <include content="Recommendation_Video_Youtube" condition="!Skin.HasSetting(hide.button.video.youtube) + [[[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.Property(tmdb_type),person)] + !String.IsEqual(ListItem.DBType,set)] | $EXP[IsTMDbHelperItem]]">
-                    <param name="controlid" value="9504" />
-                    <param name="visible" value="String.IsEqual(Window(Home).Property(moviecontent),4)" />
                 </include>
 
 <!-- ==================================================================== -->
