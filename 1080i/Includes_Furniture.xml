@@ -1676,9 +1676,9 @@
                     <effect type="fade" end="0" start="100" time="450" delay="250" />
                 </animation>
 
-                <animation effect="slide" start="0" end="490,0" time="150" condition="Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(script-wikipedia.xml) + String.IsEmpty(Window(Home).Property(view_extended))">Conditional</animation>
+                <animation effect="slide" start="0" end="490,0" time="150" condition="Window.IsVisible(DialogVideoInfo.xml) + String.IsEmpty(Window(Home).Property(view_extended))">Conditional</animation>
 
-                <animation effect="slide" start="0" end="705,0" time="150" condition="[Window.IsVisible(DialogMusicInfo.xml) | Window.IsVisible(DialogAddonInfo.xml) | Window.IsVisible(DialogPVRInfo.xml)] + !Window.IsVisible(script-wikipedia.xml) + String.IsEmpty(Window(Home).Property(view_extended))">Conditional</animation>
+                <animation effect="slide" start="0" end="705,0" time="150" condition="[Window.IsVisible(DialogMusicInfo.xml) | Window.IsVisible(DialogAddonInfo.xml) | Window.IsVisible(DialogPVRInfo.xml)] + String.IsEmpty(Window(Home).Property(view_extended))">Conditional</animation>
 
                 <control type="group">
                     <top>$PARAM[top_spinner]</top>
@@ -3034,7 +3034,6 @@
         <!-- LEFT - HEADER -->
 
         <control type="group">
-            <include>Animation_Wiki_Fade_Out</include>
             <visible>Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7)</visible>
             <visible>String.IsEmpty(Window(Home).Property(Hide_On_Reload_Dialog_Info))</visible>
             <visible>!Window.IsVisible(DialogBusy.xml)</visible>
@@ -3096,8 +3095,6 @@
             <visible>!Player.HasMedia | Skin.HasSetting(hide.furniture.nowplaying.views)</visible>
             <visible>String.IsEmpty(Window(Home).Property(Hide_On_Reload_Dialog_Info))</visible>
 
-            <include>Animation_Wiki_Fade_Out</include>
-
             <include>Animation_Extended_Info_Focus_Fade_In_350_Delay_300</include>
             <include>Animation_Dialog_Info_Fade_Out_150</include>
 
@@ -3118,8 +3115,6 @@
             <visible>Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7)</visible>
             <visible>!Player.HasMedia | Skin.HasSetting(hide.furniture.nowplaying.views)</visible>
 
-            <include>Animation_Wiki_Fade_Out</include>
-
             <include>Animation_Extended_Info_Focus_Fade_In_350_Delay_300</include>
             <include>Animation_Dialog_Info_Fade_Out_150</include>
 
@@ -3136,7 +3131,6 @@
 
     <include name="Furniture_DialogInfo_Extended_Footer">
         <control type="group">
-            <visible>!Window.IsVisible(script-wikipedia.xml)</visible>
             <visible>!Container($PARAM[controlid]).IsUpdating</visible>
             <visible>Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7)</visible>
             <visible>String.IsEmpty(Window(Home).Property(Hide_On_Reload_Dialog_Info))</visible>
@@ -3354,7 +3348,6 @@
 
     <include name="Furniture_DialogInfo_Extended_Video_Flags">
         <control type="group">
-            <visible>!Window.IsVisible(script-wikipedia.xml)</visible>
             <visible>!Container($PARAM[controlid]).IsUpdating</visible>
             <visible>Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7) | Control.IsVisible(9500)</visible>
 
@@ -3849,7 +3842,6 @@
 
     <include name="Furniture_DialogInfo_Extended_Audio_Flags">
         <control type="group">
-            <visible>!Window.IsVisible(script-wikipedia.xml)</visible>
             <visible>!Container($PARAM[controlid]).IsUpdating</visible>
             <visible>Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7)</visible>
 
