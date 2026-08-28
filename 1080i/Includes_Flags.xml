@@ -617,6 +617,20 @@
                     <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating)]</label>
                 </control>
 
+                <!-- DOUBAN -->
+
+                <control type="image">
+                    <visible>$EXP[Condition_Flag_Douban_Rating] + Skin.HasSetting(show.flags.rating.douban) + !ListItem.IsCollection</visible>
+                    <width>42</width>
+                    <include>Def_Flag_Image</include>
+                    <texture colordiffuse="$VAR[Def_Flag_Colordiffuse_Dark1]" background="true">$VAR[Image_Douban]</texture>
+                </control>
+                <control type="label">
+                    <visible>$EXP[Condition_Flag_Douban_Rating] + Skin.HasSetting(show.flags.rating.douban) + !ListItem.IsCollection + Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                    <include>Def_Flag_Label</include>
+                    <label>$VAR[Value_Item_Rating_Douban]</label>
+                </control>
+
                 <!-- IMDB TOP 250 -->
 
                 <control type="image">
@@ -1130,7 +1144,6 @@
 
     <include name="Furniture_DialogInfo_Extended_Video_Flags">
         <control type="group">
-            <visible>!Window.IsVisible(script-wikipedia.xml)</visible>
             <visible>!Container($PARAM[controlid]).IsUpdating</visible>
             <visible>Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7) | Control.IsVisible(9500)</visible>
 
@@ -1486,6 +1499,22 @@
                         <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating)]</label>
                     </control>
 
+                    <!-- DOUBAN -->
+
+                    <control type="image">
+                        <visible>$EXP[Condition_Flag_Douban_Rating] + Skin.HasSetting(show.flags.rating.douban) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                        <visible>![Control.HasFocus(9579) | Control.HasFocus(95797)]</visible>
+                        <width>42</width>
+                        <include>Def_Flag_Image</include>
+                        <texture colordiffuse="$VAR[Def_Flag_Colordiffuse_Dark1]" background="true">$VAR[Image_Douban]</texture>
+                    </control>
+                    <control type="label">
+                        <visible>$EXP[Condition_Flag_Douban_Rating] + Skin.HasSetting(show.flags.rating.douban) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                        <visible>![Control.HasFocus(9579) | Control.HasFocus(95797)]</visible>
+                        <include>Def_Flag_Label</include>
+                        <label>$VAR[Value_Item_Rating_Douban]</label>
+                    </control>
+
                     <!-- IMDB TOP 250 -->
 
                     <control type="image">
@@ -1610,7 +1639,6 @@
 
     <include name="Furniture_DialogInfo_Extended_Audio_Flags">
         <control type="group">
-            <visible>!Window.IsVisible(script-wikipedia.xml)</visible>
             <visible>!Container($PARAM[controlid]).IsUpdating</visible>
             <visible>Control.HasFocus($PARAM[controlid]) | Control.HasFocus($PARAM[controlid]7)</visible>
 
@@ -2136,6 +2164,21 @@
                     <textcolor>$VAR[Color_OSD_Panel_White100]</textcolor>
                     <include>Def_Flag_Label</include>
                     <label>$INFO[Window(Home).Property(TMDbHelper.Player.IMDb_Rating)]</label>
+                </control>
+
+                <!-- DOUBAN -->
+
+                <control type="image">
+                    <visible>$EXP[Condition_Flag_Douban_Rating] + Skin.HasSetting(show.flags.rating.douban) + !String.IsEmpty(VideoPlayer.DBID)</visible>
+                    <width>42</width>
+                    <include>Def_Flag_Image</include>
+                    <texture colordiffuse="$VAR[Def_VideoPlayer_Flag_Colordiffuse_Dark1]" background="true">$VAR[Image_Douban]</texture>
+                </control>
+                <control type="label">
+                    <visible>$EXP[Condition_Flag_Douban_Rating] + Skin.HasSetting(show.flags.rating.douban) + !String.IsEmpty(VideoPlayer.DBID)</visible>
+                    <textcolor>$VAR[Color_OSD_Panel_White100]</textcolor>
+                    <include>Def_Flag_Label</include>
+                    <label>$VAR[Value_Item_Rating_Douban]</label>
                 </control>
 
                 <!-- STAR FLAG -->
