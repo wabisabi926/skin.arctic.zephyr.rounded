@@ -12,9 +12,7 @@
     | [String.IsEqual(Window(Home).property(SelectType),studio_logos) + String.IsEqual(Skin.String(studio.logos.name),ListItem.Label)]
     | [String.IsEqual(Window(Home).property(SelectType),country_logos) + String.IsEqual(Skin.String(country.logos.name),ListItem.Label)]
     | [String.IsEqual(Window(Home).property(SelectType),recordlabel_logos) + String.IsEqual(Skin.String(recordlabel.logos.name),ListItem.Label)]
-    | [String.IsEqual(Window(Home).property(SelectType),game_logos) + String.IsEqual(Skin.String(game.logos.name),ListItem.Label)]
-    | [String.IsEqual(Window(Home).property(SelectType),weather_icons) + String.IsEqual(Skin.String(weather.icons.name),ListItem.Label)]
-    | [String.IsEqual(Window(Home).property(SelectType),weather_fanart) + String.IsEqual(Skin.String(weather.fanart.name),ListItem.Label)]</expression>
+    | [String.IsEqual(Window(Home).property(SelectType),game_logos) + String.IsEqual(Skin.String(game.logos.name),ListItem.Label)]</expression>
 
     <!-- OSD PVR SWITCH CHANNEL -->
 
@@ -207,7 +205,7 @@
     <expression name="View_Fanart">Control.IsVisible(547) | Control.IsVisible(557) | Control.IsVisible(56) | Control.IsVisible(57)</expression>
     <expression name="View_Poster">Control.IsVisible(55) | Control.IsVisible(509) | Control.IsVisible(517) | Control.IsVisible(519)</expression>
 
-    <expression name="View_Settings">[$EXP[View_Kodi_Settings] | Window.IsVisible(MyPVRRecordings.xml) | Window.IsVisible(MyPVRSearch.xml) | Window.IsVisible(MyWeather.xml) | Window.IsVisible(MyPVRTimers.xml) | [Window.IsVisible(MyPVRChannels.xml) + !Control.IsVisible(526) + !Window.IsVisible(DialogPVRInfo.xml)] | Window.IsVisible(MyPVRProviders.xml) | Window.IsVisible(MyMusicPlaylistEditor.xml) | [Window.IsVisible(MyPVRGuide.xml) + !Window.IsVisible(DialogPVRInfo.xml)]]</expression>
+    <expression name="View_Settings">[$EXP[View_Kodi_Settings] | Window.IsVisible(MyPVRRecordings.xml) | Window.IsVisible(MyPVRSearch.xml) | Window.IsVisible(MyPVRTimers.xml) | [Window.IsVisible(MyPVRChannels.xml) + !Control.IsVisible(526) + !Window.IsVisible(DialogPVRInfo.xml)] | Window.IsVisible(MyPVRProviders.xml) | Window.IsVisible(MyMusicPlaylistEditor.xml) | [Window.IsVisible(MyPVRGuide.xml) + !Window.IsVisible(DialogPVRInfo.xml)]]</expression>
 
     <expression name="View_Kodi_Settings">[Window.IsVisible(AddonBrowser.xml) | Window.IsVisible(SettingsSystemInfo.xml) | Window.IsVisible(SettingsCategory.xml) | Window.IsVisible(Settings.xml) | Window.IsVisible(SkinSettings.xml) | Window.IsVisible(service-CoreELEC-Settings-mainWindow.xml) | Window.IsVisible(service-LibreELEC-Settings-mainWindow.xml) | Window.IsVisible(SettingsProfile.xml) | Window.IsVisible(EventLog.xml) | Window.IsVisible(FileManager.xml)]</expression>
 
@@ -383,10 +381,9 @@
     <!--             DIALOG INFO            -->
     <!-- ================================== -->
 
-    <expression name="View_Info_Dialog">[Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml) | Window.IsVisible(DialogAddonInfo.xml) | Window.IsVisible(DialogPVRInfo.xml) | Window.IsVisible(script-tmdbhelper-wikipedia.xml) | Window.IsVisible(script-akl-romdetails.xml)]</expression>
+    <expression name="View_Info_Dialog">[Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml) | Window.IsVisible(DialogAddonInfo.xml) | Window.IsVisible(DialogPVRInfo.xml) | Window.IsVisible(script-akl-romdetails.xml)]</expression>
 
-    <expression name="View_Info_Dialog_Active">[Window.IsActive(DialogVideoInfo.xml) | Window.IsActive(DialogMusicInfo.xml) | Window.IsActive(DialogAddonInfo.xml) | Window.IsActive(DialogPVRInfo.xml) | Window.IsActive(script-tmdbhelper-wikipedia.xml) | Window.IsActive(script-akl-romdetails.xml)]
-    </expression>
+    <expression name="View_Info_Dialog_Active">[Window.IsActive(DialogVideoInfo.xml) | Window.IsActive(DialogMusicInfo.xml) | Window.IsActive(DialogAddonInfo.xml) | Window.IsActive(DialogPVRInfo.xml) | Window.IsActive(script-akl-romdetails.xml)]</expression>
 
     <!-- DIALOG VIDEO INFO - EXTENDED VIDEO VIEWS -->
 
@@ -414,7 +411,7 @@
 
     <expression name="DialogVideoInfo_ExtendedViews">[$EXP[DialogVideoInfo_FadeOut_ClearLogo] | Control.HasFocus(9557) | Control.HasFocus(95577) | Control.HasFocus(50) | Control.HasFocus(507) | Control.HasFocus(9575) | Control.HasFocus(95757)]</expression>
 
-    <expression name="DialogInfo_Wiki">[Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hide.button.video.wiki)]</expression>
+
 
     <expression name="DialogVideoInfo_FadeOut_ClearLogo">[ControlGroup(9600).HasFocus() | Control.HasFocus(160) | Control.HasFocus(9501) | Control.HasFocus(9506) | Control.HasFocus(9552) | Control.HasFocus(9553) | Control.HasFocus(9554) | Control.HasFocus(9514) | Control.HasFocus(9515) | Control.HasFocus(9560) | Control.HasFocus(9550) | Control.HasFocus(9556) | Control.HasFocus(9518) | Control.HasFocus(9503) | Control.HasFocus(9504) | Control.HasFocus(9579) | Control.HasFocus(9517) | Control.HasFocus(9558) | Control.HasFocus(9559) | Control.HasFocus(9520) | Control.HasFocus(95507) | Control.HasFocus(95797) | Control.HasFocus(95207) | Control.HasFocus(95067) | Control.HasFocus(95567) | Control.HasFocus(95147) | Control.HasFocus(95157) | Control.HasFocus(95187) | Control.HasFocus(95177) | Control.HasFocus(95037) | Control.HasFocus(95527) | Control.HasFocus(95537) | Control.HasFocus(95587) | Control.HasFocus(95597) | Control.HasFocus(95607) | Control.HasFocus(95047) | Control.HasFocus(95547) | Control.HasFocus(9669)]</expression>
 
@@ -456,9 +453,9 @@
 
     <expression name="View_Clock_In_Footer_Always">$EXP[View_Flix] | $EXP[View_Settings]</expression>
 
-    <!-- SHOW WEATHER VIEWS -->
+    <!-- SHOW CLOCK/DATE VIEWS -->
 
-    <expression name="Show_Weather_All_Views">Skin.HasSetting(show.furniture.clock.date.weather) + !Skin.HasSetting(show.clock.date.weather.home.only)</expression>
+    <expression name="Show_Clock_Date_All_Views">Skin.HasSetting(show.furniture.clock.date.weather) + !Skin.HasSetting(show.clock.date.weather.home.only)</expression>
 
     <!-- FOR JUMPBAR -->
 
@@ -500,6 +497,8 @@
 
     <expression name="Condition_Flag_TMDb_Rating">[[[!String.IsEmpty(ListItem.Rating) + Container.Content(seasons)] |
     [Container.Content(episodes) + !String.IsEmpty(ListItem.Rating) + String.IsEmpty(ListItem.DBID)] | Container.Content(sets) | String.IsEqual(ListItem.DBType,set) | Skin.HasSetting(show.flags.rating.tmdb)] + !$EXP[IsYoutubeItem]]</expression>
+
+    <expression name="Condition_Flag_Douban_Rating">[[!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Douban_Rating)) + !String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Douban_Rating),0)] + [Container.Content(movies) | Container.Content(videoversions) | Container.Content(tvshows) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode) | [Container.Content(episodes) + !String.IsEmpty(ListItem.DBID)]]]</expression>
 
     <expression name="Condition_TMDb_Rating_Not_Null">[!ListItem.IsCollection + [[!String.IsEmpty(ListItem.Rating) + !String.IsEqual(ListItem.Rating,0)] | [!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating)) + !String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating),0)]]] | [ListItem.IsCollection + [!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Set.Rating)) + !String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Set.Rating),0)]]</expression>
 

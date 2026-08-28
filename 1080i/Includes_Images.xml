@@ -80,7 +80,6 @@
         <!-- VIEW LAYOUT -->
 
         <value condition="$EXP[IsGameMode]">special://skin/extras/icons/gamepad.png</value>
-        <value condition="Window.IsVisible(MyVideoNav.xml) + $EXP[IsYoutube]">special://skin/extras/icons/youtube.png</value>
         <value condition="Window.IsVisible(MyVideoNav.xml) + $EXP[IsTMDbHelper]">special://skin/extras/icons/tmdb.png</value>
         <value condition="String.Contains(Container.FolderPath,sources://)">special://skin/extras/icons/filebox.png</value>
         <value condition="String.IsEqual(Container.FolderPath,musicdb://sources/)">special://skin/extras/icons/filebox.png</value>
@@ -112,8 +111,6 @@
         <value condition="Window.IsVisible(MyMusicPlaylistEditor.xml) | Window.IsVisible(MyMusicNav.xml)">special://skin/extras/icons/songs.png</value>
         <value condition="Window.IsVisible(MyPics.xml)">special://skin/extras/icons/pictures.png</value>
         <value condition="Window.IsVisible(MyPrograms.xml) | Window.IsVisible(AddonBrowser.xml)">special://skin/extras/icons/addon.png</value>
-        <value condition="Window.IsVisible(weather)">special://skin/extras/icons/cloud-sun.png</value>
-
         <!-- SETTINGS -->
 
         <value condition="Window.IsActive(InterfaceSettings)">special://skin/extras/icons/paintbrush.png</value>
@@ -194,7 +191,6 @@
         <value condition="String.IsEqual(Window(Home).Property(last_video_focus),1223)">special://skin/extras/icons/video.png</value>
         <value condition="String.IsEqual(Window(Home).Property(last_video_focus),1224)">special://skin/extras/icons/video.png</value>
         <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9003)">special://skin/extras/icons/director.png</value>
-        <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9004)">special://skin/extras/icons/youtube.png</value>
         <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9005)">special://skin/extras/icons/pictures.png</value>
         <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9006)">special://skin/extras/icons/user.png</value>
         <value condition="String.IsEqual(Window(Home).Property(last_video_focus),9010)">special://skin/extras/icons/settings.png</value>
@@ -232,7 +228,6 @@
         <value condition="String.IsEqual(Window(Home).Property(last_music_focus),9029)">special://skin/extras/icons/songs.png</value>
         <value condition="String.IsEqual(Window(Home).Property(last_music_focus),9011)">special://skin/extras/icons/calendar-day.png</value>
         <value condition="String.IsEqual(Window(Home).Property(last_music_focus),9006)">special://skin/extras/icons/pictures.png</value>
-        <value condition="String.IsEqual(Window(Home).Property(last_music_focus),9005)">special://skin/extras/icons/youtube.png</value>
         <value condition="String.IsEqual(Window(Home).Property(last_music_focus),9008)">special://skin/extras/icons/settings.png</value>
     </variable>
 
@@ -249,10 +244,6 @@
     </variable>
 
     <!-- DIALOG INFO - IMAGE -->
-
-    <variable name="Image_Dialog_Info_Music_Album_Addon_Youtube">
-        <value condition="!String.IsEmpty(ListItem.Art(thumb))">$INFO[ListItem.Art(thumb)]</value>
-    </variable>
 
     <variable name="Image_Dialog_Info_Video_Studio">
         <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_studio))">$INFO[Window(Home).Property(TMDbHelper.ListItem.base_studio),resource://resource.images.studios.coloured/,.png]</value>
@@ -543,12 +534,6 @@
 
         <value condition="!String.IsEmpty(Skin.String(fanart.fallback.podcasts)) + $EXP[IsApplePodcastsItem] + !ListItem.IsParentFolder + !String.StartsWith(ListItem.Icon,Default)">$INFO[Skin.String(fanart.fallback.podcasts)]</value>
 
-        <!-- YOUTUBE -->
-
-        <value condition="!String.IsEmpty(ListItem.Art(fanart)) + Container.Content() + $EXP[IsYoutube] + !String.IsEqual(ListItem.DBType,video) + [$EXP[Exp_View_56] | $EXP[Exp_View_57] | $EXP[Exp_View_524]]">$INFO[ListItem.Art(fanart)]</value>
-        <value condition="!String.IsEmpty(ListItem.Art(fanart)) + [Container.Content() | String.IsEqual(ListItem.DBType,video) | String.IsEqual(ListItem.DBType,movie)] + $EXP[IsYoutube] + ![$EXP[Exp_View_56] | $EXP[Exp_View_57] | $EXP[Exp_View_524]]">$INFO[ListItem.Thumb]</value>
-        <value condition="!String.IsEmpty(ListItem.Thumb) + Container.Content(movies) + $EXP[IsYoutubeItem]">$INFO[ListItem.Thumb]</value>
-
         <!-- SET -->
 
         <value condition="!String.IsEmpty(ListItem.Art(landscape)) + String.IsEqual(ListItem.DBType,set)">$INFO[ListItem.Art(landscape)]</value>
@@ -629,12 +614,6 @@
     </variable>
 
     <variable name="Image_Widget_Fanart">
-
-        <!-- YOUTUBE -->
-
-        <value condition="!String.IsEmpty(ListItem.Art(fanart)) + [Container.Content() | String.IsEqual(ListItem.DBType,video) | String.IsEqual(ListItem.DBType,movie)] + $EXP[IsYoutube]">$INFO[ListItem.Thumb]</value>
-
-        <value condition="!String.IsEmpty(ListItem.Thumb) + String.IsEqual(ListItem.DBType,movie) + $EXP[IsYoutubeItem]">$INFO[ListItem.Thumb]</value>
 
         <!-- ALL OTHERS -->
 
@@ -839,6 +818,12 @@
     <variable name="Image_RottenTomatoes_Audience">
         <value condition="Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_UserMeter),59) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_UserMeter))">flags/rating/$VAR[Def_Flag_Color]/rottentomatoes/good.png</value>
         <value condition="Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_UserMeter),0) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_UserMeter))">flags/rating/$VAR[Def_Flag_Color]/rottentomatoes/notgood.png</value>
+    </variable>
+
+    <!-- IMAGE - DOUBAN -->
+
+    <variable name="Image_Douban">
+        <value condition="$EXP[Condition_Flag_Douban_Rating]">flags/rating/$VAR[Def_Flag_Color]/douban/douban.png</value>
     </variable>
 
     <!-- IMAGE - BACKGROUND -->

@@ -165,7 +165,7 @@
         <!-- BUTTON EDIT WIKI -->
 
         <control type="group">
-            <visible allowhiddenfocus="true">[Control.HasFocus(90009) | Control.HasFocus(340)] + !Window.IsVisible(DialogSelect.xml) + !Window.IsVisible(script-wikipedia.xml)</visible>
+            <visible allowhiddenfocus="true">[Control.HasFocus(90009) | Control.HasFocus(340)] + !Window.IsVisible(DialogSelect.xml)</visible>
 
             <animation effect="fade" time="300" start="0" end="0">Focus</animation>
 
@@ -234,7 +234,6 @@
                 <control type="button" id="340" description="Helper">
                     <include>Def_Hidden_Button</include>
                     <onfocus condition="!String.IsEmpty(Control.GetLabel(90009).index(1))">RunScript(script.skinvariables,add_skinstring_history=SearchHistory,value=$INFO[Control.GetLabel(90009).index(1)])</onfocus>
-                    <onfocus condition="!String.IsEmpty(Control.GetLabel(90009).index(1))">RunScript(script.wikipedia,wikipedia=$INFO[Control.GetLabel(90009).index(1)])</onfocus>
                     <onfocus>SetFocus(90009)</onfocus>
                     <visible allowhiddenfocus="true">Control.HasFocus(340)</visible>
                     <animation effect="fade" time="300" start="0" end="0">Focus</animation>
@@ -522,40 +521,7 @@
         </definition>
     </include>
 
-    <!-- BACKGROUND - ONLY - WIDGET - WEATHER - SYSINFO - SETTINGS -->
-
-    <include name="Def_Art_Only_Background_Widget_Weather">
-        <param name="pad_image" value="$PARAM[pad_image]" default="10" />
-        <param name="FanartCode" value="$PARAM[FanartCode]" default="" />
-
-        <definition>
-            <!-- Multi Fanart Background -->
-
-            <control type="multiimage" description="Fanart">
-                <visible>!Skin.HasSetting(hide.weather.fanart) + !Skin.HasSetting(hide.weather.fanart.widgets) + String.Contains(Skin.String(weather.fanart.path),multi) + !String.IsEmpty(Skin.String(weather.fanart.path))</visible>
-
-                <fadetime>600</fadetime>
-                <timeperimage>12000</timeperimage>
-                <randomize>true</randomize>
-
-                <include content="Def_Padding"><param name="pad" value="$PARAM[pad_image]" /></include>
-                <animation effect="fade" start="100" end="WeatherFanartTransparency" condition="true">Conditional</animation>
-                <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
-                <imagepath diffuse="diffuse/$PARAM[texture_diffuse].png">$INFO[Skin.String(weather.fanart.path)]$PARAM[FanartCode]$INFO[ListItem.Property(FanartCode)]/</imagepath>
-            </control>
-
-            <!-- Simple Fanart Background -->
-
-            <control type="image" description="Fanart">
-                <visible>!Skin.HasSetting(hide.weather.fanart) + !Skin.HasSetting(hide.weather.fanart.widgets) + !String.Contains(Skin.String(weather.fanart.path),multi) + !String.IsEmpty(Skin.String(weather.fanart.path))</visible>
-
-                <include content="Def_Padding"><param name="pad" value="$PARAM[pad_image]" /></include>
-                <animation effect="fade" start="100" end="WeatherFanartTransparency" condition="true">Conditional</animation>
-                <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
-                <texture diffuse="diffuse/$PARAM[texture_diffuse].png">$INFO[Skin.String(weather.fanart.path)]$PARAM[FanartCode]$INFO[ListItem.Property(FanartCode),,.jpg]</texture>
-            </control>
-        </definition>
-    </include>
+    <!-- BACKGROUND - ONLY - WIDGET - SYSINFO - SETTINGS -->
 
     <include name="Def_Art_Only_Background_Widget_System">
         <param name="pad_image" value="$PARAM[pad_image]" default="10" />
@@ -610,6 +576,14 @@
 
     <!-- DEF - RATING -->
 
+    <variable name="Value_Item_Rating_IMDb">
+        <value condition="$EXP[Condition_Item_IMDb_Rating]">$INFO[ListItem.Rating]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating))">$INFO[Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating)]</value>
+    </variable>
+
+    <variable name="Value_Item_Rating_Douban">
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Douban_Rating)) + !String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Douban_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Douban_Rating)]</value>
+    </variable>
     <variable name="Value_Item_Rating_TMDb">
         <value condition="Container.Content(seasons) + !String.IsEmpty(ListItem.Rating) + !String.IsEqual(ListItem.Rating,0)">$INFO[ListItem.Rating]</value>
         <value condition="[Container.Content(sets) |  String.IsEqual(ListItem.DBType,set)] + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Set.Rating)) + !String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Set.Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Rating)]</value>
@@ -1065,46 +1039,6 @@
                 </control>
             </control>
 
-            <!-- MY WEATHER -->
-
-            <control type="grouplist">
-                <visible>Window.IsVisible(MyWeather.xml)</visible>
-
-                <itemgap>0</itemgap>
-                <orientation>horizontal</orientation>
-                <usecontrolcoords>true</usecontrolcoords>
-
-                <control type="label">
-                    <include>Def_Header_Sub_Info_Definition</include>
-                    <label>$LOCALIZE[24029]: $LOCALIZE[231]</label>
-                    <visible>String.IsEmpty(Weather.plugin)</visible>
-                </control>
-
-                <control type="label">
-                    <include>Def_Header_Sub_Info_Definition</include>
-                    <label>$INFO[Window(Weather).Property(WeatherProvider)]</label>
-                    <visible>!String.IsEmpty(Weather.plugin)</visible>
-                </control>
-                <control type="label">
-                    <include>Def_Label_Header_Sub_Icon_Definition</include>
-                    <label>   &#63097;</label>
-                    <visible>!String.IsEmpty(Weather.plugin)</visible>
-                </control>
-
-                <control type="label">
-                    <visible>![String.Contains(Weather.Data(Current.Temperature),$LOCALIZE[503]) | String.IsEmpty(Window(Weather).Property(Updated))]</visible>
-                    <visible>!String.IsEmpty(Weather.plugin)</visible>
-                    <include>Def_Header_Sub_Info_Definition</include>
-                    <label>$INFO[Window(Weather).Property(Location),  •  ,]</label>
-                </control>
-                <control type="label">
-                    <visible>![String.Contains(Weather.Data(Current.Temperature),$LOCALIZE[503]) | String.IsEmpty(Window(Weather).Property(Updated))]</visible>
-                    <visible>!String.IsEmpty(Weather.plugin)</visible>
-                    <include>Def_Label_Header_Sub_Icon_Definition</include>
-                    <label>   &#61984;</label>
-                </control>
-            </control>
-
             <!-- FILEMANAGER -->
 
             <control type="grouplist">
@@ -1223,7 +1157,7 @@
                 <visible>![Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(videoversions) | Container.Content(sets) | Container.Content(musicvideos)]</visible>
                 <visible>![Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
                 <visible>![Container.Content(directors) | Container.Content(actors) | Container.Content(countries) | Container.Content(years) | Container.Content(genres) | Container.Content(tags) | Container.Content(studios)]</visible>
-                <visible>![$EXP[IsPvrDialog] | Window.IsVisible(AddonBrowser.xml) | Window.IsVisible(LoginScreen.xml) | Window.IsActive(videoplaylist) | Window.IsVisible(MyWeather.xml) | Container.Content(favourites) | Window.IsVisible(FileManager.xml)]</visible>
+                <visible>![$EXP[IsPvrDialog] | Window.IsVisible(AddonBrowser.xml) | Window.IsVisible(LoginScreen.xml) | Window.IsActive(videoplaylist) | Container.Content(favourites) | Window.IsVisible(FileManager.xml)]</visible>
                 <visible>!$EXP[IsPluginApplePodcasts] + !$EXP[IsGameMode] + !Window.IsVisible(MyGames.xml)</visible>
 
                 <itemgap>0</itemgap>
@@ -2947,6 +2881,16 @@
 		<value>Dark1</value>
 	</variable>
 
+    <variable name="Image_Bluray">
+        <value condition="String.IsEqual(ListItem.VideoResolution,4K) | Integer.IsEqual(ListItem.VideoResolution,2160)">ultrahd</value>
+        <value>bluray</value>
+    </variable>
+
+    <variable name="Image_Bluray_9500">
+        <value condition="String.IsEqual(Container(9500).ListItem.VideoResolution,4K) | Integer.IsEqual(Container(9500).ListItem.VideoResolution,2160)">ultrahd</value>
+        <value>bluray</value>
+    </variable>
+
     <!-- ===========================  -->
     <!--      FLAG - VIDEO PLAYER     -->
     <!-- ============================ -->
@@ -3170,12 +3114,10 @@
         <onclick>Skin.SetString(fanart.fallback.settings,special://skin/extras/backgrounds/settings/settings_3.jpg)</onclick>
         <onclick>Skin.SetString(fanart.fallback.programs,special://skin/extras/backgrounds/programs/programs_3.jpg)</onclick>
         <onclick>Skin.SetString(fanart.fallback.exit,special://skin/extras/backgrounds/exit/exit_7.jpg)</onclick>
-        <onclick>Skin.SetString(fanart.fallback.weather,special://skin/extras/backgrounds/weather/weather_12.jpg)</onclick>
         <onclick>Skin.SetString(fanart.fallback.person,special://skin/extras/backgrounds/misc/misc_6.jpg)</onclick>
         <onclick>Skin.SetString(fanart.fallback.image,special://skin/extras/backgrounds/pictures/pictures_5.jpg)</onclick>
         <onclick>Skin.SetString(fanart.fallback.game,special://skin/extras/backgrounds/games/games_3.jpg)</onclick>
         <onclick>Skin.SetString(fanart.fallback.search,special://skin/extras/backgrounds/search/search_2.jpg)</onclick>
-        <onclick>Skin.SetString(fanart.fallback.youtube,special://skin/extras/backgrounds/addons/addons_6.jpg)</onclick>
         <onclick>Skin.SetString(fanart.fallback.podcasts,special://skin/extras/backgrounds/addons/addons_4.jpg)</onclick>
         <onclick>Skin.SetString(fanart.fallback.more,special://skin/extras/backgrounds/more/more_1.jpg)</onclick>
         <onclick>Skin.SetString(fanart.fallback.dvd,special://skin/extras/backgrounds/dvd/dvd_1.jpg)</onclick>
@@ -3273,6 +3215,7 @@
         <onclick>Skin.SetBool(hide.flags.mpaa)</onclick>
         <onclick>Skin.SetBool(show.flags.rating.tmdb)</onclick>
         <onclick>Skin.SetBool(show.flags.rating.imdb)</onclick>
+        <onclick>Skin.SetBool(show.flags.rating.douban)</onclick>
         <onclick>Skin.SetBool(show.flags.top250.classement)</onclick>
         <onclick>Skin.SetBool(hide.flags.rating)</onclick>
         <onclick>Skin.SetBool(show.flags.subtitles)</onclick>
@@ -3368,11 +3311,11 @@
         <onclick>Skin.SetBool(show.osd.video.flags.icons)</onclick>
         <onclick>Skin.SetBool(show.osd.video.colored.icons)</onclick>
         <onclick>Skin.SetBool(show.osd.video.flags.imdb.rating)</onclick>
+        <onclick>Skin.SetBool(show.osd.video.clock)</onclick>
         <onclick>Skin.SetBool(show.home.nowplaying.extended.video.clearart)</onclick>
         <onclick>Skin.Reset(osd.open.auto.pause)</onclick>
         <onclick>Skin.Reset(show.osd.video.info.at.start)</onclick>
         <onclick>Skin.Reset(Value_Show_OSD_At_Start_Timeout)</onclick>
-        <onclick>Skin.SetBool(hide.osd.video.clock)</onclick>
 
         <!-- OSD MUSIC SETTINGS -->
 
@@ -3469,7 +3412,6 @@
         <onclick>Skin.SetBool(auto.hide.OSD.music.info)</onclick>
         <onclick>Skin.SetString(Value_OSD_Music_Info_Auto_Hide_Timeout,5)</onclick>
 
-        <onclick>Skin.SetString(value_wiki_language,fr)</onclick>
         <onclick>Skin.SetString(Value_Kodi_Rating_Provider,IMDb)</onclick>
 
         <onclick condition="System.AddonIsEnabled(resource.images.moviegenreicons.filmstrip)">Skin.SetString(genre.icons.path,resource://resource.images.moviegenreicons.filmstrip/)</onclick>
@@ -3563,12 +3505,10 @@
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(fanart.fallback.settings,special://skin/extras/backgrounds/settings/settings_3.jpg)</onload>
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(fanart.fallback.programs,special://skin/extras/backgrounds/programs/programs_3.jpg)</onload>
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(fanart.fallback.exit,special://skin/extras/backgrounds/exit/exit_7.jpg)</onload>
-        <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(fanart.fallback.weather,special://skin/extras/backgrounds/weather/weather_12.jpg)</onload>
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(fanart.fallback.person,special://skin/extras/backgrounds/misc/misc_6.jpg)</onload>
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(fanart.fallback.image,special://skin/extras/backgrounds/pictures/pictures_5.jpg)</onload>
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(fanart.fallback.game,special://skin/extras/backgrounds/games/games_3.jpg)</onload>
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(fanart.fallback.search,special://skin/extras/backgrounds/search/search_2.jpg)</onload>
-        <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(fanart.fallback.youtube,special://skin/extras/backgrounds/addons/addons_6.jpg)</onload>
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(fanart.fallback.podcasts,special://skin/extras/backgrounds/addons/addons_4.jpg)</onload>
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(fanart.fallback.more,special://skin/extras/backgrounds/more/more_1.jpg)</onload>
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(fanart.fallback.dvd,special://skin/extras/backgrounds/dvd/dvd_1.jpg)</onload>
@@ -3663,20 +3603,6 @@
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(recordlabel.logos.name,Recordlabel Icons - White)</onload>
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(recordlabel.logos.ext,.png)</onload>
 
-        <!-- WEATHER -->
-
-        <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(weather.icons.path,resource://resource.images.weathericons.default/)</onload>
-        <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(weather.icons.name,Weather Icons - Default)</onload>
-        <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(weather.icons.ext,.png)</onload>
-
-        <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(weather.fanart.path,resource://resource.images.weatherfanart.single/)</onload>
-        <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(weather.fanart.name,Weather Fanart - Single)</onload>
-        <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(weather.fanart.ext,.jpg)</onload>
-
-        <!-- <onload condition="!Skin.HasSetting(startup.init)">Skin.Reset(hide.weather.fanart)</onload> -->
-        <!-- <onload condition="!Skin.HasSetting(startup.init)">Skin.Reset(hide.weather.fanart.widgets)</onload> -->
-        <!-- <onload condition="!Skin.HasSetting(startup.init)">Skin.Reset(weather.fanart.multi)</onload> -->
-
         <!-- FOCUS GLOW -->
 
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetBool(enable.items.focus.glow)</onload>
@@ -3743,11 +3669,11 @@
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetBool(show.osd.video.flags.icons)</onload>
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetBool(show.osd.video.colored.icons)</onload>
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetBool(show.osd.video.flags.imdb.rating)</onload>
+        <onload condition="!Skin.HasSetting(startup.init)">Skin.SetBool(show.osd.video.clock)</onload>
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetBool(show.home.nowplaying.extended.video.clearart)</onload>
-        <!-- <onload condition="!Skin.HasSetting(startup.init)">Skin.Reset(osd.open.auto.pause)</onload> -->
-        <!-- <onload condition="!Skin.HasSetting(startup.init)">Skin.Reset(show.osd.video.info.at.start)</onload> -->
-        <!-- <onload condition="!Skin.HasSetting(startup.init)">Skin.Reset(Value_Show_OSD_At_Start_Timeout)</onload> -->
-        <onload condition="!Skin.HasSetting(startup.init)">Skin.SetBool(hide.osd.video.clock)</onload>
+        <onload condition="!Skin.HasSetting(startup.init)">Skin.SetBool(osd.open.auto.pause)</onload>
+        <onload condition="!Skin.HasSetting(startup.init)">Skin.Reset(show.osd.video.info.at.start)</onload>
+        <onload condition="!Skin.HasSetting(startup.init)">Skin.Reset(Value_Show_OSD_At_Start_Timeout)</onload>
 
         <!-- OSD MUSIC SETTINGS -->
 
