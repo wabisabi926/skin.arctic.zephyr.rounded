@@ -97,25 +97,25 @@
             <height>150</height>
             <control type="image" description="Play">
                 <aspectratio align="center" aligny="center">keep</aspectratio>
-                <texture colordiffuse="$VAR[Color_Focus]">nowplaying/play.png</texture>
+                <texture colordiffuse="$VAR[Color_Focus]">dialog/nowplaying/play.png</texture>
                 <animation effect="fade" start="0" end="100" time="150">VisibleChange</animation>
                 <visible>!Player.Paused + !Player.Forwarding + !Player.Forwarding</visible>
             </control>
             <control type="image" description="Pause">
                 <aspectratio align="center" aligny="center">keep</aspectratio>
-                <texture colordiffuse="$VAR[Color_Focus]">nowplaying/pause.png</texture>
+                <texture colordiffuse="$VAR[Color_Focus]">dialog/nowplaying/pause.png</texture>
                 <animation effect="fade" start="0" end="100" time="150">VisibleChange</animation>
                 <visible>Player.Paused</visible>
             </control>
             <control type="image" description="Forwarding">
                 <aspectratio align="center" aligny="center">keep</aspectratio>
-                <texture colordiffuse="$VAR[Color_Focus]">nowplaying/ff.png</texture>
+                <texture colordiffuse="$VAR[Color_Focus]">dialog/nowplaying/ff.png</texture>
                 <animation effect="fade" start="0" end="100" time="150">VisibleChange</animation>
                 <visible>Player.Forwarding</visible>
             </control>
             <control type="image" description="Rewinding">
                 <aspectratio align="center" aligny="center">keep</aspectratio>
-                <texture colordiffuse="$VAR[Color_Focus]">nowplaying/rw.png</texture>
+                <texture colordiffuse="$VAR[Color_Focus]">dialog/nowplaying/rw.png</texture>
                 <animation effect="fade" start="0" end="100" time="150">VisibleChange</animation>
                 <visible>Player.Rewinding</visible>
             </control>
@@ -844,8 +844,19 @@
 
             <!-- VIDEO -->
 
-            <onclick condition="!String.IsEmpty(VideoPlayer.DBID)">$VAR[Def_Dialog_Info_Currently_Playing_Item_VideoOSD]</onclick>
-            <oninfo condition="!String.IsEmpty(VideoPlayer.DBID)">$VAR[Def_Dialog_Info_Currently_Playing_Item_VideoOSD]</oninfo>
+            <onclick condition="!String.IsEmpty(VideoPlayer.DBID) + !VideoPlayer.Content(musicvideos)">$VAR[Def_Dialog_Info_Currently_Playing_Item_VideoOSD]</onclick>
+
+            <oninfo condition="!String.IsEmpty(VideoPlayer.DBID) + !VideoPlayer.Content(musicvideos)">$VAR[Def_Dialog_Info_Currently_Playing_Item_VideoOSD]</oninfo>
+
+            <!-- MUSIC VIDEOS -->
+
+            <onclick condition="!String.IsEmpty(VideoPlayer.DBID) + VideoPlayer.Content(musicvideos) + !Container(999).IsUpdating + Integer.IsGreater(Container(999).NumItems,0)">SetFocus(999)</onclick>
+            <onclick condition="!String.IsEmpty(VideoPlayer.DBID) + VideoPlayer.Content(musicvideos) + !Container(999).IsUpdating + Integer.IsGreater(Container(999).NumItems,0)">Action(info)</onclick>
+            <onclick condition="!String.IsEmpty(VideoPlayer.DBID) + VideoPlayer.Content(musicvideos) + !Container(999).IsUpdating + Integer.IsGreater(Container(999).NumItems,0)">SetFocus(300)</onclick>
+
+            <oninfo condition="!String.IsEmpty(VideoPlayer.DBID) + VideoPlayer.Content(musicvideos) + !Container(999).IsUpdating + Integer.IsGreater(Container(999).NumItems,0)">SetFocus(999)</oninfo>
+            <oninfo condition="!String.IsEmpty(VideoPlayer.DBID) + VideoPlayer.Content(musicvideos) + !Container(999).IsUpdating + Integer.IsGreater(Container(999).NumItems,0)">Action(info)</oninfo>
+            <oninfo condition="!String.IsEmpty(VideoPlayer.DBID) + VideoPlayer.Content(musicvideos) + !Container(999).IsUpdating + Integer.IsGreater(Container(999).NumItems,0)">SetFocus(300)</oninfo>
 
             <!-- MUSIC -->
 
@@ -857,7 +868,7 @@
             <oninfo condition="!String.IsEmpty(MusicPlayer.DBID) + !Container(999).IsUpdating + Integer.IsGreater(Container(999).NumItems,0)">Action(info)</oninfo>
             <oninfo condition="!String.IsEmpty(MusicPlayer.DBID) + !Container(999).IsUpdating + Integer.IsGreater(Container(999).NumItems,0)">SetFocus(300)</oninfo>
 
-            <onfocus condition="Skin.HasSetting(osd.open.auto.pause) + Player.Paused + Player.HasVideo + !String.IsEmpty(VideoPlayer.DBID)">PlayerControl(Play)</onfocus>
+            <onfocus condition="Skin.HasSetting(osd.open.auto.pause) + !VideoPlayer.Content(musicvideos) + Player.Paused + Player.HasVideo + !String.IsEmpty(VideoPlayer.DBID)">PlayerControl(Play)</onfocus>
             <onfocus condition="!Player.HasMedia">SetFocus(300)</onfocus>
         </control>
 

@@ -211,6 +211,7 @@
 
                     <control type="group">
                         <visible>Container.Content(artists)</visible>
+
                         <top>DialogInfo_Top</top>
                         <left>DialogInfo_Square_Left</left>
 
@@ -395,12 +396,10 @@
 
                     <control type="group">
                         <visible>Container.Content(albums)</visible>
-                        <control type="group">
-                            <top>77</top>
-                            <include>Furniture_DialogInfo_Audio_Flags</include>
-                        </control>
-                        <left>DialogInfo_Square_Left</left>
+
                         <top>DialogInfo_Top</top>
+                        <left>DialogInfo_Square_Left</left>
+
                         <control type="grouplist">
                             <itemgap>0</itemgap>
                             <include content="Def_Dialog_Square_Info_Line">
@@ -468,12 +467,10 @@
 
                     <control type="group">
                         <visible>Container.Content(songs)</visible>
-                        <control type="group">
-                            <top>77</top>
-                            <include>Furniture_DialogInfo_Audio_Flags</include>
-                        </control>
-                        <left>DialogInfo_Square_Left</left>
+
                         <top>DialogInfo_Top</top>
+                        <left>DialogInfo_Square_Left</left>
+
                         <control type="grouplist">
                             <itemgap>0</itemgap>
                             <include content="Def_Dialog_Square_Info_Line">
@@ -519,6 +516,15 @@
                             <aligny>top</aligny>
                             <label fallback="19055">$INFO[ListItem.Property(Artist_Description)]$INFO[Window(Home).Property(ResetScroll)]</label>
                         </control>
+                    </control>
+
+                    <!-- FLAG AUDIO -->
+
+                    <control type="group">
+                        <visible>Container.Content(albums) | Container.Content(songs)</visible>
+                        <top>376</top>
+                        <left>DialogInfo_Square_Left</left>
+                        <include>Furniture_DialogInfo_Audio_Flags</include>
                     </control>
                 </control>
 
@@ -586,7 +592,7 @@
                     <!-- FANART LIST -->
 
                     <control type="fixedlist" id="9503">
-                        <include>Animation_Scrolltime_Details_List</include>
+                        <include>Animation_Horizontal_Scrolltime_Fanart_Cast_Square_Dialog_Info</include>
 
                         <top>0</top>
                         <left>0</left>
@@ -1090,7 +1096,7 @@
                             <width>25</width>
                             <height>25</height>
                             <aspectratio aligny="top">keep</aspectratio>
-                            <texture colordiffuse="Dark1">indicator/playlist.png</texture>
+                            <texture colordiffuse="Dark1">dialog/indicator/playlist.png</texture>
                             <visible>ListItem.IsPlaying</visible>
                         </control>
                         <control type="label">
@@ -1114,7 +1120,7 @@
                             <width>25</width>
                             <height>25</height>
                             <aspectratio aligny="top">keep</aspectratio>
-                            <texture colordiffuse="$VAR[Color_List_Item_Selected]">indicator/playlist.png</texture>
+                            <texture colordiffuse="$VAR[Color_List_Item_Selected]">dialog/indicator/playlist.png</texture>
                             <visible>ListItem.IsPlaying</visible>
                         </control>
                         <control type="label">
@@ -1136,7 +1142,7 @@
                             <width>25</width>
                             <height>25</height>
                             <aspectratio aligny="top">keep</aspectratio>
-                            <texture colordiffuse="Dark1">indicator/playlist.png</texture>
+                            <texture colordiffuse="Dark1">dialog/indicator/playlist.png</texture>
                             <visible>ListItem.IsPlaying</visible>
                         </control>
                         <control type="label">

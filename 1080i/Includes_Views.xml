@@ -364,13 +364,16 @@
         <param name="width" value="$PARAM[width]" default="155" />
         <param name="height" value="$PARAM[height]" default="155" />
         <param name="texture_progress" value="$PARAM[texture_progress]" default="155" />
-        <param name="visible" value="$PARAM[visible]" default="Skin.HasSetting(show.furniture.progress.circle)" />
+        <param name="visible" value="$PARAM[visible]" default="Skin.HasSetting(show.furniture.progress.circle) + !ListItem.IsCollection" />
 
         <definition>
             <control type="group">
                 <visible>$EXP[ShowCircleProgress]</visible>
                 <visible>!$EXP[IsJlomItem]</visible>
                 <visible>$PARAM[visible]</visible>
+
+                <include>Animation_Common_Fade_In</include>
+                <include>Animation_Common_Fade_Out</include>
 
                 <top>$PARAM[top]</top>
                 <left>$PARAM[left]</left>
@@ -384,15 +387,15 @@
                     <centertop>44%</centertop>
                     <width>139</width>
                     <height>139</height>
-                    <texture diffuse="diffuse/circle_progress_w139_h139.png" border="0">dialog/loading-back.png</texture>
+                    <texture diffuse="diffuse/circle_progress_w139_h139.png" border="0">dialog/busy/loading-back.png</texture>
                 </control>
 
-                <!-- MOVIES / EPISODE -->
+                <!-- MOVIES / EPISODE / MUSIC VIDEO -->
 
                 <control type="group">
                     <control type="group">
                         <visible>!ListItem.IsParentFolder</visible>
-                        <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode) | [Control.HasFocus(5161) + String.IsEqual(Container(5161).ListItem.DBType,episode)] | [Control.HasFocus(5261) + String.IsEqual(Container(5261).ListItem.DBType,episode)]</visible>
+                        <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,musicvideo) | [Control.HasFocus(5161) + String.IsEqual(Container(5161).ListItem.DBType,episode)] | [Control.HasFocus(5261) + String.IsEqual(Container(5261).ListItem.DBType,episode)]</visible>
 
                         <include>Animation_Switch_Text</include>
 
@@ -500,6 +503,7 @@
         <value condition="Container(11).HasFocus(1)">1</value>
         <value condition="Container(11).HasFocus(2)">2</value>
         <value condition="Container(11).HasFocus(3)">3</value>
+        <value condition="Container(11).HasFocus(4)">4</value>
     </variable>
 
     <variable name="Def_Image_Skin_Font">

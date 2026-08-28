@@ -85,6 +85,10 @@
 
             <include>Def_Hidden_Button</include>
 
+            <!-- SHOW MENU SEARCH -->
+
+            <onfocus>SetProperty(Show_Menu_Search,1,Home)</onfocus>
+
             <!-- CANCEL - TIMER - AUTO SLIDE MENU -->
 
             <onfocus>CancelAlarm(power_menu_setfocus_399,true)</onfocus>
@@ -139,13 +143,23 @@
             <onup condition="$EXP[Home_Is_Horizontal]">SetFocus(300,0,absolute)</onup>
             <onup condition="$EXP[Home_Is_Horizontal]">SetProperty(first_menu,1,Home)</onup>
 
-            <!-- <include content="Object_OnDirection_Action"><param name="ondirection" value="ClearProperty(Show_Menu_Search,Home)" /></include> -->
-
             <onclick>ClearProperty(GlobalSearchWindowOpen,Home)</onclick>
-            <onfocus>SetProperty(Show_Menu_Search,1,Home)</onfocus>
-            <!-- <onclick>ActivateWindow(1146)</onclick> -->
             <onclick>Control.SetFocus(3060,0,absolute)</onclick>
             <onclick>ClearProperty(AnimationDirection,Home)</onclick>
+        </control>
+
+        <control type="button" id="338" description="Helper">
+            <visible allowhiddenfocus="true">false</visible>
+            <include>Def_Hidden_Button</include>
+
+            <!-- CANCEL - TIMER - AUTO SLIDE MENU -->
+
+            <onfocus>CancelAlarm(power_menu_setfocus_399,true)</onfocus>
+            <onfocus condition="$EXP[Has_Home_Menu_Auto_Slide_Out_Animation]">CancelAlarm(slide_out_setfocus_2011,true)</onfocus>
+
+            <onfocus>ClearProperty(Show_Menu_Search,Home)</onfocus>
+            <onfocus>SetProperty(Launch_Search,1,Home)</onfocus>
+            <onfocus>9099</onfocus>
         </control>
 
         <!-- BUTTON EDIT WIKI -->
@@ -176,7 +190,6 @@
                     <texture colordiffuse="Selected" border="12">special://skin/extras/icons/search.png</texture>
                 </control>
             </control>
-
             <control type="button" id="331" description="Helper">
                 <include>Def_Hidden_Button</include>
                 <onfocus>ActivateWindow(addonbrowser,return)</onfocus>
@@ -236,7 +249,7 @@
                 <param name="label" value="$VAR[Label_Home_Search_Bar_Tip]" />
                 <param name="textcolor" value="Black70" />
                 <param name="colordiffuse" value="$VAR[Color_Icon_Light]" />
-                <param name="visible" value="[Control.HasFocus(90009) | Control.HasFocus(340)]" />
+                <param name="visible" value="[Control.HasFocus(90009) | Control.HasFocus(340)] + !Window.IsVisible(DialogKeyboard.xml)" />
             </include>
         </control>
     </include>
@@ -789,12 +802,12 @@
                 </control>
             </control>
 
-            <!-- MOVIES / TVSHOWS / SEASONS / EPISODES -->
+            <!-- MOVIES / TVSHOWS / SEASONS / EPISODES / MUSIC VIDEO -->
 
             <!-- FILTER + UNWATCHED ONLY -->
 
             <control type="grouplist">
-                <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
+                <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(musicvideos)</visible>
                 <visible>!String.IsEmpty(Container.NumItems) + Container.Filtered + String.IsEqual(Control.GetLabel(10),$LOCALIZE[16101])</visible>
                 <itemgap>0</itemgap>
                 <orientation>horizontal</orientation>
@@ -834,7 +847,7 @@
             <!-- FILTER + WATCHED ONLY -->
 
             <control type="grouplist">
-                <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
+                <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(musicvideos)</visible>
                 <visible>!String.IsEmpty(Container.NumItems) + Container.Filtered + String.IsEqual(Control.GetLabel(10),$LOCALIZE[16102])</visible>
                 <itemgap>0</itemgap>
                 <orientation>horizontal</orientation>
@@ -874,7 +887,7 @@
             <!-- FILTER + ALL VIDEO -->
 
             <control type="grouplist">
-                <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
+                <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(musicvideos)</visible>
                 <visible>!String.IsEmpty(Container.NumItems) + Container.Filtered + String.IsEqual(Control.GetLabel(10),$LOCALIZE[16100])</visible>
                 <itemgap>0</itemgap>
                 <orientation>horizontal</orientation>
@@ -906,7 +919,7 @@
             <!-- UNWATCHED ONLY -->
 
             <control type="grouplist">
-                <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
+                <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(musicvideos)</visible>
                 <visible>!String.IsEmpty(Container.NumItems) + !Container.Filtered + String.IsEqual(Control.GetLabel(10),$LOCALIZE[16101])</visible>
                 <itemgap>0</itemgap>
                 <orientation>horizontal</orientation>
@@ -933,7 +946,7 @@
             <!-- WATCHED ONLY -->
 
             <control type="grouplist">
-                <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
+                <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(musicvideos)</visible>
                 <visible>!String.IsEmpty(Container.NumItems) + !Container.Filtered + String.IsEqual(Control.GetLabel(10),$LOCALIZE[16102])</visible>
                 <itemgap>0</itemgap>
                 <orientation>horizontal</orientation>
@@ -1173,7 +1186,7 @@
             <!-- ALL -->
 
             <control type="grouplist">
-                <visible>Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | $EXP[IsPluginApplePodcasts] | Container.Content(favourites) | Window.IsVisible(MyGames.xml) | $EXP[IsGameMode]</visible>
+                <visible>Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | $EXP[IsPluginApplePodcasts] | Container.Content(favourites) | Window.IsVisible(MyGames.xml) | $EXP[IsGameMode] | Container.Content(musicvideos)</visible>
                 <visible>!String.IsEmpty(Container.NumItems) + !Container.Filtered + !String.Contains(Control.GetLabel(10),$LOCALIZE[16101]) + !String.Contains(Control.GetLabel(10),$LOCALIZE[16102]) + !Window.IsActive(videoplaylist)</visible>
 
                 <itemgap>0</itemgap>
@@ -1207,7 +1220,7 @@
             <!-- FALLBACK -->
 
             <control type="grouplist">
-                <visible>![Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(videoversions) | Container.Content(sets)]</visible>
+                <visible>![Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(videoversions) | Container.Content(sets) | Container.Content(musicvideos)]</visible>
                 <visible>![Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
                 <visible>![Container.Content(directors) | Container.Content(actors) | Container.Content(countries) | Container.Content(years) | Container.Content(genres) | Container.Content(tags) | Container.Content(studios)]</visible>
                 <visible>![$EXP[IsPvrDialog] | Window.IsVisible(AddonBrowser.xml) | Window.IsVisible(LoginScreen.xml) | Window.IsActive(videoplaylist) | Window.IsVisible(MyWeather.xml) | Container.Content(favourites) | Window.IsVisible(FileManager.xml)]</visible>
@@ -1539,6 +1552,14 @@
         </control>
     </include>
 
+    <include name="Def_Home_Label_Widget_Sub_Title_Artist_Age">
+        <control type="label">
+            <include>Widgets_Item_Sub_Title_Definition</include>
+            <label fallback="19055">$INFO[Window(Home).Property(TMDbHelper.ListItem.Age),  •  , $LOCALIZE[31530]]</label>
+            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Age))</visible>
+        </control>
+    </include>
+
     <include name="Def_Home_Label_Widget_Sub_Title_Department">
         <control type="label">
             <include>Widgets_Item_Sub_Title_Definition</include>
@@ -1640,6 +1661,13 @@
         <control type="label">
             <include>Widgets_Item_Sub_Title_Definition</include>
             <label>$INFO[Container($PARAM[id]).ListItem.Year,  •  ]</label>
+        </control>
+    </include>
+
+    <include name="Def_Home_Label_Widget_Sub_Title_Album">
+        <control type="label">
+            <include>Widgets_Item_Sub_Title_Definition</include>
+            <label>$INFO[Container($PARAM[id]).ListItem.Album,  •  ]</label>
         </control>
     </include>
 
@@ -1824,7 +1852,7 @@
                         <top>8</top>
                         <width>100</width>
                         <height>100</height>
-                        <texture colordiffuse="$VAR[Color_Indicator_Background_Watched]" background="true">misc/banner_status_overlay.png</texture>
+                        <texture colordiffuse="$VAR[Color_Indicator_Background_Watched]" background="true">dialog/misc/banner_status_overlay.png</texture>
                     </control>
                     <control type="label">
                         <right>-9</right>
@@ -1842,7 +1870,7 @@
                         <left>12</left>
                         <width>24</width>
                         <height>24</height>
-                        <texture colordiffuse="Dark2">buttons/radio-on.png</texture>
+                        <texture colordiffuse="Dark2">dialog/buttons/radio-on.png</texture>
                         <visible>String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundWatched) | String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundLabel)</visible>
                     </control>
                 </control>
@@ -1858,7 +1886,7 @@
                         <top>8</top>
                         <width>100</width>
                         <height>100</height>
-                        <texture colordiffuse="$VAR[Color_Indicator_Background_New]" background="true">misc/banner_status_overlay.png</texture>
+                        <texture colordiffuse="$VAR[Color_Indicator_Background_New]" background="true">dialog/misc/banner_status_overlay.png</texture>
                     </control>
                     <control type="label">
                         <right>-9</right>
@@ -1876,7 +1904,7 @@
                         <left>12</left>
                         <width>24</width>
                         <height>24</height>
-                        <texture colordiffuse="Dark2">buttons/radio-on.png</texture>
+                        <texture colordiffuse="Dark2">dialog/buttons/radio-on.png</texture>
                         <visible>String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundNew) | String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundLabel)</visible>
                     </control>
                 </control>
@@ -1892,7 +1920,7 @@
                         <top>8</top>
                         <width>100</width>
                         <height>100</height>
-                        <texture colordiffuse="$VAR[Color_Indicator_Background_In_Progress]" background="true">misc/banner_status_overlay.png</texture>
+                        <texture colordiffuse="$VAR[Color_Indicator_Background_In_Progress]" background="true">dialog/misc/banner_status_overlay.png</texture>
                     </control>
                     <control type="label">
                         <right>-9</right>
@@ -1910,7 +1938,7 @@
                         <left>12</left>
                         <width>24</width>
                         <height>24</height>
-                        <texture colordiffuse="Dark2">buttons/radio-on.png</texture>
+                        <texture colordiffuse="Dark2">dialog/buttons/radio-on.png</texture>
                         <visible>String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundInProgress) | String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundLabel)</visible>
                     </control>
                 </control>
@@ -1926,7 +1954,7 @@
                         <top>8</top>
                         <width>100</width>
                         <height>100</height>
-                        <texture colordiffuse="$VAR[Color_Indicator_Background_Is_Playing]" background="true">misc/banner_status_overlay.png</texture>
+                        <texture colordiffuse="$VAR[Color_Indicator_Background_Is_Playing]" background="true">dialog/misc/banner_status_overlay.png</texture>
                     </control>
                     <control type="label">
                         <right>-8</right>
@@ -1943,7 +1971,7 @@
                         <left>12</left>
                         <width>24</width>
                         <height>24</height>
-                        <texture colordiffuse="Dark2">buttons/radio-on.png</texture>
+                        <texture colordiffuse="Dark2">dialog/buttons/radio-on.png</texture>
                         <visible>String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundIsPlaying) | String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundIsPlayingicon)</visible>
                     </control>
                 </control>
@@ -1959,7 +1987,7 @@
                         <top>8</top>
                         <width>100</width>
                         <height>100</height>
-                        <texture colordiffuse="$VAR[Color_Indicator_Background_UnWatched]" background="true">misc/banner_status_overlay.png</texture>
+                        <texture colordiffuse="$VAR[Color_Indicator_Background_UnWatched]" background="true">dialog/misc/banner_status_overlay.png</texture>
                     </control>
                     <control type="label">
                         <right>-9</right>
@@ -1977,7 +2005,7 @@
                         <left>12</left>
                         <width>24</width>
                         <height>24</height>
-                        <texture colordiffuse="Dark2">buttons/radio-on.png</texture>
+                        <texture colordiffuse="Dark2">dialog/buttons/radio-on.png</texture>
                         <visible>String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundUnWatched) | String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundLabel)</visible>
                     </control>
                 </control>
@@ -2216,10 +2244,10 @@
     <include name="Def_Image_Poster_Rating_Info_Right">
         <align>right</align>
         <aligny>center</aligny>
-        <width>32</width>
-        <height>32</height>
-        <right>14</right>
-        <bottom>28</bottom>
+        <width>28</width>
+        <height>28</height>
+        <right>16</right>
+        <bottom>30</bottom>
     </include>
 
     <include name="Def_ArtworkSelection_Is_Current">
@@ -2339,6 +2367,44 @@
         <onclick>Skin.SetBool(hide.flags.top250)</onclick>
         <onclick>Skin.Reset(show.flags.top250.classement)</onclick>
         <onclick>Skin.SetBool(hide.flags.rating)</onclick>
+        <onclick>Skin.Reset(enable.flags.rating.numeric)</onclick>
+        <onclick>Skin.Reset(show.flags.rating.user)</onclick>
+
+        <onclick>SetProperty(reloadskin,1,Home)</onclick>
+    </include>
+
+    <include name="Def_Onclick_Flag_Video_All">
+
+        <!-- VIDEO -->
+
+        <onclick>Skin.Reset(hide.flags.resolution)</onclick>
+        <onclick>Skin.Reset(hide.flags.videocodec)</onclick>
+        <onclick>Skin.Reset(hide.flags.aspectratio)</onclick>
+        <onclick>Skin.Reset(hide.flags.hdr)</onclick>
+        <onclick>Skin.SetBool(hide.flags.videoduration)</onclick>
+        <onclick>Skin.Reset(hide.flags.audiocodec)</onclick>
+        <onclick>Skin.Reset(hide.flags.audiochannels)</onclick>
+        <onclick>Skin.Reset(show.flags.audio.country)</onclick>
+        <onclick>Skin.Reset(show.flags.subtitles)</onclick>
+        <onclick>Skin.Reset(show.flags.subtitles.country)</onclick>
+        <onclick>Skin.SetBool(hide.flags.mpaa)</onclick>
+        <onclick>Skin.Reset(hide.flags.bluray)</onclick>
+
+        <onclick>Skin.Reset(hide.flags.nextaired)</onclick>
+
+        <!-- RATING -->
+
+        <onclick>Skin.SetBool(show.flags.rating.letterboxd)</onclick>
+        <onclick>Skin.SetBool(show.flags.rating.mdblist)</onclick>
+        <onclick>Skin.SetBool(show.flags.rating.metacritics)</onclick>
+        <onclick>Skin.SetBool(show.flags.rating.tomatoes)</onclick>
+        <onclick>Skin.SetBool(show.flags.rating.trakt)</onclick>
+        <onclick>Skin.SetBool(show.flags.rating.tmdb)</onclick>
+        <onclick>Skin.SetBool(show.flags.rating.imdb)</onclick>
+        <onclick>Skin.Reset(hide.flags.top250)</onclick>
+        <onclick>Skin.SetBool(show.flags.top250.classement)</onclick>
+        <onclick>Skin.SetBool(hide.flags.rating)</onclick>
+
         <onclick>Skin.Reset(enable.flags.rating.numeric)</onclick>
         <onclick>Skin.Reset(show.flags.rating.user)</onclick>
 
@@ -3097,6 +3163,7 @@
         <onclick>Skin.SetString(fanart.fallback.movie,special://skin/extras/backgrounds/movies/movies_3.jpg)</onclick>
         <onclick>Skin.SetString(fanart.fallback.tvshow,special://skin/extras/backgrounds/tvshows/tvshows_3.jpg)</onclick>
         <onclick>Skin.SetString(fanart.fallback.music,special://skin/extras/backgrounds/music/music_20.jpg)</onclick>
+        <onclick>Skin.SetString(fanart.fallback.musicvideo,special://skin/extras/backgrounds/musicvideos/musicvideos_1.jpg)</onclick>
         <onclick>Skin.SetString(fanart.fallback.favourite,special://skin/extras/backgrounds/favourites/favourites_2.jpg)</onclick>
         <onclick>Skin.SetString(fanart.fallback.pvr,special://skin/extras/backgrounds/pvr/pvr1.jpg)</onclick>
         <onclick>Skin.SetString(fanart.fallback.radio,special://skin/extras/backgrounds/radio/radio2.jpg)</onclick>
@@ -3202,7 +3269,7 @@
 
         <onclick>Skin.SetBool(enable.furniture.flags.icons)</onclick>
         <onclick>Skin.SetBool(enable.furniture.flags.colored)</onclick>
-        <onclick>Skin.SetBool(hide.flags.hdr)</onclick>
+        <onclick>Skin.Reset(hide.flags.hdr)</onclick>
         <onclick>Skin.SetBool(hide.flags.mpaa)</onclick>
         <onclick>Skin.SetBool(show.flags.rating.tmdb)</onclick>
         <onclick>Skin.SetBool(show.flags.rating.imdb)</onclick>
@@ -3489,6 +3556,7 @@
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(fanart.fallback.movie,special://skin/extras/backgrounds/movies/movies_3.jpg)</onload>
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(fanart.fallback.tvshow,special://skin/extras/backgrounds/tvshows/tvshows_3.jpg)</onload>
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(fanart.fallback.music,special://skin/extras/backgrounds/music/music_20.jpg)</onload>
+        <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(fanart.fallback.musicvideo,special://skin/extras/backgrounds/musicvideos/musicvideos_1.jpg)</onload>
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(fanart.fallback.favourite,special://skin/extras/backgrounds/favourites/favourites_2.jpg)</onload>
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(fanart.fallback.pvr,special://skin/extras/backgrounds/pvr/pvr1.jpg)</onload>
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(fanart.fallback.radio,special://skin/extras/backgrounds/radio/radio2.jpg)</onload>
@@ -3559,7 +3627,7 @@
 
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetBool(enable.furniture.flags.icons)</onload>
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetBool(enable.furniture.flags.colored)</onload>
-        <onload condition="!Skin.HasSetting(startup.init)">Skin.SetBool(hide.flags.hdr)</onload>
+        <!-- <onload condition="!Skin.HasSetting(startup.init)">Skin.Reset(hide.flags.hdr)</onload> -->
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetBool(hide.flags.mpaa)</onload>
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetBool(show.flags.rating.tmdb)</onload>
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetBool(show.flags.rating.imdb)</onload>

@@ -589,8 +589,8 @@
                                 <onclick>Dialog.Close(all)</onclick>
                                 <onclick condition="Window.IsVisible(1190)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190)</onclick>
 
-                                <onclick>SetProperty(filemanager_back_video_info_type,$VAR[Def_Open_Info_From_FileManager_Type],Home)</onclick>
-                                <onclick>SetProperty(filemanager_back_video_info_bdid,$INFO[ListItem.DBID],Home)</onclick>
+                                <onclick condition="!String.IsEqual(ListItem.DBType,musicvideo)">SetProperty(filemanager_back_video_info_type,$VAR[Def_Open_Info_From_FileManager_Type],Home)</onclick>
+                                <onclick condition="!String.IsEqual(ListItem.DBType,musicvideo)">SetProperty(filemanager_back_video_info_bdid,$INFO[ListItem.DBID],Home)</onclick>
 
                                 <onclick condition="!String.IsEmpty(Container(44029).ListItem.Property(path))">AlarmClock(delay_open_filemanager,ActivateWindow(filemanager,"$INFO[Container(44029).ListItem.Property(path)]",return),00:01,silent)</onclick>
 
@@ -616,6 +616,7 @@
                             <!-- SETTINGS -->
 
                             <item>
+                                <visible>!String.IsEqual(ListItem.DBType,musicvideo)</visible>
                                 <label>5</label>
                                 <icon>special://skin/extras/icons/addons.png</icon>
                                 <onclick condition="Window.IsVisible(DialogMusicInfo.xml)">ActivateWindow(1260)</onclick>
@@ -793,7 +794,7 @@
                 <centertop>50%</centertop>
                 <width>26</width>
                 <height>26</height>
-                <texture colordiffuse="$PARAM[colordiffuse_off]">buttons/radio-off.png</texture>
+                <texture colordiffuse="$PARAM[colordiffuse_off]">dialog/buttons/radio-off.png</texture>
                 <visible>!$PARAM[visible]</visible>
             </control>
             <control type="image">
@@ -801,7 +802,7 @@
                 <centertop>50%</centertop>
                 <width>26</width>
                 <height>26</height>
-                <texture colordiffuse="$PARAM[colordiffuse_on]">buttons/radio-on.png</texture>
+                <texture colordiffuse="$PARAM[colordiffuse_on]">dialog/buttons/radio-on.png</texture>
                 <visible>$PARAM[visible]</visible>
             </control>
         </definition>
@@ -811,7 +812,7 @@
         <width>134</width>
         <height>68</height>
         <radioposx>42</radioposx>
-        <radioposy>18</radioposy>
+        <radioposy>20</radioposy>
         <radiowidth>48</radiowidth>
     </include>
 
@@ -819,7 +820,7 @@
         <width>127</width>
         <height>68</height>
         <radioposx>40</radioposx>
-        <radioposy>18</radioposy>
+        <radioposy>20</radioposy>
         <radiowidth>48</radiowidth>
     </include>
 
@@ -865,12 +866,12 @@
         <font>Small</font>
         <align>left</align>
         <textcolor>PanelWhite100</textcolor>
-        <textureradioonfocus colordiffuse="$PARAM[colorcode]">buttons/colorbox.png</textureradioonfocus>
-        <textureradioofffocus colordiffuse="$PARAM[colorcode]">buttons/colorbox.png</textureradioofffocus>
-        <textureradioonnofocus colordiffuse="$PARAM[colorcode]">buttons/colorbox.png</textureradioonnofocus>
-        <textureradiooffnofocus colordiffuse="$PARAM[colorcode]">buttons/colorbox.png</textureradiooffnofocus>
-        <textureradiofocus colordiffuse="$PARAM[colorcode]">buttons/colorbox.png</textureradiofocus>
-        <textureradionofocus colordiffuse="$PARAM[colorcode]">buttons/colorbox.png</textureradionofocus>
+        <textureradioonfocus colordiffuse="$PARAM[colorcode]">dialog/buttons/colorbox.png</textureradioonfocus>
+        <textureradioofffocus colordiffuse="$PARAM[colorcode]">dialog/buttons/colorbox.png</textureradioofffocus>
+        <textureradioonnofocus colordiffuse="$PARAM[colorcode]">dialog/buttons/colorbox.png</textureradioonnofocus>
+        <textureradiooffnofocus colordiffuse="$PARAM[colorcode]">dialog/buttons/colorbox.png</textureradiooffnofocus>
+        <textureradiofocus colordiffuse="$PARAM[colorcode]">dialog/buttons/colorbox.png</textureradiofocus>
+        <textureradionofocus colordiffuse="$PARAM[colorcode]">dialog/buttons/colorbox.png</textureradionofocus>
         <focusedcolor>Selected</focusedcolor>
         <include>Texture_Dialog_ColorBox</include>
     </include>
@@ -884,12 +885,12 @@
         <align>left</align>
         <label/>
         <textcolor>PanelWhite100</textcolor>
-        <textureradioonfocus colordiffuse="$PARAM[colorcode]">buttons/colorbox.png</textureradioonfocus>
-        <textureradioofffocus colordiffuse="$PARAM[colorcode]">buttons/colorbox.png</textureradioofffocus>
-        <textureradioonnofocus colordiffuse="$PARAM[colorcode]">buttons/colorbox.png</textureradioonnofocus>
-        <textureradiooffnofocus colordiffuse="$PARAM[colorcode]">buttons/colorbox.png</textureradiooffnofocus>
-        <textureradiofocus colordiffuse="$PARAM[colorcode]">buttons/colorbox.png</textureradiofocus>
-        <textureradionofocus colordiffuse="$PARAM[colorcode]">buttons/colorbox.png</textureradionofocus>
+        <textureradioonfocus colordiffuse="$PARAM[colorcode]">dialog/buttons/colorbox.png</textureradioonfocus>
+        <textureradioofffocus colordiffuse="$PARAM[colorcode]">dialog/buttons/colorbox.png</textureradioofffocus>
+        <textureradioonnofocus colordiffuse="$PARAM[colorcode]">dialog/buttons/colorbox.png</textureradioonnofocus>
+        <textureradiooffnofocus colordiffuse="$PARAM[colorcode]">dialog/buttons/colorbox.png</textureradiooffnofocus>
+        <textureradiofocus colordiffuse="$PARAM[colorcode]">dialog/buttons/colorbox.png</textureradiofocus>
+        <textureradionofocus colordiffuse="$PARAM[colorcode]">dialog/buttons/colorbox.png</textureradionofocus>
         <focusedcolor>Selected</focusedcolor>
         <include>Texture_Dialog_ColorBox</include>
     </include>
@@ -908,8 +909,7 @@
                     <left>0</left>
                     <width>80</width>
                     <bottom>0</bottom>
-                    <texture border="24" colordiffuse="PanelWhite12">$VAR[texture_box24]</texture>
-                    <animation effect="fade" end="50" start="100" time="0" condition="true">Conditional</animation>
+                    <texture border="24" colordiffuse="PanelLevel">$VAR[texture_box24]</texture>
                 </control>
                 <control type="image">
                     <top>0</top>
@@ -962,7 +962,7 @@
         <textoffsetx>30</textoffsetx>
         <radioposx>518</radioposx>
         <textcolor>PanelWhite100</textcolor>
-        <disabledcolor>PanelWhite12</disabledcolor>
+        <disabledcolor>$VAR[Color_OSD_Panel_Setting_Disable]</disabledcolor>
         <selectedcolor>Selected</selectedcolor>
         <height>70</height>
         <include>Texture_Highlight_Focus</include>
@@ -984,7 +984,7 @@
         <radioposx>1218</radioposx>
         <textoffsetx>30</textoffsetx>
         <textcolor>PanelWhite100</textcolor>
-        <disabledcolor>PanelWhite12</disabledcolor>
+        <disabledcolor>$VAR[Color_OSD_Panel_Setting_Disable]</disabledcolor>
         <selectedcolor>Selected</selectedcolor>
         <height>70</height>
         <include>Texture_Highlight_Focus</include>
@@ -1016,8 +1016,8 @@
             <font>Small</font>
             <disabledcolor>Black12</disabledcolor>
             <textcolor>Black70</textcolor>
-            <textureradiofocus colordiffuse="Black70">buttons/radio-on.png</textureradiofocus>
-            <textureradionofocus colordiffuse="Black30">buttons/radio-off.png</textureradionofocus>
+            <textureradiofocus colordiffuse="Black70">dialog/buttons/radio-on.png</textureradiofocus>
+            <textureradionofocus colordiffuse="Black30">dialog/buttons/radio-off.png</textureradionofocus>
             <focusedcolor>Selected</focusedcolor>
             <include>Texture_Highlight_Focus</include>
             <include condition="$PARAM[condition_scroll_anim]">Animation_View_List_Focus_Scroll</include>
@@ -1065,7 +1065,7 @@
         <height>70</height>
         <textcolor>$VAR[Color_Item_Disabled]</textcolor>
         <focusedcolor>Selected</focusedcolor>
-        <textureradioonnofocus colordiffuse="$VAR[Color_Item_Disabled]">buttons/radio-on.png</textureradioonnofocus>
+        <textureradioonnofocus colordiffuse="$VAR[Color_Item_Disabled]">dialog/buttons/radio-on.png</textureradioonnofocus>
         <include>Texture_Highlight_Focus</include>
         <include condition="true">Animation_View_List_Focus_Scroll</include>
     </include>
@@ -1284,7 +1284,7 @@
 
     <include name="Def_Dialog_Info_Navigation_Music">
         <control type="grouplist" id="9000">
-            <include>Animation_Scrolltime_Widgets_List</include>
+            <include>Animation_Horizontal_Scrolltime_Menu_Dialog_Info</include>
 
             <bottom>144</bottom>
             <left>DialogInfo_Square_Left</left>
@@ -1734,7 +1734,7 @@
         <control type="grouplist" id="9000">
             <visible allowhiddenfocus="true">ControlGroup(9000).HasFocus() | !$EXP[Group9090IsFocus] | $EXP[Plot9669IsFocus]</visible>
 
-            <include>Animation_Scrolltime_Widgets_List</include>
+            <include>Animation_Horizontal_Scrolltime_Menu_Dialog_Info</include>
 
             <animation type="Visible">
                 <effect type="slide" start="0,-80" end="0" delay="0" time="200" tween="sine" easing="in" />
@@ -1761,11 +1761,11 @@
 
             <!-- FOCUS SECOND ROW BUTTON NAVIGATION -->
 
-            <ondown condition="!String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEqual(ListItem.DBType,set) + String.IsEmpty(Window(Home).Property(Show_Disc)) + !String.IsEqual(ListItem.DBType,video)">9090</ondown>
+            <ondown condition="!String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEqual(ListItem.DBType,set) + String.IsEmpty(Window(Home).Property(Show_Disc)) + !String.IsEqual(ListItem.DBType,video) + !String.IsEqual(ListItem.DBType,musicvideo)">9090</ondown>
 
             <!-- SHOW RESUME OVERLAY -->
 
-            <ondown condition="String.IsEqual(ListItem.Property(tmdb_type),person) | String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.DBType,video)">9669</ondown>
+            <ondown condition="String.IsEqual(ListItem.Property(tmdb_type),person) | String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.DBType,video) | String.IsEqual(ListItem.DBType,musicvideo)">9669</ondown>
 
             <!-- MOVIES LIST BY CAST -->
 
@@ -1792,10 +1792,15 @@
             <onup condition="String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEqual(Window(Home).Property(moviecontent),20)">9560</onup>
             <onup condition="String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEqual(Window(Home).Property(moviecontent),20)">SetProperty(TMDbHelper.WidgetContainer,9560,Home)</onup>
 
+            <!-- MUSIC VIDEO - LIST ALBUMS -->
+
+            <onup condition="String.IsEqual(ListItem.DBType,musicvideo) + String.IsEqual(Window(Home).Property(moviecontent),21)">9575</onup>
+            <onup condition="String.IsEqual(ListItem.DBType,musicvideo) + String.IsEqual(Window(Home).Property(moviecontent),21)">SetProperty(TMDbHelper.WidgetContainer,9575,Home)</onup>
+
             <!-- CAST LIST - LOCAL ONLY -->
 
-            <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + !$EXP[CastOnLine] + !String.IsEqual(ListItem.DBType,set) + !$EXP[IsYoutubeItem]">SetProperty(last_video_focus,50,Home)</onup>
-            <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + !$EXP[CastOnLine] + !String.IsEqual(ListItem.DBType,set) + !$EXP[IsYoutubeItem]">50</onup>
+            <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + [!$EXP[CastOnLine] | String.IsEqual(ListItem.DBType,musicvideo)] + !String.IsEqual(ListItem.DBType,set) + !$EXP[IsYoutubeItem]">SetProperty(last_video_focus,50,Home)</onup>
+            <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + [!$EXP[CastOnLine] | String.IsEqual(ListItem.DBType,musicvideo)] + !String.IsEqual(ListItem.DBType,set) + !$EXP[IsYoutubeItem]">50</onup>
 
             <!-- SET LIST -->
 
@@ -1805,9 +1810,9 @@
 
             <!-- CAST LIST - ON LINE - WITH TMDB ONLINE -->
 
-            <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + !Container(9550).IsUpdating + $EXP[CastOnLine] + $EXP[PluginsAllowedItem]">SetProperty(last_video_focus,9550,Home)</onup>
-            <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + !Container(9550).IsUpdating + $EXP[CastOnLine] + $EXP[PluginsAllowedItem]">9550</onup>
-            <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + !Container(9550).IsUpdating + $EXP[CastOnLine] + $EXP[PluginsAllowedItem]">SetProperty(TMDbHelper.WidgetContainer,9550,Home)</onup>
+            <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + !Container(9550).IsUpdating + $EXP[CastOnLine] + !String.IsEqual(ListItem.DBType,musicvideo) + $EXP[PluginsAllowedItem]">SetProperty(last_video_focus,9550,Home)</onup>
+            <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + !Container(9550).IsUpdating + $EXP[CastOnLine] + !String.IsEqual(ListItem.DBType,musicvideo) + $EXP[PluginsAllowedItem]">9550</onup>
+            <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + !Container(9550).IsUpdating + $EXP[CastOnLine] + !String.IsEqual(ListItem.DBType,musicvideo) + $EXP[PluginsAllowedItem]">SetProperty(TMDbHelper.WidgetContainer,9550,Home)</onup>
 
             <!-- CAST PICTURE -->
 
@@ -1892,6 +1897,26 @@
                 <onclick>Dialog.Close(all)</onclick>
             </control>
 
+            <!-- CINEMA EXPERIENCE -->
+
+            <control type="radiobutton" id="9049">
+                <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)</visible>
+                <visible>Skin.HasSetting(show.button.video.cinema) + System.AddonIsEnabled(script.preshowexperience)</visible>
+
+                <onfocus>SetProperty(last_video_focus,9049,Home)</onfocus>
+                <onfocus>ClearProperty(moviecontent,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/playcinema.png" />
+                </include>
+
+                <onclick>RunScript(script.preshowexperience,dbtype=$INFO[ListItem.DBType],dbid=$INFO[ListItem.DBID])</onclick>
+            </control>
+
             <!-- FOLDER SEASON / EPISODES / SET -->
 
             <control type="radiobutton" id="9078">
@@ -1941,7 +1966,7 @@
             <!-- INFO -->
 
             <control type="radiobutton" id="9001">
-                <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)</visible>
+                <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,musicvideo)</visible>
 
                 <onfocus>SetProperty(last_video_focus,9001,Home)</onfocus>
                 <onfocus>SetProperty(moviecontent,1,Home)</onfocus>
@@ -1963,9 +1988,11 @@
 
                 <!-- SEARCH DIRECTOR INFO -->
 
-                <onclick condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(SetDirectorSelected))">SetProperty(SelectPerson,1,Home)</onclick>
+                <onclick condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,musicvideo)] + !String.IsEmpty(Window(Home).Property(SetDirectorSelected))">SetProperty(SelectPerson,1,Home)</onclick>
 
                 <onclick condition="!String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(SetDirectorSelected))">RunScript(plugin.video.themoviedb.helper,add_query=$INFO[Window(Home).Property(SetDirectorSelected)],tmdb_type=person,call_auto=1190$VAR[Path_Info_First_Item],return)</onclick>
+
+                <onclick condition="!String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBType,musicvideo) + !String.IsEmpty(Window(Home).Property(SetDirectorSelected))">RunScript(plugin.video.themoviedb.helper,add_query=$INFO[Window(Home).Property(SetDirectorSelected)],tmdb_type=person,call_auto=1190$VAR[Path_Info_First_Item],return)</onclick>
 
                 <!-- SEARCH DIRECTOR INFO -->
 
@@ -2011,6 +2038,37 @@
                 <onclick condition="[String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">ClearProperty(Encoded.ListItem.Studio,Home)</onclick>
 
                 <onclick condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">ClearProperty(Director_Person_Query,Home)</onclick>
+            </control>
+
+            <!-- MUSIC VIDEO - BROWSE ALBUM LIST -->
+
+            <control type="radiobutton" id="9075">
+                <visible>String.IsEqual(ListItem.DBType,musicvideo)</visible>
+                <!-- <visible>!String.IsEmpty(Window(Home).Property(Encoded.ListItem.AlbumArtist))</visible> -->
+                <visible>Integer.IsGreater(Container(9575).NumItems,0)</visible>
+
+                <onfocus>SetProperty(last_video_focus,9075,Home)</onfocus>
+                <onfocus>SetProperty(moviecontent,21,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/compact-disc.png" />
+                </include>
+
+                <onclick>SetFocus(9575)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9575,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+
+                <!-- BROWSE -->
+
+                <!-- <onclick>Dialog.Close(all,false)</onclick> -->
+                <!-- <onclick>ActivateWindow(Music,musicdb://albums/?artist=$INFO[ListItem.Artist]&amp;albumartistonly=true&amp;compilation=false)</onclick> -->
             </control>
 
             <!-- TRAILER - FULLSCREEN -->
@@ -2214,9 +2272,9 @@
             <!-- WIKIPEDIA -->
 
             <control type="radiobutton" id="9013">
-                <visible>String.IsEqual(ListItem.DBType,video) | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)</visible>
+                <visible>String.IsEqual(ListItem.DBType,video) | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,musicvideo)</visible>
                 <visible>[!String.IsEqual(ListItem.DBType,video) + !String.IsEmpty(ListItem.DBType)] | String.IsEqual(ListItem.Property(tmdb_type),person)</visible>
-                <visible>!Skin.HasSetting(hide.button.video.wiki) + System.AddonIsEnabled(script.wikipedia)</visible>
+                <visible>[!Skin.HasSetting(hide.button.video.wiki) | String.IsEqual(ListItem.DBType,musicvideo)] + System.AddonIsEnabled(script.wikipedia)</visible>
 
                 <onfocus>SetProperty(last_video_focus,9013,Home)</onfocus>
                 <onfocus condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetProperty(moviecontent,13,Home)</onfocus>
@@ -2235,35 +2293,11 @@
                 <onclick>$VAR[Path_Dialog_Info_Wikipedia]</onclick>
             </control>
 
-            <!-- CINEMA EXPERIENCE -->
-
-            <control type="radiobutton" id="49">
-                <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)</visible>
-                <visible>Skin.HasSetting(show.button.video.cinema) + System.AddonIsEnabled(script.preshowexperience)</visible>
-
-                <onfocus>SetProperty(last_video_focus,49,Home)</onfocus>
-                <onfocus>ClearProperty(moviecontent,Home)</onfocus>
-
-                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
-                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
-
-                <onclick>SetProperty(Set_User_Rating,mixed,Home)</onclick>
-                <onfocus>SetProperty(Set_User_Rating,mixed,Home)</onfocus>
-                <onunfocus>ClearProperty(Set_User_Rating,Home)</onunfocus>
-
-                <include>Def_Button_Dimensions_Poster</include>
-                <include content="Texture_RadioButton_Dialog_Info">
-                    <param name="icon" value="buttonsdialogs/playcinema.png" />
-                </include>
-
-                <onclick>RunScript(script.preshowexperience,dbtype=$INFO[ListItem.DBType],dbid=$INFO[ListItem.DBID])</onclick>
-            </control>
-
             <!-- USER RATING -->
 
             <control type="radiobutton" id="7">
-                <visible>[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)] + Control.IsEnabled(7)</visible>
-                <visible>!Skin.HasSetting(hide.button.video.rating)</visible>
+                <visible>[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,musicvideo)] + Control.IsEnabled(7)</visible>
+                <visible>!Skin.HasSetting(hide.button.video.rating) | String.IsEqual(ListItem.DBType,musicvideo)</visible>
 
                 <onfocus>SetProperty(last_video_focus,7,Home)</onfocus>
                 <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
@@ -2313,7 +2347,7 @@
             <!-- FANART -->
 
             <control type="radiobutton" id="9005">
-                <visible>!Skin.HasSetting(hide.button.video.fanart)</visible>
+                <visible>!Skin.HasSetting(hide.button.video.fanart) | String.IsEqual(ListItem.DBType,musicvideo)</visible>
                 <visible>!String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEmpty(ListItem.DBType)</visible>
                 <visible>[!String.IsEmpty(ListItem.Art(fanart)) + !Skin.HasSetting(hide.artwork.video.fanart)] | [!String.IsEmpty(ListItem.Art(landscape)) + !Skin.HasSetting(hide.artwork.video.landscape)] | Skin.HasSetting(showartwork.video.tmdbhelper)</visible>
                 <visible>!Container.Content(seasons)</visible>
@@ -2335,7 +2369,7 @@
             <!-- YOUTUBE -->
 
             <control type="radiobutton" id="9004">
-                <visible>!Skin.HasSetting(hide.button.video.youtube) + System.AddonIsEnabled(plugin.video.youtube)</visible>
+                <visible>[!Skin.HasSetting(hide.button.video.youtube) | String.IsEqual(ListItem.DBType,musicvideo)]  + System.AddonIsEnabled(plugin.video.youtube)</visible>
                 <visible>[!String.IsEqual(ListItem.DBType,set) + !String.IsEqual(ListItem.DBType,video) + !String.IsEmpty(ListItem.DBType)] | String.IsEqual(ListItem.Property(tmdb_type),person) | $EXP[IsTMDbHelperItem]</visible>
 
                 <onfocus>SetProperty(last_video_focus,9004,Home)</onfocus>
@@ -2406,7 +2440,7 @@
             <visible allowhiddenfocus="true">$EXP[Group9090IsFocus]</visible>
             <visible>!String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEqual(ListItem.DBType,set)</visible>
 
-            <include>Animation_Scrolltime_Widgets_List</include>
+            <include>Animation_Horizontal_Scrolltime_Menu_Dialog_Info</include>
 
             <animation type="Visible">
                 <effect type="slide" start="0,80" end="0,0" delay="0" time="200" tween="sine" easing="in" />
@@ -2713,7 +2747,7 @@
 
     <include name="Def_Dialog_Info_Navigation_AKL_Rom">
         <control type="grouplist" id="9000">
-            <include>Animation_Scrolltime_Widgets_List</include>
+            <include>Animation_Horizontal_Scrolltime_Menu_Dialog_Info</include>
 
             <bottom>144</bottom>
             <left>DialogInfo_Poster_Left</left>

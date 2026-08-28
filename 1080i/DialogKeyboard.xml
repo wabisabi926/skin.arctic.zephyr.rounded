@@ -4,9 +4,8 @@
 
 
 
-    <onunload condition="Window.IsVisible(Home) + !$EXP[View_Info_Dialog] + !String.IsEmpty(Window(Home).Property(Launch_Search))">SetProperty(keyboard_value,Control.GetLabel(312).index(1)),Home)</onunload>
-
-    <onunload condition="Window.IsVisible(Home) + !$EXP[View_Info_Dialog] + String.IsEmpty(Window(Home).Property(keyboard_value)) + !String.IsEmpty(Window(Home).Property(Launch_Search))">SetFocus(300)</onunload>
+    <onunload condition="Window.IsVisible(Home) + !$EXP[View_Info_Dialog] + !String.IsEmpty(Window(Home).Property(Launch_Search))">SetProperty(keyboard_value,$INFO[Control.GetLabel(312).index(1)],Home)</onunload>
+    <onunload condition="Window.IsVisible(Home) + !$EXP[View_Info_Dialog] + !String.IsEmpty(Window(Home).Property(Launch_Search)) + String.IsEmpty(Window(Home).Property(keyboard_value))">SetFocus(300)</onunload>
 
     <onunload condition="String.IsEmpty(Control.GetLabel(312).index(1)) + String.IsEmpty(Window(Home).Property(keyboard_value)) + !String.IsEmpty(Window(Home).Property(Launch_Search))">ClearProperty(Launch_Search,Home)</onunload>
 
@@ -24,7 +23,7 @@
                 <param name="top" value="114" />
             </include>
 
-            <top>120</top>
+            <top>140</top>
 
             <include content="Def_Dialog_Background">
                 <param name="height" value="522" />
@@ -73,6 +72,7 @@
                 <textcolor>Black70</textcolor>
                 <include>Texture_Dialog_Keyboard</include>
 
+                <onclick condition="!String.IsEmpty(Control.GetLabel(312).index(1))">SetProperty(keyboard_value,Control.GetLabel(312).index(1)),Home)</onclick>
                 <onclick condition="!String.IsEmpty(Control.GetLabel(312).index(1))">RunScript(script.skinvariables,add_skinstring_history=SearchHistory,value=$INFO[Control.GetLabel(312).index(1)])</onclick>
             </control>
 
@@ -457,10 +457,11 @@
                     <control type="radiobutton" id="300">
                         <onup>307</onup>
 
+                        <onclick condition="!String.IsEmpty(Control.GetLabel(312).index(1))">SetProperty(keyboard_value,Control.GetLabel(312).index(1)),Home)</onclick>
                         <onclick condition="!String.IsEmpty(Control.GetLabel(312).index(1))">RunScript(script.skinvariables,add_skinstring_history=SearchHistory,value=$INFO[Control.GetLabel(312).index(1)])</onclick>
 
                         <include content="Texture_Dialog_NumPad">
-                            <param name="icon" value="buttonsdialogs/enabled.png" />
+                            <param name="icon" value="dialog/keyboard/enabled.png" />
                         </include>
                         <include content="Def_Button_Dimensions_Keyboard">
                             <param name="keyboardbuttonwidth" value="370" />
@@ -479,7 +480,7 @@
                     <control type="radiobutton" id="8">
                         <onup>7200</onup>
                         <include content="Texture_Dialog_NumPad">
-                            <param name="icon" value="buttonsdialogs/uninstall.png" />
+                            <param name="icon" value="dialog/keyboard/uninstall.png" />
                         </include>
                         <include content="Def_Button_Dimensions_Keyboard">
                             <param name="keyboardbuttonwidth" value="275" />
