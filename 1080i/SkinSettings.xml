@@ -331,6 +331,19 @@
                     <onclick condition="String.IsEqual(Skin.String(home_search_state),2)">Skin.Reset(home_search_state)</onclick>
                 </control>
 
+                <!-- SHOW/HIDE EMBY MEDIA LIBRARY RAIL - CLEAN ONLY -->
+
+                <control type="button" id="98456" description="Media Library Rail">
+                    <width>1278</width>
+                    <visible>Container(3000).HasFocus(2) + $EXP[Home_Is_Horizontal_Clean] + System.AddonIsEnabled(plugin.service.emby-next-gen)</visible>
+                    <include>Def_Skin_Settings_Level_standard</include>
+                    <include>Def_Settings_Button_Focus_Select_Right_Side</include>
+                    <label>$LOCALIZE[31642]</label>
+                    <label2>$VAR[Label_Setting_Home_MediaLibrary_State]</label2>
+                    <onclick condition="!Skin.HasSetting(hide.home.emby.medialibrary.rail)">Skin.SetBool(hide.home.emby.medialibrary.rail)</onclick>
+                    <onclick condition="Skin.HasSetting(hide.home.emby.medialibrary.rail)">Skin.Reset(hide.home.emby.medialibrary.rail)</onclick>
+                </control>
+
                 <!-- SHOW PICTURE PROFILE -->
 
                 <control type="radiobutton" id="9256" description="profile picture">
