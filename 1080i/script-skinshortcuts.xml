@@ -304,7 +304,7 @@
         <!-- MAIN MENU - TITLE - "WIDGETS" -->
 
                 <control type="button" id="4988">
-                    <visible>String.IsEqual(Window.Property(menuname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window.Property(menuname),mainmenu) | String.IsEqual(Window.Property(menuname),searchdynamenu)</visible>
                     <visible>!String.IsEqual(Container(211).ListItem.Property(skinshortcuts-disabled),True)</visible>
                     <include>Def_Skinshortcuts_Button_Title_Right_Side</include>
                     <label>16106</label>
@@ -316,7 +316,7 @@
                 <!-- =========================================== -->
 
                 <control type="button" id="406" description="Set Widget">
-                    <visible>String.IsEqual(Window.Property(menuname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window.Property(menuname),mainmenu) | String.IsEqual(Window.Property(menuname),searchdynamenu)</visible>
                     <visible>!String.IsEqual(Container(211).ListItem.Property(skinshortcuts-disabled),True)</visible>
                     <!-- <visible>!String.IsEqual(Container(211).ListItem.Label2,MovieHub) + !String.IsEqual(Container(211).ListItem.Label2,TVHub)</visible> -->
                     <include>Def_Skinshortcuts_Button_Menu_Right_Side</include>
@@ -328,8 +328,8 @@
 
                 <control type="button" id="405" description="Set Submenu">
                     <!-- <visible>!String.IsEqual(Container(211).ListItem.Label2,MovieHub) + !String.IsEqual(Container(211).ListItem.Label2,TVHub)</visible> -->
-                    <visible>!String.IsEqual(Container(211).ListItem.Property(skinshortcuts-disabled),True)</visible>
                     <visible>String.IsEqual(Window.Property(menuname),mainmenu)</visible>
+                    <visible>!String.IsEqual(Container(211).ListItem.Property(skinshortcuts-disabled),True)</visible>
                     <include>Def_Skinshortcuts_Button_Menu_Right_Side</include>
                     <label>31083</label>
                 </control>
@@ -337,7 +337,7 @@
         <!-- MAIN MENU - TITLE - MAIN MENU / WIDGETS - "OPTIONS" -->
 
                 <control type="button" id="4989">
-                    <visible>String.IsEqual(Window.Property(menuname),mainmenu) | $EXP[Script_SkinShortcuts_Widget] | String.IsEqual(Window.Property(menuname),searchmenulist)</visible>
+                    <visible>String.IsEqual(Window.Property(menuname),mainmenu) | $EXP[Script_SkinShortcuts_Widget] | String.IsEqual(Window.Property(menuname),searchlistmenu)</visible>
                     <visible>!String.IsEqual(Container(211).ListItem.Property(skinshortcuts-disabled),True)</visible>
                     <include>Def_Skinshortcuts_Button_Title_Right_Side</include>
                     <label>33063</label>
@@ -357,7 +357,7 @@
                 <!-- SEARCH MENU - SET BACKGROUND - SEARCH FALLBACK -->
 
                 <control type="button" id="4990" description="Background">
-                    <visible>String.IsEqual(Window.Property(menuname),searchmenulist)</visible>
+                    <visible>String.IsEqual(Window.Property(menuname),searchlistmenu)</visible>
                     <visible>!String.IsEqual(Container(211).ListItem.Property(skinshortcuts-disabled),True)</visible>
                     <include>Def_Skinshortcuts_Button_Menu_Right_Side</include>
                     <label>$LOCALIZE[31081]</label>
@@ -465,7 +465,7 @@
                     <visible>!String.IsEqual(Container(211).ListItem.Property(skinshortcuts-disabled),True)</visible>
                     <visible>$EXP[Script_SkinShortcuts_Widget]</visible>
                     <!-- <visible>!String.IsEqual(Container(211).ListItem.Property(skinshortcuts-disabled),True)</visible> -->
-                    <!-- <visible>String.EndsWith(Window.Property(menuname),.1) | String.IsEqual(Window.Property(menuname),searchmenulist)</visible> -->
+                    <!-- <visible>String.EndsWith(Window.Property(menuname),.1) | String.IsEqual(Window.Property(menuname),searchlistmenu)</visible> -->
                     <include>Def_Skinshortcuts_Button_Menu_Right_Side</include>
                     <label>$LOCALIZE[31000]</label>
                     <label2>$VAR[Label_Widget_Num_Item]</label2>

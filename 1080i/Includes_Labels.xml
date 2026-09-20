@@ -236,8 +236,13 @@
 
     <!-- LABEL - HOME - TIPS - SEARCH BAR -->
 
-    <variable name="Label_Home_Search_Bar_Tip">
+    <variable name="Label_Home_Search_List_Bar_Tip">
         <value condition="!String.IsEmpty(Control.GetLabel(90009).index(1))">$LOCALIZE[31540]</value>
+        <value condition="String.IsEmpty(Control.GetLabel(90009).index(1))">$LOCALIZE[31636]</value>
+    </variable>
+
+    <variable name="Label_Home_Search_Dynamic_Bar_Tip">
+        <!-- <value condition="!String.IsEmpty(Control.GetLabel(90009).index(1))">$LOCALIZE[31540] $LOCALIZE[31477]</value> -->
         <value condition="String.IsEmpty(Control.GetLabel(90009).index(1))">$LOCALIZE[31636]</value>
     </variable>
 
@@ -382,8 +387,6 @@
         <value condition="Skin.HasSetting(hide.markers)"></value>
         <value condition="[String.IsEqual(ListItem.DBType,set) | ListItem.IsCollection]">[COLOR=$VAR[Color_Indicator_Set_View_List]]&#61898;[/COLOR]</value>
         <value condition="Container.Content(movies) + ListItem.HasVideoVersions + !String.StartsWith(Container.FolderPath,videodb://movies/videoversions)">[COLOR=$VAR[Color_Indicator_Version_View_List]]&#61735;[/COLOR]</value>
-        <!-- <value condition="ListItem.IsPlaying + !Skin.HasSetting(hide.markers.isplaying) + !Player.Paused">[COLOR=$VAR[Color_Indicator_Is_Playing_View_List]]&#62811;[/COLOR]</value> -->
-        <!-- <value condition="ListItem.IsPlaying + !Skin.HasSetting(hide.markers.isplaying) + Player.Paused">[COLOR=$VAR[Color_Indicator_Is_Playing_View_List]]&#62813;[/COLOR]</value> -->
         <value condition="[ListItem.IsResumable | $EXP[IsTVShowInProgress]] + Skin.HasSetting(hide.markers.inprogress)"></value>
         <value condition="ListItem.IsResumable | $EXP[IsTVShowInProgress]">[COLOR=$VAR[Color_Indicator_In_Progress_View_List]]&#61995;[/COLOR]</value>
         <value condition="Integer.IsGreater(ListItem.Playcount,0) + Skin.HasSetting(hide.markers.watched)"></value>
@@ -399,8 +402,6 @@
         <value condition="Skin.HasSetting(hide.markers)"></value>
         <value condition="String.IsEqual(ListItem.DBType,set) | ListItem.IsCollection">[COLOR=Selected]&#61898;[/COLOR]</value>
         <value condition="Container.Content(movies) + ListItem.HasVideoVersions + !String.StartsWith(Container.FolderPath,videodb://movies/videoversions)">[COLOR=Selected]&#61735;[/COLOR]</value>
-        <!-- <value condition="ListItem.IsPlaying + !Skin.HasSetting(hide.markers.isplaying) + !Player.Paused">[COLOR=Selected]&#62811;[/COLOR]</value> -->
-        <!-- <value condition="ListItem.IsPlaying + !Skin.HasSetting(hide.markers.isplaying) + Player.Paused">[COLOR=Selected]&#62813;[/COLOR]</value> -->
         <value condition="[ListItem.IsResumable | $EXP[IsTVShowInProgress]] + Skin.HasSetting(hide.markers.inprogress)"></value>
         <value condition="ListItem.IsResumable | $EXP[IsTVShowInProgress]">[COLOR=Selected]&#61995;[/COLOR]</value>
         <value condition="Integer.IsGreater(ListItem.Playcount,0) + Skin.HasSetting(hide.markers.watched)"></value>
@@ -411,7 +412,6 @@
 
     <variable name="Label_Icon_Status_Poster">
         <value condition="Skin.HasSetting(hide.markers)"></value>
-        <value condition="ListItem.IsPlaying + !Skin.HasSetting(hide.markers.isplaying)">[COLOR=$VAR[Color_Indicator_Status_Poster]]&#62811;[/COLOR]</value>
         <value condition="[ListItem.IsResumable | $EXP[IsTVShowInProgress]] + Skin.HasSetting(hide.markers.inprogress)"></value>
         <value condition="ListItem.IsResumable | $EXP[IsTVShowInProgress]">[COLOR=$VAR[Color_Indicator_Status_Poster]]&#61995;[/COLOR]</value>
         <value condition="Integer.IsGreater(ListItem.Playcount,0) + Skin.HasSetting(hide.markers.watched)"></value>
@@ -2826,9 +2826,13 @@
         <value>$LOCALIZE[31641]</value>
     </variable>
 
-    <variable name="Label_Setting_Home_MediaLibrary_State">
+<variable name="Label_Setting_Home_MediaLibrary_State">
         <value condition="Skin.HasSetting(hide.home.emby.medialibrary.rail)">$LOCALIZE[31386]</value>
         <value>$LOCALIZE[31641]</value>
+    </variable>
+    <variable name="Label_Setting_Home_Header_Search_Type">
+        <value condition="Skin.HasSetting(Show.Home.Search.Type.Dynamic)">$LOCALIZE[31646]</value>
+        <value>$LOCALIZE[31258]</value>
     </variable>
 
     <variable name="Label_Setting_Home_Menu_Style">
