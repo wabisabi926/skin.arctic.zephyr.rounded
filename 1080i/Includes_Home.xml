@@ -1663,9 +1663,9 @@
         <visible>!Skin.HasSetting(hide.widget.title)</visible>
         <visible>![!Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button) + !String.IsEmpty(Window(Home).Property(controls_nowplaying_visible))]</visible>
 
-        <animation effect="fade" start="100" end="30" time="150" condition="!$EXP[Home_Widget_Is_Focus] + Skin.HasSetting(home.style.horizontal.clean)">Conditional</animation>
+        <animation effect="fade" start="100" end="30" time="150" condition="!$EXP[Home_Widget_Is_Focus] + Skin.HasSetting(home.style.horizontal.clean) + !$PARAM[window_search]">Conditional</animation>
 
-        <include content="Animation_Fade_Out_Home_Fullscreen_Widget" condition="Skin.HasSetting(home.style.horizontal.clean)">
+        <include content="Animation_Fade_Out_Home_Fullscreen_Widget" condition="Skin.HasSetting(home.style.horizontal.clean) + !$PARAM[window_search]">
             <param name="condition" value="$PARAM[animation_condition]" />
         </include>
 
@@ -1681,10 +1681,10 @@
         <width>1500</width>
         <left>View_List_Side</left>
 
-        <include content="Def_Top" condition="Skin.HasSetting(home.style.horizontal.clean) + !Skin.HasSetting(hide.widget.title)">
+        <include content="Def_Top" condition="Skin.HasSetting(home.style.horizontal.clean) + !Skin.HasSetting(hide.widget.title) + !$PARAM[window_search]">
             <param name="top" value="-40" />
         </include>
-        <include content="Def_Top" condition="Skin.HasSetting(home.style.flix)">
+        <include content="Def_Top" condition="Skin.HasSetting(home.style.flix) + !$PARAM[window_search]">
             <param name="top" value="-380" />
         </include>
 
