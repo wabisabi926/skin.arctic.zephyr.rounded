@@ -8,9 +8,6 @@
 
     <onunload condition="Window.IsVisible(script-globalsearch.xml)">ClearProperty(GlobalSearchWindowOpen,Home)</onunload>
 
-    <onload condition="!String.IsEmpty(Window(Home).Property(CustomSearchTerm))">RunScript(script.skinvariables,set_editcontrol=90009,window_id=1147,setfocus=340,text=$INFO[Window(Home).Property(CustomSearchTerm)])</onload>
-    <onload condition="!String.IsEmpty(Window(Home).Property(CustomSearchTerm)) + !String.IsEqual(Window(Home).Property(ReplaceWindow),1147)">ClearProperty(CustomSearchTerm,Home)</onload>
-
 	<controls>
         <include>Background_Global</include>
 
@@ -27,10 +24,7 @@
             </control>
         </control>
 
-        <control type="group">
-            <!-- <animation effect="slide" start="0" end="0,30" time="0" condition="true">Conditional</animation> -->
-            <include condition="!Skin.HasSetting(show.home.header.clock.left)">Furniture_Footer_Clock_Right</include>
-        </control>
+        <include condition="!Skin.HasSetting(show.home.header.clock.left)">Furniture_Footer_Clock_Right</include>
 
         <!-- SEARCH BAR -->
 
@@ -40,55 +34,19 @@
 
             <animation effect="fade" time="300" start="0" end="0">Focus</animation>
 
-            <!-- SEARCH BAR WIKIPEDIA -->
+            <!-- SEARCH BAR -->
 
-            <control type="group">
-                <visible>Control.HasFocus(90009)</visible>
+            <include content="Object_Search_Bar">
+                <param name="visible" value="Control.HasFocus(90009)" />
+            </include>
 
-                <top>40</top>
-                <left>80</left>
-                <width>80</width>
-                <height>80</height>
-
-                <control type="image">
-                    <width>590</width>
-                    <height>80</height>
-                    <include>Texture_Bar_Search_Focus</include>
-                </control>
-                <control type="image">
-                    <top>-4</top>
-                    <left>-4</left>
-                    <width>88</width>
-                    <height>88</height>
-                    <include>Texture_Icon_Search_Focus</include>
-                </control>
-            </control>
-            <control type="group">
-                <visible>!Control.HasFocus(90009)</visible>
-                <animation effect="fade" start="100" end="40" condition="true">Conditional</animation>
-
-                <top>40</top>
-                <left>80</left>
-                <width>80</width>
-                <height>80</height>
-
-                <control type="image">
-                    <width>590</width>
-                    <height>80</height>
-                    <include>Texture_Bar_Search_NoFocus</include>
-                </control>
-                <control type="image">
-                    <width>590</width>
-                    <height>80</height>
-                    <texture border="40" colordiffuse="$VAR[Color_Search_Bar_Border]" infill="false">$VAR[border40]</texture>
-                </control>
-                <control type="image">
-                    <top>-4</top>
-                    <left>-4</left>
-                    <width>88</width>
-                    <height>88</height>
-                    <include>Texture_Icon_Search_NoFocus</include>
-                </control>
+            <!-- Search dynamic -->
+            <control type="button" id="333" description="Helper">
+                <include>Def_Hidden_Button</include>
+                <onfocus>SetFocus(399)</onfocus>
+                <onfocus>ClearProperty(Show_Menu_Search,Home)</onfocus>
+                <onfocus>Close</onfocus>
+                <onfocus>AlarmClock(DelayOpenSearhList,ActivateWindow(1148),00:01,silent)</onfocus>
             </control>
 
             <!-- Search Local -->
@@ -183,10 +141,11 @@
             <include content="Object_Footer_Tips">
                 <param name="top" value="120" />
                 <param name="left" value="94" />
-                <param name="label" value="$VAR[Label_Home_Search_List_Bar_Tip]" />
-                <param name="textcolor" value="Black70" />
+                <param name="label" value="$VAR[Label_Feature_Search_List_Bar_Tip]" />
+                <param name="id_label" value="88" />
+                <param name="textcolor" value="$VAR[Color_Label_Tips_Search]" />
                 <param name="colordiffuse" value="$VAR[Color_Icon_Light]" />
-                <param name="visible" value="[Control.HasFocus(90009) | Control.HasFocus(340)] + !$EXP[Dialog_Keyboard_Is_Visible]" />
+                <param name="visible" value="[Control.HasFocus(90009) | Control.HasFocus(340) | Control.HasFocus(3060)] + !$EXP[Dialog_Keyboard_Is_Visible]" />
             </include>
         </control>
 

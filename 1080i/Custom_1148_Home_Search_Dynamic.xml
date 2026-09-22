@@ -2,13 +2,8 @@
 <window type="window" id="1148">
     <defaultcontrol always="true">90009</defaultcontrol>
 
-
-    <onload condition="!String.IsEmpty(Window(Home).Property(CustomSearchTerm))">RunScript(script.skinvariables,set_editcontrol=90009,window_id=1148,setfocus=340,text=$INFO[Window(Home).Property(CustomSearchTerm)])</onload>
-    <onload condition="!String.IsEmpty(Window(Home).Property(CustomSearchTerm)) + !String.IsEqual(Window(Home).Property(ReplaceWindow),1148)">ClearProperty(CustomSearchTerm,Home)</onload>
-
-    <onunload>ClearProperty(TMDbHelper.WidgetContainer,Home)</onunload>
-
     <onload>SetFocus(90009)</onload>
+    <onunload>ClearProperty(TMDbHelper.WidgetContainer,Home)</onunload>
 
 	<controls>
         <include>Background_Global</include>
@@ -26,10 +21,7 @@
             </control>
         </control>
 
-        <control type="group">
-            <!-- <animation effect="slide" start="0" end="0,30" time="0" condition="true">Conditional</animation> -->
-            <include condition="!Skin.HasSetting(show.home.header.clock.left)">Furniture_Footer_Clock_Right</include>
-        </control>
+        <include condition="!Skin.HasSetting(show.home.header.clock.left)">Furniture_Footer_Clock_Right</include>
 
         <!-- WIDGET TITLE DETAIL -->
 
@@ -47,54 +39,9 @@
 
             <!-- SEARCH BAR -->
 
-            <control type="group">
-                <visible>Control.HasFocus(90009)</visible>
-
-                <top>40</top>
-                <left>80</left>
-                <width>80</width>
-                <height>80</height>
-
-                <control type="image">
-                    <width>590</width>
-                    <height>80</height>
-                    <include>Texture_Bar_Search_Focus</include>
-                </control>
-                <control type="image">
-                    <top>-4</top>
-                    <left>-4</left>
-                    <width>88</width>
-                    <height>88</height>
-                    <include>Texture_Icon_Search_Focus</include>
-                </control>
-            </control>
-            <control type="group">
-                <visible>!Control.HasFocus(90009)</visible>
-                <animation effect="fade" start="100" end="50" condition="true">Conditional</animation>
-
-                <top>40</top>
-                <left>80</left>
-                <width>80</width>
-                <height>80</height>
-
-                <control type="image">
-                    <width>590</width>
-                    <height>80</height>
-                    <include>Texture_Bar_Search_NoFocus</include>
-                </control>
-                <control type="image">
-                    <width>590</width>
-                    <height>80</height>
-                    <texture border="40" colordiffuse="$VAR[Color_Search_Bar_Border]" infill="false">$VAR[border40]</texture>
-                </control>
-                <control type="image">
-                    <top>-4</top>
-                    <left>-4</left>
-                    <width>88</width>
-                    <height>88</height>
-                    <include>Texture_Icon_Search_NoFocus</include>
-                </control>
-            </control>
+            <include content="Object_Search_Bar">
+                <param name="visible" value="Control.HasFocus(90009)" />
+            </include>
 
             <!-- SPINNER LOADING -->
 
@@ -162,13 +109,13 @@
 
             <!-- TIPS - FOOTER -->
 
-            <include content="Object_Footer_Tips">
+            <include content="Object_Footer_Duo_Tips">
                 <param name="top" value="120" />
                 <param name="left" value="94" />
                 <param name="label" value="$VAR[Label_Feature_Search_Dynamic_Bar_Tip_2]" />
                 <param name="label2" value="$VAR[Label_Feature_Search_Dynamic_Bar_Tip]" />
                 <param name="id_label" value="88" />
-                <param name="textcolor" value="Black70" />
+                <param name="textcolor" value="$VAR[Color_Label_Tips_Search]" />
                 <param name="colordiffuse" value="$VAR[Color_Icon_Light]" />
                 <param name="visible" value="Control.HasFocus(90009) + !$EXP[Dialog_Keyboard_Is_Visible]" />
             </include>
@@ -217,12 +164,12 @@
 
             <!-- TIPS - KEYBOARD -->
 
-            <include content="Object_Footer_Tips">
+            <include content="Object_Footer_Right_Tips">
                 <param name="top" value="120" />
-                <param name="left" value="764" />
+                <param name="right" value="106" />
                 <param name="label" value="$VAR[Label_Feature_Search_Keyboard_Tip]" />
                 <param name="id_label" value="89" />
-                <param name="textcolor" value="Black70" />
+                <param name="textcolor" value="$VAR[Color_Label_Tips_Search]" />
                 <param name="colordiffuse" value="$VAR[Color_Icon_Light]" />
                 <param name="visible" value="true" />
             </include>
@@ -231,18 +178,17 @@
         <!-- CONTAINER ROW WIDGETS -->
 
         <control type="grouplist" id="6000">
-            <onup>90009</onup>
-
             <include>Animation_Common_Global</include>
             <include>Animation_Vertical_Scrolltime_Widgets_Container</include>
-
-            <itemgap>0</itemgap>
-            <orientation>vertical</orientation>
-            <usecontrolcoords>true</usecontrolcoords>
 
             <height>770</height>
             <bottom>188</bottom>
             <width>1920</width>
+            <onup>90009</onup>
+
+            <itemgap>0</itemgap>
+            <orientation>vertical</orientation>
+            <usecontrolcoords>true</usecontrolcoords>
 
             <include>skinshortcuts-template-search</include>
         </control>
