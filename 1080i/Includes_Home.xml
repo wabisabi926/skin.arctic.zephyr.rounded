@@ -3303,7 +3303,8 @@
                 <orientation>horizontal</orientation>
                 <onup>300</onup>
                 <ondown>$PARAM[first_widget_id]</ondown>
-                <onleft>$PARAM[list_id]</onleft>
+                <onleft condition="String.IsEmpty(Container($PARAM[list_id]).ListItemNoWrap(-1).Label)">9099</onleft>
+                <onleft condition="!String.IsEmpty(Container($PARAM[list_id]).ListItemNoWrap(-1).Label)">$PARAM[list_id]</onleft>
                 <onright>$PARAM[list_id]</onright>
                 <visible>String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$PARAM[submenuVisibility]) + [Integer.IsGreater(Container($PARAM[list_id]).NumItems,0) | Container($PARAM[list_id]).IsUpdating]</visible>
                 <itemlayout width="224" height="146">
