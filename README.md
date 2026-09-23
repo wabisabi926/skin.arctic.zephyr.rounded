@@ -10,6 +10,9 @@ Over the years, many features have been removed, added, redesigned, or completel
 
 <img width="1920" height="1080" alt="screenshot00028" src="https://github.com/user-attachments/assets/735f1c25-d2a8-4709-9f36-2cd0577f8d0c" />
 
+<img width="1995" height="1155" alt="QQ_1790129741984" src="https://github.com/user-attachments/assets/35a48b06-3248-4036-a9ee-f595e04bc6f9" />
+
+
 ## Installation for Kodi Piers:
 
 1. In Kodi Settings > System > Add-ons :
