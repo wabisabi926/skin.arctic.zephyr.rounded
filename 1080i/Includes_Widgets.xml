@@ -83,17 +83,17 @@
 
     <include name="Def_Content_Widget_Weather_Daily_Items">
         <item>
-            <label>$INFO[Weather.Data(Current.Condition)]</label>
+            <label>$INFO[Weather.Conditions]</label>
             <property name="WidgetType">Widget_Type_Weather_Daily</property>
             <property name="Date">$INFO[Window(Weather).Property(Current.FeelsLike),$LOCALIZE[402] ,°]</property>
             <property name="HighTemp">$INFO[Window(Weather).Property(Current.Temperature),[B],[/B]°]</property>
             <property name="Title">[B]$LOCALIZE[19030][/B]</property>
-            <property name="FanartTexture">$INFO[Skin.String(weather.icons.path)]$INFO[Weather.Data(Current.FanartCode),,.png]</property>
-            <property name="Imagepath.Fanart.Animated">$INFO[Skin.String(weather.icons.path)]$INFO[Weather.Data(Current.FanartCode)]/</property>
-            <property name="OutlookTexture">resource://resource.images.weathericons.default/$INFO[Weather.Data(Current.FanartCode),,.png]</property>
-            <property name="FanartCode">$INFO[Weather.Data(Current.FanartCode)]</property>
+            <property name="FanartTexture">$INFO[Skin.String(weather.icons.path),,/]$INFO[Weather.FanartCode,,.png]</property>
+            <property name="Imagepath.Fanart.Animated">$INFO[Skin.String(weather.icons.path),,/]$INFO[Weather.FanartCode]/</property>
+            <property name="OutlookTexture">resource://resource.images.weathericons.default/$INFO[Weather.FanartCode,,.png]</property>
+            <property name="FanartCode">$INFO[Weather.FanartCode]</property>
             <property name="Today">true</property>
-            <visible>!String.IsEmpty(Weather.Data(Current.FanartCode))</visible>
+            <visible>!String.IsEmpty(Weather.FanartCode)</visible>
             <onclick>ActivateWindow(Weather)</onclick>
             <onclick>SetFocus(9100,0,absolute)</onclick>
         </item>
@@ -208,14 +208,14 @@
         <item>
             <label>$INFO[Window(Weather).Property(Hourly.1.Outlook)]</label>
             <property name="WidgetType">Widget_Type_Weather_Hourly</property>
-            <property name="Date">$INFO[Window(Weather).Property(Current.FeelsLike),$LOCALIZE[402] ,°]</property>
+            <property name="Date">$INFO[Window(weather).Property(Hourly.1.ShortDate)]</property>
             <property name="HighTemp">$INFO[Window(Weather).Property(Hourly.1.Temperature),[B],[/B]]</property>
-            <property name="Title">[B]$LOCALIZE[19030][/B]</property>
-            <property name="FanartTexture">$INFO[Skin.String(weather.icons.path)]$INFO[Window(Weather).Property(Hourly.1.FanartCode),,.png]</property>
-            <property name="OutlookTexture">resource://resource.images.weathericons.default/$INFO[Window(Weather).Property(Hourly.1.FanartCode),,.png]</property>
+            <property name="Title">$INFO[Window(Weather).Property(Hourly.1.Time)]</property>
+            <property name="FanartTexture">$INFO[Skin.String(weather.icons.path),,/]$INFO[Weather.FanartCode,,.png]</property>
+            <property name="OutlookTexture">resource://resource.images.weathericons.default/$INFO[Weather.FanartCode,,.png]</property>
+            <property name="FanartCode">$INFO[Weather.FanartCode]</property>
             <property name="Today">true</property>
-            <property name="FanartCode">$INFO[Window(Weather).Property(Hourly.1.FanartCode)]</property>
-            <visible>!String.IsEmpty(Window(Weather).Property(Hourly.1.Outlook))</visible>
+            <visible>!String.IsEmpty(Weather.FanartCode)</visible>
             <onclick>ActivateWindow(Weather)</onclick>
             <onclick>SetFocus(9100,2,absolute)</onclick>
         </item>
@@ -2772,6 +2772,7 @@
         <param name="top" value="$PARAM[top]" default="305" />
         <param name="middle" value="$PARAM[middle]" default="false" />
         <param name="small" value="$PARAM[small]" default="false" />
+        <param name="clearlogo" value="$PARAM[clearlogo]" default="false" />
         <definition>
             <control type="group">
                 <height>$PARAM[height]</height>
@@ -2802,6 +2803,7 @@
         <param name="top" value="$PARAM[top]" default="305" />
         <param name="middle" value="$PARAM[middle]" default="false" />
         <param name="small" value="$PARAM[small]" default="false" />
+        <param name="clearlogo" value="$PARAM[clearlogo]" default="false" />
         <definition>
             <control type="group">
                 <include condition="Skin.HasSetting(items.focus.zoom)">Animation_Widget_Focus_Zoom</include>
