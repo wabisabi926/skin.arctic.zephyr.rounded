@@ -606,6 +606,20 @@
                     <visible>Skin.HasSetting(homemenu.auto.back.to.main)</visible>
                 </control>
 
+                <!-- CHOOSE ACTION ON BACK FROM MAIN MENU -->
+
+                <control type="button" id="12034">
+                    <width>1278</width>
+                    <visible>Container(3000).HasFocus(2)</visible>
+                    <include>Def_Skin_Settings_Level_advanced</include>
+                    <include>Def_Settings_Button_Focus_Select_Right_Side</include>
+                    <label>$LOCALIZE[31652]</label>
+                    <label2>$VAR[Label_Skin_Settings_Back_On_MainMenu]</label2>
+                    <onclick condition="String.IsEmpty(Skin.String(mainmenu_back_action))">Skin.SetString(mainmenu_back_action,1)</onclick>
+                    <onclick condition="String.IsEqual(Skin.String(mainmenu_back_action),1)">Skin.SetString(mainmenu_back_action,2)</onclick>
+                    <onclick condition="String.IsEqual(Skin.String(mainmenu_back_action),2)">Skin.Reset(mainmenu_back_action)</onclick>
+                </control>
+
         <!-- MENU - HOME - WIDGETS -->
 
                 <control type="label" id="9818" description="Backup">
@@ -742,7 +756,7 @@
                     <visible>$EXP[Home_Is_Horizontal]</visible>
                 </control>
 
-                <!-- HORIZONTAL ONLY - ON UP, WHEN AT FIRST WIDGET, DO NOT JUMP BACK TO LAST WIDGET -->
+                <!-- HORIZONTAL ONLY - ON UP - FIRST WIDGET - BACK TO LAST WIDGET (IF DISABLE) - RETURN TO MAIN MENU (IF ENABLE) -->
 
                 <control type="radiobutton" id="12011">
                     <width>1278</width>
@@ -755,7 +769,7 @@
                     <visible>$EXP[Home_Is_Horizontal]</visible>
                 </control>
 
-                <!-- HORIZONTAL ONLY - ON UP, WHEN AT FIRST WIDGET, DO NOT JUMP BACK TO MAIN MENU -->
+                <!-- HORIZONTAL ONLY - ON UP - FIRST WIDGET - JUMP TO MAIN MENU (IF DISABLE) - DO NOTHING (IF ENABLE) -->
 
                 <control type="radiobutton" id="12084">
                     <width>1278</width>
@@ -769,7 +783,7 @@
                     <visible>$EXP[Home_Is_Horizontal]</visible>
                 </control>
 
-                <!-- HORIZONTAL ONLY - ON DOWN, WHEN AT LAST WIDGET, DO NOT JUMP BACK TO FIRST WIDGET -->
+                <!-- HORIZONTAL ONLY - ON DOWN - LAST WIDGET - JUMP TO FIRST WIDGET (IF ENABLE) - RETURN TO MAIN MENU (IF DISABLE) -->
 
                 <control type="radiobutton" id="12085">
                     <width>1278</width>
@@ -782,7 +796,21 @@
                     <visible>$EXP[Home_Is_Horizontal]</visible>
                 </control>
 
-                <!-- VERTICAL ONLY - ON UP/DOWN AT FIRST/LAST WIDGET, GO TO LAST/FIRST WIDGET -->
+                <!-- HORIZONTAL ONLY - ON DOWN - LAST WIDGET - JUMP TO MAIN MENU (IF DISABLE) - DO NOTHING (IF ENABLE) -->
+
+                <control type="radiobutton" id="12082">
+                    <width>1278</width>
+                    <visible>Container(3000).HasFocus(2)</visible>
+                    <include>Def_Skin_Settings_Level_advanced</include>
+                    <include>Def_Settings_Button_Focus_Select_Right_Side</include>
+                    <label>$LOCALIZE[31219]$LOCALIZE[31650]</label>
+                    <selected>Skin.HasSetting(disable.widgets.ondown.go.back.to.main.menu)</selected>
+                    <onclick>Skin.ToggleSetting(disable.widgets.ondown.go.back.to.main.menu)</onclick>
+                    <enable>!Skin.HasSetting(enable.widgets.ondown.go.back.to.first.item)</enable>
+                    <visible>$EXP[Home_Is_Horizontal]</visible>
+                </control>
+
+                <!-- VERTICAL ONLY - ON UP/DOWN AT FIRST/LAST WIDGET, GO TO LAST/FIRST WIDGET - RETURN TO MAIN MENU IF DISABLE -->
 
                 <control type="radiobutton" id="12030">
                     <width>1278</width>
@@ -793,6 +821,21 @@
                     <selected>Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget)</selected>
                     <onclick>Skin.ToggleSetting(enable.widgets.onup.go.back.to.last.widget)</onclick>
                     <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                    <visible>$EXP[Home_Is_Vertical]</visible>
+                </control>
+
+                <!-- VERTICAL ONLY - ON UP/DOWN AT FIRST/LAST WIDGET, GO TO LAST/FIRST WIDGET (IF DISABLE) - DO NOTHING (IF ENABLE) -->
+
+                <control type="radiobutton" id="12037">
+                    <width>1278</width>
+                    <visible>Container(3000).HasFocus(2)</visible>
+                    <include>Def_Skin_Settings_Level_advanced</include>
+                    <include>Def_Settings_Button_Focus_Select_Right_Side</include>
+                    <label>$LOCALIZE[31219]$LOCALIZE[31651]</label>
+                    <selected>Skin.HasSetting(disable.widgets.onup.ondown.jump)</selected>
+                    <onclick>Skin.ToggleSetting(disable.widgets.onup.ondown.jump)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                    <enable>Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget)</enable>
                     <visible>$EXP[Home_Is_Vertical]</visible>
                 </control>
 
@@ -833,18 +876,6 @@
                     <selected>Skin.HasSetting(widget.items.onback.go.back.to.position.0.setfocus.home)</selected>
                     <onclick>Skin.ToggleSetting(widget.items.onback.go.back.to.position.0.setfocus.home)</onclick>
                     <visible>Skin.HasSetting(widget.items.onback.go.back.to.position.0)</visible>
-                </control>
-
-                <!-- IF HOME MENU IS FOCUSED, JUMP TO WIDGETS ON BACK -->
-
-                <control type="radiobutton" id="12033">
-                    <width>1278</width>
-                    <visible>Container(3000).HasFocus(2)</visible>
-                    <include>Def_Skin_Settings_Level_advanced</include>
-                    <include>Def_Settings_Button_Focus_Select_Right_Side</include>
-                    <label>$LOCALIZE[31437]</label>
-                    <selected>Skin.HasSetting(home.onback.go.to.first.widget)</selected>
-                    <onclick>Skin.ToggleSetting(home.onback.go.to.first.widget)</onclick>
                 </control>
 
             <!-- MENU - RSS -->
