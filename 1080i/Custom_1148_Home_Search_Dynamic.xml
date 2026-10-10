@@ -2,7 +2,7 @@
 <window type="window" id="1148">
     <defaultcontrol always="false">90009</defaultcontrol>
 
-    <!-- <onload condition="String.IsEmpty(Control.GetLabel(90009).index(1))">SetFocus(90009)</onload> -->
+    <onload>ClearProperty(focus_on_back_id,Home)</onload>
     <onunload>ClearProperty(TMDbHelper.WidgetContainer,Home)</onunload>
 
 	<controls>
@@ -15,7 +15,7 @@
             <include>Animation_Common_Fade_Out</include>
 
             <control type="group">
-                <visible>!$EXP[View_Info_Dialog] + !Control.HasFocus(9992)</visible>
+                <visible>!$EXP[View_Info_Dialog] + !$EXP[View_Search_Focus_Keyboard]</visible>
                 <include>Animation_Feature_NowPlaying</include>
                 <include condition="!Skin.HasSetting(hide.furniture.nowplaying.views)">Furniture_Header_NowPlaying</include>
             </control>
@@ -46,7 +46,7 @@
             <!-- SPINNER LOADING -->
 
             <control type="group">
-                <visible>Window.IsVisible(DialogBusy.xml) | $EXP[View_Search_Is_Updating]</visible>
+                <visible>Window.IsVisible(DialogBusy.xml) | [$EXP[View_Search_Is_Updating] + !String.IsEmpty(Control.GetLabel(90009).index(1))]</visible>
                 <include content="Animation_Common_Delay_Fade_In"><param name="delay" value="200" /></include>
 
                 <top>30</top>
@@ -89,11 +89,8 @@
                     <ondown>SetProperty(PreviousSearchTerm,$INFO[Control.GetLabel(9099).index(1)])</ondown>
                     <ondown condition="!String.IsEmpty(Control.GetLabel(90009).index(1))">RunScript(script.skinvariables,add_skinstring_history=SearchHistory,value=$INFO[Control.GetLabel(90009).index(1)])</ondown>
 
-                    <ondown condition="!Integer.IsEqual(Container(6000).NumItems,0)">382</ondown>
-                    <onup condition="!Integer.IsEqual(Container(6000).NumItems,0)">381</onup>
-
-                    <onup condition="Integer.IsEqual(Container(6000).NumItems,0)">Close</onup>
-                    <ondown condition="Integer.IsEqual(Container(6000).NumItems,0)">Close</ondown>
+                    <onup>Close</onup>
+                    <ondown>6000</ondown>
 
                     <onright>9992</onright>
                     <onleft>9992</onleft>
@@ -110,14 +107,14 @@
                 <param name="id_label" value="88" />
                 <param name="textcolor" value="$VAR[Color_Label_Tips_Search]" />
                 <param name="colordiffuse" value="$VAR[Color_Icon_Light]" />
-                <param name="visible" value="Control.HasFocus(90009) + !$EXP[Dialog_Keyboard_Is_Visible]" />
+                <param name="visible" value="Control.HasFocus(90009) + !$EXP[Dialog_Keyboard_Is_Visible] + !Skin.HasSetting(hide.search.feature.tips)" />
             </include>
         </control>
 
         <!-- MINI KEYBOARD -->
 
         <control type="group">
-            <visible allowhiddenfocus="true">Control.HasFocus(9992)</visible>
+            <visible allowhiddenfocus="true">$EXP[View_Search_Focus_Keyboard]</visible>
             <visible>!Window.IsVisible(DialogNotification.xml)</visible>
             <visible>!Window.IsVisible(DialogExtendedProgressBar.xml)</visible>
             <visible>!Window.IsVisible(DialogVolumeBar.xml)</visible>
@@ -127,44 +124,67 @@
             <include>Animation_Common_Fade_In</include>
             <include>Animation_Common_Fade_Out</include>
 
-            <!-- BACKGROUND -->
-
             <control type="group">
                 <top>40</top>
-                <left>750</left>
+                <left>870</left>
                 <height>80</height>
+
+                <!-- BACKGROUND -->
 
                 <control type="group">
                     <control type="image">
-                        <width>1090</width>
-                        <height>80</height>
+                        <width>970</width>
+                        <height>100</height>
                         <include>Texture_Keyboard_Search_Background</include>
                         <animation effect="fade" start="100" end="90" condition="true">Conditional</animation>
                     </control>
                     <control type="image">
-                        <width>1090</width>
-                        <height>80</height>
+                        <width>970</width>
+                        <height>100</height>
                         <texture border="40" colordiffuse="$VAR[Color_Search_Bar_Border]" infill="false">$VAR[border40]</texture>
                         <animation effect="fade" start="100" end="50" condition="true">Conditional</animation>
                     </control>
                 </control>
+
+                <!-- KEYBOARD -->
+
                 <control type="group">
-                    <top>22</top>
-                    <left>24</left>
+                    <top>13</top>
+                    <left>26</left>
                     <include>Search_Panel_Keyboard</include>
+                </control>
+
+                <!-- LINE VERTICAL -->
+
+                <control type="image">
+                    <left>566</left>
+                    <top>17</top>
+                    <height>64</height>
+                    <width>1</width>
+                    <include>Texture_Dialog_Line</include>
+                </control>
+
+                <!-- LINE VERTICAL -->
+
+                <control type="image">
+                    <left>806</left>
+                    <top>17</top>
+                    <height>64</height>
+                    <width>1</width>
+                    <include>Texture_Dialog_Line</include>
                 </control>
             </control>
 
             <!-- TIPS - KEYBOARD -->
 
             <include content="Object_Footer_Right_Tips">
-                <param name="top" value="120" />
+                <param name="top" value="134" />
                 <param name="right" value="106" />
                 <param name="label" value="$VAR[Label_Feature_Search_Keyboard_Tip]" />
                 <param name="id_label" value="89" />
                 <param name="textcolor" value="$VAR[Color_Label_Tips_Search]" />
                 <param name="colordiffuse" value="$VAR[Color_Icon_Light]" />
-                <param name="visible" value="true" />
+                <param name="visible" value="!Skin.HasSetting(hide.search.feature.tips) + Integer.IsEqual(Container(6000).NumItems,0)" />
             </include>
         </control>
 
@@ -336,6 +356,7 @@
                             <label2>$INFO[Container(5001).NumItems]</label2>
                             <icon>special://skin/extras/icons/film.png</icon>
                             <onclick>Setfocus(5001)</onclick>
+                            <onclick>SetProperty(TMDbHelper.WidgetContainer,5001,Home)</onclick>
                             <visible>Control.IsVisible(5001)</visible>
                         </item>
                         <!-- tvshows -->
@@ -344,6 +365,7 @@
                             <label2>$INFO[Container(5002).NumItems]</label2>
                             <icon>special://skin/extras/icons/tv.png</icon>
                             <onclick>Setfocus(5002)</onclick>
+                            <onclick>SetProperty(TMDbHelper.WidgetContainer,5002,Home)</onclick>
                             <visible>Control.IsVisible(5002)</visible>
                         </item>
                         <!-- episodes -->
@@ -352,6 +374,7 @@
                             <label2>$INFO[Container(5003).NumItems]</label2>
                             <icon>special://skin/extras/icons/tv.png</icon>
                             <onclick>Setfocus(5003)</onclick>
+                            <onclick>SetProperty(TMDbHelper.WidgetContainer,5003,Home)</onclick>
                             <visible>Control.IsVisible(5003)</visible>
                         </item>
                         <!-- Actor -->
@@ -360,6 +383,7 @@
                             <label2>$INFO[Container(5004).NumItems]</label2>
                             <icon>special://skin/extras/icons/artist.png</icon>
                             <onclick>Setfocus(5004)</onclick>
+                            <onclick>SetProperty(TMDbHelper.WidgetContainer,5004,Home)</onclick>
                             <visible>Control.IsVisible(5004)</visible>
                         </item>
                         <!-- director -->
@@ -368,6 +392,7 @@
                             <label2>$INFO[Container(5005).NumItems]</label2>
                             <icon>special://skin/extras/icons/director.png</icon>
                             <onclick>Setfocus(5005)</onclick>
+                            <onclick>SetProperty(TMDbHelper.WidgetContainer,5005,Home)</onclick>
                             <visible>Control.IsVisible(5005)</visible>
                         </item>
                         <!-- albums -->
@@ -376,6 +401,7 @@
                             <label2>$INFO[Container(5006).NumItems]</label2>
                             <icon>special://skin/extras/icons/songs.png</icon>
                             <onclick>Setfocus(5006)</onclick>
+                            <onclick>SetProperty(TMDbHelper.WidgetContainer,5006,Home)</onclick>
                             <visible>Control.IsVisible(5006)</visible>
                         </item>
                         <!-- artists -->
@@ -384,6 +410,7 @@
                             <label2>$INFO[Container(5007).NumItems]</label2>
                             <icon>special://skin/extras/icons/artist.png</icon>
                             <onclick>Setfocus(5007)</onclick>
+                            <onclick>SetProperty(TMDbHelper.WidgetContainer,5007,Home)</onclick>
                             <visible>Control.IsVisible(5007)</visible>
                         </item>
                         <!-- songs -->
@@ -392,6 +419,7 @@
                             <label2>$INFO[Container(5008).NumItems]</label2>
                             <icon>special://skin/extras/icons/song.png</icon>
                             <onclick>Setfocus(5008)</onclick>
+                            <onclick>SetProperty(TMDbHelper.WidgetContainer,5008,Home)</onclick>
                             <visible>Control.IsVisible(5008)</visible>
                         </item>
                         <!-- musicvideos -->
@@ -400,6 +428,7 @@
                             <label2>$INFO[Container(5009).NumItems]</label2>
                             <icon>special://skin/extras/icons/musicvideo.png</icon>
                             <onclick>Setfocus(5009)</onclick>
+                            <onclick>SetProperty(TMDbHelper.WidgetContainer,5009,Home)</onclick>
                             <visible>Control.IsVisible(5009)</visible>
                         </item>
                         <!-- musicvideos artists -->
@@ -408,6 +437,7 @@
                             <label2>$INFO[Container(5010).NumItems]</label2>
                             <icon>special://skin/extras/icons/musicvideo.png</icon>
                             <onclick>Setfocus(5010)</onclick>
+                            <onclick>SetProperty(TMDbHelper.WidgetContainer,5010,Home)</onclick>
                             <visible>Control.IsVisible(5010)</visible>
                         </item>
                         <!-- tmdb movies -->
@@ -416,6 +446,7 @@
                             <label2>$INFO[Container(5011).NumItems]</label2>
                             <icon>special://skin/extras/icons/film.png</icon>
                             <onclick>Setfocus(5011)</onclick>
+                            <onclick>SetProperty(TMDbHelper.WidgetContainer,5011,Home)</onclick>
                             <visible>Control.IsVisible(5011)</visible>
                         </item>
                         <!-- tmdb tvshows -->
@@ -424,6 +455,7 @@
                             <label2>$INFO[Container(5012).NumItems]</label2>
                             <icon>special://skin/extras/icons/tv.png</icon>
                             <onclick>Setfocus(5012)</onclick>
+                            <onclick>SetProperty(TMDbHelper.WidgetContainer,5012,Home)</onclick>
                             <visible>Control.IsVisible(5012)</visible>
                         </item>
                         <!-- tmdb sets -->
@@ -432,6 +464,7 @@
                             <label2>$INFO[Container(5013).NumItems]</label2>
                             <icon>special://skin/extras/icons/collection.png</icon>
                             <onclick>Setfocus(5013)</onclick>
+                            <onclick>SetProperty(TMDbHelper.WidgetContainer,5013,Home)</onclick>
                             <visible>Control.IsVisible(5013)</visible>
                         </item>
                         <!-- tmdb people -->
@@ -440,6 +473,7 @@
                             <label2>$INFO[Container(5014).NumItems]</label2>
                             <icon>special://skin/extras/icons/artist.png</icon>
                             <onclick>Setfocus(5014)</onclick>
+                            <onclick>SetProperty(TMDbHelper.WidgetContainer,5014,Home)</onclick>
                             <visible>Control.IsVisible(5014)</visible>
                         </item>
                     </content>
@@ -472,54 +506,20 @@
             </control>
         </control>
 
-        <!-- BUTTON TO FOCUS LAST ITEM ON LIST -->
-
-        <control type="button" id="381">
-            <visible allowhiddenfocus="true">false</visible>
-            <height>1</height>
-            <onfocus condition="Control.IsVisible(5001)">SetFocus(5001,0,absolute)</onfocus>
-            <onfocus condition="Control.IsVisible(5002)">SetFocus(5002,0,absolute)</onfocus>
-            <onfocus condition="Control.IsVisible(5003)">SetFocus(5003,0,absolute)</onfocus>
-            <onfocus condition="Control.IsVisible(5004)">SetFocus(5004,0,absolute)</onfocus>
-            <onfocus condition="Control.IsVisible(5005)">SetFocus(5005,0,absolute)</onfocus>
-            <onfocus condition="Control.IsVisible(5006)">SetFocus(5006,0,absolute)</onfocus>
-            <onfocus condition="Control.IsVisible(5007)">SetFocus(5007,0,absolute)</onfocus>
-            <onfocus condition="Control.IsVisible(5008)">SetFocus(5008,0,absolute)</onfocus>
-            <onfocus condition="Control.IsVisible(5009)">SetFocus(5009,0,absolute)</onfocus>
-            <onfocus condition="Control.IsVisible(5010)">SetFocus(5010,0,absolute)</onfocus>
-            <onfocus condition="Control.IsVisible(5011)">SetFocus(5011,0,absolute)</onfocus>
-            <onfocus condition="Control.IsVisible(5012)">SetFocus(5012,0,absolute)</onfocus>
-            <onfocus condition="Control.IsVisible(5013)">SetFocus(5013,0,absolute)</onfocus>
-            <onfocus condition="Control.IsVisible(5014)">SetFocus(5014,0,absolute)</onfocus>
-        </control>
-
-        <!-- BUTTON TO FOCUS FIRST ITEM ON LIST -->
-
-        <control type="button" id="382">
-            <visible allowhiddenfocus="true">false</visible>
-            <height>1</height>
-            <onfocus condition="Control.IsVisible(5014)">SetFocus(5014,0,absolute)</onfocus>
-            <onfocus condition="Control.IsVisible(5013)">SetFocus(5013,0,absolute)</onfocus>
-            <onfocus condition="Control.IsVisible(5012)">SetFocus(5012,0,absolute)</onfocus>
-            <onfocus condition="Control.IsVisible(5011)">SetFocus(5011,0,absolute)</onfocus>
-            <onfocus condition="Control.IsVisible(5010)">SetFocus(5010,0,absolute)</onfocus>
-            <onfocus condition="Control.IsVisible(5009)">SetFocus(5009,0,absolute)</onfocus>
-            <onfocus condition="Control.IsVisible(5008)">SetFocus(5008,0,absolute)</onfocus>
-            <onfocus condition="Control.IsVisible(5007)">SetFocus(5007,0,absolute)</onfocus>
-            <onfocus condition="Control.IsVisible(5006)">SetFocus(5006,0,absolute)</onfocus>
-            <onfocus condition="Control.IsVisible(5005)">SetFocus(5005,0,absolute)</onfocus>
-            <onfocus condition="Control.IsVisible(5004)">SetFocus(5004,0,absolute)</onfocus>
-            <onfocus condition="Control.IsVisible(5003)">SetFocus(5003,0,absolute)</onfocus>
-            <onfocus condition="Control.IsVisible(5002)">SetFocus(5002,0,absolute)</onfocus>
-            <onfocus condition="Control.IsVisible(5001)">SetFocus(5001,0,absolute)</onfocus>
-        </control>
-
         <!-- BUTTON TO FOCUS PANEL RESULT -->
 
         <control type="button" id="383">
             <visible allowhiddenfocus="true">false</visible>
-            <height>1</height>
+            <include>Def_Hidden_Button</include>
             <onfocus>SetFocus(6060)</onfocus>
+        </control>
+
+        <!-- BUTTON TO FOCUS 1ST ITEM ON BACK -->
+
+        <control type="button" id="384">
+            <visible allowhiddenfocus="true">false</visible>
+            <include>Def_Hidden_Button</include>
+            <onfocus>SetFocus($INFO[Window(Home).Property(focus_on_back_id)],0,absolute)</onfocus>
         </control>
     </controls>
 </window>

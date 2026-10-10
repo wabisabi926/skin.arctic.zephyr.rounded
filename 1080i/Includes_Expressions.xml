@@ -14,6 +14,10 @@
     | [String.IsEqual(Window(Home).property(SelectType),recordlabel_logos) + String.IsEqual(Skin.String(recordlabel.logos.name),ListItem.Label)]
     | [String.IsEqual(Window(Home).property(SelectType),game_logos) + String.IsEqual(Skin.String(game.logos.name),ListItem.Label)]</expression>
 
+    <!-- PLAYER MUSIC VIDEO IS FULL SCREEN -->
+
+    <expression name="Player_Music_Video_Is_FullScreen">[VideoPlayer.IsFullscreen | Window.IsVisible(MusicVisualisation.xml)]</expression>
+
     <!-- OSD PVR SWITCH CHANNEL -->
 
     <expression name="OSD_PVR_Channel_Switch">[[VideoPlayer.Content(livetv) + !Window.Isvisible(videoosd)] + [!String.IsEmpty(PVR.ChannelNumberInput) | Player.ShowInfo | Window.IsVisible(DialogFullScreenInfo.xml)]]</expression>
@@ -204,12 +208,12 @@
 
     <!-- VIEW TYPE -->
 
-    <expression name="View_Flix">[Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(523) | Control.IsVisible(524) | Control.IsVisible(526)]</expression>
+    <expression name="View_Flix">[Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(523) | Control.IsVisible(524) | Control.IsVisible(528)]</expression>
     <expression name="View_List">Control.IsVisible(50) | Control.IsVisible(550) | Control.IsVisible(56) | Control.IsVisible(57)</expression>
     <expression name="View_Fanart">Control.IsVisible(547) | Control.IsVisible(557) | Control.IsVisible(56) | Control.IsVisible(57)</expression>
     <expression name="View_Poster">Control.IsVisible(55) | Control.IsVisible(509) | Control.IsVisible(517) | Control.IsVisible(519)</expression>
 
-<expression name="View_Settings">[$EXP[View_Kodi_Settings] | Window.IsVisible(MyPVRRecordings.xml) | Window.IsVisible(MyPVRSearch.xml) | Window.IsVisible(MyWeather.xml) | Window.IsVisible(MyPVRTimers.xml) | [Window.IsVisible(MyPVRChannels.xml) + !Control.IsVisible(526) + !Window.IsVisible(DialogPVRInfo.xml)] | Window.IsVisible(MyPVRProviders.xml) | Window.IsVisible(MyMusicPlaylistEditor.xml) | [Window.IsVisible(MyPVRGuide.xml) + !Window.IsVisible(DialogPVRInfo.xml)] | $EXP[View_Search_Dynamic] | $EXP[View_Search_List]]</expression>
+    <expression name="View_Settings">[$EXP[View_Kodi_Settings] | Window.IsVisible(MyPVRRecordings.xml) | Window.IsVisible(MyPVRSearch.xml) | Window.IsVisible(MyWeather.xml) | Window.IsVisible(MyPVRTimers.xml) | [Window.IsVisible(MyPVRChannels.xml) + !Control.IsVisible(528) + !Window.IsVisible(DialogPVRInfo.xml)] | Window.IsVisible(MyPVRProviders.xml) | Window.IsVisible(MyMusicPlaylistEditor.xml) | [Window.IsVisible(MyPVRGuide.xml) + !Window.IsVisible(DialogPVRInfo.xml)] | $EXP[View_Search_Dynamic] | $EXP[View_Search_List]]</expression>
 
     <expression name="View_Kodi_Settings">[Window.IsVisible(AddonBrowser.xml) | Window.IsVisible(SettingsSystemInfo.xml) | Window.IsVisible(SettingsCategory.xml) | Window.IsVisible(Settings.xml) | Window.IsVisible(SkinSettings.xml) | Window.IsVisible(service-CoreELEC-Settings-mainWindow.xml) | Window.IsVisible(service-LibreELEC-Settings-mainWindow.xml) | Window.IsVisible(SettingsProfile.xml) | Window.IsVisible(EventLog.xml) | Window.IsVisible(FileManager.xml)]</expression>
 
@@ -218,10 +222,12 @@
     <expression name="View_Search_List">[Window.IsVisible(1147) + !$EXP[View_Info_Dialog]]</expression>
 
     <expression name="View_Search_Dynamic">[Window.IsVisible(1148) + !$EXP[View_Info_Dialog]]</expression>
-    
+
     <expression name="View_Search_Is_Updating">[Container(5001).IsUpdating | Container(5002).IsUpdating | Container(5003).IsUpdating | Container(5004).IsUpdating | Container(5005).IsUpdating | Container(5006).IsUpdating | Container(5007).IsUpdating | Container(5008).IsUpdating | Container(5009).IsUpdating | Container(5010).IsUpdating | Container(5011).IsUpdating | Container(5012).IsUpdating | Container(5013).IsUpdating | Container(5014).IsUpdating]</expression>
-    
-    <expression name="View_Search_Panel_Result">[Control.HasFocus(9992) | Control.HasFocus(6060) | Control.HasFocus(383)]</expression>
+
+    <expression name="View_Search_Panel_Result">[$EXP[View_Search_Focus_Keyboard] | Control.HasFocus(6060) | Control.HasFocus(383)]</expression>
+
+    <expression name="View_Search_Focus_Keyboard">[Control.HasFocus(9992) | Control.HasFocus(9994) | Control.HasFocus(9996)]</expression>
 
     <expression name="View_Search_Background">[$EXP[Home_Search_Is_Focus] | $EXP[View_Search_Dynamic] | $EXP[View_Search_List]]</expression>
 

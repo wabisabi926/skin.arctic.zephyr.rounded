@@ -3166,16 +3166,13 @@
         <onclick>Skin.SetBool(enable_widgets_to_position_0_onback_menu)</onclick>
 
         <!-- Menu Horizontal -->
-        <onclick>Skin.SetBool(disable.widgets.onup.go.back.to.last.item)</onclick>
-        <onclick>Skin.SetBool(enable.widgets.ondown.go.back.to.first.item)</onclick>
+        <onclick>Skin.SetString(horizontal_up_action,mainmenu)</onclick>
+        <onclick>Skin.SetString(horizontal_down_action,firstwidget)</onclick>
 
         <!-- Menu Vertical -->
-        <onclick>Skin.SetBool(enable.widgets.ondown.go.back.to.first.item)</onclick>
-        <onclick>Skin.Reset(enable.onleft.go.to.last.item.widget)</onclick>
+        <onclick>Skin.SetString(vertical_updown_action,lastfirstwidget)</onclick>
 
         <!-- On Back -->
-        <onclick>Skin.SetBool(widget.items.onback.go.back.to.position.0)</onclick>
-        <onclick>Skin.Reset(widget.items.onback.go.back.to.position.0.setfocus.home)</onclick>
         <onclick>Skin.SetString(mainmenu_back_action,1)</onclick>
 
         <!-- HOME FLIX PREVIEW -->
@@ -3554,16 +3551,13 @@
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetBool(enable_widgets_to_position_0_onback_menu)</onload>
 
         <!-- Menu Horizontal -->
-        <onload condition="!Skin.HasSetting(startup.init)">Skin.SetBool(disable.widgets.onup.go.back.to.last.item)</onload>
-        <onload condition="!Skin.HasSetting(startup.init)">Skin.SetBool(enable.widgets.ondown.go.back.to.first.item)</onload>
+        <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(horizontal_up_action,mainmenu)</onload>
+        <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(horizontal_down_action,firstwidget)</onload>
 
         <!-- Menu Vertical -->
-        <onload condition="!Skin.HasSetting(startup.init)">Skin.SetBool(enable.widgets.onup.go.back.to.last.widget)</onload>
-        <!-- <onload condition="!Skin.HasSetting(startup.init)">Skin.Reset(enable.onleft.go.to.last.item.widget)</onload> -->
+        <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(vertical_updown_action,lastfirstwidget)</onload>
 
         <!-- On Back -->
-        <onload condition="!Skin.HasSetting(startup.init)">Skin.SetBool(widget.items.onback.go.back.to.position.0)</onload>
-        <!-- <onload condition="!Skin.HasSetting(startup.init)">Skin.SetBool(widget.items.onback.go.back.to.position.0.setfocus.home)</onload> -->
         <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(mainmenu_back_action,1)</onload>
 
         <!-- HOME FLIX PREVIEW -->
@@ -4017,15 +4011,15 @@
     </include>
 
     <include name="Overlay_InfoLabel">
-            <control type="button" id="$PARAM[id]">
-                <nested />
-                <texturenofocus colordiffuse="FF141414">common/white.png</texturenofocus>
-                <height>26</height>
-                <font>Tiny</font>
-                <align>left</align>
-                <textcolor>magenta</textcolor>
-                <width>auto</width>
-            </control>
+        <control type="button" id="$PARAM[id]">
+            <nested />
+            <texturenofocus colordiffuse="FF141414">common/white.png</texturenofocus>
+            <height>26</height>
+            <font>Tiny</font>
+            <align>left</align>
+            <textcolor>magenta</textcolor>
+            <width>auto</width>
+        </control>
     </include>
 
     <include name="Def_Views_509_514_Center_Info">

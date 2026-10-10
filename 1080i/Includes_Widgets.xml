@@ -1083,7 +1083,6 @@
             <visible>[Container($PARAM[id]).IsUpdating | !Integer.IsEqual(Container($PARAM[id]).NumItems,0) | $PARAM[altvisible]]</visible>
             <visible>$PARAM[visible]</visible>
 
-            <animation effect="fade" start="100" end="0" time="0" condition="Container($PARAM[id]).IsUpdating + $PARAM[busy_visible]">Conditional</animation>
             <include>Animation_Horizontal_Scrolltime_Widgets_List</include>
 
             <top>60</top>
@@ -1091,22 +1090,16 @@
             <right>0</right>
             <height>325</height>
 
-            <onfocus condition="$EXP[Has_Home_Menu_Auto_Slide_Out_Animation]">CancelAlarm(slide_out_setfocus_2011,true)</onfocus>
-
             <!-- SET TMDB WIDGET CONTAINER -->
 
             <onfocus>SetProperty(TMDbHelper.WidgetContainer,$PARAM[id],Home)</onfocus>
 
-            <onunfocus>ClearProperty(nowplaying.auto.show.timer,Home)</onunfocus>
-            <onunfocus>ClearProperty(HomeLastWidgetFocus,Home)</onunfocus>
+            <!-- ON BACK -->
 
-            <!-- MAIN MENU : FOCUS IF INACTIVITY -->
+            <onback condition="!Integer.IsEqual(Container($PARAM[id]).Position,0)">SetProperty(focus_on_back_id,$PARAM[id],Home)</onback>
+            <onback condition="!Integer.IsEqual(Container($PARAM[id]).Position,0)">384</onback>
+            <onback condition="Integer.IsEqual(Container($PARAM[id]).Position,0)">90009</onback>
 
-            <onfocus condition="Window.IsVisible(Home) + Skin.HasSetting(homemenu.auto.back.to.main) + !Skin.HasSetting(homemenu.auto.back.to.main.only.from.submenu)">SetProperty(focus_main_menu_timer,1,Home)</onfocus>
-
-            <onback>90009</onback>
-
-            <focusposition>0</focusposition>
             <movement>$PARAM[movement]</movement>
             <orientation>$PARAM[orientation]</orientation>
         </definition>
@@ -1195,7 +1188,6 @@
             <!-- SET TMDB WIDGET CONTAINER -->
 
             <onfocus>SetProperty(TMDbHelper.WidgetContainer,$PARAM[id],Home)</onfocus>
-            <!-- <onfocus condition="!String.IsEqual(System.CurrentControlID,Window(Home).Property(TMDBHelper.WidgetContainer)) | String.IsEmpty(Window(Home).Property(TMDBHelper.WidgetContainer))">SetProperty(TMDbHelper.WidgetContainer,$PARAM[id],Home)</onfocus> -->
 
             <onfocus>SetProperty(HomeLastWidgetFocus,$PARAM[id],Home)</onfocus>
 
@@ -1219,33 +1211,22 @@
             <onfocus condition="Integer.IsGreater(Container($PARAM[idshort]9).NumItems,0) + Control.IsVisible($PARAM[idshort]9)">SetProperty(LastId,$PARAM[idshort]9,Home)</onfocus>
             <onfocus condition="Integer.IsGreater(Container($PARAM[idshort]10).NumItems,0) + Control.IsVisible($PARAM[idshort]10)">SetProperty(LastId,$PARAM[idshort]10,Home)</onfocus>
 
-            <onback condition="[!Integer.IsEqual(Container($PARAM[id]).Position,0) | Container($PARAM[id]).HasPrevious] + !Skin.HasSetting(widget.items.onback.go.back.to.position.0)">PageUp</onback>
+            <onback condition="[!Integer.IsEqual(Container($PARAM[id]).Position,0) | Container($PARAM[id]).HasPrevious]">PageUp</onback>
+            <onback condition="[!Integer.IsEqual(Container($PARAM[id]).Position,0) | Container($PARAM[id]).HasPrevious]">PageUp</onback>
+            <onback condition="[!Integer.IsEqual(Container($PARAM[id]).Position,0) | Container($PARAM[id]).HasPrevious]">PageUp</onback>
 
-            <onback condition="[!Integer.IsEqual(Container($PARAM[id]).Position,0) | Container($PARAM[id]).HasPrevious] + !Skin.HasSetting(widget.items.onback.go.back.to.position.0)">PageUp</onback>
-
-            <onback condition="[!Integer.IsEqual(Container($PARAM[id]).Position,0) | Container($PARAM[id]).HasPrevious] + !Skin.HasSetting(widget.items.onback.go.back.to.position.0)">PageUp</onback>
-
-            <onback condition="[!Integer.IsEqual(Container($PARAM[id]).Position,0) | Container($PARAM[id]).HasPrevious] + Skin.HasSetting(widget.items.onback.go.back.to.position.0)">SetFocus($PARAM[id],0,absolute)</onback>
+            <onback condition="Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + [!Integer.IsEqual(Container($PARAM[id]).Position,0) | Container($PARAM[id]).HasPrevious]">SetFocus($PARAM[id],0,absolute)</onback>
+            <onback condition="Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + Integer.IsEqual(Container($PARAM[id]).Position,0) + !Container($PARAM[id]).HasPrevious">SetFocus($PARAM[backid])</onback>
 
             <onback condition="[!Integer.IsEqual(Container($PARAM[id]).Position,0) | Container($PARAM[id]).HasPrevious] + Skin.HasSetting(widget.items.onback.go.back.to.position.0) + Skin.HasSetting(widget.items.onback.go.back.to.position.0.setfocus.home) + !Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">SetFocus(300)</onback>
 
-            <onback condition="!$EXP[Home_Is_Vertical] + [!Integer.IsEqual(Container($PARAM[id]).Position,0) | Container($PARAM[id]).HasPrevious] + Skin.HasSetting(widget.items.onback.go.back.to.position.0) + Skin.HasSetting(widget.items.onback.go.back.to.position.0.setfocus.home) + Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">SetFocus(4567)</onback>
+            <onback condition="Integer.IsEqual(Container($PARAM[id]).Position,0) + !Container($PARAM[id]).HasPrevious">SetFocus($PARAM[backid])</onback>
+            <onback condition="!$EXP[Home_Is_Vertical] + Integer.IsEqual(Container($PARAM[id]).Position,0) + !Container($PARAM[id]).HasPrevious">SetFocus(4567)</onback>
+            <onback condition="$EXP[Home_Is_Vertical] + Integer.IsEqual(Container($PARAM[id]).Position,0) + !Container($PARAM[id]).HasPrevious">SetFocus(9567)</onback>
 
-            <onback condition="$EXP[Home_Is_Vertical] + [!Integer.IsEqual(Container($PARAM[id]).Position,0) | Container($PARAM[id]).HasPrevious] + Skin.HasSetting(widget.items.onback.go.back.to.position.0) + Skin.HasSetting(widget.items.onback.go.back.to.position.0.setfocus.home) + Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">SetFocus(9567)</onback>
+            <onleft condition="$EXP[Home_Is_Vertical] + Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + [!Skin.HasSetting(vertical_widgets_onleft_go_last_item) | [Skin.HasSetting(vertical_widgets_onleft_go_last_item) + Player.HasMedia]]">SetFocus(9567)</onleft>
+            <onleft condition="$EXP[Home_Is_Vertical] + !Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + [!Skin.HasSetting(vertical_widgets_onleft_go_last_item) | [Skin.HasSetting(vertical_widgets_onleft_go_last_item) + Player.HasMedia]]">399</onleft>
 
-            <onback condition="Integer.IsEqual(Container($PARAM[id]).Position,0) + !Container($PARAM[id]).HasPrevious + !Skin.HasSetting(disable.widgets.onback.go.back.to.position.0)">SetFocus($PARAM[backid])</onback>
-
-            <onback condition="!$EXP[Home_Is_Vertical] + Integer.IsEqual(Container($PARAM[id]).Position,0) + !Container($PARAM[id]).HasPrevious + !Skin.HasSetting(disable.widgets.onback.go.back.to.position.0)">SetFocus(4567)</onback>
-
-            <onback condition="$EXP[Home_Is_Vertical] + Integer.IsEqual(Container($PARAM[id]).Position,0) + !Container($PARAM[id]).HasPrevious + !Skin.HasSetting(disable.widgets.onback.go.back.to.position.0)">SetFocus(9567)</onback>
-
-            <onback condition="Integer.IsEqual(Container($PARAM[id]).Position,0) + !Container($PARAM[id]).HasPrevious + Skin.HasSetting(disable.widgets.onback.go.back.to.position.0)">SetFocus(300)</onback>
-
-            <onleft condition="$EXP[Home_Is_Vertical] + Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + [!Skin.HasSetting(enable.onleft.go.to.last.item.widget) | [Skin.HasSetting(enable.onleft.go.to.last.item.widget) + Player.HasMedia]]">SetFocus(9567)</onleft>
-
-            <onleft condition="$EXP[Home_Is_Vertical] + !Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + [!Skin.HasSetting(enable.onleft.go.to.last.item.widget) | [Skin.HasSetting(enable.onleft.go.to.last.item.widget) + Player.HasMedia]]">399</onleft>
-
-            <!-- <preloaditems>2</preloaditems> -->
             <focusposition>0</focusposition>
 
             <!-- WIDGET MOVEMENT -->

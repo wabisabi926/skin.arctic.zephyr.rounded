@@ -312,32 +312,30 @@
 
                 <!-- HOME HORIZONTAL -->
 
-                <onup condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(disable.widgets.onup.go.back.to.last.item)">SetFocus(8888)</onup>
-                <onup condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(disable.widgets.onup.go.back.to.main.menu) + Skin.HasSetting(disable.widgets.onup.go.back.to.last.item) + !Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">300</onup>
-                <onup condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(disable.widgets.onup.go.back.to.main.menu) + Skin.HasSetting(disable.widgets.onup.go.back.to.last.item) + Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">SetFocus(4567)</onup>
-                <onup condition="$EXP[Home_Is_Horizontal] + Skin.HasSetting(disable.widgets.onup.go.back.to.main.menu) + Skin.HasSetting(disable.widgets.onup.go.back.to.last.item) + Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">SetFocus(301,0)</onup>
+                <onup condition="$EXP[Home_Is_Horizontal] + String.IsEqual(Skin.String(horizontal_up_action),lastwidget)">SetFocus(8888)</onup>
+                <onup condition="$EXP[Home_Is_Horizontal] + String.IsEqual(Skin.String(horizontal_up_action),mainmenu) + !Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">300</onup>
+                <onup condition="$EXP[Home_Is_Horizontal] + String.IsEqual(Skin.String(horizontal_up_action),mainmenu) + Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">SetFocus(4567)</onup>
+                <onup condition="$EXP[Home_Is_Horizontal] + String.IsEqual(Skin.String(horizontal_up_action),none)">SetFocus(301,0)</onup>
 
-                <ondown condition="$EXP[Home_Is_Horizontal] + Skin.HasSetting(enable.widgets.ondown.go.back.to.first.item)">SetFocus(8808)</ondown>
-                <ondown condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(enable.widgets.ondown.go.back.to.first.item) + !Skin.HasSetting(disable.widgets.ondown.go.back.to.main.menu) + Skin.HasSetting(disable.widgets.ondown.go.back.to.position.0) + !Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">300</ondown>
-                <ondown condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(enable.widgets.ondown.go.back.to.first.item) + !Skin.HasSetting(disable.widgets.ondown.go.back.to.main.menu) + [!Skin.HasSetting(disable.widgets.ondown.go.back.to.position.0) | Skin.HasSetting(enable_widgets_to_position_0_onback_menu)]">SetFocus(4567)</ondown>
+                <ondown condition="$EXP[Home_Is_Horizontal] + String.IsEqual(Skin.String(horizontal_down_action),firstwidget)">SetFocus(8808)</ondown>
+                <ondown condition="$EXP[Home_Is_Horizontal] + String.IsEqual(Skin.String(horizontal_down_action),mainmenu) + !Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">300</ondown>
+                <ondown condition="$EXP[Home_Is_Horizontal] + String.IsEqual(Skin.String(horizontal_down_action),mainmenu) + Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">SetFocus(4567)</ondown>
 
-                <ondown condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(enable.widgets.ondown.go.back.to.first.item) + Skin.HasSetting(disable.widgets.ondown.go.back.to.main.menu) + !Player.HasMedia">SetFocus(301,0)</ondown>
-                <ondown condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(enable.widgets.ondown.go.back.to.first.item) + Skin.HasSetting(disable.widgets.ondown.go.back.to.main.menu) + Player.HasMedia + !Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">300</ondown>
-                <ondown condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(enable.widgets.ondown.go.back.to.first.item) + Skin.HasSetting(disable.widgets.ondown.go.back.to.main.menu) + Player.HasMedia + Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">SetFocus(4567)</ondown>
+                <ondown condition="$EXP[Home_Is_Horizontal] + String.IsEqual(Skin.String(horizontal_down_action),none) + !Player.HasMedia">SetFocus(301,0)</ondown>
+                <ondown condition="$EXP[Home_Is_Horizontal] + String.IsEqual(Skin.String(horizontal_down_action),none) + !Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + Player.HasMedia">300</ondown>
+                <ondown condition="$EXP[Home_Is_Horizontal] + String.IsEqual(Skin.String(horizontal_down_action),none) + Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + Player.HasMedia">SetFocus(4567)</ondown>
 
                 <!-- HOME VERTICAL -->
 
-                <onup condition="$EXP[Home_Is_Vertical] + Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget) + !Skin.HasSetting(disable.widgets.onup.ondown.jump)">9888</onup>
-                <onup condition="$EXP[Home_Is_Vertical] + Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget) + Skin.HasSetting(disable.widgets.onup.ondown.jump)">SetFocus(301,0)</onup>
+                <onup condition="$EXP[Home_Is_Vertical] + String.IsEqual(Skin.String(vertical_updown_action),lastfirstwidget)">9888</onup>
+                <onup condition="$EXP[Home_Is_Vertical] + String.IsEqual(Skin.String(vertical_updown_action),none)">SetFocus(301,0)</onup>
+                <onup condition="$EXP[Home_Is_Vertical] + String.IsEqual(Skin.String(vertical_updown_action),mainmenu) + !Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">300</onup>
+                <onup condition="$EXP[Home_Is_Vertical] + String.IsEqual(Skin.String(vertical_updown_action),mainmenu) + Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">SetFocus(9567)</onup>
 
-                <onup condition="$EXP[Home_Is_Vertical] + !Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget) + !Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">300</onup>
-                <onup condition="$EXP[Home_Is_Vertical] + !Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget) + Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">SetFocus(9567)</onup>
-
-                <ondown condition="$EXP[Home_Is_Vertical] + Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget) + !Skin.HasSetting(disable.widgets.onup.ondown.jump)">9808</ondown>
-                <ondown condition="$EXP[Home_Is_Vertical] + Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget) + Skin.HasSetting(disable.widgets.onup.ondown.jump)">SetFocus(301,0)</ondown>
-
-                <ondown condition="$EXP[Home_Is_Vertical] + !Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget) + !Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">300</ondown>
-                <ondown condition="$EXP[Home_Is_Vertical] + !Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget) + Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">SetFocus(9567)</ondown>
+                <ondown condition="$EXP[Home_Is_Vertical] + String.IsEqual(Skin.String(vertical_updown_action),lastfirstwidget)">9808</ondown>
+                <ondown condition="$EXP[Home_Is_Vertical] + String.IsEqual(Skin.String(vertical_updown_action),none)">SetFocus(301,0)</ondown>
+                <ondown condition="$EXP[Home_Is_Vertical] + String.IsEqual(Skin.String(vertical_updown_action),mainmenu) + !Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">300</ondown>
+                <ondown condition="$EXP[Home_Is_Vertical] + String.IsEqual(Skin.String(vertical_updown_action),mainmenu) + Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">SetFocus(9567)</ondown>
 
                 <!-- WIDGET ITEMS INSERTED HERE -->
 
@@ -575,7 +573,7 @@
                 <visible>[$EXP[SearchItemLabelVisible]]</visible>
 
                 <control type="grouplist" id="$MATH[5000 + 800 + widgetIndex]">
-                    <include content="Widget_Title_Label" condition="!Skin.HasSetting(hide.widget.title)">
+                    <include content="Widget_Title_Label" condition="true">
                         <param name="focusid" value="$MATH[5000 + widgetIndex]" />
                         <param name="idshort" value="$MATH[5000 + widgetIndex]" />
                         <param name="animation_condition" value="!Control.HasFocus($MATH[5000 + widgetIndex])" />

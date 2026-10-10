@@ -14,7 +14,9 @@
 
             <!-- HOME CLEAN ONLY - SLIDE DOWN - WIDGET / NOWPLAYING NOW - IF MAIN MENU IS HIDDEN -->
 
-            <animation effect="slide" start="0" end="0,123" time="250" tween="sine" easing="out" delay="0" condition="![$EXP[Home_Menu_Is_Focus] | $EXP[Home_Search_Is_Focus]] + Skin.HasSetting(hide.home.menu) + ![$EXP[Extended_Now_Playing_Is_Visible] + Skin.HasSetting(hide.home.menu.with.nowplaying.extended)] + Skin.HasSetting(home.style.horizontal.clean)">Conditional</animation>
+            <animation effect="slide" start="0" end="0,123" time="250" tween="sine" easing="out" delay="0" condition="![$EXP[Home_Menu_Is_Focus] | $EXP[Home_Search_Is_Focus]] + Skin.HasSetting(hide.home.menu) + ![$EXP[Extended_Now_Playing_Is_Visible] + Skin.HasSetting(hide.home.menu.with.nowplaying.extended)] + Skin.HasSetting(home.style.horizontal.clean) + !Skin.HasSetting(hide.widget.title)">Conditional</animation>
+
+            <animation effect="slide" start="0" end="0,83" time="250" tween="sine" easing="out" delay="0" condition="![$EXP[Home_Menu_Is_Focus] | $EXP[Home_Search_Is_Focus]] + Skin.HasSetting(hide.home.menu) + ![$EXP[Extended_Now_Playing_Is_Visible] + Skin.HasSetting(hide.home.menu.with.nowplaying.extended)] + Skin.HasSetting(home.style.horizontal.clean) + Skin.HasSetting(hide.widget.title)">Conditional</animation>
 
             <include>Animation_Visible_Sub_Menu_Vertical_Fade_Conditional_Widgets</include>
 
@@ -87,7 +89,7 @@
 
             <!-- HOME CLEAN ONLY - MAIN MENU - CLOCK - SLIDE DOWN -->
 
-            <animation effect="slide" start="0" end="0,163" time="250" tween="sine" easing="out" delay="0" condition="[[!$EXP[Home_Menu_Is_Focus] + !$EXP[Home_Search_Is_Focus] + Skin.HasSetting(hide.home.menu)] | [Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + $EXP[Extended_Now_Playing_Is_Enable] + !$EXP[Home_Menu_Is_Focus] + !Control.HasFocus(9099)]] + Skin.HasSetting(home.style.horizontal.clean)">Conditional</animation>
+            <animation effect="slide" start="0" end="0,163" time="250" tween="sine" easing="out" delay="0" condition="[[!$EXP[Home_Menu_Is_Focus] + !$EXP[Home_Search_Is_Focus] + Skin.HasSetting(hide.home.menu)] | [Skin.HasSetting(hide.home.menu.with.nowplaying.extended) + Player.HasMedia + $EXP[Extended_Now_Playing_Is_Enable] + !$EXP[Home_Menu_Is_Focus] + !Control.HasFocus(9099) + !$EXP[Home_Widget_Is_Focus]]] + Skin.HasSetting(home.style.horizontal.clean)">Conditional</animation>
 
             <animation effect="slide" start="0" end="0,30" time="0" condition="true">Conditional</animation>
 
@@ -161,20 +163,17 @@
         <control type="button" id="8808">
             <include>Def_Hidden_Button</include>
 
-            <onfocus condition="String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId)) + Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">SetFocus(4567)</onfocus>
+            <onfocus condition="!Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId))">SetFocus(300)</onfocus>
+            <onfocus condition="Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId))">SetFocus(4567)</onfocus>
 
-            <onfocus condition="String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId)) + !Skin.HasSetting(enable_widgets_to_position_0_onback_menu)">SetFocus(300)</onfocus>
+            <onfocus condition="!String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId)) + !String.IsEmpty(Window(Home).Property(BackToId)) + String.IsEqual(Skin.String(horizontal_up_action),mainmenu) + [!Player.HasMedia | !$EXP[Extended_Now_Playing_Is_Visible]]">SetFocus($INFO[Window(Home).Property(BackToId)])</onfocus>
 
-            <onfocus condition="!String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId)) + !String.IsEmpty(Window(Home).Property(BackToId)) + Skin.HasSetting(disable.widgets.onup.go.back.to.last.item) + [!Player.HasMedia | !$EXP[Extended_Now_Playing_Is_Visible]]">SetFocus($INFO[Window(Home).Property(BackToId)])</onfocus>
+            <onfocus condition="!Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + !String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId)) + !String.IsEmpty(Window(Home).Property(BackToId)) + !String.IsEqual(Skin.String(horizontal_up_action),mainmenu) + Player.HasMedia">SetFocus(300)</onfocus>
+            <onfocus condition="Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + !String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId)) + !String.IsEmpty(Window(Home).Property(BackToId)) + !String.IsEqual(Skin.String(horizontal_up_action),mainmenu) + Player.HasMedia">SetFocus(4567)</onfocus>
 
-            <onfocus condition="!Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + !String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId)) + !String.IsEmpty(Window(Home).Property(BackToId)) + !Skin.HasSetting(disable.widgets.onup.go.back.to.last.item) + Player.HasMedia">SetFocus(300)</onfocus>
-
-            <onfocus condition="Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + !String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId)) + !String.IsEmpty(Window(Home).Property(BackToId)) + !Skin.HasSetting(disable.widgets.onup.go.back.to.last.item) + Player.HasMedia">SetFocus(4567)</onfocus>
-
-            <onfocus condition="!String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId)) + !String.IsEmpty(Window(Home).Property(BackToId)) + !Skin.HasSetting(disable.widgets.onup.go.back.to.last.item) + !Player.HasMedia">SetFocus($INFO[Window(Home).Property(BackToId)])</onfocus>
+            <onfocus condition="!String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId)) + !String.IsEmpty(Window(Home).Property(BackToId)) + !String.IsEqual(Skin.String(horizontal_up_action),mainmenu) + !Player.HasMedia">SetFocus($INFO[Window(Home).Property(BackToId)])</onfocus>
 
             <onfocus condition="!Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + !String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId)) + !String.IsEmpty(Window(Home).Property(BackToId)) + $EXP[Extended_Now_Playing_Is_Visible] + Player.HasMedia">SetFocus(300)</onfocus>
-
             <onfocus condition="Skin.HasSetting(enable_widgets_to_position_0_onback_menu) + !String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId)) + !String.IsEmpty(Window(Home).Property(BackToId)) + $EXP[Extended_Now_Playing_Is_Visible] + Player.HasMedia">SetFocus(4567)</onfocus>
         </control>
 
@@ -267,9 +266,8 @@
 
             <!-- CONTAINER 301 -->
 
-            <onback condition="Integer.IsEqual(Skin.String(mainmenu_back_action),2) + !String.IsEmpty(Window(Home).Property(BackToId))">SetFocus($INFO[Window(Home).Property(BackToId)])</onback>
-
-            <onback condition="Integer.IsEqual(Skin.String(mainmenu_back_action),1)">ActivateWindow(ShutdownMenu)</onback>
+            <onback condition="String.IsEqual(Skin.String(mainmenu_back_action),2) + !String.IsEmpty(Window(Home).Property(BackToId))">SetFocus($INFO[Window(Home).Property(BackToId)])</onback>
+            <onback condition="String.IsEqual(Skin.String(mainmenu_back_action),1) + !Integer.IsEqual(Container(300).NumItems,0)">444</onback>
 
             <onup condition="!$EXP[Extended_Now_Playing_Is_Visible] | [$EXP[Extended_Now_Playing_Is_Visible] | Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button)]">301</onup>
 
@@ -333,6 +331,13 @@
             <include>Def_Hidden_Button</include>
             <onfocus>CancelAlarm(slide_out_setfocus_2011,true)</onfocus>
             <onfocus>SetFocus(399)</onfocus>
+        </control>
+
+        <control type="button" id="444">
+            <include>Def_Hidden_Button</include>
+            <onfocus>CancelAlarm(slide_out_setfocus_2011,true)</onfocus>
+            <onfocus>SetFocus(399)</onfocus>
+            <onfocus>ActivateWindow(ShutdownMenu)</onfocus>
         </control>
     </include>
 
@@ -903,9 +908,8 @@
 
             <!-- CONTAINER 301 -->
 
-            <onback condition="Integer.IsEqual(Skin.String(mainmenu_back_action),2) + !String.IsEmpty(Window(Home).Property(BackToId))">SetFocus($INFO[Window(Home).Property(BackToId)])</onback>
-
-            <onback condition="Integer.IsEqual(Skin.String(mainmenu_back_action),1)">ActivateWindow(ShutdownMenu)</onback>
+            <onback condition="String.IsEqual(Skin.String(mainmenu_back_action),2) + !String.IsEmpty(Window(Home).Property(BackToId))">SetFocus($INFO[Window(Home).Property(BackToId)])</onback>
+            <onback condition="String.IsEqual(Skin.String(mainmenu_back_action),1) + !Integer.IsEqual(Container(300).NumItems,0)">444</onback>
 
             <onright condition="!$EXP[Extended_Now_Playing_Is_Visible] | [$EXP[Extended_Now_Playing_Is_Visible] | Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button)]">301</onright>
 
@@ -968,6 +972,13 @@
             <include>Def_Hidden_Button</include>
             <onfocus condition="$EXP[Has_Home_Menu_Auto_Slide_Out_Animation]">CancelAlarm(slide_out_setfocus_2011,true)</onfocus>
             <onfocus>SetFocus(399)</onfocus>
+        </control>
+
+        <control type="button" id="444">
+            <include>Def_Hidden_Button</include>
+            <onfocus condition="$EXP[Has_Home_Menu_Auto_Slide_Out_Animation]">CancelAlarm(slide_out_setfocus_2011,true)</onfocus>
+            <onfocus>SetFocus(399)</onfocus>
+            <onfocus>ActivateWindow(ShutdownMenu)</onfocus>
         </control>
     </include>
 
@@ -1664,7 +1675,7 @@
     <!-- WIDGET - LABEL TILE -->
 
     <include name="Widget_Title_Label">
-        <visible>!Skin.HasSetting(hide.widget.title)</visible>
+        <visible>!Skin.HasSetting(hide.widget.title) | [Skin.HasSetting(hide.widget.title) |zzz $PARAM[window_search]]</visible>
         <visible>![!Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button) + !String.IsEmpty(Window(Home).Property(controls_nowplaying_visible))]</visible>
 
         <animation effect="fade" start="100" end="30" time="150" condition="!$EXP[Home_Widget_Is_Focus] + Skin.HasSetting(home.style.horizontal.clean) + !$PARAM[window_search]">Conditional</animation>
@@ -1946,7 +1957,7 @@
             <include>Animation_Home_Clean_Fade_Trailer_Is_Playing</include>
 
             <include content="Def_Top" condition="Skin.HasSetting(home.style.horizontal.clean) + Skin.HasSetting(hide.widget.title)">
-                <param name="top" value="-88" />
+                <param name="top" value="-48" />
             </include>
 
             <include content="Def_Top" condition="Skin.HasSetting(home.style.horizontal.clean) + !Skin.HasSetting(hide.widget.title)">
@@ -3018,7 +3029,8 @@
 
             <include content="Animation_Common_Delay_Fade_In"><param name="delay" value="300" /></include>
 
-            <animation effect="slide" start="0" end="0,286" time="0" condition="!Skin.HasSetting(hide.home.menu)">Conditional</animation>
+            <animation effect="slide" start="0" end="0,286" time="0" condition="!Skin.HasSetting(hide.home.menu) + !Skin.HasSetting(hide.widget.title)">Conditional</animation>
+            <animation effect="slide" start="0" end="0,326" time="0" condition="!Skin.HasSetting(hide.home.menu) + Skin.HasSetting(hide.widget.title)">Conditional</animation>
             <animation effect="slide" start="0" end="0,408" time="0" condition="Skin.HasSetting(hide.home.menu)">Conditional</animation>
             <animation effect="slide" start="0" end="30,0" time="0" condition="String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId))">Conditional</animation>
 

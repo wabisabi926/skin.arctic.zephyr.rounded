@@ -613,7 +613,7 @@
                     <visible>Container(3000).HasFocus(2)</visible>
                     <include>Def_Skin_Settings_Level_advanced</include>
                     <include>Def_Settings_Button_Focus_Select_Right_Side</include>
-                    <label>$LOCALIZE[31652]</label>
+                    <label>$LOCALIZE[31651]</label>
                     <label2>$VAR[Label_Skin_Settings_Back_On_MainMenu]</label2>
                     <onclick condition="String.IsEmpty(Skin.String(mainmenu_back_action))">Skin.SetString(mainmenu_back_action,1)</onclick>
                     <onclick condition="String.IsEqual(Skin.String(mainmenu_back_action),1)">Skin.SetString(mainmenu_back_action,2)</onclick>
@@ -726,156 +726,98 @@
                     <label>$LOCALIZE[31483]</label>
                     <selected>Skin.HasSetting(enable_widgets_to_position_0_onback_menu)</selected>
                     <onclick>Skin.ToggleSetting(enable_widgets_to_position_0_onback_menu)</onclick>
-                    <enable>[$EXP[Home_Is_Vertical] + !Skin.HasSetting(disable.widgets.onback.go.back.to.position.0)] | [$EXP[Home_Is_Horizontal] + !Skin.HasSetting(disable.widgets.onback.go.back.to.position.0) + !Skin.HasSetting(disable.widgets.ondown.go.back.to.position.0)]</enable>
                 </control>
 
-                <!-- ON BACK, WIDGETS DO NOT RETURN TO INITIAL POSITION -->
+                <!-- ===================== -->
+                <!--    HORIZONTAL ONLY    -->
+                <!-- ===================== -->
 
-                <control type="radiobutton" id="12010">
+                <!-- ========================================================== -->
+                <!--          ON UP - LAST WIDGET - CHOOSE ACTION               -->
+                <!-- ========================================================== -->
+                <!-- horizontal_up_action : mainmenu             Main menu      -->
+                <!-- horizontal_up_action : lastwidget           last widget    -->
+                <!-- horizontal_up_action : none                 None           -->
+                <!-- ========================================================== -->
+
+                <control type="button" id="12012">
                     <width>1278</width>
                     <visible>Container(3000).HasFocus(2)</visible>
                     <include>Def_Skin_Settings_Level_advanced</include>
                     <include>Def_Settings_Button_Focus_Select_Right_Side</include>
-                    <label>$LOCALIZE[31376]</label>
-                    <selected>Skin.HasSetting(disable.widgets.onback.go.back.to.position.0)</selected>
-                    <onclick>Skin.ToggleSetting(disable.widgets.onback.go.back.to.position.0)</onclick>
-                    <enable>!Skin.HasSetting(enable_widgets_to_position_0_onback_menu)</enable>
-                </control>
-
-                <!-- ON DOWN, WHEN AT LAST WIDGET, WIDGETS DO NOT RETURN TO INITIAL POSITION -->
-
-                <control type="radiobutton" id="12012">
-                    <width>1278</width>
-                    <visible>Container(3000).HasFocus(2)</visible>
-                    <include>Def_Skin_Settings_Level_advanced</include>
-                    <include>Def_Settings_Button_Focus_Select_Right_Side</include>
-                    <label>$LOCALIZE[31378]</label>
-                    <selected>Skin.HasSetting(disable.widgets.ondown.go.back.to.position.0)</selected>
-                    <onclick>Skin.ToggleSetting(disable.widgets.ondown.go.back.to.position.0)</onclick>
-                    <enable>$EXP[Home_Is_Horizontal] + !Skin.HasSetting(enable_widgets_to_position_0_onback_menu)</enable>
+                    <label>$LOCALIZE[31652]</label>
+                    <label2>$VAR[Label_Skin_Settings_Horizontal_Up_Widget]</label2>
+                    <onclick condition="String.IsEqual(Skin.String(horizontal_up_action),mainmenu) | String.IsEmpty(Skin.String(horizontal_up_action))">Skin.SetString(horizontal_up_action,lastwidget)</onclick>
+                    <onclick condition="String.IsEqual(Skin.String(horizontal_up_action),lastwidget)">Skin.SetString(horizontal_up_action,none)</onclick>
+                    <onclick condition="String.IsEqual(Skin.String(horizontal_up_action),none)">Skin.SetString(horizontal_up_action,mainmenu)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                     <visible>$EXP[Home_Is_Horizontal]</visible>
                 </control>
 
-                <!-- HORIZONTAL ONLY - ON UP - FIRST WIDGET - BACK TO LAST WIDGET (IF DISABLE) - RETURN TO MAIN MENU (IF ENABLE) -->
 
-                <control type="radiobutton" id="12011">
+                <!-- ========================================================== -->
+                <!--         ON DOWN - LAST WIDGET - CHOOSE ACTION              -->
+                <!-- ========================================================== -->
+                <!-- horizontal_down_action : firstwidget        First widget   -->
+                <!-- horizontal_down_action : mainmenu           Main manu      -->
+                <!-- horizontal_down_action : none               None           -->
+                <!-- ========================================================== -->
+
+                <control type="button" id="12016">
                     <width>1278</width>
                     <visible>Container(3000).HasFocus(2)</visible>
                     <include>Def_Skin_Settings_Level_advanced</include>
                     <include>Def_Settings_Button_Focus_Select_Right_Side</include>
-                    <label>$LOCALIZE[31377]</label>
-                    <selected>Skin.HasSetting(disable.widgets.onup.go.back.to.last.item)</selected>
-                    <onclick>Skin.ToggleSetting(disable.widgets.onup.go.back.to.last.item)</onclick>
+                    <label>$LOCALIZE[31653]</label>
+                    <label2>$VAR[Label_Skin_Settings_Horizontal_Down_Widget]</label2>
+                    <onclick condition="String.IsEqual(Skin.String(horizontal_down_action),firstwidget) | String.IsEmpty(Skin.String(horizontal_down_action))">Skin.SetString(horizontal_down_action,mainmenu)</onclick>
+                    <onclick condition="String.IsEqual(Skin.String(horizontal_down_action),mainmenu)">Skin.SetString(horizontal_down_action,none)</onclick>
+                    <onclick condition="String.IsEqual(Skin.String(horizontal_down_action),none)">Skin.SetString(horizontal_down_action,firstwidget)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                     <visible>$EXP[Home_Is_Horizontal]</visible>
                 </control>
 
-                <!-- HORIZONTAL ONLY - ON UP - FIRST WIDGET - JUMP TO MAIN MENU (IF DISABLE) - DO NOTHING (IF ENABLE) -->
+                <!-- ===================== -->
+                <!--     VERTICAL ONLY     -->
+                <!-- ===================== -->
 
-                <control type="radiobutton" id="12084">
+                <!-- ON UP/DOWN - FIRST/LAST WIDGET - CHOOSE ACTION -->
+
+                <!-- =============================================================== -->
+                <!--          ON UP/DOWN - FIRST/LAST WIDGET - CHOOSE ACTION         -->
+                <!-- =============================================================== -->
+                <!-- vertical_updown_action : lastfirstwidget    last/First widget   -->
+                <!-- vertical_updown_action : mainmenu           Main manu           -->
+                <!-- vertical_updown_action : none               None                -->
+                <!-- =============================================================== -->
+
+                <control type="button" id="12013">
                     <width>1278</width>
                     <visible>Container(3000).HasFocus(2)</visible>
                     <include>Def_Skin_Settings_Level_advanced</include>
                     <include>Def_Settings_Button_Focus_Select_Right_Side</include>
-                    <label>$LOCALIZE[31219]$LOCALIZE[31542]</label>
-                    <selected>Skin.HasSetting(disable.widgets.onup.go.back.to.main.menu)</selected>
-                    <onclick>Skin.ToggleSetting(disable.widgets.onup.go.back.to.main.menu)</onclick>
-                    <visible>Skin.HasSetting(disable.widgets.onup.go.back.to.last.item)</visible>
-                    <visible>$EXP[Home_Is_Horizontal]</visible>
-                </control>
-
-                <!-- HORIZONTAL ONLY - ON DOWN - LAST WIDGET - JUMP TO FIRST WIDGET (IF ENABLE) - RETURN TO MAIN MENU (IF DISABLE) -->
-
-                <control type="radiobutton" id="12085">
-                    <width>1278</width>
-                    <visible>Container(3000).HasFocus(2)</visible>
-                    <include>Def_Skin_Settings_Level_advanced</include>
-                    <include>Def_Settings_Button_Focus_Select_Right_Side</include>
-                    <label>$LOCALIZE[31493]</label>
-                    <selected>Skin.HasSetting(enable.widgets.ondown.go.back.to.first.item)</selected>
-                    <onclick>Skin.ToggleSetting(enable.widgets.ondown.go.back.to.first.item)</onclick>
-                    <visible>$EXP[Home_Is_Horizontal]</visible>
-                </control>
-
-                <!-- HORIZONTAL ONLY - ON DOWN - LAST WIDGET - JUMP TO MAIN MENU (IF DISABLE) - DO NOTHING (IF ENABLE) -->
-
-                <control type="radiobutton" id="12082">
-                    <width>1278</width>
-                    <visible>Container(3000).HasFocus(2)</visible>
-                    <include>Def_Skin_Settings_Level_advanced</include>
-                    <include>Def_Settings_Button_Focus_Select_Right_Side</include>
-                    <label>$LOCALIZE[31219]$LOCALIZE[31650]</label>
-                    <selected>Skin.HasSetting(disable.widgets.ondown.go.back.to.main.menu)</selected>
-                    <onclick>Skin.ToggleSetting(disable.widgets.ondown.go.back.to.main.menu)</onclick>
-                    <enable>!Skin.HasSetting(enable.widgets.ondown.go.back.to.first.item)</enable>
-                    <visible>$EXP[Home_Is_Horizontal]</visible>
-                </control>
-
-                <!-- VERTICAL ONLY - ON UP/DOWN AT FIRST/LAST WIDGET, GO TO LAST/FIRST WIDGET - RETURN TO MAIN MENU IF DISABLE -->
-
-                <control type="radiobutton" id="12030">
-                    <width>1278</width>
-                    <visible>Container(3000).HasFocus(2)</visible>
-                    <include>Def_Skin_Settings_Level_advanced</include>
-                    <include>Def_Settings_Button_Focus_Select_Right_Side</include>
-                    <label>$LOCALIZE[31379]</label>
-                    <selected>Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget)</selected>
-                    <onclick>Skin.ToggleSetting(enable.widgets.onup.go.back.to.last.widget)</onclick>
+                    <label>$LOCALIZE[31654]</label>
+                    <label2>$VAR[Label_Skin_Settings_Vertical_UpDown_Widget]</label2>
+                    <onclick condition="String.IsEqual(Skin.String(vertical_updown_action),lastfirstwidget) | String.IsEmpty(Skin.String(vertical_updown_action))">Skin.SetString(vertical_updown_action,mainmenu)</onclick>
+                    <onclick condition="String.IsEqual(Skin.String(vertical_updown_action),mainmenu)">Skin.SetString(vertical_updown_action,none)</onclick>
+                    <onclick condition="String.IsEqual(Skin.String(vertical_updown_action),none)">Skin.SetString(vertical_updown_action,lastfirstwidget)</onclick>
                     <onclick>SetProperty(reloadskin,1,Home)</onclick>
                     <visible>$EXP[Home_Is_Vertical]</visible>
                 </control>
 
-                <!-- VERTICAL ONLY - ON UP/DOWN AT FIRST/LAST WIDGET, GO TO LAST/FIRST WIDGET (IF DISABLE) - DO NOTHING (IF ENABLE) -->
+                <!-- ON LEFT - FIRST ITEM - CHOOSE ACTION-->
 
-                <control type="radiobutton" id="12037">
+                <control type="button" id="12036">
                     <width>1278</width>
                     <visible>Container(3000).HasFocus(2)</visible>
                     <include>Def_Skin_Settings_Level_advanced</include>
                     <include>Def_Settings_Button_Focus_Select_Right_Side</include>
-                    <label>$LOCALIZE[31219]$LOCALIZE[31651]</label>
-                    <selected>Skin.HasSetting(disable.widgets.onup.ondown.jump)</selected>
-                    <onclick>Skin.ToggleSetting(disable.widgets.onup.ondown.jump)</onclick>
-                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
-                    <enable>Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget)</enable>
-                    <visible>$EXP[Home_Is_Vertical]</visible>
-                </control>
-
-                <!-- VERTICAL ONLY - ON LEFT GO TO LAST ITEM WIDGET  -->
-
-                <control type="radiobutton" id="12036">
-                    <width>1278</width>
-                    <visible>Container(3000).HasFocus(2)</visible>
-                    <include>Def_Skin_Settings_Level_advanced</include>
-                    <include>Def_Settings_Button_Focus_Select_Right_Side</include>
-                    <label>$LOCALIZE[31498]</label>
-                    <selected>Skin.HasSetting(enable.onleft.go.to.last.item.widget)</selected>
-                    <onclick>Skin.ToggleSetting(enable.onleft.go.to.last.item.widget)</onclick>
+                    <label>$LOCALIZE[31655]</label>
+                    <label2>$VAR[Label_Skin_Settings_Vertical_Left_Widget]</label2>
+                    <selected>Skin.HasSetting(vertical_widgets_onleft_go_last_item)</selected>
+                    <onclick>Skin.ToggleSetting(vertical_widgets_onleft_go_last_item)</onclick>
                     <onclick>SetProperty(reloadskin,1,Home)</onclick>
                     <visible>$EXP[Home_Is_Vertical]</visible>
-                </control>
-
-                <!-- ON BACK, JUMP TO FIRST ITEM IN WIDGET LIST -->
-
-                <control type="radiobutton" id="12031">
-                    <width>1278</width>
-                    <visible>Container(3000).HasFocus(2)</visible>
-                    <include>Def_Skin_Settings_Level_advanced</include>
-                    <include>Def_Settings_Button_Focus_Select_Right_Side</include>
-                    <label>$LOCALIZE[31435]</label>
-                    <selected>Skin.HasSetting(widget.items.onback.go.back.to.position.0)</selected>
-                    <onclick>Skin.ToggleSetting(widget.items.onback.go.back.to.position.0)</onclick>
-                </control>
-
-                <!-- AFTER THAT, FOCUS HOME MENU -->
-
-                <control type="radiobutton" id="12032">
-                    <width>1278</width>
-                    <visible>Container(3000).HasFocus(2)</visible>
-                    <include>Def_Skin_Settings_Level_advanced</include>
-                    <include>Def_Settings_Button_Focus_Select_Right_Side</include>
-                    <label>$LOCALIZE[31219]$LOCALIZE[31436]</label>
-                    <selected>Skin.HasSetting(widget.items.onback.go.back.to.position.0.setfocus.home)</selected>
-                    <onclick>Skin.ToggleSetting(widget.items.onback.go.back.to.position.0.setfocus.home)</onclick>
-                    <visible>Skin.HasSetting(widget.items.onback.go.back.to.position.0)</visible>
                 </control>
 
             <!-- MENU - RSS -->
@@ -2923,6 +2865,11 @@
                     <param name="addonname" value="script.skinshortcuts" />
                 </include>
                 <include content="Def_SkinSettings_radiobutton_Addons_Right_Side">
+                    <param name="id" value="11025" />
+                    <param name="visible" value="Container(3000).HasFocus(9)" />
+                    <param name="addonname" value="script.skin.info.service" />
+                </include>
+                <include content="Def_SkinSettings_radiobutton_Addons_Right_Side">
                     <param name="id" value="11024" />
                     <param name="visible" value="Container(3000).HasFocus(9)" />
                     <param name="addonname" value="script.wikipedia" />
@@ -2991,11 +2938,6 @@
                     <param name="id" value="11021" />
                     <param name="visible" value="Container(3000).HasFocus(9)" />
                     <param name="addonname" value="script.arctic.zephyr.rounded.autocolors" />
-                </include>
-                <include content="Def_SkinSettings_radiobutton_Addons_Right_Side">
-                    <param name="id" value="11025" />
-                    <param name="visible" value="Container(3000).HasFocus(9)" />
-                    <param name="addonname" value="script.skin.info.service" />
                 </include>
                 <include content="Def_SkinSettings_radiobutton_Addons_Right_Side">
                     <param name="id" value="11023" />
