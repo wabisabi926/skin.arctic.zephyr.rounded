@@ -1,0 +1,139 @@
+name: Release skin package
+
+on:
+  push:
+    branches: [ douban-Piers ]
+    paths:
+      - addon.xml
+  workflow_dispatch:
+    inputs:
+      force:
+        description: '强制重建 zip 并覆盖同名资产'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  package:
+    if: github.repository == 'wabisabi926/skin.arctic.zephyr.rounded'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Read addon id and version
+        id: meta
+        run: |
+          set -euo pipefail
+          ID=$(python3 -c "import xml.etree.ElementTree as ET;print(ET.parse('addon.xml').getroot().get('id'))")
+          VER=$(python3 -c "import xml.etree.ElementTree as ET;print(ET.parse('addon.xml').getroot().get('version'))")
+
+          if ! [[ "$VER" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::addon.xml 版本号格式异常: $VER"
+            exit 1
+          fi
+
+          BRANCH="${GITHUB_REF_NAME//\//-}"
+
+          {
+            echo "id=$ID"
+            echo "ver=$VER"
+            echo "branch=$BRANCH"
+            echo "tag=$BRANCH-$VER"
+            echo "asset=$ID-$BRANCH-$VER.zip"
+          } >> "$GITHUB_OUTPUT"
+
+          echo "addon id : $ID"
+          echo "version  : $VER"
+          echo "branch   : $BRANCH"
+
+      - name: Build zip with git archive
+        run: |
+          set -euo pipefail
+          # .gitattributes 中已声明 export-ignore：
+          #   .gitignore / .gitattributes / .github
+          # 因此 git archive 会自动排除这三项，且只打包已跟踪文件。
+          git archive \
+            --format=zip \
+            --prefix="${{ steps.meta.outputs.id }}/" \
+            -o "${{ steps.meta.outputs.asset }}" \
+            HEAD
+          ls -lh "${{ steps.meta.outputs.asset }}"
+
+      - name: Verify zip contents
+        run: |
+          set -euo pipefail
+          ZIP="${{ steps.meta.outputs.asset }}"
+          ID="${{ steps.meta.outputs.id }}"
+          LIST=$(unzip -Z1 "$ZIP")
+
+          echo "entries: $(wc -l <<< "$LIST")"
+          echo "size   : $(du -h "$ZIP" | cut -f1)"
+
+          if ! grep -qx "$ID/addon.xml" <<< "$LIST"; then
+            echo "::error::zip 中缺少 $ID/addon.xml"
+            exit 1
+          fi
+
+          if grep -Eq '^(\.git|\.github|\.gitignore|\.gitattributes)(/|$)' <<< "$LIST"; then
+            echo "::error::zip 中包含应排除的路径"
+            grep -E '^(\.git|\.github|\.gitignore|\.gitattributes)(/|$)' <<< "$LIST" | head -20
+            exit 1
+          fi
+
+          if grep -Eq '^\.workbuddy(/|$)' <<< "$LIST"; then
+            echo "::error::zip 中包含未跟踪目录 .workbuddy"
+            exit 1
+          fi
+
+          echo "zip 结构校验通过"
+
+      - name: Create or reuse release, upload asset
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ steps.meta.outputs.tag }}
+          ASSET: ${{ steps.meta.outputs.asset }}
+          VER: ${{ steps.meta.outputs.ver }}
+          FORCE: ${{ inputs.force }}
+        run: |
+          set -euo pipefail
+
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release $TAG 已存在"
+            EXISTING=$(gh release view "$TAG" --json assets -q '.assets[].name' || true)
+            if grep -qx "$ASSET" <<< "$EXISTING" && [ "${FORCE:-false}" != "true" ]; then
+              echo "资产 $ASSET 已存在，跳过上传"
+              exit 0
+            fi
+            echo "需要上传或覆盖资产 $ASSET"
+          else
+            echo "创建 Release $TAG"
+            gh release create "$TAG" \
+              --target "$GITHUB_SHA" \
+              --title "$TAG" \
+              --notes "自动构建：\`$ASSET\`（版本 $VER）"
+          fi
+
+          gh release upload "$TAG" "$ASSET" --clobber
+          echo "已上传 $ASSET"
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo "| 项目 | 值 |"
+            echo "|---|---|"
+            echo "| addon id | \`${{ steps.meta.outputs.id }}\` |"
+            echo "| 版本 | \`${{ steps.meta.outputs.ver }}\` |"
+            echo "| 分支 | \`${{ steps.meta.outputs.branch }}\` |"
+            echo "| Release | \`${{ steps.meta.outputs.tag }}\` |"
+            echo "| 资产 | \`${{ steps.meta.outputs.asset }}\` |"
+          } >> "$GITHUB_STEP_SUMMARY"
