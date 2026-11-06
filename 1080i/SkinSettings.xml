@@ -14,7 +14,7 @@
     <controls>
         <include>Background_Global</include>
         <include>Furniture_Header_Info</include>
-        <include condition="!Skin.HasSetting(hide.furniture.nowplaying.views)">Furniture_Header_NowPlaying</include>
+        <include>Furniture_Header_NowPlaying</include>
         <include condition="$EXP[Show_Weather_All_Views]">Furniture_Footer_Clock_Right</include>
 
         <include>Hidden_Button_ReloadSkin</include>
@@ -1262,7 +1262,7 @@
                     <onclick>Skin.ToggleSetting(home.enable.menu.background)</onclick>
                 </control>
 
-            <!--  MENU TITLE - HOME FLIX SETTINGS -->
+            <!--  MENU TITLE - EXTRAS -->
 
                 <control type="label" id="98034" description="Backup">
                     <visible>Container(3000).HasFocus(4)</visible>
@@ -1293,8 +1293,6 @@
                     <label>$LOCALIZE[31082]</label>
                     <selected>Skin.HasSetting(show.global.visualisation.background.video)</selected>
                     <onclick>Skin.ToggleSetting(show.global.visualisation.background.video)</onclick>
-                    <onclick condition="!Skin.HasSetting(show.global.visualisation.background.video)">Skin.Reset(show.home.nowplaying.extended.video.windows)</onclick>
-                    <onclick condition="Skin.HasSetting(show.global.visualisation.background.video)">Skin.SetBool(show.home.nowplaying.extended.video.windows)</onclick>
                     <onclick>SetProperty(reloadskin,1,Home)</onclick>
                 </control>
 
@@ -1308,7 +1306,7 @@
                     <label>$LOCALIZE[31579]</label>
                     <selected>Skin.HasSetting(show.global.visualisation.background.music)</selected>
                     <onclick>Skin.ToggleSetting(show.global.visualisation.background.music)</onclick>
-                    <onclick condition="!Skin.HasSetting(show.global.visualisation.background.video)">Skin.Reset(show.home.nowplaying.extended.video.windows)</onclick>
+                    <onclick>Skin.Reset(show.home.nowplaying.extended.video.windows)</onclick>
                 </control>
 
             <!-- MENU - FALLBACK BACKGROUND -->
@@ -2137,7 +2135,6 @@
                     <label>$LOCALIZE[31344]</label>
                     <selected>Skin.HasSetting(show.home.nowplaying.extended.video.windows)</selected>
                     <onclick>Skin.ToggleSetting(show.home.nowplaying.extended.video.windows)</onclick>
-                    <onclick condition="!Skin.HasSetting(show.home.nowplaying.extended.video.windows)">Skin.Reset(show.global.visualisation.background.video)</onclick>
                     <visible>Skin.HasSetting(show.furniture.nowplaying.extended.home) + !$EXP[Home_Show_NowPlaying_Video_In_Window_Flix]</visible>
                 </control>
 
@@ -2243,7 +2240,6 @@
                     <label>$LOCALIZE[31113]</label>
                     <selected>!Skin.HasSetting(hide.furniture.nowplaying.views)</selected>
                     <onclick>Skin.ToggleSetting(hide.furniture.nowplaying.views)</onclick>
-                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
                 </control>
 
                 <!-- SHOW NOW PLAYING VIDEO IN VIEWS FLIX -->
@@ -2272,6 +2268,41 @@
                     <onclick condition="Skin.HasSetting(home.views.flix.autoplay.trailer.custom.window)">Skin.Reset(home.views.flix.autoplay.trailer.custom.window)</onclick>
                     <onclick condition="Skin.HasSetting(home.views.flix.autoplay.trailer.custom.window.force)">Skin.Reset(home.views.flix.autoplay.trailer.custom.window.force)</onclick>
                     <visible>Skin.HasSetting(show.nowplaying.video.view.flix)</visible>
+                </control>
+
+            <!-- MENU - BACKGROUND -->
+
+                <control type="label" id="9732" description="Backup">
+                    <visible>Container(3000).HasFocus(6)</visible>
+                    <include>Def_Skin_Settings_Level_standard</include>
+                    <include>Def_Settings_Label_Title_Right_Side</include>
+                    <label>$LOCALIZE[31081]</label>
+                </control>
+
+                <!--  SHOW VIDEO IN BACKGROUND -->
+
+                <control type="radiobutton" id="9723" description="Show video in background">
+                    <width>1278</width>
+                    <visible>Container(3000).HasFocus(6)</visible>
+                    <include>Def_Skin_Settings_Level_standard</include>
+                    <include>Def_Settings_Button_Focus_Select_Right_Side</include>
+                    <label>$LOCALIZE[31082]</label>
+                    <selected>Skin.HasSetting(show.global.visualisation.background.video)</selected>
+                    <onclick>Skin.ToggleSetting(show.global.visualisation.background.video)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                </control>
+
+                <!--  SHOW MUSIC VISUALISATION IN BACKGROUND -->
+
+                <control type="radiobutton" id="9725" description="Show video in background">
+                    <width>1278</width>
+                    <visible>Container(3000).HasFocus(6)</visible>
+                    <include>Def_Skin_Settings_Level_standard</include>
+                    <include>Def_Settings_Button_Focus_Select_Right_Side</include>
+                    <label>$LOCALIZE[31579]</label>
+                    <selected>Skin.HasSetting(show.global.visualisation.background.music)</selected>
+                    <onclick>Skin.ToggleSetting(show.global.visualisation.background.music)</onclick>
+                    <onclick>Skin.Reset(show.home.nowplaying.extended.video.windows)</onclick>
                 </control>
 
     <!-- ============================ -->

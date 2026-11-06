@@ -25,6 +25,7 @@
     </include>
 
     <include name="Windows_Video_Flix">
+        <visible>Skin.HasSetting(home.views.flix.autoplay.trailer) | $EXP[Home_Show_NowPlaying_Video_In_Window_Flix] | Skin.HasSetting(show.nowplaying.video.view.flix)</visible>
 
         <!-- WINDOW VIDEO    -->
 
@@ -124,6 +125,7 @@
         <!--HIDDEN VIDEO WINDOW TO PREVENT AUDIO ERRORS-->
 
         <control type="group" description="Background">
+            <visible>!Skin.HasSetting(show.global.visualisation.background.video)</visible>
             <visible>Player.HasVideo</visible>
             <control type="videowindow">
                 <include>Def_Dimensions_Fullscreen</include>
@@ -164,6 +166,9 @@
 
     <include name="Global_Background_Full_Screen_Video">
         <control type="group" description="Background">
+            <visible>Skin.HasSetting(show.global.visualisation.background.video)</visible>
+            <visible>$EXP[Show_Video_FullScreen_In_Background]</visible>
+
             <visible>Player.HasVideo</visible>
             <control type="image" description="Background">
                 <include>Def_Dimensions_Fullscreen</include>
@@ -177,6 +182,8 @@
 
     <include name="Global_Music_Visualisation">
         <control type="group">
+            <visible>Skin.HasSetting(show.global.visualisation.background.music)</visible>
+
             <visible>Player.HasAudio</visible>
 
             <!-- MUSIC VISUALISATION -->
@@ -215,6 +222,8 @@
 
             <include>Animation_AutoTrailer_Fade_Out_Background</include>
             <include>Animation_VideoHomeWindowsFlix_Fade_Out_Background</include>
+
+            <visible>!$EXP[View_Search_Background]</visible>
 
             <!-- DELETE FLICKERING EFFECT ON PLAYLIST ON CLICK TRACK SONG -->
 
@@ -358,6 +367,7 @@
             <animation type="WindowClose" reversible="false">
                 <effect type="fade" end="33" start="100" time="300" />
             </animation>
+
             <include>Def_Dimensions_Fullscreen</include>
             <texture colordiffuse="FloorFade2">background/full_clean.png</texture>
         </control>
@@ -365,22 +375,28 @@
 
     <include name="Home_Search_Background">
         <control type="group">
+            <visible>$EXP[Show_Video_Background_Not_Enable]</visible>
+            <visible>$EXP[Show_Music_Visualisation_Background_Not_Enable]</visible>
+
             <visible>$EXP[View_Search_Background]</visible>
             <visible>[!Skin.HasSetting(home.style.horizontal.clean) + Window.IsVisible(Home)] | !Window.IsVisible(Home)</visible>
 
             <control type="multiimage" description="Fanart">
                 <include>Def_Dimensions_Fullscreen</include>
-
                 <aspectratio>scale</aspectratio>
                 <imagepath background="true">$VAR[Global_Search_Background]</imagepath>
+
+                <animation effect="fade" end="10" start="10" time="0" condition="Integer.IsEqual(Skin.String(Value_Brightness_NoFlix),10)">Conditional</animation>
+                <animation effect="fade" end="20" start="20" time="0" condition="Integer.IsEqual(Skin.String(Value_Brightness_NoFlix),20)">Conditional</animation>
+                <animation effect="fade" end="30" start="30" time="0" condition="Integer.IsEqual(Skin.String(Value_Brightness_NoFlix),30) | String.IsEmpty(Skin.String(Value_Brightness_NoFlix)) | String.IsEqual(Skin.String(Value_Brightness_NoFlix),default)">Conditional</animation>
+                <animation effect="fade" end="40" start="40" time="0" condition="Integer.IsEqual(Skin.String(Value_Brightness_NoFlix),40)">Conditional</animation>
+                <animation effect="fade" end="50" start="50" time="0" condition="Integer.IsEqual(Skin.String(Value_Brightness_NoFlix),50)">Conditional</animation>
+                <animation effect="fade" end="60" start="60" time="0" condition="Integer.IsEqual(Skin.String(Value_Brightness_NoFlix),60)">Conditional</animation>
+                <animation effect="fade" end="70" start="70" time="0" condition="Integer.IsEqual(Skin.String(Value_Brightness_NoFlix),70)">Conditional</animation>
+                <animation effect="fade" end="80" start="80" time="0" condition="Integer.IsEqual(Skin.String(Value_Brightness_NoFlix),80)">Conditional</animation>
+                <animation effect="fade" end="90" start="90" time="0" condition="Integer.IsEqual(Skin.String(Value_Brightness_NoFlix),90)">Conditional</animation>
             </control>
             <control type="image" description="FanartOverlay">
-                <animation type="WindowOpen" reversible="false">
-                    <effect type="fade" start="66" end="100" time="150" />
-                </animation>
-                <animation type="WindowClose" reversible="false">
-                    <effect type="fade" end="33" start="100" time="300" />
-                </animation>
                 <include>Def_Dimensions_Fullscreen</include>
                 <texture colordiffuse="FloorFade2">background/full_clean.png</texture>
             </control>
@@ -412,7 +428,7 @@
 
         <!-- SHOW HIDDEN VIDEO WINDOW ONLY FOR PREVENT AUDIO LAG -->
 
-        <include condition="!Skin.HasSetting(show.global.visualisation.background.video)">Hidden_Video_Window_Prevent_Audio_Lag</include>
+        <include>Hidden_Video_Window_Prevent_Audio_Lag</include>
 
         <!-- GLOBAL FIRST DEFAULT BACKGROUND -->
 
@@ -423,19 +439,18 @@
 
         <!-- VISUALISATION - SHOW VIDEO ON BACKGROUND -->
 
-        <include condition="Skin.HasSetting(show.global.visualisation.background.video)">Global_Background_Full_Screen_Video</include>
+        <include>Global_Background_Full_Screen_Video</include>
 
         <!-- VISUALISATION - SHOW MUSIC VISUALISATION ON BACKGROUND -->
 
-        <include condition="$EXP[ShowMusicVisualisation]">Global_Music_Visualisation</include>
+        <include>Global_Music_Visualisation</include>
 
         <!-- VISUALISATION - OVERLAY -->
 
         <control type="image" description="Background">
-            <visible>[Player.HasVideo + Skin.HasSetting(show.global.visualisation.background.video)] | [Player.HasAudio + Skin.HasSetting(show.global.visualisation.background.music) + !String.IsEmpty(Visualisation.Name)]</visible>
+            <visible>$EXP[Show_Video_FullScreen_In_Background]</visible>
 
             <animation effect="fade" start="100" end="60" time="0" condition="true">Conditional</animation>
-
             <include>Def_Dimensions_Fullscreen</include>
             <texture colordiffuse="Background">background/bg.jpg</texture>
         </control>
@@ -446,7 +461,7 @@
 
         <!-- HOME - VIEWS FLIX - WINDOW FLIX - TRAILER -->
 
-        <include condition="Skin.HasSetting(home.views.flix.autoplay.trailer) | $EXP[Home_Show_NowPlaying_Video_In_Window_Flix] | Skin.HasSetting(show.nowplaying.video.view.flix)">Windows_Video_Flix</include>
+        <include>Windows_Video_Flix</include>
 
         <!-- GLOBAL FANART - HOME CLEAN - ONLY -->
 
@@ -663,9 +678,17 @@
     <!-- ================= -->
 
     <variable name="Global_Search_Background">
+
+        <!-- GLOBAL / ALL -->
+
         <value condition="[Window.IsVisible(1147) | Window.IsVisible(1148)] + !String.IsEmpty(Skin.String(fanart.fallback.search))">$INFO[Skin.String(fanart.fallback.search)]</value>
-        <value condition="Window.IsVisible(Home) + $EXP[View_Search_Background] + !String.IsEmpty(Skin.String(fanart.fallback.search))">$INFO[Skin.String(fanart.fallback.search)]</value>
-        <value condition="!String.IsEmpty(Skin.String(fanart.fallback.search)) + Window.IsVisible(script-globalsearch.xml) + !$EXP[View_Info_Dialog]">$INFO[Skin.String(fanart.fallback.search)]</value>
+        <value condition="Window.IsVisible(Home) + $EXP[View_Search_Global_Background] + !String.IsEmpty(Skin.String(fanart.fallback.search))">$INFO[Skin.String(fanart.fallback.search)]</value>
+        <value condition="Window.IsVisible(script-globalsearch.xml) + !$EXP[View_Info_Dialog] + !String.IsEmpty(Skin.String(fanart.fallback.search))">$INFO[Skin.String(fanart.fallback.search)]</value>
+
+        <!-- MUSIC / MUSIC VIDEOS -->
+
+        <value condition="Window.IsVisible(1146) + !String.IsEmpty(Skin.String(fanart.fallback.music))">$INFO[Skin.String(fanart.fallback.music)]</value>
+        <value condition="Window.IsVisible(Home) + $EXP[View_Search_Music_Background] + !String.IsEmpty(Skin.String(fanart.fallback.muisc))">$INFO[Skin.String(fanart.fallback.music)]</value>
 
         <!-- FALLBACK -->
 
@@ -1227,15 +1250,15 @@
 
         <!-- MUSIC -->
 
-        <value condition="$EXP[Background_Fallback_Home_Flix_Or_All_Views] + !String.IsEmpty(Skin.String(fanart.fallback.music)) + [Container.Content(songs) | Container.Content(albums) | Container.Content(artists) | String.IsEqual(Container.FolderPath,playlistmusic://) | String.StartsWith(ListItem.FolderPath,library://music/) | String.IsEqual(Container.FolderPath,special://musicplaylists/) | [Window.IsVisible(MyMusicNav.xml) + Container.Content(files)] | String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,artist) | String.IsEqual(ListItem.DBType,song) | String.IsEqual(Container.FolderPath,sources://music/) | String.IsEqual(Container.FolderPath,addons://sources/audio) | String.StartsWith(Container.FolderPath,musicdb://) | Window.IsVisible(MyMusicPlaylistEditor.xml)]">$INFO[Skin.String(fanart.fallback.music)]</value>
+        <value condition="$EXP[Background_Fallback_Home_Flix_Or_All_Views] + !String.IsEmpty(Skin.String(fanart.fallback.music)) + [Container.Content(songs) | Container.Content(albums) | Container.Content(artists) | String.IsEqual(Container.FolderPath,playlistmusic://) | String.StartsWith(ListItem.FolderPath,library://music/) | String.IsEqual(Container.FolderPath,special://musicplaylists/) | [Window.IsVisible(MyMusicNav.xml) + Container.Content(files)] | String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,artist) | String.IsEqual(ListItem.DBType,song) | String.IsEqual(Container.FolderPath,sources://music/) | String.IsEqual(Container.FolderPath,addons://sources/audio) | String.StartsWith(Container.FolderPath,musicdb://) | Window.IsVisible(MyMusicPlaylistEditor.xml) | Window.IsVisible(1113)]">$INFO[Skin.String(fanart.fallback.music)]</value>
 
         <!-- TVSHOWS -->
 
-        <value condition="$EXP[Background_Fallback_Home_Flix_Or_All_Views] + !String.IsEmpty(Skin.String(fanart.fallback.tvshow)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(Container.FolderPath,library://video/tvshows/)]">$INFO[Skin.String(fanart.fallback.tvshow)]</value>
+        <value condition="$EXP[Background_Fallback_Home_Flix_Or_All_Views] + !String.IsEmpty(Skin.String(fanart.fallback.tvshow)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(Container.FolderPath,library://video/tvshows/) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.DBType),episode) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.DBType),season) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.DBType),tvshow) | Window.IsVisible(1112)]">$INFO[Skin.String(fanart.fallback.tvshow)]</value>
 
         <!-- MOVIES -->
 
-        <value condition="$EXP[Background_Fallback_Home_Flix_Or_All_Views] + !String.IsEmpty(Skin.String(fanart.fallback.movie)) + [Container.Content(movies) | Container.Content(videoversions) | [Window.IsVisible(MyVideoNav.xml) + Container.Content(files)] | [Window.IsVisible(MyVideoNav.xml) + Container.Content(playlists)] | String.IsEqual(Container.FolderPath,library://video/movies/) | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,video) | String.StartsWith(Container.FolderPath,videodb://movies/) | String.StartsWith(ListItem.FolderPath,videodb://movies/) | String.IsEqual(Container.FolderPath,sources://video/) | String.IsEqual(Container.FolderPath,addons://sources/video) | [Container.Content() + String.StartsWith(ListItem.FolderPath,library://video_flat/)] | [ListItem.IsCollection + $EXP[IsJlomItem]]]">$INFO[Skin.String(fanart.fallback.movie)]</value>
+        <value condition="$EXP[Background_Fallback_Home_Flix_Or_All_Views] + !String.IsEmpty(Skin.String(fanart.fallback.movie)) + [Container.Content(movies) | Container.Content(videoversions) | [Window.IsVisible(MyVideoNav.xml) + Container.Content(files)] | [Window.IsVisible(MyVideoNav.xml) + Container.Content(playlists)] | String.IsEqual(Container.FolderPath,library://video/movies/) | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,video) | String.StartsWith(Container.FolderPath,videodb://movies/) | String.StartsWith(ListItem.FolderPath,videodb://movies/) | String.IsEqual(Container.FolderPath,sources://video/) | String.IsEqual(Container.FolderPath,addons://sources/video) | [Container.Content() + String.StartsWith(ListItem.FolderPath,library://video_flat/)] | [ListItem.IsCollection + $EXP[IsJlomItem]] | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.DBType),movie) | Window.IsVisible(1111)]">$INFO[Skin.String(fanart.fallback.movie)]</value>
 
         <!-- SETTINGS -->
 

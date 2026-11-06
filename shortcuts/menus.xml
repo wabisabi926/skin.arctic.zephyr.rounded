@@ -166,6 +166,57 @@
         </item>
     </submenu>
 
+    <!-- SEARCH MUSIC -->
+
+    <menu name="searchmusicmenu">
+        <item name="searchmusic" submenu="searchmusic">
+            <label>$LOCALIZE[137]</label>
+            <action>ActivateWindow(1146)</action>
+            <icon>special://skin/extras/icons/search.png</icon>
+        </item>
+    </menu>
+
+    <submenu name="searchmusic">
+    </submenu>
+
+    <submenu name="searchmusic.1" type="widgets">
+        <item name="search-music-item-albums">
+            <label>$LOCALIZE[132]</label>
+            <property name="widgetPath">DefaultSearch-Albums</property>
+            <property name="widgetTarget">music</property>
+            <property name="widgetType">music</property>
+            <property name="widgetaspect">SquareMiddle</property>
+        </item>
+        <item name="search-music-item-artists">
+            <label>$LOCALIZE[133]</label>
+            <property name="widgetPath">DefaultSearch-Artists</property>
+            <property name="widgetTarget">music</property>
+            <property name="widgetType">music</property>
+            <property name="widgetaspect">SquareMiddle</property>
+        </item>
+        <item name="search-music-item-songs">
+            <label>$LOCALIZE[134]</label>
+            <property name="widgetPath">DefaultSearch-Songs</property>
+            <property name="widgetTarget">music</property>
+            <property name="widgetType">music</property>
+            <property name="widgetaspect">SquareMiddle</property>
+        </item>
+        <item name="search-music-item-musicvideos">
+            <label>$LOCALIZE[20389]</label>
+            <property name="widgetPath">DefaultSearch-MusicVideos</property>
+            <property name="widgetTarget">videos</property>
+            <property name="widgetType">videos</property>
+            <property name="widgetaspect">SquareMiddle</property>
+        </item>
+        <item name="search-music-item-musicvideoartists">
+            <label>$LOCALIZE[20389] $LOCALIZE[133]</label>
+            <property name="widgetPath">DefaultSearch-MusicVideoArtists</property>
+            <property name="widgetTarget">videos</property>
+            <property name="widgetType">videos</property>
+            <property name="widgetaspect">SquareMiddle</property>
+        </item>
+    </submenu>
+
     <!-- POWER MENU -->
 
     <menu name="powermenu">
@@ -412,6 +463,11 @@
             <action>ActivateWindow(Videos,videodb://recentlyaddedmovies/,return)</action>
             <icon>special://skin/extras/icons/recentlyadded.png</icon>
         </item>
+        <item name="movies-hub">
+            <label>$LOCALIZE[31144]</label>
+            <action>ActivateWindow(1111)</action>
+            <icon>special://skin/extras/icons/rectangle-list.png</icon>
+        </item>
         <item name="movies-titles">
             <label>$LOCALIZE[369]</label>
             <action>ActivateWindow(Videos,videodb://movies/titles/,return)</action>
@@ -507,6 +563,11 @@
             <action>ActivateWindow(Videos,videodb://inprogresstvshows/,return)</action>
             <icon>special://skin/extras/icons/recent.png</icon>
         </item>
+        <item name="tvshows-hub">
+            <label>$LOCALIZE[31145]</label>
+            <action>ActivateWindow(1112)</action>
+            <icon>special://skin/extras/icons/rectangle-list.png</icon>
+        </item>
         <item name="tvshows-titles">
             <label>$LOCALIZE[369]</label>
             <action>ActivateWindow(Videos,videodb://tvshows/titles/,return)</action>
@@ -591,6 +652,16 @@
             <label>$LOCALIZE[568]</label>
             <action>ActivateWindow(Music,musicdb://recentlyplayedalbums/,return)</action>
             <icon>special://skin/extras/icons/recent.png</icon>
+        </item>
+        <item name="music-hub">
+            <label>$LOCALIZE[31166]</label>
+            <action>ActivateWindow(1113)</action>
+            <icon>special://skin/extras/icons/rectangle-list.png</icon>
+        </item>
+        <item name="music-search">
+            <label>$LOCALIZE[137]</label>
+            <action>ActivateWindow(1146)</action>
+            <icon>special://skin/extras/icons/search.png</icon>
         </item>
         <item name="music-files">
             <label>$LOCALIZE[744]</label>
@@ -1085,11 +1156,6 @@
     <!-- MOVIE HUB MENU -->
 
     <menu name="x1111" build="auto" action="ActivateWindow(1111)">
-        <item name="hub-movies-titles">
-            <label>$LOCALIZE[20342]</label>
-            <action>ActivateWindow(Videos,MovieTitles,return)</action>
-            <icon>special://skin/extras/icons/film.png</icon>
-        </item>
         <item name="hub-movies-recent">
             <label>$LOCALIZE[31129]</label>
             <action>ActivateWindow(Videos,RecentlyAddedMovies,return)</action>
@@ -1107,13 +1173,23 @@
         </item>
         <item name="hub-movies-search">
             <label>$LOCALIZE[137]</label>
-            <action>runscript(script.globalsearch,movies=true&amp;actors=true&amp;directors=true)</action>
+            <action>ActivateWindow(1148)</action>
             <icon>special://skin/extras/icons/search.png</icon>
+        </item>
+        <item name="hub-movies-titles">
+            <label>$LOCALIZE[10024]</label>
+            <action>ActivateWindow(Videos,MovieTitles,return)</action>
+            <icon>special://skin/extras/icons/film.png</icon>
         </item>
         <item name="hub-movies-genres">
             <label>$LOCALIZE[135]</label>
             <action>ActivateWindow(Videos,MovieGenres,return)</action>
-            <icon>special://skin/extras/icons/genre.png</icon>
+            <icon>special://skin/extras/icons/masks-theater.png</icon>
+        </item>
+        <item name="hub-movies-years">
+            <label>$LOCALIZE[652]</label>
+            <action>ActivateWindow(Videos,MovieYears,return)</action>
+            <icon>special://skin/extras/icons/calendar-day.png</icon>
         </item>
         <item name="hub-movies-directors">
             <label>$LOCALIZE[20348]</label>
@@ -1160,11 +1236,6 @@
     <!-- TV HUB MENU -->
 
     <menu name="x1112" build="auto" action="ActivateWindow(1112)">
-        <item name="hub-tv-titles">
-            <label>$LOCALIZE[20343]</label>
-            <action>ActivateWindow(Videos,TvShowTitles,return)</action>
-            <icon>special://skin/extras/icons/tv.png</icon>
-        </item>
         <item name="hub-tv-recent">
             <label>$LOCALIZE[31129]</label>
             <action>ActivateWindow(Videos,RecentlyAddedEpisodes,return)</action>
@@ -1185,10 +1256,15 @@
             <action>RunScript(script.globalsearch,tvshows=true&amp;episodes=true&amp;movies=true)</action>
             <icon>special://skin/extras/icons/search.png</icon>
         </item>
+        <item name="hub-tv-titles">
+            <label>$LOCALIZE[10024]</label>
+            <action>ActivateWindow(Videos,TvShowTitles,return)</action>
+            <icon>special://skin/extras/icons/tv.png</icon>
+        </item>
         <item name="hub-tv-genres">
             <label>$LOCALIZE[135]</label>
             <action>ActivateWindow(Videos,TvShowGenres,return)</action>
-            <icon>special://skin/extras/icons/genre.png</icon>
+            <icon>special://skin/extras/icons/masks-theater.png</icon>
         </item>
         <item name="hub-tv-studios">
             <label>$LOCALIZE[20388]</label>
@@ -1203,7 +1279,7 @@
         <item name="hub-tv-years">
             <label>$LOCALIZE[652]</label>
             <action>ActivateWindow(Videos,TvShowYears,return)</action>
-            <icon>special://skin/extras/icons/year.png</icon>
+            <icon>special://skin/extras/icons/calendar-day.png</icon>
         </item>
         <item name="hub-tv-playlists">
             <label>$LOCALIZE[136]</label>
@@ -1227,6 +1303,107 @@
         </item>
     </menu>
 
+    <!-- MUSIC HUB MENU -->
+
+    <menu name="x1113" build="auto" action="ActivateWindow(1113)">
+        <item name="hub-music-recent">
+            <label>$LOCALIZE[20382]</label>
+            <action>ActivateWindow(Music,musicdb://recentlyaddedalbums/,return)</action>
+            <icon>special://skin/extras/icons/recentlyadded.png</icon>
+        </item>
+        <item name="hub-music-recentlyplayed">
+            <label>$LOCALIZE[568]</label>
+            <action>ActivateWindow(Music,musicdb://recentlyplayedalbums/,return)</action>
+            <icon>special://skin/extras/icons/recent.png</icon>
+        </item>
+        <item name="hub-music-search">
+            <label>$LOCALIZE[137]</label>
+            <action>ActivateWindow(1146)</action>
+            <icon>special://skin/extras/icons/search.png</icon>
+        </item>
+        <item name="hub-music-artists">
+            <label>$LOCALIZE[133]</label>
+            <action>ActivateWindow(Music,library://music/artists.xml/,return)</action>
+            <icon>special://skin/extras/icons/artist.png</icon>
+        </item>
+        <item name="hub-music-albums">
+            <label>$LOCALIZE[132]</label>
+            <action>ActivateWindow(Music,library://music/albums.xml/,return)</action>
+            <icon>special://skin/extras/icons/compact-disc.png</icon>
+        </item>
+        <item name="hub-music-songs">
+            <label>$LOCALIZE[134]</label>
+            <action>ActivateWindow(Music,library://music/songs.xml/,return)</action>
+            <icon>special://skin/extras/icons/songs.png</icon>
+        </item>
+        <item name="hub-music-years">
+            <label>$LOCALIZE[562]</label>
+            <action>ActivateWindow(Music,library://music/years.xml/,return)</action>
+            <icon>special://skin/extras/icons/calendar-day.png</icon>
+        </item>
+        <item name="hub-music-genres">
+            <label>$LOCALIZE[135]</label>
+            <action>ActivateWindow(Music,library://music/genres.xml/,return)</action>
+            <icon>special://skin/extras/icons/masks-theater.png</icon>
+        </item>
+        <item name="hub-music-top100-albums">
+            <label>$LOCALIZE[10505]</label>
+            <action>ActivateWindow(Music,library://music/top100/top100albums.xml/,return)</action>
+            <icon>special://skin/extras/icons/top100.png</icon>
+        </item>
+        <item name="hub-music-playlists">
+            <label>$LOCALIZE[136]</label>
+            <action>ActivateWindow(Music,special://musicplaylists/,return)</action>
+            <icon>special://skin/extras/icons/playlist.png</icon>
+        </item>
+        <item name="hub-music-sources">
+            <label>$LOCALIZE[39031]</label>
+            <action>ActivateWindow(Music,musicdb://sources/,Return)</action>
+            <icon>special://skin/extras/icons/database-add.png</icon>
+        </item>
+        <item name="hub-music-files">
+            <label>$LOCALIZE[744]</label>
+            <action>ActivateWindow(Music,Files,Return)</action>
+            <icon>special://skin/extras/icons/filebox.png</icon>
+        </item>
+        <item name="hub-music-addons">
+            <label>$LOCALIZE[24001]</label>
+            <action>ActivateWindow(videos,addons://sources/audio/,return)</action>
+            <icon>special://skin/extras/icons/addon.png</icon>
+        </item>
+        <item name="hub-music-update">
+            <label>$LOCALIZE[653]</label>
+            <action>UpdateLibrary(music)</action>
+            <icon>special://skin/extras/icons/update.png</icon>
+        </item>
+    </menu>
+
+    <!-- CUSTOM HUB MENU -->
+
+    <menu name="x1114" build="auto" action="ActivateWindow(1114)">
+        <allow widgets="false" backgrounds="false" submenus="false" />
+    </menu>
+
+    <menu name="x1115" build="auto" action="ActivateWindow(1115)">
+        <allow widgets="false" backgrounds="false" submenus="false" />
+    </menu>
+
+    <menu name="x1116" build="auto" action="ActivateWindow(1116)">
+        <allow widgets="false" backgrounds="false" submenus="false" />
+    </menu>
+
+    <menu name="x1117" build="auto" action="ActivateWindow(1117)">
+        <allow widgets="false" backgrounds="false" submenus="false" />
+    </menu>
+
+    <menu name="x1118" build="auto" action="ActivateWindow(1118)">
+        <allow widgets="false" backgrounds="false" submenus="false" />
+    </menu>
+
+    <menu name="x1119" build="auto" action="ActivateWindow(1119)">
+        <allow widgets="false" backgrounds="false" submenus="false" />
+    </menu>
+
     <!-- SHORTCUT GROUPINGS FOR PICKER DIALOG -->
 
     <groupings>
@@ -1239,6 +1416,9 @@
             </shortcut>
             <shortcut name="search" label="$LOCALIZE[137] $LOCALIZE[31646]" type="137" icon="special://skin/extras/icons/search.png">
                 <action>ActivateWindow(1148)</action>
+            </shortcut>
+            <shortcut name="search" label="$LOCALIZE[137] $LOCALIZE[2]" type="137" icon="special://skin/extras/icons/search.png">
+                <action>ActivateWindow(1146)</action>
             </shortcut>
             <shortcut name="audio-profiles" label="Audio Profiles" type="0" icon="special://skin/extras/icons/headphones-simple.png" visible="System.HasAddon(script.audio.profiles) + System.AddonIsEnabled(script.audio.profiles)">
                 <action>runscript(script.audio.profiles,popup)</action>
@@ -1332,32 +1512,37 @@
             <shortcut name="playdisc" label="341" type="341" icon="special://skin/extras/icons/cd.png">
                 <action>PlayDisc</action>
             </shortcut>
-            <shortcut name="tvhub" label="31145" type="TVHub" icon="special://skin/extras/icons/tv.png">
-                <action>ActivateWindow(1112)</action>
-            </shortcut>
-            <shortcut name="moviehub" label="31144" type="MovieHub" icon="special://skin/extras/icons/film.png">
+        </group>
+
+        <!-- HUBS -->
+
+        <group name="hubs" label="31227" icon="special://skin/extras/icons/rectangle-list.png">
+            <shortcut name="moviehub" label="31144" type="MovieHub" icon="special://skin/extras/icons/rectangle-list.png">
                 <action>ActivateWindow(1111)</action>
             </shortcut>
-            <shortcut name="hub1119" label="Hub 1119" type="Hub 1119" icon="special://skin/extras/icons/addons.png">
-                <action>ActivateWindow(1119)</action>
+            <shortcut name="tvhub" label="31145" type="TVHub" icon="special://skin/extras/icons/rectangle-list.png">
+                <action>ActivateWindow(1112)</action>
             </shortcut>
-            <shortcut name="hub1118" label="Hub 1118" type="Hub 1118" icon="special://skin/extras/icons/addons.png">
-                <action>ActivateWindow(1118)</action>
-            </shortcut>
-            <shortcut name="hub1117" label="Hub 1117" type="Hub 1117" icon="special://skin/extras/icons/addons.png">
-                <action>ActivateWindow(1117)</action>
-            </shortcut>
-            <shortcut name="hub1116" label="Hub 1116" type="Hub 1116" icon="special://skin/extras/icons/addons.png">
-                <action>ActivateWindow(1116)</action>
-            </shortcut>
-            <shortcut name="hub1115" label="Hub 1115" type="Hub 1115" icon="special://skin/extras/icons/addons.png">
-                <action>ActivateWindow(1115)</action>
+            <shortcut name="musichub" label="31166" type="MusicHub" icon="special://skin/extras/icons/rectangle-list.png">
+                <action>ActivateWindow(1113)</action>
             </shortcut>
             <shortcut name="hub1114" label="Hub 1114" type="Hub 1114" icon="special://skin/extras/icons/addons.png">
                 <action>ActivateWindow(1114)</action>
             </shortcut>
-            <shortcut name="hub1113" label="Hub 1113" type="Hub 1113" icon="special://skin/extras/icons/addons.png">
-                <action>ActivateWindow(1113)</action>
+            <shortcut name="hub1115" label="Hub 1115" type="Hub 1115" icon="special://skin/extras/icons/addons.png">
+                <action>ActivateWindow(1115)</action>
+            </shortcut>
+            <shortcut name="hub1116" label="Hub 1116" type="Hub 1116" icon="special://skin/extras/icons/addons.png">
+                <action>ActivateWindow(1116)</action>
+            </shortcut>
+            <shortcut name="hub1117" label="Hub 1117" type="Hub 1117" icon="special://skin/extras/icons/addons.png">
+                <action>ActivateWindow(1117)</action>
+            </shortcut>
+            <shortcut name="hub1118" label="Hub 1118" type="Hub 1118" icon="special://skin/extras/icons/addons.png">
+                <action>ActivateWindow(1118)</action>
+            </shortcut>
+            <shortcut name="hub1119" label="Hub 1119" type="Hub 1119" icon="special://skin/extras/icons/addons.png">
+                <action>ActivateWindow(1119)</action>
             </shortcut>
             <shortcut name="tmdb-episodes" label="31159" type="themoviedb.org episodes" icon="special://skin/extras/icons/director.png">
                 <action>ActivateWindow(1105)</action>

@@ -82,16 +82,25 @@
 
 		<value condition="Window.IsActive(TVSearch)">$LOCALIZE[19020]  •  $LOCALIZE[137]$INFO[Control.GetLabel(29),  •  ]$INFO[Control.GetLabel(30), ]</value>
 
+        <!-- WEATHER -->
+
+        <value condition="Window.IsVisible(weather) + Control.HasFocus(9100)">$LOCALIZE[8] $VAR[Label_Weather,- ]</value>
+        <value condition="Window.IsVisible(weather) + Control.HasFocus(548)">$LOCALIZE[8] - $LOCALIZE[31066]</value>
+        <value condition="Window.IsVisible(weather)">$LOCALIZE[8]</value>
+
         <!-- HUB -->
 
-        <value condition="Window.IsVisible(1104) + String.IsEqual(Window(1104).Property(content),1)">$LOCALIZE[31158]</value>
-        <value condition="Window.IsVisible(1104) + String.IsEqual(Window(1104).Property(content),2)">$LOCALIZE[31157]</value>
-        <value condition="Window.IsVisible(1104) + String.IsEqual(Window(1104).Property(content),3)">$LOCALIZE[31156]</value>
-        <value condition="Window.IsVisible(1104)">$LOCALIZE[31155]</value>
-        <value condition="Window.IsVisible(1105) + String.IsEqual(Window(1105).Property(content),1)">$LOCALIZE[31158]</value>
-        <value condition="Window.IsVisible(1105) + String.IsEqual(Window(1105).Property(content),2)">$LOCALIZE[31157]</value>
-        <value condition="Window.IsVisible(1105) + String.IsEqual(Window(1105).Property(content),3)">$LOCALIZE[31159]</value>
-        <value condition="Window.IsVisible(1105)">$LOCALIZE[31160]</value>
+        <value condition="Window.IsVisible(1111)">$LOCALIZE[31144]</value>
+        <value condition="Window.IsVisible(1112)">$LOCALIZE[31145]</value>
+        <value condition="Window.IsVisible(1113)">$LOCALIZE[31166]</value>
+        <value condition="Window.IsVisible(1114) + String.IsEqual(Window(1104).Property(content),1)">$LOCALIZE[31158]</value>
+        <value condition="Window.IsVisible(1114) + String.IsEqual(Window(1104).Property(content),2)">$LOCALIZE[31157]</value>
+        <value condition="Window.IsVisible(1114) + String.IsEqual(Window(1104).Property(content),3)">$LOCALIZE[31156]</value>
+        <value condition="Window.IsVisible(1114)">$LOCALIZE[31155]</value>
+        <value condition="Window.IsVisible(1115) + String.IsEqual(Window(1105).Property(content),1)">$LOCALIZE[31158]</value>
+        <value condition="Window.IsVisible(1115) + String.IsEqual(Window(1105).Property(content),2)">$LOCALIZE[31157]</value>
+        <value condition="Window.IsVisible(1115) + String.IsEqual(Window(1105).Property(content),3)">$LOCALIZE[31159]</value>
+        <value condition="Window.IsVisible(1115)">$LOCALIZE[31160]</value>
         <value condition="String.Contains(Window.Property(xmlfile),Custom_hub_)">$INFO[Window(Home).Property(WindowTitle)]</value>
 
         <!-- HOME -->
@@ -2265,7 +2274,7 @@
         <value condition="Control.HasFocus(5261)">$INFO[Container(5261).ListItem.Plot]</value>
 
         <value condition="Container.Content(seasons)">$VAR[Label_Season_Plot]</value>
-        <value condition="Container.Content(episodes)">$INFO[ListItem.Title,[B],[/B][CR],]$INFO[ListItem.Plot]</value>
+        <value condition="Container.Content(episodes)">$INFO[ListItem.Plot]</value>
 
         <value condition="$EXP[IsGameMode]">$VAR[Label_Game_Plot]</value>
 
@@ -3106,6 +3115,31 @@
     <variable name="Label_Rating_9500">
         <value condition="!String.IsEmpty(Container(9500).ListItem.UserRating) + Skin.HasSetting(userrating.override.rating)">$INFO[Container(9500).ListItem.UserRating,,.0]</value>
         <value>$INFO[Container(9500).ListItem.Rating]</value>
+    </variable>
+
+    <variable name="Label_Plot_9500">
+        <value condition="!String.IsEmpty(Container(9500).ListItem.Property(Artist_Description))">$INFO[Container(9500).ListItem.Property(Artist_Description)]</value>
+        <value>$INFO[Container(9500).ListItem.Plot]</value>
+    </variable>
+
+    <variable name="Label_Genre_9500">
+        <value>$INFO[Container(9500).ListItem.Genre]</value>
+    </variable>
+
+    <!-- LABEL - WEATHER -->
+
+    <variable name="Label_Weather">
+        <value>$INFO[Control.GetLabel(9100)]</value>
+    </variable>
+
+    <variable name="Label_Weather_Location">
+        <value condition="!String.IsEmpty(Weather.location)">$INFO[Weather.location]</value>
+        <value>$LOCALIZE[400]</value>
+    </variable>
+
+    <variable name="Label_Weather_Property">
+        <value condition="String.Contains(ListItem.Property(HighTemp),°)">$INFO[ListItem.Property(HighTemp)] $INFO[ListItem.Property(LowTemp)]</value>
+        <value condition="!String.Contains(ListItem.Property(HighTemp),°)">$INFO[ListItem.Property(HighTemp),,°] $INFO[ListItem.Property(LowTemp),,°]</value>
     </variable>
 
     <!-- LABEL - PROGRESS -->
