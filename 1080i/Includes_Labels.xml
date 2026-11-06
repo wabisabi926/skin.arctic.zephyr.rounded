@@ -2495,6 +2495,13 @@
         <value condition="VideoPlayer.Content(livetv) + VideoPlayer.HasEpg">$INFO[PVR.EpgEventFinishTime]</value>
     </variable>
 
+    <variable name="Label_OSD_Action_On_Down">
+        <value condition="String.IsEqual(Skin.String(osd_down_action),1)">$LOCALIZE[298]</value>
+        <value condition="String.IsEqual(Skin.String(osd_down_action),2)">$LOCALIZE[31477]</value>
+        <value condition="String.IsEqual(Skin.String(osd_down_action),3)">$LOCALIZE[31406]</value>
+        <value>$LOCALIZE[14116]</value>
+    </variable>
+
 	<variable name="Label_Player_Forward_Rewind_Speed">
 		<value condition="Player.Forwarding2x | Player.Rewinding2x">2x</value>
 		<value condition="Player.Forwarding4x | Player.Rewinding4x">4x</value>
@@ -2864,6 +2871,21 @@
         <value>$INFO[Skin.String(settingperflevel)]</value>
     </variable>
 
+    <variable name="Label_Setting_Wiki_Language_Dialog_Info">
+        <value condition="String.IsEqual(Addon.SettingStr(script.wikipedia,language), ar)">العربية</value>
+        <value condition="String.IsEqual(Addon.SettingStr(script.wikipedia,language), de)">Deutsch</value>
+        <value condition="String.IsEqual(Addon.SettingStr(script.wikipedia,language), es)">Español</value>
+        <value condition="String.IsEqual(Addon.SettingStr(script.wikipedia,language), fr)">Français</value>
+        <value condition="String.IsEqual(Addon.SettingStr(script.wikipedia,language), it)">Italiano</value>
+        <value condition="String.IsEqual(Addon.SettingStr(script.wikipedia,language), ja)">日本語</value>
+        <value condition="String.IsEqual(Addon.SettingStr(script.wikipedia,language), pl)">Polski</value>
+        <value condition="String.IsEqual(Addon.SettingStr(script.wikipedia,language), pt)">Português</value>
+        <value condition="String.IsEqual(Addon.SettingStr(script.wikipedia,language), ru)">Русский</value>
+        <value condition="String.IsEqual(Addon.SettingStr(script.wikipedia,language), zh)">简体中文</value>
+        <value condition="String.IsEqual(Addon.SettingStr(script.wikipedia,language), en) | String.IsEmpty(Addon.SettingStr(script.wikipedia,language))">English</value>
+        <value> - - - </value>
+    </variable>
+
     <variable name="Label_Setting_Kodi_Rating_Provider">
         <value condition="!String.IsEmpty(Skin.String(Value_Kodi_Rating_Provider))">$INFO[Skin.String(Value_Kodi_Rating_Provider)]</value>
         <value>Kodi</value>
@@ -2921,6 +2943,11 @@
 
     <variable name="Label_Setting_Game_Icons">
         <value condition="!String.IsEmpty(Skin.String(game.logos.name))">$INFO[Skin.String(game.logos.name)]</value>
+        <value>$LOCALIZE[231]</value>
+    </variable>
+
+    <variable name="Label_Setting_Weather_Icons">
+        <value condition="!String.IsEmpty(Skin.String(weather.icons.name))">$INFO[Skin.String(weather.icons.name)]</value>
         <value>$LOCALIZE[231]</value>
     </variable>
 
