@@ -414,8 +414,8 @@
 
                 <include content="Object_Scrollbar_Dialog_Vertical">
                     <param name="colordiffuse_texturesliderbackground" value="E62D2E2E" />
-                    <param name="texturesliderbarfocus" value="dialog/scrollbar/scrollv.png" />
-                    <param name="texturesliderbarfocus_colordiffuse" value="4ddddddd" />
+                    <param name="colordiffuse_texturesliderbar" value="4D333333" />
+                    <param name="colordiffuse_texturesliderbarfocus" value="4DDDDDDD" />
                     <param name="scrollid" value="$PARAM[scrollid]" />
                     <param name="onleft" value="$PARAM[onleft]" />
                     <param name="onright" value="$PARAM[onright])" />
@@ -1245,7 +1245,6 @@
 
     <include name="Def_OSD_DiscArt">
         <control type="image">
-            <visible>!Window.IsVisible(DialogBusy.xml)</visible>
             <visible>!Skin.HasSetting(osd.music.disc.fake.cd)</visible>
             <width>254</width>
             <height>254</height>
@@ -1255,7 +1254,6 @@
             <animation effect="rotate" center="auto" time="6000" end="-360" condition="true" loop="true">Conditional</animation>
         </control>
         <control type="image">
-            <visible>!Window.IsVisible(DialogBusy.xml)</visible>
             <visible>Skin.HasSetting(osd.music.disc.fake.cd)</visible>
             <width>254</width>
             <height>254</height>
@@ -2979,6 +2977,7 @@
                 <animation type="Hidden" reversible="false">
                     <effect type="slide" start="0,0" end="-115,0" tween="sine" easing="out" time="400" delay="0" />
                 </animation>
+
                 <include>Def_OSD_DiscArt</include>
             </control>
 
