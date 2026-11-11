@@ -13,28 +13,50 @@
 
     <controls>
 
-        <!-- TITLE 2 -->
+        <!-- TITLE -->
 
         <control type="label">
             <top>60</top>
-            <left>88</left>
+            <left>92</left>
             <aligny>center</aligny>
             <height>64</height>
             <font>Small24</font>
-            <label>$VAR[Label_OSD_Playlist_Title_Left]</label>
+            <label>$VAR[Label_OSD_Playlist_Title_Left1]</label>
+            <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
+            <selectedcolor>$VAR[Color_OSD_Panel_White70]</selectedcolor>
+        </control>
+        <control type="label">
+            <top>60</top>
+            <right>1400</right>
+            <aligny>center</aligny>
+            <align>right</align>
+            <height>64</height>
+            <font>Small24</font>
+            <label>$VAR[Label_OSD_Playlist_Title_Left2]</label>
             <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
             <selectedcolor>$VAR[Color_OSD_Panel_White70]</selectedcolor>
         </control>
 
-        <!-- TITLE 2 -->
+        <!-- RESULT -->
 
         <control type="label">
             <top>60</top>
-            <left>560</left>
+            <left>564</left>
             <aligny>center</aligny>
             <height>64</height>
             <font>Small24</font>
-            <label>$VAR[Label_OSD_Playlist_Title_Right]</label>
+            <label>$VAR[Label_OSD_Playlist_Title_Right1]</label>
+            <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
+            <selectedcolor>$VAR[Color_OSD_Panel_White70]</selectedcolor>
+        </control>
+        <control type="label">
+            <top>60</top>
+            <right>90</right>
+            <aligny>center</aligny>
+            <align>right</align>
+            <height>64</height>
+            <font>Small24</font>
+            <label>$VAR[Label_OSD_Playlist_Title_Right2]</label>
             <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
             <selectedcolor>$VAR[Color_OSD_Panel_White70]</selectedcolor>
         </control>
@@ -44,6 +66,15 @@
         <control type="image">
             <top>113</top>
             <left>80</left>
+            <width>450</width>
+            <height>1</height>
+            <include content="Texture_Dialog_Line">
+                <param name="colordiffuse" value="$VAR[Color_OSD_Dialog_Border]" />
+            </include>
+        </control>
+        <control type="image">
+            <top>113</top>
+            <left>552</left>
             <right>80</right>
             <height>1</height>
             <include content="Texture_Dialog_Line">
@@ -82,10 +113,13 @@
                 <onright>6092</onright>
                 <onright>SetProperty(TMDbHelper.WidgetContainer,6092,Home)</onright>
 
+                <onup>-</onup>
+                <ondown>-</ondown>
+
                 <onclick condition="String.IsEmpty(Window(Home).Property(OSDRelaunchFullscreen))">SetProperty(OSDRelaunchFullscreen,1,Home)</onclick>
                 <onclick condition="String.IsEmpty(Window(Home).Property(OSDRelaunchPlaylist))">SetProperty(OSDRelaunchPlaylist,1,Home)</onclick>
-                <onclick condition="String.IsEmpty(Container(6090).ListItem.Property(folderpath))">AlarmClock(LaunchPlayMedia,PlayMedia($ESCINFO[Container(6090).ListItem.FolderPath],isdir,playoffset=$INFO[Window(Home).Property(OSDRelaunchFullscreen)]),00:00,silent)</onclick>
-                <onclick condition="!String.IsEmpty(Container(6090).ListItem.Property(folderpath))">AlarmClock(LaunchPlayMedia,PlayMedia($ESCINFO[Container(6090).ListItem.Property(folderpath)],isdir,playoffset=$INFO[Window(Home).Property(OSDRelaunchFullscreen)]),00:00,silent)</onclick>
+                <onclick condition="String.IsEmpty(Container(6090).ListItem.Property(folderpath))">AlarmClock(LaunchPlayMedia,PlayMedia($ESCINFO[Container(6090).ListItem.FolderPath],isdir,playoffset=$INFO[Window(Home).Property(OSDRelaunchFullscreen)]),00:01,silent)</onclick>
+                <onclick condition="!String.IsEmpty(Container(6090).ListItem.Property(folderpath))">AlarmClock(LaunchPlayMedia,PlayMedia($ESCINFO[Container(6090).ListItem.Property(folderpath)],isdir,playoffset=$INFO[Window(Home).Property(OSDRelaunchFullscreen)]),00:01,silent)</onclick>
 
                 <orientation>vertical</orientation>
                 <focusposition>1</focusposition>
@@ -111,7 +145,7 @@
 
                 <!-- LIST ALBUM - ARTIST NOW PLAYING -->
 
-                <content>$VAR[Def_Player_Artist_List_Albums]</content>
+                <content sortby="title" sortorder="ascending">$VAR[Def_Player_Artist_List_Albums]</content>
             </control>
         </control>
 
@@ -136,12 +170,12 @@
                 <onleft>SetProperty(TMDbHelper.WidgetContainer,6090,Home)</onleft>
                 <onright>1899</onright>
 
+                <onup>-</onup>
+                <ondown>-</ondown>
+
                 <onclick>SetProperty(OSDRelaunchFullscreen,$INFO[Container(6092).CurrentItem],Home)</onclick>
-
                 <onclick condition="String.IsEmpty(Window(Home).Property(OSDRelaunchPlaylist))">SetProperty(OSDRelaunchPlaylist,1,Home)</onclick>
-
                 <onclick>SetFocus(6090)</onclick>
-
                 <onclick>Action(Select)</onclick>
 
                 <pagecontrol>1899</pagecontrol>
@@ -183,7 +217,7 @@
                 <param name="onright" value="6092" />
                 <param name="height" value="457" />
                 <param name="centerright" value="80" />
-                <param name="animation_fade_hide" value="false" />
+                <!-- <param name="animation_fade_hide" value="false" /> -->
             </include>
         </control>
     </controls>
