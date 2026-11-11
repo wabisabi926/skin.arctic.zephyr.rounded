@@ -305,7 +305,7 @@
                 <width>560</width>
 
                 <control type="image">
-                    <left>12</left>
+                    <left>8</left>
                     <centertop>40</centertop>
                     <width>62</width>
                     <height>62</height>
@@ -363,7 +363,7 @@
 
             <control type="group">
                 <top>40</top>
-                <right>44</right>
+                <right>40</right>
                 <height>40</height>
                 <width>80</width>
 
@@ -1329,17 +1329,17 @@
 
         <!-- BOOKMARKS -->
 
-        <ondown condition="String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO)) + String.IsEmpty(Window(Home).Property(OSDVideo_DONT_AUTO_CLOSE)) + !String.IsEmpty(VideoPlayer.Title) + String.IsEqual(Skin.String(osd_down_action),1)">ActivateWindow(125)</ondown>
+        <ondown condition="!$EXP[IsPlayingYoutube] + String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO)) + String.IsEmpty(Window(Home).Property(OSDVideo_DONT_AUTO_CLOSE)) + !String.IsEmpty(VideoPlayer.Title) + String.IsEqual(Skin.String(osd_down_action),1)">ActivateWindow(125)</ondown>
 
         <!-- WIKIPEDIA -->
 
-        <ondown condition="String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO)) + String.IsEmpty(Window(Home).Property(OSDVideo_DONT_AUTO_CLOSE)) + !String.IsEmpty(VideoPlayer.DBID) + !String.IsEmpty(VideoPlayer.Title) + String.IsEqual(Skin.String(osd_down_action),2)">SetProperty(wikipedia,1,Home)</ondown>
+        <ondown condition="!$EXP[IsPlayingYoutube] + String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO)) + String.IsEmpty(Window(Home).Property(OSDVideo_DONT_AUTO_CLOSE)) + !String.IsEmpty(VideoPlayer.DBID) + !String.IsEmpty(VideoPlayer.Title) + String.IsEqual(Skin.String(osd_down_action),2)">SetProperty(wikipedia,1,Home)</ondown>
 
-        <ondown condition="String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO)) + String.IsEmpty(Window(Home).Property(OSDVideo_DONT_AUTO_CLOSE)) + !String.IsEmpty(VideoPlayer.DBID) + !String.IsEmpty(VideoPlayer.Title) + String.IsEqual(Skin.String(osd_down_action),2)">$VAR[Path_Player_Wikipedia]</ondown>
+        <ondown condition="!$EXP[IsPlayingYoutube] + String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO)) + String.IsEmpty(Window(Home).Property(OSDVideo_DONT_AUTO_CLOSE)) + !String.IsEmpty(VideoPlayer.DBID) + !String.IsEmpty(VideoPlayer.Title) + String.IsEqual(Skin.String(osd_down_action),2)">$VAR[Path_Player_Wikipedia]</ondown>
 
         <!-- HIDE OSD -->
 
-        <ondown condition="String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO)) + String.IsEmpty(Window(Home).Property(OSDVideo_DONT_AUTO_CLOSE)) + String.IsEmpty(VideoPlayer.DBID) + String.IsEqual(Skin.String(osd_down_action),3)">Close</ondown>
+        <ondown condition="!$EXP[IsPlayingYoutube] + String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO)) + String.IsEmpty(Window(Home).Property(OSDVideo_DONT_AUTO_CLOSE)) + String.IsEmpty(VideoPlayer.DBID) + String.IsEqual(Skin.String(osd_down_action),3)">Close</ondown>
 
         <!-- AUTO PAUSE FOR DIALOG INFO -->
 
