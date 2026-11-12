@@ -11,6 +11,10 @@ on:
         description: '强制重建 zip 并覆盖同名资产'
         type: boolean
         default: false
+      update_notes:
+        description: '刷新已存在 Release 的更新日志（不改动资产）'
+        type: boolean
+        default: true
 
 permissions:
   contents: write
@@ -253,14 +257,19 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAG: ${{ steps.meta.outputs.tag }}
           ASSET: ${{ steps.meta.outputs.asset }}
-          VER: ${{ steps.meta.outputs.ver }}
           FORCE: ${{ inputs.force }}
+          UPDATE_NOTES: ${{ inputs.update_notes }}
           BODY: ${{ steps.changelog.outputs.body }}
         run: |
           set -euo pipefail
 
           if gh release view "$TAG" >/dev/null 2>&1; then
             echo "Release $TAG 已存在"
+            # 幂等回填：即使资产无需上传，也同步更新 Release 说明
+            if [ "${UPDATE_NOTES:-true}" = "true" ]; then
+              gh release edit "$TAG" --notes "$BODY"
+              echo "已刷新 Release 说明"
+            fi
             EXISTING=$(gh release view "$TAG" --json assets -q '.assets[].name' || true)
             if grep -qx "$ASSET" <<< "$EXISTING" && [ "${FORCE:-false}" != "true" ]; then
               echo "资产 $ASSET 已存在，跳过上传"
