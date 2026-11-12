@@ -153,6 +153,7 @@ jobs:
                 -B /tmp/tp-build \
                 -DKODI_SOURCE_DIR=/tmp/xbmc \
                 -DCMAKE_BUILD_TYPE=Release \
+                "-DCMAKE_CXX_FLAGS=-DTARGET_POSIX" \
             || fail "cmake configure" "$?"
           echo "::endgroup::"
 
