@@ -179,6 +179,7 @@ jobs:
         if: steps.textures.outputs.repack == 'true'
         run: |
           set -euo pipefail
+          trap 'rc=$?; trap - ERR; echo "::error::Repack 失败于: $BASH_COMMAND (exit $rc)"; exit $rc' ERR
 
           # 1) 记录原 xbt 的纹理条目数（magic 4B + version 1B + uint32 count）
           python3 - << 'PYEOF' > /tmp/orig_count
@@ -191,14 +192,10 @@ jobs:
           PYEOF
           echo "原 XBT 纹理条目数: $(cat /tmp/orig_count)"
 
-          # 2) 获取 Linux 版 xbt 解包器
-          URL=$(curl -fsSL https://api.github.com/repos/benjarogit/kodixbttool/releases/latest \
-            | jq -r '[.assets[] | select(.name | test("linux"; "i")) | .browser_download_url][0] // empty')
-          if [ -z "$URL" ]; then
-            echo "::error::无法定位 kodixbttool Linux 二进制"
-            exit 1
-          fi
-          curl -fsSL -o /tmp/kodixbttool "$URL"
+          # 2) 解包器：固定 v1.0.9 Linux x64，避免运行时 API / jq 依赖
+          curl -fsSL -o /tmp/kodixbttool \
+            "https://github.com/benjarogit/kodixbttool/releases/download/v1.0.9/kodixbttool-linux-x64"
+          echo "b1824314e14768de2ac97fcbc9223a80f7f0d31b0e5aafcdeef80d1fa27405ad  /tmp/kodixbttool" | sha256sum -c -
           chmod +x /tmp/kodixbttool
 
           # 3) 解包现有 xbt，得到完整散图源
