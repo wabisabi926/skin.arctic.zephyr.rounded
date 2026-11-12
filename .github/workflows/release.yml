@@ -198,6 +198,29 @@ jobs:
           echo "b1824314e14768de2ac97fcbc9223a80f7f0d31b0e5aafcdeef80d1fa27405ad  /tmp/kodixbttool" | sha256sum -c -
           chmod +x /tmp/kodixbttool
 
+          # 2a) 运行期依赖自检：该二进制动态链接 libsquish.so.0，
+          #     Build 步骤可能被缓存命中而跳过，必须在此独立保证
+          MISSING=$(ldd /tmp/kodixbttool 2>&1 | grep 'not found' || true)
+          if [ -n "$MISSING" ]; then
+            echo "::notice::解包器缺少运行库，补装: $MISSING"
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq libsquish0 liblzo2-dev libpng-dev libgif-dev libjpeg-dev
+          fi
+          ldd /tmp/kodixbttool
+          if ldd /tmp/kodixbttool 2>&1 | grep -q 'not found'; then
+            echo "::error::解包器运行库仍缺失，无法解包 XBT"
+            exit 1
+          fi
+
+          # 2b) 可执行性与路径结构自检：失败时给出明确原因，而不是裸 exit 127
+          if ! /tmp/kodixbttool -p media/Textures.xbt > /tmp/xbt.list 2>/tmp/xbt.err; then
+            echo "::error::kodixbttool 无法执行或无法解析现有 xbt"
+            cat /tmp/xbt.err
+            exit 1
+          fi
+          echo "XBT 内路径数: $(wc -l < /tmp/xbt.list)"
+          head -3 /tmp/xbt.list
+
           # 3) 解包现有 xbt，得到完整散图源
           rm -rf /tmp/tex && mkdir -p /tmp/tex
           if [ "${{ steps.textures.outputs.has_xbt }}" = "true" ]; then
