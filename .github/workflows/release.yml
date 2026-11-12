@@ -15,6 +15,10 @@ on:
         description: '刷新已存在 Release 的更新日志（不改动资产）'
         type: boolean
         default: true
+      skip_texture_repack:
+        description: '应急：完全跳过纹理处理，按仓库原样打包（散图保留）'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -27,7 +31,8 @@ jobs:
   package:
     if: github.repository == 'wabisabi926/skin.arctic.zephyr.rounded'
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    # 纹理 V3 重打包需编译 TexturePacker + 解包/重打包约 2400 张纹理
+    timeout-minutes: 45
 
     steps:
       - name: Checkout
@@ -63,20 +68,190 @@ jobs:
           echo "version  : $VER"
           echo "branch   : $BRANCH"
 
+      - name: Detect media layout
+        id: textures
+        env:
+          SKIP: ${{ inputs.skip_texture_repack }}
+        run: |
+          set -euo pipefail
+
+          # 判定阈值：media/ 下只要存在被跟踪的散图，即进入 V3 重打包分支
+          LOOSE=$(git ls-files media/ | grep -Ei '\.(png|jpe?g|gif)$' || true)
+          if [ -f media/Textures.xbt ]; then HAS_XBT=true; else HAS_XBT=false; fi
+
+          if [ "$HAS_XBT" = "false" ] && [ -z "$LOOSE" ]; then
+            echo "::error::media/ 既无 Textures.xbt 也无散图"
+            exit 1
+          fi
+
+          if [ "${SKIP:-false}" = "true" ]; then
+            echo "::notice::skip_texture_repack=true，按仓库原样打包"
+            REPACK=false
+          elif [ -n "$LOOSE" ]; then
+            REPACK=true
+          else
+            REPACK=false
+          fi
+
+          { echo "repack=$REPACK"; echo "has_xbt=$HAS_XBT"; } >> "$GITHUB_OUTPUT"
+
+          if [ -n "$LOOSE" ]; then
+            echo "media/ 散图数: $(wc -l <<< "$LOOSE")"
+            echo "$LOOSE"
+          else
+            echo "media/ 散图数: 0（仅 Textures.xbt，跳过重打包）"
+          fi
+          echo "XBT v3 重打包: $REPACK"
+
+      - name: Resolve xbmc ref
+        if: steps.textures.outputs.repack == 'true'
+        id: xbmc
+        run: |
+          set -euo pipefail
+          SHA=$(git ls-remote https://github.com/xbmc/xbmc.git refs/heads/master | cut -f1)
+          echo "sha=$SHA" >> "$GITHUB_OUTPUT"
+          echo "xbmc master (Kodi 22 Piers): $SHA"
+
+      - name: Cache TexturePacker
+        if: steps.textures.outputs.repack == 'true'
+        id: tpcache
+        uses: actions/cache@v4
+        with:
+          path: /tmp/TexturePacker
+          key: texturepacker-${{ runner.os }}-${{ steps.xbmc.outputs.sha }}
+
+      - name: Build Kodi 22 TexturePacker
+        if: steps.textures.outputs.repack == 'true' && steps.tpcache.outputs.cache-hit != 'true'
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq liblzo2-dev libpng-dev libgif-dev libjpeg-dev cmake g++
+
+          # 稀疏检出：独立 cmake 工程 + XBTF 容器实现
+          git clone --depth 1 --filter=blob:none --sparse \
+            https://github.com/xbmc/xbmc.git /tmp/xbmc
+          git -C /tmp/xbmc sparse-checkout set \
+            tools/depends/native/TexturePacker/src xbmc/guilib
+
+          echo "XBTF 版本常量："
+          grep -n 'XBTF_VERSION' /tmp/xbmc/xbmc/guilib/XBTF.h || true
+
+          cmake -S /tmp/xbmc/tools/depends/native/TexturePacker/src \
+                -B /tmp/tp-build \
+                -DKODI_SOURCE_DIR=/tmp/xbmc \
+                -DCMAKE_BUILD_TYPE=Release
+          cmake --build /tmp/tp-build --parallel 2
+          cp /tmp/tp-build/TexturePacker /tmp/TexturePacker
+          chmod +x /tmp/TexturePacker
+
+      - name: Repack media to XBT v3
+        if: steps.textures.outputs.repack == 'true'
+        run: |
+          set -euo pipefail
+
+          # 1) 记录原 xbt 的纹理条目数（magic 4B + version 1B + uint32 count）
+          python3 - << 'PYEOF' > /tmp/orig_count
+          import struct
+          try:
+              b = open('media/Textures.xbt', 'rb').read(9)
+              print(struct.unpack('<I', b[5:9])[0] if b[:4] == b'XBTF' else 0)
+          except Exception:
+              print(0)
+          PYEOF
+          echo "原 XBT 纹理条目数: $(cat /tmp/orig_count)"
+
+          # 2) 获取 Linux 版 xbt 解包器
+          URL=$(curl -fsSL https://api.github.com/repos/benjarogit/kodixbttool/releases/latest \
+            | jq -r '[.assets[] | select(.name | test("linux"; "i")) | .browser_download_url][0] // empty')
+          if [ -z "$URL" ]; then
+            echo "::error::无法定位 kodixbttool Linux 二进制"
+            exit 1
+          fi
+          curl -fsSL -o /tmp/kodixbttool "$URL"
+          chmod +x /tmp/kodixbttool
+
+          # 3) 解包现有 xbt，得到完整散图源
+          rm -rf /tmp/tex && mkdir -p /tmp/tex
+          if [ "${{ steps.textures.outputs.has_xbt }}" = "true" ]; then
+            /tmp/kodixbttool -o /tmp/tex -c media/Textures.xbt
+            # 路径结构锚点：原 xbt 首个纹理必须落在解包根目录
+            if [ ! -f /tmp/tex/defaultactor.png ]; then
+              echo "::error::解包目录结构与原 xbt 路径不一致，中止以防纹理引用失效"
+              find /tmp/tex -maxdepth 2 | head -20
+              exit 1
+            fi
+          fi
+
+          # 4) 合并 media/ 下的散图，保持相对 media/ 的路径
+          while IFS= read -r f; do
+            rel="${f#media/}"
+            mkdir -p "/tmp/tex/$(dirname "$rel")"
+            cp "media/$rel" "/tmp/tex/$rel"
+          done < <(git ls-files media/ | grep -Ei '\.(png|jpe?g|gif)$' || true)
+
+          SRC_COUNT=$(find /tmp/tex -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.gif' \) | wc -l)
+          echo "打包输入纹理数: $SRC_COUNT"
+          if [ "$SRC_COUNT" -lt "$(cat /tmp/orig_count)" ] || [ "$SRC_COUNT" -lt 1 ]; then
+            echo "::error::输入纹理数少于原 xbt，中止以防纹理丢失"
+            exit 1
+          fi
+
+          # 5) Kodi 22 TexturePacker 输出 XBT v3
+          /tmp/TexturePacker -dupecheck -input /tmp/tex -output /tmp/Textures.v3.xbt
+
+          # 6) 硬校验：v3 格式 / 条目数不缩水 / 豆瓣纹理已入包
+          python3 - << 'PYEOF'
+          import struct
+          b = open('/tmp/Textures.v3.xbt', 'rb').read()
+          if b[:5] != b'XBTF3':
+              raise SystemExit('::error::生成的纹理包不是 XBT v3 (magic=%r)' % b[:5])
+          new = struct.unpack('<I', b[5:9])[0]
+          orig = int(open('/tmp/orig_count').read().strip())
+          if orig and new < orig:
+              raise SystemExit('::error::纹理条目缩水 %d -> %d' % (orig, new))
+          if b'douban' not in b:
+              raise SystemExit('::error::新 xbt 中缺少 douban 纹理')
+          print('XBT v3 校验通过: %d 条目, %d bytes' % (new, len(b)))
+          PYEOF
+
+          cp /tmp/Textures.v3.xbt media/Textures.xbt
+          echo "已生成: $(du -h media/Textures.xbt | cut -f1)"
+
       - name: Build zip with git archive
+        env:
+          REPACK: ${{ steps.textures.outputs.repack }}
         run: |
           set -euo pipefail
           # .gitattributes 中已声明 export-ignore：
           #   .gitignore / .gitattributes / .github
           # 因此 git archive 会自动排除这三项，且只打包已跟踪文件。
-          git archive \
-            --format=zip \
-            --prefix="${{ steps.meta.outputs.id }}/" \
-            -o "${{ steps.meta.outputs.asset }}" \
-            HEAD
-          ls -lh "${{ steps.meta.outputs.asset }}"
+          ID="${{ steps.meta.outputs.id }}"
+          ASSET="${{ steps.meta.outputs.asset }}"
+
+          git archive --format=zip --prefix="$ID/" -o "$ASSET" HEAD
+
+          if [ "$REPACK" = "true" ]; then
+            # 发布态只保留 Textures.xbt，media/ 下散图一律排除
+            unzip -Z1 "$ASSET" \
+              | grep -Ei "^${ID}/media/.*\.(png|jpe?g|gif)$" > /tmp/loose.list || true
+            if [ -s /tmp/loose.list ]; then
+              xargs -a /tmp/loose.list -d '\n' -r zip -d "$ASSET" >/dev/null
+              echo "已排除 media/ 散图 $(wc -l < /tmp/loose.list) 个"
+            fi
+
+            # git archive 打的是仓库里的旧 xbt，用新生成的 XBT v3 替换
+            # 纯散图分支中该条目本就不存在，删除失败属正常
+            zip -d "$ASSET" "$ID/media/Textures.xbt" >/dev/null || true
+            mkdir -p "/tmp/stage/$ID/media"
+            cp media/Textures.xbt "/tmp/stage/$ID/media/Textures.xbt"
+            (cd /tmp/stage && zip -q "$GITHUB_WORKSPACE/$ASSET" "$ID/media/Textures.xbt")
+            echo "已注入 XBT v3 纹理包"
+          fi
+          ls -lh "$ASSET"
 
       - name: Verify zip contents
+        env:
+          REPACK: ${{ steps.textures.outputs.repack }}
         run: |
           set -euo pipefail
           ZIP="${{ steps.meta.outputs.asset }}"
@@ -100,6 +275,22 @@ jobs:
           if grep -Eq '^\.workbuddy(/|$)' <<< "$LIST"; then
             echo "::error::zip 中包含未跟踪目录 .workbuddy"
             exit 1
+          fi
+
+          if [ "$REPACK" = "true" ]; then
+            if grep -Eqi "^${ID}/media/.*\.(png|jpe?g|gif)$" <<< "$LIST"; then
+              echo "::error::发布包仍含 media/ 散图"
+              exit 1
+            fi
+            # 直接读 zip 内 xbt 头部，确认是 XBT v3 且未被旧包覆盖
+            python3 - << PYEOF
+          import zipfile
+          z = zipfile.ZipFile("$ZIP")
+          head = z.open("$ID/media/Textures.xbt").read(5)
+          if head != b"XBTF3":
+              raise SystemExit("::error::发布包内 Textures.xbt 不是 XBT v3 (magic=%r)" % head)
+          print("发布包纹理格式: XBT v3")
+          PYEOF
           fi
 
           echo "zip 结构校验通过"
@@ -134,14 +325,14 @@ jobs:
               text=True
           ).strip().splitlines()
 
-          # 分类规则（Kodi skin changelog 风格）
-          # 关键词 → 分类
-          CAT_NEW     = []   # New Features
-          CAT_FIX     = []   # Bug Fixes
-          CAT_IMPROVE = []   # Improvements
-          CAT_COSMETIC= []   # Cosmetic / UI Polish
-          CAT_REWORK  = []   # Rework / Refactor
-          CAT_OTHER   = []   # Miscellaneous
+          # 分类规则（Kodi skin changelog 风格，章节标题用中文）
+          CAT_NEW     = []   # 新增
+          CAT_IMPROVE = []   # 优化
+          CAT_FIX     = []   # 修复
+          CAT_REMOVE  = []   # 移除
+          CAT_REWORK  = []   # 重构
+          CAT_COSMETIC= []   # 外观
+          CAT_OTHER   = []   # 其他
 
           SKIP_PATTERNS = [
               r"^VERSION\b",
@@ -204,6 +395,8 @@ jobs:
               # 分类
               if "new feature" in s_lower or "add new setting" in s_lower or "add setting" in s_lower:
                   cat = CAT_NEW
+              elif re.search(r'\b(remove|removed|delete|deleted|drop|dropped)\b', s_lower):
+                  cat = CAT_REMOVE
               elif "fix" in s_lower or "hotfix" in s_lower or "hot fix" in s_lower or "workaround" in s_lower:
                   cat = CAT_FIX
               elif "rework" in s_lower or "refactor" in s_lower:
@@ -231,15 +424,16 @@ jobs:
                   lines.append(f"- {item}")
               lines.append("")
 
-          emit("New Features", CAT_NEW)
-          emit("Improvements", CAT_IMPROVE)
-          emit("Bug Fixes", CAT_FIX)
-          emit("Rework / Refactor", CAT_REWORK)
-          emit("Cosmetic / UI Polish", CAT_COSMETIC)
-          emit("Miscellaneous", CAT_OTHER)
+          emit("新增", CAT_NEW)
+          emit("优化", CAT_IMPROVE)
+          emit("修复", CAT_FIX)
+          emit("移除", CAT_REMOVE)
+          emit("重构", CAT_REWORK)
+          emit("外观", CAT_COSMETIC)
+          emit("其他", CAT_OTHER)
 
           if not lines:
-              lines.append("- Maintenance update")
+              lines.append("- 维护性更新")
 
           print("\n".join(lines))
           PYEOF
@@ -298,4 +492,5 @@ jobs:
             echo "| 分支 | \`${{ steps.meta.outputs.branch }}\` |"
             echo "| Release | \`${{ steps.meta.outputs.tag }}\` |"
             echo "| 资产 | \`${{ steps.meta.outputs.asset }}\` |"
+            echo "| XBT v3 重打包 | \`${{ steps.textures.outputs.repack }}\` |"
           } >> "$GITHUB_STEP_SUMMARY"
