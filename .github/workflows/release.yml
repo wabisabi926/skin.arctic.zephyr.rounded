@@ -157,8 +157,18 @@ jobs:
           echo "::endgroup::"
 
           echo "::group::cmake build"
-          cmake --build /tmp/tp-build --parallel 2 \
-            || fail "cmake build" "$?"
+          rc=0
+          cmake --build /tmp/tp-build --parallel 2 > /tmp/tp-build.log 2>&1 || rc=$?
+          tail -n 40 /tmp/tp-build.log
+          if [ "$rc" -ne 0 ]; then
+            python3 - << 'PYEOF'
+          lines = open('/tmp/tp-build.log', errors='replace').read().splitlines()
+          tail = [l for l in lines if 'error:' in l.lower() or 'fatal' in l.lower()][:12] or lines[-20:]
+          enc = '\n'.join(tail).replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A')
+          print('::error::cmake build 输出:' + enc)
+          PYEOF
+            fail "cmake build" "$rc"
+          fi
           echo "::endgroup::"
 
           cp /tmp/tp-build/TexturePacker /tmp/TexturePacker || fail "cp binary" "$?"
