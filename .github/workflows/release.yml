@@ -96,6 +96,151 @@ jobs:
 
           echo "zip 结构校验通过"
 
+      - name: Generate changelog
+        id: changelog
+        env:
+          TAG: ${{ steps.meta.outputs.tag }}
+        run: |
+          set -euo pipefail
+
+          # 取上一个 tag（按版本号排序）
+          PREV_TAG=$(git tag -l --sort=-v:refname | grep -E "^${{ steps.meta.outputs.branch }}-[0-9]" | sed -n 2p || true)
+
+          if [ -z "$PREV_TAG" ]; then
+            RANGE="HEAD"
+          else
+            RANGE="${PREV_TAG}..HEAD"
+          fi
+
+          echo "changelog range: $RANGE"
+
+          CHANGELOG=$(RANGE="$RANGE" python3 << 'PYEOF'
+          import os, re, subprocess
+
+          range_arg = os.environ.get("RANGE", "HEAD")
+
+          # 获取非 merge commit
+          out = subprocess.check_output(
+              ["git", "log", "--no-merges", "--format=%s", range_arg],
+              text=True
+          ).strip().splitlines()
+
+          # 分类规则（Kodi skin changelog 风格）
+          # 关键词 → 分类
+          CAT_NEW     = []   # New Features
+          CAT_FIX     = []   # Bug Fixes
+          CAT_IMPROVE = []   # Improvements
+          CAT_COSMETIC= []   # Cosmetic / UI Polish
+          CAT_REWORK  = []   # Rework / Refactor
+          CAT_OTHER   = []   # Miscellaneous
+
+          SKIP_PATTERNS = [
+              r"^VERSION\b",
+              r"^cosmetic\s*$",
+              r"^code\s*[- ]+(cleanup|fix|cosmetic|comment|missing|refactoring)\s*$",
+              r"^code\s*[- ]+(cleanup|fix|cosmetic|comment|missing|refactoring)\s*\d*\s*$",
+              r"^misc\s*-\s*(cosmetic|improvement|fix|minor)\s*$",
+              r"^code refactoring\s*$",
+              r"^code\s*$",
+              r"^\?\?\?",
+              r"^typo\b",
+              r"^comment\b",
+              r"^cleanup\s*$",
+              r"^code\s*-\s*comment\s*-\s*cleanup\s*$",
+              r"^misc\s*-\s*cosmetic\s*$",
+          ]
+
+          def should_skip(s):
+              for p in SKIP_PATTERNS:
+                  if re.match(p, s, re.I):
+                      return True
+              return False
+
+          def clean_msg(s):
+              # 去掉尾部编号后缀 partN / fixN / wipN 等
+              s = re.sub(r'\s+part\s*\d+\s*$', '', s, flags=re.I)
+              s = re.sub(r'\s+fix\s*\d*\s*$', '', s, flags=re.I)
+              s = re.sub(r'\s+cosmetic\s*\d*\s*$', '', s, flags=re.I)
+              s = re.sub(r'\s+wip\s*\d+\s*$', '', s, flags=re.I)
+              s = re.sub(r'\s+improvement\s*\d*\s*$', '', s, flags=re.I)
+              # 去掉 - 分隔的尾缀
+              s = re.sub(r'\s*-\s*part\s*\d+\s*$', '', s, flags=re.I)
+              s = re.sub(r'\s*-\s*fix\s*\d*\s*$', '', s, flags=re.I)
+              s = re.sub(r'\s*-\s*cosmetic\s*\d*\s*$', '', s, flags=re.I)
+              s = re.sub(r'\s*-\s*wip\s*\d+\s*$', '', s, flags=re.I)
+              s = re.sub(r'\s*-\s*improvement\s*\d*\s*$', '', s, flags=re.I)
+              # 去掉独立尾部的数字编号 (如 "color 2" → "color")
+              s = re.sub(r'\s+\d+\s*$', '', s)
+              # 去掉 rework - code 尾缀
+              s = re.sub(r'\s*-\s*rework\s*-\s*code\s*\d*\s*$', '', s, flags=re.I)
+              # 去掉尾部孤立的破折号
+              s = re.sub(r'\s*-\s*$', '', s)
+              return s.strip()
+
+          seen = set()
+
+          for raw in out:
+              s = raw.strip()
+              if not s or should_skip(s):
+                  continue
+
+              orig = s
+              s_lower = s.lower()
+
+              # 分类
+              if "new feature" in s_lower or "add new setting" in s_lower or "add setting" in s_lower:
+                  cat = CAT_NEW
+              elif "fix" in s_lower or "hotfix" in s_lower or "hot fix" in s_lower or "workaround" in s_lower:
+                  cat = CAT_FIX
+              elif "rework" in s_lower or "refactor" in s_lower:
+                  cat = CAT_REWORK
+              elif "cosmetic" in s_lower:
+                  cat = CAT_COSMETIC
+              elif "improvement" in s_lower or "improve" in s_lower:
+                  cat = CAT_IMPROVE
+              else:
+                  cat = CAT_OTHER
+
+              cleaned = clean_msg(s)
+              if cleaned.lower() in seen:
+                  continue
+              seen.add(cleaned.lower())
+              cat.append(cleaned)
+
+          lines = []
+
+          def emit(title, items):
+              if not items:
+                  return
+              lines.append(f"### {title}")
+              for item in items:
+                  lines.append(f"- {item}")
+              lines.append("")
+
+          emit("New Features", CAT_NEW)
+          emit("Improvements", CAT_IMPROVE)
+          emit("Bug Fixes", CAT_FIX)
+          emit("Rework / Refactor", CAT_REWORK)
+          emit("Cosmetic / UI Polish", CAT_COSMETIC)
+          emit("Miscellaneous", CAT_OTHER)
+
+          if not lines:
+              lines.append("- Maintenance update")
+
+          print("\n".join(lines))
+          PYEOF
+          )
+
+          # 写到文件供后续步骤使用
+          echo "$CHANGELOG" > /tmp/changelog.md
+
+          # 输出到 GITHUB_OUTPUT（多行需用 delimiter）
+          {
+            echo "body<<CHANGELOG_EOF"
+            echo "$CHANGELOG"
+            echo "CHANGELOG_EOF"
+          } >> "$GITHUB_OUTPUT"
+
       - name: Create or reuse release, upload asset
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -103,6 +248,7 @@ jobs:
           ASSET: ${{ steps.meta.outputs.asset }}
           VER: ${{ steps.meta.outputs.ver }}
           FORCE: ${{ inputs.force }}
+          BODY: ${{ steps.changelog.outputs.body }}
         run: |
           set -euo pipefail
 
@@ -119,7 +265,7 @@ jobs:
             gh release create "$TAG" \
               --target "$GITHUB_SHA" \
               --title "$TAG" \
-              --notes "自动构建：\`$ASSET\`（版本 $VER）"
+              --notes-file /tmp/changelog.md
           fi
 
           gh release upload "$TAG" "$ASSET" --clobber
