@@ -282,12 +282,12 @@ jobs:
           git archive --format=zip --prefix="$ID/" -o "$ASSET" HEAD
 
           if [ "$REPACK" = "true" ]; then
-            # 发布态只保留 Textures.xbt，media/ 下散图一律排除
+            # 发布态只保留 Textures.xbt：排除散图，以及 git archive 为散图生成的空目录条目
             unzip -Z1 "$ASSET" \
-              | grep -Ei "^${ID}/media/.*\.(png|jpe?g|gif)$" > /tmp/loose.list || true
-            if [ -s /tmp/loose.list ]; then
-              xargs -a /tmp/loose.list -d '\n' -r zip -d "$ASSET" >/dev/null
-              echo "已排除 media/ 散图 $(wc -l < /tmp/loose.list) 个"
+              | grep -Ei "^${ID}/media/.+/$|^${ID}/media/.*\.(png|jpe?g|gif)$" > /tmp/prune.list || true
+            if [ -s /tmp/prune.list ]; then
+              xargs -a /tmp/prune.list -d '\n' -r zip -d "$ASSET" >/dev/null
+              echo "已排除 media/ 散图与空目录 $(wc -l < /tmp/prune.list) 项"
             fi
 
             # git archive 打的是仓库里的旧 xbt，用新生成的 XBT v3 替换
@@ -331,6 +331,14 @@ jobs:
           if [ "$REPACK" = "true" ]; then
             if grep -Eqi "^${ID}/media/.*\.(png|jpe?g|gif)$" <<< "$LIST"; then
               echo "::error::发布包仍含 media/ 散图"
+              exit 1
+            fi
+            # media/ 下只允许目录条目自身与 Textures.xbt，禁止残留任何空子目录
+            EXTRA=$(grep -E "^${ID}/media/" <<< "$LIST" \
+              | grep -v -x -F -e "${ID}/media/" -e "${ID}/media/Textures.xbt" || true)
+            if [ -n "$EXTRA" ]; then
+              echo "::error::发布包 media/ 下仍有多余条目（散图或空目录）:"
+              echo "$EXTRA" | head -20
               exit 1
             fi
             # 直接读 zip 内 xbt 头部，确认是 XBT v3 且未被旧包覆盖
@@ -517,10 +525,18 @@ jobs:
             fi
             EXISTING=$(gh release view "$TAG" --json assets -q '.assets[].name' || true)
             if grep -qx "$ASSET" <<< "$EXISTING" && [ "${FORCE:-false}" != "true" ]; then
-              echo "资产 $ASSET 已存在，跳过上传"
-              exit 0
+              # 同名资产可能是旧包（例如脚本修复后重建），只有内容 digest 一致才真正跳过
+              REMOTE=$(gh api "repos/$GITHUB_REPOSITORY/releases/tags/$TAG" \
+                --jq ".assets[] | select(.name == \"$ASSET\") | .digest" || true)
+              LOCAL="sha256:$(sha256sum "$ASSET" | cut -d' ' -f1)"
+              if [ -n "$REMOTE" ] && [ "$REMOTE" = "$LOCAL" ]; then
+                echo "资产 $ASSET 已存在且内容一致，跳过上传"
+                exit 0
+              fi
+              echo "资产内容有变化，覆盖上传 ($REMOTE -> $LOCAL)"
+            else
+              echo "需要上传或覆盖资产 $ASSET"
             fi
-            echo "需要上传或覆盖资产 $ASSET"
           else
             echo "创建 Release $TAG"
             gh release create "$TAG" \
