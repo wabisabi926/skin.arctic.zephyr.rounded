@@ -28,6 +28,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # 需要完整提交历史与全部 tag，才能生成跨版本的 changelog
+          fetch-depth: 0
+          fetch-tags: true
 
       - name: Read addon id and version
         id: meta
@@ -103,8 +107,9 @@ jobs:
         run: |
           set -euo pipefail
 
-          # 取上一个 tag（按版本号排序）
-          PREV_TAG=$(git tag -l --sort=-v:refname | grep -E "^${{ steps.meta.outputs.branch }}-[0-9]" | sed -n 2p || true)
+          # 取上一个版本 tag：排除当前版本（此时新 tag 通常尚未由本流程创建）
+          PREV_TAG=$(git tag -l "${{ steps.meta.outputs.branch }}-*" --sort=-v:refname \
+            | grep -v -x "$TAG" | head -n 1 || true)
 
           if [ -z "$PREV_TAG" ]; then
             RANGE="HEAD"
@@ -148,6 +153,9 @@ jobs:
               r"^cleanup\s*$",
               r"^code\s*-\s*comment\s*-\s*cleanup\s*$",
               r"^misc\s*-\s*cosmetic\s*$",
+              # 工程类提交不进入面向用户的更新日志
+              r"^(ci|chore|docs|build|test|style|perf)(\(.+\))?:",
+              r"^Merge\b",
           ]
 
           def should_skip(s):
@@ -157,6 +165,8 @@ jobs:
               return False
 
           def clean_msg(s):
+              # 去掉中间冗余的类型标签（分类已由章节标题承载）
+              s = re.sub(r'\s*-\s*new feature\s*-\s*', ' - ', s, flags=re.I)
               # 去掉尾部编号后缀 partN / fixN / wipN 等
               s = re.sub(r'\s+part\s*\d+\s*$', '', s, flags=re.I)
               s = re.sub(r'\s+fix\s*\d*\s*$', '', s, flags=re.I)
@@ -231,10 +241,7 @@ jobs:
           PYEOF
           )
 
-          # 写到文件供后续步骤使用
-          echo "$CHANGELOG" > /tmp/changelog.md
-
-          # 输出到 GITHUB_OUTPUT（多行需用 delimiter）
+          # 输出为多行 output，供后续步骤使用
           {
             echo "body<<CHANGELOG_EOF"
             echo "$CHANGELOG"
@@ -265,7 +272,7 @@ jobs:
             gh release create "$TAG" \
               --target "$GITHUB_SHA" \
               --title "$TAG" \
-              --notes-file /tmp/changelog.md
+              --notes "$BODY"
           fi
 
           gh release upload "$TAG" "$ASSET" --clobber
