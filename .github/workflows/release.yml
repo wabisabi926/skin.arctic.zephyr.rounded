@@ -30,7 +30,8 @@ concurrency:
 jobs:
   package:
     if: github.repository == 'wabisabi926/skin.arctic.zephyr.rounded'
-    runs-on: ubuntu-latest
+    # 固定在 24.04：ubuntu-latest 自 2026-10 迁至 Ubuntu 26，工具链依赖不稳定
+    runs-on: ubuntu-24.04
     # 纹理 V3 重打包需编译 TexturePacker + 解包/重打包约 2400 张纹理
     timeout-minutes: 45
 
@@ -124,24 +125,43 @@ jobs:
         if: steps.textures.outputs.repack == 'true' && steps.tpcache.outputs.cache-hit != 'true'
         run: |
           set -euo pipefail
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq liblzo2-dev libpng-dev libgif-dev libjpeg-dev cmake g++
 
-          # 稀疏检出：独立 cmake 工程 + XBTF 容器实现
-          git clone --depth 1 --filter=blob:none --sparse \
-            https://github.com/xbmc/xbmc.git /tmp/xbmc
-          git -C /tmp/xbmc sparse-checkout set \
-            tools/depends/native/TexturePacker/src xbmc/guilib
+          fail() { echo "::error::TexturePacker 构建阶段 [$1] 失败, exit=$2"; exit "$2"; }
 
-          echo "XBTF 版本常量："
-          grep -n 'XBTF_VERSION' /tmp/xbmc/xbmc/guilib/XBTF.h || true
+          echo "::group::apt"
+          sudo apt-get update -qq || fail "apt-get update" "$?"
+          sudo apt-get install -y -qq \
+            liblzo2-dev libpng-dev libgif-dev libjpeg-dev cmake g++ \
+            || fail "apt-get install" "$?"
+          echo "::endgroup::"
 
+          echo "::group::clone"
+          # 完整 depth-1 检出：decoder/ 与 XBTF 会引用 guilib 之外的头，sparse 易漏
+          git clone --depth 1 https://github.com/xbmc/xbmc.git /tmp/xbmc \
+            || fail "git clone xbmc" "$?"
+          echo "::endgroup::"
+
+          # 硬校验：确认源码树输出 XBT v3（Kodi 22 / Piers）
+          if ! grep -Eq 'XBTF_VERSION[[:space:]]*=[[:space:]]*"3"' /tmp/xbmc/xbmc/guilib/XBTF.h; then
+            echo "::error::xbmc 源码树不是 XBT v3，拒绝产出错误格式"
+            grep -n 'XBTF_VERSION' /tmp/xbmc/xbmc/guilib/XBTF.h || true
+            exit 1
+          fi
+
+          echo "::group::cmake configure"
           cmake -S /tmp/xbmc/tools/depends/native/TexturePacker/src \
                 -B /tmp/tp-build \
                 -DKODI_SOURCE_DIR=/tmp/xbmc \
-                -DCMAKE_BUILD_TYPE=Release
-          cmake --build /tmp/tp-build --parallel 2
-          cp /tmp/tp-build/TexturePacker /tmp/TexturePacker
+                -DCMAKE_BUILD_TYPE=Release \
+            || fail "cmake configure" "$?"
+          echo "::endgroup::"
+
+          echo "::group::cmake build"
+          cmake --build /tmp/tp-build --parallel 2 \
+            || fail "cmake build" "$?"
+          echo "::endgroup::"
+
+          cp /tmp/tp-build/TexturePacker /tmp/TexturePacker || fail "cp binary" "$?"
           chmod +x /tmp/TexturePacker
 
       - name: Repack media to XBT v3
