@@ -1203,6 +1203,15 @@
         <value>$INFO[ListItem.Label]</value>
     </variable>
 
+
+    <variable name="Label_Music_List_IsPlaying">
+        <value condition="String.IsEqual(ListItem.DBType,song) + !$EXP[IsAnPlugin] + !Integer.IsGreater(ListItem.Property(Album_Totaldiscs),1) + !String.IsEmpty(MusicPlayer.Title)">$INFO[MusicPlayer.TrackNumber,,.  ]$INFO[MusicPlayer.Title]</value>
+        <value condition="String.IsEqual(ListItem.DBType,song) + !$EXP[IsAnPlugin] + Integer.IsGreater(ListItem.Property(Album_Totaldiscs),1) + !String.IsEmpty(MusicPlayer.Title)">$LOCALIZE[427] $INFO[MusicPlayer.DiscNumber,, - ]$INFO[MusicPlayer.TrackNumber,,.  ]$INFO[MusicPlayer.Title]</value>
+        <value condition="!String.IsEmpty(MusicPlayer.Label)">$INFO[MusicPlayer.Label]</value>
+        <value condition="String.IsEqual(ListItem.DBType,song) + !$EXP[IsAnPlugin]">$INFO[ListItem.TrackNumber,,.  ]$INFO[ListItem.Title]</value>
+        <value>$INFO[ListItem.Label]</value>
+    </variable>
+
     <variable name="Label_List_Extended_Music">
         <value condition="Container.Content(artists) + !ListItem.IsParentFolder">$INFO[ListItem.Label]$INFO[ListItem.Genre,  •  ,]</value>
         <value condition="Container.Content(albums) + !ListItem.IsParentFolder">$INFO[ListItem.AlbumArtist]$INFO[ListItem.Year,  •  ,]$INFO[ListItem.Genre,  •  ,]</value>
@@ -1210,13 +1219,6 @@
         <value condition="!ListItem.IsParentFolder + !String.IsEmpty(ListItem.Year)">$INFO[ListItem.Year]</value>
         <value condition="!String.IsEmpty(Container.PluginName) + !ListItem.IsParentFolder + !Container.Content(songs)">$INFO[ListItem.FolderPath]</value>
         <value condition="!String.IsEmpty(Container.PluginName) + !ListItem.IsParentFolder + Container.Content(songs)">$INFO[ListItem.Label]$INFO[ListItem.Genre,  •  ,]</value>
-        <value>$INFO[ListItem.Label]</value>
-    </variable>
-
-    <variable name="Label_Music_List_IsPlaying">
-        <value condition="String.IsEqual(ListItem.DBType,song) + !$EXP[IsAnPlugin] + !Integer.IsGreater(ListItem.Property(Album_Totaldiscs),1) + !String.IsEmpty(MusicPlayer.Title)">$INFO[MusicPlayer.TrackNumber,,.  ]$INFO[MusicPlayer.Title]</value>
-        <value condition="String.IsEqual(ListItem.DBType,song) + !$EXP[IsAnPlugin] + Integer.IsGreater(ListItem.Property(Album_Totaldiscs),1) + !String.IsEmpty(MusicPlayer.Title)">$LOCALIZE[427] $INFO[MusicPlayer.DiscNumber,, - ]$INFO[MusicPlayer.TrackNumber,,.  ]$INFO[MusicPlayer.Title]</value>
-        <value condition="!String.IsEmpty(MusicPlayer.Label)">$INFO[MusicPlayer.Label]</value>
         <value>$INFO[ListItem.Label]</value>
     </variable>
 
@@ -3096,7 +3098,6 @@
         <value condition="String.IsEqual(Skin.String(settingskinfont),9)">Segoe Light</value>
         <value condition="String.IsEqual(Skin.String(settingskinfont),10)">Inter Regular</value>
         <value condition="String.IsEqual(Skin.String(settingskinfont),11)">NotoSans Regular</value>
-        <value condition="String.IsEqual(Skin.String(settingskinfont),12)">Roboto CJKSC</value>
         <value>$INFO[Skin.Font] ($LOCALIZE[571])</value>
     </variable>
 
