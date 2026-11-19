@@ -291,6 +291,19 @@
                     <visible>Control.IsVisible(523) | Control.IsVisible(5238)</visible>
                 </control>
 
+                <!-- NAVIGATION HORIZONTAL / VERTICAL -->
+
+                <control type="button" id="9057" description="No Wrap">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31589]$LOCALIZE[31079]</label>
+                    <label2>$VAR[Label_515_Navigation]</label2>
+                    <selected>Skin.HasSetting(515.navigation.vertical</selected>
+                    <onclick>Skin.ToggleSetting(515.navigation.vertical)</onclick>
+                    <visible>Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(videos) | Container.Content(movies) | Container.Content(videoversions) | Container.Content(musicvideos) | Container.Content(artists)</visible>
+                    <visible>Control.IsVisible(515)</visible>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                </control>
+
                 <!-- VIEW 514 - TITLE CLEARLOGO -->
 
                 <control type="radiobutton" id="9053">
@@ -365,7 +378,18 @@
                     <selected>Skin.HasSetting(5x.list.control.list)</selected>
                     <onclick>Skin.ToggleSetting(5x.list.control.list)</onclick>
                     <onclick>SetProperty(reloadskin,1,Home)</onclick>
-                    <visible>Control.IsVisible(50) | Control.IsVisible(57)</visible>
+                    <visible>[Control.IsVisible(50) + !Skin.HasSetting(hide.poster.music.view.50)] | Control.IsVisible(57)</visible>
+                </control>
+
+                <!-- VIEW 50 - HIDE POSTER -->
+
+                <control type="radiobutton" id="9038">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[20021]</label>
+                    <selected>!Skin.HasSetting(hide.poster.music.view.50)</selected>
+                    <onclick>Skin.ToggleSetting(hide.poster.music.view.50)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                    <visible>Control.IsVisible(50)</visible>
                 </control>
 
                 <!-- VIEW 524 - HIDE POSTER -->
