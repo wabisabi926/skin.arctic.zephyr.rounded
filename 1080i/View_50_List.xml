@@ -182,6 +182,12 @@
         </control>
     </include>
 
+    <include name="Control_50_List_Poster_Panel">
+        <control type="panel" id="50">
+            <include>Layout_50_List_Poster_Video</include>
+        </control>
+    </include>
+
     <include name="Layout_50_List_Poster_Video">
         <visible>$EXP[Exp_View_50]</visible>
         <include>Animation_Scrolltime_Views_List</include>
@@ -190,13 +196,12 @@
 
         <top>View_List_Top</top>
         <height>PosterH</height>
+
+        <include content="Def_Left" condition="Skin.HasSetting(hide.poster.video.view.50)"><param name="left" value="View_List_Side" /></include>
+        <left>ListX</left>
+
+        <include content="Def_Right" condition="Skin.HasSetting(hide.poster.video.view.50)"><param name="right" value="60" /></include>
         <right>View_List_Side</right>
-
-        <include condition="Skin.HasSetting(hide.poster.view.50)" content="Def_Left"><param name="left" value="View_List_Side" /></include>
-        <include condition="Skin.HasSetting(hide.poster.view.50)" content="Def_Width"><param name="width" value="1750" /></include>
-
-        <include condition="!Skin.HasSetting(hide.poster.view.50)" content="Def_Left"><param name="left" value="ListX" /></include>
-        <include condition="!Skin.HasSetting(hide.poster.view.50)" content="Def_Width"><param name="width" value="ListW" /></include>
 
         <include content="Def_Layout_Action_On_Left_On_Right" >
             <param name="scrollid" value="1627" />
@@ -207,33 +212,65 @@
 
         <pagecontrol>1627</pagecontrol>
 
-        <focusposition>1</focusposition>
-
-        <include content="Def_Focus_Position" condition="!Skin.HasSetting(5x.list.control.list)">
+        <include content="Def_Focus_Position" condition="!Skin.HasSetting(hide.poster.video.view.50) + !Skin.HasSetting(5x.list.control.list)">
             <param name="focusposition" value="1" />
         </include>
 
-        <include content="Def_Movement" condition="!Skin.HasSetting(enable.view.5x.51x.extended.list) + !Skin.HasSetting(5x.list.control.list)">
+        <include content="Def_Movement" condition="!Skin.HasSetting(hide.poster.video.view.50) + !Skin.HasSetting(enable.view.5x.51x.extended.list) + !Skin.HasSetting(5x.list.control.list)">
             <param name="movement" value="8" />
         </include>
-        <include content="Def_Movement" condition="Skin.HasSetting(enable.view.5x.51x.extended.list) + !Skin.HasSetting(5x.list.control.list)">
+        <include content="Def_Movement" condition="!Skin.HasSetting(hide.poster.video.view.50) + Skin.HasSetting(enable.view.5x.51x.extended.list) + !Skin.HasSetting(5x.list.control.list)">
             <param name="movement" value="5" />
         </include>
 
         <viewtype label="535">list</viewtype>
 
-        <itemlayout condition="!Skin.HasSetting(enable.view.5x.51x.extended.list)" height="64">
+        <!-- LIST SIMPLE - WITH POSTER -->
+
+        <itemlayout condition="!Skin.HasSetting(hide.poster.video.view.50) + !Skin.HasSetting(enable.view.5x.51x.extended.list)" height="64">
             <include>layout_list_item_video</include>
         </itemlayout>
-        <focusedlayout condition="!Skin.HasSetting(enable.view.5x.51x.extended.list)" height="64">
+        <focusedlayout condition="!Skin.HasSetting(hide.poster.video.view.50) + !Skin.HasSetting(enable.view.5x.51x.extended.list)" height="64">
             <include content="layout_list_focus_video"><param name="list_id" value="50" /></include>
         </focusedlayout>
 
-        <itemlayout condition="Skin.HasSetting(enable.view.5x.51x.extended.list)" height="91.4">
+        <!-- LIST EXTENDED - WITH POSTER -->
+
+        <itemlayout condition="!Skin.HasSetting(hide.poster.video.view.50) + Skin.HasSetting(enable.view.5x.51x.extended.list)" height="91.4">
             <include>layout_list_item_video_info</include>
         </itemlayout>
-        <focusedlayout condition="Skin.HasSetting(enable.view.5x.51x.extended.list)" height="91.4">
+        <focusedlayout condition="!Skin.HasSetting(hide.poster.video.view.50) + Skin.HasSetting(enable.view.5x.51x.extended.list)" height="91.4">
             <include content="layout_list_focus_video_info"><param name="list_id" value="50" /></include>
+        </focusedlayout>
+
+        <!-- LIST SIMPLE - WITHOUT POSTER -->
+
+        <itemlayout condition="Skin.HasSetting(hide.poster.video.view.50) + !Skin.HasSetting(enable.view.5x.51x.extended.list)" height="64">
+            <control type="group">
+                <width>870</width>
+                <include>layout_list_item_video</include>
+            </control>
+        </itemlayout>
+        <focusedlayout condition="Skin.HasSetting(hide.poster.video.view.50) + !Skin.HasSetting(enable.view.5x.51x.extended.list)" width="890" height="64">
+            <control type="group">
+                <width>870</width>
+                <include content="layout_list_focus_video"><param name="list_id" value="50" /></include>
+            </control>
+        </focusedlayout>
+
+        <!-- LIST EXTENDED - WITHOUT POSTER -->
+
+        <itemlayout condition="Skin.HasSetting(hide.poster.video.view.50) + Skin.HasSetting(enable.view.5x.51x.extended.list)" width="890" height="91.4">
+            <control type="group">
+                <width>870</width>
+                <include>layout_list_item_video_info</include>
+            </control>
+        </itemlayout>
+        <focusedlayout condition="Skin.HasSetting(hide.poster.video.view.50) + Skin.HasSetting(enable.view.5x.51x.extended.list)" width="890" height="91.4">
+            <control type="group">
+                <width>870</width>
+                <include content="layout_list_focus_video_info"><param name="list_id" value="50" /></include>
+            </control>
         </focusedlayout>
     </include>
 
@@ -246,18 +283,19 @@
             <include condition="!Skin.HasSetting(show.clock.date.weather.home.only) + !Skin.HasSetting(show.furniture.footer)">Furniture_Footer_Clock_Right</include>
 
             <control type="group">
-                <include condition="!Skin.HasSetting(5x.list.control.list)">Control_50_List_Poster_Fixed_List</include>
-                <include condition="Skin.HasSetting(5x.list.control.list)">Control_50_List_Poster_List</include>
+                <include condition="!Skin.HasSetting(hide.poster.video.view.50) + !Skin.HasSetting(5x.list.control.list)">Control_50_List_Poster_Fixed_List</include>
+                <include condition="!Skin.HasSetting(hide.poster.video.view.50) + Skin.HasSetting(5x.list.control.list)">Control_50_List_Poster_List</include>
+                <include condition="Skin.HasSetting(hide.poster.video.view.50)">Control_50_List_Poster_Panel</include>
 
                 <!-- SCROLLBAR -->
 
                 <control type="scrollbar" id="1627">
-                    <include content="Object_Scrollbar_Views_Vertical_On_Left" condition="!Skin.HasSetting(hide.poster.view.50) + !Skin.HasSetting(show.context.menu.onleft)">
+                    <include content="Object_Scrollbar_Views_Vertical_On_Left" condition="!Skin.HasSetting(hide.poster.video.view.50) + !Skin.HasSetting(show.context.menu.onleft)">
                         <param name="scrollid" value="1627" />
                         <param name="idlayout" value="50" />
                         <param name="centerleft" value="530" />
                     </include>
-                    <include content="Object_Scrollbar_Views_Vertical_On_Left" condition="Skin.HasSetting(hide.poster.view.50) + !Skin.HasSetting(show.context.menu.onleft)">
+                    <include content="Object_Scrollbar_Views_Vertical_On_Left" condition="Skin.HasSetting(hide.poster.video.view.50) + !Skin.HasSetting(show.context.menu.onleft)">
                         <param name="scrollid" value="1627" />
                         <param name="idlayout" value="50" />
                     </include>
@@ -267,7 +305,7 @@
                     </include>
                 </control>
             </control>
-            <include condition="!Skin.HasSetting(hide.poster.view.50)">View_50_Side_Poster</include>
+            <include condition="!Skin.HasSetting(hide.poster.video.view.50)">View_50_Side_Poster</include>
         </control>
     </include>
 
@@ -398,19 +436,19 @@
 
         <!-- LIST SIMPLE - WITH POSTER -->
 
-        <itemlayout condition="!Skin.HasSetting(hide.poster.music.view.50) + Skin.HasSetting(disable.view.50.extended.list.music)" width="ListSquareW" height="64">
+        <itemlayout condition="!Skin.HasSetting(hide.poster.music.view.50) + Skin.HasSetting(disable.view.50.extended.list.music)" height="64">
             <include>layout_list_item_music</include>
         </itemlayout>
-        <focusedlayout condition="!Skin.HasSetting(hide.poster.music.view.50) + Skin.HasSetting(disable.view.50.extended.list.music)" width="ListSquareW" height="64">
+        <focusedlayout condition="!Skin.HasSetting(hide.poster.music.view.50) + Skin.HasSetting(disable.view.50.extended.list.music)" height="64">
             <include content="layout_list_focus_music"><param name="list_id" value="50" /></include>
         </focusedlayout>
 
         <!-- LIST EXTENDED - WITH POSTER -->
 
-        <itemlayout condition="!Skin.HasSetting(hide.poster.music.view.50) + !Skin.HasSetting(disable.view.50.extended.list.music)" width="ListSquareW" height="91.4">
+        <itemlayout condition="!Skin.HasSetting(hide.poster.music.view.50) + !Skin.HasSetting(disable.view.50.extended.list.music)" height="91.4">
             <include>layout_list_item_music_info</include>
         </itemlayout>
-        <focusedlayout condition="!Skin.HasSetting(hide.poster.music.view.50) + !Skin.HasSetting(disable.view.50.extended.list.music)" width="ListSquareW" height="91.4">
+        <focusedlayout condition="!Skin.HasSetting(hide.poster.music.view.50) + !Skin.HasSetting(disable.view.50.extended.list.music)" height="91.4">
             <include content="layout_list_focus_music_info"><param name="list_id" value="50" /></include>
         </focusedlayout>
 
@@ -585,7 +623,6 @@
         <ondown>50</ondown>
 
         <pagecontrol>1658</pagecontrol>
-        <focusposition>1</focusposition>
         <orientation>vertical</orientation>
 
         <include content="Def_Focus_Position" condition="!Skin.HasSetting(hide.poster.playlist.view.50) + !Skin.HasSetting(5x.list.control.list)">
@@ -900,29 +937,14 @@
         <control type="label">
             <animation effect="slide" start="0" end="-100" time="0" condition="!Container.Content(movies) | [Container.Content(movies) + String.IsEmpty(ListItem.Year)]">Conditional</animation>
             <left>180</left>
-            <width max="900">auto</width>
+            <right>290</right>
             <aligny>center</aligny>
             <height>64</height>
             <font>InfoNetflix</font>
             <textcolor>Dark1</textcolor>
             <selectedcolor>Dark1</selectedcolor>
             <label>$VAR[Label_View_List_Label]</label>
-            <visible>!ListItem.HasVideoVersions + !ListItem.IsParentFolder</visible>
-        </control>
-
-        <!-- LABEL VERSION -->
-
-        <control type="label">
-            <animation effect="slide" start="0" end="-75" time="0" condition="!Container.Content(movies) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType)]">Conditional</animation>
-            <left>180</left>
-            <width max="900">auto</width>
-            <aligny>center</aligny>
-            <height>64</height>
-            <font>InfoNetflix</font>
-            <textcolor>Dark1</textcolor>
-            <selectedcolor>Dark1</selectedcolor>
-            <label>$INFO[ListItem.Title]$INFO[ListItem.VideoVersionName,  •  ,]</label>
-            <visible>ListItem.HasVideoVersions + !ListItem.IsParentFolder</visible>
+            <visible>!ListItem.IsParentFolder</visible>
         </control>
 
         <!-- DURATION -->
@@ -932,7 +954,7 @@
             <animation effect="slide" start="0" end="66" time="0" condition="!Container.Content(Seasons) + Skin.HasSetting(hide.video.ratings)">Conditional</animation>
             <animation effect="slide" start="0" end="66" time="0" condition="$EXP[IsAnPlugin] + !$EXP[IsTMDbHelper] + !$EXP[IsPluginJLOM] + !Skin.HasSetting(hide.video.ratings)">Conditional</animation>
             <right>154</right>
-            <width>500</width>
+            <width>160</width>
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
@@ -966,7 +988,7 @@
 
         <control type="label">
             <right>30</right>
-            <width>500</width>
+            <width>90</width>
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
@@ -985,7 +1007,7 @@
 
         <control type="label">
             <right>30</right>
-            <width>500</width>
+            <width>100</width>
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
@@ -1029,29 +1051,14 @@
         <control type="label">
             <animation effect="slide" start="0" end="-100" time="0" condition="!Container.Content(movies) | [Container.Content(movies) + String.IsEmpty(ListItem.Year)]">Conditional</animation>
             <left>180</left>
-            <width max="900">auto</width>
+            <right>290</right>
             <aligny>center</aligny>
             <height>64</height>
             <font>InfoNetflix</font>
             <textcolor>Selected</textcolor>
             <selectedcolor>Selected</selectedcolor>
             <label>$VAR[Label_View_List_Label]</label>
-            <visible>!ListItem.HasVideoVersions + !ListItem.IsParentFolder</visible>
-        </control>
-
-        <!-- LABEL VERSION -->
-
-        <control type="label">
-            <animation effect="slide" start="0" end="-75" time="0" condition="!Container.Content(movies) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType)]">Conditional</animation>
-            <left>180</left>
-            <width max="900">auto</width>
-            <aligny>center</aligny>
-            <height>64</height>
-            <font>InfoNetflix</font>
-            <textcolor>Selected</textcolor>
-            <selectedcolor>Selected</selectedcolor>
-            <label>$INFO[ListItem.Title]$INFO[ListItem.VideoVersionName,  •  ,]</label>
-            <visible>ListItem.HasVideoVersions + !ListItem.IsParentFolder</visible>
+            <visible>!ListItem.IsParentFolder</visible>
         </control>
 
         <!-- DURATION -->
@@ -1061,7 +1068,7 @@
             <animation effect="slide" start="0" end="66" time="0" condition="!Container.Content(Seasons) + Skin.HasSetting(hide.video.ratings)">Conditional</animation>
             <animation effect="slide" start="0" end="66" time="0" condition="$EXP[IsAnPlugin] + !$EXP[IsTMDbHelper] + !$EXP[IsPluginJLOM] + !Skin.HasSetting(hide.video.ratings)">Conditional</animation>
             <right>154</right>
-            <width>500</width>
+            <width>160</width>
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
@@ -1095,7 +1102,7 @@
 
         <control type="label">
             <right>30</right>
-            <width>500</width>
+            <width>90</width>
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
@@ -1114,7 +1121,7 @@
 
         <control type="label">
             <right>30</right>
-            <width>500</width>
+            <width>100</width>
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
@@ -1161,19 +1168,19 @@
             <animation effect="slide" start="0" end="-90" time="0" condition="!Container.Content(movies) | [Container.Content(movies) + String.IsEmpty(ListItem.Year)]">Conditional</animation>
             <top>-5</top>
             <left>210</left>
-            <width max="900">auto</width>
+            <right>290</right>
             <aligny>center</aligny>
             <height>64</height>
             <font>InfoNetflix</font>
             <label>$VAR[Label_View_List_Label]</label>
             <textcolor>Dark1</textcolor>
             <selectedcolor>Dark1</selectedcolor>
-            <visible>!ListItem.HasVideoVersions + !Container.Content(episodes) + !Container.Content(tvshows)</visible>
+            <visible>!Container.Content(episodes) + !Container.Content(tvshows)</visible>
         </control>
         <control type="label">
             <top>-5</top>
             <left>120</left>
-            <width max="900">auto</width>
+            <right>290</right>
             <aligny>center</aligny>
             <height>64</height>
             <font>InfoNetflix</font>
@@ -1181,22 +1188,6 @@
             <textcolor>Dark1</textcolor>
             <selectedcolor>Dark1</selectedcolor>
             <visible>Container.Content(episodes) | Container.Content(tvshows)</visible>
-        </control>
-
-        <!-- LABEL VERSION -->
-
-        <control type="label">
-            <animation effect="slide" start="0" end="-90" time="0" condition="!Container.Content(movies) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType)]">Conditional</animation>
-            <top>-5</top>
-            <left>210</left>
-            <width max="900">auto</width>
-            <aligny>center</aligny>
-            <height>64</height>
-            <font>InfoNetflix</font>
-            <label>$INFO[ListItem.Title]$INFO[ListItem.VideoVersionName,  •  ,]</label>
-            <textcolor>Dark1</textcolor>
-            <selectedcolor>Dark1</selectedcolor>
-            <visible>ListItem.HasVideoVersions + !Container.Content(episodes) + !Container.Content(tvshows) + !ListItem.IsParentFolder</visible>
         </control>
 
         <!-- DURATION -->
@@ -1207,7 +1198,7 @@
             <animation effect="slide" start="0" end="66" time="0" condition="$EXP[IsAnPlugin] + !$EXP[IsTMDbHelper] + !$EXP[IsPluginJLOM] + !Skin.HasSetting(hide.video.ratings)">Conditional</animation>
             <top>-5</top>
             <right>154</right>
-            <width>500</width>
+            <width>160</width>
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
@@ -1243,7 +1234,7 @@
         <control type="label">
             <top>-5</top>
             <right>30</right>
-            <width>500</width>
+            <width>90</width>
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
@@ -1262,7 +1253,7 @@
 
         <control type="label">
             <right>30</right>
-            <width>500</width>
+            <width>100</width>
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
@@ -1279,7 +1270,7 @@
             <visible>!Skin.HasSetting(list.show.filename)</visible>
             <top>30</top>
             <left>120</left>
-            <width>800</width>
+            <right>290</right>
             <aligny>center</aligny>
             <height>64</height>
             <font>Small24</font>
@@ -1295,7 +1286,7 @@
             <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(musicvideos)</visible>
             <top>30</top>
             <left>120</left>
-            <width>800</width>
+            <right>290</right>
             <aligny>center</aligny>
             <height>64</height>
             <align>left</align>
@@ -1340,19 +1331,19 @@
             <animation effect="slide" start="0" end="-90" time="0" condition="!Container.Content(movies) | [Container.Content(movies) + String.IsEmpty(ListItem.Year)]">Conditional</animation>
             <top>-5</top>
             <left>210</left>
-            <width max="900">auto</width>
+            <right>290</right>
             <aligny>center</aligny>
             <height>64</height>
             <font>InfoNetflix</font>
             <textcolor>Selected</textcolor>
             <selectedcolor>Selected</selectedcolor>
             <label>$VAR[Label_View_List_Label]</label>
-            <visible>!ListItem.HasVideoVersions + !Container.Content(episodes) + !Container.Content(tvshows)</visible>
+            <visible>!Container.Content(episodes) + !Container.Content(tvshows)</visible>
         </control>
         <control type="label">
             <top>-5</top>
             <left>120</left>
-            <width max="900">auto</width>
+            <right>290</right>
             <aligny>center</aligny>
             <height>64</height>
             <font>InfoNetflix</font>
@@ -1360,22 +1351,6 @@
             <selectedcolor>Selected</selectedcolor>
             <label>$VAR[Label_View_List_Label]</label>
             <visible>Container.Content(episodes) | Container.Content(tvshows)</visible>
-        </control>
-
-        <!-- LABEL VERSION -->
-
-        <control type="label">
-            <animation effect="slide" start="0" end="-90" time="0" condition="!Container.Content(movies) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType)]">Conditional</animation>
-            <top>-5</top>
-            <left>210</left>
-            <width max="900">auto</width>
-            <aligny>center</aligny>
-            <height>64</height>
-            <font>InfoNetflix</font>
-            <label>$INFO[ListItem.Title]$INFO[ListItem.VideoVersionName,  •  ,]</label>
-            <textcolor>Selected</textcolor>
-            <selectedcolor>Selected</selectedcolor>
-            <visible>ListItem.HasVideoVersions + !Container.Content(episodes) + !Container.Content(tvshows) + !ListItem.IsParentFolder</visible>
         </control>
 
         <!-- DURATION -->
@@ -1386,7 +1361,7 @@
             <animation effect="slide" start="0" end="66" time="0" condition="!Container.Content(Seasons) + Skin.HasSetting(hide.video.ratings)">Conditional</animation>
             <animation effect="slide" start="0" end="66" time="0" condition="$EXP[IsAnPlugin] + !$EXP[IsTMDbHelper] + !$EXP[IsPluginJLOM] + !Skin.HasSetting(hide.video.ratings)">Conditional</animation>
             <right>154</right>
-            <width>500</width>
+            <width>160</width>
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
@@ -1422,7 +1397,7 @@
         <control type="label">
             <top>-5</top>
             <right>30</right>
-            <width>500</width>
+            <width>90</width>
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
@@ -1441,7 +1416,7 @@
 
         <control type="label">
             <right>30</right>
-            <width>500</width>
+            <width>100</width>
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
@@ -1459,7 +1434,7 @@
             <visible>!Skin.HasSetting(list.show.filename)</visible>
             <top>30</top>
             <left>120</left>
-            <width max="900">auto</width>
+            <right>300</right>
             <aligny>center</aligny>
             <height>64</height>
             <font>Small24</font>
@@ -1475,7 +1450,7 @@
             <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(musicvideos)</visible>
             <top>30</top>
             <left>120</left>
-            <width max="900">auto</width>
+            <right>300</right>
             <aligny>center</aligny>
             <height>64</height>
             <align>left</align>
@@ -1504,7 +1479,7 @@
 
         <control type="label">
             <left>100</left>
-            <width max="900">auto</width>
+            <right>290</right>
             <aligny>center</aligny>
             <height>64</height>
             <font>InfoNetflix</font>
@@ -1538,7 +1513,7 @@
         </control>
         <control type="label">
             <left>145</left>
-            <width max="900">auto</width>
+            <right>290</right>
             <aligny>center</aligny>
             <height>64</height>
             <font>InfoNetflix</font>
@@ -1555,7 +1530,7 @@
             <animation effect="slide" start="0" end="66" time="0" condition="Skin.HasSetting(hide.music.ratings) + !String.IsEqual(Container.SortMethod,$LOCALIZE[38018])">Conditional</animation>
             <animation effect="slide" start="0" end="-66" time="0" condition="String.IsEqual(Container.SortMethod,$LOCALIZE[38018])">Conditional</animation>
             <right>154</right>
-            <width>500</width>
+            <width>160</width>
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
@@ -1588,7 +1563,7 @@
 
         <control type="label">
             <right>30</right>
-            <width>500</width>
+            <width>90</width>
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
@@ -1615,7 +1590,7 @@
         </control>
         <control type="label">
             <right>30</right>
-            <width>500</width>
+            <width>90</width>
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
@@ -1643,7 +1618,7 @@
 
         <control type="label">
             <left>100</left>
-            <width max="900">auto</width>
+            <right>290</right>
             <aligny>center</aligny>
             <height>64</height>
             <font>InfoNetflix</font>
@@ -1677,7 +1652,7 @@
         </control>
         <control type="label">
             <left>145</left>
-            <width max="900">auto</width>
+            <right>290</right>
             <aligny>center</aligny>
             <height>64</height>
             <font>InfoNetflix</font>
@@ -1694,7 +1669,7 @@
             <animation effect="slide" start="0" end="66" time="0" condition="Skin.HasSetting(hide.music.ratings) + !String.IsEqual(Container.SortMethod,$LOCALIZE[38018])">Conditional</animation>
             <animation effect="slide" start="0" end="-66" time="0" condition="String.IsEqual(Container.SortMethod,$LOCALIZE[38018])">Conditional</animation>
             <right>154</right>
-            <width>500</width>
+            <width>160</width>
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
@@ -1727,7 +1702,7 @@
 
         <control type="label">
             <right>30</right>
-            <width>500</width>
+            <width>90</width>
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
@@ -1754,7 +1729,7 @@
         </control>
         <control type="label">
             <right>30</right>
-            <width>500</width>
+            <width>90</width>
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
@@ -1784,7 +1759,7 @@
         <control type="label">
             <top>-5</top>
             <left>120</left>
-            <width max="900">auto</width>
+            <right>290</right>
             <aligny>center</aligny>
             <height>64</height>
             <font>InfoNetflix</font>
@@ -1819,7 +1794,7 @@
         <control type="label">
             <top>-5</top>
             <left>165</left>
-            <width max="900">auto</width>
+            <right>290</right>
             <aligny>center</aligny>
             <height>64</height>
             <font>InfoNetflix</font>
@@ -1837,7 +1812,7 @@
             <animation effect="slide" start="0" end="-66" time="0" condition="String.IsEqual(Container.SortMethod,$LOCALIZE[38018])">Conditional</animation>
             <top>-5</top>
             <right>154</right>
-            <width>500</width>
+            <width>160</width>
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
@@ -1872,7 +1847,7 @@
         <control type="label">
             <top>-5</top>
             <right>30</right>
-            <width>500</width>
+            <width>90</width>
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
@@ -1900,7 +1875,7 @@
         <control type="label">
             <top>-5</top>
             <right>30</right>
-            <width>500</width>
+            <width>90</width>
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
@@ -1916,7 +1891,7 @@
         <control type="label">
             <top>28</top>
             <left>120</left>
-            <width max="900">auto</width>
+            <right>290</right>
             <aligny>center</aligny>
             <height>64</height>
             <font>Small24</font>
@@ -1944,7 +1919,7 @@
         <control type="label">
             <top>-5</top>
             <left>120</left>
-            <width max="900">auto</width>
+            <right>290</right>
             <aligny>center</aligny>
             <height>64</height>
             <font>InfoNetflix</font>
@@ -1979,7 +1954,7 @@
         <control type="label">
             <top>-5</top>
             <left>165</left>
-            <width max="900">auto</width>
+            <right>290</right>
             <aligny>center</aligny>
             <height>64</height>
             <font>InfoNetflix</font>
@@ -1997,7 +1972,7 @@
             <animation effect="slide" start="0" end="-66" time="0" condition="String.IsEqual(Container.SortMethod,$LOCALIZE[38018])">Conditional</animation>
             <top>-5</top>
             <right>154</right>
-            <width>500</width>
+            <width>160</width>
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
@@ -2032,7 +2007,7 @@
         <control type="label">
             <top>-5</top>
             <right>30</right>
-            <width>500</width>
+            <width>90</width>
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
@@ -2060,7 +2035,7 @@
         <control type="label">
             <top>-5</top>
             <right>30</right>
-            <width>500</width>
+            <width>90</width>
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
@@ -2076,7 +2051,7 @@
         <control type="label">
             <top>28</top>
             <left>120</left>
-            <width max="900">auto</width>
+            <right>290</right>
             <aligny>center</aligny>
             <height>64</height>
             <font>Small24</font>
@@ -2105,7 +2080,7 @@
 
         <control type="label">
             <left>90</left>
-            <width max="900">auto</width>
+            <right>290</right>
             <aligny>center</aligny>
             <height>64</height>
             <font>InfoNetflix</font>
@@ -2139,7 +2114,7 @@
         </control>
         <control type="label">
             <left>135</left>
-            <width max="900">auto</width>
+            <right>290</right>
             <aligny>center</aligny>
             <height>64</height>
             <font>InfoNetflix</font>
@@ -2156,7 +2131,7 @@
             <animation effect="slide" start="0" end="66" time="0" condition="!Container.Content(Seasons) + Skin.HasSetting(hide.playlist.ratings)">Conditional</animation>
             <animation effect="slide" start="0" end="66" time="0" condition="$EXP[IsAnPlugin] + !$EXP[IsTMDbHelper] + !$EXP[IsPluginJLOM] + !Skin.HasSetting(hide.playlist.ratings)">Conditional</animation>
             <right>154</right>
-            <width>500</width>
+            <width>160</width>
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
@@ -2185,7 +2160,7 @@
 
         <control type="label">
             <right>30</right>
-            <width>500</width>
+            <width>90</width>
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
@@ -2216,7 +2191,7 @@
 
         <control type="label">
             <left>90</left>
-            <width max="900">auto</width>
+            <right>290</right>
             <aligny>center</aligny>
             <height>64</height>
             <font>InfoNetflix</font>
@@ -2250,7 +2225,7 @@
         </control>
         <control type="label">
             <left>135</left>
-            <width max="900">auto</width>
+            <right>290</right>
             <aligny>center</aligny>
             <height>64</height>
             <font>InfoNetflix</font>
@@ -2267,7 +2242,7 @@
             <animation effect="slide" start="0" end="66" time="0" condition="!Container.Content(Seasons) + Skin.HasSetting(hide.playlist.ratings)">Conditional</animation>
             <animation effect="slide" start="0" end="66" time="0" condition="$EXP[IsAnPlugin] + !$EXP[IsTMDbHelper] + !$EXP[IsPluginJLOM] + !Skin.HasSetting(hide.playlist.ratings)">Conditional</animation>
             <right>154</right>
-            <width>500</width>
+            <width>160</width>
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
@@ -2297,7 +2272,7 @@
 
         <control type="label">
             <right>30</right>
-            <width>500</width>
+            <width>90</width>
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
@@ -2329,7 +2304,7 @@
         <control type="label">
             <left>120</left>
             <top>-5</top>
-            <width max="900">auto</width>
+            <right>290</right>
             <aligny>center</aligny>
             <height>64</height>
             <font>InfoNetflix</font>
@@ -2364,7 +2339,7 @@
         <control type="label">
             <left>165</left>
             <top>-5</top>
-            <width max="900">auto</width>
+            <right>290</right>
             <aligny>center</aligny>
             <height>64</height>
             <font>InfoNetflix</font>
@@ -2382,7 +2357,7 @@
             <animation effect="slide" start="0" end="66" time="0" condition="$EXP[IsAnPlugin] + !$EXP[IsTMDbHelper] + !$EXP[IsPluginJLOM] + !Skin.HasSetting(hide.playlist.ratings)">Conditional</animation>
             <top>-5</top>
             <right>154</right>
-            <width>500</width>
+            <width>160</width>
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
@@ -2413,7 +2388,7 @@
         <control type="label">
             <top>-5</top>
             <right>30</right>
-            <width>500</width>
+            <width>90</width>
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
@@ -2432,7 +2407,7 @@
             <visible>!Skin.HasSetting(list.show.filename)</visible>
             <top>28</top>
             <left>120</left>
-            <width max="900">auto</width>
+            <right>290</right>
             <aligny>center</aligny>
             <height>64</height>
             <align>left</align>
@@ -2448,7 +2423,7 @@
             <visible>Skin.HasSetting(list.show.filename) + !ListItem.IsParentFolder</visible>
             <top>28</top>
             <left>120</left>
-            <width max="900">auto</width>
+            <right>290</right>
             <aligny>center</aligny>
             <height>64</height>
             <align>left</align>
@@ -2477,7 +2452,7 @@
         <control type="label">
             <left>120</left>
             <top>-5</top>
-            <width max="900">auto</width>
+            <right>290</right>
             <aligny>center</aligny>
             <height>64</height>
             <font>InfoNetflix</font>
@@ -2512,7 +2487,7 @@
         <control type="label">
             <left>165</left>
             <top>-5</top>
-            <width max="900">auto</width>
+            <right>290</right>
             <aligny>center</aligny>
             <height>64</height>
             <font>InfoNetflix</font>
@@ -2530,7 +2505,7 @@
             <animation effect="slide" start="0" end="66" time="0" condition="$EXP[IsAnPlugin] + !$EXP[IsTMDbHelper] + !$EXP[IsPluginJLOM] + !Skin.HasSetting(hide.playlist.ratings)">Conditional</animation>
             <top>-5</top>
             <right>154</right>
-            <width>500</width>
+            <width>160</width>
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
@@ -2562,7 +2537,7 @@
         <control type="label">
             <top>-5</top>
             <right>30</right>
-            <width>500</width>
+            <width>90</width>
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
@@ -2581,7 +2556,7 @@
             <visible>!Skin.HasSetting(list.show.filename)</visible>
             <top>28</top>
             <left>120</left>
-            <width max="900">auto</width>
+            <right>290</right>
             <aligny>center</aligny>
             <height>64</height>
             <align>left</align>
@@ -2597,7 +2572,7 @@
             <visible>Skin.HasSetting(list.show.filename) + !ListItem.IsParentFolder</visible>
             <top>28</top>
             <left>120</left>
-            <width max="900">auto</width>
+            <right>290</right>
             <aligny>center</aligny>
             <height>64</height>
             <align>left</align>
@@ -2624,7 +2599,7 @@
 
         <control type="label">
             <left>90</left>
-            <width max="900">auto</width>
+            <right>290</right>
             <aligny>center</aligny>
             <height>64</height>
             <font>InfoNetflix</font>
@@ -2703,7 +2678,7 @@
 
         <control type="label">
             <left>90</left>
-            <width max="900">auto</width>
+            <right>290</right>
             <aligny>center</aligny>
             <height>64</height>
             <font>InfoNetflix</font>
@@ -2794,7 +2769,7 @@
                 <control type="label">
                     <left>120</left>
                     <top>-5</top>
-                    <width max="900">auto</width>
+                    <right>290</right>
                     <aligny>center</aligny>
                     <height>64</height>
                     <font>InfoNetflix</font>
@@ -2885,7 +2860,7 @@
                 <control type="label">
                     <top>28</top>
                     <left>120</left>
-                    <width max="900">auto</width>
+                    <right>290</right>
                     <aligny>center</aligny>
                     <height>64</height>
                     <align>left</align>
@@ -2945,7 +2920,7 @@
             <control type="label">
                 <left>120</left>
                 <top>-5</top>
-                <width max="900">auto</width>
+                <right>290</right>
                 <aligny>center</aligny>
                 <height>64</height>
                 <font>InfoNetflix</font>
@@ -3024,7 +2999,7 @@
             <control type="label">
                 <top>28</top>
                 <left>120</left>
-                <width max="900">auto</width>
+                <right>290</right>
                 <aligny>center</aligny>
                 <height>64</height>
                 <align>left</align>
@@ -3073,7 +3048,7 @@
             <control type="label">
                 <top>-5</top>
                 <left>120</left>
-                <width max="900">auto</width>
+                <right>290</right>
                 <aligny>center</aligny>
                 <height>64</height>
                 <font>InfoNetflix</font>
@@ -3133,7 +3108,7 @@
             <control type="label">
                 <top>-5</top>
                 <left>120</left>
-                <width max="900">auto</width>
+                <right>290</right>
                 <aligny>center</aligny>
                 <height>64</height>
                 <font>InfoNetflix</font>
